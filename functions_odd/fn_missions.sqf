@@ -9,7 +9,7 @@ if(CurrentMission == 0) then {
 	CurrentMission = 2;
 	publicVariable "CurrentMission";
 	// Choix d'un Lieux objectif 
-	Private _zo = call WOLV_fnc_createZO;
+	Private _zo = [_ForceZO] call WOLV_fnc_createZO;
 	// Private _diff = [_zo] call _CalcDifficulty
 	// systemChat(str(_diff));
 

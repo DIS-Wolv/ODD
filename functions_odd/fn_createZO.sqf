@@ -1,3 +1,4 @@
+params [["_ForceZO",-1]]
 
 //Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000,15000], locationType, 30000];
@@ -11,11 +12,14 @@ while {(text _obj in locationBlkList) or (count _Buildings == 0)} do {	//tant qu
 	_Buildings = nearestObjects[position _obj, Maison, 200];
 };	//*/
 
-/*
-while {text _obj != "Abdera"} do {
-	[text _obj] remoteExec ["systemChat", 0];
-	_obj = selectRandom _location;
-}; // */
+
+if (_ForceZO in _location) then {
+//*
+	while {text _obj != _ForceZO} do {
+		[text _obj] remoteExec ["systemChat", 0];
+		_obj = selectRandom _location;
+	}; // */
+};
  
 //Recupère la position de l'objectif
 private _pos = position _obj;
