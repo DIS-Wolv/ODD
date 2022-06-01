@@ -1,0 +1,38 @@
+private _crate = acces;
+clearMagazineCargoGlobal _crate;
+clearWeaponCargoGlobal _crate;
+clearItemCargoGlobal _crate;
+clearBackpackCargoGlobal _crate;
+
+_crate addItemCargoGlobal ["rhsusf_acc_nt4_black", 50];
+_crate addItemCargoGlobal ["ACE_CableTie", 50];
+_crate addItemCargoGlobal ["ACE_Chemlight_HiGreen", 50];
+_crate addItemCargoGlobal ["ACE_DefusalKit", 10]; 
+_crate addItemCargoGlobal ["ACE_EntrenchingTool", 10];
+_crate addItemCargoGlobal ["B_IR_Grenade", 50];
+_crate addItemCargoGlobal ["SmokeShellGreen", 50];
+_crate addItemCargoGlobal ["rhsusf_acc_anpeq15side_bk", 10];
+_crate addItemCargoGlobal ["DemoCharge_Remote_Mag", 50];
+_crate addItemCargoGlobal ["ACE_MapTools", 10];
+_crate addItemCargoGlobal ["ACE_wirecutter", 10];
+_crate addItemCargoGlobal ["ACE_Kestrel4500", 5];
+_crate addItemCargoGlobal ["rhsusf_acc_ELCAN", 10];
+_crate addItemCargoGlobal ["R3F_ITEM_ODP", 10];
+_crate addItemCargoGlobal ["ACE_NVG_Wide", 25];
+_crate addItemCargoGlobal ["B_UavTerminal", 5];
+_crate addItemCargoGlobal ["ClaymoreDirectionalMine_Remote_Mag", 50];
+_crate addItemCargoGlobal ["SatchelCharge_Remote_Mag", 50];
+_crate addItemCargoGlobal ["ACE_UAVBattery", 50];
+_crate addItemCargoGlobal ["rhsusf_acc_omega9k", 50]; //sds 9mm
+_crate addItemCargoGlobal ["acc_flashlight_pistol", 50]; 
+_crate addItemCargoGlobal ["ACE_M26_Clacker", 10];
+_crate addItemCargoGlobal ["ACE_Clacker", 10];
+_crate addItemCargoGlobal ["ACE_Tripod", 5];
+_crate addItemCargoGlobal ["ACE_Vector", 5];
+_crate addItemCargoGlobal ["tfw_rf3080Item", 5];
+_crate addBackpackCargoGlobal ["tfw_ilbe_whip_gr", 5];
+_crate addBackpackCargoGlobal ["tfw_ilbe_whip_ocp", 5];
+_crate addItemCargoGlobal ["drybag_blk", 10];
+_crate addItemCargoGlobal ["Laserbatteries", 5];
+_crate addItemCargoGlobal ["SmokeShellGreen", 25];
+_crate addItemCargoGlobal ["UGL_FlareCIR_F", 25];
