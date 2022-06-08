@@ -94,7 +94,7 @@ if(CurrentMission == 0) then {
 	private _Renfort = true;
 	private _nbItt = 0;
 	
-	if (!_Debug) then {
+	if (_Debug) then {
 		waitUntil{sleep 1; count (position _zo nearEntities[["SoldierWB"], 1000]) >= 1};
 		["Mission Lancée"] remoteExec ["systemChat", 0];
 	};
