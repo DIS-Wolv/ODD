@@ -1,4 +1,4 @@
-params [["_ForceZO",-1]]
+params [["_ForceZO",-1]];
 
 //Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000,15000], locationType, 30000];
@@ -20,7 +20,7 @@ if (_ForceZO in _location) then {
 		_obj = selectRandom _location;
 	}; // */
 };
- 
+
 //Recupère la position de l'objectif
 private _pos = position _obj;
 
