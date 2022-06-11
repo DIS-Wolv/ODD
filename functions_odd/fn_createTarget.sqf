@@ -23,7 +23,7 @@ while {count _Buildings == 0} do {
     _Buildings = nearestobjects[position _zo, Maison, 200];
     // test
     if (_Debug) then {
-        [format["Nombre de Batiment sur la ZO : %1", count _Buildings]] remoteExec ["systemChat", 0];
+        [format["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] remoteExec ["systemChat", 0];
     };
 };
 

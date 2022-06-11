@@ -1,4 +1,4 @@
-params [["_forceZO", -1], ["_Debug", false]];
+params [["_forceZO", ""], ["_Debug", false]];
 
 // Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000, 15000], locationtype, 30000];
@@ -22,8 +22,14 @@ if (_Debug) then {
     [format["Locations choisi : %1", text _obj]] remoteExec ["systemChat", 0];
 };
 
-if (_forceZO in _location) then {
-    // *
+if (_forceZO != "") then {
+	{
+		if (_forceZO == text _x) then {
+			_obj = _x;
+		};
+	}forEach _location;
+
+    /*
     while {text _obj != _forceZO} do {
         [text _obj] remoteExec ["systemChat", 0];
         _obj = selectRandom _location;

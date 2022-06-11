@@ -1,4 +1,4 @@
-params [["_missiontype", -1], ["_forceZO", -1], ["_ZOP", true], ["_Debug", false]];
+params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false]];
 
 call WOLV_fnc_var;
 
