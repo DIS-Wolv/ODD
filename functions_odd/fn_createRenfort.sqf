@@ -1,4 +1,4 @@
-params ["_zo"];
+params ["_zo", ["_Debug", false]];
 //private _zo = _this select 0;		//Zone ou il faut envoyer les renfort
 
 if (CurrentMission == 1) then {
@@ -68,6 +68,10 @@ if (CurrentMission == 1) then {
 		{
 			_loc = selectrandom _refloc;	//choisie un loc random
 			
+			if (_Debug) then {
+				[Format["Renfort en approche de %1", text _loc]]remoteExec ["systemChat", 0];
+			};
+
 			_pos = position _loc getPos [300 * random 1, random 360];	//prend un pose random a coté du centre de la loc
 			if (count (_pos nearRoads 300) > 0) then { 					//si il y a des route a coté 
 				_pos = position (selectRandom(_pos nearRoads 300));		//choisi la route la plus proche
