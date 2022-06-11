@@ -326,7 +326,7 @@ if (CurrentMission == 0) then {
             servertime > _DebutNettoyage
         };
         
-        [] call WOLV_fnc_clearZO;
+        [_Debug] call WOLV_fnc_clearZO;
         // nettoye la ZO
     };
 } else {

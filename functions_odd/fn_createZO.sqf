@@ -47,7 +47,7 @@ _pos set [0, ((_pos select 0) + ((size _obj) select 0)/2)];
 _pos set [1, ((_pos select 1) + ((size _obj) select 0)/2)];
 
 // Ajoute un marker
-_marker = createMarker ["ODdoBJ", _pos];
+_marker = createMarker ["ODDOBJ", _pos];
 _marker setMarkertype "hd_objective";
 _marker setMarkerColor "coloropfor";
 _marker setMarkertext "O";

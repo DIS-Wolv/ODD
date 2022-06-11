@@ -6,7 +6,7 @@
 // recup les argument
 //private _zo = _this select 0; 
 // systemChat("test");
-
+params [["_Debug", false]];
 // sleep 5;
 if (CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
@@ -23,15 +23,16 @@ if (CurrentMission == 1) then {
 		if ("ODDOBJ" in _markerN) then {
 			_pos = getMarkerPos _x;
 			
-			private _joueurInZO = count (_pos nearEntities[["player"], 5000]); // compte le nombre de soldat West
-			// systemChat(str(MissionIA));
-			
-			while {_joueurInZO != 0} do {
-				sleep(5);
-				_joueurInZO = count (_pos nearEntities[["player"], 5000]);
-				// systemChat(Format["Il y a %1 joueur dans la ZO", _joueurInZO]);
+			waitUntil {
+				sleep 1;
+				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
+				if (_Debug) then {
+					[Format["Il y a %1 joueur dans la ZO", _joueurInZO]] remoteExec ["systemChat", 0];
+				};
+				_joueurInZO == 0
 			};
-			
+
+
 			//supprime les taches
 			// ["Task","CANCELED"] call BIS_fnc_taskSetState;
 			["Task"] call BIS_fnc_deleteTask;
