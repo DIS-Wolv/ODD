@@ -1,6 +1,6 @@
-params [["_Debug", false]]
+params [["_Debug", false]];
 //["Test Count IA"] remoteExec ["systemChat", 0];
-_nbIa = 0;		// au debut il y a 0
+private _nbIa = 0;		// au debut il y a 0
 
 { 
 	{ 
