@@ -1,4 +1,4 @@
-
+params [["_Debug", false]]
 //["Test Count IA"] remoteExec ["systemChat", 0];
 _nbIa = 0;		// au debut il y a 0
 
@@ -10,4 +10,7 @@ _nbIa = 0;		// au debut il y a 0
 	} forEach units _x;  		// Pour chaque Units
 } forEach MissionIA;			// De chaque groupe
 
+if (_Debug) then {
+	[format["Nombre d'IA : %1", str(_nbIa)]] remoteExec ["systemChat", 0];
+};
 _nbIa;	//return le nombre d'ia

@@ -4,8 +4,7 @@
  */
 
 // recup les argument
-private _zo = _this select 0;		//Zone ou il faut faire spawn des patrouille
-private _action = _this select 1;	// es ce l'obj Principale
+params ["_zo", ["_action", false], ["_Debug", false]];
 
 // Compte les Joueurs
 private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
@@ -50,7 +49,9 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-	// systemChat(Format["Patrouille : %1",count _nbPartol]);
+	if (_Debug) then {
+        [format["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] remoteExec ["systemChat", 0];
+    };
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
@@ -81,6 +82,10 @@ else {
 	_nbPartol resize round (4 + _human_players / 8);
 	//Ajoute un random
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 2, (count _nbPartol), (count _nbPartol) + 2]);
+
+	if (_Debug) then {
+        [format["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] remoteExec ["systemChat", 0];
+    };
 
 	{
 		// choisi un groupe	

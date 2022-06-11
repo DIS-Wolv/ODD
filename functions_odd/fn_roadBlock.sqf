@@ -1,4 +1,4 @@
-params ["_zo", ["_nb", 2]];
+params ["_zo", ["_nb", 2], ["_Debug", false]];
 
 //forcé l'apparition
 
@@ -7,13 +7,15 @@ private _NbCP = _nb;
 _pos = position _zo; 
 private _props = [];
 
+if (_Debug) then {
+	[format["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] remoteExec ["systemChat", 0];
+};
 
 _roads = (_pos nearRoads ((size _zo select 0)*1.5)) -(_pos nearRoads (size _zo select 1));
 
 while {(_NbCP > 0) and (count(_roads) > 0)} do {
 	_road = selectRandom _roads;
 	_roads = _roads - [_road];
-	
 	
 	_structure = selectRandom RoadBlock;
 	
