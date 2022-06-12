@@ -2,7 +2,7 @@
 pair = [
 	["brf_o_ard_atr_rpg7","brf_o_ard_rifleman"],
 	["brf_o_ard_machinegunner","brf_o_ard_machinegunner_asst"],
-	["brf_o_agr_aa_specialist","brf_o_agr_aa_asst"]
+	["brf_o_ard_aa_specialist","brf_o_ard_aa_asst"]
 ];
 publicVariable "pair";
 
@@ -14,7 +14,7 @@ fireTeam = [		// BFR Ardistan
 	["brf_o_ard_teamleader","brf_o_ard_lat","brf_o_ard_rifleman","brf_o_ard_rifleman"],							// LAT
 	["brf_o_ard_teamleader","brf_o_ard_machinegunner","brf_o_ard_machinegunner_asst","brf_o_ard_rifleman"],		// MG
 	["brf_o_ard_teamleader","brf_o_ard_rifleman","brf_o_ard_rifleman","brf_o_ard_rifleman"],					// Rifle 
-	["brf_o_agr_squadleader","brf_o_agr_aa_specialist","brf_o_agr_aa_specialist","brf_o_agr_aa_asst"]			// AA
+	["brf_o_ard_squadleader","brf_o_ard_aa_specialist","brf_o_ard_aa_specialist","brf_o_ard_aa_asst"]			// AA
 ];
 publicVariable "fireTeam";
 
