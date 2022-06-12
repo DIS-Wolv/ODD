@@ -1,3 +1,20 @@
+/*
+* Author: Wolv
+* Fonction permetant de créé une Zone d'opération
+*
+* Arguments:
+* 0: Zone souhaité <STRING>
+* 1: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* Nom de la localité
+*
+* Example:
+* [] call WOLV_fnc_createZO
+* [_forceZO, _Debug] call WOLV_fnc_createZO
+*
+* Public:
+*/
 params [["_forceZO", ""], ["_Debug", false]];
 
 // Recupère toute les villes, villages, Capitales

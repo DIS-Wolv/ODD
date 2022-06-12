@@ -1,3 +1,18 @@
+/*
+* Author: Wolv
+* Fonction d'initialisation des variables globale des checkpoint.
+*
+* Arguments:
+* 
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_varRoadBlock
+*
+* Public:
+*/
 
 RoadBlock = [
 	[ 

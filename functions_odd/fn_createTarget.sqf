@@ -1,7 +1,23 @@
+/*
+* Author: Wolv
+* Fonction permetant de créé un objectif sur une zone 
+*
+* Arguments:
+* 0: Zone souhaité <Obj>
+* 1: Type d'objectif souhaité <INT>
+* 2: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* Nom de l'objectif créé
+*
+* Example:
+* [_zo] call WOLV_fnc_createTarget
+* [_zo, _missiontype, _Debug] call WOLV_fnc_createTarget
+*
+* Public:
+*/
 params ["_zo", ["_type", -1], ["_Debug", false]];
 
-// private _zo = _this select 0;
-// ["TEST create missions"] remoteExec ["systemChat", 0];
 // Choisis une missions random
 private _Mission = selectRandom TargettypeName;
 

@@ -1,3 +1,21 @@
+/*
+* Author: Wolv
+* Fonction permetant de faire spawn des civils et vehicule sur la zone souhaité
+*
+* Arguments:
+* 0: Zone souhaité <Obj>
+* 1: Es ce la zone principale <BOOL>
+* 2: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_zo] call WOLV_fnc_civil
+* [_zo, true, false] call WOLV_fnc_civil
+*
+* Public:
+*/
 params ["_zo", ["_action", false], ["_Debug", false]];
 
 private _loctype = 0;

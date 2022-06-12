@@ -1,3 +1,18 @@
+/*
+* Author: Wolv
+* Fonction d'initialisation des variables globale des Enemie, ici faction Ardistan.
+*
+* Arguments:
+* 
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_varEne
+*
+* Public:
+*/
 // Creation des partouille
 pair = [
 	["brf_o_ard_atr_rpg7","brf_o_ard_rifleman"],

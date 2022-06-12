@@ -1,11 +1,19 @@
-/* argument :
- *		_zo : Zonne d'operation
- *
- */
-
-// recup les argument
-//private _zo = _this select 0; 
-// systemChat("test");
+/*
+* Author: Wolv
+* Fonction permetant de nettoyer la zone
+*
+* Arguments:
+* 0: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_clearZO
+* [true] call WOLV_fnc_clearZO
+*
+* Public:
+*/
 params [["_Debug", false]];
 // sleep 5;
 if (CurrentMission == 1) then {

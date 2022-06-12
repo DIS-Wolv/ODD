@@ -1,3 +1,21 @@
+/*
+* Author: Wolv
+* Fonction permettant de crée des roadblock
+*
+* Arguments:
+* 0: Zone souhaité <Obj>
+* 1: Nombre de roadblock souhaité <INT>
+* 2: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_zo] call WOLV_fnc_roadBlock
+* [_zo, 2, true] call WOLV_fnc_roadBlock
+*
+* Public:
+*/
 params ["_zo", ["_nb", 2], ["_Debug", false]];
 
 //forcé l'apparition

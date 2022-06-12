@@ -1,3 +1,22 @@
+/*
+* Author: Wolv
+* Fonction permetant de tester si des renfort deuvnent etre appeler
+*
+* Arguments:
+* 0: Determine si des renfort deuvent etre appeler <BOOL>
+* 1: Le nombre d'ia en vie sur zone <INT>
+* 2: Le nombre d'ia a l'origine sur la ZO <INT>
+* 3: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_return, _nbIa, _BaseIa] call WOLV_fnc_testRenfort
+* [_return, _nbIa, _BaseIa, true] call WOLV_fnc_testRenfort
+*
+* Public:
+*/
 params ["_return", "_nbIa", "_BaseIa", ["_Debug", false]];
 
 //["Test Renfort"] remoteExec ["systemChat", 0];

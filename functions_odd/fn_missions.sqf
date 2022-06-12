@@ -1,3 +1,22 @@
+/*
+* Author: Wolv
+* Fonction coeur des ODD.
+*
+* Arguments:
+* 0: type de missions souhaité numéro du type de missions <inT>
+* 1: Nom de la localité souhaité <STRING>
+* 2: Activation ou pas des ZO+ <BOOL>
+* 3: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_missions
+* [2, "Kavala", false, true] call WOLV_fnc_missions
+*
+* Public:
+*/
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false]];
 
 call WOLV_fnc_var;

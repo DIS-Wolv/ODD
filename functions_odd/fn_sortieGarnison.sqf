@@ -1,3 +1,19 @@
+/*
+* Author: Wolv
+* Fonction permetant de faire sortir de garnison sous certaine condition 
+*
+* Arguments:
+* 0: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_sortieGarnison
+* [true] call WOLV_fnc_sortieGarnison
+*
+* Public:
+*/
 params [["_Debug", false]];
 //["Test Sortie Garnison"] remoteExec ["systemChat", 0];
 

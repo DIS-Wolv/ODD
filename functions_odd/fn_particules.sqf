@@ -1,3 +1,20 @@
+/*
+* Author: Wolv
+* Fonction pour faire spawn LOCALEMENT les collone de fumé des hélico
+*
+* Arguments:
+* 0: position souhaité <ARRAY>
+* 1: Si doit ajouté ou surprimé <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_pos] remoteExec ["WOLV_fnc_particules", 0]
+* [_pos, false] remoteExec ["WOLV_fnc_particules", 0];
+*
+* Public:
+*/
 params["_pos",["_add",true]];
 
 if (_add) then {

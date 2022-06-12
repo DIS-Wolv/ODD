@@ -1,3 +1,20 @@
+/*
+* Author: Wolv
+* Fonction permetant de d'appeller des renfort dans la zone
+*
+* Arguments:
+* 0: Zone souhaité <Obj>
+* 1: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_zo] call WOLV_fnc_createRenfort
+* [_zo, true] call WOLV_fnc_createRenfort
+*
+* Public:
+*/
 params ["_zo", ["_Debug", false]];
 //private _zo = _this select 0;		//Zone ou il faut envoyer les renfort
 

@@ -1,8 +1,21 @@
-/* argument :
-*		_zo : Zonne d'operation
+/*
+* Author: Wolv
+* Fonction permetant de crée des garde en garnison dans la zone
 *
+* Arguments:
+* 0: Zone souhaité <Obj>
+* 1: Es ce la zone principale <BOOL>
+* 2: Activation du debug dans le chat <BOOL>
+*
+* Return Value:
+* nil
+*
+* Example:
+* [_zo] call WOLV_fnc_createGarnison
+* [_zo, true, false] call WOLV_fnc_createGarnison
+*
+* Public:
 */
-// recup les argument
 
 params ["_zo", ["_action", false], ["_Debug", false]];
 

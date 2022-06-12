@@ -1,3 +1,19 @@
+/*
+* Author: Wolv
+* Fonction d'initialisation des variables globale.
+*
+* Arguments:
+* 
+*
+* Return Value:
+* nil
+*
+* Example:
+* [] call WOLV_fnc_var
+*
+* Public:
+*/
+
 // array des maison whitelist
 Maison = [
     "land_Chapel_V1_F", "land_Chapel_V2_F", "land_Chapel_Small_V1_F", "land_Chapel_Small_V2_F", "land_Offices_01_V1_F", "land_Castle_01_tower_F", "land_LightHouse_F",
