@@ -120,7 +120,7 @@ _civil resize (_nbCivil);
                 private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
                 private _pos = position (Objectif select 0);
                 
-                _marker = createMarker [format["ODDtg %1:%2, %3", _hours, _minutes, _seconds], _pos];
+                _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos];
                 _marker setMarkertype (selectRandom _markerPool);
                 _marker setMarkerColor (selectRandom _colorPool);
                 _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
