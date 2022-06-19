@@ -167,10 +167,13 @@ if (_Mission == TargettypeName select 3) then {
     _intel = "land_Laptop_F" createvehicle _posintel;
     _intel setPos _posintel;
     // la position 2 mettre plus haut
-    /* _intel addAction ["<t color='#FF0000'>Recupérer les intels</t>", {
+
+    /*_intel addAction ["<t color='#FF0000'>Recupérer les intels</t>", {
         Objectif set[1, false];
         deletevehicle (_this select 0);
 		}];
+    //*/
+    
     [
         _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "true", "true", {}, {}, {
@@ -179,7 +182,7 @@ if (_Mission == TargettypeName select 3) then {
         },
         {}, [], (random[2, 10, 15]), nil, true, true
     ] remoteExec ["BIS_fnc_holdactionAdd"];
-	//*/
+
     MissionProps pushBack _intel;
     Objectif pushBack _intel;
     Objectif pushBack true;
