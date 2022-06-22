@@ -59,7 +59,7 @@ if (_Mission == TargettypeName select 0) then {
     Objectif pushBack _box;
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom textCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "destroy"] call BIS_fnc_tasksettype;
     
     // attent 1s
@@ -137,7 +137,7 @@ if (_Mission == TargettypeName select 1) then {
     
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom textHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "kill"] call BIS_fnc_tasksettype;
 };
 
@@ -146,7 +146,7 @@ if (_Mission == TargettypeName select 2) then {
     // cree la tache
     
     
-    _task = [true, "Task", [format[selectRandom textSecure, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textSecure, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "attack"] call BIS_fnc_tasksettype;
 };
 
@@ -194,7 +194,7 @@ if (_Mission == TargettypeName select 3) then {
     	// pour pas tuer un gars avec la caisses
     
     // cree la tache
-    [true, "Task", [format[selectRandom textIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    [true, "Task", [format[selectRandom textIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "intel"] call BIS_fnc_tasksettype;
     
     private _group = [];
@@ -279,7 +279,7 @@ if (_Mission == TargettypeName select 4) then {
     sleep 1;
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom textHelico, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textHelico, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "intel"] call BIS_fnc_tasksettype;
     
     [_g, _pos, 150] call bis_fnc_taskpatrol;
@@ -290,7 +290,7 @@ if (_Mission == TargettypeName select 5) then {
 
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom textPrisoniers, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textPrisoniers, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "scout"] call BIS_fnc_tasksettype;
     
     // choisi une Prisonier random
@@ -339,7 +339,7 @@ if (_Mission == TargettypeName select 6) then {
 
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom textVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom textVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "scout"] call BIS_fnc_tasksettype;
     
     _vl = selectRandom tgVehicule;
