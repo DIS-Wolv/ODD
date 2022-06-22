@@ -105,7 +105,7 @@ if (CurrentMission == 1) then {
 			_group = (_groups select _forEachIndex);		// choisie le groupe 
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;	//spawn le groupe
 			//Ajoute le groupe a la liste des IA de la missions
-			ZoPIA pushBack _g;		
+			ZoPIA pushBack _g;
 			
 			if(!(("brf_o_ard_uaz" in _group) or ("brf_o_ard_uaz_open" in _group))) then {	// ajoute du personnel dans les vl
 				_infG = selectRandom squad;
