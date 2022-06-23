@@ -4,7 +4,7 @@
 *
 * Arguments:
 * 0: type de missions souhaité numéro du type de missions <inT>
-* 1: Nom de la localité souhaité <STRING>
+* 1: Nom de la localité souhaité <strinG>
 * 2: Activation ou pas des ZO+ <BOOL>
 * 3: Activation du debug dans le chat <BOOL>
 *
@@ -77,14 +77,14 @@ if (CurrentMission == 0) then {
         };
         
         if (_Debug) then {
-            [Format["Nombre de ZO+ : %1", _nbloc]] remoteExec ["systemChat", 0];
+            [format["Nombre de ZO+ : %1", _nbloc]] remoteExec ["systemChat", 0];
         };
-
+        
         {
             if (_Debug) then {
-                [Format["ZO+ %1 : %2", _foreachindex, text _x]] remoteExec ["systemChat", 0];
-            }; 
-            //*
+                [format["ZO+ %1 : %2", _forEachindex, text _x]] remoteExec ["systemChat", 0];
+            };
+            // *
             _action = round random 4;
             // random en 0 et 2
             if (_action == 0) then {};
@@ -98,7 +98,7 @@ if (CurrentMission == 0) then {
                 // si 2
                 [_x, false, _Debug] call WOLV_fnc_createPatrol;
                 // patrouilles
-
+                
                 _nbCheckPoint = round random 4;
                 [_x, _nbCheckPoint, false, _Debug] call WOLV_fnc_roadBlock;
                 // RoadBlock
@@ -107,11 +107,11 @@ if (CurrentMission == 0) then {
                 // si 3
                 [_x, false, _Debug] call WOLV_fnc_createPatrol;
                 // patrouilles
-
+                
                 [_x, false] call WOLV_fnc_createGarnison;
                 // garnison
             };
-            //*/
+            // */
             
             [_x, false, _Debug] call WOLV_fnc_civil;
             // a chaque fois Civil
