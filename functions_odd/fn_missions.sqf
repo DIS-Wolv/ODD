@@ -78,12 +78,12 @@ if (CurrentMission == 0) then {
         
         if (_Debug) then {
             [Format["Nombre de ZO+ : %1", _nbloc]] remoteExec ["systemChat", 0];
-        }
+        };
 
         {
             if (_Debug) then {
                 [Format["ZO+ %1 : %2", _foreachindex, text _x]] remoteExec ["systemChat", 0];
-            }
+            };
             //*
             _action = round random 3;
             // random en 0 et 2
