@@ -16,7 +16,7 @@
 *
 * Public:
 */
-params ["_zo", ["_nb", 2], ["_Debug", false]];
+params ["_zo", ["_nb", 2], ["_action", false], ["_Debug", false]];
 
 //forcé l'apparition
 
@@ -92,8 +92,13 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			//spawn le groupe
 			_gp = [_roadPos, EAST, _groupPat] call BIS_fnc_spawnGroup;
 			
-			//Ajoute le groupe a la liste des IA de la missions
-			MissionIA pushBack _gp;
+			if(_action) then {
+				//Ajoute le groupe a la liste des IA de la missions
+				MissionIA pushBack _gp;
+			}
+			else {
+				ZopiA pushBack _gp;
+			};
 			
 			sleep 1;
 			
@@ -105,8 +110,13 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			// Spawn les gars en garnison 
 			_gg = [_roadPos, EAST, _groupGar] call BIS_fnc_spawnGroup;
 			
-			// Ajoute le groupe a la liste des IA de la missions
-			MissionIA pushBack _gg;
+			if(_action) then {
+				//Ajoute le groupe a la liste des IA de la missions
+				MissionIA pushBack _gg;
+			}
+			else {
+				ZopiA pushBack _gg;
+			};
 			
 			if (!(IsNil "HC1")) then {
 				// systemChat "HC1 présent";
@@ -134,5 +144,9 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 	
 };
 
+publicVariable "MissionProps";
+publicVariable "ZopiA";
+publicVariable "MissionIA";
+publicVariable "GarnisonIA";
 
 
