@@ -83,9 +83,9 @@ if (CurrentMission == 0) then {
         {
             if (_Debug) then {
                 [Format["ZO+ %1 : %2", _foreachindex, text _x]] remoteExec ["systemChat", 0];
-            };
+            }; 
             //*
-            _action = round random 3;
+            _action = round random 4;
             // random en 0 et 2
             if (_action == 0) then {};
             // si 0 fait rien
@@ -102,8 +102,13 @@ if (CurrentMission == 0) then {
                 _nbCheckPoint = round random 4;
                 [_x, _nbCheckPoint, false, _Debug] call WOLV_fnc_roadBlock;
                 // RoadBlock
+            };
+            if (_action == 3) then {
+                // si 3
+                [_x, false, _Debug] call WOLV_fnc_createPatrol;
+                // patrouilles
 
-                // [_x, false] call WOLV_fnc_createGarnison;
+                [_x, false] call WOLV_fnc_createGarnison;
                 // garnison
             };
             //*/
