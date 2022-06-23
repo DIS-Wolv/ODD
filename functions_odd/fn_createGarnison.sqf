@@ -188,6 +188,10 @@ if (_action) then {
     };
     // Le but est qu'il y n'est pas 15 groupes en garnison dans 5 maison sur des petits obj avec beaucoup de joueurs
     
+    if (_Debug) then {
+        [format["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] remoteExec ["systemChat", 0];
+    };
+
     // Pour tout les groupes nessaire
     {
         // choisi un groupe
