@@ -144,6 +144,7 @@ if (_action) then {
         
         // met en garnison
         if (round(random 4) == 0) then {
+            // 1 / 4 qu'il soit split dans plusieurs batiment
             [position _GBuild, nil, units _g, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         } else {
             [position _GBuild, nil, units _g, 20, 2, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -174,7 +175,7 @@ if (_action) then {
     }forEach GarnisonIA;
     // */
 } else {
-    _nbgroup resize (5 + _human_players / 2);
+    _nbgroup resize round (2 + _human_players / 2);
     // remplacé la fonction
     
     // Recupère tout les batiments a proximité
@@ -204,7 +205,12 @@ if (_action) then {
         sleep(2);
         
         // met en garnison
-        [position _GBuild, nil, units _g, 100, 0, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        if (round(random 4) == 0) then {
+            // 1 / 4 qu'il soit split dans plusieurs batiment
+            [position _GBuild, nil, units _g, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        } else {
+            [position _GBuild, nil, units _g, 20, 2, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        };
         // Garnison Ace
     }forEach _nbgroup;
 };
