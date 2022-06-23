@@ -29,7 +29,7 @@ if (_Debug) then {
 if (_type >= 0 and _type < count TargettypeName) then {
     _Mission = TargettypeName select _type;
     if (_Debug) then {
-        [format["Mission forcé : %1", _Mission]] remoteExec ["systemChat", 0];
+        [format["Mission forcé : %1 (%2)", _Mission, _type]] remoteExec ["systemChat", 0];
     };
 };
 
