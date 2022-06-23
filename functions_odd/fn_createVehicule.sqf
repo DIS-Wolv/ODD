@@ -43,7 +43,7 @@ if (_action) then {
 	//_nbVehicule resize 5;
 
 	if (_Debug) then {
-        [format["Nombre de Vehicule sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] remoteExec ["systemChat", 0];
+        [format["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)]] remoteExec ["systemChat", 0];
     };
 	
 	//Pour tout les groupes nessaire 
