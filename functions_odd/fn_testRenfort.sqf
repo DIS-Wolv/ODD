@@ -27,7 +27,7 @@ if (_BaseIa / 2 > _nbIa and _return) then {
 		[Format["Test renfort %1 / %2 => %3 ", _nbIa, _BaseIa, _rdm]] remoteExec ["systemChat", 0];
 	};
 	if(round(random (1 max _rdm)) == 0) then {	
-		[_zo, _Debug] call WOLV_fnc_createRenfort; // appelle renfort
+		[_zo, _Debug] spawn WOLV_fnc_createRenfort; // appelle renfort
 		_return = false;
 	};
 };
