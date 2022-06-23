@@ -44,7 +44,7 @@ if (CurrentMission == 0) then {
     
     [_zo, true, _Debug] call WOLV_fnc_createVehicule;
     
-    [_zo, 2, _Debug] call WOLV_fnc_roadBlock;
+    [_zo, 2, true, _Debug] call WOLV_fnc_roadBlock;
     
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
@@ -76,7 +76,15 @@ if (CurrentMission == 0) then {
             // - 1 loc random // distance2D ???
         };
         
+        if (_Debug) then {
+            [Format["Nombre de ZO+ : %1", _nbloc]] remoteExec ["systemChat", 0];
+        }
+
         {
+            if (_Debug) then {
+                [Format["ZO+ %1 : %2", _foreachindex, text _x]] remoteExec ["systemChat", 0];
+            }
+            //*
             _action = round random 3;
             // random en 0 et 2
             if (_action == 0) then {};
@@ -90,11 +98,16 @@ if (CurrentMission == 0) then {
                 // si 2
                 [_x, false, _Debug] call WOLV_fnc_createPatrol;
                 // patrouilles
-                // [_x] call WOLV_fnc_roadBlock;
+
+                _nbCheckPoint = round random 4;
+                [_x, _nbCheckPoint, false, _Debug] call WOLV_fnc_roadBlock;
                 // RoadBlock
+
                 // [_x, false] call WOLV_fnc_createGarnison;
                 // garnison
             };
+            //*/
+            
             [_x, false, _Debug] call WOLV_fnc_civil;
             // a chaque fois Civil
         }forEach _location;
