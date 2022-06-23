@@ -26,7 +26,7 @@ if (_Debug) then {
 };
 
 // DEBUG => force le type de missions
-if (_type <= 0 and _type < count TargettypeName) then {
+if (_type >= 0 and _type < count TargettypeName) then {
     _Mission = TargettypeName select _type;
     if (_Debug) then {
         [format["Mission forcé : %1", _Mission]] remoteExec ["systemChat", 0];
