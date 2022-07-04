@@ -146,7 +146,12 @@ if (CurrentMission == 1) then {
                     _infG = selectRandom squad;
                     _pos set [1, (_pos select 1)+ 3];
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
-                    ZopiA pushBack _inf;
+                    
+                    {
+                        MissionIA pushBack _x;
+                    } forEach units _inf;
+
+                    //ZopiA pushBack _inf;
                 } else {
                     // si UAZ
                     _infG = selectRandom squad;
