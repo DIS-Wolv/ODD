@@ -71,8 +71,11 @@ if (CurrentMission == 1) then {
 			{
 				if (!(_x in [factory,medicalFob,lanceursFob,armesFob,repairPont,medical,para,armes,acces,lanceurs,dump,repair,refuel,rearm])) then { 
 							// si l'objet est différent des objet sur fob ou sur base
-					deleteVehicle _x;	// delete l'objet
-				}
+					private _distance = fob distance _x;
+					if (_distance > 100) then {
+						deleteVehicle _x;	// delete l'objet
+					};
+				};
 			} forEach _Obj;			// pour chaque objet
 			
 			{
