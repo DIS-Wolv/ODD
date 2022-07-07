@@ -65,6 +65,25 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;
 			_roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
 			_props = [_roadPos, _roadDir, _structure] call BIS_fnc_objectsMapper;
+
+			_aCacher = [];
+			{
+				_closeProps = nearestTerrainObjects [position _x,[],4];		//recupère les objects proximité 
+				
+				_closeProps = _closeProps - _aCacher;	// supprime les objects deja a cacher
+				_closeProps = _closeProps - _props;		// supprime les objects du checkpoint 
+				
+				_aCacher = _aCacher + _closeProps;		// ajoute les objects dans la liste a cahcher
+				
+			}forEach _props;		//pour tout les props du checkpoint
+
+			{
+				ObjetHIDE pushBack _x;		// ajoute les objects a caché
+				_x hideObjectGlobal true;	// cache les objets
+			}forEach _aCacher;	//pour toute les objects a caché 
+
+
+
 			
 			MissionProps = MissionProps + _props;
 			
@@ -148,5 +167,6 @@ publicVariable "MissionProps";
 publicVariable "ZopiA";
 publicVariable "MissionIA";
 publicVariable "GarnisonIA";
+publicVariable "ObjetHIDE";
 
 

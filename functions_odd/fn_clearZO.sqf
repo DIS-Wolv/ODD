@@ -88,6 +88,10 @@ if (CurrentMission == 1) then {
 				deleteVehicle _x;		//supprime le corps
 			} forEach alldead;			//pour chaque corps 
 
+			{
+				_x hideObjectGlobal false;		//affiche l'object
+			} forEach ObjetHIDE;			//pour object caché
+
 			[_pos, false] remoteExec ["WOLV_fnc_particules", 0];
 		}
 		else {
