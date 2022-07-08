@@ -68,7 +68,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 
 			_aCacher = [];
 			{
-				_closeProps = nearestTerrainObjects [position _x,[],4];		//recupère les objects proximité 
+				_closeProps = nearestTerrainObjects [position _x, [], 10];		//recupère les objects proximité 
 				
 				_closeProps = _closeProps - _aCacher;	// supprime les objects deja a cacher
 				_closeProps = _closeProps - _props;		// supprime les objects du checkpoint 
