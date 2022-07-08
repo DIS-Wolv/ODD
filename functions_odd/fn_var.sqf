@@ -128,7 +128,7 @@ publicVariable "GarnisonIA";
 
 // array des civil de la mission
 MissionCivil = [];
-publicVariable "Otage";
+publicVariable "MissionCivil";
 
 // array des props de la mission
 MissionProps = [];
