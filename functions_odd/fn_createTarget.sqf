@@ -58,10 +58,7 @@ if (_Mission == TargettypeName select 0) then {
     
     Objectif pushBack _box;
     
-    // cree la tache
-    _task = [true, "Task", [format[selectRandom textCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-    ["Task", "destroy"] call BIS_fnc_tasksettype;
-    
+   
     // attent 1s
     sleep(1);
     	// pour pas tuer un gars avec la caisses
@@ -95,6 +92,10 @@ if (_Mission == TargettypeName select 0) then {
         } forEach (units _g);
     };
     [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+
+    // cree la tache
+    _task = [true, "Task", [format[selectRandom textCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+    ["Task", "destroy"] call BIS_fnc_tasksettype;
 };
 
 if (_Mission == TargettypeName select 1) then {
