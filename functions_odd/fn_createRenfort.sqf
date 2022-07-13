@@ -148,7 +148,7 @@ if (CurrentMission == 1) then {
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     
                     {
-                        MissionIA pushBack _x;
+                        ZOpiA pushBack _x;
                     } forEach units _inf;
 
                     //ZopiA pushBack _inf;
