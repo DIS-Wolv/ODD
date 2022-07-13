@@ -164,7 +164,7 @@ textHVT = [
 ];
 publicVariable "textHVT";
 textSecure = [
-    "La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone"
+    "La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone."
 ];
 publicVariable "textSecure";
 textIntel = [
