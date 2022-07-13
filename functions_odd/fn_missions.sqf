@@ -223,8 +223,7 @@ if (CurrentMission == 0) then {
             [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
         };
         
-        while {(_nbIa > _seuil) and (CurrentMission == 1)} do {
-            // tant qu'il y as plus de 10 IA
+            // tant qu'il y as plus de 20% IA
             // sleep 60;
             _NextTick = servertime + 60;
             
