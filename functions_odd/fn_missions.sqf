@@ -220,11 +220,6 @@ if (CurrentMission == 0) then {
         _seuil = round (_BaseIa / 20);
         
         while {(_nbIa > _seuil) and (CurrentMission == 1)} do {
-            
-            if (_Debug) then {
-                [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
-            };
-
             // tant qu'il y as plus de 20% IA
             // sleep 60;
             _NextTick = servertime + 60;
@@ -237,6 +232,10 @@ if (CurrentMission == 0) then {
             
             _nbItt = _nbItt + 1;
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+
+            if (_Debug) then {
+                [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
+            };
             
             waitUntil {
                 ((_nbIa > _seuil) and (CurrentMission == 1)) == false or servertime > _NextTick
