@@ -127,6 +127,7 @@ if (CurrentMission == 0) then {
     // pour chaque corps
     
     waitUntil {
+        sleep 1;
         servertime >= _future
     };
     timeStart = servertime;
@@ -207,6 +208,7 @@ if (CurrentMission == 0) then {
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
             
             waitUntil {
+                sleep 1;
                 ((alive (Objectif select 0) and !(captive (Objectif select 0))) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
         };
@@ -238,6 +240,8 @@ if (CurrentMission == 0) then {
             };
             
             waitUntil {
+                sleep 1;
+                _nbIa = [_Debug] call WOLV_fnc_countIA;
                 ((_nbIa > _seuil) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
         };
@@ -261,6 +265,7 @@ if (CurrentMission == 0) then {
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
             
             waitUntil {
+                sleep 1;
                 ((Objectif select 1) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
         };
@@ -285,6 +290,7 @@ if (CurrentMission == 0) then {
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
             
             waitUntil {
+                sleep 1;
                 (((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
             // systemChat(format["HVT en vie : %1, captif : %2", str(alive (Objectif select 0)), str(!(captive (Objectif select 0)))]);
@@ -317,6 +323,7 @@ if (CurrentMission == 0) then {
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
             
             waitUntil {
+                sleep 1;
                 (((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
         };
@@ -360,6 +367,7 @@ if (CurrentMission == 0) then {
         private _DebutNettoyage = servertime + 30;
         
         waitUntil {
+            sleep 1;
             servertime > _DebutNettoyage
         };
         
