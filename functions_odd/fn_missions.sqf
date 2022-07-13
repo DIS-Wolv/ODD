@@ -219,10 +219,12 @@ if (CurrentMission == 0) then {
         // obj est une zone a securizé
         _seuil = round (_BaseIa / 20);
         
-        if (_Debug) then {
-            [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
-        };
-        
+        while {(_nbIa > _seuil) and (CurrentMission == 1)} do {
+            
+            if (_Debug) then {
+                [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
+            };
+
             // tant qu'il y as plus de 20% IA
             // sleep 60;
             _NextTick = servertime + 60;
