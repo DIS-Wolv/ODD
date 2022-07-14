@@ -34,7 +34,7 @@ if (CurrentMission == 0) then {
     // systemChat(str(_diff));
     
     // Choix d'une missions
-    private _target = [_zo, _missiontype, _Debug] call WOLV_fnc_createTarget;
+    target = [_zo, _missiontype, _Debug] call WOLV_fnc_createTarget;
     
     [_zo, true, _Debug] call WOLV_fnc_civil;
     
@@ -140,6 +140,7 @@ if (CurrentMission == 0) then {
     publicVariable "MissionIA";
     publicVariable "ZOpiA";
     publicVariable "timeStart";
+    publicVariable "target";
     private _NextTick = servertime + 60;
     
     _nbIa = [_Debug] call WOLV_fnc_countIA;
@@ -164,7 +165,7 @@ if (CurrentMission == 0) then {
     
     // update + souvent la liste des objectifs
     
-    if (_target == TargettypeName select 0) then {
+    if (target == TargettypeName select 0) then {
         // obj est une caisse a detruire
         while {(count (magazineCargo (Objectif select 0)) != 0) and (CurrentMission == 1)} do {
             // tant que la caisse comporte des explosif (donc pas explosé)
@@ -191,7 +192,7 @@ if (CurrentMission == 0) then {
         // tache accomplie
     };
     
-    if (_target == TargettypeName select 1) then {
+    if (target == TargettypeName select 1) then {
         // obj est un HVT
         // systemChat(format["HVT en vie : %1, captif : %2", str(alive (Objectif select 0)), str(!(captive (Objectif select 0)))]);
         while {(alive (Objectif select 0) and !(captive (Objectif select 0))) and (CurrentMission == 1)} do {
@@ -217,7 +218,7 @@ if (CurrentMission == 0) then {
         // tache accomplie
     };
     
-    if (_target == TargettypeName select 2) then {
+    if (target == TargettypeName select 2) then {
         // obj est une zone a securizé
         _seuil = round (_BaseIa / 20);
         
@@ -250,7 +251,7 @@ if (CurrentMission == 0) then {
         // tache accomplie
     };
     
-    if ((_target == TargettypeName select 3) or (_target == TargettypeName select 4)) then {
+    if ((target == TargettypeName select 3) or (target == TargettypeName select 4)) then {
         // obj est un intel ou un Helico
         while {(Objectif select 1) and (CurrentMission == 1)} do {
             private _NextTick = servertime + 60;
@@ -274,7 +275,7 @@ if (CurrentMission == 0) then {
         // tache accomplie
     };
     
-    if (_target == TargettypeName select 5) then {
+    if (target == TargettypeName select 5) then {
         // obj est un Prisonier
         while {((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)} do {
             // tant que la cible est captive
@@ -307,7 +308,7 @@ if (CurrentMission == 0) then {
         };
     };
     
-    if (_target == TargettypeName select 6) then {
+    if (target == TargettypeName select 6) then {
         // obj vl
         while {((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)} do {
             // tant que la cible est pas detruite
@@ -380,4 +381,4 @@ if (CurrentMission == 0) then {
 
 // player setPosASL position _zo;
 // Affiche la Missions
-// systemChat(_target);
+// systemChat(target);
