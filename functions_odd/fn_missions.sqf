@@ -221,6 +221,8 @@ if (CurrentMission == 0) then {
     if (target == TargettypeName select 2) then {
         // obj est une zone a securizé
         _seuil = round (_BaseIa / 20);
+        Objectif = MissionIA;
+        publicVariable "Objectif";
         
         while {(_nbIa > _seuil) and (CurrentMission == 1)} do {
             // tant qu'il y as plus de 20% IA
@@ -240,6 +242,13 @@ if (CurrentMission == 0) then {
                 [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
             };
             
+            {
+                if (isNull(_x)) then {
+                    Objectif = Objectif - [_x];
+                }
+            }forEach Objectif;
+            publicVariable "Objectif";
+
             waitUntil {
                 sleep 1;
                 _nbIa = [_Debug] call WOLV_fnc_countIA;
