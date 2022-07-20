@@ -126,11 +126,11 @@ if (CurrentMission == 1) then {
                 while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 20] > 0) or (!(isOnRoad _pos))} do {
                     // si il y a plus de 0 cailloux dans les 10 mettres ou pas sur une route
                     _pos = position _loc getPos [random 300, random 360];
-                    				// tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+                    // tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
                     if (count (_pos nearRoads 300) > 0) then {
-                        // si il y a des route a coté
+                            // si il y a des route a coté
                         _pos = position (selectRandom (_pos nearRoads 300));
-                        			// choisi la route la plus proche
+                            // choisi la route la plus proche
                     };
                 };
                 
