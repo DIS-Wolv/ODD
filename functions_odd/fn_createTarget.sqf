@@ -163,6 +163,7 @@ if (_Mission == TargettypeName select 3) then {
     _table setDir (getDir _tgBuild);
     MissionProps pushBack _table;
     _posintel = position _table;
+    sleep 0.1;
     _posintel set[2, 1.5];
     
     _intel = "land_Laptop_F" createvehicle _posintel;
