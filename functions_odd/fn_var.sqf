@@ -192,4 +192,4 @@ goClear = true;
 publicVariable "goClear";
 
 [] call WOLV_fnc_varRoadBlock;
-[] call WOLV_fnc_varEne;
+[] call WOLV_fnc_varEneArd;

@@ -30,7 +30,7 @@ class CfgFunctions
 			class roadBlock {};
 			class createRenfort {};
 			class var {};
-			class varEne {};
+			class varEneArd {};
 			class varRoadBlock {};
 			class particules {};
 		}
