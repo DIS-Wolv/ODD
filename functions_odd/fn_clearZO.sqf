@@ -23,10 +23,11 @@ if (CurrentMission == 1) then {
 
 	if (!goClear) then {
 		waitUntil {
-			sleep 1; 
+			sleep 2; 
 			["En Attente du goClear"] remoteExec ["systemChat", 0];
 			goClear
 		};
+		["goClear ok"] remoteExec ["systemChat", 0];
 	};
 
 	// Compte les Joueurs
