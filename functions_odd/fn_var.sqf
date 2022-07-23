@@ -188,5 +188,8 @@ publicVariable "textVL";
 ObjetHIDE = [];
 publicVariable "ObjetHIDE";
 
+goClear = True;
+publicVariable "goClear";
+
 [] call WOLV_fnc_varRoadBlock;
 [] call WOLV_fnc_varEne;
