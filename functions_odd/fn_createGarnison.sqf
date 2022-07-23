@@ -113,6 +113,7 @@ if (_action) then {
         if (_Med and (count _Buildings > 20)) then {
             // si plus de 20 maison, et pas de caisse
             _posBox = [position _GBuild select 0, position _GBuild select 1, (position _GBuild select 2) + 2];
+            _posBox set[2, 1];
             _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
             // pose une caisse
             _Med = false;
