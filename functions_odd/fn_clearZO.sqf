@@ -21,6 +21,13 @@ if (CurrentMission == 1) then {
 	CurrentMission = 2;
 	publicVariable "CurrentMission";
 
+	if (!goClear) then {
+		waitUntil {
+			sleep 1; 
+			["En Attente du goClear"] remoteExec ["systemChat", 0];
+			goClear
+		};
+	};
 
 	// Compte les Joueurs
 	private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
