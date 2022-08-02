@@ -282,7 +282,7 @@ if (_Mission == TargettypeName select 4) then {
     
     // cree la tache
     _task = [true, "Task", [format[selectRandom textHelico, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-    ["Task", "intel"] call BIS_fnc_tasksettype;
+    ["Task", "heli"] call BIS_fnc_tasksettype;
     
     [_g, _pos, 150] call bis_fnc_taskpatrol;
 };
