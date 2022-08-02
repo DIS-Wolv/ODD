@@ -99,12 +99,17 @@ _civil resize (_nbCivil);
     sleep 0.5;
     
     [
-        ((units _g)select 0), "<t color='#FF0000'>interoger le civil</t>", "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-        "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", "alive (_target)", "true",
+        ((units _g)select 0), 
+        "<t color='#FF0000'>interoger le civil</t>", 
+        "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
+        "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
+        "(alive (_target)) and (_target distance _this < 3)", 
+        "true",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
             // (_this select 0) disableAI "PATH"
-        }, {},
+        }, 
+        {},
         {
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
             // (_this select 0) enableAI "PATH";
@@ -139,7 +144,7 @@ _civil resize (_nbCivil);
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
         }, [], (random[2, 10, 15]), nil, true, false
-    ] remoteExec ["BIS_fnc_holdactionAdd"];
+    ] remoteExec ["BIS_fnc_holdActionAdd"];
     
 }forEach _civil;
 

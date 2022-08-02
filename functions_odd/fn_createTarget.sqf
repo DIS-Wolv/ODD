@@ -178,12 +178,12 @@ if (_Mission == TargettypeName select 3) then {
     
     [
         _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
-        "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "true", "true", {}, {}, {
+        "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "true", {}, {}, {
             Objectif set[1, false];
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "Objectif"; [(_this select 0)] remoteExec ["removeAllActions"];
         },
         {}, [], (random[2, 10, 15]), nil, true, true
-    ] remoteExec ["BIS_fnc_holdactionAdd"];
+    ] remoteExec ["BIS_fnc_holdActionAdd"];
 
     MissionProps pushBack _intel;
     Objectif pushBack _intel;
@@ -238,12 +238,12 @@ if (_Mission == TargettypeName select 4) then {
     }];//*/
     [
         _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
-        "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "true", "true", {}, {}, {
+        "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
             Objectif set[1, false];
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "Objectif";[(_this select 0)] remoteExec ["removeAllActions"];
         },
         {}, [], (random[10, 20, 30]), nil, true, false
-    ] remoteExec ["BIS_fnc_holdactionAdd"];
+    ] remoteExec ["BIS_fnc_holdActionAdd"];
     MissionProps pushBack _helico;
     Objectif pushBack _helico;
     Objectif pushBack true;
