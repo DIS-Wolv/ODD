@@ -342,7 +342,7 @@ if (_Mission == TargettypeName select 6) then {
     
     // cree la tache
     _task = [true, "Task", [format[selectRandom textVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-    ["Task", "scout"] call BIS_fnc_tasksettype;
+    ["Task", "car"] call BIS_fnc_tasksettype;
     
     _vl = selectRandom tgVehicule;
     // choisie un vl
