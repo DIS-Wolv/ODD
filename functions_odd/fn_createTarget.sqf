@@ -380,7 +380,7 @@ if (_Mission == TargettypeName select 6) then {
     _g setFuel 1;
     _g setDamage 0;
     
-    sleep 1;
+    sleep 2;
     if (!alive _g) then {
         _pos = position _g;
         
