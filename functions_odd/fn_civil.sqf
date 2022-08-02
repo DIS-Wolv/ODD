@@ -209,6 +209,9 @@ sleep 2;
     
     _g = _vl createvehicle _pos;
     // créé le VL
+
+    _g addItemCargoGlobal ["Toolkit", 1]; 
+    // Ajoute un repaire kit
     
     _g setDir _dir;
     

@@ -369,7 +369,10 @@ if (_Mission == TargettypeName select 6) then {
     // _posvl = _posvl getPos [2, [_pos, _posvl] call BIS_fnc_dirto];
     
     _g = _vl createvehicle _posvl;
-    	// créé le VL
+    // créé le VL
+
+    _g addItemCargoGlobal ["Toolkit", 1]; 
+    // Ajoute un repaire kit
     
     _g setDir _dir;
     
@@ -386,7 +389,10 @@ if (_Mission == TargettypeName select 6) then {
         sleep 1;
         
         _g = _vl createvehicle _posvl;
-        	// créé le VL
+        // créé le VL
+
+        _g addItemCargoGlobal ["Toolkit", 1]; 
+        // Ajoute un repaire kit
         
         _g setDir _dir;
         
