@@ -21,19 +21,19 @@ params ["_zo", ["_type", -1], ["_Debug", false]];
 // Choisis une missions random
 private _Mission = selectRandom TargettypeName;
 
-[["Mission choisi : %1", _Mission], _Debug] call WOLV_fnc_log;
+[["Mission choisi : %1", _Mission]] call WOLV_fnc_log;
 
 // DEBUG => force le type de missions
 if (_type >= 0 and _type < count TargettypeName) then {
     _Mission = TargettypeName select _type;
-    [["Mission forcé : %1 (%2)", _Mission, _type], _Debug] call WOLV_fnc_log;
+    [["Mission forcé : %1 (%2)", _Mission, _type]] call WOLV_fnc_log;
 };
 
 _Buildings = [];
 
 while {count _Buildings == 0} do {
     _Buildings = nearestobjects[position _zo, Maison, 200];
-    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings], _Debug] call WOLV_fnc_log;
+    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call WOLV_fnc_log;
 };
 
 _tgBuild = selectRandom _Buildings;
@@ -74,7 +74,7 @@ if (_Mission == TargettypeName select 0) then {
     // met en garnison
     
     if (!(isnil "HC1")) then {
-        [["HC1 présent"], _Debug] call WOLV_fnc_log;
+        [["HC1 présent"]] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -113,7 +113,7 @@ if (_Mission == TargettypeName select 1) then {
     } else {
         // met en garnison
         if (!(isnil "HC1")) then {
-            [["HC1 présent"], _Debug] call WOLV_fnc_log;
+            [["HC1 présent"]] call WOLV_fnc_log;
             _HCID = owner HC1;
             
             _g setgroupOwner _HCID;
@@ -308,7 +308,7 @@ if (_Mission == TargettypeName select 5) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        [["HC1 présent"], _Debug] call WOLV_fnc_log;
+        [["HC1 présent"]] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -400,7 +400,7 @@ if (_Mission == TargettypeName select 6) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        [["HC1 présent"], _Debug] call WOLV_fnc_log;
+        [["HC1 présent"]] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;

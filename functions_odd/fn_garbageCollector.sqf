@@ -29,6 +29,6 @@ if (_nbItt/30 == round ( _nbItt/30)) then {
 			};
 		};
 	} forEach alldead;			//pour chaque corps 
-	[["Nombre d'élement supprimé : %1", _nbEle], _Debug] call WOLV_fnc_log;
+	[["Nombre d'élement supprimé : %1", _nbEle]] call WOLV_fnc_log;
 };
 

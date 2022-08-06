@@ -42,7 +42,7 @@ if (CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				[["Il y a %1 joueur dans la ZO", _joueurInZO], _Debug] call WOLV_fnc_log;
+				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call WOLV_fnc_log;
 				_joueurInZO == 0
 			};
 

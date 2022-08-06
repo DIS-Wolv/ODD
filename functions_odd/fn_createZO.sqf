@@ -20,7 +20,7 @@ params [["_forceZO", ""], ["_Debug", false]];
 // Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000, 15000], locationtype, 30000];
 
-[["Nombre de locations : %1", str(count(_location))], _Debug] call WOLV_fnc_log;
+[["Nombre de locations : %1", str(count(_location))]] call WOLV_fnc_log;
 
 // choisi un objectif random
 private _obj = selectRandom _location;
@@ -33,7 +33,7 @@ while {(text _obj in locationBlklist) or (count _Buildings == 0)} do {
 };
 	// */
 
-[["Locations choisi : %1", text _obj], _Debug] call WOLV_fnc_log;
+[["Locations choisi : %1", text _obj]] call WOLV_fnc_log;
 
 if (_forceZO != "") then {
 	{
@@ -48,7 +48,7 @@ if (_forceZO != "") then {
         _obj = selectRandom _location;
     };
     // */
-    [["Locations forcé : %1", text _obj], _Debug] call WOLV_fnc_log;
+    [["Locations forcé : %1", text _obj]] call WOLV_fnc_log;
 };
 
 // Recupère la position de l'objectif
@@ -64,7 +64,7 @@ _marker setMarkerColor "coloropfor";
 _marker setMarkertext "O";
 
 [text _obj] remoteExec ["systemChat", 0];
-[["Marquer mis en place"], _Debug] call WOLV_fnc_log;
+[["Marquer mis en place"]] call WOLV_fnc_log;
 
 // Renvoie la location
 _obj
