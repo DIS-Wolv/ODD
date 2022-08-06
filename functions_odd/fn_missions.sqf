@@ -147,8 +147,9 @@ if (CurrentMission == 0) then {
     private _Renfort = true;
     private _nbItt = 0;
     
+    [["Mission Lancée"]] call WOLV_fnc_log;
     if (_Debug) then {
-        [["Mission Lancée"]] call WOLV_fnc_log;
+        [["Skip de lattente des joueurs sur obj"]] call WOLV_fnc_log;
     } else {
         waitUntil{
             sleep 1;
