@@ -13,6 +13,15 @@ oddCtrl addAction ["Nettoyer l'opération", {[] remoteExec ["WOLV_fnc_clearZO", 
 oddCtrl setVariable ["R3F_LOG_disabled", true];
 [] call WOLV_fnc_infoOdd;
 
+//Option Spawn-Delete Vl
+usine addAction ["Crée HMV 12.7", {[position usine] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
+usine addAction ["Crée HMV Baché", {[position usine, "rhsusf_m998_w_2dr_fulltop"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
+usine addAction ["Crée Stryker", {[position usine, "rhsusf_stryker_m1126_m2_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
+usine addAction ["Crée MH6", {[position usine, "RHS_MELB_MH6M"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
+//factory addAction ["Crée Bradley", {[position usine, "RHS_M6_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
+
+usine addAction ["Delete VL", {[position usine] call compile preprocessFile "scripts\vlFob\deleteVL.sqf";},[],1.5,true,true,"","true",5];
+
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
 base addAction ["FOB","scripts\tp\fob.sqf",["fob"],1.5,true,true,"","true",5];
