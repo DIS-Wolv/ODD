@@ -26,5 +26,5 @@ private _nbIa = 0;		// au debut il y a 0
 	} forEach units _x;  		// Pour chaque Units
 } forEach MissionIA;			// De chaque groupe
 
-[["Nombre d'IA : %1", str(_nbIa)], _Debug] call WOLV_fnc_log;
+[["Nombre d'IA : %1", str(_nbIa)]] call WOLV_fnc_log;
 _nbIa;	//return le nombre d'ia
