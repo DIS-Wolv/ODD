@@ -15,7 +15,7 @@
 *
 */
 
-params [["_pos", [0,0,0]], ["_vlType","rhsusf_m1043_w_m2"]];
+params [["_pos", [0,0,0]], ["_vlType","rhsusf_m1165a1_gmv_m2_m240_socom_d"]];
 
 //systemChat str _pos;
 
