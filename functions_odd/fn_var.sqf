@@ -163,8 +163,8 @@ publicVariable "textCaisse";
 textHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
     "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
-    "Un officier renégat a été localisé près de %1. les informations en sa possession nous son indispensable. Votre mission est de le récupérer de gré ou de force.",
-    "Nous avons repéré un gradé ennemi à %1 vous devez l'intercepter et l'extraire les informations qu'il possède."
+    "Un officier renégat a été localisé près de %1. les informations en sa possession nous son indispensable. Votre mission est de les récupérer de gré ou de force.",
+    "Nous avons repéré un gradé ennemi à %1 vous devez intercepter et extraire les informations qu'il possède."
 ];
 publicVariable "textHVT";
 textSecure = [
