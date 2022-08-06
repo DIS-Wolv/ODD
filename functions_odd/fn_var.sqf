@@ -155,12 +155,16 @@ publicVariable "locationBlklist";//deBlackListe Neochori ? et autre ?
 
 // array de differente possibilité de texte
 textCaisse = [
-    "Les forces ennemis dans la zone de %1 ont récemment reçu du matériel. Votre mission est de vous rendre sur place et de détruire leurs caisses de stockage."
+    "Les forces ennemis dans la zone de %1 ont récemment reçu du matériel. Votre mission est de vous rendre sur place et de détruire leurs caisses de stockage.",
+    "Du matériel compromettent à été localisé dans le secteur de %1. Vos ordres sont de détruire ses caisses par tous les moyens.",
+    "Des caisses de munitions ennemi ont été vues dans la zone de %1. Leur destruction affaiblirait grandement les forces ennemies. Votre mission est simple : leur recherche et destruction."
 ];
 publicVariable "textCaisse";
 textHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
-    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser."
+    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
+    "Un officier renégat a été localisé près de %1. les informations en sa possession nous son indispensable. Votre mission est de le récupérer de gré ou de force.",
+    "Nous avons repéré un gradé ennemi à %1 vous devez l'intercepter et l'extraire les informations qu'il possède."
 ];
 publicVariable "textHVT";
 textSecure = [
