@@ -76,14 +76,10 @@ if (CurrentMission == 0) then {
             // - 1 loc random // distance2D ???
         };
         
-        if (_Debug) then {
-            [format["Nombre de ZO+ : %1", _nbloc]] remoteExec ["systemChat", 0];
-        };
+        [["Nombre de ZO+ : %1", _nbloc], _Debug] call WOLV_fnc_log;
         
         {
-            if (_Debug) then {
-                [format["ZO+ %1 : %2", _forEachindex, text _x]] remoteExec ["systemChat", 0];
-            };
+            [["ZO+ %1 : %2", _forEachindex, text _x], _Debug] call WOLV_fnc_log;
             // *
             _action = round random 4;
             // random en 0 et 2
@@ -152,7 +148,7 @@ if (CurrentMission == 0) then {
     private _nbItt = 0;
     
     if (_Debug) then {
-        ["Mission Lancée"] remoteExec ["systemChat", 0];
+        [["Mission Lancée"], _Debug] call WOLV_fnc_log;
     } else {
         waitUntil{
             sleep 1;
@@ -238,9 +234,7 @@ if (CurrentMission == 0) then {
             _nbItt = _nbItt + 1;
             [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
 
-            if (_Debug) then {
-                [format["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] remoteExec ["systemChat", 0];
-            };
+            [["Progression de l'objectif : %1 / %2", _nbIa, _seuil], _Debug] call WOLV_fnc_log;
             
             {
                 if (isNull(_x)) then {

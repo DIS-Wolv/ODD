@@ -63,9 +63,8 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-	if (_Debug) then {
-        [format["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] remoteExec ["systemChat", 0];
-    };
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille], _Debug] call WOLV_fnc_log;
+
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
@@ -97,9 +96,7 @@ else {
 	//Ajoute un random
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 2, (count _nbPartol), (count _nbPartol) + 2]);
 
-	if (_Debug) then {
-        [format["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] remoteExec ["systemChat", 0];
-    };
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)], _Debug] call WOLV_fnc_log;
 
 	{
 		// choisi un groupe	

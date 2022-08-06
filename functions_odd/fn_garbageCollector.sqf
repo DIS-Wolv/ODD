@@ -29,8 +29,6 @@ if (_nbItt/30 == round ( _nbItt/30)) then {
 			};
 		};
 	} forEach alldead;			//pour chaque corps 
-	if (_Debug) then {
-		[Format["Nombre d'élement supprimé : %1", _nbEle]] remoteExec ["systemChat", 0];
-	};
+	[["Nombre d'élement supprimé : %1", _nbEle], _Debug] call WOLV_fnc_log;
 };
 

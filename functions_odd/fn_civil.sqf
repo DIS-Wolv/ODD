@@ -77,9 +77,7 @@ if (not _action) then {
 
 _nbCivil = (round (0 max _nbCivil));
 
-if (_Debug) then {
-    [format["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] remoteExec ["systemChat", 0];
-};
+[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil], _Debug] call WOLV_fnc_log;
 
 private _civil = [];
 _civil resize (_nbCivil);
