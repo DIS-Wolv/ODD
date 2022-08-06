@@ -219,14 +219,8 @@ private _allVars = [
     ],
     [
         "goClear",
-        true,
+        true
     ]
-    [
-        
-    ],
-    [
-        
-    ],
 ];
 
 {

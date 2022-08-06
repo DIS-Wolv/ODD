@@ -57,19 +57,19 @@ if (CurrentMission == 1) then {
 			deleteMarker _x;
 			{
 				{
-					deleteVehicle _x;	// 	delete l'units
-				} forEach units _x;		//	pour chaque units du groupe
-			} forEach MissionIA;		//	Pour chaque Groupe
+					deleteVehicle _x;
+				} forEach units _x;
+			} forEach MissionIA;
 			
 			{
 				{
-					deleteVehicle _x;	// 	delete l'units
-				} forEach units _x;		//	pour chaque units du groupe
-			} forEach ZoPIA;		//	Pour chaque Groupe
+					deleteVehicle _x;
+				} forEach units _x;
+			} forEach ZoPIA;
 			
 			{
-				deleteVehicle _x;	// 	delete l'units
-			} forEach MissionProps;		//	Pour chaque Group{
+				deleteVehicle _x;
+			} forEach MissionProps;
 			
 			// recup tout les objet par terre 
 			_Obj = _pos nearSupplies 5000;
