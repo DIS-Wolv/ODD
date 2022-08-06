@@ -37,7 +37,7 @@ if (_action) then {
         };
     }forEach _locProx;
     // !\ pas compté celle ou on est
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, missionNamespace getVariable "ODD_Maison", size _zo select 0];
     // Nombre de maison dans la localité
     _taille = size _zo select 0;
     // Taille de la Zone
@@ -80,7 +80,7 @@ if (_action) then {
     // definie qu'il faut faire spawn une caisse
     
     // Recupère tout les batiments a proximité
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, missionNamespace getVariable "ODD_Maison", size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // Si il y a peux de batiment
@@ -178,7 +178,7 @@ if (_action) then {
     // remplacé la fonction
     
     // Recupère tout les batiments a proximité
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, missionNamespace getVariable "ODD_Maison", size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // Si il y a peux de batiment

@@ -33,7 +33,7 @@ if (_action) then {
 			_locProx deleteAt _forEachIndex;				//on delete la location de notre liste 
 		};
 	}forEach _locProx;		// /!\ pas compté celle ou on est 
-	_Buildings = nearestObjects [position _zo, Maison, size _zo select 0];	//Nombre de maison dans la localité
+	_Buildings = nearestObjects [position _zo, missionNamespace getVariable "ODD_Maison", size _zo select 0];	//Nombre de maison dans la localité
 	_taille = size _zo select 0;		// Taille de la Zone
 	_heure = date select 3;		// heure de la journé
 	

@@ -85,7 +85,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			
 			MissionProps = MissionProps + _props;
 			
-			_Bat = nearestObjects [_roadPos, Maison, 50];
+			_Bat = nearestObjects [_roadPos, missionNamespace getVariable "ODD_Maison", 50];
 			
 			private _groupGar = [];
 			private _groupPat = [];

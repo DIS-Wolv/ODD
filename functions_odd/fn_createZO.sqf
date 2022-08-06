@@ -24,12 +24,12 @@ private _location = nearestLocations[[15000, 15000], locationtype, 30000];
 
 // choisi un objectif random
 private _obj = selectRandom _location;
-private _Buildings = nearestobjects[position _obj, Maison, 200];
+private _Buildings = nearestobjects[position _obj, missionNamespace getVariable "ODD_Maison", 200];
 
 while {(text _obj in locationBlklist) or (count _Buildings == 0)} do {
     // tant que on est dans une location intredit ou qu'il y a 0
     _obj = selectRandom _location;
-    _Buildings = nearestobjects[position _obj, Maison, 200];
+    _Buildings = nearestobjects[position _obj, missionNamespace getVariable "ODD_Maison", 200];
 };
 	// */
 

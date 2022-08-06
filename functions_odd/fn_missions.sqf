@@ -57,7 +57,7 @@ if (CurrentMission == 0) then {
         
         private _i = 0;
         while {_i < count(_location)} do {
-            private _Buildings = nearestobjects[position (_location select _i), Maison, 200];
+            private _Buildings = nearestobjects[position (_location select _i), missionNamespace getVariable "ODD_Maison", 200];
             if ((text (_location select _i) in locationBlklist) or (count _Buildings == 0)) then {
                 _location = _location - [_location select _i];
             } else {

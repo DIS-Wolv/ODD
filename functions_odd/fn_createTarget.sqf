@@ -32,7 +32,7 @@ if (_type >= 0 and _type < count TargettypeName) then {
 _Buildings = [];
 
 while {count _Buildings == 0} do {
-    _Buildings = nearestobjects[position _zo, Maison, 200];
+    _Buildings = nearestobjects[position _zo, missionNamespace getVariable "ODD_Maison", 200];
     [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call WOLV_fnc_log;
 };
 

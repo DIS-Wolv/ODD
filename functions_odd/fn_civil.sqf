@@ -38,7 +38,7 @@ if (type _zo == locationtype select 0) then {
     _loctype = 5;
 };
 
-private _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+private _Buildings = nearestobjects [position _zo, missionNamespace getVariable "ODD_Maison", size _zo select 0];
 // Nombre de maison dans la localité
 
 private _nbCivil = 0;
