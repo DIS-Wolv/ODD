@@ -21,26 +21,19 @@ params ["_zo", ["_type", -1], ["_Debug", false]];
 // Choisis une missions random
 private _Mission = selectRandom TargettypeName;
 
-if (_Debug) then {
-    [format["Mission choisi : %1", _Mission]] remoteExec ["systemChat", 0];
-};
+[["Mission choisi : %1", _Mission], _Debug] call WOLV_fnc_log;
 
 // DEBUG => force le type de missions
 if (_type >= 0 and _type < count TargettypeName) then {
     _Mission = TargettypeName select _type;
-    if (_Debug) then {
-        [format["Mission forcé : %1 (%2)", _Mission, _type]] remoteExec ["systemChat", 0];
-    };
+    [["Mission forcé : %1 (%2)", _Mission, _type], _Debug] call WOLV_fnc_log;
 };
 
 _Buildings = [];
 
 while {count _Buildings == 0} do {
     _Buildings = nearestobjects[position _zo, Maison, 200];
-    // test
-    if (_Debug) then {
-        [format["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] remoteExec ["systemChat", 0];
-    };
+    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings], _Debug] call WOLV_fnc_log;
 };
 
 _tgBuild = selectRandom _Buildings;
@@ -81,9 +74,7 @@ if (_Mission == TargettypeName select 0) then {
     // met en garnison
     
     if (!(isnil "HC1")) then {
-        if (_Debug) then {
-            ["HC1 présent"] remoteExec ["systemChat", 0];
-        };
+        [["HC1 présent"], _Debug] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -122,9 +113,7 @@ if (_Mission == TargettypeName select 1) then {
     } else {
         // met en garnison
         if (!(isnil "HC1")) then {
-            if (_Debug) then {
-                ["HC1 présent"] remoteExec ["systemChat", 0];
-            };
+            [["HC1 présent"], _Debug] call WOLV_fnc_log;
             _HCID = owner HC1;
             
             _g setgroupOwner _HCID;
@@ -319,9 +308,7 @@ if (_Mission == TargettypeName select 5) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        if (_Debug) then {
-            ["HC1 présent"] remoteExec ["systemChat", 0];
-        };
+        [["HC1 présent"], _Debug] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -413,9 +400,7 @@ if (_Mission == TargettypeName select 6) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        if (_Debug) then {
-            ["HC1 présent"] remoteExec ["systemChat", 0];
-        };
+        [["HC1 présent"], _Debug] call WOLV_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;

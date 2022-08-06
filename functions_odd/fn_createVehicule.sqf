@@ -42,9 +42,7 @@ if (_action) then {
 	// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 	//_nbVehicule resize 5;
 
-	if (_Debug) then {
-        [format["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)]] remoteExec ["systemChat", 0];
-    };
+	[["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)], _Debug] call WOLV_fnc_log;
 	
 	//Pour tout les groupes nessaire 
 	{
@@ -123,9 +121,7 @@ else {
 	//Calule le nombre de groupe
 	_nbVehicule resize round random[0,(_human_players/8),8];
 	//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-	if (_Debug) then {
-        [format["Nombre de Vehicule sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] remoteExec ["systemChat", 0];
-    };
+	[["Nombre de Vehicule sur %1 : %2 groupes", text _zo, count(_nbVehicule)], _Debug] call WOLV_fnc_log;
 
 	//Pour tout les groupes nessaire 
 	{

@@ -111,9 +111,7 @@ if (CurrentMission == 1) then {
                 _loc = selectRandom _refloc;
                 	// choisie un loc random
                 
-                if (_Debug) then {
-                    [format["Renfort en approche de %1", text _loc]]remoteExec ["systemChat", 0];
-                };
+                [["Renfort en approche de %1", text _loc], _Debug] call WOLV_fnc_log;
                 
                 _pos = position _loc getPos [300 * random 1, random 360];
                 	// prend un pose random a coté du centre de la loc

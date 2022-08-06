@@ -25,9 +25,7 @@ private _NbCP = _nb;
 _pos = position _zo; 
 private _props = [];
 
-if (_Debug) then {
-	[format["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] remoteExec ["systemChat", 0];
-};
+[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb], _Debug] call WOLV_fnc_log;
 
 _roads = (_pos nearRoads ((size _zo select 0)*1.5)) -(_pos nearRoads (size _zo select 1));
 
