@@ -3,9 +3,7 @@
 * Fonction permetant de supprimer le vehicule le plus proche de la position passe en argument
 *
 * Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Es ce la zone principale <BOOL>
-* 2: Activation du debug dans le chat <BOOL>
+* 0: Position <Array>
 *
 * Return Value:
 * nil
@@ -18,7 +16,7 @@
 params [["_pos", [0,0,0]]];
 
 _list = nearestObjects  [_pos, ["car","tank","plane","ship", "helicopter"], 100];
-systemChat str count _list;
+//systemChat str count _list;
 
 deleteVehicle (_list select 0); //delete le plus proche
 
