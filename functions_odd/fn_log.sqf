@@ -9,10 +9,17 @@
 * nil
 *
 * Example:
-* ["ma variable : %1", _var] call WOLV_fnc_log
+* [["ma variable : %1", _var]] call WOLV_fnc_log
+* [["exemple de debug"], true] call WOLV_fnc_log
 *
 * Public:
 */
-params [["_arg",[""],[]]];
+params [["_arg",[""],[]], ["_Debug",false,false]];
 
-diag_log format ["ODD-LOG : %1", (format _arg)];
+private msg = format _arg;
+
+diag_log format ["ODD-LOG : %1", msg];
+
+if (_Debug) then {
+	[msg] remoteExec ["systemChat", 0];
+};
