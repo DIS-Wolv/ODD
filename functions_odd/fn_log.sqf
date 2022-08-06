@@ -17,11 +17,11 @@
 */
 params [["_arg",[""],[]]];
 
-private debug = missionNamespace getVariable "DEBUG"; 
-private msg = format _arg;
+private _debug = missionNamespace getVariable "DEBUG"; 
+private _msg = format _arg;
 
-diag_log format ["ODD-LOG : %1", msg];
+diag_log format ["ODD-LOG : %1", _msg];
 
-if (debug) then {
-	[msg] remoteExec ["systemChat", 0];
+if (_debug) then {
+	[_msg] remoteExec ["systemChat", 0];
 };
