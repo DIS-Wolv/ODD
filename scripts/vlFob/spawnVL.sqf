@@ -66,7 +66,7 @@ if ((count _pos) != 0) then {
 	_vl addItemCargoGlobal ["ACE_plasmaIV", 10];
 	//_vl addItemCargoGlobal ["ACE_tourniquet", 10]; 
 
-	[_vl, 20] call ace_cargo_fnc_setSpace; //force la taille du cargo a 20 pour debug
+	//[_vl, 20] call ace_cargo_fnc_setSpace; //force la taille du cargo a 20 pour debug
 
 	//caisse med dans l'inventaire Ace du vl
 	["ACE_medicalSupplyCrate_advanced", _vl, 1] call ace_cargo_fnc_addCargoItem;

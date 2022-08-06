@@ -19,7 +19,6 @@ usine addAction ["Crée HMV Baché", {[position usine, "rhsusf_m998_w_2dr_fullto
 usine addAction ["Crée Stryker", {[position usine, "rhsusf_stryker_m1126_m2_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
 usine addAction ["Crée MH6", {[position usine, "RHS_MELB_MH6M"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
 //factory addAction ["Crée Bradley", {[position usine, "RHS_M6_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-
 usine addAction ["Delete VL", {[position usine] call compile preprocessFile "scripts\vlFob\deleteVL.sqf";},[],1.5,true,true,"","true",5];
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
