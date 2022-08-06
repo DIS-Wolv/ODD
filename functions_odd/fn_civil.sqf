@@ -83,7 +83,7 @@ private _civil = [];
 _civil resize (_nbCivil);
 {
     // choisi un groupe
-    private _group = selectRandom Civils;
+    private _group = selectRandom (missionNamespace getVariable "ODD_Civils");
     
     // choisi un batiment aléatoirement
     _GBuild = selectRandom _Buildings;
@@ -193,7 +193,7 @@ sleep 2;
     // deletevehicle (units (_g select 0) select 0);
     // */
     
-    _vl = selectRandom CivilsVL;
+    _vl = selectRandom (missionNamespace getVariable "ODD_CivilsVL");
     // choisie un vl
     
     _GBuild = selectRandom _Buildings;

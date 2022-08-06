@@ -285,7 +285,7 @@ if (_Mission == TargettypeName select 5) then {
     ["Task", "scout"] call BIS_fnc_tasksettype;
     
     // choisi une Prisonier random
-    private _group = selectRandom Otage;
+    private _group = selectRandom (missionNamespace getVariable "ODD_Otage");
     
     // spawn un gars
     _g = [position _tgBuild, west, _group] call BIS_fnc_spawngroup;
@@ -331,7 +331,7 @@ if (_Mission == TargettypeName select 6) then {
     _task = [true, "Task", [format[selectRandom textVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "car"] call BIS_fnc_tasksettype;
     
-    _vl = selectRandom tgVehicule;
+    _vl = selectRandom (missionNamespace getVariable "ODD_tgVehicule");
     // choisie un vl
     
     // recupère les route proche du centre de l'objectif
