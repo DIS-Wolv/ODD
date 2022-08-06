@@ -61,9 +61,9 @@ if ((count _pos) != 0) then {
 	//*/
 
 	//aceMed 
-	_vl addItemCargoGlobal ["ACE_elasticBandage", 50];
-	_vl addItemCargoGlobal ["ACE_packingBandage", 50];
-	_vl addItemCargoGlobal ["ACE_plasmaIV", 10];
+	_vl addItemCargoGlobal ["ACE_elasticBandage", 30];
+	_vl addItemCargoGlobal ["ACE_packingBandage", 30];
+	_vl addItemCargoGlobal ["ACE_plasmaIV", 5];
 	//_vl addItemCargoGlobal ["ACE_tourniquet", 10]; 
 
 	//[_vl, 20] call ace_cargo_fnc_setSpace; //force la taille du cargo a 20 pour debug
