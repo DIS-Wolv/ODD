@@ -17,6 +17,8 @@
 */
 params [["_forceZO", ""], ["_Debug", false]];
 
+missionNamespace setVariable ["DEBUG", _Debug, True];
+
 // Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000, 15000], locationtype, 30000];
 
