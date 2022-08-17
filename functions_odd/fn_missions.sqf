@@ -70,12 +70,13 @@ if (CurrentMission == 0) then {
         _nbloc = round random [0, (count(_location)*3/5), count(_location)];
         // on prend entre 0 et toute les loc a poximité centré sur 2/5
         
+        _nbloc = 4 min _nbloc;
+        
         while {count(_location) > _nbloc} do {
             // tant que trop de loc
             _location = (_location) - [(selectRandom _location)];
             // - 1 loc random // distance2D ???
         };
-        _nbloc = 4 min _nbloc;
 
         [["Nombre de ZO+ : %1", _nbloc]] call WOLV_fnc_log;
         
