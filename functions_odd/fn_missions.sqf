@@ -75,7 +75,8 @@ if (CurrentMission == 0) then {
             _location = (_location) - [(selectRandom _location)];
             // - 1 loc random // distance2D ???
         };
-        
+        _nbloc = 4 min _nbloc;
+
         [["Nombre de ZO+ : %1", _nbloc]] call WOLV_fnc_log;
         
         {
