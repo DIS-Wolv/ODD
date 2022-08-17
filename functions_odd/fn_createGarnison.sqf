@@ -174,7 +174,9 @@ if (_action) then {
     }forEach GarnisonIA;
     // */
 } else {
-    _nbgroup resize round (2 + _human_players / 2);
+    _NbGarnison = round (2 + _human_players / 2);
+
+    _nbgroup resize _NbGarnison;
     // remplacé la fonction
     
     // Recupère tout les batiments a proximité
