@@ -107,14 +107,8 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 		//spawn le groupe
 		_gp = [_roadPos, EAST, _groupPat] call BIS_fnc_spawnGroup;
 		
-		if(_action) then {
-			//Ajoute le groupe a la liste des IA de la missions
-			MissionIA pushBack _gp;
-		}
-		else {
-			ZopiA pushBack _gp;
-		};
-		
+		ZopiA pushBack _gp;
+
 		sleep 1;
 		
 		//lui assigne des waypoint de patrouille
@@ -124,13 +118,8 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 		// Spawn les gars en garnison 
 		_gg = [_roadPos, EAST, _groupGar] call BIS_fnc_spawnGroup;
 		
-		if(_action) then {
-			//Ajoute le groupe a la liste des IA de la missions
-			MissionIA pushBack _gg;
-		}
-		else {
-			ZopiA pushBack _gg;
-		};
+		ZopiA pushBack _gg;
+
 		
 		if (!(IsNil "HC1")) then {
 			// systemChat "HC1 présent";
