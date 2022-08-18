@@ -221,6 +221,8 @@ if (_Mission == TargettypeName select 4) then {
     _helico = "land_Wreck_Heli_Attack_01_F" createvehicle _pos;
 
     ParticuleList pushBack _pos;
+
+    publicVariable "ParticuleList";
     
     [True] remoteExec ["WOLV_fnc_particules", 0];
     
