@@ -31,6 +31,7 @@ class CfgFunctions
 			class roadBlockZO {};
 			class createRenfort {};
 			class var {};
+			class varEne {};
 			class varEneArd {};
 			class varRoadBlock {};
 			class particules {};
