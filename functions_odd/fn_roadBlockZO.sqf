@@ -12,7 +12,7 @@
 *
 * Example:
 * [_zo] call WOLV_fnc_roadBlockZO
-* [_zo, 2, true] call WOLV_fnc_roadBlockZO
+* [_zo, 2, 4000] call WOLV_fnc_roadBlockZO
 *
 * Public:
 */
@@ -24,6 +24,11 @@ private _props = [];
 _nearZO = nearestLocations[position _zo, locationtype, _dist];
 
 _roads = _pos nearRoads _dist;
+// DELETE route proximité de la FOB
+
+_roadsFOB = position usine nearRoads 200;
+
+_roads = _roads - _roadsFOB;
 
 {
 	_posZo = position _x;
@@ -43,7 +48,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 	/*
 	_markerGP =	createMarker [(format ["CP ZO+ P x %1, y %2, z %3", (_posr select 0), (_posr select 1), (_posr select 2)]), _posr];
 	_markerGP setMarkerType "hd_dot";
-	_markerGP setMarkerColor "ColorPink"; //*/
+	_markerGP setMarkerColor "ColorPink"; /*/
 
 	_roads = _roads - [_road];
 	
@@ -149,7 +154,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 		_roadsNoCP = (_roadPos nearRoads (50));
 		_roads = _roads - _roadsNoCP;
 		
-	};
+	};//*/
 
 };
 
