@@ -135,8 +135,8 @@ MissionProps = [];
 publicVariable "MissionProps";
 
 // array des props de la missions en local
-MissionPropslocal = [nil, nil];
-publicVariable "MissionPropslocal";
+ParticuleList = [];
+publicVariable "ParticuleList";
 
 // liste de/des objectif(s)
 Objectif = [];
