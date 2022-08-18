@@ -98,7 +98,9 @@ if (CurrentMission == 1) then {
 				_x hideObjectGlobal false;		//affiche l'object
 			} forEach ObjetHIDE;			//pour object caché
 
-			[_pos, false] remoteExec ["WOLV_fnc_particules", 0];
+			ParticuleList = [];
+			publicVariable "ParticuleList";
+			[False] remoteExec ["WOLV_fnc_particules", 0];
 		}
 		else {
 			if ("ODDTG" in _markerN) then { deleteMarker _x; };

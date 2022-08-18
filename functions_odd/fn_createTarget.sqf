@@ -219,8 +219,10 @@ if (_Mission == TargettypeName select 4) then {
     };
     
     _helico = "land_Wreck_Heli_Attack_01_F" createvehicle _pos;
+
+    ParticuleList pushBack _pos;
     
-    [_pos] remoteExec ["WOLV_fnc_particules", 0];
+    [True] remoteExec ["WOLV_fnc_particules", 0];
     
     /* _helico addAction ["<t color='#FF0000'>Recupérer les boîtes noires</t>", {
         Objectif set[1, false];
