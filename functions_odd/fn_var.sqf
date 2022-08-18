@@ -14,6 +14,8 @@
 * Public:
 */
 
+params [["_FacForce", -1]];
+
 // array des maison whitelist
 Maison = [
     "land_Chapel_V1_F", "land_Chapel_V2_F", "land_Chapel_Small_V1_F", "land_Chapel_Small_V2_F", "land_Offices_01_V1_F", "land_Castle_01_tower_F", "land_LightHouse_F",
@@ -192,4 +194,4 @@ goClear = true;
 publicVariable "goClear";
 
 [] call WOLV_fnc_varRoadBlock;
-[] call WOLV_fnc_varEneArd;
+[_FacForce] call WOLV_fnc_varEne;
