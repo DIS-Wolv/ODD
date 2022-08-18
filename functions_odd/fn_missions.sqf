@@ -17,7 +17,10 @@
 *
 * Public:
 */
-params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false]];
+params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false], ["_FacForce", -1]];
+
+DEBUG = _Debug;
+publicVariable "DEBUG";
 
 call WOLV_fnc_var;
 
