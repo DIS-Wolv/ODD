@@ -28,6 +28,7 @@ class CfgFunctions
 			class createPatrol {};
 			class createVehicule {};
 			class roadBlock {};
+			class roadBlockZO {};
 			class createRenfort {};
 			class var {};
 			class varEneArd {};
