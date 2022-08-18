@@ -33,6 +33,7 @@ class CfgFunctions
 			class var {};
 			class varEne {};
 			class varEneArd {};
+			class varEneChDKZ {};
 			class varRoadBlock {};
 			class particules {};
 			class log {};
