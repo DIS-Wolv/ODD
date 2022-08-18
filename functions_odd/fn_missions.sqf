@@ -21,6 +21,8 @@ params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false
 
 call WOLV_fnc_var;
 
+DistanceZO = 4000;
+
 // systemChat("init ODD");
 if (CurrentMission == 0) then {
     private _future = servertime + 6;
@@ -49,7 +51,7 @@ if (CurrentMission == 0) then {
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
         // toute les loc a proximité
-        private _location = nearestLocations[position _zo, locationtype, 4000];
+        private _location = nearestLocations[position _zo, locationtype, DistanceZO];
         private _closeLoc = nearestLocations[position _zo, locationtype, 800];
         _location = _location - [_zo];
         _location = _location - _closeLoc;
