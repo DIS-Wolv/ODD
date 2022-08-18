@@ -16,7 +16,7 @@
 *
 * Public:
 */
-params ["_zo", ["_nb", 2], ["_dist", 4000], ["_Debug", false]];
+params ["_zo", ["_nb", 2], ["_dist", 4000]];
 
 _pos = position _zo; 
 private _props = [];
