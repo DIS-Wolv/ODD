@@ -116,7 +116,7 @@ if (CurrentMission == 0) then {
         }forEach _location;
         // */	// pour toute les ZO+ activé
 
-        //[_zo, 10, 4000, _Debug] call WOLV_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
+        [_zo, 10, DistanceZO, _Debug] call WOLV_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
     };
     
     {
