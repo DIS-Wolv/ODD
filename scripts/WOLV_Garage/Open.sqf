@@ -20,6 +20,9 @@ IdcListInv = 1503;
 IdcListArs = 1502;
 IdcBarreInv = 1900;
 
+//definie la position
+PosGarage = _pos;
+
 // Liste des Vehicule que on peux faire spawn
 if(!isNil "ce") then {
 	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_w_m2", "rhsusf_m998_w_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_stryker_m1126_m2_wd", "RHS_M6_wd", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
@@ -34,7 +37,7 @@ ListArsenalItem = ["ACE_Clacker", "ACE_elasticBandage", "ACE_packingBandage", "A
 private _isCreate = False;
 
 // Creation de la fenetre
-_isCreate = createDialog "GUIGarrage";
+_isCreate = createDialog "GUIgarage";
 
 //si la fenetre est créé
 if (_isCreate) then {
@@ -44,12 +47,8 @@ if (_isCreate) then {
 		lbSetPicture [IdcListSpawn, _foreachindex, getText (configFile >> "CfgVehicles" >> _x >> "picture")]
 	} forEach ListSpawn;
 	
-	// recup les vl a proximité et les rajoute a la liste
-	ListVL = nearestObjects [_pos, ["car", "tank", "plane", "ship", "helicopter"], 100];
-	{
-		lbAdd [IdcListVL, getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName")];
-		lbSetPicture [IdcListVL, _foreachindex, getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "picture")]
-	} forEach ListVL;
+	// met a jour la liste des vl proche
+	call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';
 	
 	// ajoute les élement a la liste de l'arsenal
 	{
@@ -65,8 +64,8 @@ if (_isCreate) then {
 };
 
 // Ajoute les eventHandler
-((findDisplay IddDisplay) displayCtrl IdcListSpawn) ctrlSetEventHandler ["LBDblClick", "execVM 'scripts\WOLV_Garrage\spawnVL.sqf'"];		// double click pour spawn le vl
-((findDisplay IddDisplay) displayCtrl IdcListArs) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_Garrage\AddItem.sqf'"];		// double click pour Ajouté un item
-((findDisplay IddDisplay) displayCtrl IdcListInv) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_Garrage\RemoveItem.sqf'"];	// double click pour retiré un item
-((findDisplay IddDisplay) displayCtrl IdcListVL) ctrlSetEventHandler ["LBSelChanged","execVM 'scripts\WOLV_Garrage\Inventaire.sqf';"];		// lorsque la liste des vl a proximité update la liste inventaire 
+((findDisplay IddDisplay) displayCtrl IdcListSpawn) ctrlSetEventHandler ["LBDblClick", "execVM 'scripts\WOLV_garage\spawnVL.sqf'"];		// double click pour spawn le vl
+((findDisplay IddDisplay) displayCtrl IdcListArs) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_garage\AddItem.sqf'"];		// double click pour Ajouté un item
+((findDisplay IddDisplay) displayCtrl IdcListInv) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_garage\RemoveItem.sqf'"];	// double click pour retiré un item
+((findDisplay IddDisplay) displayCtrl IdcListVL) ctrlSetEventHandler ["LBSelChanged","execVM 'scripts\WOLV_garage\Inventaire.sqf';"];		// lorsque la liste des vl a proximité update la liste inventaire 
 

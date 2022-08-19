@@ -21,6 +21,6 @@ if (_index != -1) then {	// si un vl est selectioné
 	ListVL deleteAt _index;			// supprime le vl de la list des vl a proxmité
 };
 
-//sleep 1;
+sleep 0.5;
 // met a jour l'inventaire 
-call compile preprocessFile "scripts\WOLV_Garrage\Inventaire.sqf";
+call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';

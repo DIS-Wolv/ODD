@@ -1,12 +1,12 @@
-class GUIGarrage 
+class GUIgarage 
 {
 	idd = 110822;
-	name = "GUIGarrage";
+	name = "GUIgarage";
 	author = "Wolv";
 	
 	class controlsBackground
 	{
-		class GUIGarrage_BackGround: RscText_WolvGUIGarrage
+		class GUIgarage_BackGround: RscText_WolvGUIgarage
 		{
 			idc = 1000;
 			x = 0.1375 * safezoneW + safezoneX;
@@ -15,10 +15,10 @@ class GUIGarrage
 			h = 0.84 * safezoneH;
 			colorBackground[] = {0.16,0.196,0.098,0.9};
 		};
-		class GUIGarrage_Title: RscStructuredText_WolvGUIGarrage
+		class GUIgarage_Title: RscStructuredText_WolvGUIgarage
 		{
 			idc = 1100;
-			text = "<t size='4' align='center'>Garrage de la DIS par [DIS]Wolv<t/>"; //--- ToDo: Localize;
+			text = "<t size='4' align='center'>Garage de la DIS par [DIS]Wolv<t/>"; //--- ToDo: Localize;
 			x = 0.15 * safezoneW + safezoneX;
 			y = 0.08 * safezoneH + safezoneY;
 			w = 0.7 * safezoneW;
@@ -26,7 +26,7 @@ class GUIGarrage
 			// font = TahomaB;
 		};
 
-		class GUIGarrage_TitleListSpawn: RscStructuredText_WolvGUIGarrage
+		class GUIgarage_TitleListSpawn: RscStructuredText_WolvGUIgarage
 		{
 			idc = 1101;
 			text = "<t size='2' align='center'>VL à Spawn<t/>";
@@ -35,7 +35,7 @@ class GUIGarrage
 			w = 0.125 * safezoneW;
 			h = 0.04 * safezoneH;
 		};
-		class GUIGarrage_TitleListVL: RscStructuredText_WolvGUIGarrage
+		class GUIgarage_TitleListVL: RscStructuredText_WolvGUIgarage
 		{
 			idc = 1102;
 			text = "<t size='2' align='center'>VL à proximité<t/>";
@@ -44,7 +44,7 @@ class GUIGarrage
 			w = 0.125 * safezoneW;
 			h = 0.04 * safezoneH;
 		};
-		class GUIGarrage_TitleListInv: RscStructuredText_WolvGUIGarrage
+		class GUIgarage_TitleListInv: RscStructuredText_WolvGUIgarage
 		{
 			idc = 1103;
 			text = "<t size='2' align='center'>Inventaire<t/>";
@@ -53,7 +53,7 @@ class GUIGarrage
 			w = 0.175 * safezoneW;
 			h = 0.04 * safezoneH;
 		};
-		class GUIGarrage_TitleListArs: RscStructuredText_WolvGUIGarrage
+		class GUIgarage_TitleListArs: RscStructuredText_WolvGUIgarage
 		{
 			idc = 1104;
 			text = "<t size='2' align='center'>Arsenal<t/>";
@@ -66,7 +66,7 @@ class GUIGarrage
 
 	class controls 
 	{
-		class GUIGarrage_ListSpawn: RscListBox_WolvGUIGarrage
+		class GUIgarage_ListSpawn: RscListBox_WolvGUIgarage
 		{
 			idc = 1500;
 			x = 0.15 * safezoneW + safezoneX;
@@ -75,7 +75,7 @@ class GUIGarrage
 			h = 0.46 * safezoneH;
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ListVL: RscListBox_WolvGUIGarrage
+		class GUIgarage_ListVL: RscListBox_WolvGUIgarage
 		{
 			idc = 1501;
 			x = 0.3 * safezoneW + safezoneX;
@@ -84,7 +84,7 @@ class GUIGarrage
 			h = 0.46 * safezoneH;
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ListArs: RscListBox_WolvGUIGarrage
+		class GUIgarage_ListArs: RscListBox_WolvGUIgarage
 		{
 			idc = 1502;
 			x = 0.675 * safezoneW + safezoneX;
@@ -93,7 +93,7 @@ class GUIGarrage
 			h = 0.46 * safezoneH;
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ListInv: RscListBox_WolvGUIGarrage
+		class GUIgarage_ListInv: RscListBox_WolvGUIgarage
 		{
 			idc = 1503;
 			x = 0.475 * safezoneW + safezoneX;
@@ -103,7 +103,7 @@ class GUIGarrage
 			font = PuristaSemibold;
 		};
 		
-		class GUIGarrage_ButtonSpawn: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonSpawn: RscButton_WolvGUIgarage
 		{
 			idc = 1600;
 			text = "Spawn"; //--- ToDo: Localize;
@@ -112,10 +112,10 @@ class GUIGarrage
 			w = 0.125 * safezoneW;
 			h = 0.1 * safezoneH;
 			// sizeEx = 1.8 * GUI_GRID_H;
-			action = "execVM 'scripts\WOLV_Garrage\spawnVL.sqf'";
+			action = "execVM 'scripts\WOLV_garage\spawnVL.sqf'";
 			font = PuristaBold;
 		};
-		class GUIGarrage_ButtonParradrop: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonParradrop: RscButton_WolvGUIgarage
 		{
 			idc = 1601;
 			text = "Parradrop"; //--- ToDo: Localize;
@@ -124,10 +124,10 @@ class GUIGarrage
 			w = 0.125 * safezoneW;
 			h = 0.04 * safezoneH;
 			// sizeEx = 1 * GUI_GRID_H;
-			action = "execVM 'scripts\WOLV_Garrage\parradropVL.sqf'";
+			action = "execVM 'scripts\WOLV_garage\parradropVL.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonDelete: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonDelete: RscButton_WolvGUIgarage
 		{
 			idc = 1602;
 			text = "Delete"; //--- ToDo: Localize;
@@ -136,11 +136,11 @@ class GUIGarrage
 			w = 0.125 * safezoneW;
 			h = 0.04 * safezoneH;
 			// sizeEx = 1 * GUI_GRID_H;
-			action = "execVM 'scripts\WOLV_Garrage\deleteVL.sqf'";
+			action = "execVM 'scripts\WOLV_garage\deleteVL.sqf'";
 			font = PuristaSemibold;
 		};
 
-		class GUIGarrage_ButtonMoins10: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonMoins10: RscButton_WolvGUIgarage
 		{
 			idc = 1603;
 			text = "- 10"; //--- ToDo: Localize;
@@ -148,10 +148,10 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[10] execVM 'scripts\WOLV_Garrage\RemoveItem.sqf'";
+			action = "[10] execVM 'scripts\WOLV_garage\RemoveItem.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonMoins5: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonMoins5: RscButton_WolvGUIgarage
 		{
 			idc = 1604;
 			text = "- 5"; //--- ToDo: Localize;
@@ -159,10 +159,10 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[5] execVM 'scripts\WOLV_Garrage\RemoveItem.sqf'";
+			action = "[5] execVM 'scripts\WOLV_garage\RemoveItem.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonMoins1: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonMoins1: RscButton_WolvGUIgarage
 		{
 			idc = 1605;
 			text = "- 1"; //--- ToDo: Localize;
@@ -170,10 +170,10 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[1] execVM 'scripts\WOLV_Garrage\RemoveItem.sqf'";
+			action = "[1] execVM 'scripts\WOLV_garage\RemoveItem.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonPlus1: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonPlus1: RscButton_WolvGUIgarage
 		{
 			idc = 1606;
 			text = "+ 1"; //--- ToDo: Localize;
@@ -181,10 +181,10 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[1] execVM 'scripts\WOLV_Garrage\AddItem.sqf'";
+			action = "[1] execVM 'scripts\WOLV_garage\AddItem.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonPlus5: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonPlus5: RscButton_WolvGUIgarage
 		{
 			idc = 1607;
 			text = "+ 5"; //--- ToDo: Localize;
@@ -192,10 +192,10 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[5] execVM 'scripts\WOLV_Garrage\AddItem.sqf'";
+			action = "[5] execVM 'scripts\WOLV_garage\AddItem.sqf'";
 			font = PuristaSemibold;
 		};
-		class GUIGarrage_ButtonPlus10: RscButton_WolvGUIGarrage
+		class GUIgarage_ButtonPlus10: RscButton_WolvGUIgarage
 		{
 			idc = 1608;
 			text = "+ 10"; //--- ToDo: Localize;
@@ -203,11 +203,11 @@ class GUIGarrage
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[10] execVM 'scripts\WOLV_Garrage\AddItem.sqf'";
+			action = "[10] execVM 'scripts\WOLV_garage\AddItem.sqf'";
 			font = PuristaSemibold;
 		};
 
-		class GUIGarrage_BarreInv: RscProgressBar_WolvGUIGarrage
+		class GUIgarage_BarreInv: RscProgressBar_WolvGUIgarage
 		{
 			idc = 1900;
 			x = 0.475 * safezoneW + safezoneX;

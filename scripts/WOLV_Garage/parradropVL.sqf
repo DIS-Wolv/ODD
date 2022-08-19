@@ -53,13 +53,16 @@ if (_index != -1) then {
 	else {
 		_vl setPos _posHalo; 
 		// systemChat "VL en l'air";
+
+		// met a jour la liste des vl proche
+		call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';
 		
 		// sleep 1;
 		// waitUntil{sleep 1; position _vl select 2 <= 100};
 
 		_posChute = [position _vl select 0, position _vl select 1, (position _vl select 2) + 2];
 		_chute = createvehicle ["i_parachute_02_f", position _vl,[],0,"can_collide"];
-		_vl attachto [_chute,[0,0,2]];
+		_vl attachto [_chute,[0,0,2.5]];
 
 		waitUntil{sleep 1; position _vl select 2 <= 10};
 
@@ -68,4 +71,5 @@ if (_index != -1) then {
 
 	};
 };
+
 

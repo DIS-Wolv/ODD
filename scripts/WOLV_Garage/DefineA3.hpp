@@ -99,7 +99,7 @@
 ///////////////////////////////////////////////////////////////////////////
 /// Chaque class utilisié a été renomé pour ne pas posé de probleme de class deja définie
 ///////////////////////////////////////////////////////////////////////////
-class RscText_WolvGUIGarrage
+class RscText_WolvGUIgarage
 {
 	deletable = 0;
 	fade = 0;
@@ -160,7 +160,7 @@ class RscText_WolvGUIGarrage
 		0.65
 	};
 };
-class RscStructuredText_WolvGUIGarrage
+class RscStructuredText_WolvGUIgarage
 {
 	deletable = 0;
 	fade = 0;
@@ -191,7 +191,7 @@ class RscStructuredText_WolvGUIGarrage
 	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	shadow = 1;
 };
-class RscProgressBar_WolvGUIGarrage
+class RscProgressBar_WolvGUIgarage
 {
 	access = 0;
 	idc = -1;
@@ -211,7 +211,7 @@ class RscProgressBar_WolvGUIGarrage
 	w = 0.2;
 	h = 0.15;
 };
-class RscListBox_WolvGUIGarrage
+class RscListBox_WolvGUIgarage
 {
 	deletable = 0;
 	fade = 0;
@@ -398,7 +398,7 @@ class RscListBox_WolvGUIGarrage
 	period = 1.2;
 	maxHistoryDelay = 1;
 };
-class RscButton_WolvGUIGarrage
+class RscButton_WolvGUIgarage
 {
 	deletable = 0;
 	fade = 0;

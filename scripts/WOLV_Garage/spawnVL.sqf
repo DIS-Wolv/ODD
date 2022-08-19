@@ -77,12 +77,15 @@ if (_index != -1) then {
 		};
 		//*/
 
-		_index = lbAdd [IdcListVL, getText (configFile >> "CfgVehicles" >> (typeOf _vl) >> "displayName")];
+		/*_index = lbAdd [IdcListVL, getText (configFile >> "CfgVehicles" >> (typeOf _vl) >> "displayName")];
 		lbSetPicture [IdcListVL, _index, getText (configFile >> "CfgVehicles" >> _vlType >> "picture")];
-		ListVL pushBack _vl;
+		ListVL pushBack _vl; //*/
 	} 
 	else {
 		systemChat "Pas de position libre";
 		//"Information" hintC "Pas de position libre";
 	};
 };
+
+// met a jour la liste des vl proche
+call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';

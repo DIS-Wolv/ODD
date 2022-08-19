@@ -44,4 +44,4 @@ if (_indexVL != -1) then {	//si un vl est séléctioné
 };
 
 // update la liste des inventaire
-call compile preprocessFile "scripts\WOLV_Garrage\Inventaire.sqf";
+call compile preprocessFile "scripts\WOLV_garage\Inventaire.sqf";

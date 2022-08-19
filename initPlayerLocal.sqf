@@ -114,5 +114,5 @@ else {
 };
 
 //Option Spawn-Delete Vl
-usine addAction ["<t color='#5c7038'>Garrage</t>", {[position usine] call compile preprocessFile "scripts\WOLV_Garrage\Open.sqf";},[],1.5,true,true,"","true",5];
+usine addAction ["<t color='#5c7038'>Garage</t>", {[position usine] call compile preprocessFile "scripts\WOLV_Garage\Open.sqf";},[],1.5,true,true,"","true",5];
 sleep 3;
