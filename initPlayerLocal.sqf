@@ -114,11 +114,5 @@ else {
 };
 
 //Option Spawn-Delete Vl
-usine addAction ["Créer HMV 12.7", {[position usine] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-usine addAction ["Créer HMV Baché", {[position usine, "rhsusf_m998_w_2dr_fulltop"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-usine addAction ["Créer Stryker", {[position usine, "rhsusf_stryker_m1126_m2_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-usine addAction ["Créer MH6", {[position usine, "RHS_MELB_MH6M"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-//factory addAction ["Créer Bradley", {[position usine, "RHS_M6_wd"] call compile preprocessFile "scripts\vlFob\spawnVL.sqf";},[],1.5,true,true,"","true",5];
-usine addAction ["Delete VL", {[position usine] call compile preprocessFile "scripts\vlFob\deleteVL.sqf";},[],1.5,true,true,"","true",5];
-
+usine addAction ["<t color='#5c7038'>Garrage</t>", {[position usine] call compile preprocessFile "scripts\WOLV_Garrage\Open.sqf";},[],1.5,true,true,"","true",5];
 sleep 3;
