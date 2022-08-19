@@ -135,8 +135,6 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 		{ _x disableAI "PATH"; } forEach (units _gg);
 		createGuardedPoint [east, _roadPos, -1, objNull];
 		
-		_NbCP = _NbCP - 1;
-		
 		//[myObject, true] remoteExec ["hideObjectGlobal", 2];
 		//InPolygon ? https://community.bistudio.com/wiki/inPolygon
 		
