@@ -116,12 +116,13 @@ if (_action) then {
 		// [_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
 		
 	}forEach _nbVehicule;
+	[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call WOLV_fnc_log;
 }
 else {
 	//Calule le nombre de groupe
 	_nbVehicule resize round random[0,(_human_players/8),8];
 	//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-	[["Nombre de Vehicule sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call WOLV_fnc_log;
+	[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call WOLV_fnc_log;
 
 	//Pour tout les groupes nessaire 
 	{
