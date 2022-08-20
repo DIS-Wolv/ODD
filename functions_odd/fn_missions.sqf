@@ -135,8 +135,8 @@ if (CurrentMission == 0) then {
     [["Quantital : Nombre de Pax en ZO+ : %1", count ZopiA]] call WOLV_fnc_log;
     [["Quantital : Nombre de Pax en Garnison : %1", count GarnisonIA]] call WOLV_fnc_log;
     [["Quantital : Nombre de Civils : %1", count MissionCivil]] call WOLV_fnc_log;
-    [["Quantital : Nombre de Props : %1", count MissionProps]] call WOLV_fnc_log;  
-    [["Quantital : Nombre de LocalProps : %1", count ParticuleList]] call WOLV_fnc_log;    
+    [["Quantital : Nombre de Props : %1", count MissionProps]] call WOLV_fnc_log;
+    [["Quantital : Nombre de LocalProps (par joueur) : %1", count ParticuleList]] call WOLV_fnc_log;
 
     waitUntil {
         sleep 1;
