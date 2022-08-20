@@ -19,6 +19,8 @@ params ["_zo", ["_Debug", false]];
 // private _zo = _this select 0;
 		//Zone ou il faut envoyer les renfort
 
+private _NbUnitRenfort = 0;
+
 if (CurrentMission == 1) then {
     _textRenfort = ["Des renforts ont été appellé.", "Des renforts sont en approche"];
     [selectRandom _textRenfort] remoteExec ["systemChat", 0];
@@ -138,6 +140,8 @@ if (CurrentMission == 1) then {
                 	// spawn le groupe
                 // Ajoute le groupe a la liste des IA de la missions
                 ZopiA pushBack _g;
+
+                _NbUnitRenfort = _NbUnitRenfort + count(units _g);
                 
                 if (!(("brf_o_ard_uaz" in _group) or ("brf_o_ard_uaz_open" in _group))) then {
                     // ajoute du personnel dans les vl
@@ -145,6 +149,8 @@ if (CurrentMission == 1) then {
                     _pos set [1, (_pos select 1)+ 3];
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     
+                    _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
+
                     {
                         ZOpiA pushBack _x;
                     } forEach units _inf;
@@ -165,6 +171,8 @@ if (CurrentMission == 1) then {
                     // spawn la squad
                     ZopiA pushBack _inf;
                     		// Ajoute le groupe a la liste des IA de la missions
+
+                    _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
                 };
                 
                 sleep 1;
@@ -200,6 +208,8 @@ if (CurrentMission == 1) then {
         } forEach _groups;
     };
 };
+
+[["Quantital : Nombre de LocalProps : %1", count _NbUnitRenfort]] call WOLV_fnc_log;
 
 /*
 1.	Lors de l'appelle
