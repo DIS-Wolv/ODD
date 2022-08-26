@@ -330,7 +330,16 @@ if (CurrentMission == 0) then {
     
     if (target == TargettypeName select 6) then {
         // obj vl
-        while {((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)} do {
+        while {
+            (
+                (!(                     // pas 
+                    (fob in nearestobjects[(Objectif select 0), [], 50])        // proximité de la fob
+                    or (base in nearestobjects[(Objectif select 0), [], 50])    // ou proximité du PA
+                )) 
+                and (alive (Objectif select 0)) // VL en vie
+            )
+            and (CurrentMission == 1)           // mission en cours
+        } do {
             // tant que la cible est pas detruite
             _NextTick = servertime + 60;
             
@@ -345,7 +354,17 @@ if (CurrentMission == 0) then {
             
             waitUntil {
                 sleep 1;
-                (((!(fob in nearestobjects[(Objectif select 0), [], 50])) and (alive (Objectif select 0))) and (CurrentMission == 1)) == false or servertime > _NextTick
+                (
+                    (
+                        (!(                     // pas 
+                            (fob in nearestobjects[(Objectif select 0), [], 50])        // proximité de la fob
+                            or (base in nearestobjects[(Objectif select 0), [], 50])    // ou proximité du PA
+                        )) 
+                        and (alive (Objectif select 0)) // VL en vie
+                    )
+                    and (CurrentMission == 1)           // mission en cours
+                ) == false 
+                or servertime > _NextTick               // ou Temps d'attente écoulé
             };
         };
         
