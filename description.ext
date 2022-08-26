@@ -12,7 +12,7 @@ reviveMode = 1;
 class CfgFunctions
 {
 	#include "taw_vd\CfgFunctions.hpp"
-	class WOLV {
+	class WOLV {	//Renmomé en ODD ? WOLVODD ?
 		class wolv_ODD {
 			file = "functions_odd";
 			class missions {};
