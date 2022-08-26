@@ -75,7 +75,7 @@ if (_action) then {
 		_pos = position _zo getPos [(random _distPattrouille), random 360];
 		
 		while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-			_pos = position _zo getPos [(random (_distPattrouille)) min 100), random 360];			//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+			_pos = position _zo getPos [(random _distPattrouille), random 360];			//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
 		};
 		// systemChat(str(_pos));
 		//spawn le groupe
