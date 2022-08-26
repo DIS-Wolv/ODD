@@ -54,6 +54,7 @@ while {_t < 10000}do{
 };
 systemChat(str(_r));	//*/
 
+_Dist = 10000000;
 
 _location = nearestLocations[[15000,15000], locationType, 30000];
 {
@@ -160,10 +161,10 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 			_foreachindex]; //*/
 
 		_markerG = createMarker [(format ["obj Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
-		_markerG setMarkerShape "RECTANGLE";
-		_markerG setMarkerSize [size _x select 0,size _x select 0];
+		_markerG setMarkerShape "ELLIPSE";
+		_markerG setMarkerSize [((size _x select 0) * 2), ((size _x select 0) * 2)];
 		_markerG setMarkerBrush "SolidBorder";
-		_markerG setMarkerAlpha 0.2; 
+		_markerG setMarkerAlpha 0.4; 
 		_markerG setMarkerColor "colorOPFOR";
 		
 		/*_markerG2 = createMarker [(format ["obj Z2 x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
@@ -172,6 +173,8 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 		_markerG2 setMarkerBrush "SolidBorder";
 		_markerG2 setMarkerAlpha 0.2; 
 		_markerG2 setMarkerColor "ColorYellow";//*/
+
+		_Dist = _Dist min ((size _x select 0) * 2);
 		
 	}
 	else {
@@ -182,6 +185,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 	};
 }forEach _location;
 
+systemChat str _Dist;
 
 
 // _caller = _this select 1;
