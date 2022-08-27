@@ -13,7 +13,7 @@ class ODDGUI_Mission
 			y = 0.08 * safezoneH + safezoneY;
 			w = 0.9 * safezoneW;
 			h = 0.84 * safezoneH;
-			colorBackground[] = {0.06,0.15,0.69,0.9};
+			colorBackground[] = {0.05,0.12,0.54,0.9};
 		};
 
 		class GUIODD_Mission_Title: RscStructuredText_ODDGUI
@@ -73,7 +73,7 @@ class ODDGUI_Mission
 		class GUIODD_Mission_TitleMeteo: RscStructuredText_ODDGUI
 		{
 			idc = 1106;
-			text = "<t size='2' align='center'>Meteo<t/>";
+			text = "<t size='2' align='center'>Météo<t/>";
 			x = 0.7125 * safezoneW + safezoneX;
 			y = 0.7 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
@@ -193,15 +193,24 @@ class ODDGUI_Mission
 		{
 			idc = 1604;
 			text = "Générer la mission"; //--- ToDo: Localize;
-			x = 0.425 * safezoneW + safezoneX;
+			x = 0.525 * safezoneW + safezoneX;
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
 			h = 0.04 * safezoneH;
 			action = "[] execVM 'ODD_GUI\GUIODD_Mission\start.sqf'";
 		};
+		class GUIODD_Mission_ButtonClear: RscButton_ODDGUI
+		{
+			idc = 1605;
+			text = "Clear la mission"; //--- ToDo: Localize;
+			x = 0.325 * safezoneW + safezoneX;
+			y = 0.84 * safezoneH + safezoneY;
+			w = 0.15 * safezoneW;
+			h = 0.04 * safezoneH;
+			action = "[] execVM 'ODD_GUI\GUIODD_Mission\clear.sqf'";
+		};
 	}
 };
-
 
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT START (by Wolv, v1.063, #Xuxada)

@@ -8,7 +8,7 @@
 sleep 1;
 tawvd_disablenone = false;
 
-Player addAction ["<t color='#5c7038'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
+Player addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 oddCtrl addAction ["Générer une mission", {[] remoteExec ["WOLV_fnc_missions", 2];},[],1.5,true,true,"","CurrentMission==0",5];
