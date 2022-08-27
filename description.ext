@@ -1,4 +1,5 @@
 #include "scripts\WOLV_Garage\includeMaster.hpp"
+#include "ODD_GUI\includeMaster.hpp"
 #include "R3F_LOG\desc_include.h"
 #include "taw_vd\GUI.h"
 
@@ -12,6 +13,7 @@ reviveMode = 1;
 class CfgFunctions
 {
 	#include "taw_vd\CfgFunctions.hpp"
+	// #include "ODD_GUI\CfgFunctions.hpp"
 	class WOLV {	//Renmomé en ODD ? WOLVODD ?
 		class wolv_ODD {
 			file = "functions_odd";
