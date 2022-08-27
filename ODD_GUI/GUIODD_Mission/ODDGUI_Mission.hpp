@@ -197,6 +197,7 @@ class ODDGUI_Mission
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
 			h = 0.04 * safezoneH;
+			action = "[] execVM 'ODD_GUI\GUIODD_Mission\start.sqf'";
 		};
 	}
 };
