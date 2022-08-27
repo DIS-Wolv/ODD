@@ -143,7 +143,7 @@ if (_action) then {
 
         _tp = false;
 
-        if ((position _GBuild select 2) < -0.5) then {
+        if ((position _GBuild select 2) < 0) then {
             _tp = true;
         }; 
         
@@ -214,7 +214,7 @@ if (_action) then {
         sleep(2);
         _tp = false;
 
-        if ((position _GBuild select 2) < -0.5) then {
+        if ((position _GBuild select 2) < 0) then {
             _tp = true;
         }; 
         
