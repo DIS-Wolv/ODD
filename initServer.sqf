@@ -43,4 +43,4 @@ else {
 	pInf setObjectTextureGlobal [0, "pics\da.jpg"];
 };
 
-[] remoteExec ["scripts\rWeather.sqf"]; 
+//[] remoteExec ["scripts\rWeather.sqf"]; 
