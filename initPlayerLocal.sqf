@@ -4,6 +4,7 @@
 [] execVM "scripts\halo\infoHalo.sqf";
 [] execVM "scripts\lights\init.sqf";
 [] execVM "scripts\retourPa.sqf";
+[] execVM "scripts\WOLV_garage\garageInfo.sqf";
 sleep 1;
 tawvd_disablenone = false;
 
