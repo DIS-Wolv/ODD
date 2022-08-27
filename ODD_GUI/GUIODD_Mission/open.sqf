@@ -31,7 +31,7 @@ private _isCreate = False;
 ODDGUI_var_heure = [00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 ODDGUI_var_Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
-ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris", "Aléatoire"]; // 0, 0.5, 1, rdm
+ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris", "Actuel"]; // 0, 0.5, 1, rdm
 _meteoValue = [0, 0.5, 1, -1];
 
 ODDGUI_var_SelTarg = [];
