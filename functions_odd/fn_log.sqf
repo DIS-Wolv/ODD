@@ -18,6 +18,9 @@
 params [["_arg",[""],[]]];
 
 private _debug = missionNamespace getVariable "DEBUG"; 
+if(isNil "_debug") then {
+	_debug = false;
+};
 private _msg = format _arg;
 
 diag_log format ["ODD-LOG : %1", _msg];
