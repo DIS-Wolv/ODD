@@ -17,8 +17,10 @@
 */
 params ["_nbItt", ["_Debug", false]];
 
+_tGarbage = 45; // temps entre chaque execution du garbage collector
+
 //["Test Garbage Coll"] remoteExec ["systemChat", 0];
-if (_nbItt/30 == round ( _nbItt/30)) then {
+if (_nbItt/_tGarbage == round ( _nbItt/_tGarbage)) then {
 	private _nbEle = 0;
 	{				//garbage collector du cul
 		if (count(units(group _x)) <= 1) then {
