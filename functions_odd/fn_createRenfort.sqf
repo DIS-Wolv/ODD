@@ -150,10 +150,7 @@ if (CurrentMission == 1) then {
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
-
-                    {
-                        ZOpiA pushBack _x;
-                    } forEach units _inf;
+                    ZOpiA pushBack _inf;
 
                     //ZopiA pushBack _inf;
                 } else {
@@ -209,7 +206,7 @@ if (CurrentMission == 1) then {
     };
 };
 
-[["Quantital : Nombre de LocalProps : %1", count _NbUnitRenfort]] call WOLV_fnc_log;
+[["Quantital : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call WOLV_fnc_log;
 
 /*
 1.	Lors de l'appelle
