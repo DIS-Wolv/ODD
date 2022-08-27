@@ -13,13 +13,13 @@ class ODDGUI_Mission
 			y = 0.08 * safezoneH + safezoneY;
 			w = 0.9 * safezoneW;
 			h = 0.84 * safezoneH;
-			colorBackground[] = {0.5,0.5,0.5,1};
+			colorBackground[] = {0.06,0.15,0.69,0.9};
 		};
 
 		class GUIODD_Mission_Title: RscStructuredText_ODDGUI
 		{
 			idc = 1100;
-			text = "<t size='2' align='center'>Générateur de missions ODD<t/>";
+			text = "<t size='4' align='center'>Générateur de missions ODD<t/>";
 			x = 0.3 * safezoneW + safezoneX;
 			y = 0.12 * safezoneH + safezoneY;
 			w = 0.4 * safezoneW;
