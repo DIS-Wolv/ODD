@@ -31,8 +31,8 @@ private _isCreate = False;
 ODDGUI_var_heure = [00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 ODDGUI_var_Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
-ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris", "Actuel"]; // 0, 0.5, 1, rdm
-_meteoValue = [0, 0.5, 1, -1];
+ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris"]; // 0, 0.5, 1
+_meteoValue = [2, 5, 10];
 
 ODDGUI_var_SelTarg = [];
 ODDGUI_var_SelPos = [];
@@ -77,13 +77,16 @@ if (_isCreate) then {
 		lbSetValue[ODDGUI_var_IdcComboHeure, _forEachIndex, _x];
 	} forEach ODDGUI_var_heure;
 	lbAdd [ODDGUI_var_IdcComboHeure, "Actuel"];
+	lbSetValue[ODDGUI_var_IdcComboHeure, count ODDGUI_var_heure, -1];
 	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboHeure) lbSetCurSel (count ODDGUI_var_heure);
 
 	{
 		lbAdd [ODDGUI_var_IdcComboMeteo, _x];
 		lbSetValue[ODDGUI_var_IdcComboMeteo, _forEachIndex, (_meteoValue select _forEachIndex)];
 	} forEach ODDGUI_var_Meteo;
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboMeteo) lbSetCurSel ((count ODDGUI_var_Meteo) - 1);
+	lbAdd [ODDGUI_var_IdcComboMeteo, "Actuel"];
+	lbSetValue[ODDGUI_var_IdcComboMeteo, count ODDGUI_var_Meteo, -1];
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboMeteo) lbSetCurSel ((count ODDGUI_var_Meteo));
 };
 
 // Ajoute les eventHandler

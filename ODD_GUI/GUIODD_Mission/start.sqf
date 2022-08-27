@@ -9,7 +9,7 @@
 *
 */
 
-ODD_var_SelectedTarget = ODDGUI_var_SelTarg
+ODD_var_SelectedTarget = ODDGUI_var_SelTarg;
 ODD_var_SelectedSector = ODDGUI_var_SelPos;
 
 ODD_var_NbPlayer = lbValue[ODDGUI_var_IdcComboPlayer, (lbCurSel ODDGUI_var_IdcComboPlayer)];
@@ -17,14 +17,23 @@ ODD_var_SelectedFaction = lbValue[ODDGUI_var_IdcComboFaction, (lbCurSel ODDGUI_v
 ODDGUI_var_Heure = lbValue[ODDGUI_var_IdcComboHeure, (lbCurSel ODDGUI_var_IdcComboHeure)];
 ODDGUI_var_meteo = lbValue[ODDGUI_var_IdcComboMeteo, (lbCurSel ODDGUI_var_IdcComboMeteo)];
 
-
+if (ODD_var_SelectedFaction == 0) then {
+	ODD_var_SelectedFaction = -1;
+};
 
 systemChat format["Type d'objectif : %1", ODD_var_SelectedTarget];
 systemChat format["Secteur : %1", ODD_var_SelectedSector];
 
 systemChat format["Nb Joueur :  %1", ODD_var_NbPlayer];
 systemChat format["Faction :  %1", ODD_var_SelectedFaction];
-systemChat format["Heure :  %1", ODDGUI_var_Heure];
-systemChat format["Meteo :  %1", ODDGUI_var_meteo];
 
+if (ODDGUI_var_meteo != -1) then {
+	[0, (ODDGUI_var_meteo/10)] remoteExec["setOvercast", 0];
+	[] remoteExec["forceWeatherChange", 0];
+};
+if (ODDGUI_var_Heure != -1) then {
+	[(ODDGUI_var_Heure - dayTime + 24)%24] remoteExec["skipTime", 0];
+};
 
+// systemChat format["Heure :  %1", ODDGUI_var_Heure];
+// systemChat format["Meteo :  %1", ODDGUI_var_meteo];
