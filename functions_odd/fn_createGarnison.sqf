@@ -140,13 +140,19 @@ if (_action) then {
         };
         
         sleep 2;
+
+        _tp = false;
+
+        if ((position _GBuild select 2) < -0.5) then {
+            _tp = true;
+        }; 
         
         // met en garnison
         if (round(random 4) == 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
-            [position _GBuild, nil, units _g, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         } else {
-            [position _GBuild, nil, units _g, 20, 2, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         };
         
         // {
@@ -206,13 +212,18 @@ if (_action) then {
         ZOpiA pushBack _g;
         
         sleep(2);
+        _tp = false;
+
+        if ((position _GBuild select 2) < -0.5) then {
+            _tp = true;
+        }; 
         
         // met en garnison
         if (round(random 4) == 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
-            [position _GBuild, nil, units _g, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         } else {
-            [position _GBuild, nil, units _g, 20, 2, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         };
         // Garnison Ace
     }forEach _nbgroup;
