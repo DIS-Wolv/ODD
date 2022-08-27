@@ -33,6 +33,8 @@ ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,
 ODDGUI_var_Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
 ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris", "Aléatoire"]; // 0, 0.5, 1, rdm
 
+ODDGUI_var_SelTarg = [];
+ODDGUI_var_SelPos = [];
 
 // Creation de la fenetre
 _isCreate = createDialog "ODDGUI_Mission";
@@ -45,6 +47,7 @@ if (_isCreate) then {
 	} forEach TargettypeName;
 	{
 		lbAdd [ODDGUI_var_IdcListObjSel, _x];
+		ODDGUI_var_SelTarg pushBack _x;
 	} forEach TargettypeName;
 
 	{
@@ -52,7 +55,8 @@ if (_isCreate) then {
 	} forEach ODDGUI_var_Secteur;
 	{
 		lbAdd [ODDGUI_var_IdcListPosSel, _x];
-	} forEach ODDGUI_var_Secteur;
+		ODDGUI_var_SelPos pushBack _x;
+	} forEach ODDGUI_var_Secteur; 
 
 	{
 		lbAdd [ODDGUI_var_IdcComboPlayer, str(_x)];
@@ -77,9 +81,8 @@ if (_isCreate) then {
 	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboMeteo) lbSetCurSel ((count ODDGUI_var_Meteo) - 1);
 };
 
-/*/ Ajoute les eventHandler
-((findDisplay IddDisplay) displayCtrl IdcListSpawn) ctrlSetEventHandler ["LBDblClick", "execVM 'scripts\WOLV_garage\spawnVL.sqf'"];		// double click pour spawn le vl
-((findDisplay IddDisplay) displayCtrl IdcListArs) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_garage\AddItem.sqf'"];		// double click pour Ajouté un item
-((findDisplay IddDisplay) displayCtrl IdcListInv) ctrlSetEventHandler ["LBDblClick", "[1] execVM 'scripts\WOLV_garage\RemoveItem.sqf'"];	// double click pour retiré un item
-((findDisplay IddDisplay) displayCtrl IdcListVL) ctrlSetEventHandler ["LBSelChanged","execVM 'scripts\WOLV_garage\Inventaire.sqf';"];		// lorsque la liste des vl a proximité update la liste inventaire 
-
+// Ajoute les eventHandler
+((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
+((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
