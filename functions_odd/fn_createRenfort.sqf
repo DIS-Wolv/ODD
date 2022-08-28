@@ -28,7 +28,7 @@ if (ODD_var_CurrentMission == 1) then {
     
     private _groups = [];
     
-    private _human_players = count(allplayers - entities "HeadlessClient_F");
+    private _human_players = ODD_var_NbPlayer;
     // removing Headless Clients
     private _locType = 0;
     private _inf = [];

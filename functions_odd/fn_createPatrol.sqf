@@ -21,7 +21,7 @@
 params ["_zo", ["_action", false], ["_Debug", false]];
 
 // Compte les Joueurs
-private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 private _nbPartol = [];
 
 if (_action) then {

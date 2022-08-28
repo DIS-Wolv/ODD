@@ -19,6 +19,10 @@
 */
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false], ["_FacForce", -1]];
 
+if(isNil "ODD_var_NbPlayer") then {
+    ODD_var_NbPlayer = (playersNumber west);
+};
+
 ODD_var_DEBUG = _Debug;
 publicVariable "ODD_var_DEBUG";
 

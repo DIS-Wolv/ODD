@@ -31,7 +31,7 @@ if (ODD_var_CurrentMission == 1) then {
 	};
 
 	// Compte les Joueurs
-	private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+	private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 
 	{
 		_markerN = _x splitString " ";
