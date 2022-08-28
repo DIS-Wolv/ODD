@@ -31,9 +31,9 @@ _Buildings = nearestObjects [position player, Maison, 100];
 
 //*
 {
-	//if(markerType _x == "hd_objective")then { 
+	if(getMarkerType _x != "Empty")then { 
 		deleteMarker(_x);
-	//}
+	}
 }foreach allMapMarkers; 
 
 private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
@@ -57,6 +57,7 @@ systemChat(str(_r));	//*/
 _Dist = 10000000;
 
 _location = nearestLocations[[15000,15000], locationType, 30000];
+//_location = [];
 {
 	_pos = getpos _x;
 	// if( _forEachIndex == 75) then {
@@ -158,14 +159,14 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 			_NbPatrouille,
 			count _Buildings,
 			_NbCivil,
-			_foreachindex]; //*/
+			_foreachindex]; /*/
 
 		_markerG = createMarker [(format ["obj Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_markerG setMarkerShape "ELLIPSE";
 		_markerG setMarkerSize [((size _x select 0) * 2), ((size _x select 0) * 2)];
 		_markerG setMarkerBrush "SolidBorder";
 		_markerG setMarkerAlpha 0.4; 
-		_markerG setMarkerColor "colorOPFOR";
+		_markerG setMarkerColor "colorOPFOR"; //*/
 		
 		/*_markerG2 = createMarker [(format ["obj Z2 x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_markerG2 setMarkerShape "RECTANGLE";
@@ -185,7 +186,31 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 	};
 }forEach _location;
 
-systemChat str _Dist;
+//systemChat str _Dist;
+_Sect = [
+	"ODD_MarkerNW", "ODD_MarkerN", "ODD_MarkerNE",
+	"ODD_MarkerW", "ODD_MarkerC", "ODD_MarkerE",
+	"ODD_MarkerSW", "ODD_MarkerS", "ODD_MarkerSE"
+	// [7000,21000,0],[15000,19000,0],[25000,22000,0],
+	// [6000,15000,0],[15000,15000,0],[23000,15000,0],
+	// [7000,10000,0],[15000,10000,0],[19000,10000,0]
+];
+{
+	_pos = getMarkerPos _x;
+	//systemChat str _pos;
+	_marker = createMarker [(format ["Sect P x %1, y %2", (_pos select 0), (_pos select 1)]), _pos]; 
+	_marker setMarkerType "loc_CivilDefense";
+	//_marker setMarkerColor "colorOPFOR";
+	_marker setMarkerText format["x %1, y %2", (_pos select 0), (_pos select 1)];
+	
+	_markerT = createMarker [(format ["Sect Z x %1, y %2", (_pos select 0), (_pos select 1)]), _pos];
+	_markerT setMarkerShape "ELLIPSE";
+	_markerT setMarkerSize [5000, 5000];
+	_markerT setMarkerBrush "SolidBorder";
+	_markerT setMarkerAlpha 0.4; 
+	_markerT setMarkerColor "ColorBlue";
+} forEach _Sect; //*/
+
 
 
 // _caller = _this select 1;

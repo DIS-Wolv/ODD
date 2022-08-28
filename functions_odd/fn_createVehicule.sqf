@@ -5,14 +5,14 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Es ce la zone principale <BOOL>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * Nil
 *
 * Example:
-* [_zo] call WOLV_fnc_createVehicule
-* [_zo, true, false] call WOLV_fnc_createVehicule
+* [_zo] call ODD_fnc_createVehicule
+* [_zo, true, false] call ODD_fnc_createVehicule
 *
 * Public:
 */
@@ -21,19 +21,19 @@
 params ["_zo", ["_action", false], ["_Debug", false]];
 
 // Compte les Joueurs
-private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 private _nbVehicule = [];
 
 if (_action) then {
 	
 	//préparation des variables pour le calcule du nombre de groupe
-	_locProx = nearestLocations [position _zo, locationType, 3000]; //Recup les location a - de 3000m 
+	_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
 	{
-		if (text _x in locationBlkList) then {		//si dans la liste Noir 
+		if (text _x in ODD_var_LocationBlkList) then {		//si dans la liste Noir 
 			_locProx deleteAt _forEachIndex;				//on delete la location de notre liste 
 		};
 	}forEach _locProx;		// /!\ pas compté celle ou on est 
-	_Buildings = nearestObjects [position _zo, Maison, size _zo select 0];	//Nombre de maison dans la localité
+	_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	//Nombre de odd_var_maison dans la localité
 	_taille = size _zo select 0;		// Taille de la Zone
 	_heure = date select 3;		// heure de la journé
 	
@@ -42,7 +42,7 @@ if (_action) then {
 	// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 	//_nbVehicule resize 5;
 
-	[["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)]] call WOLV_fnc_log;
+	[["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 	
 	//Pour tout les groupes nessaire 
 	{
@@ -74,7 +74,7 @@ if (_action) then {
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 			//Ajoute le groupe a la liste des IA de la missions
 			{
-				MissionIA pushBack _x;
+				ODD_var_MissionIA pushBack _x;
 			} forEach units _g;
 			
 			
@@ -102,7 +102,7 @@ if (_action) then {
 				_infG = selectRandom squad;
 				_pos set [1,(_pos select 1)+ 3];
 				_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
-				MissionIA pushBack _inf;
+				ODD_var_MissionIA pushBack _inf;
 				
 				{
 					_x moveInCargo (vehicle (units _g select 0));
@@ -116,13 +116,13 @@ if (_action) then {
 		// [_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
 		
 	}forEach _nbVehicule;
-	[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call WOLV_fnc_log;
+	[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
 }
 else {
 	//Calule le nombre de groupe
 	_nbVehicule resize round random[0,(_human_players/8),8];
 	//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-	[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call WOLV_fnc_log;
+	[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 
 	//Pour tout les groupes nessaire 
 	{
@@ -140,7 +140,7 @@ else {
 		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 		
 		//Ajoute le groupe a la liste des IA de la missions
-		ZOpIA pushBack _g;
+		ODD_var_ZopiA pushBack _g;
 		
 		sleep 1;
 		//lui assigne des waypoint de patrouille

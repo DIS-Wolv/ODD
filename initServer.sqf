@@ -5,8 +5,9 @@
 enableSaving [false, false];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-CurrentMission = 0;
-publicVariable "CurrentMission";
+call ODD_fnc_var;
+ODD_var_CurrentMission = 0;
+publicVariable "ODD_var_CurrentMission";
 oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
@@ -43,4 +44,4 @@ else {
 	pInf setObjectTextureGlobal [0, "pics\da.jpg"];
 };
 
-[] remoteExec ["scripts\rWeather.sqf"]; 
+//[] remoteExec ["scripts\rWeather.sqf"]; 

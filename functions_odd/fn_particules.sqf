@@ -10,8 +10,8 @@
 * nil
 *
 * Example:
-* [_pos] remoteExec ["WOLV_fnc_particules", 0]
-* [_pos, false] remoteExec ["WOLV_fnc_particules", 0];
+* [_pos] remoteExec ["ODD_fnc_particules", 0]
+* [_pos, false] remoteExec ["ODD_fnc_particules", 0];
 *
 * Public:
 */
@@ -52,15 +52,15 @@ params[["_add",true]];
 
 
 _localID = clientOwner;
-[_localID] remoteExec ["publicVariable 'ParticuleList';", 0];
+[_localID] remoteExec ["publicVariable 'ODD_var_ParticuleList';", 0];
 
-if (!isNil 'ParticuleList') then {
+if (!isNil 'ODD_var_ParticuleList') then {
 	if (_add) then {
 		if (isNil 'LocalParticuleList') then {
 			LocalParticuleList = [];
 		};
 
-		if ((count ParticuleList) != 0) then {
+		if ((count ODD_var_ParticuleList) != 0) then {
 			{
 				// systemChat str _x;
 				_pos = _x;
@@ -85,7 +85,7 @@ if (!isNil 'ParticuleList') then {
 				_ps2 setDropInterval 0.25;
 
 				LocalParticuleList pushBack _ps2;
-			} forEach ParticuleList;
+			} forEach ODD_var_ParticuleList;
 		};
 	}
 	else {

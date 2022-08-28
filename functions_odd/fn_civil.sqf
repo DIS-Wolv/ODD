@@ -1,45 +1,45 @@
 /*
 * Author: Wolv
-* Fonction permetant de faire spawn des civils et vehicule sur la zone souhaité
+* Fonction permetant de faire spawn des ODD_var_Civils et vehicule sur la zone souhaité
 *
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Es ce la zone principale <BOOL>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_civil
-* [_zo, true, false] call WOLV_fnc_civil
+* [_zo] call ODD_fnc_civil
+* [_zo, true, false] call ODD_fnc_civil
 *
 * Public:
 */
 params ["_zo", ["_action", false], ["_Debug", false]];
 
 private _loctype = 0;
-if (type _zo == locationtype select 5) then {
+if (type _zo == ODD_var_LocationType select 5) then {
     _loctype = 0;
 };
-if (type _zo == locationtype select 4) then {
+if (type _zo == ODD_var_LocationType select 4) then {
     _loctype = 1;
 };
-if (type _zo == locationtype select 3) then {
+if (type _zo == ODD_var_LocationType select 3) then {
     _loctype = 2;
 };
-if (type _zo == locationtype select 2) then {
+if (type _zo == ODD_var_LocationType select 2) then {
     _loctype = 3;
 };
-if (type _zo == locationtype select 1) then {
+if (type _zo == ODD_var_LocationType select 1) then {
     _loctype = 4;
 };
-if (type _zo == locationtype select 0) then {
+if (type _zo == ODD_var_LocationType select 0) then {
     _loctype = 5;
 };
 
-private _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
-// Nombre de maison dans la localité
+private _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+// Nombre de odd_var_maison dans la localité
 
 private _nbCivil = 0;
 if (_loctype == 5) then {
@@ -58,7 +58,7 @@ if (_loctype == 1) then {
     _nbCivil = (count _Buildings) / 10;
 };
 /*
-1. nb de civils :
+1. nb de ODD_var_Civils :
 selon le type : round
 5 (capital) nb batiment/24
 4 nbbat/25
@@ -67,23 +67,23 @@ selon le type : round
 1 nbbat / 10
 pensé a forcé 0 si negatif
 2. donne la position de la caisse :
-2/nb civils
+2/nb ODD_var_Civils
 */
 
-// systemChat("spawn des civils");
+// systemChat("spawn des ODD_var_Civils");
 if (not _action) then {
     _nbCivil = _nbCivil / 2;
 };
 
 _nbCivil = (round (0 max _nbCivil));
 
-[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call WOLV_fnc_log;
+[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODD_fnc_log;
 
 private _civil = [];
 _civil resize (_nbCivil);
 {
     // choisi un groupe
-    private _group = selectRandom Civils;
+    private _group = selectRandom ODD_var_Civils;
     
     // choisi un batiment aléatoirement
     _GBuild = selectRandom _Buildings;
@@ -92,7 +92,7 @@ _civil resize (_nbCivil);
     _g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
     _civil set[_forEachindex, _g];
     
-    MissionCivil pushBack _g;
+    ODD_var_MissionCivil pushBack _g;
     
     sleep 0.5;
     
@@ -123,17 +123,17 @@ _civil resize (_nbCivil);
                 private _minutes = floor ((_daytime - _hours) * 60);
                 private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
                 private _pos = [0,0,0];
-                if (target == TargettypeName select 2) then {
-                    _pos = position (units (Objectif select 0) select 0);
+                if (ODD_var_Target == ODD_var_TargetTypeName select 2) then {
+                    _pos = position (units (ODD_var_Objectif select 0) select 0);
                 }
                 else {
-                    _pos = position (Objectif select 0);
+                    _pos = position (ODD_var_Objectif select 0);
                 };
                 
                 _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos];
                 _marker setMarkertype (selectRandom _markerPool);
                 _marker setMarkerColor (selectRandom _colorPool);
-                _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
+                _marker setMarkertext format["ODD_var_Objectif à %1:%2", _hours, _minutes];
             } else {
                 systemChat ("J'ai pas d'info.");
             };
@@ -178,7 +178,7 @@ sleep 2;
         // + 0 ou + 180 Â°
     };
     
-    _vl = selectRandom CivilsVL;
+    _vl = selectRandom ODD_var_CivilsVL;
     
     _pos = _pos getPos [6, (_roadDir + 90 + ((round (random 2))* 180)) % 360];
     
@@ -193,7 +193,7 @@ sleep 2;
     // deletevehicle (units (_g select 0) select 0);
     // */
     
-    _vl = selectRandom CivilsVL;
+    _vl = selectRandom ODD_var_CivilsVL;
     // choisie un vl
     
     _GBuild = selectRandom _Buildings;
@@ -223,8 +223,8 @@ sleep 2;
     _g setFuel 1;
     
     _g setDamage 0;
-    MissionProps pushBack _g;
+    ODD_var_MissionProps pushBack _g;
 }forEach _civil; //Sur 80 % des gars, pas tous
 
-publicVariable "MissionCivil";
-publicVariable "MissionProps";
+publicVariable "ODD_var_MissionCivil";
+publicVariable "ODD_var_MissionProps";

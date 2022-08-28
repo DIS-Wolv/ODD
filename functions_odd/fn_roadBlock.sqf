@@ -5,14 +5,14 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Nombre de roadblock souhaité <INT>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_roadBlock
-* [_zo, 2, true] call WOLV_fnc_roadBlock
+* [_zo] call ODD_fnc_roadBlock
+* [_zo, 2, true] call ODD_fnc_roadBlock
 *
 * Public:
 */
@@ -25,7 +25,7 @@ private _NbCP = _nb;
 _pos = position _zo; 
 private _props = [];
 
-[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] call WOLV_fnc_log;
+[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] call ODD_fnc_log;
 
 _roads = (_pos nearRoads ((size _zo select 0)*1.5)) -(_pos nearRoads (size _zo select 1));
 
@@ -76,16 +76,16 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			}forEach _props;		//pour tout les props du checkpoint
 
 			{
-				ObjetHIDE pushBack _x;		// ajoute les objects a caché
+				ODD_var_ObjetHide pushBack _x;		// ajoute les objects a caché
 				_x hideObjectGlobal true;	// cache les objets
 			}forEach _aCacher;	//pour toute les objects a caché 
 
 
 
 			
-			MissionProps = MissionProps + _props;
+			ODD_var_MissionProps = ODD_var_MissionProps + _props;
 			
-			_Bat = nearestObjects [_roadPos, Maison, 50];
+			_Bat = nearestObjects [_roadPos, ODD_var_Maison, 50];
 			
 			private _groupGar = [];
 			private _groupPat = [];
@@ -111,10 +111,10 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			
 			if(_action) then {
 				//Ajoute le groupe a la liste des IA de la missions
-				MissionIA pushBack _gp;
+				ODD_var_MissionIA pushBack _gp;
 			}
 			else {
-				ZopiA pushBack _gp;
+				ODD_var_ZopiA pushBack _gp;
 			};
 			
 			sleep 1;
@@ -129,10 +129,10 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			
 			if(_action) then {
 				//Ajoute le groupe a la liste des IA de la missions
-				MissionIA pushBack _gg;
+				ODD_var_MissionIA pushBack _gg;
 			}
 			else {
-				ZopiA pushBack _gg;
+				ODD_var_ZopiA pushBack _gg;
 			};
 			
 			if (!(IsNil "HC1")) then {
@@ -143,7 +143,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 				{ _x setOwner _HCID; } forEach (units _g);
 			};
 
-			GarnisonIA pushBack _gg;
+			ODD_var_GarnisonIA pushBack _gg;
 			
 			[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; // Garnison Ace
 			{ _x disableAI "PATH"; } forEach (units _gg);
@@ -161,10 +161,10 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 	
 };
 
-publicVariable "MissionProps";
-publicVariable "ZopiA";
-publicVariable "MissionIA";
-publicVariable "GarnisonIA";
-publicVariable "ObjetHIDE";
+publicVariable "ODD_var_MissionProps";
+publicVariable "ODD_var_ZopiA";
+publicVariable "ODD_var_MissionIA";
+publicVariable "ODD_var_GarnisonIA";
+publicVariable "ODD_var_ObjetHide";
 
 

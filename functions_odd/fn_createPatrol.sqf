@@ -5,14 +5,14 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Es ce la zone principale <BOOL>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_createPatrol
-* [_zo, true, false] call WOLV_fnc_createPatrol
+* [_zo] call ODD_fnc_createPatrol
+* [_zo, true, false] call ODD_fnc_createPatrol
 *
 * Public:
 */
@@ -21,28 +21,28 @@
 params ["_zo", ["_action", false], ["_Debug", false]];
 
 // Compte les Joueurs
-private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 private _nbPartol = [];
 
 if (_action) then {
 	
 	//préparation des variables pour le calcule du nombre de groupe
-	_locProx = nearestLocations [position _zo, locationType, 3000]; //Recup les location a - de 3000m 
+	_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
 	{
-		if (text _x in locationBlkList) then {		//si dans la liste Noir 
+		if (text _x in ODD_var_LocationBlkList) then {		//si dans la liste Noir 
 			_locProx deleteAt _forEachIndex;				//on delete la location de notre liste 
 		};
 	}forEach _locProx;		// /!\ pas compté celle ou on est 
-	_Buildings = nearestObjects [position _zo, Maison, size _zo select 0];	//Nombre de maison dans la localité
+	_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	//Nombre de odd_var_maison dans la localité
 	_taille = size _zo select 0;		// Taille de la Zone
 	_heure = date select 3;		// heure de la journé
 	private _locType = 0;
-	if (type _zo == locationType select 5) then { _locType = 0;};
-	if (type _zo == locationType select 4) then { _locType = 1;};
-	if (type _zo == locationType select 3) then { _locType = 2;};
-	if (type _zo == locationType select 2) then { _locType = 3;};
-	if (type _zo == locationType select 1) then { _locType = 4;};
-	if (type _zo == locationType select 0) then { _locType = 5;};
+	if (type _zo == ODD_var_LocationType select 5) then { _locType = 0;};
+	if (type _zo == ODD_var_LocationType select 4) then { _locType = 1;};
+	if (type _zo == ODD_var_LocationType select 3) then { _locType = 2;};
+	if (type _zo == ODD_var_LocationType select 2) then { _locType = 3;};
+	if (type _zo == ODD_var_LocationType select 1) then { _locType = 4;};
+	if (type _zo == ODD_var_LocationType select 0) then { _locType = 5;};
 	
 	{
 		if (_x in ["military", "airbase", "airfield"]) then {_locType = 3;};
@@ -63,7 +63,7 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call WOLV_fnc_log;
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODD_fnc_log;
 
 	//Pour tout les groupes nessaire 
 	{
@@ -82,7 +82,7 @@ if (_action) then {
 		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 		
 		//Ajoute le groupe a la liste des IA de la missions
-		MissionIA pushBack _g;
+		ODD_var_MissionIA pushBack _g;
 		
 		sleep 1;
 		
@@ -97,7 +97,7 @@ else {
 	//Ajoute un random
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 2, (count _nbPartol), (count _nbPartol) + 2]);
 
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call WOLV_fnc_log;
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
 
 	{
 		// choisi un groupe	
@@ -114,7 +114,7 @@ else {
 		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 		
 		//Ajoute le groupe a la liste des IA de la missions
-		ZOpIA pushBack _g;
+		ODD_var_ZopiA pushBack _g;
 		
 		//lui assigne des waypoint de patrouille
 		[_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;

@@ -3,35 +3,35 @@
 * Fonction permetant de nettoyer la zone
 *
 * Arguments:
-* 0: Activation du debug dans le chat <BOOL>
+* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
 *
 * Example:
-* [] call WOLV_fnc_clearZO
-* [true] call WOLV_fnc_clearZO
+* [] call ODD_fnc_clearZO
+* [true] call ODD_fnc_clearZO
 *
 * Public:
 */
 params [["_Debug", false]];
 // sleep 5;
-if (CurrentMission == 1) then {
+if (ODD_var_CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
-	CurrentMission = 2;
-	publicVariable "CurrentMission";
+	ODD_var_CurrentMission = 2;
+	publicVariable "ODD_var_CurrentMission";
 
-	if (!goClear) then {
+	if (!ODD_var_GoClear) then {
 		waitUntil {
 			sleep 2; 
-			["En Attente du goClear"] remoteExec ["systemChat", 0];
-			goClear
+			["En Attente du ODD_var_GoClear"] remoteExec ["systemChat", 0];
+			ODD_var_GoClear
 		};
-		["goClear ok"] remoteExec ["systemChat", 0];
+		["ODD_var_GoClear ok"] remoteExec ["systemChat", 0];
 	};
 
 	// Compte les Joueurs
-	private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+	private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 
 	{
 		_markerN = _x splitString " ";
@@ -42,7 +42,7 @@ if (CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call WOLV_fnc_log;
+				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
 				_joueurInZO == 0
 			};
 
@@ -59,17 +59,17 @@ if (CurrentMission == 1) then {
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} forEach MissionIA;		//	Pour chaque Groupe
+			} forEach ODD_var_MissionIA;		//	Pour chaque Groupe
 			
 			{
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} forEach ZoPIA;		//	Pour chaque Groupe
+			} forEach ODD_var_ZopiA;		//	Pour chaque Groupe
 			
 			{
 				deleteVehicle _x;	// 	delete l'units
-			} forEach MissionProps;		//	Pour chaque Group{
+			} forEach ODD_var_MissionProps;		//	Pour chaque Group{
 			
 			// recup tout les objet par terre 
 			_Obj = _pos nearSupplies 5000;
@@ -88,7 +88,7 @@ if (CurrentMission == 1) then {
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} foreach MissionCivil;
+			} foreach ODD_var_MissionCivil;
 			
 			{					//normalement ne devrait pas servir mais on laisse au cas ou 
 				deleteVehicle _x;		//supprime le corps
@@ -96,11 +96,11 @@ if (CurrentMission == 1) then {
 
 			{
 				_x hideObjectGlobal false;		//affiche l'object
-			} forEach ObjetHIDE;			//pour object caché
+			} forEach ODD_var_ObjetHide;			//pour object caché
 
-			ParticuleList = [];
-			publicVariable "ParticuleList";
-			[False] remoteExec ["WOLV_fnc_particules", 0];
+			ODD_var_ParticuleList = [];
+			publicVariable "ODD_var_ParticuleList";
+			[False] remoteExec ["ODD_fnc_particules", 0];
 		}
 		else {
 			if ("ODDTG" in _markerN) then { deleteMarker _x; };
@@ -110,8 +110,8 @@ if (CurrentMission == 1) then {
 	sleep 5;
 
 	["Clear OK"] remoteExec ["systemChat", 0];
-	CurrentMission = 0;
-	publicVariable "CurrentMission";
+	ODD_var_CurrentMission = 0;
+	publicVariable "ODD_var_CurrentMission";
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];

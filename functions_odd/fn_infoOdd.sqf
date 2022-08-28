@@ -9,7 +9,7 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_infoOdd
+* [] call ODD_fnc_infoOdd
 *
 * Public:
 */
