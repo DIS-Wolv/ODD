@@ -11,8 +11,8 @@
 * Nom de l'objectif créé
 *
 * Example:
-* [_zo] call WOLV_fnc_createTarget
-* [_zo, _missiontype, _Debug] call WOLV_fnc_createTarget
+* [_zo] call ODD_fnc_createTarget
+* [_zo, _missiontype, _Debug] call ODD_fnc_createTarget
 *
 * Public:
 */
@@ -21,19 +21,19 @@ params ["_zo", ["_type", -1], ["_Debug", false]];
 // Choisis une missions random
 private _Mission = selectRandom TargettypeName;
 
-[["Mission choisi : %1", _Mission]] call WOLV_fnc_log;
+[["Mission choisi : %1", _Mission]] call ODD_fnc_log;
 
 // DEBUG => force le type de missions
 if (_type >= 0 and _type < count TargettypeName) then {
     _Mission = TargettypeName select _type;
-    [["Mission forcé : %1 (%2)", _Mission, _type]] call WOLV_fnc_log;
+    [["Mission forcé : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
 };
 
 _Buildings = [];
 
 while {count _Buildings == 0} do {
     _Buildings = nearestobjects[position _zo, Maison, 200];
-    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call WOLV_fnc_log;
+    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call ODD_fnc_log;
 };
 
 _tgBuild = selectRandom _Buildings;
@@ -74,7 +74,7 @@ if (_Mission == TargettypeName select 0) then {
     // met en garnison
     
     if (!(isnil "HC1")) then {
-        [["HC1 présent"]] call WOLV_fnc_log;
+        [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -113,7 +113,7 @@ if (_Mission == TargettypeName select 1) then {
     } else {
         // met en garnison
         if (!(isnil "HC1")) then {
-            [["HC1 présent"]] call WOLV_fnc_log;
+            [["HC1 présent"]] call ODD_fnc_log;
             _HCID = owner HC1;
             
             _g setgroupOwner _HCID;
@@ -224,7 +224,7 @@ if (_Mission == TargettypeName select 4) then {
 
     publicVariable "ParticuleList";
     
-    [True] remoteExec ["WOLV_fnc_particules", 0];
+    [True] remoteExec ["ODD_fnc_particules", 0];
     
     /* _helico addAction ["<t color='#FF0000'>Recupérer les boîtes noires</t>", {
         Objectif set[1, false];
@@ -312,7 +312,7 @@ if (_Mission == TargettypeName select 5) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        [["HC1 présent"]] call WOLV_fnc_log;
+        [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;
@@ -404,7 +404,7 @@ if (_Mission == TargettypeName select 6) then {
     GarnisonIA pushBack _g;
     	// met dans la liste et met tout les gars en garnison au meme moment
     if (!(isnil "HC1")) then {
-        [["HC1 présent"]] call WOLV_fnc_log;
+        [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
         
         _g setgroupOwner _HCID;

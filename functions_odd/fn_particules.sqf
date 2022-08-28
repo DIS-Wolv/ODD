@@ -10,8 +10,8 @@
 * nil
 *
 * Example:
-* [_pos] remoteExec ["WOLV_fnc_particules", 0]
-* [_pos, false] remoteExec ["WOLV_fnc_particules", 0];
+* [_pos] remoteExec ["ODD_fnc_particules", 0]
+* [_pos, false] remoteExec ["ODD_fnc_particules", 0];
 *
 * Public:
 */

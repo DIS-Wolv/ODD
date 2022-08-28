@@ -9,8 +9,8 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_clearZO
-* [true] call WOLV_fnc_clearZO
+* [] call ODD_fnc_clearZO
+* [true] call ODD_fnc_clearZO
 *
 * Public:
 */
@@ -42,7 +42,7 @@ if (CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call WOLV_fnc_log;
+				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
 				_joueurInZO == 0
 			};
 
@@ -100,7 +100,7 @@ if (CurrentMission == 1) then {
 
 			ParticuleList = [];
 			publicVariable "ParticuleList";
-			[False] remoteExec ["WOLV_fnc_particules", 0];
+			[False] remoteExec ["ODD_fnc_particules", 0];
 		}
 		else {
 			if ("ODDTG" in _markerN) then { deleteMarker _x; };

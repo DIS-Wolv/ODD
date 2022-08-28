@@ -11,8 +11,8 @@
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_roadBlockZO
-* [_zo, 2, 4000] call WOLV_fnc_roadBlockZO
+* [_zo] call ODD_fnc_roadBlockZO
+* [_zo, 2, 4000] call ODD_fnc_roadBlockZO
 *
 * Public:
 */
@@ -38,7 +38,7 @@ _roads = _roads - _roadsFOB;
 	_roads = _roads - _roadZo;
 
 } forEach _nearZO;
-// [] call WOLV_fnc_log;
+// [] call ODD_fnc_log;
 
 for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 	_road = selectRandom _roads;

@@ -9,8 +9,8 @@
 * le nombre d'IA en vie <INT>
 *
 * Example:
-* [] call WOLV_fnc_countIA
-* [true] call WOLV_fnc_countIA
+* [] call ODD_fnc_countIA
+* [true] call ODD_fnc_countIA
 *
 * Public:
 */
@@ -26,5 +26,5 @@ private _nbIa = 0;		// au debut il y a 0
 	} forEach units _x;  		// Pour chaque Units
 } forEach MissionIA;			// De chaque groupe
 
-[["Nombre d'IA : %1", str(_nbIa)]] call WOLV_fnc_log;
+[["Nombre d'IA : %1", str(_nbIa)]] call ODD_fnc_log;
 _nbIa;	//return le nombre d'ia

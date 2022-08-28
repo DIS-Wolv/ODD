@@ -10,8 +10,8 @@
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_createRenfort
-* [_zo, true] call WOLV_fnc_createRenfort
+* [_zo] call ODD_fnc_createRenfort
+* [_zo, true] call ODD_fnc_createRenfort
 *
 * Public:
 */
@@ -113,7 +113,7 @@ if (CurrentMission == 1) then {
                 _loc = selectRandom _refloc;
                 	// choisie un loc random
                 
-                [["Renfort en approche de %1", text _loc]] call WOLV_fnc_log;
+                [["Renfort en approche de %1", text _loc]] call ODD_fnc_log;
                 
                 _pos = position _loc getPos [300 * random 1, random 360];
                 	// prend un pose random a coté du centre de la loc
@@ -206,7 +206,7 @@ if (CurrentMission == 1) then {
     };
 };
 
-[["Quantital : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call WOLV_fnc_log;
+[["Quantital : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call ODD_fnc_log;
 
 /*
 1.	Lors de l'appelle

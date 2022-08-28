@@ -9,7 +9,7 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_varEne
+* [] call ODD_fnc_varEne
 *
 * Public:
 */

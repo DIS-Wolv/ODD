@@ -9,7 +9,7 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_varEne
+* [] call ODD_fnc_varEne
 *
 * Public:
 */
@@ -27,14 +27,14 @@ if (_FacForce >= 0 AND _FacForce <= _nFaction) then {
 
 switch (_nFaction) do {
 	case 0: {
-		[] call WOLV_fnc_varEneArd;
+		[] call ODD_fnc_varEneArd;
 	};
 	case 1: {
-		[] call WOLV_fnc_varEneChDKZ;
+		[] call ODD_fnc_varEneChDKZ;
 	};
 	default {
-		[] call WOLV_fnc_varEneArd;
+		[] call ODD_fnc_varEneArd;
 	};
 };
 
-[["Faction Choisie : %1", nomFaction select _nFaction]] call WOLV_fnc_log;
+[["Faction Choisie : %1", nomFaction select _nFaction]] call ODD_fnc_log;

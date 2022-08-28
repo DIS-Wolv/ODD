@@ -10,8 +10,8 @@
 * Nom de la localité
 *
 * Example:
-* [_itt] call WOLV_fnc_garbageCollector
-* [_itt, _Debug] call WOLV_fnc_garbageCollector
+* [_itt] call ODD_fnc_garbageCollector
+* [_itt, _Debug] call ODD_fnc_garbageCollector
 *
 * Public:
 */
@@ -31,6 +31,6 @@ if (_nbItt/_tGarbage == round ( _nbItt/_tGarbage)) then {
 			};
 		};
 	} forEach alldead;			//pour chaque corps 
-	[["Nombre d'élement supprimé : %1", _nbEle]] call WOLV_fnc_log;
+	[["Nombre d'élement supprimé : %1", _nbEle]] call ODD_fnc_log;
 };
 

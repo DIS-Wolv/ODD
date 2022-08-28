@@ -11,8 +11,8 @@
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_createPatrol
-* [_zo, true, false] call WOLV_fnc_createPatrol
+* [_zo] call ODD_fnc_createPatrol
+* [_zo, true, false] call ODD_fnc_createPatrol
 *
 * Public:
 */
@@ -63,7 +63,7 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call WOLV_fnc_log;
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODD_fnc_log;
 
 	//Pour tout les groupes nessaire 
 	{
@@ -97,7 +97,7 @@ else {
 	//Ajoute un random
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 2, (count _nbPartol), (count _nbPartol) + 2]);
 
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call WOLV_fnc_log;
+    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
 
 	{
 		// choisi un groupe	

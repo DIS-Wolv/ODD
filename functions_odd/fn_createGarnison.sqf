@@ -11,8 +11,8 @@
 * nil
 *
 * Example:
-* [_zo] call WOLV_fnc_createGarnison
-* [_zo, true, false] call WOLV_fnc_createGarnison
+* [_zo] call ODD_fnc_createGarnison
+* [_zo, true, false] call ODD_fnc_createGarnison
 *
 * Public:
 */
@@ -72,7 +72,7 @@ if (_action) then {
     _loctype = (_loctype + random[-1.2, 0, 1.2]) max 0;
     
     _NbGarnison = round((((_human_players + 2 )/ 2) + (_taille / 50) + (4*(_loctype^(1.2))) - (((count _locProx)/ 7) ^ 2) - ((((_heure - 12)^2)/ 48 ) + 3 ) + 4)/3);
-    [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call WOLV_fnc_log;
+    [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
     
     _nbgroup resize _NbGarnison;
     
@@ -195,7 +195,7 @@ if (_action) then {
     };
     // Le but est qu'il y n'est pas 15 groupes en garnison dans 5 maison sur des petits obj avec beaucoup de joueurs
     
-    [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call WOLV_fnc_log;
+    [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
 
     // Pour tout les groupes nessaire
     {

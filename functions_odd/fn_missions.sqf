@@ -12,8 +12,8 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_missions
-* [2, "Kavala", false, true] call WOLV_fnc_missions
+* [] call ODD_fnc_missions
+* [2, "Kavala", false, true] call ODD_fnc_missions
 *
 * Public:
 */
@@ -22,7 +22,7 @@ params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false
 DEBUG = _Debug;
 publicVariable "DEBUG";
 
-call WOLV_fnc_var;
+call ODD_fnc_var;
 
 DistanceZO = 4000;
 
@@ -34,22 +34,22 @@ if (CurrentMission == 0) then {
     CurrentMission = 2;
     publicVariable "CurrentMission";
     // Choix d'un Lieux objectif
-    private _zo = [_forceZO, _Debug] call WOLV_fnc_createZO;
+    private _zo = [_forceZO, _Debug] call ODD_fnc_createZO;
     // private _diff = [_zo] call _Calcdifficulty
     // systemChat(str(_diff));
     
     // Choix d'une missions
-    target = [_zo, _missiontype, _Debug] call WOLV_fnc_createTarget;
+    target = [_zo, _missiontype, _Debug] call ODD_fnc_createTarget;
     
-    [_zo, true, _Debug] call WOLV_fnc_civil;
+    [_zo, true, _Debug] call ODD_fnc_civil;
     
-    [_zo, true, _Debug] call WOLV_fnc_createGarnison;
+    [_zo, true, _Debug] call ODD_fnc_createGarnison;
     
-    [_zo, true, _Debug] call WOLV_fnc_createPatrol;
+    [_zo, true, _Debug] call ODD_fnc_createPatrol;
     
-    [_zo, true, _Debug] call WOLV_fnc_createVehicule;
+    [_zo, true, _Debug] call ODD_fnc_createVehicule;
     
-    [_zo, 2, true, _Debug] call WOLV_fnc_roadBlock;
+    [_zo, 2, true, _Debug] call ODD_fnc_roadBlock;
     
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
@@ -83,10 +83,10 @@ if (CurrentMission == 0) then {
             // - 1 loc random // distance2D ???
         };
 
-        [["Nombre de ZO+ : %1", _nbloc]] call WOLV_fnc_log;
+        [["Nombre de ZO+ : %1", _nbloc]] call ODD_fnc_log;
         
         {
-            [["ZO+ %1 : %2", _forEachindex, text _x]] call WOLV_fnc_log;
+            [["ZO+ %1 : %2", _forEachindex, text _x]] call ODD_fnc_log;
             // *
             _action = round random 4;
             // random en 0 et 2
@@ -94,34 +94,34 @@ if (CurrentMission == 0) then {
             // si 0 fait rien
             if (_action == 1) then {
                 // si 1
-                [_x, false, _Debug] call WOLV_fnc_createPatrol;
+                [_x, false, _Debug] call ODD_fnc_createPatrol;
                 // patrouilles
             };
             if (_action == 2) then {
                 // si 2
-                [_x, false, _Debug] call WOLV_fnc_createPatrol;
+                [_x, false, _Debug] call ODD_fnc_createPatrol;
                 // patrouilles
                 
                 _nbCheckPoint = round random 4;
-                [_x, _nbCheckPoint, false, _Debug] call WOLV_fnc_roadBlock;
+                [_x, _nbCheckPoint, false, _Debug] call ODD_fnc_roadBlock;
                 // RoadBlock
             };
             if (_action == 3) then {
                 // si 3
-                [_x, false, _Debug] call WOLV_fnc_createPatrol;
+                [_x, false, _Debug] call ODD_fnc_createPatrol;
                 // patrouilles
                 
-                [_x, false] call WOLV_fnc_createGarnison;
+                [_x, false] call ODD_fnc_createGarnison;
                 // garnison
             };
             // */
             
-            [_x, false, _Debug] call WOLV_fnc_civil;
+            [_x, false, _Debug] call ODD_fnc_civil;
             // a chaque fois Civil
         }forEach _location;
         // */	// pour toute les ZO+ activé
 
-        [_zo, 4, DistanceZO] call WOLV_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
+        [_zo, 4, DistanceZO] call ODD_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
     };
     
     {
@@ -131,12 +131,12 @@ if (CurrentMission == 0) then {
     } forEach allDead;
     // pour chaque corps
     
-    [["Quantital : Nombre de Pax sur la ZO : %1", count MissionIA]] call WOLV_fnc_log;
-    [["Quantital : Nombre de Pax en ZO+ : %1", count ZopiA]] call WOLV_fnc_log;
-    [["Quantital : Nombre de Pax en Garnison : %1", count GarnisonIA]] call WOLV_fnc_log;
-    [["Quantital : Nombre de Civils : %1", count MissionCivil]] call WOLV_fnc_log;
-    [["Quantital : Nombre de Props : %1", count MissionProps]] call WOLV_fnc_log;
-    [["Quantital : Nombre de LocalProps (par joueur) : %1", count ParticuleList]] call WOLV_fnc_log;
+    [["Quantital : Nombre de Pax sur la ZO : %1", count MissionIA]] call ODD_fnc_log;
+    [["Quantital : Nombre de Pax en ZO+ : %1", count ZopiA]] call ODD_fnc_log;
+    [["Quantital : Nombre de Pax en Garnison : %1", count GarnisonIA]] call ODD_fnc_log;
+    [["Quantital : Nombre de Civils : %1", count MissionCivil]] call ODD_fnc_log;
+    [["Quantital : Nombre de Props : %1", count MissionProps]] call ODD_fnc_log;
+    [["Quantital : Nombre de LocalProps (par joueur) : %1", count ParticuleList]] call ODD_fnc_log;
 
     waitUntil {
         sleep 1;
@@ -155,7 +155,7 @@ if (CurrentMission == 0) then {
     publicVariable "target";
     private _NextTick = servertime + 60;
     
-    _nbIa = [_Debug] call WOLV_fnc_countIA;
+    _nbIa = [_Debug] call ODD_fnc_countIA;
     
     ["Task", "ASSIGNED", true] call BIS_fnc_tasksetState;
     
@@ -163,9 +163,9 @@ if (CurrentMission == 0) then {
     private _Renfort = true;
     private _nbItt = 0;
     
-    [["Mission Lancée"]] call WOLV_fnc_log;
+    [["Mission Lancée"]] call ODD_fnc_log;
     if (_Debug) then {
-        [["Skip de lattente des joueurs sur obj"]] call WOLV_fnc_log;
+        [["Skip de lattente des joueurs sur obj"]] call ODD_fnc_log;
     } else {
         waitUntil{
             sleep 1;
@@ -185,14 +185,14 @@ if (CurrentMission == 0) then {
             // sleep 60;
             private _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
             
             waitUntil {
                 sleep 1;
@@ -212,14 +212,14 @@ if (CurrentMission == 0) then {
             // tant que la cible est et en vie et libre
             _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
             
             waitUntil {
                 sleep 1;
@@ -242,16 +242,16 @@ if (CurrentMission == 0) then {
             // sleep 60;
             _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
 
-            [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call WOLV_fnc_log;
+            [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
             
             {
                 if (isNull(_x)) then {
@@ -262,7 +262,7 @@ if (CurrentMission == 0) then {
 
             waitUntil {
                 sleep 1;
-                _nbIa = [_Debug] call WOLV_fnc_countIA;
+                _nbIa = [_Debug] call ODD_fnc_countIA;
                 ((_nbIa > _seuil) and (CurrentMission == 1)) == false or servertime > _NextTick
             };
         };
@@ -276,14 +276,14 @@ if (CurrentMission == 0) then {
         while {(Objectif select 1) and (CurrentMission == 1)} do {
             private _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
             
             waitUntil {
                 sleep 1;
@@ -301,14 +301,14 @@ if (CurrentMission == 0) then {
             // tant que la cible est captive
             _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
             
             waitUntil {
                 sleep 1;
@@ -343,14 +343,14 @@ if (CurrentMission == 0) then {
             // tant que la cible est pas detruite
             _NextTick = servertime + 60;
             
-            call WOLV_fnc_sortieGarnison;
+            call ODD_fnc_sortieGarnison;
             
-            _nbIa = [_Debug] call WOLV_fnc_countIA;
+            _nbIa = [_Debug] call ODD_fnc_countIA;
             
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call WOLV_fnc_testrenfort;
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
             
             _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call WOLV_fnc_garbageCollector;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
             
             waitUntil {
                 sleep 1;
@@ -411,7 +411,7 @@ if (CurrentMission == 0) then {
             servertime > _DebutNettoyage
         };
         
-        [_Debug] call WOLV_fnc_clearZO;
+        [_Debug] call ODD_fnc_clearZO;
         // nettoye la ZO
     };
 } else {
