@@ -1,6 +1,6 @@
 /*
 * Author: Wolv
-* Fonction permetant de faire spawn des odd_var_civils et vehicule sur la zone souhaité
+* Fonction permetant de faire spawn des ODD_var_Civils et vehicule sur la zone souhaité
 *
 * Arguments:
 * 0: Zone souhaité <Obj>
@@ -58,7 +58,7 @@ if (_loctype == 1) then {
     _nbCivil = (count _Buildings) / 10;
 };
 /*
-1. nb de odd_var_civils :
+1. nb de ODD_var_Civils :
 selon le type : round
 5 (capital) nb batiment/24
 4 nbbat/25
@@ -67,10 +67,10 @@ selon le type : round
 1 nbbat / 10
 pensé a forcé 0 si negatif
 2. donne la position de la caisse :
-2/nb odd_var_civils
+2/nb ODD_var_Civils
 */
 
-// systemChat("spawn des odd_var_civils");
+// systemChat("spawn des ODD_var_Civils");
 if (not _action) then {
     _nbCivil = _nbCivil / 2;
 };

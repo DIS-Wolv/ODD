@@ -198,4 +198,4 @@ ODD_var_GoClear = true;
 publicVariable "ODD_var_GoClear";
 
 [] call ODD_fnc_varRoadBlock;
-[_FacForce] call ODD_fnc_varEne;
+

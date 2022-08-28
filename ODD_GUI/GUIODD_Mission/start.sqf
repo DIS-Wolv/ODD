@@ -20,12 +20,9 @@ ODDGUI_var_meteo = lbValue[ODDGUI_var_IdcComboMeteo, (lbCurSel ODDGUI_var_IdcCom
 if (ODD_var_SelectedFaction == 0) then {
 	ODD_var_SelectedFaction = -1;
 };
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
-systemChat format["Type d'odd_var_objectif : %1", ODD_var_SelectedTarget];
-systemChat format["Secteur : %1", ODD_var_SelectedSector];
-
-systemChat format["Nb Joueur :  %1", ODD_var_NbPlayer];
-systemChat format["Faction :  %1", ODD_var_SelectedFaction];
+[ODD_var_SelectedFaction] call ODD_fnc_varEne;
 
 if (ODDGUI_var_meteo != -1) then {
 	[0, (ODDGUI_var_meteo/10)] remoteExec["setOvercast", 0];
@@ -35,5 +32,11 @@ if (ODDGUI_var_Heure != -1) then {
 	[(ODDGUI_var_Heure - dayTime + 24)%24] remoteExec["skipTime", 0];
 };
 
+[] remoteExec ["ODD_fnc_missions", 2];
+
+//systemChat format["Secteur : %1", ODD_var_SelectedSector];
+//systemChat format["Type d'odd_var_objectif : %1", ODD_var_SelectedTarget];
+//systemChat format["Faction :  %1", ODD_var_SelectedFaction];
+//systemChat format["Nb Joueur :  %1", ODD_var_NbPlayer];
 // systemChat format["Heure :  %1", ODDGUI_var_Heure];
 // systemChat format["Meteo :  %1", ODDGUI_var_meteo];

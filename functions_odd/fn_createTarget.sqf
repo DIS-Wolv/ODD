@@ -19,7 +19,7 @@
 params ["_zo", ["_type", -1], ["_Debug", false]];
 
 // Choisis une missions random
-private _Mission = selectRandom ODD_var_TargetTypeName;
+private _Mission = selectRandom ODD_var_SelectedTarget;
 
 [["Mission choisi : %1", _Mission]] call ODD_fnc_log;
 

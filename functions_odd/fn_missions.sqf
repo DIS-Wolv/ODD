@@ -26,7 +26,9 @@ if(isNil "ODD_var_NbPlayer") then {
 ODD_var_DEBUG = _Debug;
 publicVariable "ODD_var_DEBUG";
 
-call ODD_fnc_var;
+if (ODD_var_DEBUG) then { 
+    [_FacForce] call ODD_fnc_varEne;
+};
 
 ODD_var_DistanceZO = 4000;
 
@@ -256,7 +258,7 @@ if (ODD_var_CurrentMission == 0) then {
             _nbItt = _nbItt + 1;
             [_nbItt, _Debug] call ODD_fnc_garbageCollector;
 
-            [["Progression de l'odd_var_objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
+            [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
             
             {
                 if (isNull(_x)) then {

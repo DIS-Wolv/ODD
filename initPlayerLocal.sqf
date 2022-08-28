@@ -11,6 +11,7 @@ tawvd_disablenone = false;
 Player addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
+call ODD_fnc_var;
 oddCtrl addAction ["Générer une mission", {[] remoteExec ["ODD_fnc_missions", 2];},[],1.5,true,true,"","ODD_var_CurrentMission==0",5];
 oddCtrl addAction ["Nettoyer l'opération", {[] remoteExec ["ODD_fnc_clearZO", 2];},[],1.5,true,true,"","ODD_var_CurrentMission==1",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];

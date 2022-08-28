@@ -13,29 +13,31 @@
 *
 * Public:
 */
-params [["_FacForce", -1]];
+params [["_FacForce", -1], ["_init", false]];
 
 ODD_var_NomFactions = ["Ardistant","ChDKZ-Insurgents"];
 publicVariable "ODD_var_NomFactions";
-_nbFaction = count ODD_var_NomFactions;		//NB faction 
+if (!_init) then {
+	_nbFaction = count ODD_var_NomFactions;		//NB faction 
 
-_nFaction = round ((random 1) * (_nbFaction - 1));
+	_nFaction = round ((random 1) * (_nbFaction - 1));
 
 
-if (_FacForce >= 0 AND _FacForce <= _nFaction) then {
-	_nFaction = _FacForce;
+	if (_FacForce >= 0 AND _FacForce <= _nFaction) then {
+		_nFaction = _FacForce;
+	};
+
+	switch (_nFaction) do {
+		case 0: {
+			[] call ODD_fnc_varEneArd;
+		};
+		case 1: {
+			[] call ODD_fnc_varEneChDKZ;
+		};
+		default {
+			[] call ODD_fnc_varEneArd;
+		};
+	};
+
+	[["Faction Choisie : %1", ODD_var_NomFactions select _nFaction]] call ODD_fnc_log;
 };
-
-switch (_nFaction) do {
-	case 0: {
-		[] call ODD_fnc_varEneArd;
-	};
-	case 1: {
-		[] call ODD_fnc_varEneChDKZ;
-	};
-	default {
-		[] call ODD_fnc_varEneArd;
-	};
-};
-
-[["Faction Choisie : %1", ODD_var_NomFactions select _nFaction]] call ODD_fnc_log;
