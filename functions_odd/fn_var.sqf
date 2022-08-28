@@ -16,7 +16,7 @@
 
 params [["_FacForce", -1]];
 
-// array des odd_var_maison whitelist
+// array des maison whitelist
 ODD_var_Maison = [
     "land_Chapel_V1_F", "land_Chapel_V2_F", "land_Chapel_Small_V1_F", "land_Chapel_Small_V2_F", "land_Offices_01_V1_F", "land_Castle_01_tower_F", "land_LightHouse_F",
     "land_WIP_F", "land_u_Addon_02_V1_F", "land_i_Addon_02_V1_F", "land_i_Addon_03_V1_F", "land_i_Addon_03mid_V1_F", "land_i_Addon_04_V1_F", "land_i_Garage_V1_F",
@@ -150,7 +150,7 @@ ODD_var_TargetTypeName = ["Caisse", "HVT", "Secure Area", "intel", "Helico", "Pr
 publicVariable "ODD_var_TargetTypeName";
 
 // Definie les type de location que on veux
-odd_var_locationtype = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
+ODD_var_LocationType = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
 publicVariable "ODD_var_LocationType";
 ODD_var_LocationBlkList = ["", "Kavala pier", "Fournos", "Neochori", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
 publicVariable "ODD_var_LocationBlkList";//deBlackListe Neochori ? et autre ?
