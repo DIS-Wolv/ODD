@@ -141,6 +141,7 @@ if (ODD_var_CurrentMission == 0) then {
     [["Quantital : Nombre de ODD_var_Civils : %1", count ODD_var_MissionCivil]] call ODD_fnc_log;
     [["Quantital : Nombre de Props : %1", count ODD_var_MissionProps]] call ODD_fnc_log;
     [["Quantital : Nombre de LocalProps (par joueur) : %1", count ODD_var_ParticuleList]] call ODD_fnc_log;
+    [["Quantital : Missions Généré pour %1 joueurs", ODD_var_NbPlayer]] call ODD_fnc_log;
 
     waitUntil {
         sleep 1;
