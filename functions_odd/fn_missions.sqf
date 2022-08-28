@@ -338,14 +338,7 @@ if (ODD_var_CurrentMission == 0) then {
     if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {
         // obj vl
         while {
-            (
-                (!(                     // pas 
-                    (fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])        // proximité de la fob
-                    or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50])    // ou proximité du PA
-                )) 
-                and (alive (ODD_var_Objectif select 0)) // VL en vie
-            )
-            and (ODD_var_CurrentMission == 1)           // mission en cours
+            ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false)
         } do {
             // tant que la cible est pas detruite
             _NextTick = servertime + 60;
@@ -361,17 +354,7 @@ if (ODD_var_CurrentMission == 0) then {
             
             waitUntil {
                 sleep 1;
-                (
-                    (
-                        (!(                     // pas 
-                            (fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])        // proximité de la fob
-                            or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50])    // ou proximité du PA
-                        )) 
-                        and (alive (ODD_var_Objectif select 0)) // VL en vie
-                    )
-                    and (ODD_var_CurrentMission == 1)           // mission en cours
-                ) == false 
-                or servertime > _NextTick               // ou Temps d'attente écoulé
+                (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false) or (servertime > _NextTick))
             };
         };
         
