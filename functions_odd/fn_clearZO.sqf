@@ -21,13 +21,13 @@ if (CurrentMission == 1) then {
 	CurrentMission = 2;
 	publicVariable "CurrentMission";
 
-	if (!goClear) then {
+	if (!ODD_var_GoClear) then {
 		waitUntil {
 			sleep 2; 
-			["En Attente du goClear"] remoteExec ["systemChat", 0];
-			goClear
+			["En Attente du ODD_var_GoClear"] remoteExec ["systemChat", 0];
+			ODD_var_GoClear
 		};
-		["goClear ok"] remoteExec ["systemChat", 0];
+		["ODD_var_GoClear ok"] remoteExec ["systemChat", 0];
 	};
 
 	// Compte les Joueurs
@@ -59,17 +59,17 @@ if (CurrentMission == 1) then {
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} forEach MissionIA;		//	Pour chaque Groupe
+			} forEach ODD_var_MissionIA;		//	Pour chaque Groupe
 			
 			{
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} forEach ZoPIA;		//	Pour chaque Groupe
+			} forEach ODD_var_ZopiA;		//	Pour chaque Groupe
 			
 			{
 				deleteVehicle _x;	// 	delete l'units
-			} forEach MissionProps;		//	Pour chaque Group{
+			} forEach ODD_var_MissionProps;		//	Pour chaque Group{
 			
 			// recup tout les objet par terre 
 			_Obj = _pos nearSupplies 5000;
@@ -88,7 +88,7 @@ if (CurrentMission == 1) then {
 				{
 					deleteVehicle _x;	// 	delete l'units
 				} forEach units _x;		//	pour chaque units du groupe
-			} foreach MissionCivil;
+			} foreach ODD_var_MissionCivil;
 			
 			{					//normalement ne devrait pas servir mais on laisse au cas ou 
 				deleteVehicle _x;		//supprime le corps
@@ -96,10 +96,10 @@ if (CurrentMission == 1) then {
 
 			{
 				_x hideObjectGlobal false;		//affiche l'object
-			} forEach ObjetHIDE;			//pour object caché
+			} forEach ODD_var_ObjetHide;			//pour object caché
 
-			ParticuleList = [];
-			publicVariable "ParticuleList";
+			ODD_var_ParticuleList = [];
+			publicVariable "ODD_var_ParticuleList";
 			[False] remoteExec ["ODD_fnc_particules", 0];
 		}
 		else {

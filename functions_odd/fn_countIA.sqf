@@ -24,7 +24,7 @@ private _nbIa = 0;		// au debut il y a 0
 		_nbIa = _nbIa + 1;		// compte plus 1 
 	};
 	} forEach units _x;  		// Pour chaque Units
-} forEach MissionIA;			// De chaque groupe
+} forEach ODD_var_MissionIA;			// De chaque groupe
 
 [["Nombre d'IA : %1", str(_nbIa)]] call ODD_fnc_log;
 _nbIa;	//return le nombre d'ia

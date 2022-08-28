@@ -21,7 +21,7 @@ if (ODD_var_SelectedFaction == 0) then {
 	ODD_var_SelectedFaction = -1;
 };
 
-systemChat format["Type d'objectif : %1", ODD_var_SelectedTarget];
+systemChat format["Type d'odd_var_objectif : %1", ODD_var_SelectedTarget];
 systemChat format["Secteur : %1", ODD_var_SelectedSector];
 
 systemChat format["Nb Joueur :  %1", ODD_var_NbPlayer];

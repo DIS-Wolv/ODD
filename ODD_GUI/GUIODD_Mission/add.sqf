@@ -17,7 +17,7 @@ if ((_list == ODDGUI_var_IdcListObjAll) or (_list == ODDGUI_var_IdcListPosAll)) 
 
 	if (_index != -1) then {
 		if (_list == ODDGUI_var_IdcListObjAll) then {
-			_tg = TargettypeName select _index;
+			_tg = ODD_var_TargetTypeName select _index;
 			if (!(_tg in ODDGUI_var_SelTarg)) then {
 				lbAdd [ODDGUI_var_IdcListObjSel, _tg];
 				ODDGUI_var_SelTarg pushBack _tg;

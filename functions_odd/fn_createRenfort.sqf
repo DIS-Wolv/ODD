@@ -33,22 +33,22 @@ if (CurrentMission == 1) then {
     private _locType = 0;
     private _inf = [];
     
-    if (type _zo == locationType select 5) then {
+    if (type _zo == ODD_var_LocationType select 5) then {
         _locType = 0;
     };
-    if (type _zo == locationType select 4) then {
+    if (type _zo == ODD_var_LocationType select 4) then {
         _locType = 1;
     };
-    if (type _zo == locationType select 3) then {
+    if (type _zo == ODD_var_LocationType select 3) then {
         _locType = 2;
     };
-    if (type _zo == locationType select 2) then {
+    if (type _zo == ODD_var_LocationType select 2) then {
         _locType = 3;
     };
-    if (type _zo == locationType select 1) then {
+    if (type _zo == ODD_var_LocationType select 1) then {
         _locType = 4;
     };
-    if (type _zo == locationType select 0) then {
+    if (type _zo == ODD_var_LocationType select 0) then {
         _locType = 5;
     };
     {
@@ -69,20 +69,20 @@ if (CurrentMission == 1) then {
     }forEach _groups;
     		// pour tous les groupes
     
-    _loc3 = nearestLocations [position _zo, locationType, 3000];
+    _loc3 = nearestLocations [position _zo, ODD_var_LocationType, 3000];
     // Recup les location a - de 3000m
     {
-        if (text _x in locationBlklist) then {
+        if (text _x in ODD_var_LocationBlkList) then {
             // si dans la liste Noir
             _loc3 deleteAt _forEachindex;
             				// on delete la location de notre liste
         };
     }forEach _loc3;
     		// pas compté celle ou on est
-    _loc6 = nearestLocations [position _zo, locationType, 6000];
+    _loc6 = nearestLocations [position _zo, ODD_var_LocationType, 6000];
     // Recup les location a - de 6000m
     {
-        if (text _x in locationBlklist) then {
+        if (text _x in ODD_var_LocationBlkList) then {
             // si dans la liste Noir
             _loc6 deleteAt _forEachindex;
             				// on delete la location de notre liste
@@ -139,7 +139,7 @@ if (CurrentMission == 1) then {
                 _g = [_pos, east, _group] call BIS_fnc_spawngroup;
                 	// spawn le groupe
                 // Ajoute le groupe a la liste des IA de la missions
-                ZopiA pushBack _g;
+                ODD_var_ZopiA pushBack _g;
 
                 _NbUnitRenfort = _NbUnitRenfort + count(units _g);
                 
@@ -150,9 +150,9 @@ if (CurrentMission == 1) then {
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
-                    ZOpiA pushBack _inf;
+                    ODD_var_ZopiA pushBack _inf;
 
-                    //ZopiA pushBack _inf;
+                    //ODD_var_ZopiA pushBack _inf;
                 } else {
                     // si UAZ
                     _infG = selectRandom squad;
@@ -166,7 +166,7 @@ if (CurrentMission == 1) then {
                     
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     // spawn la squad
-                    ZopiA pushBack _inf;
+                    ODD_var_ZopiA pushBack _inf;
                     		// Ajoute le groupe a la liste des IA de la missions
 
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);

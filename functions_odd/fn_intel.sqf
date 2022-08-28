@@ -9,17 +9,17 @@ private _colorPool = ["ColorBlack", "ColorRed", "ColorBrown", "Colororange", "Co
 	private _minutes = floor ((_daytime - _hours) * 60);
 	private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
 	private _pos = [0,0,0];
-	if (target == TargettypeName select 2) then {
-		_pos = position (units (Objectif select 0) select 0);
+	if (target == ODD_var_TargetTypeName select 2) then {
+		_pos = position (units (ODD_var_Objectif select 0) select 0);
 	}
 	else {
-		_pos = position (Objectif select 0);
+		_pos = position (ODD_var_Objectif select 0);
 	};
 	
 	_marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos];
 	_marker setMarkertype (selectRandom _markerPool);
 	_marker setMarkerColor (selectRandom _colorPool);
-	_marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
+	_marker setMarkertext format["ODD_var_Objectif à %1:%2", _hours, _minutes];
 } else {
 	systemChat ("J'ai pas d'info.");
 };

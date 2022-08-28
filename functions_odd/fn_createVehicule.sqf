@@ -27,13 +27,13 @@ private _nbVehicule = [];
 if (_action) then {
 	
 	//préparation des variables pour le calcule du nombre de groupe
-	_locProx = nearestLocations [position _zo, locationType, 3000]; //Recup les location a - de 3000m 
+	_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
 	{
-		if (text _x in locationBlkList) then {		//si dans la liste Noir 
+		if (text _x in ODD_var_LocationBlkList) then {		//si dans la liste Noir 
 			_locProx deleteAt _forEachIndex;				//on delete la location de notre liste 
 		};
 	}forEach _locProx;		// /!\ pas compté celle ou on est 
-	_Buildings = nearestObjects [position _zo, Maison, size _zo select 0];	//Nombre de maison dans la localité
+	_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	//Nombre de odd_var_maison dans la localité
 	_taille = size _zo select 0;		// Taille de la Zone
 	_heure = date select 3;		// heure de la journé
 	
@@ -74,7 +74,7 @@ if (_action) then {
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 			//Ajoute le groupe a la liste des IA de la missions
 			{
-				MissionIA pushBack _x;
+				ODD_var_MissionIA pushBack _x;
 			} forEach units _g;
 			
 			
@@ -102,7 +102,7 @@ if (_action) then {
 				_infG = selectRandom squad;
 				_pos set [1,(_pos select 1)+ 3];
 				_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
-				MissionIA pushBack _inf;
+				ODD_var_MissionIA pushBack _inf;
 				
 				{
 					_x moveInCargo (vehicle (units _g select 0));
@@ -140,7 +140,7 @@ else {
 		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 		
 		//Ajoute le groupe a la liste des IA de la missions
-		ZOpIA pushBack _g;
+		ODD_var_ZopiA pushBack _g;
 		
 		sleep 1;
 		//lui assigne des waypoint de patrouille

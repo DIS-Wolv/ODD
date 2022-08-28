@@ -45,11 +45,11 @@ if (_isCreate) then {
 
 	{
 		lbAdd [ODDGUI_var_IdcListObjAll, _x];
-	} forEach TargettypeName;
+	} forEach ODD_var_TargetTypeName;
 	{
 		lbAdd [ODDGUI_var_IdcListObjSel, _x];
 		ODDGUI_var_SelTarg pushBack _x;
-	} forEach TargettypeName;
+	} forEach ODD_var_TargetTypeName;
 
 	{
 		lbAdd [ODDGUI_var_IdcListPosAll, _x];

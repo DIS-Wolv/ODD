@@ -16,8 +16,8 @@
 
 params [["_FacForce", -1]];
 
-// array des maison whitelist
-Maison = [
+// array des odd_var_maison whitelist
+ODD_var_Maison = [
     "land_Chapel_V1_F", "land_Chapel_V2_F", "land_Chapel_Small_V1_F", "land_Chapel_Small_V2_F", "land_Offices_01_V1_F", "land_Castle_01_tower_F", "land_LightHouse_F",
     "land_WIP_F", "land_u_Addon_02_V1_F", "land_i_Addon_02_V1_F", "land_i_Addon_03_V1_F", "land_i_Addon_03mid_V1_F", "land_i_Addon_04_V1_F", "land_i_Garage_V1_F",
     "land_i_Garage_V1_dam_F", "land_i_Garage_V2_F", "land_i_Garage_V2_dam_F", "land_Metal_Shed_F", "land_i_House_Big_01_V1_F", "land_i_House_Big_01_V1_dam_F",
@@ -75,19 +75,19 @@ Maison = [
     "land_Castle_01_house_ruin_F", "land_Castle_01_church_a_ruin_F", "land_Castle_01_church_b_ruin_F", "land_Castle_01_church_ruin_F", "land_Castle_01_step_F",
     "land_Hospital_main_F", "land_Hospital_side1_F", "land_Hospital_side2_F"
 ];
-publicVariable "Maison";
+publicVariable "ODD_var_Maison";
 
-// liste des civils
-Civils = [["C_man_p_fugitive_F"], ["C_man_1"], ["C_Man_casual_1_F"], ["C_Man_casual_2_F"], ["C_Man_casual_3_F"], ["C_Man_casual_4_v2_F"], ["C_Man_casual_5_v2_F"],
+// liste des odd_var_civils
+ODD_var_Civils = [["C_man_p_fugitive_F"], ["C_man_1"], ["C_Man_casual_1_F"], ["C_Man_casual_2_F"], ["C_Man_casual_3_F"], ["C_Man_casual_4_v2_F"], ["C_Man_casual_5_v2_F"],
     ["C_Man_casual_6_v2_F"], ["C_Man_casual_7_F"], ["C_Man_casual_8_F"], ["C_Man_casual_9_F"], ["C_Man_casual_4_F"], ["C_Man_casual_5_F"], ["C_Man_casual_6_F"],
     ["C_man_polo_1_F"], ["C_man_polo_2_F"], ["C_man_polo_3_F"], ["C_man_polo_4_F"], ["C_man_polo_5_F"], ["C_man_polo_6_F"], ["C_man_shorts_1_F"], ["C_man_1_1_F"],
     ["C_man_1_2_F"], ["C_man_1_3_F"], ["C_Man_Fisherman_01_F"], ["C_man_hunter_1_F"], ["C_journalist_F"], ["C_Journalist_01_War_F"], ["C_Man_Messenger_01_F"], ["C_Man_paramedic_01_F"],
     ["C_man_shorts_2_F"], ["C_man_shorts_3_F"], ["C_man_shorts_4_F"]
 ];
-publicVariable "Civils";
+publicVariable "ODD_var_Civils";
 
 // Vehicule civil
-CivilsVL = ["C_Hatchback_01_F",
+ODD_var_CivilsVL = ["C_Hatchback_01_F",
     "C_Hatchback_01_sport_F",
     "C_Offroad_02_unarmed_F",
     "C_Offroad_01_F",
@@ -104,98 +104,98 @@ CivilsVL = ["C_Hatchback_01_F",
     "brf_c_afc_zil131_blue",
     "brf_c_afc_zil131_orange"
 ];
-publicVariable "CivilsVL";
+publicVariable "ODD_var_CivilsVL";
 
 // liste des prisonier
-Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
-publicVariable "Otage";
+ODD_var_Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
+publicVariable "ODD_var_Otage";
 
-// liste des vehicule Objectif
-tgVehicule = [
+// liste des vehicule ODD_var_Objectif
+oDD_var_tgVehicule = [
     "rhsgref_ins_gaz66_r142", "rhs_gaz66_r142_vdv", "rhsgref_cdf_b_gaz66_r142", "rhsgref_cdf_gaz66_r142", "rhs_tigr_msv", "rhs_tigr_3camo_msv", "rhs_tigr_m_msv", "rhs_tigr_m_3camo_msv"
 ];
-publicVariable "tgVehicule";
+publicVariable "oDD_var_tgVehicule";
 
 // array des ia de la mission
-MissionIA = [];
-publicVariable "MissionIA";
+ODD_var_MissionIA = [];
+publicVariable "ODD_var_MissionIA";
 
 // array des ia en ZO+
-ZopiA = [];
-publicVariable "ZopiA";
+ODD_var_ZopiA = [];
+publicVariable "ODD_var_ZopiA";
 
 // array des ia en garnison
-GarnisonIA = [];
-publicVariable "GarnisonIA";
+ODD_var_GarnisonIA = [];
+publicVariable "ODD_var_GarnisonIA";
 
 // array des civil de la mission
-MissionCivil = [];
-publicVariable "MissionCivil";
+ODD_var_MissionCivil = [];
+publicVariable "ODD_var_MissionCivil";
 
 // array des props de la mission
-MissionProps = [];
-publicVariable "MissionProps";
+ODD_var_MissionProps = [];
+publicVariable "ODD_var_MissionProps";
 
 // array des props de la missions en local
-ParticuleList = [];
-publicVariable "ParticuleList";
+ODD_var_ParticuleList = [];
+publicVariable "ODD_var_ParticuleList";
 
-// liste de/des objectif(s)
-Objectif = [];
-publicVariable "Objectif";
+// liste de/des odd_var_objectif(s)
+ODD_var_Objectif = [];
+publicVariable "ODD_var_Objectif";
 
-// Definie les différent objectif possible
-TargettypeName = ["Caisse", "HVT", "Secure Area", "intel", "Helico", "Prisoniers", "Vehicule"];
+// Definie les différent odd_var_objectif possible
+ODD_var_TargetTypeName = ["Caisse", "HVT", "Secure Area", "intel", "Helico", "Prisoniers", "Vehicule"];
 	// (convoi hummanitaire, bombe, convoi à intercepter)
-publicVariable "TargettypeName";
+publicVariable "ODD_var_TargetTypeName";
 
 // Definie les type de location que on veux
-locationtype = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
-publicVariable "locationtype";
-locationBlklist = ["", "Kavala pier", "Fournos", "Neochori", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
-publicVariable "locationBlklist";//deBlackListe Neochori ? et autre ?
+odd_var_locationtype = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
+publicVariable "ODD_var_LocationType";
+ODD_var_LocationBlkList = ["", "Kavala pier", "Fournos", "Neochori", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
+publicVariable "ODD_var_LocationBlkList";//deBlackListe Neochori ? et autre ?
 
 // array de differente possibilité de texte
-textCaisse = [
+ODD_var_TextCaisse = [
     "Les forces ennemis dans la zone de %1 ont récemment reçu du matériel. Votre mission est de vous rendre sur place et de détruire leurs caisses de stockage.",
     "Du matériel compromettant a été localisé dans le secteur de %1. Vos ordres sont de détruire ces caisses par tous les moyens.",
      "Des caisses de munitions ennemi ont été vues dans la zone de %1. Leur destruction affaiblirait grandement les forces ennemies. Votre mission est simple : trouver les caisses et les détruire."
 ];
-publicVariable "textCaisse";
-textHVT = [
+publicVariable "ODD_var_TextCaisse";
+ODD_var_TextHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
     "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
     "Un officier a été localisé près de %1. Les informations en sa possession nous sont indispensables. Votre mission est de le récupérer et de le ramener.",
     "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et l'extraire vers la fob pour que nous puissions l'interroger."
 ];
-publicVariable "textHVT";
-textSecure = [
+publicVariable "ODD_var_TextHVT";
+ODD_var_TextSecure = [
     "La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone."
 ];
-publicVariable "textSecure";
-textIntel = [
+publicVariable "ODD_var_TextSecure";
+ODD_var_TextIntel = [
     "Des intel ont été repérés dans la région de %1, rendez-vous sur place et sécurisez-les.",
     "Les forces ennemies détiennent des informations importantes. Rendez vous dans la région de %1 et récupérez les."
 ];
-publicVariable "textIntel";
-textHelico = [
+publicVariable "ODD_var_TextIntel";
+ODD_var_TextHelico = [
     "Un hélicoptère allié s'est écrasé a proximité de la zone de %1. Rendez-vous sur place et recupérez les boîtes noires."
 ];
-publicVariable "textHelico";
-textPrisoniers = [
+publicVariable "ODD_var_TextHelico";
+ODD_var_TextPrisoniers = [
     "Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base."
 ];
-publicVariable "textPrisoniers";
-textVL = [
+publicVariable "ODD_var_TextPrisoniers";
+ODD_var_TextVL = [
     "Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1, allez le récupérer et ramener le à la FOB."
 ];
-publicVariable "textVL";
+publicVariable "ODD_var_TextVL";
 
-ObjetHIDE = [];
-publicVariable "ObjetHIDE";
+ODD_var_ObjetHide = [];
+publicVariable "ODD_var_ObjetHide";
 
-goClear = true;
-publicVariable "goClear";
+ODD_var_GoClear = true;
+publicVariable "ODD_var_GoClear";
 
 [] call ODD_fnc_varRoadBlock;
 [_FacForce] call ODD_fnc_varEne;

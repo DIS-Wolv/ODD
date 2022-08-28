@@ -20,18 +20,18 @@ params [["_forceZO", ""], ["_Debug", false]];
 missionNamespace setVariable ["DEBUG", _Debug, True];
 
 // Recupère toute les villes, villages, Capitales
-private _location = nearestLocations[[15000, 15000], locationtype, 30000];
+private _location = nearestLocations[[15000, 15000], ODD_var_LocationType, 30000];
 
 [["Nombre de locations : %1", str(count(_location))]] call ODD_fnc_log;
 
-// choisi un objectif random
+// choisi un odd_var_objectif random
 private _obj = selectRandom _location;
-private _Buildings = nearestobjects[position _obj, Maison, 200];
+private _Buildings = nearestobjects[position _obj, ODD_var_Maison, 200];
 
-while {(text _obj in locationBlklist) or (count _Buildings == 0)} do {
+while {(text _obj in ODD_var_LocationBlkList) or (count _Buildings == 0)} do {
     // tant que on est dans une location intredit ou qu'il y a 0
     _obj = selectRandom _location;
-    _Buildings = nearestobjects[position _obj, Maison, 200];
+    _Buildings = nearestobjects[position _obj, ODD_var_Maison, 200];
 };
 	// */
 
@@ -53,7 +53,7 @@ if (_forceZO != "") then {
     [["Locations forcé : %1", text _obj]] call ODD_fnc_log;
 };
 
-// Recupère la position de l'objectif
+// Recupère la position de l'odd_var_objectif
 private _pos = position _obj;
 
 _pos set [0, ((_pos select 0) + ((size _obj) select 0)/2)];

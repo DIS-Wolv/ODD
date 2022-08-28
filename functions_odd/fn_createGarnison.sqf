@@ -27,39 +27,39 @@ private _GBuild = [];
 
 if (_action) then {
     // préparation des variables pour le calcule du nombre de groupe
-    _locProx = nearestLocations [position _zo, locationtype, 3000];
+    _locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000];
     // Recup les location a - de 3000m
     {
-        if (text _x in locationBlklist) then {
+        if (text _x in ODD_var_LocationBlkList) then {
             // si dans la liste Noir
             _locProx deleteAt _forEachindex;
             // on delete la location de notre liste
         };
     }forEach _locProx;
     // !\ pas compté celle ou on est
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
-    // Nombre de maison dans la localité
+    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+    // Nombre de odd_var_maison dans la localité
     _taille = size _zo select 0;
     // Taille de la Zone
     _heure = date select 3;
     // heure de la journée
     private _loctype = 0;
-    if (type _zo == locationtype select 5) then {
+    if (type _zo == ODD_var_LocationType select 5) then {
         _loctype = 0;
     };
-    if (type _zo == locationtype select 4) then {
+    if (type _zo == ODD_var_LocationType select 4) then {
         _loctype = 1;
     };
-    if (type _zo == locationtype select 3) then {
+    if (type _zo == ODD_var_LocationType select 3) then {
         _loctype = 2;
     };
-    if (type _zo == locationtype select 2) then {
+    if (type _zo == ODD_var_LocationType select 2) then {
         _loctype = 3;
     };
-    if (type _zo == locationtype select 1) then {
+    if (type _zo == ODD_var_LocationType select 1) then {
         _loctype = 4;
     };
-    if (type _zo == locationtype select 0) then {
+    if (type _zo == ODD_var_LocationType select 0) then {
         _loctype = 5;
     };
     
@@ -80,7 +80,7 @@ if (_action) then {
     // definie qu'il faut faire spawn une caisse
     
     // Recupère tout les batiments a proximité
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // Si il y a peux de batiment
@@ -92,7 +92,7 @@ if (_action) then {
             // diminue le nombre de groupe
         };
     };
-    // */ Le but est qu'il y n'est pas 15 groupes en garnison dans 5 maison sur des petits obj avec beaucoup de joueurs
+    // */ Le but est qu'il y n'est pas 15 groupes en garnison dans 5 odd_var_maison sur des petits obj avec beaucoup de joueurs
     // systemChat(format["Garnison : %1", count _nbgroup]);
     
     // Pour tout les groupes nessaire
@@ -109,7 +109,7 @@ if (_action) then {
         
         // caisse med
         if (_Med and (count _Buildings > 20)) then {
-            // si plus de 20 maison, et pas de caisse
+            // si plus de 20 odd_var_maison, et pas de caisse
             _posBox = [position _GBuild select 0, position _GBuild select 1, (position _GBuild select 2) + 2];
             _posBox set[2, 1];
             _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
@@ -122,10 +122,10 @@ if (_action) then {
         _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
         
         // Ajoute le groupe a la liste des IA de la missions
-        MissionIA pushBack _g;
+        ODD_var_MissionIA pushBack _g;
         
         // Ajoute le groupe a la liste des IA en garnison
-        GarnisonIA pushBack _g;
+        ODD_var_GarnisonIA pushBack _g;
         
         _Buildings = _Buildings - [_GBuild];
         
@@ -168,7 +168,7 @@ if (_action) then {
     sleep 30;
     // _clientID = owner _someobject;
     {
-        if (_x == (GarnisonIA select 0)) then {
+        if (_x == (ODD_var_GarnisonIA select 0)) then {
             [position ((units _x) select 0), nil, units _x, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             // Garnison Ace
         } else {
@@ -177,7 +177,7 @@ if (_action) then {
                 // Garnison Ace
             }forEach units _x;
         };
-    }forEach GarnisonIA;
+    }forEach ODD_var_GarnisonIA;
     // */
 } else {
     _NbGarnison = round (2 + _human_players / 2);
@@ -186,14 +186,14 @@ if (_action) then {
     // remplacé la fonction
     
     // Recupère tout les batiments a proximité
-    _Buildings = nearestobjects [position _zo, Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // Si il y a peux de batiment
         _nbgroup resize (count _Buildings - 2);
         // diminue le nombre de groupe
     };
-    // Le but est qu'il y n'est pas 15 groupes en garnison dans 5 maison sur des petits obj avec beaucoup de joueurs
+    // Le but est qu'il y n'est pas 15 groupes en garnison dans 5 odd_var_maison sur des petits obj avec beaucoup de joueurs
     
     [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
 
@@ -209,7 +209,7 @@ if (_action) then {
         _g = [position _GBuild, east, _group] call BIS_fnc_spawngroup;
         
         // Ajoute le groupe a la liste des IA de la missions
-        ZOpiA pushBack _g;
+        ODD_var_ZopiA pushBack _g;
         
         sleep(2);
         _tp = false;
