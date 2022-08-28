@@ -6,7 +6,7 @@
 * 0: Determine si des renfort deuvent etre appeler <BOOL>
 * 1: Le nombre d'ia en vie sur zone <INT>
 * 2: Le nombre d'ia a l'origine sur la ZO <INT>
-* 3: Activation du debug dans le chat <BOOL>
+* 3: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil

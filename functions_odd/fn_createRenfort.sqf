@@ -4,7 +4,7 @@
 *
 * Arguments:
 * 0: Zone souhaité <Obj>
-* 1: Activation du debug dans le chat <BOOL>
+* 1: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
@@ -21,7 +21,7 @@ params ["_zo", ["_Debug", false]];
 
 private _NbUnitRenfort = 0;
 
-if (CurrentMission == 1) then {
+if (ODD_var_CurrentMission == 1) then {
     _textRenfort = ["Des renforts ont été appellé.", "Des renforts sont en approche"];
     [selectRandom _textRenfort] remoteExec ["systemChat", 0];
     	// envoie un message de renfort
@@ -109,7 +109,7 @@ if (CurrentMission == 1) then {
         }forEach _refloc;
         
         {
-            if (CurrentMission == 1) then {
+            if (ODD_var_CurrentMission == 1) then {
                 _loc = selectRandom _refloc;
                 	// choisie un loc random
                 

@@ -3,7 +3,7 @@
 * Fonction permetant de faire sortir de garnison sous certaine condition 
 *
 * Arguments:
-* 0: Activation du debug dans le chat <BOOL>
+* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil

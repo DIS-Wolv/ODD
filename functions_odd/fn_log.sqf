@@ -10,14 +10,14 @@
 *
 * Example:
 * [["ma variable : %1", _var]] call ODD_fnc_log // log cote serveur
-* missionNamespace setVariable ["DEBUG", true, true] // active le debug
-* [["exemple de debug"]] call ODD_fnc_log // log cote serveur et dans le chat
+* missionNamespace setVariable ["ODD_var_DEBUG", true, true] // active le ODD_var_DEBUG
+* [["exemple de ODD_var_DEBUG"]] call ODD_fnc_log // log cote serveur et dans le chat
 *
 * Public:
 */
 params [["_arg",[""],[]]];
 
-private _debug = missionNamespace getVariable "DEBUG"; 
+private _debug = missionNamespace getVariable "ODD_var_DEBUG"; 
 if(isNil "_debug") then {
 	_debug = false;
 };

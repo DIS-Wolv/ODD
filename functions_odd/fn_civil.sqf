@@ -5,7 +5,7 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Es ce la zone principale <BOOL>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
@@ -123,7 +123,7 @@ _civil resize (_nbCivil);
                 private _minutes = floor ((_daytime - _hours) * 60);
                 private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
                 private _pos = [0,0,0];
-                if (target == ODD_var_TargetTypeName select 2) then {
+                if (ODD_var_Target == ODD_var_TargetTypeName select 2) then {
                     _pos = position (units (ODD_var_Objectif select 0) select 0);
                 }
                 else {

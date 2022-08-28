@@ -3,7 +3,7 @@
 * Fonction permetant de nettoyer la zone
 *
 * Arguments:
-* 0: Activation du debug dans le chat <BOOL>
+* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
@@ -16,10 +16,10 @@
 */
 params [["_Debug", false]];
 // sleep 5;
-if (CurrentMission == 1) then {
+if (ODD_var_CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
-	CurrentMission = 2;
-	publicVariable "CurrentMission";
+	ODD_var_CurrentMission = 2;
+	publicVariable "ODD_var_CurrentMission";
 
 	if (!ODD_var_GoClear) then {
 		waitUntil {
@@ -110,8 +110,8 @@ if (CurrentMission == 1) then {
 	sleep 5;
 
 	["Clear OK"] remoteExec ["systemChat", 0];
-	CurrentMission = 0;
-	publicVariable "CurrentMission";
+	ODD_var_CurrentMission = 0;
+	publicVariable "ODD_var_CurrentMission";
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];

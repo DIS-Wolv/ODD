@@ -4,7 +4,7 @@
 *
 * Arguments:
 * 0: Zone souhaité <STRING>
-* 1: Activation du debug dans le chat <BOOL>
+* 1: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * Nom de la localité
@@ -17,7 +17,7 @@
 */
 params [["_forceZO", ""], ["_Debug", false]];
 
-missionNamespace setVariable ["DEBUG", _Debug, True];
+missionNamespace setVariable ["ODD_var_DEBUG", _Debug, True];
 
 // Recupère toute les villes, villages, Capitales
 private _location = nearestLocations[[15000, 15000], ODD_var_LocationType, 30000];

@@ -5,7 +5,7 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Type d'odd_var_objectif souhaité <INT>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * Nom de l'odd_var_objectif créé
@@ -23,7 +23,7 @@ private _Mission = selectRandom ODD_var_TargetTypeName;
 
 [["Mission choisi : %1", _Mission]] call ODD_fnc_log;
 
-// DEBUG => force le type de missions
+// ODD_var_DEBUG => force le type de missions
 if (_type >= 0 and _type < count ODD_var_TargetTypeName) then {
     _Mission = ODD_var_TargetTypeName select _type;
     [["Mission forcé : %1 (%2)", _Mission, _type]] call ODD_fnc_log;

@@ -3,7 +3,7 @@
 * Fonction permetant de compter les IA en vie dans la zone principale
 *
 * Arguments:
-* 0: Activation du debug dans le chat <BOOL>
+* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * le nombre d'IA en vie <INT>

@@ -9,7 +9,7 @@ private _colorPool = ["ColorBlack", "ColorRed", "ColorBrown", "Colororange", "Co
 	private _minutes = floor ((_daytime - _hours) * 60);
 	private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
 	private _pos = [0,0,0];
-	if (target == ODD_var_TargetTypeName select 2) then {
+	if (ODD_var_Target == ODD_var_TargetTypeName select 2) then {
 		_pos = position (units (ODD_var_Objectif select 0) select 0);
 	}
 	else {

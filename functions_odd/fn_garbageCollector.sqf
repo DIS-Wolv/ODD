@@ -4,7 +4,7 @@
 *
 * Arguments:
 * 0: nb de minute depuis le lancement de la mission <INT>
-* 1: Activation du debug dans le chat <BOOL>
+* 1: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * Nom de la localité

@@ -5,7 +5,7 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Nombre de roadblock souhaité <INT>
-* 2: Activation du debug dans le chat <BOOL>
+* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
 * Return Value:
 * nil
