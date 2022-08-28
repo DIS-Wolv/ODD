@@ -10,5 +10,5 @@
 */
 
 if (CurrentMission==1) then {
-	[] remoteExec ["WOLV_fnc_clearZO", 2];
+	[] remoteExec ["ODD_fnc_clearZO", 2];
 };

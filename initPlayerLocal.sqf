@@ -11,11 +11,11 @@ tawvd_disablenone = false;
 Player addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-oddCtrl addAction ["Générer une mission", {[] remoteExec ["WOLV_fnc_missions", 2];},[],1.5,true,true,"","CurrentMission==0",5];
-oddCtrl addAction ["Nettoyer l'opération", {[] remoteExec ["WOLV_fnc_clearZO", 2];},[],1.5,true,true,"","CurrentMission==1",5];
+oddCtrl addAction ["Générer une mission", {[] remoteExec ["ODD_fnc_missions", 2];},[],1.5,true,true,"","CurrentMission==0",5];
+oddCtrl addAction ["Nettoyer l'opération", {[] remoteExec ["ODD_fnc_clearZO", 2];},[],1.5,true,true,"","CurrentMission==1",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];
-[] call WOLV_fnc_infoOdd;
-[True] call WOLV_fnc_particules;
+[] call ODD_fnc_infoOdd;
+[True] call ODD_fnc_particules;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];

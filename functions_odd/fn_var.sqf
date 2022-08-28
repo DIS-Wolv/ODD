@@ -9,7 +9,7 @@
 * nil
 *
 * Example:
-* [] call WOLV_fnc_var
+* [] call ODD_fnc_var
 *
 * Public:
 */
@@ -197,5 +197,5 @@ publicVariable "ObjetHIDE";
 goClear = true;
 publicVariable "goClear";
 
-[] call WOLV_fnc_varRoadBlock;
-[_FacForce] call WOLV_fnc_varEne;
+[] call ODD_fnc_varRoadBlock;
+[_FacForce] call ODD_fnc_varEne;

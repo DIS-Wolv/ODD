@@ -9,9 +9,9 @@
 * nil
 *
 * Example:
-* [["ma variable : %1", _var]] call WOLV_fnc_log // log cote serveur
+* [["ma variable : %1", _var]] call ODD_fnc_log // log cote serveur
 * missionNamespace setVariable ["DEBUG", true, true] // active le debug
-* [["exemple de debug"]] call WOLV_fnc_log // log cote serveur et dans le chat
+* [["exemple de debug"]] call ODD_fnc_log // log cote serveur et dans le chat
 *
 * Public:
 */

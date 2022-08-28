@@ -9,7 +9,7 @@
 *
 */
 
-[] call WOLV_fnc_var;
+[] call ODD_fnc_var;
 
 // definition des IDD et IDC en variable 
 ODDGUI_var_IddDisplay = 270822;

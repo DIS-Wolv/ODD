@@ -14,7 +14,7 @@ class CfgFunctions
 {
 	#include "taw_vd\CfgFunctions.hpp"
 	// #include "ODD_GUI\CfgFunctions.hpp"
-	class WOLV {	//Renmomé en ODD ? WOLVODD ?
+	class ODD {	//Renmomé en ODD ? WOLVODD ?
 		class wolv_ODD {
 			file = "functions_odd";
 			class missions {
