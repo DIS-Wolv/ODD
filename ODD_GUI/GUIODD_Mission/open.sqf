@@ -68,9 +68,9 @@ if (_isCreate) then {
 	{
 		lbAdd [ODDGUI_var_IdcComboFaction, _x];
 		lbSetValue[ODDGUI_var_IdcComboFaction, _forEachIndex, (_forEachIndex + 1)];
-	} forEach nomFaction;
+	} forEach ODD_var_NomFactions;
 	lbAdd [ODDGUI_var_IdcComboFaction, "Aleatoire"];
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboFaction) lbSetCurSel (count nomFaction);
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboFaction) lbSetCurSel (count ODD_var_NomFactions);
 
 	{
 		lbAdd [ODDGUI_var_IdcComboHeure, Format["%1:00", _x]];

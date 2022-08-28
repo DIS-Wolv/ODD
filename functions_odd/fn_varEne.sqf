@@ -15,11 +15,12 @@
 */
 params [["_FacForce", -1]];
 
-_nbFaction = 2;		//NB faction 
+ODD_var_NomFactions = ["Ardistant","ChDKZ-Insurgents"];
+publicVariable "ODD_var_NomFactions";
+_nbFaction = count ODD_var_NomFactions;		//NB faction 
 
 _nFaction = round ((random 1) * (_nbFaction - 1));
 
-nomFaction = ["Ardistant","ChDKZ-Insurgents"];
 
 if (_FacForce >= 0 AND _FacForce <= _nFaction) then {
 	_nFaction = _FacForce;
@@ -37,4 +38,4 @@ switch (_nFaction) do {
 	};
 };
 
-[["Faction Choisie : %1", nomFaction select _nFaction]] call ODD_fnc_log;
+[["Faction Choisie : %1", ODD_var_NomFactions select _nFaction]] call ODD_fnc_log;
