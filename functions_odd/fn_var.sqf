@@ -197,5 +197,19 @@ publicVariable "ODD_var_ObjetHide";
 ODD_var_GoClear = true;
 publicVariable "ODD_var_GoClear";
 
+//liste des vl pouvant etre utilisé par les alliés
+ODD_var_VehiculeBlue = ["B_APC_Tracked_01_AA_F","B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_AFV_Wheeled_01_cannon_F","B_AFV_Wheeled_01_up_cannon_F","B_APC_Tracked_01_CRV_F","B_MBT_01_mlrs_F",
+"B_MBT_01_arty_F","B_Boat_Armed_01_minigun_F","B_Heli_Light_01_dynamicLoadout_F","B_Heli_Attack_01_dynamicLoadout_F","B_Plane_CAS_01_dynamicLoadout_F","B_Plane_Fighter_01_F","B_Plane_Fighter_01_Stealth_F",
+"B_MBT_01_TUSK_F","B_MBT_01_cannon_F","B_T_APC_Tracked_01_AA_F","B_T_APC_Wheeled_01_cannon_F","B_T_APC_Tracked_01_rcws_F","B_T_APC_Tracked_01_CRV_F","B_T_AFV_Wheeled_01_cannon_F","B_T_AFV_Wheeled_01_up_cannon_F",
+"B_T_MBT_01_mlrs_F","B_T_MBT_01_arty_F","B_T_Boat_Armed_01_minigun_F","B_T_UAV_03_dynamicLoadout_F","B_UAV_05_F","B_UAV_02_dynamicLoadout_F","B_T_VTOL_01_armed_F","B_T_VTOL_01_infantry_F","B_T_VTOL_01_vehicle_F",
+"B_T_MBT_01_TUSK_F","B_T_MBT_01_cannon_F","rhsusf_stryker_m1126_m2_d","rhsusf_stryker_m1126_mk19_d","rhsusf_stryker_m1127_m2_d","rhsusf_stryker_m1132_m2_np_d","rhsusf_stryker_m1132_m2_d","rhsusf_stryker_m1134_d",
+"rhsusf_m109d_usarmy","RHS_AH64D","RHS_AH64DGrey","RHS_M2A2","RHS_M2A2_BUSKI","RHS_M2A3","RHS_M2A3_BUSKI","RHS_M2A3_BUSKIII","RHS_M6","rhsusf_M1117_D","rhsusf_M1117_O","rhsusf_m1a1aimd_usarmy",
+"rhsusf_m1a1aim_tuski_d","rhsusf_m1a2sep1d_usarmy","rhsusf_m1a2sep1tuskid_usarmy","rhsusf_m1a2sep1tuskiid_usarmy","rhsusf_m1a2sep2d_usarmy","rhsusf_stryker_m1126_m2_wd","rhsusf_stryker_m1126_mk19_wd",
+"rhsusf_stryker_m1127_m2_wd","rhsusf_stryker_m1132_m2_np_wd","rhsusf_stryker_m1132_m2_wd","rhsusf_stryker_m1134_wd","rhsusf_m109_usarmy","RHS_AH64D_wd","RHS_M2A2_wd","RHS_M2A2_BUSKI_WD","RHS_M2A3_wd",
+"RHS_M2A3_BUSKI_wd","RHS_M2A3_BUSKIII_wd","RHS_M6_wd","rhsusf_M1117_W","rhsusf_m1a1aimwd_usarmy","rhsusf_m1a1aim_tuski_wd","rhsusf_m1a2sep1wd_usarmy","rhsusf_m1a2sep1tuskiwd_usarmy","rhsusf_m1a2sep1tuskiiwd_usarmy",
+"rhsusf_m1a2sep2wd_usarmy","rhsusf_mkvsoc","RHS_MELB_AH6M","RHS_MELB_MH6M","RHS_A10","rhsusf_f22","RHS_AH1Z","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","rhsusf_m1a1fep_d","rhsusf_M142_usmc_WD","RHS_AH1Z_wd",
+"RHS_UH1Y_FFAR","RHS_UH1Y","rhsusf_m1a1fep_wd","rhsusf_m1a1fep_od","rhsusf_m1a1hc_wd"];
+publicVariable "ODD_var_VehiculeBlue";
+
 [] call ODD_fnc_varRoadBlock;
 
