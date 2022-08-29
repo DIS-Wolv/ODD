@@ -30,8 +30,8 @@ if(!isNil "ce") then {
 	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_d_m2", "rhsusf_m998_d_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_stryker_m1126_m2_d", "RHS_M6", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
 };
 //Liste des élement dans l'arsenal
-ListArsenalWeap = ["rhs_weap_M136"];
-ListArsenalMag = ["rhs_mag_30Rnd_556x45_M855A1_Stanag", "rhsusf_200Rnd_556x45_box", "rhsusf_100Rnd_762x51", "rhsusf_mag_17Rnd_9x19_JHP", "rhs_mag_M433_HEDP", "rhs_mag_m67", "SmokeShell", "SmokeShellGreen", "DemoCharge_Remote_Mag"];
+ListArsenalWeap = ["rhs_weap_M136","rhs_weap_fgm148","rhs_weap_fim92"];
+ListArsenalMag = ["rhs_mag_30Rnd_556x45_M855A1_Stanag", "rhsusf_200Rnd_556x45_box", "rhsusf_100Rnd_762x51", "rhsusf_mag_17Rnd_9x19_JHP", "rhs_mag_M433_HEDP", "rhs_mag_m67", "SmokeShell", "SmokeShellGreen", "rhs_fgm148_magazine_AT", "rhs_fim92_mag", "DemoCharge_Remote_Mag"];
 ListArsenalItem = ["ACE_Clacker", "ACE_elasticBandage", "ACE_packingBandage", "ACE_plasmaIV", "ACE_splint", "ACE_tourniquet", "ACE_CableTie", "Toolkit", "ACE_EntrenchingTool", "ACE_DefusalKit", "ACE_wirecutter", "ACE_EarPlugs"];
 
 private _isCreate = False;
