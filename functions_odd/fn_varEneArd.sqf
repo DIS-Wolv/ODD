@@ -55,6 +55,19 @@ ODD_var_Vehicule = [
 ];
 publicVariable "ODD_var_Vehicule";
 
+ODD_var_VehiculeLourd = [
+	"brf_o_ard_bmp1",
+	"brf_o_ard_zsu234",
+	"brf_o_ard_su25",
+	"brf_o_ard_t72ba",
+	"brf_o_ard_mi24v",
+	"brf_o_ard_mi8mt",
+	"brf_o_ard_bmp1d",
+	"brf_o_ard_bmp2d",
+	"brf_o_ard_bmp1d"
+];
+publicVariable "ODD_var_VehiculeLourd";
+
 //Liste des ODD_var_HVT
 ODD_var_HVT = [
 	["O_Officer_Parade_F"],
