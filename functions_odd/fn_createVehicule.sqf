@@ -24,7 +24,19 @@ params ["_zo", ["_action", false], ["_Debug", false]];
 private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 private _nbVehicule = [];
 
+waitUntil {
+	sleep 1;
+	(count (getPos base nearEntities[["SoldierWB"], 300])) +	// nb joueur Base +
+	(count (getPos fob nearEntities[["SoldierWB"], 300])) 		// nb joueur FOB
+	<= (count(allplayers - entities "HeadlessClient_F")/2) 			// < nb joueur total (donc quand tout le monde est hors base / FOB stop la boucle)
+};
+
 if (_action) then {
+
+	if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
+		[-1, true, false] call ODD_fnc_varEne;	//les definie
+		sleep 1;
+	};
 	
 	//préparation des variables pour le calcule du nombre de groupe
 	_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
@@ -38,7 +50,15 @@ if (_action) then {
 	_heure = date select 3;		// heure de la journé
 	
 	//definie le nombre de vl
-	_nbVehicule resize round random[0,(_human_players/10),8];
+	if(ODD_var_support) then {
+		if (count (ODD_var_VlSupport) == 0) then {
+			_nbVehicule resize (round random[0, (_human_players/10), 8]) + 2;
+		} else {
+		_nbVehicule resize (round random[0, (_human_players/10), 8]) + ODD_var_VlSupport;
+		};
+	} else {
+		_nbVehicule resize round random[0, (_human_players/10), 8];
+	};
 	// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 	//_nbVehicule resize 5;
 
@@ -120,6 +140,13 @@ if (_action) then {
 	[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
 }
 else {
+
+	sleep 1;
+	if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
+		[-1, true, false] call ODD_fnc_varEne;	//les definie
+		sleep 1;
+	};
+
 	//Calule le nombre de groupe
 	_nbVehicule resize round random[0,(_human_players/8),8];
 	//systemChat(Format["Vehicule : %1", count _nbVehicule]);
