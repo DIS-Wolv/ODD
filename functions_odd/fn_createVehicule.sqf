@@ -48,6 +48,7 @@ if (_action) then {
 	{
 		// choisi un groupe	
 		private _group = selectRandom ODD_var_Vehicule;
+		ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
 		
 		if(count ((position _zo) nearRoads 300) > 0) then {
 		
@@ -128,6 +129,7 @@ else {
 	{
 		// choisi un groupe	
 		private _group = selectRandom ODD_var_Vehicule;
+		ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj
 		_pos = position _zo getPos [800 * random 1, random 360];

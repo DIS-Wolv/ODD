@@ -64,6 +64,7 @@ if (ODD_var_CurrentMission == 1) then {
         while {"brf_o_ard_uaz_dshkm" in _group} do {
             _group = selectRandom ODD_var_Vehicule;
         };
+        ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
         _groups set[_forEachindex, _group];
         	// definie le vl
     }forEach _groups;
