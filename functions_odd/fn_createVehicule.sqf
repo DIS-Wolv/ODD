@@ -47,7 +47,7 @@ if (_action) then {
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
-		private _group = selectRandom ODD_var_Vehicule;
+		private _group = selectRandom ODD_var_VehiculeSel;
 		ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
 		
 		if(count ((position _zo) nearRoads 300) > 0) then {
@@ -128,7 +128,7 @@ else {
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
-		private _group = selectRandom ODD_var_Vehicule;
+		private _group = selectRandom ODD_var_VehiculeSel;
 		ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj

@@ -60,11 +60,11 @@ if (ODD_var_CurrentMission == 1) then {
     _groups resize random[0, round((_locType/2) + (_human_players/4)), 7];
     
     {
-        _group = selectRandom ODD_var_Vehicule;
+        _group = selectRandom ODD_var_VehiculeSel;
         while {"brf_o_ard_uaz_dshkm" in _group} do {
-            _group = selectRandom ODD_var_Vehicule;
+            _group = selectRandom ODD_var_VehiculeSel;
         };
-        ODD_var_Vehicule = ODD_var_Vehicule + (ODD_var_Vehicule - _group);
+        ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
         _groups set[_forEachindex, _group];
         	// definie le vl
     }forEach _groups;
