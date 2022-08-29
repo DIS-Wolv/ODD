@@ -100,9 +100,9 @@ if (_action) then {
         private _group = [];
         // choisi un groupe
         if (floor(random 2) == 0) then {
-            _group = selectRandom fireTeam;
+            _group = selectRandom ODD_var_fireTeam;
         } else {
-            _group = selectRandom squad;
+            _group = selectRandom ODD_var_squad;
         };
         // choisi un batiment aléatoirement
         _GBuild = selectRandom _Buildings;
@@ -200,7 +200,7 @@ if (_action) then {
     // Pour tout les groupes nessaire
     {
         // choisi un groupe
-        private _group = selectRandom fireTeam;
+        private _group = selectRandom ODD_var_fireTeam;
         
         // choisi un batiment aléatoirement
         _GBuild = selectRandom _Buildings;

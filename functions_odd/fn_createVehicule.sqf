@@ -47,7 +47,7 @@ if (_action) then {
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
-		private _group = selectRandom Vehicule;
+		private _group = selectRandom ODD_var_Vehicule;
 		
 		if(count ((position _zo) nearRoads 300) > 0) then {
 		
@@ -99,7 +99,7 @@ if (_action) then {
 			
 			// systemChat(str(units _g));
 			if ("brf_o_ard_ural" in _group) then {
-				_infG = selectRandom squad;
+				_infG = selectRandom ODD_var_squad;
 				_pos set [1,(_pos select 1)+ 3];
 				_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
 				ODD_var_MissionIA pushBack _inf;
@@ -127,7 +127,7 @@ else {
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
-		private _group = selectRandom Vehicule;
+		private _group = selectRandom ODD_var_Vehicule;
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj
 		_pos = position _zo getPos [800 * random 1, random 360];

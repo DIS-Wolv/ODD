@@ -60,9 +60,9 @@ if (ODD_var_CurrentMission == 1) then {
     _groups resize random[0, round((_locType/2) + (_human_players/4)), 7];
     
     {
-        _group = selectRandom Vehicule;
+        _group = selectRandom ODD_var_Vehicule;
         while {"brf_o_ard_uaz_dshkm" in _group} do {
-            _group = selectRandom Vehicule;
+            _group = selectRandom ODD_var_Vehicule;
         };
         _groups set[_forEachindex, _group];
         	// definie le vl
@@ -145,7 +145,7 @@ if (ODD_var_CurrentMission == 1) then {
                 
                 if (!(("brf_o_ard_uaz" in _group) or ("brf_o_ard_uaz_open" in _group))) then {
                     // ajoute du personnel dans les vl
-                    _infG = selectRandom squad;
+                    _infG = selectRandom ODD_var_squad;
                     _pos set [1, (_pos select 1)+ 3];
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     
@@ -155,8 +155,8 @@ if (ODD_var_CurrentMission == 1) then {
                     //ODD_var_ZopiA pushBack _inf;
                 } else {
                     // si UAZ
-                    _infG = selectRandom squad;
-                    		// choisi une squad
+                    _infG = selectRandom ODD_var_squad;
+                    		// choisi une ODD_var_squad
                     _pos set [1, (_pos select 1)+ 3];
                     	// la deplace sur le coté
                     
@@ -165,7 +165,7 @@ if (ODD_var_CurrentMission == 1) then {
                     _infG deleteAt (random (count _infG));
                     
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
-                    // spawn la squad
+                    // spawn la ODD_var_squad
                     ODD_var_ZopiA pushBack _inf;
                     		// Ajoute le groupe a la liste des IA de la missions
 

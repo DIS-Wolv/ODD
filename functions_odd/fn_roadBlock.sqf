@@ -91,18 +91,18 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			private _groupPat = [];
 			
 			if (count(_Bat) <= 2) then {
-				_groupGar = selectRandom pair;
-				_groupPat = selectRandom Squad;
+				_groupGar = selectRandom ODD_var_pair;
+				_groupPat = selectRandom ODD_var_squad;
 				
 			}
 			else{
 				if (count(_Bat) <= 4) then {
-					_groupGar = selectRandom fireTeam;
-					_groupPat = selectRandom fireTeam;
+					_groupGar = selectRandom ODD_var_fireTeam;
+					_groupPat = selectRandom ODD_var_fireTeam;
 				}
 				else {
-					_groupGar = selectRandom fireTeam;
-					_groupPat = selectRandom pair;
+					_groupGar = selectRandom ODD_var_fireTeam;
+					_groupPat = selectRandom ODD_var_pair;
 				};
 			};
 			

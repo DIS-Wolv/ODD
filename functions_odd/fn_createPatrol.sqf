@@ -68,7 +68,7 @@ if (_action) then {
 	//Pour tout les groupes nessaire 
 	{
 		// choisi un groupe	
-		private _group = selectRandom fireTeam;
+		private _group = selectRandom ODD_var_fireTeam;
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj
 		_distPattrouille = (((size _x select 0) * 2) max 500);
@@ -101,7 +101,7 @@ else {
 
 	{
 		// choisi un groupe	
-		private _group = selectRandom fireTeam;
+		private _group = selectRandom ODD_var_fireTeam;
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj
 		_pos = position _zo getPos [800 * random 1, random 360];

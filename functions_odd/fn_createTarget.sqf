@@ -59,10 +59,10 @@ if (_Mission == ODD_var_TargetTypeName select 0) then {
     private _group = [];
     
     if ((round random 2) == 0) then {
-        _group = selectRandom pair;
+        _group = selectRandom ODD_var_pair;
         // choisi un groupe de 2
     } else {
-        _group = selectRandom fireTeam;
+        _group = selectRandom ODD_var_fireTeam;
         // choisi un groupe de 4
     };
     // spawn 2 gars pour defendre
@@ -92,10 +92,10 @@ if (_Mission == ODD_var_TargetTypeName select 0) then {
 if (_Mission == ODD_var_TargetTypeName select 1) then {
     // HVT
     // choisi une HVT random
-    private _group = selectRandom HVT;
+    private _group = selectRandom ODD_var_HVT;
     
     // ajoute au groupe de la HVT 4 gars en protection
-    _group append selectRandom fireTeam;
+    _group append selectRandom ODD_var_fireTeam;
     // systemChat(str(_group));
     
     // spawn le groupe
@@ -190,10 +190,10 @@ if (_Mission == ODD_var_TargetTypeName select 3) then {
     
     private _group = [];
     if (round (random 2) == 0) then {
-        _group = selectRandom pair;
+        _group = selectRandom ODD_var_pair;
         // choisi un groupe de 2
     } else {
-        _group = selectRandom fireTeam;
+        _group = selectRandom ODD_var_fireTeam;
         // choisi un groupe de 4
     };
     // spawn 2 gars pour defendre
@@ -243,10 +243,10 @@ if (_Mission == ODD_var_TargetTypeName select 4) then {
     
     private _group = [];
     if ((round random 2) == 0) then {
-        _group = selectRandom pair;
+        _group = selectRandom ODD_var_pair;
         // choisi un groupe de 2
     } else {
-        _group = selectRandom fireTeam;
+        _group = selectRandom ODD_var_fireTeam;
         // choisi un groupe de 4
     };
     // spawn 2 gars pour defendre
@@ -262,7 +262,7 @@ if (_Mission == ODD_var_TargetTypeName select 4) then {
     ODD_var_MissionProps pushBack _smoke;
     // ODD_var_MissionProps pushBack _smoke;
     
-    private _group = selectRandom fireTeam;
+    private _group = selectRandom ODD_var_fireTeam;
     
     // systemChat(str(_pos));
     // spawn le groupe
@@ -305,7 +305,7 @@ if (_Mission == ODD_var_TargetTypeName select 5) then {
     ODD_var_Objectif pushBack (units _g select 0);
     
     // cree un groupe en protection
-    _group = selectRandom fireTeam;
+    _group = selectRandom ODD_var_fireTeam;
     
     _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
     ODD_var_MissionIA pushBack _g;
@@ -397,7 +397,7 @@ if (_Mission == ODD_var_TargetTypeName select 6) then {
     
     sleep 1;
     // cree un groupe en protection
-    _group = selectRandom fireTeam;
+    _group = selectRandom ODD_var_fireTeam;
     
     _g = [_pos, east, _group] call BIS_fnc_spawngroup;
     ODD_var_MissionIA pushBack _g;
