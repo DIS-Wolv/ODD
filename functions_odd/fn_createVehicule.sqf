@@ -54,7 +54,7 @@ if (_action) then {
 		if (count (ODD_var_VlSupport) == 0) then {
 			_nbVehicule resize (round random[0, (_human_players/10), 8]) + 2;
 		} else {
-		_nbVehicule resize (round random[0, (_human_players/10), 8]) + ODD_var_VlSupport;
+			_nbVehicule resize (round random[0, (_human_players/10), 8]) + ODD_var_VlSupport;
 		};
 	} else {
 		_nbVehicule resize round random[0, (_human_players/10), 8];
