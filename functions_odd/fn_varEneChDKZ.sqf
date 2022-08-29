@@ -50,12 +50,14 @@ ODD_var_squad = [
 ];
 publicVariable "ODD_var_squad";
 
-//Liste des Vehicule
+//Liste des Vehicules
 ODD_var_Vehicule = [
-	["rhsgref_ins_uaz"],["rhsgref_ins_uaz_dshkm"],["rhsgref_ins_uaz_open"],
-	["rhsgref_ins_gaz66"],["rhsgref_ins_gaz66o"],["rhsgref_ins_kraz255b1_cargo_open"],["rhsgref_ins_zil131"],["rhsgref_ins_zil131_open"],
-	["rhsgref_ins_btr60"],["rhsgref_BRDM2_ins"],["rhsgref_BRDM2UM_ins"],["rhsgref_BRDM2_HQ_ins"],["rhsgref_BRDM2_HQ_ins"]
+	["rhsgref_ins_btr60"],["rhsgref_ins_btr70"],["rhsgref_ins_btr70"],
+	["rhsgref_ins_uaz_dshkm"],["rhsgref_ins_uaz_dshkm"],["rhsgref_BRDM2_ins"],
+	["rhsgref_BRDM2_HQ_ins"],["rhsgref_BRDM2_HQ_ins"],["rhsgref_ins_uaz"],
+	["rhsgref_ins_ural"]
 ];
+// old Array : ["rhsgref_ins_uaz"],["rhsgref_ins_uaz_dshkm"],["rhsgref_ins_uaz_open"],["rhsgref_ins_gaz66"],["rhsgref_ins_gaz66o"],["rhsgref_ins_kraz255b1_cargo_open"],["rhsgref_ins_zil131"],["rhsgref_ins_zil131_open"],["rhsgref_ins_btr60"],["rhsgref_BRDM2_ins"],["rhsgref_BRDM2UM_ins"],["rhsgref_BRDM2_HQ_ins"],["rhsgref_BRDM2_HQ_ins"]
 publicVariable "ODD_var_Vehicule";
 
 //Liste des ODD_var_HVT

@@ -49,12 +49,10 @@ ODD_var_squad = [
 publicVariable "ODD_var_squad";
 
 //Liste des Vehicule
-ODD_var_Vehicule = [["brf_o_ard_btr70"],["brf_o_ard_btr70"],
-	["brf_o_ard_brdm2_hq"],
-	["brf_o_ard_brdm2_um"],
-	["brf_o_ard_uaz_dshkm"],["brf_o_ard_uaz_dshkm"],
-	["brf_o_ard_uaz"],["brf_o_ard_uaz_open"],
-	["brf_o_ard_ural"]];//,["brf_o_ard_btr80"],["brf_o_ard_brdm2_um"],["brf_o_ard_brdm2"]];
+ODD_var_Vehicule = [
+	["brf_o_ard_btr70"],["brf_o_ard_btr70"],["brf_o_ard_brdm2_hq"],["brf_o_ard_brdm2_hq"],["brf_o_ard_brdm2_hq"],
+	["brf_o_ard_uaz_dshkm"],["brf_o_ard_brdm2"],["brf_o_ard_brdm2_um"],["brf_o_ard_ural"]
+];
 publicVariable "ODD_var_Vehicule";
 
 //Liste des ODD_var_HVT
