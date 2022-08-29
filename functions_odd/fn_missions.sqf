@@ -53,9 +53,9 @@ if (ODD_var_CurrentMission == 0) then {
     
     [_zo, true, _Debug] call ODD_fnc_createPatrol;
     
-    [_zo, true, _Debug] call ODD_fnc_createVehicule;
-    
     [_zo, 2, true, _Debug] call ODD_fnc_roadBlock;
+    
+    [_zo, true, _Debug] execVM ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
     
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
@@ -129,7 +129,7 @@ if (ODD_var_CurrentMission == 0) then {
 
         [_zo, 4, ODD_var_DistanceZO] call ODD_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
     };
-    
+
     {
         // normalement ne devrait pas servir mais on laisse au cas ou (sert a dégagé les gars mort au spawn)
         deletevehicle _x;
@@ -144,6 +144,10 @@ if (ODD_var_CurrentMission == 0) then {
     [["Quantital : Nombre de Props : %1", count ODD_var_MissionProps]] call ODD_fnc_log;
     [["Quantital : Nombre de LocalProps (par joueur) : %1", count ODD_var_ParticuleList]] call ODD_fnc_log;
     [["Quantital : Missions Généré pour %1 joueurs", ODD_var_NbPlayer]] call ODD_fnc_log;
+    [["Quantital : Support détécté %1", ODD_var_support]] call ODD_fnc_log;
+    if (ODD_var_support) then {
+        [["Quantital : Support détécté %1", ODD_var_VlSupport]] call ODD_fnc_log;
+    };
 
     waitUntil {
         sleep 1;
