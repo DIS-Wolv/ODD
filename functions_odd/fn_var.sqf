@@ -14,8 +14,6 @@
 * Public:
 */
 
-params [["_FacForce", -1]];
-
 // array des maison whitelist
 ODD_var_Maison = [
     "land_Chapel_V1_F", "land_Chapel_V2_F", "land_Chapel_Small_V1_F", "land_Chapel_Small_V2_F", "land_Offices_01_V1_F", "land_Castle_01_tower_F", "land_LightHouse_F",
@@ -75,7 +73,6 @@ ODD_var_Maison = [
     "land_Castle_01_house_ruin_F", "land_Castle_01_church_a_ruin_F", "land_Castle_01_church_b_ruin_F", "land_Castle_01_church_ruin_F", "land_Castle_01_step_F",
     "land_Hospital_main_F", "land_Hospital_side1_F", "land_Hospital_side2_F"
 ];
-publicVariable "ODD_var_Maison";
 
 // liste des odd_var_civils
 ODD_var_Civils = [["C_man_p_fugitive_F"], ["C_man_1"], ["C_Man_casual_1_F"], ["C_Man_casual_2_F"], ["C_Man_casual_3_F"], ["C_Man_casual_4_v2_F"], ["C_Man_casual_5_v2_F"],
@@ -84,7 +81,6 @@ ODD_var_Civils = [["C_man_p_fugitive_F"], ["C_man_1"], ["C_Man_casual_1_F"], ["C
     ["C_man_1_2_F"], ["C_man_1_3_F"], ["C_Man_Fisherman_01_F"], ["C_man_hunter_1_F"], ["C_journalist_F"], ["C_Journalist_01_War_F"], ["C_Man_Messenger_01_F"], ["C_Man_paramedic_01_F"],
     ["C_man_shorts_2_F"], ["C_man_shorts_3_F"], ["C_man_shorts_4_F"]
 ];
-publicVariable "ODD_var_Civils";
 
 // Vehicule civil
 ODD_var_CivilsVL = ["C_Hatchback_01_F",
@@ -104,56 +100,46 @@ ODD_var_CivilsVL = ["C_Hatchback_01_F",
     "brf_c_afc_zil131_blue",
     "brf_c_afc_zil131_orange"
 ];
-publicVariable "ODD_var_CivilsVL";
 
 // liste des prisonier
 ODD_var_Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
-publicVariable "ODD_var_Otage";
 
 // liste des vehicule ODD_var_Objectif
 oDD_var_tgVehicule = [
     "rhsgref_ins_gaz66_r142", "rhs_gaz66_r142_vdv", "rhsgref_cdf_b_gaz66_r142", "rhsgref_cdf_gaz66_r142", "rhs_tigr_msv", "rhs_tigr_3camo_msv", "rhs_tigr_m_msv", "rhs_tigr_m_3camo_msv"
 ];
-publicVariable "oDD_var_tgVehicule";
 
 // array des ia de la mission
 ODD_var_MissionIA = [];
-publicVariable "ODD_var_MissionIA";
 
 // array des ia en ZO+
 ODD_var_ZopiA = [];
-publicVariable "ODD_var_ZopiA";
 
 // array des ia en garnison
 ODD_var_GarnisonIA = [];
-publicVariable "ODD_var_GarnisonIA";
 
 // array des civil de la mission
 ODD_var_MissionCivil = [];
-publicVariable "ODD_var_MissionCivil";
 
 // array des props de la mission
 ODD_var_MissionProps = [];
-publicVariable "ODD_var_MissionProps";
 
 // array des props de la missions en local
 ODD_var_ParticuleList = [];
-publicVariable "ODD_var_ParticuleList";
 
 // liste de/des odd_var_objectif(s)
 ODD_var_Objectif = [];
-publicVariable "ODD_var_Objectif";
 
 // Definie les différent odd_var_objectif possible
 ODD_var_TargetTypeName = ["Caisse", "HVT", "Secure Area", "intel", "Helico", "Prisoniers", "Vehicule"];
 	// (convoi hummanitaire, bombe, convoi à intercepter)
-publicVariable "ODD_var_TargetTypeName";
 
 // Definie les type de location que on veux
 ODD_var_LocationType = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
-publicVariable "ODD_var_LocationType";
+
+//Array blacklist
 ODD_var_LocationBlkList = ["", "Kavala pier", "Fournos", "Neochori", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
-publicVariable "ODD_var_LocationBlkList";//deBlackListe Neochori ? et autre ?
+//deBlackListe Neochori ? et autre ?
 
 // array de differente possibilité de texte
 ODD_var_TextCaisse = [
@@ -161,41 +147,38 @@ ODD_var_TextCaisse = [
     "Du matériel compromettant a été localisé dans le secteur de %1. Vos ordres sont de détruire ces caisses par tous les moyens.",
      "Des caisses de munitions ennemi ont été vues dans la zone de %1. Leur destruction affaiblirait grandement les forces ennemies. Votre mission est simple : trouver les caisses et les détruire."
 ];
-publicVariable "ODD_var_TextCaisse";
+
 ODD_var_TextHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
     "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
     "Un officier a été localisé près de %1. Les informations en sa possession nous sont indispensables. Votre mission est de le récupérer et de le ramener.",
     "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et l'extraire vers la fob pour que nous puissions l'interroger."
 ];
-publicVariable "ODD_var_TextHVT";
+
 ODD_var_TextSecure = [
     "La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone."
 ];
-publicVariable "ODD_var_TextSecure";
+
 ODD_var_TextIntel = [
     "Des intel ont été repérés dans la région de %1, rendez-vous sur place et sécurisez-les.",
     "Les forces ennemies détiennent des informations importantes. Rendez vous dans la région de %1 et récupérez les."
 ];
-publicVariable "ODD_var_TextIntel";
+
 ODD_var_TextHelico = [
     "Un hélicoptère allié s'est écrasé a proximité de la zone de %1. Rendez-vous sur place et recupérez les boîtes noires."
 ];
-publicVariable "ODD_var_TextHelico";
+
 ODD_var_TextPrisoniers = [
     "Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base."
 ];
-publicVariable "ODD_var_TextPrisoniers";
+
 ODD_var_TextVL = [
     "Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1, allez le récupérer et ramener le à la FOB."
 ];
-publicVariable "ODD_var_TextVL";
 
 ODD_var_ObjetHide = [];
-publicVariable "ODD_var_ObjetHide";
 
 ODD_var_GoClear = true;
-publicVariable "ODD_var_GoClear";
 
 //liste des vl pouvant etre utilisé par les alliés
 ODD_var_VehiculeBlue = ["B_APC_Tracked_01_AA_F","B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_AFV_Wheeled_01_cannon_F","B_AFV_Wheeled_01_up_cannon_F","B_APC_Tracked_01_CRV_F","B_MBT_01_mlrs_F",
@@ -209,7 +192,6 @@ ODD_var_VehiculeBlue = ["B_APC_Tracked_01_AA_F","B_APC_Wheeled_01_cannon_F","B_A
 "RHS_M2A3_BUSKI_wd","RHS_M2A3_BUSKIII_wd","RHS_M6_wd","rhsusf_M1117_W","rhsusf_m1a1aimwd_usarmy","rhsusf_m1a1aim_tuski_wd","rhsusf_m1a2sep1wd_usarmy","rhsusf_m1a2sep1tuskiwd_usarmy","rhsusf_m1a2sep1tuskiiwd_usarmy",
 "rhsusf_m1a2sep2wd_usarmy","rhsusf_mkvsoc","RHS_MELB_AH6M","RHS_MELB_MH6M","RHS_A10","rhsusf_f22","RHS_AH1Z","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","rhsusf_m1a1fep_d","rhsusf_M142_usmc_WD","RHS_AH1Z_wd",
 "RHS_UH1Y_FFAR","RHS_UH1Y","rhsusf_m1a1fep_wd","rhsusf_m1a1fep_od","rhsusf_m1a1hc_wd"];
-publicVariable "ODD_var_VehiculeBlue";
 
 [] call ODD_fnc_varRoadBlock;
 
