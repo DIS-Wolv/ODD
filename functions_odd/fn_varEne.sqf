@@ -43,7 +43,7 @@ if (!_init) then {
 };
 
 if (_initVL) then {
-	private ODD_var_support = false; // nous avons du support ou pas 
+	ODD_var_support = false; // nous avons du support ou pas 
 
 	ODD_var_supportSlot = [crCdb,crEq1,crEq2,alCdb,alEq1,alEq2,haP1,haP2,haP3,haP4,albP1,albP2];
 	_allp = allPlayers;
