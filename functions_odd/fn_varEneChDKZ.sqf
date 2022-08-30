@@ -61,16 +61,22 @@ ODD_var_Vehicule = [
 publicVariable "ODD_var_Vehicule";
 
 ODD_var_VehiculeLourd = [
-	"rhsgref_ins_zsu234",
-	"rhsgref_ins_btr70",
-	"rhsgref_ins_btr70",
-	"rhsgref_ins_bmd2",
-	"rhsgref_ins_bmd1",
-	"rhsgref_ins_bmp1k",
-	"rhsgref_ins_t72ba",
-	"rhsgref_ins_uaz_spg9"
+	["rhsgref_ins_zsu234"],["rhsgref_ins_btr70"],["rhsgref_ins_btr70"],["rhsgref_ins_bmd2"],
+	["rhsgref_ins_bmd1"],["rhsgref_ins_bmp1k"],["rhsgref_ins_t72ba"],["rhsgref_ins_uaz_spg9"]
 ];
 publicVariable "ODD_var_VehiculeLourd";
+
+ODD_var_VehiculeTransport = [
+	"rhsgref_ins_btr60","rhsgref_ins_btr70","rhsgref_ins_uaz","rhsgref_ins_uaz_open","rhsgref_ins_bmd1","rhsgref_ins_bmd1p","rhsgref_ins_bmd2","rhsgref_ins_bmp1","rhsgref_ins_bmp1d","rhsgref_ins_bmp1k",
+	"rhsgref_ins_bmp1p","rhsgref_ins_bmp2e","rhsgref_ins_bmp2","rhsgref_ins_bmp2d","rhsgref_ins_bmp2k","rhsgref_BRDM2_ins","rhsgref_BRDM2_ATGM_ins","rhsgref_BRDM2UM_ins","rhsgref_BRDM2_HQ_ins",
+	"rhsgref_ins_gaz66","rhsgref_ins_gaz66o","rhsgref_ins_kraz255b1_cargo_open","rhsgref_ins_ural","rhsgref_ins_ural_open","rhsgref_ins_ural_work","rhsgref_ins_ural_work_open","rhsgref_ins_zil131",
+	"rhsgref_ins_zil131_open"
+];
+publicVariable "ODD_var_VehiculeTransport";
+
+ODD_var_VehiculeVollant = ["rhsgref_ins_Mi8amt"];
+publicVariable "ODD_var_VehiculeVollant";
+
 
 
 //Liste des ODD_var_HVT

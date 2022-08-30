@@ -63,10 +63,7 @@ if (_initVL) then {
 		ODD_var_support = true;
 	};
 
-	if (ODD_var_support) then {
-		ODD_var_VehiculeSel = ODD_var_Vehicule;
-	} else {
-		ODD_var_VehiculeSel = ODD_var_Vehicule;
-	};
+	ODD_var_VehiculeSel = ODD_var_Vehicule;
+	ODD_var_VehiculeLourdSel = ODD_var_VehiculeLourd;
 };
 

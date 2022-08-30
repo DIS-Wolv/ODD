@@ -56,17 +56,19 @@ ODD_var_Vehicule = [
 publicVariable "ODD_var_Vehicule";
 
 ODD_var_VehiculeLourd = [
-	"brf_o_ard_bmp1",
-	"brf_o_ard_zsu234",
-	"brf_o_ard_su25",
-	"brf_o_ard_t72ba",
-	"brf_o_ard_mi24v",
-	"brf_o_ard_mi8mt",
-	"brf_o_ard_bmp1d",
-	"brf_o_ard_bmp2d",
-	"brf_o_ard_bmp1d"
+	["brf_o_ard_bmp1"],["brf_o_ard_zsu234"],["brf_o_ard_su25"],["brf_o_ard_t72ba"],
+	["brf_o_ard_mi24v"],["brf_o_ard_mi8mt"],["brf_o_ard_bmp1d"],["brf_o_ard_bmp2d"],["brf_o_ard_bmp1d"]
 ];
 publicVariable "ODD_var_VehiculeLourd";
+
+ODD_var_VehiculeTransport = [
+	"brf_o_ard_bmp1","brf_o_ard_bmp1d","brf_o_ard_bmp2","brf_o_ard_bmp2d","brf_o_ard_brdm2","brf_o_ard_brdm2_atgm","brf_o_ard_brdm2_um","brf_o_ard_brdm2_hq","brf_o_ard_btr70","brf_o_ard_btr80",
+	"brf_o_ard_uaz","brf_o_ard_uaz_open","brf_o_ard_ural","brf_o_ard_zil131","brf_o_ard_zil131_open"
+];
+publicVariable "ODD_var_VehiculeTransport";
+
+ODD_var_VehiculeVollant = ["brf_o_ard_mi24p","brf_o_ard_mi24v","brf_o_ard_mi24vt","brf_o_ard_mi8amt","brf_o_ard_mi8mt","brf_o_ard_mi8mtv3","brf_o_ard_su25"];
+publicVariable "ODD_var_VehiculeVollant";
 
 //Liste des ODD_var_HVT
 ODD_var_HVT = [
