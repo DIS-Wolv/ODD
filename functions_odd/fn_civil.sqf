@@ -112,6 +112,10 @@ _civil resize (_nbCivil);
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
             // (_this select 0) enableAI "PATH";
 
+            _localID = clientOwner;
+            [_localID] remoteExec ["publicVariableClient 'ODD_var_TargetTypeName';", 0];
+            [_localID] remoteExec ["publicVariableClient 'ODD_var_Objectif';", 0];
+            
             private _markerPool = ["Contact_circle1", "Contact_circle2", "Contact_circle3", "Contact_circle4", "Contact_pencilTask1", "Contact_pencilTask2",
             "Contact_pencilTask3", "Contact_pencilCircle1", "Contact_pencilCircle2", "Contact_pencilCircle3"];
             private _colorPool = ["ColorBlack", "ColorRed", "ColorBrown", "Colororange", "ColorBlue", "colorcivilian"];
