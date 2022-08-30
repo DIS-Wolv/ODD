@@ -150,7 +150,7 @@ if (_action) then {
 	{
 		private _group = selectRandom ODD_var_VehiculeLourdSel;
 		ODD_var_VehiculeLourdSel = ODD_var_VehiculeLourdSel + (ODD_var_VehiculeLourdSel - _group);
-		if (_group in ODD_var_VehiculeVollant) {
+		if (_group in ODD_var_VehiculeVollant) then {
 			/*_pos = position _zo getPos [800 * random 1, random 360];
 			_pos set [200, 2];	//*/
 			_corner = [[0,0,500], [30000,0,500], [0,30000,500], [30000,30000,500]];
