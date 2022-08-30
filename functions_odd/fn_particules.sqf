@@ -52,7 +52,7 @@ params[["_add",true]];
 
 
 _localID = clientOwner;
-[_localID] remoteExec ["publicVariable 'ODD_var_ParticuleList';", 0];
+[_localID] remoteExec ["publicVariableClient 'ODD_var_ParticuleList';", 0];
 
 if (!isNil 'ODD_var_ParticuleList') then {
 	if (_add) then {
