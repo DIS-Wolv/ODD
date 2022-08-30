@@ -27,6 +27,12 @@ ODDGUI_var_IdcComboMeteo = 2103;
 
 private _isCreate = False;
 
+if(isNil "ODD_var_TargetTypeName" or isNil "ODD_var_NomFactions") then {
+	_localID = clientOwner;
+	[_localID] remoteExec ["publicVariableClient 'ODD_var_TargetTypeName';", 0];
+	[_localID] remoteExec ["publicVariableClient 'ODD_var_NomFactions';", 0];
+};
+
 //Variable
 ODDGUI_var_heure = [00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
