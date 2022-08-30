@@ -50,7 +50,6 @@
 /*/
 params[["_add",true]];
 
-
 _localID = clientOwner;
 [_localID] remoteExec ["publicVariableClient 'ODD_var_ParticuleList';", 0];
 
