@@ -34,7 +34,7 @@ waitUntil {
 	) or ODD_var_CurrentMission != 1								// arrete l'attente si la mission est arrété 
 };
 
-if (ODD_var_CurrentMission == 1){
+if (ODD_var_CurrentMission == 1) then {
 	if (_action) then {
 
 		if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
