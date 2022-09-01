@@ -29,10 +29,12 @@ waitUntil {
 	sleep 1;
 	(
 		(count (getPos base nearEntities[["SoldierWB"], 300])) +	// nb joueur Base +
-		(count (getPos fob nearEntities[["SoldierWB"], 300])) 		// nb joueur FOB
+		(count (getPos fob nearEntities[["SoldierWB"], 150])) 		// nb joueur FOB
 		<= (count(allplayers - entities "HeadlessClient_F") * 2) 	// < nb joueur total (donc quand tout le monde est hors base / FOB stop la boucle)
 	) or (ODD_var_CurrentMission != 1 )								// arrete l'attente si la mission est arrété 
 };
+
+[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
 
 if (ODD_var_CurrentMission == 1) then {
 	if (_action) then {
