@@ -30,8 +30,8 @@ waitUntil {
 	(
 		(count (getPos base nearEntities[["SoldierWB"], 300])) +	// nb joueur Base +
 		(count (getPos fob nearEntities[["SoldierWB"], 300])) 		// nb joueur FOB
-		<= (count(allplayers - entities "HeadlessClient_F")/2) 			// < nb joueur total (donc quand tout le monde est hors base / FOB stop la boucle)
-	) or ODD_var_CurrentMission != 1								// arrete l'attente si la mission est arrété 
+		<= (count(allplayers - entities "HeadlessClient_F") * 2) 	// < nb joueur total (donc quand tout le monde est hors base / FOB stop la boucle)
+	) or (ODD_var_CurrentMission != 1 )								// arrete l'attente si la mission est arrété 
 };
 
 if (ODD_var_CurrentMission == 1) then {
