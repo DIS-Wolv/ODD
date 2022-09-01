@@ -22,7 +22,7 @@ if (ODD_var_SelectedFaction == 0) then {
 };
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-[ODD_var_SelectedFaction] call ODD_fnc_varEne;
+[ODD_var_SelectedFaction, false, true] call ODD_fnc_varEne;
 
 if (ODDGUI_var_meteo != -1) then {
 	[0, (ODDGUI_var_meteo/10)] remoteExec["setOvercast", 0];

@@ -27,7 +27,7 @@ ODD_var_DEBUG = _Debug;
 publicVariable "ODD_var_DEBUG";
 
 if (ODD_var_DEBUG) then { 
-    [_FacForce] call ODD_fnc_varEne;
+    [_FacForce, false, true] call ODD_fnc_varEne;
 };
 
 ODD_var_DistanceZO = 4000;
