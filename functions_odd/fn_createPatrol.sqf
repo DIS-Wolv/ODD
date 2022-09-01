@@ -71,7 +71,7 @@ if (_action) then {
 		private _group = selectRandom ODD_var_fireTeam;
 		
 		// choisi une position rdm dans un cercle autour du centre de l'obj
-		_distPattrouille = (((size _x select 0) * 2) max 500);
+		_distPattrouille = (((size _zo select 0) * 2) max 500);
 		_pos = position _zo getPos [(random _distPattrouille), random 360];
 		
 		while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
