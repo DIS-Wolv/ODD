@@ -135,6 +135,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 				ODD_var_ZopiA pushBack _gg;
 			};
 			
+			/*
 			if (!(IsNil "HC1")) then {
 				// systemChat "HC1 présent";
 				_HCID = owner HC1;
@@ -142,6 +143,10 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 				_g setGroupOwner _HCID;
 				{ _x setOwner _HCID; } forEach (units _g);
 			};
+			//*/
+			{
+				_x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+			} forEach (units _g);   //pour chaque units
 
 			ODD_var_GarnisonIA pushBack _gg;
 			

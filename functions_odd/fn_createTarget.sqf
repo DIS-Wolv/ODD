@@ -72,7 +72,7 @@ if (_Mission == ODD_var_TargetTypeName select 0) then {
     ODD_var_MissionIA pushBack _g;
     
     // met en garnison
-    
+    /*
     if (!(isnil "HC1")) then {
         [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
@@ -82,6 +82,11 @@ if (_Mission == ODD_var_TargetTypeName select 0) then {
             _x setowner _HCID;
         } forEach (units _g);
     };
+    //*/
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
+    
     [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 
     // cree la tache
@@ -112,6 +117,7 @@ if (_Mission == ODD_var_TargetTypeName select 1) then {
         [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
     } else {
         // met en garnison
+        /*
         if (!(isnil "HC1")) then {
             [["HC1 présent"]] call ODD_fnc_log;
             _HCID = owner HC1;
@@ -121,6 +127,10 @@ if (_Mission == ODD_var_TargetTypeName select 1) then {
                 _x setowner _HCID;
             } forEach (units _g);
         };
+        //*/
+        {
+            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+        } forEach (units _g);   //pour chaque units
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Garnison Ace
     };
@@ -201,6 +211,10 @@ if (_Mission == ODD_var_TargetTypeName select 3) then {
     
     // Ajoute le groupe a la liste des IA de la missions
     ODD_var_MissionIA pushBack _g;
+
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
     
     // met en garnison
     // [_g, getPos _tgBuild] execVM "\x\cba\addons\ai\fnc_waypointgarrison.sqf";
@@ -215,7 +229,7 @@ if (_Mission == ODD_var_TargetTypeName select 4) then {
     while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 8] > 0) or ((_pos select 2) < 0)} do {
         // si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
         _pos = position _zo getPos [random 800, random 360];
-        		// tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+        // tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
     };
     
     _helico = "land_Wreck_Heli_Attack_01_F" createvehicle _pos;
@@ -294,6 +308,11 @@ if (_Mission == ODD_var_TargetTypeName select 5) then {
     // spawn un gars
     _g = [position _tgBuild, west, _group] call BIS_fnc_spawngroup;
     // ((units _g) select 0) setCaptive 1;
+
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
+
     //passe en prisonier
     [position _tgBuild, nil, units _g, 10, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     	// Garnison Ace
@@ -310,7 +329,7 @@ if (_Mission == ODD_var_TargetTypeName select 5) then {
     _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
     ODD_var_MissionIA pushBack _g;
     ODD_var_GarnisonIA pushBack _g;
-    	// met dans la liste et met tout les gars en garnison au meme moment
+    /*
     if (!(isnil "HC1")) then {
         [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
@@ -320,6 +339,10 @@ if (_Mission == ODD_var_TargetTypeName select 5) then {
             _x setowner _HCID;
         } forEach (units _g);
     };
+    //*/
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
     
     [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
@@ -402,7 +425,7 @@ if (_Mission == ODD_var_TargetTypeName select 6) then {
     _g = [_pos, east, _group] call BIS_fnc_spawngroup;
     ODD_var_MissionIA pushBack _g;
     ODD_var_GarnisonIA pushBack _g;
-    	// met dans la liste et met tout les gars en garnison au meme moment
+    /*
     if (!(isnil "HC1")) then {
         [["HC1 présent"]] call ODD_fnc_log;
         _HCID = owner HC1;
@@ -412,6 +435,10 @@ if (_Mission == ODD_var_TargetTypeName select 6) then {
             _x setowner _HCID;
         } forEach (units _g);
     };
+    //*/
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
     
     [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace

@@ -129,6 +129,7 @@ if (_action) then {
         
         _Buildings = _Buildings - [_GBuild];
         
+        /*
         if (!(isnil "HC1")) then {
             // systemChat "HC1 présent";
             _HCID = owner HC1;
@@ -138,6 +139,11 @@ if (_action) then {
                 _x setowner _HCID;
             } forEach (units _g);
         };
+        //*/
+
+        {
+            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+        } forEach (units _g);   //pour chaque units
         
         sleep 2;
 
@@ -210,6 +216,10 @@ if (_action) then {
         
         // Ajoute le groupe a la liste des IA de la missions
         ODD_var_ZopiA pushBack _g;
+
+        {
+            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+        } forEach (units _g);   //pour chaque units
         
         sleep(2);
         _tp = false;
@@ -229,3 +239,8 @@ if (_action) then {
     }forEach _nbgroup;
 };
 // systemChat("2.fin");
+
+/*
+{
+	_x setVariable ["acex_headless_blacklist", true, true];
+} forEach (units _g);//*/
