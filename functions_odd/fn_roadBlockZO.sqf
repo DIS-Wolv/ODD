@@ -131,7 +131,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 		//*/
 		{
 			_x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-		} forEach (units _g);   //pour chaque units
+		} forEach (units _gg);   //pour chaque units
 
 		ODD_var_GarnisonIA pushBack _gg;
 		

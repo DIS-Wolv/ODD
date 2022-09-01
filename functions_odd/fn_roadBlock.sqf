@@ -146,7 +146,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			//*/
 			{
 				_x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-			} forEach (units _g);   //pour chaque units
+			} forEach (units _gg);   //pour chaque units
 
 			ODD_var_GarnisonIA pushBack _gg;
 			
