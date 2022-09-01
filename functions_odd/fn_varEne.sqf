@@ -45,10 +45,11 @@ if (!_init) then {
 if (_initVL) then {
 	ODD_var_support = false; // nous avons du support ou pas 
 
-	ODD_var_supportSlot = [crCdb,crEq1,crEq2,alCdb,alEq1,alEq2,haP1,haP2,haP3,haP4,albP1,albP2];
+	ODD_var_supportSlot = ["crCdb","crEq1","crEq2","alCdb","alEq1","alEq2","haP1","haP2","haP3","haP4","albP1","albP2"];
 	_allp = allPlayers;
 	{
-		if (_x in ODD_var_supportSlot) then {
+		_slot = (getUserInfo (getPlayerID _x)) select 10;	//recupère le slote du joueurs
+		if (_slot in ODD_var_supportSlot) then {
 			ODD_var_support = true;
 		};
 	} forEach _allp; 
