@@ -2,8 +2,10 @@ private _markerPool = ["Contact_circle1", "Contact_circle2", "Contact_circle3", 
 	"Contact_pencilTask3", "Contact_pencilCircle1", "Contact_pencilCircle2", "Contact_pencilCircle3"];
 private _colorPool = ["ColorBlack", "ColorRed", "ColorBrown", "Colororange", "ColorBlue", "colorcivilian"];
 
+_msg = "";
  if (round (random 1) == 0) then {
-	systemChat ("J'ai des info.");
+	_msg = "J'ai des info.";
+
 	private _daytime = daytime;
 	private _hours = floor _daytime;
 	private _minutes = floor ((_daytime - _hours) * 60);
@@ -21,5 +23,7 @@ private _colorPool = ["ColorBlack", "ColorRed", "ColorBrown", "Colororange", "Co
 	_marker setMarkerColor (selectRandom _colorPool);
 	_marker setMarkertext format["ODD_var_Objectif à %1:%2", _hours, _minutes];
 } else {
-	systemChat ("J'ai pas d'info.");
+	_msg = "J'ai pas d'info.";
 };
+
+[_msg] remoteExec ["systemChat", 0];
