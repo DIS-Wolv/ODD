@@ -83,6 +83,14 @@ class ODDGUI_Mission
 
 	class controls 
 	{
+		class GUIODD_Mission_MissionStatus: RscStructuredText_ODDGUI
+		{
+			idc = 1107;
+			x = 0.075 * safezoneW + safezoneX;
+			y = 0.84 * safezoneH + safezoneY;
+			w = 0.225 * safezoneW;
+			h = 0.04 * safezoneH;
+		};
 		class GUIODD_Mission_ListObjAll: RscListbox_ODDGUI
 		{
 			idc = 1500;

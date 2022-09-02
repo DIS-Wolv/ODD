@@ -38,6 +38,10 @@ if (ODDGUI_var_Heure != -1) then {
 
 [] remoteExec ["ODD_fnc_missions", 2];
 
+sleep 0.5;
+
+call compile preprocessFile "ODD_GUI\GUIODD_Mission\statut.sqf";
+
 //systemChat format["Secteur : %1", ODD_var_SelectedSector];
 //systemChat format["Type d'odd_var_objectif : %1", ODD_var_SelectedTarget];
 //systemChat format["Faction :  %1", ODD_var_SelectedFaction];

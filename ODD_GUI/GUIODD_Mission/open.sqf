@@ -13,6 +13,7 @@
 
 // definition des IDD et IDC en variable 
 ODDGUI_var_IddDisplay = 270822;
+ODDGUI_var_IdcMissionStatus = 1107;
 
 ODDGUI_var_IdcListObjAll = 1500;
 ODDGUI_var_IdcListObjSel = 1501;
@@ -96,10 +97,15 @@ if (_isCreate) then {
 	lbAdd [ODDGUI_var_IdcComboMeteo, "Actuel"];
 	lbSetValue[ODDGUI_var_IdcComboMeteo, count ODDGUI_var_Meteo, -1];
 	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboMeteo) lbSetCurSel ((count ODDGUI_var_Meteo));
+
+	// Ajoute les eventHandler
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
 };
 
-// Ajoute les eventHandler
-((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
-((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
-((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
-((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
+while {!(isNull (findDisplay ODDGUI_var_IddDisplay))} do {
+	call compile preprocessFile "ODD_GUI\GUIODD_Mission\statut.sqf";
+	sleep 1;
+};
