@@ -23,8 +23,12 @@ if(isNil "ODD_var_NbPlayer") then {
     ODD_var_NbPlayer = (playersNumber west);
 };
 
-ODD_var_DEBUG = _Debug;
-publicVariable "ODD_var_DEBUG";
+if (isNil "ODD_var_TargetTypeName") then {
+    [] call ODD_fnc_var;
+};
+
+//ODD_var_DEBUG = _Debug;
+//publicVariable "ODD_var_DEBUG";
 
 if (ODD_var_DEBUG) then { 
     [_FacForce, false, true] call ODD_fnc_varEne;
