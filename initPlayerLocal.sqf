@@ -9,7 +9,7 @@ sleep 1;
 tawvd_disablenone = false;
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-//call ODD_fnc_var;
+call ODD_fnc_var;
 oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];
 [] call ODD_fnc_infoOdd;
