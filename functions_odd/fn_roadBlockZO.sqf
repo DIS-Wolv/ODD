@@ -33,7 +33,7 @@ _roads = _roads - _roadsFOB;
 {
 	_posZo = position _x;
 
-	_roadZo = _posZo nearRoads ((size _x select 1) * 2);
+	_roadZo = _posZo nearRoads ((size _x select 1) * 3);
 	
 	_roads = _roads - _roadZo;
 
