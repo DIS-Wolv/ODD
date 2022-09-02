@@ -20,7 +20,6 @@ ODD_var_pair = [
 	["rhsgref_ins_machinegunner","rhsgref_ins_rifleman"],		// MG
 	["rhsgref_ins_specialist_aa","rhsgref_ins_rifleman_akm"]	// AA
 ];
-publicVariable "ODD_var_pair";
 
 // Creation des "ODD_var_fireTeam"
 ODD_var_fireTeam = [		// ChDKZ insurgents
@@ -33,7 +32,6 @@ ODD_var_fireTeam = [		// ChDKZ insurgents
 	["rhsgref_ins_squadleader","rhsgref_ins_specialist_aa","rhsgref_ins_rifleman_aks74","rhsgref_ins_rifleman_akm"],	// AA
 	["rhsgref_ins_squadleader","rhsgref_ins_arifleman_rpk","rhsgref_ins_rifleman","rhsgref_ins_militiaman_mosin"]		// Rifle
 ];
-publicVariable "ODD_var_fireTeam";
 
 // Creation des "ODD_var_squad"
 ODD_var_squad = [
@@ -48,7 +46,6 @@ ODD_var_squad = [
 	["rhsgref_ins_squadleader","rhsgref_ins_arifleman_rpk","rhsgref_ins_rifleman_aksu","rhsgref_ins_rifleman_aks74","rhsgref_ins_rifleman_RPG26","rhsgref_ins_rifleman_akm","rhsgref_ins_rifleman_aksu","rhsgref_ins_rifleman_akm"]
 		//Rifle
 ];
-publicVariable "ODD_var_squad";
 
 //Liste des Vehicules
 ODD_var_Vehicule = [
@@ -57,14 +54,11 @@ ODD_var_Vehicule = [
 	["rhsgref_BRDM2_HQ_ins"],["rhsgref_BRDM2_HQ_ins"],["rhsgref_ins_uaz"],
 	["rhsgref_ins_ural"]
 ];
-// old Array : ["rhsgref_ins_uaz"],["rhsgref_ins_uaz_dshkm"],["rhsgref_ins_uaz_open"],["rhsgref_ins_gaz66"],["rhsgref_ins_gaz66o"],["rhsgref_ins_kraz255b1_cargo_open"],["rhsgref_ins_zil131"],["rhsgref_ins_zil131_open"],["rhsgref_ins_btr60"],["rhsgref_BRDM2_ins"],["rhsgref_BRDM2UM_ins"],["rhsgref_BRDM2_HQ_ins"],["rhsgref_BRDM2_HQ_ins"]
-publicVariable "ODD_var_Vehicule";
 
 ODD_var_VehiculeLourd = [
 	["rhsgref_ins_zsu234"],["rhsgref_ins_btr70"],["rhsgref_ins_btr70"],["rhsgref_ins_bmd2"],
 	["rhsgref_ins_bmd1"],["rhsgref_ins_bmp1k"],["rhsgref_ins_t72ba"],["rhsgref_ins_uaz_spg9"]
 ];
-publicVariable "ODD_var_VehiculeLourd";
 
 ODD_var_VehiculeTransport = [
 	"rhsgref_ins_btr60","rhsgref_ins_btr70","rhsgref_ins_uaz","rhsgref_ins_uaz_open","rhsgref_ins_bmd1","rhsgref_ins_bmd1p","rhsgref_ins_bmd2","rhsgref_ins_bmp1","rhsgref_ins_bmp1d","rhsgref_ins_bmp1k",
@@ -72,12 +66,8 @@ ODD_var_VehiculeTransport = [
 	"rhsgref_ins_gaz66","rhsgref_ins_gaz66o","rhsgref_ins_kraz255b1_cargo_open","rhsgref_ins_ural","rhsgref_ins_ural_open","rhsgref_ins_ural_work","rhsgref_ins_ural_work_open","rhsgref_ins_zil131",
 	"rhsgref_ins_zil131_open"
 ];
-publicVariable "ODD_var_VehiculeTransport";
 
 ODD_var_VehiculeVollant = ["rhsgref_ins_Mi8amt"];
-publicVariable "ODD_var_VehiculeVollant";
-
-
 
 //Liste des ODD_var_HVT
 ODD_var_HVT = [
@@ -88,5 +78,4 @@ ODD_var_HVT = [
 	["brf_o_afm_commander"],
 	["rhsgref_ins_commander"]
 ];
-publicVariable "ODD_var_HVT";
 
