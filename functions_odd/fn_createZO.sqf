@@ -23,35 +23,40 @@ private _location = [];
 private _SelectSector = [];
 
 if(!isNil "ODD_var_SelectedSector") then {
-    {
-        if (ODDGUI_var_Secteur select 0 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 0);
-        };
-        if (ODDGUI_var_Secteur select 1 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 1);
-        };
-        if (ODDGUI_var_Secteur select 2 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 2);
-        };
-        if (ODDGUI_var_Secteur select 3 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 3);
-        };
-        if (ODDGUI_var_Secteur select 4 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 4);
-        };
-        if (ODDGUI_var_Secteur select 5 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 5);
-        };
-        if (ODDGUI_var_Secteur select 6 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 6);
-        };
-        if (ODDGUI_var_Secteur select 7 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 7);
-        };
-        if (ODDGUI_var_Secteur select 8 == _x) then {
-            _SelectSector pushback (ODDGUI_var_SecteurMarker select 8);
-        };
-    } forEach ODD_var_SelectedSector;
+    if (count(ODD_var_SelectedSector) != 0) then {
+        {
+            if (ODDGUI_var_Secteur select 0 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 0);
+            };
+            if (ODDGUI_var_Secteur select 1 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 1);
+            };
+            if (ODDGUI_var_Secteur select 2 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 2);
+            };
+            if (ODDGUI_var_Secteur select 3 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 3);
+            };
+            if (ODDGUI_var_Secteur select 4 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 4);
+            };
+            if (ODDGUI_var_Secteur select 5 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 5);
+            };
+            if (ODDGUI_var_Secteur select 6 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 6);
+            };
+            if (ODDGUI_var_Secteur select 7 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 7);
+            };
+            if (ODDGUI_var_Secteur select 8 == _x) then {
+                _SelectSector pushback (ODDGUI_var_SecteurMarker select 8);
+            };
+        } forEach ODD_var_SelectedSector;
+    }
+    else {
+        _SelectSector = ODDGUI_var_SecteurMarker;
+    };
     [["Secteur choisi : %1", str _SelectSector]] call ODD_fnc_log;
     {
         _pos = getMarkerPos _x;
