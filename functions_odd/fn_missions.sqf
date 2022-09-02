@@ -27,6 +27,10 @@ if (isNil "ODD_var_TargetTypeName") then {
     [] call ODD_fnc_var;
 };
 
+if (isNil "ODD_var_DEBUG") then {
+    ODD_var_DEBUG = False;
+};
+
 //ODD_var_DEBUG = _Debug;
 //publicVariable "ODD_var_DEBUG";
 
