@@ -346,7 +346,7 @@ if (ODD_var_CurrentMission == 0) then {
     if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {
         // obj vl
         while {
-            ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false)
+            ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
         } do {
             // tant que la cible est pas detruite
             _NextTick = servertime + 60;
@@ -362,7 +362,7 @@ if (ODD_var_CurrentMission == 0) then {
             
             waitUntil {
                 sleep 1;
-                (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false) or (servertime > _NextTick))
+                (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
             };
         };
         
