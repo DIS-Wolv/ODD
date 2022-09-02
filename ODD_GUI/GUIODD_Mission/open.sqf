@@ -28,6 +28,7 @@ ODDGUI_var_IdcComboMeteo = 2103;
 private _isCreate = False;
 
 if(isNil "ODD_var_TargetTypeName" or isNil "ODD_var_NomFactions") then {
+	remoteExec ["call ODD_fnc_var;", 2];
 	_localID = clientOwner;
 	[_localID] remoteExec ["publicVariableClient 'ODD_var_TargetTypeName';", 0];
 	[_localID] remoteExec ["publicVariableClient 'ODD_var_NomFactions';", 0];
