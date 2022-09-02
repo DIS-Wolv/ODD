@@ -137,7 +137,7 @@ _civil resize (_nbCivil);
                 _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos];
                 _marker setMarkertype (selectRandom _markerPool);
                 _marker setMarkerColor (selectRandom _colorPool);
-                _marker setMarkertext format["ODD_var_Objectif à %1:%2", _hours, _minutes];
+                _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
             } else {
                 systemChat ("J'ai pas d'info.");
             };
