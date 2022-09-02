@@ -42,6 +42,9 @@ if (ODD_var_CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
+				if (ODD_var_Target == ODD_var_TargetTypeName select 5) then {	//si prisonier
+					_joueurInZO = _joueurInZO - 1;								//retire le prisonier de la liste
+				};
 				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
 				_joueurInZO == 0
 			};
