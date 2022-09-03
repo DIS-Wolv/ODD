@@ -18,7 +18,7 @@ class CfgFunctions
 		class wolv_ODD {
 			file = "functions_odd";
 			class missions {
-				// recompile	= 1;
+				//recompile = 1;
 			};
 			class countIA {};
 			class garbageCollector {};
