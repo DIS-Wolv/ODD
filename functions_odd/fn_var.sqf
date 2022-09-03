@@ -105,7 +105,7 @@ ODD_var_CivilsVL = ["C_Hatchback_01_F",
 ODD_var_Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
 
 // liste des vehicule ODD_var_Objectif
-oDD_var_tgVehicule = [
+ODD_var_tgVehicule = [
     "rhsgref_ins_gaz66_r142", "rhs_gaz66_r142_vdv", "rhsgref_cdf_b_gaz66_r142", "rhsgref_cdf_gaz66_r142", "rhs_tigr_msv", "rhs_tigr_3camo_msv", "rhs_tigr_m_msv", "rhs_tigr_m_3camo_msv"
 ];
 
@@ -131,7 +131,7 @@ ODD_var_ParticuleList = [];
 ODD_var_Objectif = [];
 
 // Definie les différent odd_var_objectif possible
-ODD_var_TargetTypeName = ["Caisse", "HVT", "Secure Area", "intel", "Helico", "Prisoniers", "Vehicule"];
+ODD_var_TargetTypeName = ["Caisse", "HVT", "Sécurisation de zone", "intel", "Helico", "Prisoniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 	// (convoi hummanitaire, bombe, convoi à intercepter)
 
 // Definie les type de location que on veux
@@ -172,8 +172,12 @@ ODD_var_TextPrisoniers = [
     "Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base."
 ];
 
-ODD_var_TextVL = [
+ODD_var_TextSecureVL = [
     "Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1, allez le récupérer et ramener le à la FOB."
+];
+
+ODD_var_TextDestroyVL = [
+    "Lol Missions detruire VL"
 ];
 
 ODD_var_ObjetHide = [];

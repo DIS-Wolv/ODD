@@ -196,6 +196,8 @@ if (ODD_var_CurrentMission == 0) then {
     publicVariable "ODD_var_TimeZO";
     
     // update + souvent la liste des objectifs
+
+    [format["%1 | %2", ODD_var_Target, (ODD_var_TargetTypeName select 7)]] remoteExec ["systemChat", 0];
     
     if (ODD_var_Target == ODD_var_TargetTypeName select 0) then {
         // obj est une caisse a detruire
@@ -348,7 +350,7 @@ if (ODD_var_CurrentMission == 0) then {
     };
     
     if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {
-        // obj vl
+        // obj vl secure
         while {
             ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
         } do {
@@ -378,6 +380,37 @@ if (ODD_var_CurrentMission == 0) then {
             ["Task", "FAILED"] call BIS_fnc_tasksetState;
             // tache échoué
         };
+    };
+
+    if (ODD_var_Target == ODD_var_TargetTypeName select 7) then {
+        // obj vl destroy
+
+        ["TEST NOUVELLE MISSIONS FLOW 2"] remoteExec ["systemChat", 0];
+        while {
+            ((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1))
+        } do {
+            // tant que la cible est pas detruite
+            _NextTick = servertime + 60;
+            
+            call ODD_fnc_sortieGarnison;
+            
+            _nbIa = [_Debug] call ODD_fnc_countIA;
+            
+            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+            
+            _nbItt = _nbItt + 1;
+            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+            
+            waitUntil {
+                sleep 1;
+                (!((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
+            };
+        };
+        
+        sleep(1);
+        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+        // tache accomplie
+
     };
     
     ODD_var_TimeObj = servertime;

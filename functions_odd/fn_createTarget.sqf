@@ -347,15 +347,107 @@ if (_Mission == ODD_var_TargetTypeName select 5) then {
     [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
 };
-	// */
-// *
+
 if (_Mission == ODD_var_TargetTypeName select 6) then {
     // Secure VL
     // ["TEST NOUVELLE MISSIONS"] remoteExec ["systemChat", 0];
-
     
     // cree la tache
-    _task = [true, "Task", [format[selectRandom ODD_var_TextVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+    _task = [true, "Task", [format[selectRandom ODD_var_TextSecureVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+    ["Task", "car"] call BIS_fnc_tasksettype;
+    
+    _vl = selectRandom ODD_var_tgVehicule;
+    // choisie un vl
+    
+    // recupère les route proche du centre de l'odd_var_objectif
+    // _roads = position _zo nearRoads 300;
+    // _road = selectRandom _roads;
+    	//choisi une route random
+    
+    _pos = position _tgBuild;
+    	// recup la pos
+    
+    _dir = getDir _tgBuild;
+    
+    // _pos = _pos getPos [5, (_dir + 90 + ((round (random 2))* 180)) % 360];
+    	//pose le vl sur le coté
+    
+    _posvl = _pos findEmptyposition [4, 100, _vl];
+    //, "B_Heli_Transport_01_F"
+    
+    // _posVl = _pos;
+    // _posVl set[3, (_posVl select 3) + 2];
+    
+    // _posvl = _posvl getPos [2, [_pos, _posvl] call BIS_fnc_dirto];
+    
+    _g = _vl createvehicle _posvl;
+    // créé le VL
+
+    _g addItemCargoGlobal ["Toolkit", 1]; 
+    // Ajoute un repaire kit
+    
+    _g setDir _dir;
+    
+    sleep 0.5;
+    _g setFuel 1;
+    _g setDamage 0;
+    
+    sleep 2;
+    if (!alive _g) then {
+        _pos = position _g;
+        
+        deletevehicle _g;
+        
+        sleep 1;
+        
+        _g = _vl createvehicle _posvl;
+        // créé le VL
+
+        _g addItemCargoGlobal ["Toolkit", 1]; 
+        // Ajoute un repaire kit
+        
+        _g setDir _dir;
+        
+        sleep 0.5;
+        _g setFuel 1;
+        _g setDamage 0;
+    };
+    
+    ODD_var_MissionProps pushBack _g;
+    ODD_var_Objectif pushBack _g;
+    
+    sleep 1;
+    // cree un groupe en protection
+    _group = selectRandom ODD_var_fireTeam;
+    
+    _g = [_pos, east, _group] call BIS_fnc_spawngroup;
+    ODD_var_MissionIA pushBack _g;
+    ODD_var_GarnisonIA pushBack _g;
+    /*
+    if (!(isnil "HC1")) then {
+        [["HC1 présent"]] call ODD_fnc_log;
+        _HCID = owner HC1;
+        
+        _g setgroupOwner _HCID;
+        {
+            _x setowner _HCID;
+        } forEach (units _g);
+    };
+    //*/
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
+    
+    [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+    // Garnison Ace
+};
+
+if (_Mission == ODD_var_TargetTypeName select 7) then {
+    // Destroy VL
+    ["TEST NOUVELLE MISSIONS"] remoteExec ["systemChat", 0];
+    
+    // cree la tache
+    _task = [true, "Task", [format[selectRandom ODD_var_TextDestroyVL, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
     ["Task", "car"] call BIS_fnc_tasksettype;
     
     _vl = selectRandom oDD_var_tgVehicule;
@@ -443,6 +535,7 @@ if (_Mission == ODD_var_TargetTypeName select 6) then {
     [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
 };
+
 publicVariable "ODD_var_Objectif";
 publicVariable "ODD_var_MissionProps";
 // */
