@@ -150,6 +150,8 @@ switch (_Mission) do {
         
         // spawn le groupe
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+
+        ((units _g) select 0) addItemToUniform "Chemlight_yellow";
         
         // Ajoute le groupe a la liste des IA de la missions
         ODD_var_MissionIA pushBack _g;
@@ -181,7 +183,7 @@ switch (_Mission) do {
         };
         
         // cree la tache
-        _task = [true, "Task", [format[selectRandom ODD_var_TextSecureHVT, text _zo], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+        _task = [true, "Task", [format[((selectRandom ODD_var_TextSecureHVT)+ "Il possède une chemlight jaune."), text _zo], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "target"] call BIS_fnc_tasksettype;
     };
     case (ODD_var_TargetTypeName select 3): {       // Secure Area
