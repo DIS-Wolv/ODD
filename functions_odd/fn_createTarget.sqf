@@ -36,6 +36,9 @@ while {count _Buildings == 0} do {
     [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call ODD_fnc_log;
 };
 
+ODD_var_Objectif = [];
+publicVariable "ODD_var_Objectif";
+
 _tgBuild = selectRandom _Buildings;
 
 switch (_Mission) do {
@@ -234,7 +237,7 @@ switch (_Mission) do {
         [
             _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
-                ODD_var_Objectif set[1, false];
+                ODD_var_Objectif set [1, false];
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objectif";[(_this select 0)] remoteExec ["removeAllActions"];
             },
             {}, [], (random[10, 20, 30]), nil, true, false
