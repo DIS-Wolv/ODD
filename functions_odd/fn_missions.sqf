@@ -23,9 +23,7 @@ if(isNil "ODD_var_NbPlayer") then {
     ODD_var_NbPlayer = (playersNumber west);
 };
 
-if (isNil "ODD_var_TargetTypeName") then {
-    [] call ODD_fnc_var;
-};
+[] call ODD_fnc_var;
 
 if (isNil "ODD_var_DEBUG") then {
     ODD_var_DEBUG = False;
@@ -196,223 +194,208 @@ if (ODD_var_CurrentMission == 0) then {
     publicVariable "ODD_var_TimeZO";
     
     // update + souvent la liste des objectifs
-
-    [format["%1 | %2", ODD_var_Target, (ODD_var_TargetTypeName select 7)]] remoteExec ["systemChat", 0];
-    
-    if (ODD_var_Target == ODD_var_TargetTypeName select 0) then {
-        // obj est une caisse a detruire
-        while {(count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
-            // tant que la caisse comporte des explosif (donc pas explosé)
-            // sleep 60;
-            private _NextTick = servertime + 60;
-            
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                (!((count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
-            };
-        };
-        
-        sleep(1);
-        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // tache accomplie
-    };
-    
-    if (ODD_var_Target == ODD_var_TargetTypeName select 1) then {
-        // obj est un HVT
-        // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-        while {(alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
-            // tant que la cible est et en vie et libre
-            _NextTick = servertime + 60;
-            
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                ((alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
-            };
-        };
-        sleep(1);
-        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // tache accomplie
-    };
-    
-    if (ODD_var_Target == ODD_var_TargetTypeName select 2) then {
-        // obj est une zone a securizé
-        _seuil = round (_BaseIa / 20);
-        ODD_var_Objectif = ODD_var_MissionIA;
-        publicVariable "ODD_var_Objectif";
-        
-        while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
-            // tant qu'il y as plus de 20% IA
-            // sleep 60;
-            _NextTick = servertime + 60;
-            
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-
-            [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
-            
-            {
-                if (isNull(_x)) then {
-                    ODD_var_Objectif = ODD_var_Objectif - [_x];
-                }
-            }forEach ODD_var_Objectif;
-            publicVariable "ODD_var_Objectif";
-
-            waitUntil {
-                sleep 1;
+    switch (ODD_var_Target) do {
+        case (ODD_var_TargetTypeName select 0): {       // obj est une caisse a detruire
+            while {(count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
+                // tant que la caisse comporte des explosif (donc pas explosé)
+                // sleep 60;
+                private _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
                 _nbIa = [_Debug] call ODD_fnc_countIA;
-                ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    (!((count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
+                };
             };
+            
+            sleep(1);
+            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            // tache accomplie
         };
-        sleep(1);
-        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // tache accomplie
-    };
-    
-    if ((ODD_var_Target == ODD_var_TargetTypeName select 3) or (ODD_var_Target == ODD_var_TargetTypeName select 4)) then {
-        // obj est un intel ou un Helico
-        while {(ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)} do {
-            private _NextTick = servertime + 60;
-            
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                ((ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
-            };
-        };
-        sleep(1);
-        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // tache accomplie
-    };
-    
-    if (ODD_var_Target == ODD_var_TargetTypeName select 5) then {
-        // obj est un Prisonier
-        while {((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
-            // tant que la cible est captive
-            _NextTick = servertime + 60;
-            
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                (((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
-            };
+        case (ODD_var_TargetTypeName select 1): {       // obj est un HVT
             // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-            // fait rien
-        };
-        
-        sleep(1);
-        if (alive (ODD_var_Objectif select 0)) then {
+            while {(alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
+                // tant que la cible est et en vie et libre
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    ((alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                };
+            };
+            sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
-        } else {
-            ["Task", "FAILED"] call BIS_fnc_tasksetState;
-            // tache échoué
         };
-    };
-    
-    if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {
-        // obj vl secure
-        while {
-            ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
-        } do {
-            // tant que la cible est pas detruite
-            _NextTick = servertime + 60;
+        case (ODD_var_TargetTypeName select 2): {       // obj est une zone a securizé
+            _seuil = round (_BaseIa / 20);
+            ODD_var_Objectif = ODD_var_MissionIA;
+            publicVariable "ODD_var_Objectif";
             
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+            while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
+                // tant qu'il y as plus de 20% IA
+                // sleep 60;
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+
+                [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
+                
+                {
+                    if (isNull(_x)) then {
+                        ODD_var_Objectif = ODD_var_Objectif - [_x];
+                    }
+                }forEach ODD_var_Objectif;
+                publicVariable "ODD_var_Objectif";
+
+                waitUntil {
+                    sleep 1;
+                    _nbIa = [_Debug] call ODD_fnc_countIA;
+                    ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                };
             };
-        };
-        
-        sleep(1);
-        if (alive (ODD_var_Objectif select 0)) then {
+            sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
-        } else {
-            ["Task", "FAILED"] call BIS_fnc_tasksetState;
-            // tache échoué
         };
-    };
-
-    if (ODD_var_Target == ODD_var_TargetTypeName select 7) then {
-        // obj vl destroy
-
-        ["TEST NOUVELLE MISSIONS FLOW 2"] remoteExec ["systemChat", 0];
-        while {
-            ((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1))
-        } do {
-            // tant que la cible est pas detruite
-            _NextTick = servertime + 60;
+        case (ODD_var_TargetTypeName select 3);
+        case (ODD_var_TargetTypeName select 4): {       // obj est un intel ou un Helico
+            while {(ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)} do {
+                private _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    ((ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                };
+            };
+            sleep(1);
+            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            // tache accomplie
+        };
+        case (ODD_var_TargetTypeName select 5): {       // obj est un Prisonier
+            while {((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
+                // tant que la cible est captive
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    (((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                };
+                // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
+                // fait rien
+            };
             
-            call ODD_fnc_sortieGarnison;
-            
-            _nbIa = [_Debug] call ODD_fnc_countIA;
-            
-            _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-            
-            _nbItt = _nbItt + 1;
-            [_nbItt, _Debug] call ODD_fnc_garbageCollector;
-            
-            waitUntil {
-                sleep 1;
-                (!((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
+            sleep(1);
+            if (alive (ODD_var_Objectif select 0)) then {
+                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+                // tache accomplie
+            } else {
+                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+                // tache échoué
             };
         };
-        
-        sleep(1);
-        ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // tache accomplie
-
+        case (ODD_var_TargetTypeName select 6): {       // obj vl secure
+            while {
+                ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
+            } do {
+                // tant que la cible est pas detruite
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+                };
+            };
+            
+            sleep(1);
+            if (alive (ODD_var_Objectif select 0)) then {
+                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+                // tache accomplie
+            } else {
+                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+                // tache échoué
+            };
+        };
+        case (ODD_var_TargetTypeName select 7): {       // obj vl destroy
+            //["TEST NOUVELLE MISSIONS FLOW"] remoteExec ["systemChat", 0];
+            while {
+                ((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1))
+            } do {
+                // tant que la cible est pas detruite
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    (!((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
+                };
+            };
+            
+            sleep(1);
+            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            // tache accomplie
+        };
     };
-    
+
     ODD_var_TimeObj = servertime;
     publicVariable "ODD_var_TimeObj";
     
