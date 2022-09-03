@@ -157,7 +157,7 @@ ODD_var_TextKillHVT = [
 ODD_var_TextSecureHVT = [
     "Un officier a été localisé près de %1. Les informations en sa possession nous sont indispensables. Votre mission est de le récupérer et de le ramener.",
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
-    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer et de le ramener a la base",
+    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer et de le ramener a la base.",
     "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et l'extraire vers la fob pour que nous puissions l'interroger."
 ];
 
