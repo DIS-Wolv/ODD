@@ -177,7 +177,7 @@ ODD_var_TextSecureVL = [
 ];
 
 ODD_var_TextDestroyVL = [
-    "Lol Missions detruire VL"
+    "Un véhicule ennemi important a été repéré à proximité de %1, allez le détruire."
 ];
 
 ODD_var_ObjetHide = [];
