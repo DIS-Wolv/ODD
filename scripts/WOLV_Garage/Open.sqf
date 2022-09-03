@@ -25,9 +25,9 @@ PosGarage = _pos;
 
 // Liste des Vehicule que on peux faire spawn
 if(!isNil "ce") then {
-	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_w_m2", "rhsusf_m998_w_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_stryker_m1126_m2_wd", "RHS_M6_wd", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
+	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_w_m2", "rhsusf_m998_w_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_stryker_m1126_m2_wd", "RHS_M2A3_BUSKIII_wd", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
 } else {
-	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_d_m2", "rhsusf_m998_d_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_stryker_m1126_m2_d", "RHS_M6", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
+	ListSpawn = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "rhsusf_m1025_d_m2", "rhsusf_m998_d_2dr_fulltop", "rhsusf_CGRCAT1A2_M2_usmc_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_stryker_m1126_m2_d", "RHS_M2A3_BUSKIII", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F"];
 };
 //Liste des élement dans l'arsenal
 ListArsenalWeap = ["rhs_weap_M136","rhs_weap_fgm148","rhs_weap_fim92"];
