@@ -136,9 +136,8 @@ switch (_Mission) do {
             // Garnison Ace
         };
         
-        
         // cree la tache
-        _task = [true, "Task", [format[selectRandom ODD_var_TextHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+        _task = [true, "Task", [format[selectRandom ODD_var_TextKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "kill"] call BIS_fnc_tasksettype;
     };
     case (ODD_var_TargetTypeName select 2): {       // Secure Area

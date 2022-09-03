@@ -148,7 +148,7 @@ ODD_var_TextCaisse = [
      "Des caisses de munitions ennemi ont été vues dans la zone de %1. Leur destruction affaiblirait grandement les forces ennemies. Votre mission est simple : trouver les caisses et les détruire."
 ];
 
-ODD_var_TextHVT = [
+ODD_var_TextKillHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
     "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
     "Un officier a été localisé près de %1. Les informations en sa possession nous sont indispensables. Votre mission est de le récupérer et de le ramener.",
