@@ -38,7 +38,7 @@ while {count _Buildings == 0} do {
 
 _tgBuild = selectRandom _Buildings;
 
-switch _Mission do {
+switch (_Mission) do {
     case (ODD_var_TargetTypeName select 0): {       // Caisses
         _posBox = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
         
