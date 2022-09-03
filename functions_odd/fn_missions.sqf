@@ -220,9 +220,9 @@ if (ODD_var_CurrentMission == 0) then {
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
         };
-        case (ODD_var_TargetTypeName select 1): {       // obj est un HVT
+        case (ODD_var_TargetTypeName select 1): {       // obj est un HVT kill
             // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-            while {(alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
+            while {((alive (ODD_var_Objectif select 0) and (ODD_var_CurrentMission == 1)))} do {
                 // tant que la cible est et en vie et libre
                 _NextTick = servertime + 60;
                 
@@ -237,14 +237,42 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 waitUntil {
                     sleep 1;
-                    ((alive (ODD_var_Objectif select 0) and !(captive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                    (!((alive (ODD_var_Objectif select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
                 };
             };
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
         };
-        case (ODD_var_TargetTypeName select 2): {       // obj est une zone a securizé
+        case (ODD_var_TargetTypeName select 2): {       // obj est un HVT capture
+            // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
+            while {((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))} do {
+                // tant que la cible est et en vie et libre
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [_Debug] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 1;
+                    (!((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
+                };
+            };
+            sleep(1);
+            if (alive (ODD_var_Objectif select 0)) then {
+                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            }else{
+                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+            };
+            // tache accomplie
+        };
+        case (ODD_var_TargetTypeName select 3): {       // obj est une zone a securizé
             _seuil = round (_BaseIa / 20);
             ODD_var_Objectif = ODD_var_MissionIA;
             publicVariable "ODD_var_Objectif";
@@ -282,8 +310,8 @@ if (ODD_var_CurrentMission == 0) then {
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
         };
-        case (ODD_var_TargetTypeName select 3);
-        case (ODD_var_TargetTypeName select 4): {       // obj est un intel ou un Helico
+        case (ODD_var_TargetTypeName select 4);
+        case (ODD_var_TargetTypeName select 5): {       // obj est un intel ou un Helico
             while {(ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)} do {
                 private _NextTick = servertime + 60;
                 
@@ -305,7 +333,7 @@ if (ODD_var_CurrentMission == 0) then {
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // tache accomplie
         };
-        case (ODD_var_TargetTypeName select 5): {       // obj est un Prisonier
+        case (ODD_var_TargetTypeName select 6): {       // obj est un Prisonier
             while {((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
                 // tant que la cible est captive
                 _NextTick = servertime + 60;
@@ -336,7 +364,7 @@ if (ODD_var_CurrentMission == 0) then {
                 // tache échoué
             };
         };
-        case (ODD_var_TargetTypeName select 6): {       // obj vl secure
+        case (ODD_var_TargetTypeName select 7): {       // obj vl secure
             while {
                 ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
             } do {
@@ -367,7 +395,7 @@ if (ODD_var_CurrentMission == 0) then {
                 // tache échoué
             };
         };
-        case (ODD_var_TargetTypeName select 7): {       // obj vl destroy
+        case (ODD_var_TargetTypeName select 8): {       // obj vl destroy
             //["TEST NOUVELLE MISSIONS FLOW"] remoteExec ["systemChat", 0];
             while {
                 ((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1))

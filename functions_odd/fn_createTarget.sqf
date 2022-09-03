@@ -96,7 +96,7 @@ switch (_Mission) do {
         _task = [true, "Task", [format[selectRandom ODD_var_TextCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "destroy"] call BIS_fnc_tasksettype;
     };
-    case (ODD_var_TargetTypeName select 1): {       // HVT
+    case (ODD_var_TargetTypeName select 1): {       // Kill HVT
         // choisi une HVT random
         private _group = selectRandom ODD_var_HVT;
         
@@ -140,12 +140,56 @@ switch (_Mission) do {
         _task = [true, "Task", [format[selectRandom ODD_var_TextKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "kill"] call BIS_fnc_tasksettype;
     };
-    case (ODD_var_TargetTypeName select 2): {       // Secure Area
+    case (ODD_var_TargetTypeName select 2): {       // Capture HVT
+        // choisi une HVT random
+        private _group = selectRandom ODD_var_HVT;
+        
+        // ajoute au groupe de la HVT 4 gars en protection
+        _group append selectRandom ODD_var_fireTeam;
+        // systemChat(str(_group));
+        
+        // spawn le groupe
+        _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+        
+        // Ajoute le groupe a la liste des IA de la missions
+        ODD_var_MissionIA pushBack _g;
+        ODD_var_Objectif pushBack (units _g select 0);
+        // systemChat(str(units _g select 0));
+        
+        ((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
+        if (round random 4 == 1) then {
+            // met en patrioulle
+            [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
+        } else {
+            // met en garnison
+            /*
+            if (!(isnil "HC1")) then {
+                [["HC1 présent"]] call ODD_fnc_log;
+                _HCID = owner HC1;
+                
+                _g setgroupOwner _HCID;
+                {
+                    _x setowner _HCID;
+                } forEach (units _g);
+            };
+            //*/
+            {
+                _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+            } forEach (units _g);   //pour chaque units
+            [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            // Garnison Ace
+        };
+        
+        // cree la tache
+        _task = [true, "Task", [format[selectRandom ODD_var_TextSecureHVT, text _zo], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+        ["Task", "target"] call BIS_fnc_tasksettype;
+    };
+    case (ODD_var_TargetTypeName select 3): {       // Secure Area
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextSecure, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "attack"] call BIS_fnc_tasksettype;
     };
-    case (ODD_var_TargetTypeName select 3): {       // intel
+    case (ODD_var_TargetTypeName select 4): {       // intel
         _intellist = ["Item_SmartPhone", "Item_ItemalivePhoneOld", "Item_MobilePhone", "Item_SatPhone", "land_IPPhone_01_black_F", "land_IPPhone_01_olive_F", "land_IPPhone_01_sand_F", "land_Laptop_F", "land_Laptop_device_F", "land_Laptop_unfolded_F", "land_Laptop_intel_01_F", "land_Laptop_intel_02_F", "land_Laptop_intel_Oldman_F", "land_laptop_03_closed_black_F", "land_Laptop_03_black_F", "land_laptop_03_closed_olive_F", "land_Laptop_03_olive_F", "land_laptop_03_closed_sand_F", "land_Laptop_03_sand_F", "land_Laptop_02_F", "land_Laptop_02_unfolded_F"];
         
         _posintel = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
@@ -213,7 +257,7 @@ switch (_Mission) do {
         // [_g, getPos _tgBuild] execVM "\x\cba\addons\ai\fnc_waypointgarrison.sqf";
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
-    case (ODD_var_TargetTypeName select 4): {       // Helico
+    case (ODD_var_TargetTypeName select 5): {       // Helico
         _pos = position _zo getPos [((size _zo)select 0) * random 1, random 360];
         
         while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 8] > 0) or ((_pos select 2) < 0)} do {
@@ -283,7 +327,7 @@ switch (_Mission) do {
         
         [_g, _pos, 150] call bis_fnc_taskpatrol;
     };
-    case (ODD_var_TargetTypeName select 5): {       // Save Prisoniers
+    case (ODD_var_TargetTypeName select 6): {       // Save Prisoniers
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextPrisoniers, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "scout"] call BIS_fnc_tasksettype;
@@ -333,7 +377,7 @@ switch (_Mission) do {
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Garnison Ace
     };
-    case (ODD_var_TargetTypeName select 6): {       // Secure VL
+    case (ODD_var_TargetTypeName select 7): {       // Secure VL
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextSecureVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "car"] call BIS_fnc_tasksettype;
@@ -423,7 +467,7 @@ switch (_Mission) do {
         [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Garnison Ace
     };
-    case (ODD_var_TargetTypeName select 7): {       // Destroy VL
+    case (ODD_var_TargetTypeName select 8): {       // Destroy VL
         //["TEST NOUVELLE MISSIONS"] remoteExec ["systemChat", 0]; 
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextDestroyVL, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;

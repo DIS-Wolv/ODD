@@ -131,7 +131,7 @@ ODD_var_ParticuleList = [];
 ODD_var_Objectif = [];
 
 // Definie les différent odd_var_objectif possible
-ODD_var_TargetTypeName = ["Caisse", "HVT", "Sécurisation de zone", "intel", "Helico", "Prisoniers", "Sécurisation de véhicule", "Destruction de véhicule"];
+ODD_var_TargetTypeName = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 	// (convoi hummanitaire, bombe, convoi à intercepter)
 
 // Definie les type de location que on veux
@@ -150,8 +150,14 @@ ODD_var_TextCaisse = [
 
 ODD_var_TextKillHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
-    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer ou le neutraliser.",
+    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le neutraliser.",
+    "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et le neutraliser."
+];
+
+ODD_var_TextSecureHVT = [
     "Un officier a été localisé près de %1. Les informations en sa possession nous sont indispensables. Votre mission est de le récupérer et de le ramener.",
+	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
+    "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le capturer et de le ramener a la base",
     "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et l'extraire vers la fob pour que nous puissions l'interroger."
 ];
 
