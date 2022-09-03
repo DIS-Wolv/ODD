@@ -450,7 +450,7 @@ if (ODD_var_CurrentMission == 0) then {
         
         // sleep(2);
         // Attend 2 s
-        private _DebutNettoyage = servertime + 30;
+        private _DebutNettoyage = servertime + 15;
         
         waitUntil {
             sleep 1;
