@@ -104,70 +104,73 @@ if (_action) then {
         } else {
             _group = selectRandom ODD_var_squad;
         };
-        // choisi un batiment aléatoirement
-        _GBuild = selectRandom _Buildings;
-        
-        // caisse med
-        if (_Med and (count _Buildings > 20)) then {
-            // si plus de 20 odd_var_maison, et pas de caisse
-            _posBox = [position _GBuild select 0, position _GBuild select 1, (position _GBuild select 2) + 2];
-            _posBox set[2, 1];
-            _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
-            // pose une caisse
-            _Med = false;
-            // definie que la caisse a spawn
-        };
-        
-        // spawn le groupe
-        _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
-        
-        // Ajoute le groupe a la liste des IA de la missions
-        ODD_var_MissionIA pushBack _g;
-        
-        // Ajoute le groupe a la liste des IA en garnison
-        ODD_var_GarnisonIA pushBack _g;
-        
-        _Buildings = _Buildings - [_GBuild];
-        
-        /*
-        if (!(isnil "HC1")) then {
-            // systemChat "HC1 présent";
-            _HCID = owner HC1;
+        if (count _Buildings > 0 ) then {
+            // choisi un batiment aléatoirement
+            _GBuild = selectRandom _Buildings;
+            //_Buildings = _Buildings - [_Buildings];
             
-            _g setgroupOwner _HCID;
+            // caisse med
+            if (_Med and (count _Buildings > 20)) then {
+                // si plus de 20 odd_var_maison, et pas de caisse
+                _posBox = [position _GBuild select 0, position _GBuild select 1, (position _GBuild select 2) + 2];
+                _posBox set[2, 1];
+                _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
+                // pose une caisse
+                _Med = false;
+                // definie que la caisse a spawn
+            };
+            
+            // spawn le groupe
+            _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
+            
+            // Ajoute le groupe a la liste des IA de la missions
+            ODD_var_MissionIA pushBack _g;
+            
+            // Ajoute le groupe a la liste des IA en garnison
+            ODD_var_GarnisonIA pushBack _g;
+            
+            _Buildings = _Buildings - [_GBuild];
+            
+            /*
+            if (!(isnil "HC1")) then {
+                // systemChat "HC1 présent";
+                _HCID = owner HC1;
+                
+                _g setgroupOwner _HCID;
+                {
+                    _x setowner _HCID;
+                } forEach (units _g);
+            };
+            //*/
+
             {
-                _x setowner _HCID;
-            } forEach (units _g);
+                _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+            } forEach (units _g);   //pour chaque units
+            
+            sleep 2;
+
+            _tp = false;
+
+            if ((position _GBuild select 2) < 0) then {
+                _tp = true;
+            }; 
+            
+            // met en garnison
+            if (round(random 4) == 0) then {
+                // 1 / 4 qu'il soit split dans plusieurs batiment
+                [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            } else {
+                [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            };
+            
+            // {
+                // _x disableAI "PATH";
+            // } forEach (units _g);
+            // [getPos _GBuild, nil, units _g, 100, 1, false, false] remoteExec ["\z\ace\addons\ai\functions\fnc_garrison.sqf", 0];
+            // Garnison Ace
+            // ["YoutV2"] remoteExec ["systemChat"];
+            // systemChat("Garnison");
         };
-        //*/
-
-        {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
-        
-        sleep 2;
-
-        _tp = false;
-
-        if ((position _GBuild select 2) < 0) then {
-            _tp = true;
-        }; 
-        
-        // met en garnison
-        if (round(random 4) == 0) then {
-            // 1 / 4 qu'il soit split dans plusieurs batiment
-            [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        } else {
-            [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        };
-        
-        // {
-            // _x disableAI "PATH";
-        // } forEach (units _g);
-        // [getPos _GBuild, nil, units _g, 100, 1, false, false] remoteExec ["\z\ace\addons\ai\functions\fnc_garrison.sqf", 0];
-        // Garnison Ace
-        // ["YoutV2"] remoteExec ["systemChat"];
-        // systemChat("Garnison");
     }forEach _nbgroup;
     
     /*
