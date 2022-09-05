@@ -142,7 +142,31 @@ if (ODD_var_CurrentMission == 0) then {
         // supprime le corps
     } forEach allDead;
     // pour chaque corps
-    
+
+    {
+        {
+            _id = _x addEventHandler["Killed", 
+                { 
+                    params ["_unit", "_killer"]; 
+                    [_unit, _killer] call ODD_fnc_surrender;
+                }
+            ];
+            _x setVariable ["ODD_var_SurrenderHandler", _id, true];
+        }forEach units _x;
+    } forEach ODD_var_MissionIA; //ajout de l'option de ce rendre sur les gars
+
+    {
+        {
+            _id = _x addEventHandler ["Killed", 
+                { 
+                    params ["_unit", "_killer"]; 
+                    [_unit, _killer] call ODD_fnc_surrender;
+                }
+            ];
+            _x setVariable ["ODD_var_SurrenderHandler", _id, true];
+        }forEach units _x;
+    } forEach ODD_var_ZopiA;    //ajout de l'option de ce rendre sur les ZO+
+
     [["Quantital : Nombre de Pax sur la ZO : %1", count ODD_var_MissionIA]] call ODD_fnc_log;
     [["Quantital : Nombre de Pax en ZO+ : %1", count ODD_var_ZopiA]] call ODD_fnc_log;
     [["Quantital : Nombre de Pax en Garnison : %1", count ODD_var_GarnisonIA]] call ODD_fnc_log;
