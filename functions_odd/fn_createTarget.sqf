@@ -158,7 +158,13 @@ switch (_Mission) do {
         ODD_var_Objectif pushBack (units _g select 0);
         // systemChat(str(units _g select 0));
         
-        ((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
+        _hvt = (units _g select 0);
+
+        removeAllWeapons _hvt;
+        _hvt addWeapon "hgun_Pistol_heavy_02_F";
+        _hvt addHandgunItem "6Rnd_45ACP_Cylinder";
+        _hvt addMagazine "6Rnd_45ACP_Cylinder";
+
         if (round random 4 == 1) then {
             // met en patrioulle
             [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
