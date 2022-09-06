@@ -138,7 +138,7 @@ switch (_Mission) do {
         
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "kill"] call BIS_fnc_tasksettype;
+        ["Task", "target"] call BIS_fnc_tasksettype;
     };
     case (ODD_var_TargetTypeName select 2): {       // Capture HVT
         // choisi une HVT random
@@ -191,7 +191,7 @@ switch (_Mission) do {
         
         // cree la tache
         _task = [true, "Task", [format[((selectRandom ODD_var_TextSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "target"] call BIS_fnc_tasksettype;
+        ["Task", "kill"] call BIS_fnc_tasksettype;
     };
     case (ODD_var_TargetTypeName select 3): {       // Secure Area
         // cree la tache
@@ -332,14 +332,14 @@ switch (_Mission) do {
         
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextHelico, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "heli"] call BIS_fnc_tasksettype;
+        ["Task", "scout"] call BIS_fnc_tasksettype;
         
         [_g, _pos, 150] call bis_fnc_taskpatrol;
     };
     case (ODD_var_TargetTypeName select 6): {       // Save Prisoniers
         // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextPrisoniers, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "scout"] call BIS_fnc_tasksettype;
+        ["Task", "meet"] call BIS_fnc_tasksettype;
         
         // choisi une Prisonier random
         private _group = selectRandom ODD_var_Otage;
