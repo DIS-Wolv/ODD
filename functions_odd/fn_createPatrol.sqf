@@ -18,7 +18,7 @@
 */
 
 // recup les argument
-params ["_zo", ["_action", False], ["_ZOM", False, False]];
+params ["_zo", ["_action", False], ["_ZOM", False]];
 
 // Compte les Joueurs
 private _human_players = ODD_var_NbPlayer; // removing Headless Clients
@@ -126,6 +126,9 @@ else {
 		[["Nombre de Patrouille en ZO- sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
 
 		{
+			// choisi un groupe	
+			private _group = selectRandom ODD_var_fireTeam;
+
 			// choisi une position rdm dans un cercle autour du centre de l'obj
 			_pos = position _zo getPos [800 * random 1, random 360];
 			
@@ -134,6 +137,9 @@ else {
 			};
 			//spawn le groupe
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+
+			//Ajoute le groupe a la liste des IA de la missions
+			ODD_var_ZopiA pushBack _g;
 
 			[_g] spawn ODD_fnc_patrolZoM;
 

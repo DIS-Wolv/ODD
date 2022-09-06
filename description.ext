@@ -36,6 +36,7 @@ class CfgFunctions
 			class roadBlockZO {};
 			class createRenfort {};
 			class intel {};
+			class patrolZoM {};
 			class surrender {};
 			class var {};
 			class varEne {};
