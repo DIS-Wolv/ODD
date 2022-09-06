@@ -5,7 +5,7 @@
 * Arguments:
 * 0: Zone souhaité <Obj>
 * 1: Es ce la zone principale <BOOL>
-* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* 2: es ce que le vl est en ZO-
 *
 * Return Value:
 * Nil
@@ -18,7 +18,7 @@
 */
 
 // recup les argument
-params ["_zo", ["_action", false], ["_Debug", false]];
+params ["_zo", ["_action", false], ["_ZOM", False]];
 
 // Compte les Joueurs
 private _human_players = ODD_var_NbPlayer; // removing Headless Clients
@@ -248,30 +248,51 @@ if (ODD_var_CurrentMission == 1) then {
 		[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODD_fnc_log;
 	}
 	else {
-
 		sleep 1;
 		if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
 			[-1, true, false] call ODD_fnc_varEne;	//les definie
 			sleep 1;
 		};
 
-		//Calule le nombre de groupe
-		_nbVehicule resize round random[0,(_human_players/8),8];
-		//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-		[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+		if (!_ZOM) then{
+			//Calule le nombre de groupe
+			_nbVehicule resize round random[0,(_human_players/8),8];
+			//systemChat(Format["Vehicule : %1", count _nbVehicule]);
+			[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 
-		//Pour tout les groupes nessaire 
-		{
+			//Pour tout les groupes nessaire 
+			{
+				// choisi un groupe	
+				private _group = selectRandom ODD_var_VehiculeSel;
+				ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
+				
+				// choisi une position rdm dans un cercle autour du centre de l'obj
+				_pos = position _zo getPos [800 * random 1, random 360];
+				
+				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
+					_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+				};
+				// systemChat(str(_pos));
+				//spawn le groupe
+				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+				
+				//Ajoute le groupe a la liste des IA de la missions
+				ODD_var_ZopiA pushBack _g;
+				
+				sleep 1;
+				//lui assigne des waypoint de patrouille
+				[_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
+				
+			}forEach _nbVehicule;
+		}
+		else {
 			// choisi un groupe	
 			private _group = selectRandom ODD_var_VehiculeSel;
 			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
 			
 			// choisi une position rdm dans un cercle autour du centre de l'obj
-			_pos = position _zo getPos [800 * random 1, random 360];
+			_pos = position (selectrandom (_pos nearRoads 600));
 			
-			while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-				_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
-			};
 			// systemChat(str(_pos));
 			//spawn le groupe
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
@@ -279,10 +300,9 @@ if (ODD_var_CurrentMission == 1) then {
 			//Ajoute le groupe a la liste des IA de la missions
 			ODD_var_ZopiA pushBack _g;
 			
-			sleep 1;
-			//lui assigne des waypoint de patrouille
-			[_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
-			
-		}forEach _nbVehicule;
+			[_g, True] spawn ODD_fnc_patrolZoM;
+
+		};
+		
 	};
 };
