@@ -37,6 +37,11 @@ if (type _zo == ODD_var_LocationType select 1) then {
 if (type _zo == ODD_var_LocationType select 0) then {
     _loctype = 5;
 };
+{
+    if (_x in ["military", "airbase", "airfield"]) then {
+        _locType = 2;
+    };
+}forEach ((text _zo) splitstring " ");
 
 private _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
 // Nombre de odd_var_maison dans la localité
@@ -62,7 +67,7 @@ if (_loctype == 1) then {
     selon le type : round
     5 (capital) nb batiment/24
     4 nbbat/25
-    3 nbbat/8
+    3 nbbat/16
     2 0
     1 nbbat / 10
     pensé a forcé 0 si negatif
