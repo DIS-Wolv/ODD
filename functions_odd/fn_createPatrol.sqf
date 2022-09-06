@@ -18,7 +18,7 @@
 */
 
 // recup les argument
-params ["_zo", ["_action", false], ["_Debug", false]];
+params ["_zo", ["_action", False], ["_ZOM", False, False]];
 
 // Compte les Joueurs
 private _human_players = ODD_var_NbPlayer; // removing Headless Clients
@@ -93,31 +93,50 @@ if (_action) then {
 }
 else {
 	//Calule le nombre de groupe
-	_nbPartol resize round (4 + _human_players / 8);
+	_nbPartol resize round (6 + _human_players / 8);
 	//Ajoute un random
-	_nbPartol resize 0 max (round random [(count _nbPartol) - 2, (count _nbPartol), (count _nbPartol) + 2]);
+	_nbPartol resize 0 max (round random [(count _nbPartol) - 3, (count _nbPartol), (count _nbPartol) + 3]);
 
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
+	if (!_ZOM) then {
+		[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
 
-	{
-		// choisi un groupe	
-		private _group = selectRandom ODD_var_fireTeam;
-		
-		// choisi une position rdm dans un cercle autour du centre de l'obj
-		_pos = position _zo getPos [800 * random 1, random 360];
-		
-		while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-			_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
-		};
-		
-		//spawn le groupe
-		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
-		
-		//Ajoute le groupe a la liste des IA de la missions
-		ODD_var_ZopiA pushBack _g;
-		
-		//lui assigne des waypoint de patrouille
-		[_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
-		
-	} forEach _nbPartol;
+		{
+			// choisi un groupe	
+			private _group = selectRandom ODD_var_fireTeam;
+			
+			// choisi une position rdm dans un cercle autour du centre de l'obj
+			_pos = position _zo getPos [800 * random 1, random 360];
+			
+			while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
+				_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+			};
+			
+			//spawn le groupe
+			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+			
+			//Ajoute le groupe a la liste des IA de la missions
+			ODD_var_ZopiA pushBack _g;
+			
+			//lui assigne des waypoint de patrouille
+			[_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
+			
+		} forEach _nbPartol;
+	}
+	else {
+		[["Nombre de Patrouille en ZO- sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;
+
+		{
+			// choisi une position rdm dans un cercle autour du centre de l'obj
+			_pos = position _zo getPos [800 * random 1, random 360];
+			
+			while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
+				_pos = position _zo getPos [random 400, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+			};
+			//spawn le groupe
+			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+
+			[_g] spawn ODD_fnc_patrolZoM;
+
+		} forEach _nbPartol;
+	};
 };
