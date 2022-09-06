@@ -59,15 +59,15 @@ if (_loctype == 1) then {
 };
 /*
 1. nb de ODD_var_Civils :
-selon le type : round
-5 (capital) nb batiment/24
-4 nbbat/25
-3 nbbat/8
-2 0
-1 nbbat / 10
-pensé a forcé 0 si negatif
-2. donne la position de la caisse :
-2/nb ODD_var_Civils
+    selon le type : round
+    5 (capital) nb batiment/24
+    4 nbbat/25
+    3 nbbat/8
+    2 0
+    1 nbbat / 10
+    pensé a forcé 0 si negatif
+    2. donne la position de la caisse :
+    2/nb ODD_var_Civils
 */
 
 // systemChat("spawn des ODD_var_Civils");
