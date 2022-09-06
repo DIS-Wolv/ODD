@@ -163,7 +163,8 @@ switch (_Mission) do {
         removeAllWeapons _hvt;
         _hvt addWeapon "hgun_Pistol_heavy_02_F";
         _hvt addHandgunItem "6Rnd_45ACP_Cylinder";
-        _hvt addMagazine "6Rnd_45ACP_Cylinder";
+        for "_i" from 0 to (round(random 3)) do {_hvt addMagazine "6Rnd_45ACP_Cylinder";};
+        
 
         if (round random 4 == 1) then {
             // met en patrioulle
@@ -189,7 +190,7 @@ switch (_Mission) do {
         };
         
         // cree la tache
-        _task = [true, "Task", [format[((selectRandom ODD_var_TextSecureHVT)+ "Il possède une chemlight jaune."), text _zo], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+        _task = [true, "Task", [format[((selectRandom ODD_var_TextSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "target"] call BIS_fnc_tasksettype;
     };
     case (ODD_var_TargetTypeName select 3): {       // Secure Area
