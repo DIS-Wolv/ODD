@@ -129,7 +129,7 @@ if (ODD_var_CurrentMission == 0) then {
             };
             // */
             
-            [_x, false, _Debug] call ODD_fnc_civil;
+            [_x, false] call ODD_fnc_civil;
             // a chaque fois Civil
         }forEach _location;
         // */	// pour toute les ZO+ activé
