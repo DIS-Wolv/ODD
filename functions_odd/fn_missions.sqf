@@ -108,14 +108,17 @@ if (ODD_var_CurrentMission == 0) then {
             // *
             _action = round random 100;
             // random en 0 et 2
-            if (_action =< 10) then {};
+            if (_action <= 10) then {};
             // si 0 fait rien
-            if (_action > 10 and _action =< 40) then {
-                // si 1
+            if (_action > 10 and _action <= 40) then {
+                // si 1 (ZO-)
                 [_x, false, True] call ODD_fnc_createPatrol;
                 // patrouilles
+
+                [_x, true, True] spawn ODD_fnc_createVehicule;
+                //vl 
             };
-            if (_action > 40 and _action =< 70) then {
+            if (_action > 40 and _action <= 70) then {
                 // si 2
                 [_x, false] call ODD_fnc_createPatrol;
                 // patrouilles
@@ -124,7 +127,7 @@ if (ODD_var_CurrentMission == 0) then {
                 [_x, _nbCheckPoint, false, _Debug] call ODD_fnc_roadBlock;
                 // RoadBlock
             };
-            if (_action > 70 and _action =< 100) then {
+            if (_action > 70 and _action <= 100) then {
                 // si 3
                 [_x, false] call ODD_fnc_createPatrol;
                 // patrouilles
