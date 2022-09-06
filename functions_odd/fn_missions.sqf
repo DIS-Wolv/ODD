@@ -13,11 +13,11 @@
 *
 * Example:
 * [] call ODD_fnc_missions
-* [2, "Kavala", false, true] call ODD_fnc_missions
+* [2, "Kavala", False, True] call ODD_fnc_missions
 *
 * Public:
 */
-params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", true], ["_Debug", false], ["_FacForce", -1]];
+params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_Debug", False], ["_FacForce", -1]];
 
 if(isNil "ODD_var_NbPlayer") then {
     ODD_var_NbPlayer = (playersNumber west);
@@ -33,7 +33,7 @@ if (isNil "ODD_var_DEBUG") then {
 //publicVariable "ODD_var_DEBUG";
 
 if (ODD_var_DEBUG) then { 
-    [_FacForce, false, true] call ODD_fnc_varEne;
+    [_FacForce, False, True] call ODD_fnc_varEne;
 };
 
 ODD_var_DistanceZO = 4000;
@@ -55,15 +55,15 @@ if (ODD_var_CurrentMission == 0) then {
     // Choix d'une missions
     ODD_var_Target = [_zo, _missiontype, _Debug] call ODD_fnc_createTarget;
     
-    [_zo, true] call ODD_fnc_civil;
+    [_zo, True] call ODD_fnc_civil;
     
-    [_zo, true, _Debug] call ODD_fnc_createGarnison;
+    [_zo, True, _Debug] call ODD_fnc_createGarnison;
     
-    [_zo, true] call ODD_fnc_createPatrol;
+    [_zo, True] call ODD_fnc_createPatrol;
     
-    [_zo, 2, true, _Debug] call ODD_fnc_roadBlock;
+    [_zo, 2, True, _Debug] call ODD_fnc_roadBlock;
     
-    [_zo, true] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
+    [_zo, True] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
     
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
@@ -75,7 +75,7 @@ if (ODD_var_CurrentMission == 0) then {
         // location = location entre 800 et 5000 m
         
         {
-            [_x, false] call ODD_fnc_civil;
+            [_x, False] call ODD_fnc_civil;
         } forEach _location;
 
         private _i = 0;
@@ -112,32 +112,32 @@ if (ODD_var_CurrentMission == 0) then {
             // si 0 fait rien
             if (_action > 10 and _action <= 40) then {
                 // si 1 (ZO-)
-                [_x, false, True] call ODD_fnc_createPatrol;
+                [_x, False, True] call ODD_fnc_createPatrol;
                 // patrouilles
 
-                [_x, true, True] spawn ODD_fnc_createVehicule;
+                [_x, True, True] spawn ODD_fnc_createVehicule;
                 //vl 
             };
             if (_action > 40 and _action <= 70) then {
                 // si 2
-                [_x, false] call ODD_fnc_createPatrol;
+                [_x, False] call ODD_fnc_createPatrol;
                 // patrouilles
                 
                 _nbCheckPoint = round random 4;
-                [_x, _nbCheckPoint, false, _Debug] call ODD_fnc_roadBlock;
+                [_x, _nbCheckPoint, False, _Debug] call ODD_fnc_roadBlock;
                 // RoadBlock
             };
             if (_action > 70 and _action <= 100) then {
                 // si 3
-                [_x, false] call ODD_fnc_createPatrol;
+                [_x, False] call ODD_fnc_createPatrol;
                 // patrouilles
                 
-                [_x, false] call ODD_fnc_createGarnison;
+                [_x, False] call ODD_fnc_createGarnison;
                 // garnison
             };
             // */
             
-            [_x, false] call ODD_fnc_civil;
+            [_x, False] call ODD_fnc_civil;
             // a chaque fois Civil
         }forEach _location;
         // */	// pour toute les ZO+ activé
@@ -160,7 +160,7 @@ if (ODD_var_CurrentMission == 0) then {
                     [_unit, _killer] call ODD_fnc_surrender;
                 }
             ];
-            _x setVariable ["ODD_var_SurrenderHandler", _id, true];
+            _x setVariable ["ODD_var_SurrenderHandler", _id, True];
         }forEach units _x;
     } forEach ODD_var_MissionIA; //ajout de l'option de ce rendre sur les gars
 
@@ -172,7 +172,7 @@ if (ODD_var_CurrentMission == 0) then {
                     [_unit, _killer] call ODD_fnc_surrender;
                 }
             ];
-            _x setVariable ["ODD_var_SurrenderHandler", _id, true];
+            _x setVariable ["ODD_var_SurrenderHandler", _id, True];
         }forEach units _x;
     } forEach ODD_var_ZopiA;    //ajout de l'option de ce rendre sur les ZO+
 
@@ -207,10 +207,10 @@ if (ODD_var_CurrentMission == 0) then {
     
     _nbIa = [_Debug] call ODD_fnc_countIA;
     
-    ["Task", "ASSIGNED", true] call BIS_fnc_tasksetState;
+    ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
     
     _BaseIa = _nbIa;
-    private _Renfort = true;
+    private _Renfort = True;
     private _nbItt = 0;
     
     [["Mission Lancée"]] call ODD_fnc_log;
@@ -336,7 +336,7 @@ if (ODD_var_CurrentMission == 0) then {
                 waitUntil {
                     sleep 1;
                     _nbIa = [_Debug] call ODD_fnc_countIA;
-                    ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                    ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
             sleep(1);
@@ -359,7 +359,7 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 waitUntil {
                     sleep 1;
-                    ((ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                    ((ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
             sleep(1);
@@ -382,7 +382,7 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 waitUntil {
                     sleep 1;
-                    (((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == false or servertime > _NextTick
+                    (((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
                 // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
                 // fait rien
@@ -464,7 +464,7 @@ if (ODD_var_CurrentMission == 0) then {
     
     if (ODD_var_CurrentMission == 1) then {
         // cree la tache retour base
-        _task = [true, "Extract", ["Rentrez a la base", "RTB", "RTB"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+        _task = [True, "Extract", ["Rentrez a la base", "RTB", "RTB"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
         ["Extract", "move"] call BIS_fnc_tasksettype;
         sleep(1);
         
