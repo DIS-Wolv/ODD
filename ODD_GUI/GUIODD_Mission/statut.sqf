@@ -11,9 +11,9 @@
 
 _MissionsStatus = parseText "<t size='1.5' align='center'><t/>";
 switch (ODD_var_CurrentMission) do {
-	case 0: {_MissionsStatus = parseText "<t size='1.5' align='center'>Pas de missions en cours<t/>";};
-	case 1: {_MissionsStatus = parseText "<t size='1.5' align='center'>Missions en cours<t/>";};
-	case 2: {_MissionsStatus = parseText "<t size='1.5' align='center'>Missions en préparation / nettoyage<t/>";};
+	case 0: {_MissionsStatus = parseText "<t size='1.5' align='center'>Pas de mission en cours<t/>";};
+	case 1: {_MissionsStatus = parseText "<t size='1.5' align='center'>Mission en cours<t/>";};
+	case 2: {_MissionsStatus = parseText "<t size='1.5' align='center'>Mission en préparation / nettoyage<t/>";};
 	default {_MissionsStatus = parseText "<t size='1.5' align='center'><t/>";};
 };
 

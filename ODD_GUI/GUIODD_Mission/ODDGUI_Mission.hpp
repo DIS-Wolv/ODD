@@ -19,7 +19,7 @@ class ODDGUI_Mission
 		class GUIODD_Mission_Title: RscStructuredText_ODDGUI
 		{
 			idc = 1100;
-			text = "<t size='4' align='center'>Générateur de missions ODD<t/>";
+			text = "<t size='4' align='center'>Générateur d'ODD<t/>";
 			x = 0.3 * safezoneW + safezoneX;
 			y = 0.12 * safezoneH + safezoneY;
 			w = 0.4 * safezoneW;
@@ -46,7 +46,7 @@ class ODDGUI_Mission
 		class GUIODD_Mission_TitleJoueur: RscStructuredText_ODDGUI
 		{
 			idc = 1103;
-			text = "<t size='2' align='center'>Nombre de joueur<t/>";
+			text = "<t size='2' align='center'>Nombre de joueurs<t/>";
 			x = 0.7125 * safezoneW + safezoneX;
 			y = 0.22 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
@@ -210,7 +210,7 @@ class ODDGUI_Mission
 		class GUIODD_Mission_ButtonClear: RscButton_ODDGUI
 		{
 			idc = 1605;
-			text = "Clear la mission"; //--- ToDo: Localize;
+			text = "Nettoyer la mission"; //--- ToDo: Localize;
 			x = 0.325 * safezoneW + safezoneX;
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
