@@ -87,7 +87,7 @@ if (ODD_var_CurrentMission == 0) then {
         _nbloc = round random [0, (count(_location)*3/5), count(_location)];
         // on prend entre 0 et toute les loc a poximité centré sur 2/5
         
-        _nbloc = 4 min _nbloc;
+        _nbloc = 5 min _nbloc;
         
         while {count(_location) > _nbloc} do {
             // tant que trop de loc
