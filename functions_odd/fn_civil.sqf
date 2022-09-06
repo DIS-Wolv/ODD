@@ -16,7 +16,7 @@
 *
 * Public:
 */
-params ["_zo", ["_action", false], ["_Debug", false]];
+params ["_zo", ["_action", false]];
 
 private _loctype = 0;
 if (type _zo == ODD_var_LocationType select 5) then {
