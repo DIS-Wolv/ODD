@@ -150,7 +150,7 @@ ODD_var_TextCaisse = [
 
 ODD_var_TextKillHVT = [
 	"Un haut gradé nous a été signalé à proximité de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi.",
-    "Le général %2 a été localisé près de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi. Votre missions : le neutraliser."
+    "Le général %2 a été localisé près de %1. C'est pour nous une opportunité en or de désorganiser la chaine de commandement de l'ennemi. Votre missions : le neutraliser.",
     "Nous avons repéré un commandant des forces ennemies à proximité de %1. Notre mission est d'aller le neutraliser.",
     "Nous avons repéré un gradé ennemi à %1, vous devez l'intercepter et le neutraliser."
 ];
