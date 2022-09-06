@@ -128,12 +128,18 @@ _civil resize (_nbCivil);
 {
     [position ((units _x) select 0), nil, units _x, 100, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
+    {
+        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+    } forEach (units _g);   //pour chaque units
 } forEach _civil;
 
 sleep 1;
 {
     if (random 100 < 80) then {
         [units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
+        {
+            _x setVariable ["acex_headless_blacklist", false, true]; //blacklist l'unit des HC
+        } forEach (units _g);   //pour chaque units
     };
 } forEach _civil;
 
