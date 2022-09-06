@@ -99,8 +99,6 @@ _civil resize (_nbCivil);
     
     ODD_var_MissionCivil pushBack _g;
     
-    sleep 0.5;
-    
     [
         ((units _g)select 0), 
         "<t color='#FF0000'>interoger le civil</t>", 
@@ -127,85 +125,100 @@ _civil resize (_nbCivil);
     
 }forEach _civil;
 
-sleep 2;
 {
     [position ((units _x) select 0), nil, units _x, 100, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
 } forEach _civil;
 
-sleep 2;
+sleep 1;
 {
-    [units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
+    if (random 100 < 80) then {
+        [units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
+    };
 } forEach _civil;
 
 // for "_i" from 1 to 3 do
 {
-    /*
-    _roads = position _zo nearRoads 300;
-    _road = selectRandom _roads;
-    
-    _pos = position _road;
-    
-    _GBuild = selectRandom _Buildings;
-    
-    _roadDir = 0;
-    _connectedRoad = roadsConnectedto [_road, false];
-    if (count (_connectedRoad) >= 1) then {
-        // si il y a une route acollÃ©
-        _roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_Dirto;
-        // recup la direction
+    if (random 100 < 35) then {
+        _vl = selectRandom ODD_var_CivilsVL;
+        // choisie un vl
         
-        _roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
-        // + 0 ou + 180 Â°
-    };
-    
-    _vl = selectRandom ODD_var_CivilsVL;
-    
-    _pos = _pos getPos [6, (_roadDir + 90 + ((round (random 2))* 180)) % 360];
-    
-    _pos = _pos findEmptyposition [0, 100, _vl];
-    
-    _g = _vl createvehicle _pos;
-    
-    // _g setDir _roadDir;
-    
-    // _g = [_pos, _roadDir, _group, EMPTY] call BIS_fnc_spawnvehicle;
-    // sleep 1;
-    // deletevehicle (units (_g select 0) select 0);
-    // */
-    
-    _vl = selectRandom ODD_var_CivilsVL;
-    // choisie un vl
-    
-    _GBuild = selectRandom _Buildings;
-    _dir = getDir _GBuild;
-    if (_dir == 0) then {
-        _dir = getDirVisual _GBuild;
-    };
-    
-    _pos = position _GBuild;
-    // recup la pos
-    
-    _pos = _pos findEmptyposition [3, 100, _vl];
-    //, "B_Heli_Transport_01_F"
-    
-    // _pos = _pos getPos [3, [position _GBuild, _pos] call BIS_fnc_dirto];
-    
-    _g = _vl createvehicle _pos;
-    // créé le VL
+        _GBuild = selectRandom _Buildings;
+        _dir = getDir _GBuild;
+        if (_dir == 0) then {
+            _dir = getDirVisual _GBuild;
+        };
+        
+        _pos = position _GBuild;
+        // recup la pos
+        
+        _pos = _pos findEmptyposition [3, 100, _vl];
+        //, "B_Heli_Transport_01_F"
+        
+        // _pos = _pos getPos [3, [position _GBuild, _pos] call BIS_fnc_dirto];
+        
+        _g = _vl createvehicle _pos;
+        // créé le VL
 
-    _g addItemCargoGlobal ["Toolkit", 1]; 
-    // Ajoute un repaire kit
-    
-    _g setDir _dir;
-    
-    sleep 0.5;
-    
-    _g setFuel 1;
-    
-    _g setDamage 0;
-    ODD_var_MissionProps pushBack _g;
+        _g addItemCargoGlobal ["Toolkit", 1]; 
+        // Ajoute un repaire kit
+        
+        _g setDir _dir;
+        
+        sleep 0.5;
+        
+        _g setFuel 1;
+        
+        _g setDamage 0;
+        ODD_var_MissionProps pushBack _g;
+    };
 }forEach _civil; //Sur 80 % des gars, pas tous
+
+if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
+    // choisi un groupe
+    private _group = selectRandom ODD_var_CivilsVL;
+    
+    _pos = position selectrandom (position _zo nearRoads 600);
+    
+    // spawn le groupe et le vl
+    _g = [_pos, civilian, _group] call BIS_fnc_spawngroup;
+    
+    {
+        // Current result is saved in variable _x
+        [
+        _x, 
+        "<t color='#FF0000'>interoger le civil</t>", 
+        "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
+        "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
+        "(alive (_target)) and (_target distance _this < 8)", 
+        "true",
+        {
+            [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
+            // (_this select 0) disableAI "PATH"
+        }, 
+        {},
+        {
+            [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
+            // (_this select 0) enableAI "PATH";
+
+            [] remoteExec ["ODD_fnc_intel", 2];
+            [(_this select 0)] remoteExec ["removeAllActions"];
+        }, {
+            // (_this select 0) enableAI "PATH";
+            [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
+        }, [], (random[2, 10, 15]), nil, true, false
+        ] remoteExec ["BIS_fnc_holdActionAdd"];
+
+         ODD_var_MissionCivil pushBack _x;
+
+    } forEach units _g;
+
+
+    //_g addItemCargoGlobal ["Toolkit", 1]; 
+
+    [_g, True] spawn ODD_fnc_patrolZoM;
+
+};
 
 publicVariable "ODD_var_MissionCivil";
 publicVariable "ODD_var_MissionProps";
