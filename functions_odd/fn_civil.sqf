@@ -12,11 +12,11 @@
 *
 * Example:
 * [_zo] call ODD_fnc_civil
-* [_zo, true, false] call ODD_fnc_civil
+* [_zo, True, False] call ODD_fnc_civil
 *
 * Public:
 */
-params ["_zo", ["_action", false]];
+params ["_zo", ["_action", False]];
 
 private _loctype = 0;
 if (type _zo == ODD_var_LocationType select 5) then {
@@ -105,7 +105,7 @@ _civil resize (_nbCivil);
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
         "(alive (_target)) and (_target distance _this < 3)", 
-        "true",
+        "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
             // (_this select 0) disableAI "PATH"
@@ -120,16 +120,16 @@ _civil resize (_nbCivil);
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-        }, [], (random[2, 10, 15]), nil, true, false
+        }, [], (random[2, 10, 15]), nil, True, False
     ] remoteExec ["BIS_fnc_holdActionAdd"];
     
 }forEach _civil;
 
 {
-    [position ((units _x) select 0), nil, units _x, 100, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+    [position ((units _x) select 0), nil, units _x, 100, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     // Garnison Ace
     {
-        _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+        _x setVariable ["acex_headless_blacklist", True, True]; //blacklist l'unit des HC
     } forEach (units _g);   //pour chaque units
 } forEach _civil;
 
@@ -138,7 +138,7 @@ sleep 1;
     if (random 100 < 80) then {
         [units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
         {
-            _x setVariable ["acex_headless_blacklist", false, true]; //blacklist l'unit des HC
+            _x setVariable ["acex_headless_blacklist", False, True]; //blacklist l'unit des HC
         } forEach (units _g);   //pour chaque units
     };
 } forEach _civil;
@@ -197,7 +197,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
         "(alive (_target)) and (_target distance _this < 8)", 
-        "true",
+        "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
             // (_this select 0) disableAI "PATH"
@@ -212,7 +212,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-        }, [], (random[2, 10, 15]), nil, true, false
+        }, [], (random[2, 10, 15]), nil, True, False
         ] remoteExec ["BIS_fnc_holdActionAdd"];
 
          ODD_var_MissionCivil pushBack _x;
