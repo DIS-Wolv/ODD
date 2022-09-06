@@ -46,7 +46,8 @@ if (ODD_var_CurrentMission == 0) then {
     ODD_var_CurrentMission = 2;
     publicVariable "ODD_var_CurrentMission";
     // Choix d'un Lieux odd_var_objectif
-    ODD_var_zo = [_forceZO, _Debug] call ODD_fnc_createZO;
+    _zo = [_forceZO, _Debug] call ODD_fnc_createZO;
+    ODD_var_zo = _zo;
     publicVariable "ODD_var_zo";
     // private _diff = [_zo] call _Calcdifficulty
     // systemChat(str(_diff));
