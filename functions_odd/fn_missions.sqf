@@ -63,7 +63,7 @@ if (ODD_var_CurrentMission == 0) then {
     
     [_zo, 2, true, _Debug] call ODD_fnc_roadBlock;
     
-    [_zo, true, _Debug] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
+    [_zo, true] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
     
     if (_ZOP) then {
         // Ajouté des location a proximité ou il y aurai des patrouilles
