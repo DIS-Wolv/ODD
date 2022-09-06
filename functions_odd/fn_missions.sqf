@@ -57,7 +57,7 @@ if (ODD_var_CurrentMission == 0) then {
     
     [_zo, true, _Debug] call ODD_fnc_createGarnison;
     
-    [_zo, true, _Debug] call ODD_fnc_createPatrol;
+    [_zo, true] call ODD_fnc_createPatrol;
     
     [_zo, 2, true, _Debug] call ODD_fnc_roadBlock;
     
@@ -106,12 +106,12 @@ if (ODD_var_CurrentMission == 0) then {
             // si 0 fait rien
             if (_action == 1) then {
                 // si 1
-                [_x, false, _Debug] call ODD_fnc_createPatrol;
+                [_x, false] call ODD_fnc_createPatrol;
                 // patrouilles
             };
             if (_action == 2) then {
                 // si 2
-                [_x, false, _Debug] call ODD_fnc_createPatrol;
+                [_x, false] call ODD_fnc_createPatrol;
                 // patrouilles
                 
                 _nbCheckPoint = round random 4;
@@ -120,7 +120,7 @@ if (ODD_var_CurrentMission == 0) then {
             };
             if (_action == 3) then {
                 // si 3
-                [_x, false, _Debug] call ODD_fnc_createPatrol;
+                [_x, false] call ODD_fnc_createPatrol;
                 // patrouilles
                 
                 [_x, false] call ODD_fnc_createGarnison;
