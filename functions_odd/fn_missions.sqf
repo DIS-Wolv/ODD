@@ -74,6 +74,10 @@ if (ODD_var_CurrentMission == 0) then {
         _location = _location - _closeLoc;
         // location = location entre 800 et 5000 m
         
+        {
+            [_x, false] call ODD_fnc_civil;
+        } forEach _location;
+
         private _i = 0;
         while {_i < count(_location)} do {
             private _Buildings = nearestobjects[position (_location select _i), ODD_var_Maison, 200];
