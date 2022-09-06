@@ -56,22 +56,23 @@ if (ODD_var_CurrentMission == 1) then {
 		_heure = date select 3;		// heure de la journé
 		
 		//definie le nombre de vl
-		if(ODD_var_support) then {
-			if (count (ODD_var_VlSupport) == 0) then {
-				_nbVl = (round random[0, (_human_players/10), 8]) + 2;
+		_nbVl = (round random[0, (_human_players/8), 8]);
+		if(ODD_var_support) then {		//si support
+			if (count (ODD_var_VlSupport) == 0) then { //support pas detecté hors base ajoute 2 vl
+				_nbVl = _nbVl + 2;										
 				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl;
 				_nbVehiculeLourd resize _nbVlLourd; 
 			} else {
-				_nbVl = (round random[0, (_human_players/10), 8]) + ODD_var_VlSupport;
+				_nbVl = _nbVl + ODD_var_VlSupport;		//sinon ajoute le nombre de vl de support 
 				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl; 
 				_nbVehiculeLourd resize _nbVlLourd; 
 			};
 		} else {
-			_nbVehicule resize round random[0, (_human_players/10), 8];
+			_nbVehicule resize round random[0, (_human_players/8), 8];
 		};
 		// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 		//_nbVehicule resize 5;
