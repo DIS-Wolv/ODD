@@ -14,7 +14,7 @@
 *
 * Public:
 */
-params ["_g", ["_isVL", False]];
+params ["_g"];
 
 //position du chef de groupe
 private _leader = (units _g select 0);
@@ -35,26 +35,20 @@ _nextZo = selectrandom _zoList;
 //systemChat str text _pZo;
 for "_i" from 0 to ((round(random 4))+4) do {
 
-	_posWP = position _pZo getPos [(random 300) + 300, random 360];
-
-	if (_isVL) then {		
-		_posWP = selectrandom (position _pZo nearRoads 600);
-	};
+	_posWP = position selectrandom (position _pZo nearRoads 600);
 
 	_g addWaypoint [_posWP, 5];
 
 };
 
 //patrouille sur la ZO suivante
-_posWP = position _nextZo getPos [(random 100) + 100, random 360];
-if (_isVL) then {
-	_posWP = selectrandom (position _nextZo nearRoads 200);
-};
+_posWP = position selectrandom ((position _nextZo) nearRoads 200);
+
 _g addWaypoint [_posWP, 5];
 
 waitUntil {
 	sleep 5;
-	(_leader distance2D (getPos _nextZo)) < 300
+	((_leader distance2D (getPos _nextZo)) < 300)
 };
 
 [_g] spawn ODD_fnc_patrolZoM;

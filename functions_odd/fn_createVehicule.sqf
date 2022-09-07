@@ -300,7 +300,7 @@ if (ODD_var_CurrentMission == 1) then {
 			//Ajoute le groupe a la liste des IA de la missions
 			ODD_var_ZopiA pushBack _g;
 			
-			[_g, True] spawn ODD_fnc_patrolZoM;
+			[_g] spawn ODD_fnc_patrolZoM;
 
 		};
 		
