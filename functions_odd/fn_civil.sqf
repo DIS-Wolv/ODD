@@ -83,7 +83,7 @@ if (not _action) then {
 _nbCivil = (round (0 max _nbCivil));
 
 [["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODD_fnc_log;
-
+private _g = [];
 private _civil = [];
 _civil resize (_nbCivil);
 {
@@ -187,7 +187,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
     _pos = position selectrandom (position _zo nearRoads 600);
     
     // spawn le groupe et le vl
-    _g = [_pos, civilian, _group] call BIS_fnc_spawngroup;
+    _g = [_pos, civilian, [_group]] call BIS_fnc_spawngroup;
     
     {
         // Current result is saved in variable _x
@@ -222,7 +222,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 
     //_g addItemCargoGlobal ["Toolkit", 1]; 
 
-    [_g, True] spawn ODD_fnc_patrolZoM;
+    [_g] spawn ODD_fnc_patrolZoM;
 
 };
 
