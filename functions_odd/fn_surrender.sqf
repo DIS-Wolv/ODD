@@ -15,7 +15,6 @@
 */
 params ["_unit", "_killer"];
 
-
 if (side _killer == WEST ) then {	//si tué par blufort
 	// distance de recherche
 	_distSurrender = 20;
