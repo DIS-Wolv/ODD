@@ -13,7 +13,7 @@
 *
 * Public:
 */
-params [[_units], [_killer]];
+params ["_unit", "_killer"];
 
 
 if (side _killer == WEST ) then {	//si tué par blufort
@@ -44,6 +44,30 @@ if (side _killer == WEST ) then {	//si tué par blufort
 				_id = _x getVariable "ODD_var_SurrenderHandler";		//recupe l'ID de sont eventHandler
 				_x removeEventHandler ["Killed", _id];					//remove l'eventHandler (pourra pas donné envie au autre de se rentre)
 			};
+			
+			[
+				_x, 
+				"<t color='#FF0000'>Interoger le prisonier</t>", 
+				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
+				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
+				"(alive (_target)) and (_target distance _this < 3)", 
+				"True",
+				{
+					//[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
+					// (_this select 0) disableAI "PATH"
+				}, 
+				{},
+				{
+					//[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
+					// (_this select 0) enableAI "PATH";
+
+					[] remoteExec ["ODD_fnc_intel", 2];
+					[(_this select 0)] remoteExec ["removeAllActions"];
+				}, {
+					// (_this select 0) enableAI "PATH";
+					//[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
+				}, [], (random[2, 10, 15]), nil, True, False
+			] remoteExec ["BIS_fnc_holdActionAdd"];
 
 			//Ajout de eventHandler pour baisé la reputation civil
 
