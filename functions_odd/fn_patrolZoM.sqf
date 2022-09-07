@@ -31,24 +31,28 @@ _zoList = _zoList - [_pZo];
 
 //choisi la zone suivante
 _nextZo = selectrandom _zoList;
+while {count ((position _nextZo) nearRoads 300) <= 0} do {		// tant qu'il y a pas de route
+	_zoList = _zoList - [_nextZo];								//supprime la ZO-
+	_nextZo = selectrandom _zoList;								//tire une autre ZO-
+};
 
 //systemChat str text _pZo;
 for "_i" from 0 to ((round(random 4))+4) do {
 
-	_posWP = position selectrandom (position _pZo nearRoads 600);
+	_posWP = getPos (selectrandom (position _pZo nearRoads 600));
 
 	_g addWaypoint [_posWP, 5];
 
 };
 
 //patrouille sur la ZO suivante
-_posWP = position selectrandom ((position _nextZo) nearRoads 200);
+_posWP = getPos (selectrandom ((position _nextZo) nearRoads 300));
 
 _g addWaypoint [_posWP, 5];
 
 waitUntil {
 	sleep 5;
-	((_leader distance2D (getPos _nextZo)) < 300)
+	((_leader distance2D (getPos _nextZo)) < 350)
 };
 
 [_g] spawn ODD_fnc_patrolZoM;
