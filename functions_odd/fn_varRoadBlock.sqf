@@ -14,7 +14,7 @@
 * Public:
 */
 
-RoadBlock = [
+ODD_var_RoadBlock = [
 	[ 
 		["Land_BagFence_Short_F",[0.23584,-1.90479,-0.000999928],358.717,1,0,[0,0],"","",true,false],
 		["Land_BagFence_Long_F",[-5.75342,-2.20117,-0.000999928],358.516,1,0,[0,-0],"","",true,false],  
@@ -174,6 +174,6 @@ RoadBlock = [
 
 ];
 
-//publicVariable "RoadBlock";
+//publicVariable "ODD_var_RoadBlock";
 
 

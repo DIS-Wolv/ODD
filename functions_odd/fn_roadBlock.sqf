@@ -33,7 +33,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 	_road = selectRandom _roads;
 	_roads = _roads - [_road];
 	
-	_structure = selectRandom RoadBlock;
+	_structure = selectRandom ODD_var_RoadBlock;
 	
 	_connectedRoad = roadsConnectedTo _road;
 

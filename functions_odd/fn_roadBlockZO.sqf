@@ -54,7 +54,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 
 		_roads = _roads - [_road];
 	
-		_structure = selectRandom RoadBlock;
+		_structure = selectRandom ODD_var_RoadBlock;
 		
 		_connectedRoad = roadsConnectedTo _road;
 
