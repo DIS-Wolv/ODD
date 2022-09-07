@@ -46,7 +46,7 @@ if (ODD_var_CurrentMission == 1) then {
 					_joueurInZO = _joueurInZO - 1;								//retire le prisonier de la liste
 				};
 				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
-				_joueurInZO == 0
+				_joueurInZO <= 0
 			};
 
 
