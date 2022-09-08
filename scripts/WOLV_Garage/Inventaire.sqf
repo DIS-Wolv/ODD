@@ -16,7 +16,7 @@ _display = findDisplay IddDisplay;				// Recupère le GUI
 _ctrlBar = _display displayCtrl IdcBarreInv;	// recupe la barre de charge du vl
 _ctrlBar progressSetPosition 0;					//set la progression de la barre a 0
 
-if (_index != -1) then {  // si un élément est séléctioné
+if ((_index != -1) and (count(ListVL) > 0)) then {  // si un élément est séléctioné
 	_vl = ListVL select _index; 	// recupère le vl 
 	// systemchat (Format ["%1 / %2 = %3", loadAbs _vl, maxLoad _vl, load _vl]);
 
