@@ -22,6 +22,10 @@ _msg = "";
 	_marker setMarkertype (selectRandom _markerPool);
 	_marker setMarkerColor (selectRandom _colorPool);
 	_marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
+
+	["Task", "UPDATED"] call BIS_fnc_taskHint;
+	["Task", _pos] call BIS_fnc_taskSetDestination;
+
 } else {
 	_msg = "J'ai pas d'info.";
 };
