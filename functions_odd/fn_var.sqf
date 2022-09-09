@@ -133,9 +133,13 @@ ODD_var_ParticuleList = [];
 // liste de/des odd_var_objectif(s)
 ODD_var_Objectif = [];
 
-// Definie les différent odd_var_objectif possible
+// Definie les différent objectif possible
 ODD_var_TargetTypeName = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
-	// (convoi hummanitaire, bombe, convoi à intercepter)
+	// convoi hummanitaire, bombe, convoi à intercepter
+
+// Definie les différent objectif secondaire possible
+ODD_var_CivTargetTypeName = ["IED a déminer", "Vehicule volé"]; 
+    // convoie hummanitaire ?(remplacé dans l'objectif principale par convoie mattériel ?)
 
 // Definie les type de location que on veux
 ODD_var_LocationType = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
