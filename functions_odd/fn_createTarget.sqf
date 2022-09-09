@@ -391,7 +391,7 @@ switch (_Mission) do {
         _task = [true, "Task", [format[selectRandom ODD_var_TextSecureVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "car"] call BIS_fnc_tasksettype;
         
-        _vl = selectRandom ODD_var_tgVehicule;
+        _vl = selectRandom ODD_var_tgVehiculeSecure;
         // choisie un vl
         
         // recupère les route proche du centre de l'odd_var_objectif
@@ -482,7 +482,7 @@ switch (_Mission) do {
         _task = [true, "Task", [format[selectRandom ODD_var_TextDestroyVL, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "car"] call BIS_fnc_tasksettype;
         
-        _vl = selectRandom oDD_var_tgVehicule;
+        _vl = selectRandom ODD_var_tgVehiculeDestroy;
         // choisie un vl
         
         // recupère les route proche du centre de l'odd_var_objectif
@@ -568,6 +568,13 @@ switch (_Mission) do {
         // Garnison Ace
     };
 };
+
+_pos = position _zo;
+
+_pos set [0, ((_pos select 0) + ((size _zo) select 0)/2)];
+_pos set [1, ((_pos select 1) + ((size _zo) select 0)/4)];
+
+["Task", _pos] call BIS_fnc_taskSetDestination;
 
 publicVariable "ODD_var_Objectif";
 publicVariable "ODD_var_MissionProps";

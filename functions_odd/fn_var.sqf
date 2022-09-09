@@ -105,9 +105,12 @@ ODD_var_CivilsVL = ["C_Hatchback_01_F",
 ODD_var_Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
 
 // liste des vehicule ODD_var_Objectif
-ODD_var_tgVehicule = [
+ODD_var_tgVehiculeSecure = [
     "rhsgref_ins_gaz66_r142", "rhs_gaz66_r142_vdv", "rhsgref_cdf_b_gaz66_r142", "rhsgref_cdf_gaz66_r142", "rhs_tigr_msv", "rhs_tigr_3camo_msv", "rhs_tigr_m_msv", "rhs_tigr_m_3camo_msv"
 ];
+
+// Liste des vehicule destroy
+ODD_var_tgVehiculeDestroy = ODD_var_tgVehiculeSecure;
 
 // array des ia de la mission
 ODD_var_MissionIA = [];
