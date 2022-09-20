@@ -101,6 +101,17 @@ ODD_var_CivilsVL = ["C_Hatchback_01_F",
     "brf_c_afc_zil131_orange"
 ];
 
+//Distance de la génération des ZO+ 
+ODD_var_DistanceZO = 4000;
+// IED Campage
+ODD_var_IEDLand = ["ACE_IEDLandSmall_Range", "ACE_IEDLandSmall_Range", "ACE_IEDLandBig_Range"];
+// IED Ville
+ODD_var_IEDUrban = ["ACE_IEDLandSmall_Range", "ACE_IEDLandSmall_Range", "ACE_IEDLandBig_Range"];
+// IED Campage
+ODD_var_IEDDecoyLand = ["IEDLandSmall_F", "IEDLandSmall_F", "IEDLandBig_F"];
+// IED Ville
+ODD_var_IEDDecoyUrban = ["IEDUrbanSmall_F", "IEDUrbanSmall_F", "IEDUrbanBig_F"];
+
 // liste des prisonier
 ODD_var_Otage = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
 
@@ -117,6 +128,9 @@ ODD_var_MissionIA = [];
 
 // array des ia en ZO+
 ODD_var_ZopiA = [];
+
+// array des IED de la mission
+ODD_var_IED = [];
 
 // array des ia en garnison
 ODD_var_GarnisonIA = [];

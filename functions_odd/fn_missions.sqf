@@ -143,6 +143,15 @@ if (ODD_var_CurrentMission == 0) then {
         // */	// pour toute les ZO+ activé
 
         [_zo, 4, ODD_var_DistanceZO] call ODD_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
+
+        _action = round random 100;
+        if (_action >= 90) then {       // réglé le % plus tard
+            //creation des IED dans la ZO+
+            _nbIED = 5 + random 10;
+            [_zo, _nbIED] call ODD_fnc_pressureIED;
+            _nbDecoy = 3 + random 7;
+            [_zo, _nbDecoy, True] call ODD_fnc_pressureIED;
+        };
     };
 
     {
