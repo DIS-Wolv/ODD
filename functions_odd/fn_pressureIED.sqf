@@ -118,4 +118,5 @@ if (_isDecoy) then {
 }
 else {
 	ODD_var_IED = ODD_var_IED + _IED;
+	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 };
