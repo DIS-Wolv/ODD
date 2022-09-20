@@ -1,6 +1,6 @@
 /*
 * Author: Wolv
-* Fonction permetant de créé un odd_var_objectif sur une zone 
+* Fonction permetant de créé un objectif sur une zone 
 *
 * Arguments:
 * 0: Zone souhaité <Obj>
