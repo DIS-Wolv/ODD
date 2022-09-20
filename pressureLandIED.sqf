@@ -4,6 +4,8 @@ params ["_zo", ["_nb", 2], ["_dist", 4000]];
 
 _pos = position _zo; 
 private _props = [];
+private _IED = [];
+_IED resize _nb;
 
 _LocType = ODD_var_LocationType - ['namelocal', 'Hill'];
 
@@ -25,7 +27,7 @@ _roads = _roads - _roadsFOB;
 } forEach _nearZO;
 
 {
-	_trapRoad = _x; 
+	_trapRoad = selectRandom _roads; 
 	
 	_cRoads = roadsConnectedTo _trapRoad;
 
@@ -35,9 +37,21 @@ _roads = _roads - _roadsFOB;
 
 	_trapPos = _trapRoad getPos [(3 + random 2.5), _dir + 90]; 
 	
-	_trapType = ["ACE_IEDLandSmall_Range","ACE_IEDLandBig_Range"]; 	//IED LAND
+	_trapType = ["ACE_IEDLandSmall_Range", "ACE_IEDLandSmall_Range", "ACE_IEDLandBig_Range"]; 	//IED LAND
 	
 	_trapClass = selectRandom _trapType; 
 	
-	createMine [_trapClass, _trapPos, [], 0];
-}forEach _roads; //definir nombre
+	_trap = createMine[_trapClass, _trapPos, [], 0];
+	
+	_IED set [_forEachIndex, _trap];
+
+	// _pos = getPos _trapRoad;
+	// _markerGP = createMarker [(format ["IED x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
+	// _markerGP setMarkerType "hd_dot"; 
+	// _markerGP setMarkerColor "ColorOrange";
+
+}forEach _IED; //definir nombre
+
+systemChat 'test';
+ODD_var_IED = ODD_var_IED + _IED;
+

@@ -4,6 +4,8 @@ params ["_zo", ["_nb", 2], ["_dist", 4000]];
 
 _pos = position _zo; 
 private _props = [];
+private _IED = [];
+_IED resize _nb;
 
 _LocType = ODD_var_LocationType - ['namelocal', 'Hill'];
 
@@ -25,7 +27,7 @@ _roadsFOB = position usine nearRoads 200;
 _roads = _roads - _roadsFOB;
 
 {
-	_trapRoad = _x; 
+	_trapRoad = selectRandom _roads; 
 	
 	_cRoads = roadsConnectedTo _trapRoad;
 
@@ -35,9 +37,13 @@ _roads = _roads - _roadsFOB;
 
 	_trapPos = _trapRoad getPos [(3 + random 2.5), _dir + 90]; 
 	
-	_trapType = ["ACE_IEDUrbanBig_Range","ACE_IEDUrbanSmall_Range"]; 	//IED urban
+	_trapType = [ "ACE_IEDUrbanSmall_Range", "ACE_IEDUrbanSmall_Range", "ACE_IEDUrbanBig_Range"]; 	//IED urban
 	
 	_trapClass = selectRandom _trapType; 
 	
-	createMine [_trapClass, _trapPos, [], 0];
-}forEach _roads; //definir nombre
+	_trap = createMine [_trapClass, _trapPos, [], 0];
+	
+	_IED set [_forEachIndex, _trap];
+}forEach _IED; //definir nombre
+
+ODD_var_IED = ODD_var_IED + _IED;
