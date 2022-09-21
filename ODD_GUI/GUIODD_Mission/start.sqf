@@ -26,7 +26,7 @@ publicVariable "ODD_var_SelectedFaction";
 
 [ODD_var_SelectedFaction, false, true] remoteExec ["ODD_fnc_varEne", 2];
 
-[] execVM 'ODD_GUI\GUIODD_Mission\heureEtMeteo.sqf'
+[] execVM 'ODD_GUI\GUIODD_Mission\heureEtMeteo.sqf';
 
 [] remoteExec ["ODD_fnc_missions", 2];
 
