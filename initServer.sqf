@@ -6,6 +6,7 @@ enableSaving [false, false];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 call ODD_fnc_var;
+call compile preprocessFile 'customLocation.sqf';
 ODD_var_CurrentMission = 0;
 publicVariable "ODD_var_CurrentMission";
 oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
