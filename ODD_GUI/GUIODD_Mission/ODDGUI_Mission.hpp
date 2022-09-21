@@ -217,6 +217,16 @@ class ODDGUI_Mission
 			h = 0.04 * safezoneH;
 			action = "[] execVM 'ODD_GUI\GUIODD_Mission\clear.sqf'";
 		};
+		class GUIODD_Mission_Button: RscButton_ODDGUI
+        {
+            idc = 1606;
+			text = "Modifier le temps"; //--- ToDo: Localize;
+            x = 0.7125 * safezoneW + safezoneX;
+            y = 0.84 * safezoneH + safezoneY;
+            w = 0.15 * safezoneW;
+            h = 0.04 * safezoneH;
+			action = "[] execVM 'ODD_GUI\GUIODD_Mission\heureEtMeteo.sqf'";
+        };
 	}
 };
 
