@@ -19,14 +19,17 @@
 */
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_Debug", False], ["_FacForce", -1]];
 
+[] call ODD_fnc_var;
+
 if(isNil "ODD_var_NbPlayer") then {
     ODD_var_NbPlayer = (playersNumber west);
 };
-
-[] call ODD_fnc_var;
-
 if (isNil "ODD_var_DEBUG") then {
     ODD_var_DEBUG = False;
+};
+if (isNil "ODD_var_DistanceZO") then {
+    ODD_var_DistanceZO = 4000;
+    [["ODD_var_DistanceZO Init dans fn_MISSION"]] call ODD_fnc_log;
 };
 
 //ODD_var_DEBUG = _Debug;
@@ -35,8 +38,6 @@ if (isNil "ODD_var_DEBUG") then {
 if (ODD_var_DEBUG) then { 
     [_FacForce, False, True] call ODD_fnc_varEne;
 };
-
-ODD_var_DistanceZO = 4000;
 
 // systemChat("init ODD");
 if (ODD_var_CurrentMission == 0) then {
