@@ -114,9 +114,11 @@ _roads = _roads - _roadsFOB;
 
 //ODD_var_IED = ODD_var_IED + _IED;
 if (_isDecoy) then {
+	[["Quantital : Nombre d'IED non activé placé : %1", count _IED]] call ODD_fnc_log;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 }
 else {
+	[["Quantital : Nombre d'IED activé placé : %1", count _IED]] call ODD_fnc_log;
 	ODD_var_IED = ODD_var_IED + _IED;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 };
