@@ -159,8 +159,7 @@ ODD_var_CivTargetTypeName = ["IED a déminer", "Vehicule volé"];
 ODD_var_LocationType = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'namelocal', 'Hill'];
 
 //Array blacklist
-ODD_var_LocationBlkList = ["", "Kavala pier", "Fournos", "Neochori", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
-//deBlackListe Neochori ? et autre ?
+ODD_var_LocationBlkList = ["", "Kavala Pier", "Fournos", "Agios Minas", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
 
 // array de differente possibilité de texte
 ODD_var_TextCaisse = [
