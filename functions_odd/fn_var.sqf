@@ -225,5 +225,11 @@ ODD_var_VehiculeBlue = ["B_APC_Tracked_01_AA_F","B_APC_Wheeled_01_cannon_F","B_A
 "rhsusf_m1a2sep2wd_usarmy","rhsusf_mkvsoc","RHS_MELB_AH6M","RHS_MELB_MH6M","RHS_A10","rhsusf_f22","RHS_AH1Z","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","rhsusf_m1a1fep_d","rhsusf_M142_usmc_WD","RHS_AH1Z_wd",
 "RHS_UH1Y_FFAR","RHS_UH1Y","rhsusf_m1a1fep_wd","rhsusf_m1a1fep_od","rhsusf_m1a1hc_wd"];
 
+//liste des object a supprimé a la fin de la mission 
+ODD_var_SuppressObject = ["ACE_Track","ACE_Wheel","ACE_envelope_big","GRAD_envelope_giant","GRAD_envelope_long","GRAD_envelope_short","ACE_envelope_small","GRAD_envelope_vehicle"];
+
+// ditance max des ZO +
+ODD_var_DistanceZO = 4000;
+
 [] call ODD_fnc_varRoadBlock;
 
