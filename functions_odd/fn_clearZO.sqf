@@ -60,46 +60,53 @@ if (ODD_var_CurrentMission == 1) then {
 			deleteMarker _x;
 			{
 				{
-					deleteVehicle _x;	// 	delete l'units
-				} forEach units _x;		//	pour chaque units du groupe
+					deleteVehicle _x;			// 	delete l'units
+				} forEach units _x;				//	pour chaque units du groupe
 			} forEach ODD_var_MissionIA;		//	Pour chaque Groupe
 			
 			{
 				{
-					deleteVehicle _x;	// 	delete l'units
-				} forEach units _x;		//	pour chaque units du groupe
-			} forEach ODD_var_ZopiA;		//	Pour chaque Groupe
+					deleteVehicle _x;			// 	delete l'units
+				} forEach units _x;				//	pour chaque units du groupe
+			} forEach ODD_var_ZopiA;			//	Pour chaque Groupe
 			
 			{
-				deleteVehicle _x;	// 	delete l'units
+				deleteVehicle _x;				// 	delete l'units
 			} forEach ODD_var_MissionProps;		//	Pour chaque Group{
 			
 			// recup tout les objet par terre 
-			_Obj = _pos nearSupplies 5000;
-			// systemChat(str(_Obj));
+			_Supplies = _pos nearSupplies 5000;
 			{
 				if (!(_x in [factory,medicalFob,lanceursFob,armesFob,repairPont,medical,para,armes,acces,lanceurs,dump,repair,refuel,rearm])) then { 
-							// si l'objet est différent des objet sur fob ou sur base
+												// si l'objet est différent des objet sur fob ou sur base
 					private _distance = fob distance _x;
 					if (_distance > 100) then {
-						deleteVehicle _x;	// delete l'objet
+						deleteVehicle _x;		// delete l'objet
 					};
 				};
-			} forEach _Obj;			// pour chaque objet
+			} forEach _Supplies;						// pour chaque objet
+
+			_obj = nearestObjects [_pos, ODD_var_SuppressObject, ODD_var_DistanceZO];
+			{
+				private _distance = (fob distance _x) min (base distance _x);
+				if (_distance > 100) then {
+					deleteVehicle _x;		// delete l'objet
+				};
+			}forEach _obj;
 			
 			{
 				{
-					deleteVehicle _x;	// 	delete l'units
-				} forEach units _x;		//	pour chaque units du groupe
+					deleteVehicle _x;			// 	delete l'units
+				} forEach units _x;				//	pour chaque units du groupe
 			} foreach ODD_var_MissionCivil;
 			
-			{					//normalement ne devrait pas servir mais on laisse au cas ou 
-				deleteVehicle _x;		//supprime le corps
-			} forEach alldead;			//pour chaque corps 
+			{									//normalement ne devrait pas servir mais on laisse au cas ou 
+				deleteVehicle _x;				//supprime le corps
+			} forEach alldead;					//pour chaque corps 
 
 			{
 				_x hideObjectGlobal false;		//affiche l'object
-			} forEach ODD_var_ObjetHide;			//pour object caché
+			} forEach ODD_var_ObjetHide;		//pour object caché
 
 			ODD_var_ParticuleList = [];
 			publicVariable "ODD_var_ParticuleList";
