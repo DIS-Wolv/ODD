@@ -31,9 +31,9 @@ _Buildings = nearestObjects [position player, Maison, 100];
 
 //*
 {
-	if(getMarkerType _x != "Empty")then { 
+	//if(getMarkerType _x != "Empty")then { 
 		deleteMarker(_x);
-	}
+	//}
 }foreach allMapMarkers; 
 
 private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
@@ -61,7 +61,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 {
 	_pos = getpos _x;
 	// if( _forEachIndex == 75) then {
-	if (!(text _x in locationBlkList)) then {
+	if (!(text _x in ODD_var_LocationBlkList)) then {
 	// if (text _x in ["dump"]) then {
 		//préparation des variables pour le calcule du nombre de groupe
 		_locProx = nearestLocations [position _x, locationType, 3000]; //Recup les location a - de 3000m 
@@ -185,7 +185,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 		_marker setMarkerText format["%1 | %2 | %3 | %4", text _x, type _x, size _x select 0, _forEachIndex];
 	};
 }forEach _location;
-
+/*
 //systemChat str _Dist;
 _Sect = [
 	"ODD_MarkerNW", "ODD_MarkerN", "ODD_MarkerNE",
