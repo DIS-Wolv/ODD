@@ -95,7 +95,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 				_groupPat = selectRandom ODD_var_squad;
 				
 			}
-			else{
+			else {
 				if (count(_Bat) <= 4) then {
 					_groupGar = selectRandom ODD_var_fireTeam;
 					_groupPat = selectRandom ODD_var_fireTeam;
@@ -109,7 +109,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			//spawn le groupe
 			_gp = [_roadPos, EAST, _groupPat] call BIS_fnc_spawnGroup;
 			
-			if(_action) then {
+			if (_action) then {
 				//Ajoute le groupe a la liste des IA de la missions
 				ODD_var_MissionIA pushBack _gp;
 			}
@@ -127,7 +127,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			// Spawn les gars en garnison 
 			_gg = [_roadPos, EAST, _groupGar] call BIS_fnc_spawnGroup;
 			
-			if(_action) then {
+			if (_action) then {
 				//Ajoute le groupe a la liste des IA de la missions
 				ODD_var_MissionIA pushBack _gg;
 			}

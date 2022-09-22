@@ -18,7 +18,7 @@
 params [["_arg",[""],[]]];
 
 private _debug = missionNamespace getVariable "ODD_var_DEBUG"; 
-if(isNil "_debug") then {
+if (isNil "_debug") then {
 	_debug = false;
 };
 private _msg = format _arg;

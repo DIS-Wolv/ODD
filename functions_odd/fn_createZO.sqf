@@ -22,7 +22,7 @@ missionNamespace setVariable ["ODD_var_DEBUG", _Debug, True];
 private _location = [];
 private _SelectSector = [];
 
-if(!isNil "ODD_var_SelectedSector") then {
+if (!isNil "ODD_var_SelectedSector") then {
     if (count(ODD_var_SelectedSector) != 0) then {
         {
             if (ODDGUI_var_Secteur select 0 == _x) then {
@@ -64,7 +64,7 @@ if(!isNil "ODD_var_SelectedSector") then {
         _location = (_location - _loc) + _loc; // évite les doublons
     } forEach _SelectSector;
 }
-else{
+else {
     // Recupère toute les villes, villages, Capitales
     _location = nearestLocations[[15000, 15000], ODD_var_LocationType, 30000];
 };

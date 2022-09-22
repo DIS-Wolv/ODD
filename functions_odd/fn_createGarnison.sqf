@@ -87,7 +87,8 @@ if (_action) then {
         if (count _Buildings < 10) then {
             _nbgroup resize (count _Buildings - 1);
             // diminue le nombre de groupe
-        } else {
+        }
+        else {
             _nbgroup resize (count _Buildings - ((count _Buildings) * 0.1));
             // diminue le nombre de groupe
         };
@@ -101,7 +102,8 @@ if (_action) then {
         // choisi un groupe
         if (floor(random 2) == 0) then {
             _group = selectRandom ODD_var_fireTeam;
-        } else {
+        }
+        else {
             _group = selectRandom ODD_var_squad;
         };
         if (count _Buildings > 0 ) then {
@@ -159,7 +161,8 @@ if (_action) then {
             if (round(random 4) == 0) then {
                 // 1 / 4 qu'il soit split dans plusieurs batiment
                 [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-            } else {
+            }
+            else {
                 [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             };
             
@@ -180,7 +183,8 @@ if (_action) then {
         if (_x == (ODD_var_GarnisonIA select 0)) then {
             [position ((units _x) select 0), nil, units _x, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             // Garnison Ace
-        } else {
+        }
+        else {
             {
                 [position ((units _x) select 0), nil, units _x, 100, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 // Garnison Ace
@@ -188,7 +192,8 @@ if (_action) then {
         };
     }forEach ODD_var_GarnisonIA;
     // */
-} else {
+}
+else {
     _NbGarnison = round (2 + _human_players / 2);
 
     _nbgroup resize _NbGarnison;
@@ -235,7 +240,8 @@ if (_action) then {
         if (round(random 4) == 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
             [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        } else {
+        }
+        else {
             [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         };
         // Garnison Ace

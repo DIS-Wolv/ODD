@@ -21,7 +21,7 @@ params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_Debug", False
 
 [] call ODD_fnc_var;
 
-if(isNil "ODD_var_NbPlayer") then {
+if (isNil "ODD_var_NbPlayer") then {
     ODD_var_NbPlayer = (playersNumber west);
 };
 if (isNil "ODD_var_DEBUG") then {
@@ -84,7 +84,8 @@ if (ODD_var_CurrentMission == 0) then {
             private _Buildings = nearestobjects[position (_location select _i), ODD_var_Maison, 200];
             if ((text (_location select _i) in ODD_var_LocationBlkList) or (count _Buildings == 0)) then {
                 _location = _location - [_location select _i];
-            } else {
+            }
+            else {
                 _i = _i + 1;
             };
         };
@@ -226,7 +227,8 @@ if (ODD_var_CurrentMission == 0) then {
     [["Mission Lancée"]] call ODD_fnc_log;
     if (_Debug) then {
         [["Skip de lattente des joueurs sur obj"]] call ODD_fnc_log;
-    } else {
+    }
+    else {
         waitUntil{
             sleep 1;
             count (position _zo nearEntities[["SoldierWB"], 1000]) >= 1
@@ -310,7 +312,7 @@ if (ODD_var_CurrentMission == 0) then {
             sleep(1);
             if (alive (ODD_var_Objectif select 0)) then {
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            }else{
+            }else {
                 ["Task", "FAILED"] call BIS_fnc_tasksetState;
             };
             // tache accomplie
@@ -402,7 +404,8 @@ if (ODD_var_CurrentMission == 0) then {
             if (alive (ODD_var_Objectif select 0)) then {
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
                 // tache accomplie
-            } else {
+            }
+            else {
                 ["Task", "FAILED"] call BIS_fnc_tasksetState;
                 // tache échoué
             };
@@ -433,7 +436,8 @@ if (ODD_var_CurrentMission == 0) then {
             if (alive (ODD_var_Objectif select 0)) then {
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
                 // tache accomplie
-            } else {
+            }
+            else {
                 ["Task", "FAILED"] call BIS_fnc_tasksetState;
                 // tache échoué
             };
@@ -503,7 +507,8 @@ if (ODD_var_CurrentMission == 0) then {
         [_Debug] call ODD_fnc_clearZO;
         // nettoye la ZO
     };
-} else {
+}
+else {
     ["Une mission est déjà en cours"] remoteExec ["systemChat", 0];
 };
 

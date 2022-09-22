@@ -144,7 +144,7 @@ ODD_var_MissionProps = [];
 // array des props de la missions en local
 ODD_var_ParticuleList = [];
 
-// liste de/des odd_var_objectif(s)
+// liste de/des odd_var_objectif (s)
 ODD_var_Objectif = [];
 
 // Definie les différent objectif possible

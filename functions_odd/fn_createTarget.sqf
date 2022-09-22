@@ -64,7 +64,8 @@ switch (_Mission) do {
         if ((round random 2) == 0) then {
             _group = selectRandom ODD_var_pair;
             // choisi un groupe de 2
-        } else {
+        }
+        else {
             _group = selectRandom ODD_var_fireTeam;
             // choisi un groupe de 4
         };
@@ -116,7 +117,8 @@ switch (_Mission) do {
         if (round random 4 == 1) then {
             // met en patrioulle
             [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
-        } else {
+        }
+        else {
             // met en garnison
             /*
             if (!(isnil "HC1")) then {
@@ -169,7 +171,8 @@ switch (_Mission) do {
         if (round random 4 == 1) then {
             // met en patrioulle
             [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
-        } else {
+        }
+        else {
             // met en garnison
             /*
             if (!(isnil "HC1")) then {
@@ -248,7 +251,8 @@ switch (_Mission) do {
         if (round (random 2) == 0) then {
             _group = selectRandom ODD_var_pair;
             // choisi un groupe de 2
-        } else {
+        }
+        else {
             _group = selectRandom ODD_var_fireTeam;
             // choisi un groupe de 4
         };
@@ -302,7 +306,8 @@ switch (_Mission) do {
         if ((round random 2) == 0) then {
             _group = selectRandom ODD_var_pair;
             // choisi un groupe de 2
-        } else {
+        }
+        else {
             _group = selectRandom ODD_var_fireTeam;
             // choisi un groupe de 4
         };

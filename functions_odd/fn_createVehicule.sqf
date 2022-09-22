@@ -57,21 +57,23 @@ if (ODD_var_CurrentMission == 1) then {
 		
 		//definie le nombre de vl
 		_nbVl = (round random[0, (_human_players/8), 8]);
-		if(ODD_var_support) then {		//si support
+		if (ODD_var_support) then {		//si support
 			if (count (ODD_var_VlSupport) == 0) then { //support pas detecté hors base ajoute 2 vl
 				_nbVl = _nbVl + 2;										
 				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl;
 				_nbVehiculeLourd resize _nbVlLourd; 
-			} else {
+			}
+			else {
 				_nbVl = _nbVl + ODD_var_VlSupport;		//sinon ajoute le nombre de vl de support 
 				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl; 
 				_nbVehiculeLourd resize _nbVlLourd; 
 			};
-		} else {
+		}
+		else {
 			_nbVehicule resize round random[0, (_human_players/8), 8];
 		};
 		// systemChat(Format["Vehicule : %1", count _nbVehicule]);
@@ -85,7 +87,7 @@ if (ODD_var_CurrentMission == 1) then {
 			private _group = selectRandom ODD_var_VehiculeSel;
 			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
 			
-			if(count ((position _zo) nearRoads 300) > 0) then {
+			if (count ((position _zo) nearRoads 300) > 0) then {
 			
 				private _road = selectRandom((position _zo) nearRoads 300);
 				// choisi une position rdm dans un cercle autour du centre de l'obj
@@ -186,7 +188,7 @@ if (ODD_var_CurrentMission == 1) then {
 				_wp setWaypointType "SAD";
 			}
 			else {
-				if(count ((position _zo) nearRoads 300) > 0) then {
+				if (count ((position _zo) nearRoads 300) > 0) then {
 				
 					private _road = selectRandom((position _zo) nearRoads 300);
 					// choisi une position rdm dans un cercle autour du centre de l'obj

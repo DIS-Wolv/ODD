@@ -95,7 +95,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 				_groupPat = selectRandom ODD_var_squad;
 				
 			}
-			else{
+			else {
 				if (count(_Bat) <= 4) then {
 					_groupGar = selectRandom ODD_var_fireTeam;
 					_groupPat = selectRandom ODD_var_fireTeam;

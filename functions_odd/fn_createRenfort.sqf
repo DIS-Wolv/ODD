@@ -154,7 +154,8 @@ if (ODD_var_CurrentMission == 1) then {
                     ODD_var_ZopiA pushBack _inf;
 
                     //ODD_var_ZopiA pushBack _inf;
-                } else {
+                }
+                else {
                     // si UAZ
                     _infG = selectRandom ODD_var_squad;
                     		// choisi une ODD_var_squad

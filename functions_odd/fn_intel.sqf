@@ -26,7 +26,8 @@ _msg = "";
 	["Task", "UPDATED"] call BIS_fnc_taskHint;
 	["Task", _pos] call BIS_fnc_taskSetDestination;
 
-} else {
+}
+else {
 	_msg = "J'ai pas d'info.";
 };
 
