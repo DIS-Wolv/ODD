@@ -14,7 +14,7 @@
 *
 * Public:
 */
-params [["_Debug", false]];
+params [];
 //["Test Count IA"] remoteExec ["systemChat", 0];
 private _nbIa = 0;		// au debut il y a 0
 

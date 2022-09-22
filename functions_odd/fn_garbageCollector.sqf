@@ -11,11 +11,10 @@
 *
 * Example:
 * [_itt] call ODD_fnc_garbageCollector
-* [_itt, _Debug] call ODD_fnc_garbageCollector
 *
 * Public:
 */
-params ["_nbItt", ["_Debug", false]];
+params ["_nbItt"];
 
 _tGarbage = 45; // temps entre chaque execution du garbage collector
 

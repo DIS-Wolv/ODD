@@ -12,11 +12,11 @@
 *
 * Example:
 * [_zo] call ODD_fnc_createTarget
-* [_zo, _missiontype, _Debug] call ODD_fnc_createTarget
+* [_zo, _missiontype] call ODD_fnc_createTarget
 *
 * Public:
 */
-params ["_zo", ["_type", -1], ["_Debug", false]];
+params ["_zo", ["_type", -1]];
 
 // Choisis une missions random
 private _Mission = selectRandom ODD_var_SelectedTarget;

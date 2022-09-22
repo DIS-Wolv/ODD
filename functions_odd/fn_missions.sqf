@@ -17,7 +17,7 @@
 *
 * Public:
 */
-params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_Debug", False], ["_FacForce", -1]];
+params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1]];
 
 [] call ODD_fnc_var;
 
@@ -32,7 +32,7 @@ if (isNil "ODD_var_DistanceZO") then {
     [["ODD_var_DistanceZO Init dans fn_MISSION"]] call ODD_fnc_log;
 };
 
-//ODD_var_DEBUG = _Debug;
+_Debug = ODD_var_DEBUG;
 //publicVariable "ODD_var_DEBUG";
 
 if (ODD_var_DEBUG) then { 
@@ -47,22 +47,22 @@ if (ODD_var_CurrentMission == 0) then {
     ODD_var_CurrentMission = 2;
     publicVariable "ODD_var_CurrentMission";
     // Choix d'un Lieux odd_var_objectif
-    _zo = [_forceZO, _Debug] call ODD_fnc_createZO;
+    _zo = [_forceZO] call ODD_fnc_createZO;
     ODD_var_zo = _zo;
     publicVariable "ODD_var_zo";
     // private _diff = [_zo] call _Calcdifficulty
     // systemChat(str(_diff));
     
     // Choix d'une missions
-    ODD_var_Target = [_zo, _missiontype, _Debug] call ODD_fnc_createTarget;
+    ODD_var_Target = [_zo, _missiontype] call ODD_fnc_createTarget;
     
     [_zo, True] call ODD_fnc_civil;
     
-    [_zo, True, _Debug] call ODD_fnc_createGarnison;
+    [_zo, True] call ODD_fnc_createGarnison;
     
     [_zo, True] call ODD_fnc_createPatrol;
     
-    [_zo, 2, True, _Debug] call ODD_fnc_roadBlock;
+    [_zo, 2, True] call ODD_fnc_roadBlock;
     
     [_zo, True] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
     
@@ -126,7 +126,7 @@ if (ODD_var_CurrentMission == 0) then {
                 // patrouilles
                 
                 _nbCheckPoint = round random 4;
-                [_x, _nbCheckPoint, False, _Debug] call ODD_fnc_roadBlock;
+                [_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
                 // RoadBlock
             };
             if (_action > 70 and _action <= 100) then {
@@ -216,7 +216,7 @@ if (ODD_var_CurrentMission == 0) then {
     publicVariable "ODD_var_Target";
     private _NextTick = servertime + 60;
     
-    _nbIa = [_Debug] call ODD_fnc_countIA;
+    _nbIa = [] call ODD_fnc_countIA;
     
     ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
     
@@ -225,8 +225,8 @@ if (ODD_var_CurrentMission == 0) then {
     private _nbItt = 0;
     
     [["Mission Lancée"]] call ODD_fnc_log;
-    if (_Debug) then {
-        [["Skip de lattente des joueurs sur obj"]] call ODD_fnc_log;
+    if (ODD_var_DEBUG) then {
+        [["Skip de l'attente des joueurs sur obj"]] call ODD_fnc_log;
     }
     else {
         waitUntil{
@@ -248,12 +248,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -273,12 +273,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -297,12 +297,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -329,12 +329,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
 
                 [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
                 
@@ -347,7 +347,7 @@ if (ODD_var_CurrentMission == 0) then {
 
                 waitUntil {
                     sleep 1;
-                    _nbIa = [_Debug] call ODD_fnc_countIA;
+                    _nbIa = [] call ODD_fnc_countIA;
                     ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
@@ -362,12 +362,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -385,12 +385,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -419,12 +419,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -452,12 +452,12 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 call ODD_fnc_sortieGarnison;
                 
-                _nbIa = [_Debug] call ODD_fnc_countIA;
+                _nbIa = [] call ODD_fnc_countIA;
                 
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt, _Debug] call ODD_fnc_garbageCollector;
+                [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 1;
@@ -504,7 +504,7 @@ if (ODD_var_CurrentMission == 0) then {
             servertime > _DebutNettoyage
         };
         
-        [_Debug] call ODD_fnc_clearZO;
+        [] call ODD_fnc_clearZO;
         // nettoye la ZO
     };
 }

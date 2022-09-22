@@ -11,13 +11,11 @@
 *
 * Example:
 * [] call ODD_fnc_createZO
-* [_forceZO, _Debug] call ODD_fnc_createZO
+* [_forceZO] call ODD_fnc_createZO
 *
 * Public:
 */
-params [["_forceZO", ""], ["_Debug", false]];
-
-missionNamespace setVariable ["ODD_var_DEBUG", _Debug, True];
+params [["_forceZO", ""]];
 
 private _location = [];
 private _SelectSector = [];

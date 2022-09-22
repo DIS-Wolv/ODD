@@ -16,7 +16,7 @@
 *
 * Public:
 */
-params ["_zo", ["_nb", 2], ["_action", false], ["_Debug", false]];
+params ["_zo", ["_nb", 2], ["_action", false]];
 
 //forcé l'apparition
 

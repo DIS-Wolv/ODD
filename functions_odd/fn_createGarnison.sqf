@@ -17,7 +17,7 @@
 * Public:
 */
 
-params ["_zo", ["_action", false], ["_Debug", false]];
+params ["_zo", ["_action", false]];
 
 // Compte les Joueurs
 private _human_players = ODD_var_NbPlayer;

@@ -14,7 +14,7 @@
 *
 * Public:
 */
-params [["_Debug", false]];
+params [];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
