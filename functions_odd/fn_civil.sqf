@@ -1,20 +1,20 @@
 /*
-* Author: Wolv
-* Fonction permetant de faire spawn des ODD_var_Civils et vehicule sur la zone souhaité
+* Auteur : Wolv
+* Fonction pour créer des civils et des véhicules civils sur la zone
 *
-* Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Es ce la zone principale <BOOL>
-* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Zone souhaitée <Objet>
+* 1: Est-ce la zone principale <BOOL>
+* 2: Activation du débug dans le chat <BOOL>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemples :
 * [_zo] call ODD_fnc_civil
 * [_zo, True, False] call ODD_fnc_civil
 *
-* Public:
+* Variable publique : 
 */
 params ["_zo", ["_action", False]];
 
@@ -44,35 +44,28 @@ if (type _zo == ODD_var_LocationType select 0) then {
 }forEach ((text _zo) splitstring " ");
 
 private _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
-// Nombre de odd_var_maison dans la localité
+// Nombre de maisons dans la localité
 
 private _nbCivil = 0;
-if (_loctype == 5) then {
-    _nbCivil = (count _Buildings) / 24;
+switch (_loctype) do {
+    case (5): {_nbCivil = (count _Buildings) / 24;};
+    case (4): {_nbCivil = (count _Buildings) / 25;};
+    case (3): {_nbCivil = (count _Buildings) / 16;};
+    case (2): {_nbCivil = 0;};
+    case (1): {_nbCivil = (count _Buildings) / 10;};
 };
-if (_loctype == 4) then {
-    _nbCivil = (count _Buildings) / 25;
-};
-if (_loctype == 3) then {
-    _nbCivil = (count _Buildings) / 16;
-};
-if (_loctype == 2) then {
-    _nbCivil = 0;
-};
-if (_loctype == 1) then {
-    _nbCivil = (count _Buildings) / 10;
-};
+
 /*
-1. nb de ODD_var_Civils :
-    selon le type : round
-    5 (capital) nb batiment/24
+1. nb de civils :
+    selon le type de la localité : <round>
+    5 nbbat/24
     4 nbbat/25
     3 nbbat/16
     2 0
-    1 nbbat / 10
-    pensé a forcé 0 si negatif
+    1 nbbat/10
+    penser à forcer 0 si negatif
     2. donne la position de la caisse :
-    2/nb ODD_var_Civils
+    2/nb civils
 */
 
 // systemChat("spawn des ODD_var_Civils");
@@ -147,7 +140,7 @@ sleep 1;
 {
     if (random 100 < 35) then {
         _vl = selectRandom ODD_var_CivilsVL;
-        // choisie un vl
+        // Choisi un véhicule
         
         _GBuild = selectRandom _Buildings;
         _dir = getDir _GBuild;
@@ -156,7 +149,7 @@ sleep 1;
         };
         
         _pos = position _GBuild;
-        // recup la pos
+        // Récupère la position
         
         _pos = _pos findEmptyposition [3, 100, _vl];
         //, "B_Heli_Transport_01_F"
@@ -164,10 +157,10 @@ sleep 1;
         // _pos = _pos getPos [3, [position _GBuild, _pos] call BIS_fnc_dirto];
         
         _g = _vl createvehicle _pos;
-        // créé le VL
+        // Crée le véhicule
 
         _g addItemCargoGlobal ["Toolkit", 1]; 
-        // Ajoute un repaire kit
+        // Ajoute un kit de réparation
         
         _g setDir _dir;
         
@@ -178,19 +171,19 @@ sleep 1;
         _g setDamage 0;
         ODD_var_MissionProps pushBack _g;
     };
-}forEach _civil; //Sur 80 % des gars, pas tous
+}forEach _civil; //Sur 80% des civils
 
 if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
-    // choisi un groupe
+    // Choisi un groupe
     private _group = selectRandom ODD_var_CivilsVL;
     
     _pos = position selectrandom (position _zo nearRoads 600);
     
-    // spawn le groupe et le vl
+    // Crée le groupe et le véhicule
     _g = [_pos, civilian, [_group]] call BIS_fnc_spawngroup;
     
     {
-        // Current result is saved in variable _x
+        // Le résultat est stocké dans la variable _x
         [
         _x, 
         "<t color='#FF0000'>interoger le civil</t>", 

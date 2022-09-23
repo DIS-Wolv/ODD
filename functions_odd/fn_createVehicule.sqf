@@ -1,37 +1,40 @@
 /*
-* Author: Wolv
+* Auteur : Wolv
 * Fonction permetant de créé des vehicule sur la zone souhaité
 *
-* Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Es ce la zone principale <BOOL>
-* 2: es ce que le vl est en ZO-
+* Arguments :
+* 0: Zone souhaité <Objet>
+* 1: Est-ce la zone principale <BOOL>
+* 2: Est-ce que le vl est en ZO- <BOOL>
 *
-* Return Value:
+* Valeur renvoyée :
 * Nil
 *
-* Example:
+* Exemple :
 * [_zo] call ODD_fnc_createVehicule
 * [_zo, true, false] call ODD_fnc_createVehicule
 *
-* Public:
+* Variable publique :
 */
 
-// recup les argument
 params ["_zo", ["_action", false], ["_ZOM", False]];
+// Récupère les argument
 
-// Compte les Joueurs
-private _human_players = ODD_var_NbPlayer; // removing Headless Clients
+private _human_players = ODD_var_NbPlayer; 
+// Compte les joueur
 private _nbVehicule = [];
 private _nbVehiculeLourd = [];
 
 waitUntil {
 	sleep 1;
 	(
-		(count (getPos base nearEntities[["SoldierWB"], 300])) +	// nb joueur Base +
-		(count (getPos fob nearEntities[["SoldierWB"], 150])) 		// nb joueur FOB
-		<= (count(allplayers - entities "HeadlessClient_F") / 2) 	// < nb joueur total (donc quand tout le monde est hors base / FOB stop la boucle)
-	)// or (ODD_var_CurrentMission != 1 )								// arrete l'attente si la mission est arrété 
+		(count (getPos base nearEntities[["SoldierWB"], 300])) +	
+		// Compte les joueurs à la base
+		(count (getPos fob nearEntities[["SoldierWB"], 150])) 		
+		// Compte les joueurs à la FOB
+		<= (count(allplayers - entities "HeadlessClient_F") / 2) 	
+	)
+	//Les véhicules ne spawn qu'une fois les joueurs partis en mission
 };
 
 [["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
@@ -39,35 +42,50 @@ waitUntil {
 if (ODD_var_CurrentMission == 1) then {
 	if (_action) then {
 
-		if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
-			[-1, true, false] call ODD_fnc_varEne;	//les definie
+		if (!isNil "ODD_var_VehiculeSel") then {
+			// Si les véhicules ennemis ne sont pas definis
+			[-1, true, false] call ODD_fnc_varEne;
+			// Définition des véhicules
 			sleep 1;
 		};
 		
-		//préparation des variables pour le calcule du nombre de groupe
-		_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
+    	// Préparation des variables pour le calcul du nombre de groupe à créer
+		_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; 
+    	// Récupère les localités à moins de 3km (3000m)
 		{
-			if (text _x in ODD_var_LocationBlkList) then {		//si dans la liste Noir 
-				_locProx deleteAt _forEachIndex;				//on delete la location de notre liste 
+			if (text _x in ODD_var_LocationBlkList) then {
+            // Si la localité est dans la liste noire
+				_locProx deleteAt _forEachIndex;
+            // La localité est supprimée de notre liste
 			};
-		}forEach _locProx;		// /!\ pas compté celle ou on est 
-		_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	//Nombre de odd_var_maison dans la localité
-		_taille = size _zo select 0;		// Taille de la Zone
-		_heure = date select 3;		// heure de la journé
+		}forEach _locProx;
+    	// Compte les localités à proximité
+		_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	
+    	// Nombre de maisons dans la localité
+		_taille = size _zo select 0;
+    	// Taille de la zone
+		_heure = date select 3;	
+    	// Heure de la journée
 		
-		//definie le nombre de vl
+		// Définition du nombre de véhicules
 		_nbVl = (round random[0, (_human_players/8), 8]);
-		if (ODD_var_support) then {		//si support
-			if (count (ODD_var_VlSupport) == 0) then { //support pas detecté hors base ajoute 2 vl
-				_nbVl = _nbVl + 2;										
-				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
+		if (ODD_var_support) then {		
+			// S'il y a du support
+			if (count (ODD_var_VlSupport) == 0) then { 
+				// Si les véhicules de supports ne sont pas encore partis de la base
+				_nbVl = _nbVl + 2;	
+				// Ajoute 2 véhicules légers
+				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		
+				// Détermine le nombre de véhicules lourd a créer
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl;
 				_nbVehiculeLourd resize _nbVlLourd; 
 			}
 			else {
-				_nbVl = _nbVl + ODD_var_VlSupport;		//sinon ajoute le nombre de vl de support 
-				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 		// prend entre 1 et 1/2 du nombre de vl
+				_nbVl = _nbVl + ODD_var_VlSupport;	
+				// Si les véhicules de supports ne sont pas encore partis de la base	
+				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 	
+				// Détermine le nombre de véhicules lourd a créer
 				_nbVl = _nbVl - _nbVlLourd;
 				_nbVehicule resize _nbVl; 
 				_nbVehiculeLourd resize _nbVlLourd; 
@@ -77,53 +95,60 @@ if (ODD_var_CurrentMission == 1) then {
 			_nbVehicule resize round random[0, (_human_players/8), 8];
 		};
 		// systemChat(Format["Vehicule : %1", count _nbVehicule]);
-		//_nbVehicule resize 5;
 
-		[["Nombre de Vehicule sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+		[["Nombre de véhicules sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 		
-		//Pour tout les groupes nessaire 
+		//Pour tous les groupes
 		{
-			// choisi un groupe	
 			private _group = selectRandom ODD_var_VehiculeSel;
+        	// Choisi un groupe
 			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
 			
 			if (count ((position _zo) nearRoads 300) > 0) then {
 			
 				private _road = selectRandom((position _zo) nearRoads 300);
-				// choisi une position rdm dans un cercle autour du centre de l'obj
+				// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 				_pos = position _zo getPos [800 * random 1, random 360];
 				
 				
-				if (count (_pos nearRoads 300) > 0) then { 		//si il y a des route a coté 
-					_road = selectRandom(_pos nearRoads 300);	//choisi la route la plus proche
+				if (count (_pos nearRoads 300) > 0) then { 		
+					// S'il y a des routes à proximité 
+					_road = selectRandom(_pos nearRoads 300);	
+					// Choisi la route la plus proche
 					// systemChat str _road;
 					_pos = position (_road);		
 				};
 				
 				
-				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-					_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
-					if (count (_pos nearRoads 300) > 0) then { 		//si il y a des route a coté 
-						_pos = position (selectRandom (_pos nearRoads 300) );			//choisi la route la plus proche
+				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 	
+            		// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
+					_pos = position _zo getPos [random 800, random 360];		
+            		// Tire une nouvelle position
+					if (count (_pos nearRoads 300) > 0) then {
+						// S'il y a des routes à proximité 
+						_pos = position (selectRandom (_pos nearRoads 300) ); 
+						// Choisi la route la plus proche
 					};
 				};
 				
-				//spawn le groupe
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
-				//Ajoute le groupe a la liste des IA de la missions
+				// Crée le groupe
 				{
 					ODD_var_MissionIA pushBack _x;
 				} forEach units _g;
+				// Ajoute le groupe à la liste des IA de la mission
 				
 				
 				if (count (_pos nearRoads 300) > 0) then {
 				
 					_connectedRoad = roadsConnectedTo [_road, false];
 					if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
-						_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	// recup la direction 
+						_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo; 
+						// Récupère la direction de la route
 						
-						_roadDir = (_roadDir + ((round (random 2))* 180)) % 360; 			// + 0 ou + 180 °
-						(vehicle (units _g select 0)) setDir _roadDir;				//set la direction
+						_roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
+						(vehicle (units _g select 0)) setDir _roadDir; 
+						// Oriente le véhicule sur l'axe de route
 					};
 					
 				};
@@ -136,7 +161,7 @@ if (ODD_var_CurrentMission == 1) then {
 				};
 				
 				// systemChat(str(units _g));
-				if ((_group select 0) in ODD_var_VehiculeTransport) then {	// ajout d'autre ouraux/oural ?
+				if ((_group select 0) in ODD_var_VehiculeTransport) then {
 					_infG = selectRandom ODD_var_squad;
 					_pos set [1,(_pos select 1)+ 3];
 					_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
@@ -146,21 +171,17 @@ if (ODD_var_CurrentMission == 1) then {
 						_x moveInCargo (vehicle (units _g select 0));
 					}forEach units _inf;
 				};
+				// Si le véhicule est un transport, on ajoute des AI dedans
 			};
 			
 			sleep 2;
-			
-			//lui assigne des waypoint de patrouille
-			// [_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
-			
 		}forEach _nbVehicule;
 		[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
+
 		{
 			private _group = selectRandom ODD_var_VehiculeLourdSel;
 			ODD_var_VehiculeLourdSel = ODD_var_VehiculeLourdSel + (ODD_var_VehiculeLourdSel - _group);
 			if (_group in ODD_var_VehiculeVollant) then {
-				/*_pos = position _zo getPos [800 * random 1, random 360];
-				_pos set [200, 2];	//*/
 				_corner = [[0,0,500], [30000,0,500], [0,30000,500], [30000,30000,500]];
 
 				_pos = selectRandom _corner;
@@ -190,37 +211,45 @@ if (ODD_var_CurrentMission == 1) then {
 			else {
 				if (count ((position _zo) nearRoads 300) > 0) then {
 				
-					private _road = selectRandom((position _zo) nearRoads 300);
-					// choisi une position rdm dans un cercle autour du centre de l'obj
+					private _road = [];
 					_pos = position _zo getPos [800 * random 1, random 360];
-					if (count (_pos nearRoads 300) > 0) then { 		//si il y a des route a coté 
-						_road = selectRandom(_pos nearRoads 300);	//choisi la route la plus proche
+					// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
+					if (count (_pos nearRoads 300) > 0) then {
+						// Compte les routes a proximité
+						_road = selectRandom(_pos nearRoads 300);	
+						// Choisi une route aléatoire sur la zone
 						// systemChat str _road;
 						_pos = position (_road);		
 					};
 					
-					while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-						_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
-						if (count (_pos nearRoads 300) > 0) then { 		//si il y a des route a coté 
-							_pos = position (selectRandom (_pos nearRoads 300) );			//choisi la route la plus proche
+					while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 		
+            			// S'il y a des rochers ou des maisons à moins de 20m ou si la position est n'est pas sur une route
+						_pos = position _zo getPos [random 800, random 360]; 	
+            			// Tire une nouvelle position
+						if (count (_pos nearRoads 300) > 0) then { 
+							// S'il y a des routes à proximité
+							_pos = position (selectRandom (_pos nearRoads 300) ); 
+							//choisi la route la plus proche
 						};
 					};
 					
-					//spawn le groupe
 					_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
-					//Ajoute le groupe a la liste des IA de la missions
+					// Crée le groupe 
 					{
 						ODD_var_MissionIA pushBack _x;
 					} forEach units _g;
+					// Ajoute le groupe à la liste des IA de la mission
 					
 					if (count (_pos nearRoads 300) > 0) then {
 					
 						_connectedRoad = roadsConnectedTo [_road, false];
 						if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
-							_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	// recup la direction 
+							_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	
+							// Récupère la direction de la route
 							
-							_roadDir = (_roadDir + ((round (random 2))* 180)) % 360; 			// + 0 ou + 180 °
-							(vehicle (units _g select 0)) setDir _roadDir;				//set la direction
+							_roadDir = (_roadDir + ((round (random 2))* 180)) % 360; 
+							(vehicle (units _g select 0)) setDir _roadDir; 
+							// Oriente le véhicule sur l'axe de route
 						};
 						
 					};
@@ -251,56 +280,60 @@ if (ODD_var_CurrentMission == 1) then {
 	}
 	else {
 		sleep 1;
-		if (!isNil "ODD_var_VehiculeSel") then {	//si les vl enemie sont pas definie
-			[-1, true, false] call ODD_fnc_varEne;	//les definie
+		if (!isNil "ODD_var_VehiculeSel") then {
+			// Si les véhicules ennemis ne sont pas definis
+			[-1, true, false] call ODD_fnc_varEne;	
+			// Définition des véhicules
 			sleep 1;
 		};
 
 		if (!_ZOM) then{
-			//Calule le nombre de groupe
 			_nbVehicule resize round random[0,(_human_players/8),8];
+			// Défini le nombre de véhicules à créer
 			//systemChat(Format["Vehicule : %1", count _nbVehicule]);
 			[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 
-			//Pour tout les groupes nessaire 
+			//Pour tous les groupes
 			{
-				// choisi un groupe	
 				private _group = selectRandom ODD_var_VehiculeSel;
+				// Choisi un groupe
 				ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
 				
-				// choisi une position rdm dans un cercle autour du centre de l'obj
 				_pos = position _zo getPos [800 * random 1, random 360];
+				// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 				
-				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or ((_pos select 2) < 0 )} do { 		// si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
-					_pos = position _zo getPos [random 800, random 360];		//tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or ((_pos select 2) < 0 )} do { 		
+            		// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
+					_pos = position _zo getPos [random 800, random 360]; 
+					// Tire une nouvelle position
 				};
 				// systemChat(str(_pos));
-				//spawn le groupe
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+				// Crée le groupe
 				
-				//Ajoute le groupe a la liste des IA de la missions
 				ODD_var_ZopiA pushBack _g;
+				// Ajoute le groupe à la liste des IA de la mission
 				
 				sleep 1;
-				//lui assigne des waypoint de patrouille
 				[_g, _pos, round (size _zo select 0 * 1.5)] call bis_fnc_taskpatrol;
+				// Assigne des points de passage
 				
 			}forEach _nbVehicule;
 		}
 		else {
-			// choisi un groupe	
 			private _group = selectRandom ODD_var_VehiculeSel;
+			// Choisi un groupe	
 			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
 			
-			// choisi une position rdm dans un cercle autour du centre de l'obj
 			_pos = position (selectrandom (_pos nearRoads 600));
+			// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 			
 			// systemChat(str(_pos));
-			//spawn le groupe
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
+			// Crée le groupe
 			
-			//Ajoute le groupe a la liste des IA de la missions
 			ODD_var_ZopiA pushBack _g;
+			// Ajoute le groupe à la liste des IA de la mission
 			
 			[_g] spawn ODD_fnc_patrolZoM;
 

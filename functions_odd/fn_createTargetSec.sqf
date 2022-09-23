@@ -1,35 +1,35 @@
 /*
-* Author: Wolv
-* Fonction permetant de créé un objectif secondaire sur une zone 
+* Auteur : Wolv
+* Fonction pour créer un objectif secondaire
 *
-* Arguments:
-* 0: Zone Principal <Obj>
+* Arguments :
+* 0: Zone Principal <Objet>
 * 1: Force Mission <String>
 *
-* Return Value:
+* Valeur renvoyée :
 * Nom de l'odd_var_objectif créé
 *
-* Example:
+* Exemple :
 * [_zo] call ODD_fnc_createTargetSec
 * [_zo, _missiontype] call ODD_fnc_createTargetSec
 *
-* Public:
+* Variable publique :
 */
 params ["_zo", ["_type", -1]];
 
-//recup les loc a proximité
 _zoList = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_DistanceZO];
+// Récupère les localités à proximité
 
-// Choisis une location
 private _zoSec = selectRandom _zoList;
+// Choisi une localité
 _zoList = _zoList - [_zoSec];
 
-// Choisis une missions random
 private _Mission = selectRandom ODD_var_TargetSecTypeName;
+// Choisi une mission secondaire aléatoirement
 
 if (_type >= 0 and _type < count ODD_var_TargetSecTypeName) then {
     _Mission = ODD_var_TargetSecTypeName select _type;
-    [["Mission secondaire forcé : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
+    [["Mission secondaire forcée : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
 };
 
 [["Mission secondaire : %1, sur : %2", _Mission, text _zoSec]] call ODD_fnc_log;

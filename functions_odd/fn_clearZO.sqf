@@ -1,18 +1,18 @@
 /*
-* Author: Wolv
-* Fonction permetant de nettoyer la zone
+* Auteur : Wolv
+* Fonction pour nettoyer la zone
 *
-* Arguments:
-* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Activation du débug dans le chat <BOOL>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [] call ODD_fnc_clearZO
 * [true] call ODD_fnc_clearZO
 *
-* Public:
+* Variable publique :
 */
 params [];
 // sleep 5;
@@ -30,7 +30,7 @@ if (ODD_var_CurrentMission == 1) then {
 		["ODD_var_GoClear ok"] remoteExec ["systemChat", 0];
 	};
 
-	// Compte les Joueurs
+	// Compte les joueurs
 	private _human_players = ODD_var_NbPlayer; // removing Headless Clients
 
 	{
@@ -42,15 +42,15 @@ if (ODD_var_CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {	//si prisonier
-					_joueurInZO = _joueurInZO - 1;								//retire le prisonier de la liste
+				if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {	// Si c'est un prisonier
+					_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 				};
 				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
 				_joueurInZO <= 0
 			};
 
 
-			//supprime les taches
+			// Supprime les taches
 			// ["Task","CANCELED"] call BIS_fnc_taskSetState;
 			["Task"] call BIS_fnc_deleteTask;
 			// ["Extract","CANCELED"] call BIS_fnc_taskSetState;
@@ -60,53 +60,53 @@ if (ODD_var_CurrentMission == 1) then {
 			deleteMarker _x;
 			{
 				{
-					deleteVehicle _x;			// 	delete l'units
-				} forEach units _x;				//	pour chaque units du groupe
-			} forEach ODD_var_MissionIA;		//	Pour chaque Groupe
+					deleteVehicle _x;			// Supprime l'unité
+				} forEach units _x;				// Pour chaque unité du groupe
+			} forEach ODD_var_MissionIA;		// Pour chaque groupe
 			
 			{
 				{
-					deleteVehicle _x;			// 	delete l'units
-				} forEach units _x;				//	pour chaque units du groupe
-			} forEach ODD_var_ZopiA;			//	Pour chaque Groupe
+					deleteVehicle _x;			// Supprime l'unité
+				} forEach units _x;				// Pour chaque unité du groupe
+			} forEach ODD_var_ZopiA;			// Pour chaque groupe
 			
 			{
-				deleteVehicle _x;				// 	delete l'units
-			} forEach ODD_var_MissionProps;		//	Pour chaque Group{
+				deleteVehicle _x;				// Supprime l'unité
+			} forEach ODD_var_MissionProps;		// Pour chaque unité du groupe
 			
 			// recup tout les objet par terre 
 			_Supplies = _pos nearSupplies 5000;
 			{
 				if (!(_x in [factory,medicalFob,lanceursFob,armesFob,repairPont,medical,para,armes,acces,lanceurs,dump,repair,refuel,rearm])) then { 
-												// si l'objet est différent des objet sur fob ou sur base
+												// Si ce n'est pas un objet de la fob ou de la base
 					private _distance = fob distance _x;
 					if (_distance > 100) then {
-						deleteVehicle _x;		// delete l'objet
+						deleteVehicle _x;		// Supprime l'objet
 					};
 				};
-			} forEach _Supplies;						// pour chaque objet
+			} forEach _Supplies;						// Pour chaque objet
 
 			_obj = nearestObjects [_pos, ODD_var_SuppressObject, ODD_var_DistanceZO];
 			{
 				private _distance = (fob distance _x) min (base distance _x);
 				if (_distance > 100) then {
-					deleteVehicle _x;		// delete l'objet
+					deleteVehicle _x;		// Supprime l'objet
 				};
 			}forEach _obj;
 			
 			{
 				{
-					deleteVehicle _x;			// 	delete l'units
-				} forEach units _x;				//	pour chaque units du groupe
-			} foreach ODD_var_MissionCivil;
+					deleteVehicle _x;			// Supprime l'unité
+				} forEach units _x;				// Pour chaque unité du groupe
+			} foreach ODD_var_MissionCivil;		// Pour chaque groupe civil
 			
-			{									//normalement ne devrait pas servir mais on laisse au cas ou 
-				deleteVehicle _x;				//supprime le corps
-			} forEach alldead;					//pour chaque corps 
+			{									// Ne devrait pas servir
+				deleteVehicle _x;				// Supprime le cadavre
+			} forEach alldead;					// Pour chaque cadavre
 
 			{
-				_x hideObjectGlobal false;		//affiche l'object
-			} forEach ODD_var_ObjetHide;		//pour object caché
+				_x hideObjectGlobal false;		// Affiche l'object
+			} forEach ODD_var_ObjetHide;		// Pour object caché
 
 			ODD_var_ParticuleList = [];
 			publicVariable "ODD_var_ParticuleList";

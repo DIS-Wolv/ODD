@@ -1,61 +1,49 @@
 /*
-* Author: Wolv
-* Fonction permetant de d'appeller des renfort dans la zone
+* Auteur : Wolv
+* Fonction pour appeller des renforts dans la zone
 *
-* Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Zone souhaitée <Objet>
+* 1: Activation du débug dans le chat <BOOL>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple:
 * [_zo] call ODD_fnc_createRenfort
-* [_zo, true] call ODD_fnc_createRenfort
 *
-* Public:
+* Variable publique :
 */
-params ["_zo", ["_Debug", false]];
-// private _zo = _this select 0;
-		//Zone ou il faut envoyer les renfort
+params ["_zo"];
 
 private _NbUnitRenfort = 0;
 
 if (ODD_var_CurrentMission == 1) then {
-    _textRenfort = ["Des renforts ont été appellé.", "Des renforts sont en approche"];
+    _textRenfort = ["Des renforts ont été appellés.", "Des renforts sont en approche !"];
     [selectRandom _textRenfort] remoteExec ["systemChat", 0];
-    	// envoie un message de renfort
+    	// Message d'annonce des renforts
     
     private _groups = [];
     
     private _human_players = ODD_var_NbPlayer;
-    // removing Headless Clients
+    // Retire les clients headless
     private _locType = 0;
-    private _inf = [];
-    
-    if (type _zo == ODD_var_LocationType select 5) then {
-        _locType = 0;
-    };
-    if (type _zo == ODD_var_LocationType select 4) then {
-        _locType = 1;
-    };
-    if (type _zo == ODD_var_LocationType select 3) then {
-        _locType = 2;
-    };
-    if (type _zo == ODD_var_LocationType select 2) then {
-        _locType = 3;
-    };
-    if (type _zo == ODD_var_LocationType select 1) then {
-        _locType = 4;
-    };
-    if (type _zo == ODD_var_LocationType select 0) then {
-        _locType = 5;
-    };
+    switch (type _zo) do {
+		case (ODD_var_LocationType select 5): { _locType = 0;};
+		case (ODD_var_LocationType select 4): { _locType = 1;};
+		case (ODD_var_LocationType select 3): { _locType = 2;};
+		case (ODD_var_LocationType select 2): { _locType = 3;};
+		case (ODD_var_LocationType select 1): { _locType = 4;};
+		case (ODD_var_LocationType select 0): { _locType = 5;};
+	};
+
     {
         if (_x in ["military", "airbase", "airfield"]) then {
             _locType = 3;
         };
     }forEach ((text _zo) splitstring " ");
+    
+    private _inf = [];
     
     _groups resize random[0, round((_locType/2) + (_human_players/4)), 7];
     
@@ -66,30 +54,28 @@ if (ODD_var_CurrentMission == 1) then {
         };
         ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
         _groups set[_forEachindex, _group];
-        	// definie le vl
+        	// Défini le véhicule
     }forEach _groups;
-    		// pour tous les groupes
+    		// Pour tous les groupes
     
     _loc3 = nearestLocations [position _zo, ODD_var_LocationType, 3000];
-    // Recup les location a - de 3000m
+    // Récupère les localités à moins de 3km (3000m)
     {
         if (text _x in ODD_var_LocationBlkList) then {
-            // si dans la liste Noir
+            // Si la localité est dans la liste noire
             _loc3 deleteAt _forEachindex;
-            				// on delete la location de notre liste
+            // La localité est supprimée de notre liste
         };
     }forEach _loc3;
-    		// pas compté celle ou on est
     _loc6 = nearestLocations [position _zo, ODD_var_LocationType, 6000];
-    // Recup les location a - de 6000m
+    // Récupère les localités à moins de 6km (6000m)
     {
         if (text _x in ODD_var_LocationBlkList) then {
-            // si dans la liste Noir
+            // Si la localité est dans la liste noire
             _loc6 deleteAt _forEachindex;
-            				// on delete la location de notre liste
+            // La localité est supprimée de notre liste
         };
     }forEach _loc6;
-    		// !\ pas compté celle ou on est
     _loc36 = _loc6 - _loc3;
     
     if (count(_loc36) > 0) then {
@@ -104,7 +90,7 @@ if (ODD_var_CurrentMission == 1) then {
                 _pos = position _rdmloc;
             };
             _refloc set[_forEachindex, _rdmloc];
-            // ne selectionne que des obj avec des route
+            // Selectionne uniquement les localités entre 3 et 6km avec une route
             
             // systemChat(str(text (_refloc select _forEachindex)));
         }forEach _refloc;
@@ -112,111 +98,96 @@ if (ODD_var_CurrentMission == 1) then {
         {
             if (ODD_var_CurrentMission == 1) then {
                 _loc = selectRandom _refloc;
-                	// choisie un loc random
+                	// Choisi une localité aléatoire
                 
                 [["Renfort en approche de %1", text _loc]] call ODD_fnc_log;
                 
                 _pos = position _loc getPos [300 * random 1, random 360];
-                	// prend un pose random a coté du centre de la loc
+                	// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
                 if (count (_pos nearRoads 300) > 0) then {
-                    // si il y a des route a coté
+                    // Cherche une route à 300m de la position choisie
                     _pos = position (selectRandom(_pos nearRoads 300));
-                    		// choisi la route la plus proche
+                    	// Redéfini la position sur cette route
                 };
                 
                 while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 20] > 0) or (!(isOnRoad _pos))} do {
-                    // si il y a plus de 0 cailloux dans les 10 mettres ou pas sur une route
+                    // S'il y a des rochers ou des maisons à proximité ou si la position n'est pas sur une route
                     _pos = position _loc getPos [random 300, random 360];
-                    // tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+                    // Choisi une nouvelle position
                     if (count (_pos nearRoads 300) > 0) then {
-                            // si il y a des route a coté
+                    // Cherche une route à 300m de la position choisie
                         _pos = position (selectRandom (_pos nearRoads 300));
-                            // choisi la route la plus proche
+                        // Redéfini la position sur cette route
                     };
                 };
                 
                 _group = (_groups select _forEachindex);
-                		// choisie le groupe
+                // Choisi un groupe
                 _g = [_pos, east, _group] call BIS_fnc_spawngroup;
-                	// spawn le groupe
-                // Ajoute le groupe a la liste des IA de la missions
+                // Crée le groupe
                 ODD_var_ZopiA pushBack _g;
+                // Ajoute le groupe à la liste des IA de la missions
 
                 _NbUnitRenfort = _NbUnitRenfort + count(units _g);
                 
                 if (!(("brf_o_ard_uaz" in _group) or ("brf_o_ard_uaz_open" in _group))) then {
-                    // ajoute du personnel dans les vl
                     _infG = selectRandom ODD_var_squad;
                     _pos set [1, (_pos select 1)+ 3];
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
-                    
+                    // Ajoute des AI dans les véhicules
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
                     ODD_var_ZopiA pushBack _inf;
-
-                    //ODD_var_ZopiA pushBack _inf;
                 }
                 else {
-                    // si UAZ
+                    // Si le véhicule est un UAZ
                     _infG = selectRandom ODD_var_squad;
-                    		// choisi une ODD_var_squad
+                    // Choisi un groupe
                     _pos set [1, (_pos select 1)+ 3];
-                    	// la deplace sur le coté
+                    // Déplace sur le coté
                     
                     _infG deleteAt (random (count _infG));
-                    	// delete 2 gars
+                    // Suppirme 2 unités du groupe 
                     _infG deleteAt (random (count _infG));
                     
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
-                    // spawn la ODD_var_squad
+                    // Crée le groupe
                     ODD_var_ZopiA pushBack _inf;
-                    		// Ajoute le groupe a la liste des IA de la missions
+                    // Ajoute le groupe à la liste des IA de la mission
 
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
                 };
-                
                 sleep 1;
                 
                 {
                     _x moveInCargo (vehicle (units _g select 0));
-                    	// déplace l'unité dans le vl
+                    // Déplace une unité dans le véhicule
                 }forEach units _inf;
-                	// pour chaque unité
+                	// Pour chaque unité
                 
                 sleep ((random 30) + 30);
                 
                 _posWp1 =[(position _zo getPos [random 200, random 360]), size _zo select 0] call BIS_fnc_nearestroad;
                 
                 _g addWaypoint [_posWp1, 100, 1];
-                	// Waypoint déplacement et dechargement
+                // Crée un point de passage pour que le véhicule se rende sur zone et y débarque l'infanterie
                 [_g, 1] setwaypointBehaviour "AWARE";
                 [_g, 1] setwaypointType "TR UNLOAD";
                 [_g, 1] setwaypointTimeout [20, 35, 60];
                 
                 _g addWaypoint [(position _zo getPos [random 200, random 360]), 100, 2];
                 [_g, 2] setwaypointType "SAD";
-                		// WP Seek and Destroy
+                // Crée un point de passage "recherche et destruction" pour le véhicule
                 
                 _inf addWaypoint [_posWp1, 0, 1];
-                	// WP get Out
+                // Crée un point de passage pour que l'infanterie débarque
                 [_inf, 1] setwaypointType "GETOUT";
                 
                 _inf addWaypoint [(position _zo getPos [random 200, random 360]), 50, 2];
                 [_inf, 2] setwaypointType "SAD";
-                	// WP Seek and Destroy
+                // Crée un point de passage "recherche et destruction" pour l'infanterie
             };
         } forEach _groups;
     };
 };
 
 [["Quantital : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call ODD_fnc_log;
-
-/*
-1.	Lors de l'appelle
-2.	Combien de grp spawn
-3.	quels grp spawn ? (vl / inf ?) 1 groupe
-4. 	toutes les locations VALIDE qui sont a + de 2 et - de 5 km
-selectionne 1 ou 2
-5.	probabilité a def de faire spawn des renfort (depend du nombre de loc)
-6.	waypoint
-
-*/

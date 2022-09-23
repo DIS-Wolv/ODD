@@ -1,67 +1,57 @@
 /*
-* Author: Wolv
-* Fonction permetant de crée des garde en garnison dans la zone
+* Auteur : Wolv
+* Fonction pour créer des AI en garnison dans la zone
 *
-* Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Es ce la zone principale <BOOL>
-* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Zone souhaité <Objet>
+* 1: Est-ce la zone principale <BOOL>
+* 2: Activation du débug dans le chat <BOOL>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [_zo] call ODD_fnc_createGarnison
 * [_zo, true, false] call ODD_fnc_createGarnison
 *
-* Public:
+* Variable publique :
 */
 
 params ["_zo", ["_action", false]];
 
-// Compte les Joueurs
+// Compte les joueurs
 private _human_players = ODD_var_NbPlayer;
-// removing Headless Clients
+// Supprime les clients Headless
 private _nbgroup = [];
 private _GBuild = [];
 
 if (_action) then {
-    // préparation des variables pour le calcule du nombre de groupe
+    // Préparation des variables pour le calcul du nombre de groupe à créer
     _locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000];
-    // Recup les location a - de 3000m
+    // Récupère les localités à moins de 3km (3000m)
     {
         if (text _x in ODD_var_LocationBlkList) then {
-            // si dans la liste Noir
+            // Si la localité est dans la liste noire
             _locProx deleteAt _forEachindex;
-            // on delete la location de notre liste
+            // La localité est supprimée de notre liste
         };
     }forEach _locProx;
-    // !\ pas compté celle ou on est
+    // Compte les localités à proximité
     _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
-    // Nombre de odd_var_maison dans la localité
+    // Nombre de maisons dans la localité
     _taille = size _zo select 0;
-    // Taille de la Zone
+    // Taille de la zone
     _heure = date select 3;
-    // heure de la journée
+    // Heure de la journée
     private _loctype = 0;
-    if (type _zo == ODD_var_LocationType select 5) then {
-        _loctype = 0;
-    };
-    if (type _zo == ODD_var_LocationType select 4) then {
-        _loctype = 1;
-    };
-    if (type _zo == ODD_var_LocationType select 3) then {
-        _loctype = 2;
-    };
-    if (type _zo == ODD_var_LocationType select 2) then {
-        _loctype = 3;
-    };
-    if (type _zo == ODD_var_LocationType select 1) then {
-        _loctype = 4;
-    };
-    if (type _zo == ODD_var_LocationType select 0) then {
-        _loctype = 5;
-    };
+    switch (type _zo) do {
+		case (ODD_var_LocationType select 5): { _locType = 0;};
+		case (ODD_var_LocationType select 4): { _locType = 1;};
+		case (ODD_var_LocationType select 3): { _locType = 2;};
+		case (ODD_var_LocationType select 2): { _locType = 3;};
+		case (ODD_var_LocationType select 1): { _locType = 4;};
+		case (ODD_var_LocationType select 0): { _locType = 5;};
+	};
     
     {
         if (_x in ["military", "airbase", "airfield"]) then {
@@ -77,29 +67,29 @@ if (_action) then {
     _nbgroup resize _NbGarnison;
     
     private _Med = true;
-    // definie qu'il faut faire spawn une caisse
+    // Prépare la création d'une caisse médicale
     
-    // Recupère tout les batiments a proximité
+    // Récupère tous les batiments a proximité
     _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
-        // Si il y a peux de batiment
+        // S'il y a moins de batiments que de groupes
         if (count _Buildings < 10) then {
             _nbgroup resize (count _Buildings - 1);
-            // diminue le nombre de groupe
+            // Diminue le nombre de groupes
         }
         else {
             _nbgroup resize (count _Buildings - ((count _Buildings) * 0.1));
-            // diminue le nombre de groupe
+            // Diminue le nombre de groupes
         };
     };
-    // */ Le but est qu'il y n'est pas 15 groupes en garnison dans 5 odd_var_maison sur des petits obj avec beaucoup de joueurs
+    // Au maximum, 90% des maisons sont occupées
     // systemChat(format["Garnison : %1", count _nbgroup]);
     
-    // Pour tout les groupes nessaire
+    // Pour tous les groupes
     {
         private _group = [];
-        // choisi un groupe
+        // Choisi un groupe
         if (floor(random 2) == 0) then {
             _group = selectRandom ODD_var_fireTeam;
         }
@@ -107,47 +97,35 @@ if (_action) then {
             _group = selectRandom ODD_var_squad;
         };
         if (count _Buildings > 0 ) then {
-            // choisi un batiment aléatoirement
+            // Choisi un batiment aléatoirement
             _GBuild = selectRandom _Buildings;
             //_Buildings = _Buildings - [_Buildings];
             
-            // caisse med
+            // Caisse médicale
             if (_Med and (count _Buildings > 20)) then {
-                // si plus de 20 odd_var_maison, et pas de caisse
+                // S'il y a plus de 20 maisons, et pas de caisse médicale
                 _posBox = [position _GBuild select 0, position _GBuild select 1, (position _GBuild select 2) + 2];
                 _posBox set[2, 1];
                 _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
-                // pose une caisse
+                // Place une caisse
                 _Med = false;
-                // definie que la caisse a spawn
+                // Il n'y a plus besoin de caisse médicale
             };
             
-            // spawn le groupe
+            // Crée le groupe
             _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
             
-            // Ajoute le groupe a la liste des IA de la missions
+            // Ajoute le groupe à la liste des IA de la mission
             ODD_var_MissionIA pushBack _g;
             
-            // Ajoute le groupe a la liste des IA en garnison
+            // Ajoute le groupe à la liste des IA en garnison
             ODD_var_GarnisonIA pushBack _g;
             
             _Buildings = _Buildings - [_GBuild];
-            
-            /*
-            if (!(isnil "HC1")) then {
-                // systemChat "HC1 présent";
-                _HCID = owner HC1;
-                
-                _g setgroupOwner _HCID;
-                {
-                    _x setowner _HCID;
-                } forEach (units _g);
-            };
-            //*/
 
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-            } forEach (units _g);   //pour chaque units
+                _x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+            } forEach (units _g);   // Pour chaque unité du groupe
             
             sleep 2;
 
@@ -157,69 +135,43 @@ if (_action) then {
                 _tp = true;
             }; 
             
-            // met en garnison
+            // Place les unités en garnison
             if (round(random 4) == 0) then {
-                // 1 / 4 qu'il soit split dans plusieurs batiment
+                // 25% de chance que toutes les unités ne soient pas dans le même batiment
                 [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             }
             else {
                 [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             };
-            
-            // {
-                // _x disableAI "PATH";
-            // } forEach (units _g);
-            // [getPos _GBuild, nil, units _g, 100, 1, false, false] remoteExec ["\z\ace\addons\ai\functions\fnc_garrison.sqf", 0];
-            // Garnison Ace
-            // ["YoutV2"] remoteExec ["systemChat"];
-            // systemChat("Garnison");
         };
     }forEach _nbgroup;
-    
-    /*
-    sleep 30;
-    // _clientID = owner _someobject;
-    {
-        if (_x == (ODD_var_GarnisonIA select 0)) then {
-            [position ((units _x) select 0), nil, units _x, 20, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-            // Garnison Ace
-        }
-        else {
-            {
-                [position ((units _x) select 0), nil, units _x, 100, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-                // Garnison Ace
-            }forEach units _x;
-        };
-    }forEach ODD_var_GarnisonIA;
-    // */
 }
 else {
-    _NbGarnison = round (2 + _human_players / 2);
+    _NbGarnison = round (2 + _human_players / 2); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
 
     _nbgroup resize _NbGarnison;
-    // remplacé la fonction
     
-    // Recupère tout les batiments a proximité
+    // Récupère tous les batiments à proximité
     _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
-        // Si il y a peux de batiment
+        // S'il y a moins de batiments que de groupes
         _nbgroup resize (count _Buildings - 2);
-        // diminue le nombre de groupe
+        // Diminue le nombre de groupes
     };
-    // Le but est qu'il y n'est pas 15 groupes en garnison dans 5 odd_var_maison sur des petits obj avec beaucoup de joueurs
+    // Au maximum, toutes les maisons sauf 2 sont occupées 
     
     [["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
 
-    // Pour tout les groupes nessaire
+    // Pour tous les groupes nécessitant d'être en granison
     {
-        // choisi un groupe
+        // Choisi un groupe
         private _group = selectRandom ODD_var_fireTeam;
         
-        // choisi un batiment aléatoirement
+        // Choisi un batiment aléatoirement
         _GBuild = selectRandom _Buildings;
         
-        // spawn le groupe
+        // Crée le groupe
         _g = [position _GBuild, east, _group] call BIS_fnc_spawngroup;
         
         // Ajoute le groupe a la liste des IA de la missions
@@ -236,7 +188,7 @@ else {
             _tp = true;
         }; 
         
-        // met en garnison
+        // Place les unités en garnison
         if (round(random 4) == 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
             [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -244,12 +196,7 @@ else {
         else {
             [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         };
-        // Garnison Ace
+        // La fonction de garnison utilisée est celle de ACE
     }forEach _nbgroup;
 };
 // systemChat("2.fin");
-
-/*
-{
-	_x setVariable ["acex_headless_blacklist", true, true];
-} forEach (units _g);//*/

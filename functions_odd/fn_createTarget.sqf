@@ -1,29 +1,28 @@
 /*
-* Author: Wolv
-* Fonction permetant de créé un objectif sur une zone 
+* Auteur : Wolv
+* Fonction pour créer un objectif sur une zone 
 *
-* Arguments:
+* Arguments :
 * 0: Zone souhaité <Obj>
 * 1: Type d'odd_var_objectif souhaité <INT>
 * 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
 *
-* Return Value:
-* Nom de l'odd_var_objectif créé
+* Valeur renvoyée :
+* Nom de l'objectif créé
 *
-* Example:
+* Exemple:
 * [_zo] call ODD_fnc_createTarget
 * [_zo, _missiontype] call ODD_fnc_createTarget
 *
-* Public:
+* Variable publique :
 */
 params ["_zo", ["_type", -1]];
 
-// Choisis une missions random
 private _Mission = selectRandom ODD_var_SelectedTarget;
+// Choisi une mission aléatoire parmi la lister
 
-[["Mission choisi : %1", _Mission]] call ODD_fnc_log;
+[["Mission choisie : %1", _Mission]] call ODD_fnc_log;
 
-// ODD_var_DEBUG => force le type de missions
 if (_type >= 0 and _type < count ODD_var_TargetTypeName) then {
     _Mission = ODD_var_TargetTypeName select _type;
     [["Mission forcé : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
@@ -33,7 +32,7 @@ _Buildings = [];
 
 while {count _Buildings == 0} do {
     _Buildings = nearestobjects[position _zo, ODD_var_Maison, 200];
-    [["Nombre de Batiment sur la %1 : %2", text _zo, count _Buildings]] call ODD_fnc_log;
+    [["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODD_fnc_log;
 };
 
 ODD_var_Objectif = [];
@@ -42,121 +41,103 @@ publicVariable "ODD_var_Objectif";
 _tgBuild = selectRandom _Buildings;
 
 switch (_Mission) do {
-    case (ODD_var_TargetTypeName select 0): {       // Caisses
+    case (ODD_var_TargetTypeName select 0): {
+        // Mission de destruction d' une caisse
         _posBox = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
-        
-        // Cree la caisses
+        // Surélève la caisse de 2m 
         _box = "Box_IED_exp_F" createvehicle _posBox;
         _box setPos _posBox;
-            // la position 2 mettre plus haut
+        // Crée la caisse et la place dans une maison
         _box additemCargoGlobal ["DemoCharge_Remote_Mag", 2];
-            // Ajoute des charges explo
+        // Ajoute des charges explosives à la caisse
         
         ODD_var_Objectif pushBack _box;
-        
-    
-        // attent 1s
+
         sleep(1);
-            // pour pas tuer un gars avec la caisses
+        // Attend une seconde pour ne pas tuer une AI avec la caisse 
         
         private _group = [];
         
         if ((round random 2) == 0) then {
+        // Choisi aléatoirement
             _group = selectRandom ODD_var_pair;
-            // choisi un groupe de 2
+            // Un groupe de 2 unités
         }
         else {
             _group = selectRandom ODD_var_fireTeam;
-            // choisi un groupe de 4
+            // Un groupe de 4 unité
         };
-        // spawn 2 gars pour defendre
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+        //Crée le groupe pour défendre l'objectif
         
-        // Ajoute le groupe a la liste des IA de la missions
         ODD_var_MissionIA pushBack _g;
-        
-        // met en garnison
-        /*
-        if (!(isnil "HC1")) then {
-            [["HC1 présent"]] call ODD_fnc_log;
-            _HCID = owner HC1;
-            
-            _g setgroupOwner _HCID;
-            {
-                _x setowner _HCID;
-            } forEach (units _g);
-        };
-        //*/
+        // Ajoute le groupe a la liste des IA de la missions
+
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
+            _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);
+        // Réitère pour chaque unité du groupe
         
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 
-        // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextCaisse, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "destroy"] call BIS_fnc_tasksettype;
+        // Crée la tâche
     };
-    case (ODD_var_TargetTypeName select 1): {       // Kill HVT
-        // choisi une HVT random
+    case (ODD_var_TargetTypeName select 1): {
+        // Mission d'élimination d'une HVT
         private _group = selectRandom ODD_var_HVT;
+        // Choisi une HVT aléatoire
         
-        // ajoute au groupe de la HVT 4 gars en protection
         _group append selectRandom ODD_var_fireTeam;
+        // Ajoute 4 unités au groupe de la HVT
         // systemChat(str(_group));
         
-        // spawn le groupe
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
-        
-        // Ajoute le groupe a la liste des IA de la missions
+        // Crée le groupe
+
         ODD_var_MissionIA pushBack _g;
+        // Ajoute le groupe à la liste des IA de la mission
         ODD_var_Objectif pushBack (units _g select 0);
         // systemChat(str(units _g select 0));
         
         ((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
         if (round random 4 == 1) then {
-            // met en patrioulle
+            // Avec 25% de chance 
             [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
+            // Le groupe est en patrouille
         }
         else {
-            // met en garnison
-            /*
-            if (!(isnil "HC1")) then {
-                [["HC1 présent"]] call ODD_fnc_log;
-                _HCID = owner HC1;
-                
-                _g setgroupOwner _HCID;
-                {
-                    _x setowner _HCID;
-                } forEach (units _g);
-            };
-            //*/
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-            } forEach (units _g);   //pour chaque units
+                _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+            } forEach (units _g);  
+        // Réitère pour chaque unité du groupe
             [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-            // Garnison Ace
+            // Sinon, le groupe est mis en garnison avec ACE
         };
         
-        // cree la tache
         _task = [true, "Task", [format[selectRandom ODD_var_TextKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "target"] call BIS_fnc_tasksettype;
+        // Crée la tâche
     };
-    case (ODD_var_TargetTypeName select 2): {       // Capture HVT
-        // choisi une HVT random
+    case (ODD_var_TargetTypeName select 2): {
+        // Mission de capture d'une HVT
         private _group = selectRandom ODD_var_HVT;
+        // Choisi une HVT aléatoire
         
-        // ajoute au groupe de la HVT 4 gars en protection
         _group append selectRandom ODD_var_fireTeam;
+        // Ajoute 4 unités au groupe de la HVT
         // systemChat(str(_group));
         
-        // spawn le groupe
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+        // Crée le groupe
 
         ((units _g) select 0) addItemToUniform "Chemlight_yellow";
         
-        // Ajoute le groupe a la liste des IA de la missions
         ODD_var_MissionIA pushBack _g;
+        // Ajoute le groupe à la liste des IA de la mission
         ODD_var_Objectif pushBack (units _g select 0);
         // systemChat(str(units _g select 0));
         
@@ -166,46 +147,36 @@ switch (_Mission) do {
         _hvt addWeapon "hgun_Pistol_heavy_02_F";
         _hvt addHandgunItem "6Rnd_45ACP_Cylinder";
         for "_i" from 0 to (round(random 3)) do {_hvt addMagazine "6Rnd_45ACP_Cylinder";};
-        
 
         if (round random 4 == 1) then {
-            // met en patrioulle
+            // Avec 25% de chance 
             [_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
+            // Le groupe est en patrouille
         }
         else {
-            // met en garnison
-            /*
-            if (!(isnil "HC1")) then {
-                [["HC1 présent"]] call ODD_fnc_log;
-                _HCID = owner HC1;
-                
-                _g setgroupOwner _HCID;
-                {
-                    _x setowner _HCID;
-                } forEach (units _g);
-            };
-            //*/
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-            } forEach (units _g);   //pour chaque units
+                _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+            } forEach (units _g);   
+        // Réitère pour chaque unité du groupe
             [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-            // Garnison Ace
+            // Sinon, le groupe est mis en garnison avec ACE
         };
         
-        // cree la tache
         _task = [true, "Task", [format[((selectRandom ODD_var_TextSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "kill"] call BIS_fnc_tasksettype;
+        // Crée la tâche
     };
-    case (ODD_var_TargetTypeName select 3): {       // Secure Area
-        // cree la tache
+    case (ODD_var_TargetTypeName select 3): { 
+        // Mission de sécurisation de zone
         _task = [true, "Task", [format[selectRandom ODD_var_TextSecure, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "attack"] call BIS_fnc_tasksettype;
+        // Crée la tâche
     };
-    case (ODD_var_TargetTypeName select 4): {       // intel
+    case (ODD_var_TargetTypeName select 4): {
+        // Mission de récupération de renseignements
         _intellist = ["Item_SmartPhone", "Item_ItemalivePhoneOld", "Item_MobilePhone", "Item_SatPhone", "land_IPPhone_01_black_F", "land_IPPhone_01_olive_F", "land_IPPhone_01_sand_F", "land_Laptop_F", "land_Laptop_device_F", "land_Laptop_unfolded_F", "land_Laptop_intel_01_F", "land_Laptop_intel_02_F", "land_Laptop_intel_Oldman_F", "land_laptop_03_closed_black_F", "land_Laptop_03_black_F", "land_laptop_03_closed_olive_F", "land_Laptop_03_olive_F", "land_laptop_03_closed_sand_F", "land_Laptop_03_sand_F", "land_Laptop_02_F", "land_Laptop_02_unfolded_F"];
-        
         _posintel = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
-        
         _posintel set[2, 1];
         _table = "land_WoodenTable_small_F" createvehicle _posintel;
         _table setDir (getDir _tgBuild);
@@ -213,17 +184,10 @@ switch (_Mission) do {
         _posintel = position _table;
         sleep 0.1;
         _posintel set[2, 1.5];
-        
-        _intel = "land_Laptop_F" createvehicle _posintel;
+        _intelobj = selectrandom _intellist;
+        _intel = _intelobj createvehicle _posintel;
         _intel setPos _posintel;
-        // la position 2 mettre plus haut
-
-        /*_intel addAction ["<t color='#FF0000'>Recupérer les intels</t>", {
-            ODD_var_Objectif set[1, false];
-            deletevehicle (_this select 0);
-            }];
-        //*/
-        
+        // Choisi un appareil dans la liste puis le pose sur un table
         [
             _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "true", {}, {}, {
@@ -232,64 +196,59 @@ switch (_Mission) do {
             },
             {}, [], (random[2, 10, 15]), nil, true, true
         ] remoteExec ["BIS_fnc_holdActionAdd"];
+        // Ajoute l'interaction de récupération
 
         ODD_var_MissionProps pushBack _intel;
         ODD_var_Objectif pushBack _intel;
         ODD_var_Objectif pushBack true;
         // systemChat(str(ODD_var_Objectif));
         
-
-        // attent 1s
         sleep(1);
-            // pour pas tuer un gars avec la caisses
+        // Attend une seconde pour ne pas tuer une AI
         
-        // cree la tache
         [true, "Task", [format[selectRandom ODD_var_TextIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "intel"] call BIS_fnc_tasksettype;
+        // Crée la tâche
         
         private _group = [];
         if (round (random 2) == 0) then {
+        // Choisi aléatoirement
             _group = selectRandom ODD_var_pair;
-            // choisi un groupe de 2
+            // Un groupe de 2 unités
         }
         else {
             _group = selectRandom ODD_var_fireTeam;
-            // choisi un groupe de 4
+            // Un groupe de 4 unités
         };
-        // spawn 2 gars pour defendre
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+        //Crée le groupe pour défendre l'objectif
         
-        // Ajoute le groupe a la liste des IA de la missions
         ODD_var_MissionIA pushBack _g;
+        // Ajoute le groupe à la liste des IA de la mission
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
-        
-        // met en garnison
-        // [_g, getPos _tgBuild] execVM "\x\cba\addons\ai\fnc_waypointgarrison.sqf";
+            _x setVariable ["acex_headless_blacklist", true, true];
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);  
+        // Réitère pour chaque unité du groupe
+
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
-    case (ODD_var_TargetTypeName select 5): {       // Helico
+    case (ODD_var_TargetTypeName select 5): {
+        // Mission de récupération de boites noires
         _pos = position _zo getPos [((size _zo)select 0) * random 1, random 360];
         
         while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 8] > 0) or ((_pos select 2) < 0)} do {
-            // si il y a plus de 0 cailloux dans les 10 mettres ou position sous l'eau
+            // S'il y a des rochers ou des maisons à moins de 8m ou si la position est sous l'eau
             _pos = position _zo getPos [random 800, random 360];
-            // tire une nouvelles position car on veux pas qu'il spawn dans un cailloux
+            // Tire une nouvelle position
         };
         
         _helico = "land_Wreck_Heli_Attack_01_F" createvehicle _pos;
-
         ODD_var_ParticuleList pushBack _pos;
-
         publicVariable "ODD_var_ParticuleList";
         
         [True] remoteExec ["ODD_fnc_particules", 0];
-        
-        /* _helico addAction ["<t color='#FF0000'>Recupérer les boîtes noires</t>", {
-            ODD_var_Objectif set[1, false];
-        }];//*/
         [
             _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
@@ -302,153 +261,105 @@ switch (_Mission) do {
         ODD_var_Objectif pushBack _helico;
         ODD_var_Objectif pushBack true;
         
-        private _group = [];
-        if ((round random 2) == 0) then {
-            _group = selectRandom ODD_var_pair;
-            // choisi un groupe de 2
-        }
-        else {
-            _group = selectRandom ODD_var_fireTeam;
-            // choisi un groupe de 4
-        };
-        // spawn 2 gars pour defendre
-        _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
-        
-        // Ajoute le groupe a la liste des IA de la missions
-        ODD_var_MissionIA pushBack _g;
-        
         _posSmoke = _pos;
         _posSmoke set [1, (_posSmoke select 1) - 3];
         _smoke = "firePlace_burning_F" createvehicle _pos;
         _smoke setPos _pos;
         ODD_var_MissionProps pushBack _smoke;
-        // ODD_var_MissionProps pushBack _smoke;
         
         private _group = selectRandom ODD_var_fireTeam;
-        
         // systemChat(str(_pos));
-        // spawn le groupe
         _g = [_pos, east, _group] call BIS_fnc_spawngroup;
         
-        // Ajoute le groupe a la liste des IA de la missions
         ODD_var_MissionIA pushBack _g;
+        // Ajoute le groupe à la liste des IA de la mission
         
         sleep 1;
-        
-        // cree la tache
+        [_g, _pos, 150] call bis_fnc_taskpatrol;
         _task = [true, "Task", [format[selectRandom ODD_var_TextHelico, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "scout"] call BIS_fnc_tasksettype;
-        
-        [_g, _pos, 150] call bis_fnc_taskpatrol;
+        // Crée la tâche
     };
-    case (ODD_var_TargetTypeName select 6): {       // Save Prisoniers
-        // cree la tache
+    case (ODD_var_TargetTypeName select 6): {
+        // Mission de sauvetage d'un allié
         _task = [true, "Task", [format[selectRandom ODD_var_TextPrisoniers, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "meet"] call BIS_fnc_tasksettype;
+        // Crée la tâche
         
-        // choisi une Prisonier random
         private _group = selectRandom ODD_var_Otage;
+        // Choisi un prisonier aléatoire
         
-        // spawn un gars
         _g = [position _tgBuild, west, _group] call BIS_fnc_spawngroup;
-        // ((units _g) select 0) setCaptive 1;
+        // Crée le prisonier
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
+            _x setVariable ["acex_headless_blacklist", true, true];
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);   
+        // Réitère pour chaque unité du groupe
 
-        //passe en prisonier
         [position _tgBuild, nil, units _g, 10, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-            // Garnison Ace
+        // Met le prisonier en garnison
         sleep 1;
         [((units _g) select 0), true, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
-                    // captif ace
+        // Bascule le prisonier en captivité ACE
         
         ODD_var_MissionProps pushBack (units _g select 0);
         ODD_var_Objectif pushBack (units _g select 0);
         
-        // cree un groupe en protection
         _group = selectRandom ODD_var_fireTeam;
         
         _g = [position _tgBuild, east, _group] call BIS_fnc_spawngroup;
+        //Crée le groupe pour défendre l'objectif
         ODD_var_MissionIA pushBack _g;
         ODD_var_GarnisonIA pushBack _g;
-        /*
-        if (!(isnil "HC1")) then {
-            [["HC1 présent"]] call ODD_fnc_log;
-            _HCID = owner HC1;
-            
-            _g setgroupOwner _HCID;
-            {
-                _x setowner _HCID;
-            } forEach (units _g);
-        };
-        //*/
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
+            _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);   
+        // Réitère pour chaque unité du groupe
         
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        // Garnison Ace
     };
-    case (ODD_var_TargetTypeName select 7): {       // Secure VL
-        // cree la tache
+    case (ODD_var_TargetTypeName select 7): { 
+        // Mission de sécurisation d'un véhicule ennemi
         _task = [true, "Task", [format[selectRandom ODD_var_TextSecureVL, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "car"] call BIS_fnc_tasksettype;
+        // Crée la tâche
         
         _vl = selectRandom ODD_var_tgVehiculeSecure;
-        // choisie un vl
-        
-        // recupère les route proche du centre de l'odd_var_objectif
-        // _roads = position _zo nearRoads 300;
-        // _road = selectRandom _roads;
-            //choisi une route random
+        // Choisi un véhicule
         
         _pos = position _tgBuild;
-            // recup la pos
+        // Récupère la position pour l'objectif
         
         _dir = getDir _tgBuild;
-        
-        // _pos = _pos getPos [5, (_dir + 90 + ((round (random 2))* 180)) % 360];
-            //pose le vl sur le coté
-        
         _posvl = _pos findEmptyposition [4, 100, _vl];
-        //, "B_Heli_Transport_01_F"
-        
-        // _posVl = _pos;
-        // _posVl set[3, (_posVl select 3) + 2];
-        
-        // _posvl = _posvl getPos [2, [_pos, _posvl] call BIS_fnc_dirto];
         
         _g = _vl createvehicle _posvl;
-        // créé le VL
+        // Crée le véhicule
 
         _g addItemCargoGlobal ["Toolkit", 1]; 
-        // Ajoute un repaire kit
+        // Ajoute un kit de réparation au véhicule
         
         _g setDir _dir;
         
-        sleep 0.5;
+        sleep 1;
         _g setFuel 1;
         _g setDamage 0;
         
         sleep 2;
         if (!alive _g) then {
+        // Si le véhicule a été détruit lors de sa création
             _pos = position _g;
-            
             deletevehicle _g;
-            
             sleep 1;
-            
             _g = _vl createvehicle _posvl;
-            // créé le VL
-
-            _g addItemCargoGlobal ["Toolkit", 1]; 
-            // Ajoute un repaire kit
-            
+            //On le recrée
+            _g addItemCargoGlobal ["Toolkit", 1];
             _g setDir _dir;
             
-            sleep 0.5;
+            sleep 1;
             _g setFuel 1;
             _g setDamage 0;
         };
@@ -457,89 +368,59 @@ switch (_Mission) do {
         ODD_var_Objectif pushBack _g;
         
         sleep 1;
-        // cree un groupe en protection
         _group = selectRandom ODD_var_fireTeam;
+        //Crée un groupe pour défendre l'objectif
         
         _g = [_pos, east, _group] call BIS_fnc_spawngroup;
         ODD_var_MissionIA pushBack _g;
         ODD_var_GarnisonIA pushBack _g;
-        /*
-        if (!(isnil "HC1")) then {
-            [["HC1 présent"]] call ODD_fnc_log;
-            _HCID = owner HC1;
-            
-            _g setgroupOwner _HCID;
-            {
-                _x setowner _HCID;
-            } forEach (units _g);
-        };
-        //*/
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
-        
+            _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);   
+        // Réitère pour chaque unité du groupe
+
         [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        // Garnison Ace
+        // Place le groupe en garnison
     };
-    case (ODD_var_TargetTypeName select 8): {       // Destroy VL
-        //["TEST NOUVELLE MISSIONS"] remoteExec ["systemChat", 0]; 
-        // cree la tache
+    case (ODD_var_TargetTypeName select 8): {
+        // Mission de destruction d'un véhicule ennemi
         _task = [true, "Task", [format[selectRandom ODD_var_TextDestroyVL, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
         ["Task", "car"] call BIS_fnc_tasksettype;
+        // Crée la tâche
         
         _vl = selectRandom ODD_var_tgVehiculeDestroy;
-        // choisie un vl
-        
-        // recupère les route proche du centre de l'odd_var_objectif
-        // _roads = position _zo nearRoads 300;
-        // _road = selectRandom _roads;
-            //choisi une route random
+        // Choisi un véhicule
         
         _pos = position _tgBuild;
-            // recup la pos
-        
         _dir = getDir _tgBuild;
-        
-        // _pos = _pos getPos [5, (_dir + 90 + ((round (random 2))* 180)) % 360];
-            //pose le vl sur le coté
-        
+        // Récupère la position pour l'objectif
+
         _posvl = _pos findEmptyposition [4, 100, _vl];
-        //, "B_Heli_Transport_01_F"
-        
-        // _posVl = _pos;
-        // _posVl set[3, (_posVl select 3) + 2];
-        
-        // _posvl = _posvl getPos [2, [_pos, _posvl] call BIS_fnc_dirto];
-        
         _g = _vl createvehicle _posvl;
-        // créé le VL
+        // Crée le véhicule
 
         _g addItemCargoGlobal ["Toolkit", 1]; 
-        // Ajoute un repaire kit
+        // Ajoute un kit de réparation au véhicule
         
         _g setDir _dir;
         
-        sleep 0.5;
+        sleep 1;
         _g setFuel 1;
         _g setDamage 0;
         
         sleep 2;
         if (!alive _g) then {
+        // Si le véhicule a été détruit lors de sa création
             _pos = position _g;
-            
             deletevehicle _g;
-            
             sleep 1;
-            
             _g = _vl createvehicle _posvl;
-            // créé le VL
-
+            //On le recrée
             _g addItemCargoGlobal ["Toolkit", 1]; 
             // Ajoute un repaire kit
-            
             _g setDir _dir;
-            
-            sleep 0.5;
+            sleep 1;
             _g setFuel 1;
             _g setDamage 0;
         };
@@ -548,29 +429,20 @@ switch (_Mission) do {
         ODD_var_Objectif pushBack _g;
         
         sleep 1;
-        // cree un groupe en protection
         _group = selectRandom ODD_var_fireTeam;
+        //Crée un groupe pour défendre l'objectif
         
         _g = [_pos, east, _group] call BIS_fnc_spawngroup;
         ODD_var_MissionIA pushBack _g;
         ODD_var_GarnisonIA pushBack _g;
-        /*
-        if (!(isnil "HC1")) then {
-            [["HC1 présent"]] call ODD_fnc_log;
-            _HCID = owner HC1;
-            
-            _g setgroupOwner _HCID;
-            {
-                _x setowner _HCID;
-            } forEach (units _g);
-        };
-        //*/
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-        } forEach (units _g);   //pour chaque units
+            _x setVariable ["acex_headless_blacklist", true, true]; 
+            // Ajoute l'unité à la liste noire des clients headless
+        } forEach (units _g);   
+        // Réitère pour chaque unité du groupe
         
         [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
-        // Garnison Ace
+        // Place le groupe en garnison
     };
 };
 
@@ -583,7 +455,5 @@ _pos set [1, ((_pos select 1) + ((size _zo) select 0)/4)];
 
 publicVariable "ODD_var_Objectif";
 publicVariable "ODD_var_MissionProps";
-// */
 
-// Renvoie le type de missions
-_Mission
+_Mission;
