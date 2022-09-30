@@ -11,12 +11,12 @@ _location = nearestLocations[[15000,15000], ODD_var_LocationType, 30000];
 		_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_marker setMarkerType "hd_objective";
 		_marker setMarkerColor "colorOPFOR";
-		_marker setMarkerText format["%1 | %2", text _x, _forEachIndex];
+		_marker setMarkerText format["%1 | %2 | %3", text _x, _forEachIndex, importance _x];
 	}
 	else {
 		_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_marker setMarkerType "hd_destroy_noShadow";
 		_marker setMarkerColor "ColorBlack";
-		_marker setMarkerText format["%1 | %2", text _x, _forEachIndex];
+		_marker setMarkerText format["%1 | %2 | %3", text _x, _forEachIndex, importance _x];
 	};
 } forEach _location;
