@@ -43,7 +43,7 @@ if (type _zo == ODD_var_LocationType select 0) then {
     };
 }forEach ((text _zo) splitstring " ");
 
-private _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+private _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
 // Nombre de maisons dans la localité
 
 private _nbCivil = 0;
@@ -68,7 +68,6 @@ switch (_loctype) do {
     2/nb civils
 */
 
-// systemChat("spawn des ODD_var_Civils");
 if (not _action) then {
     _nbCivil = _nbCivil / 2;
 };
@@ -81,7 +80,7 @@ private _civil = [];
 _civil resize (_nbCivil);
 {
     // choisi un groupe
-    private _group = selectRandom ODD_var_Civils;
+    private _group = selectRandom ODD_var_Civilians;
     
     // choisi un batiment aléatoirement
     _GBuild = selectRandom _Buildings;
@@ -90,7 +89,7 @@ _civil resize (_nbCivil);
     _g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
     _civil set[_forEachindex, _g];
     
-    ODD_var_MissionCivil pushBack _g;
+    ODD_var_MissionCivilians pushBack _g;
     
     [
         ((units _g)select 0), 
@@ -139,7 +138,7 @@ sleep 1;
 // for "_i" from 1 to 3 do
 {
     if (random 100 < 35) then {
-        _vl = selectRandom ODD_var_CivilsVL;
+        _vl = selectRandom ODD_var_CivilianVehicles;
         // Choisi un véhicule
         
         _GBuild = selectRandom _Buildings;
@@ -175,7 +174,7 @@ sleep 1;
 
 if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
     // Choisi un groupe
-    private _group = selectRandom ODD_var_CivilsVL;
+    private _group = selectRandom ODD_var_CivilianVehicles;
     
     _pos = position selectrandom (position _zo nearRoads 600);
     
@@ -208,7 +207,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         }, [], (random[2, 10, 15]), nil, True, False
         ] remoteExec ["BIS_fnc_holdActionAdd"];
 
-         ODD_var_MissionCivil pushBack _x;
+         ODD_var_MissionCivilians pushBack _x;
 
     } forEach units _g;
 
@@ -219,5 +218,5 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 
 };
 
-publicVariable "ODD_var_MissionCivil";
+publicVariable "ODD_var_MissionCivilians";
 publicVariable "ODD_var_MissionProps";

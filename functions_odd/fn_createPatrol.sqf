@@ -21,7 +21,7 @@
 params ["_zo", ["_action", False], ["_ZOM", False]];
 
 // Compte les joueurs
-private _human_players = ODD_var_NbPlayer; // removing Headless Clients
+private _human_players = ODD_var_PlayerCount; // removing Headless Clients
 private _nbPartol = [];
 
 if (_action) then {
@@ -29,14 +29,14 @@ if (_action) then {
 	// Prépare les variables pour le calcul du nombre de groupes
 	_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; //Recup les location a - de 3000m 
 	{
-		if (text _x in ODD_var_LocationBlkList) then {		
+		if (text _x in ODD_var_BlackistedLocation) then {		
 			// Si la localité est dans la liste noire
 			_locProx deleteAt _forEachIndex;
 			// La localité est supprimée de notre liste
 		};
 	}forEach _locProx;
 	// Compte les localités à proximité
-	_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	
+	_Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];	
 	// Nombre de maisons dans la localité
 	_taille = size _zo select 0;
 	// Taille de la Zone
@@ -76,7 +76,7 @@ if (_action) then {
 	//Pour tous les groupes
 	{
 		// Choisi un groupe	
-		private _group = selectRandom ODD_var_fireTeam;
+		private _group = selectRandom ODD_var_FireTeam;
 		
 		// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 		_distPattrouille = (((size _zo select 0) * 2) max 500);
@@ -92,7 +92,7 @@ if (_action) then {
 		_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 		
 		// Ajoute le groupe à la liste des IA de la missions
-		ODD_var_MissionIA pushBack _g;
+		ODD_var_MainAreaIA pushBack _g;
 		
 		sleep 1;
 		
@@ -112,7 +112,7 @@ else {
 
 		{
 			// Choisi un groupe	
-			private _group = selectRandom ODD_var_fireTeam;
+			private _group = selectRandom ODD_var_FireTeam;
 			
 			// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 			_pos = position _zo getPos [800 * random 1, random 360];
@@ -125,7 +125,7 @@ else {
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 			
 			// Ajoute le groupe à la liste des IA de la missions
-			ODD_var_ZopiA pushBack _g;
+			ODD_var_SecondaryAreasIA pushBack _g;
 			
 			// Assigne des points de passage à la patrouille
 			[_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
@@ -137,7 +137,7 @@ else {
 
 		{
 			// Choisi un groupe
-			private _group = selectRandom ODD_var_fireTeam;
+			private _group = selectRandom ODD_var_FireTeam;
 
 			// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 			_pos = position _zo getPos [800 * random 1, random 360];
@@ -149,7 +149,7 @@ else {
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 
 			// Ajoute le groupe à la liste des IA de la missions
-			ODD_var_ZopiA pushBack _g;
+			ODD_var_SecondaryAreasIA pushBack _g;
 
 			[_g] spawn ODD_fnc_patrolZoM;
 

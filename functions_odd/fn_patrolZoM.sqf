@@ -1,43 +1,41 @@
 /*
-* Author: Wolv
-* Fonction permetant de généré les waypoint des partouille en ZO -
+* Auteur : Wolv
+* Fonction pour faire bouger les patrouilles entre les zones secondaires
 *
-* Arguments:
-* 0: Groupe en patrouille
-* 1: Est un vl (cherche des WP sur des routes)
+* Arguments :
+* 0: Groupe en patrouille <OBJ>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [_g] call ODD_fnc_patrolZoM
 *
-* Public:
+* Variable publique :
 */
 params ["_g"];
 
-//position du chef de groupe
 private _leader = (units _g select 0);
 private _pos = position _leader;
+// Récupère le chef du groupe et sa position
 
-//liste des ZO possible trié du plus proche du chef de groupe
-_zoList = nearestLocations[getpos ODD_var_ZO, ODD_var_LocationType, 4000, _pos];
+_zoList = nearestLocations[getpos ODD_var_SelectedArea, ODD_var_LocationType, 4000, _pos]; 
+// Liste des localités à proximité (4km) de la zone objectif
 
-//selectionne la ou il commence la patrouille
 _pZo = _zoList select 0;
-
-//retire la zone actuelle
 _zoList = _zoList - [_pZo];
+// Retire la localité dans laquelle il se trouve de la liste
 
-//choisi la zone suivante
 _nextZo = selectrandom _zoList;
-while {count ((position _nextZo) nearRoads 300) <= 0} do {		// tant qu'il y a pas de route
-	_zoList = _zoList - [_nextZo];								//supprime la ZO-
-	_nextZo = selectrandom _zoList;								//tire une autre ZO-
+while {count ((position _nextZo) nearRoads 300) <= 0} do {
+	_zoList = _zoList - [_nextZo];
+	_nextZo = selectrandom _zoList;
 };
+// Choisi la localité suivante parmis la liste en s'assurant qu'elle compore des routes pour les véhicules
 
-//systemChat str text _pZo;
-for "_i" from 0 to ((round(random 4))+4) do {
+private _nbWP = (round(random 4)) + 4;
+
+for "_i" from 0 to (_nbWP) do {
 
 	_posWP = getPos (selectrandom (position _pZo nearRoads 600));
 
@@ -45,8 +43,8 @@ for "_i" from 0 to ((round(random 4))+4) do {
 
 };
 
-//patrouille sur la ZO suivante
 _posWP = getPos (selectrandom ((position _nextZo) nearRoads 300));
+// Récupère la position pour le point de passage sur la prochaine zone
 
 _g addWaypoint [_posWP, 5];
 

@@ -7,7 +7,7 @@
 * 1: Force Mission <String>
 *
 * Valeur renvoyée :
-* Nom de l'odd_var_objectif créé
+* Nom de l'objectif créé
 *
 * Exemple :
 * [_zo] call ODD_fnc_createTargetSec
@@ -17,7 +17,7 @@
 */
 params ["_zo", ["_type", -1]];
 
-_zoList = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_DistanceZO];
+_zoList = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
 // Récupère les localités à proximité
 
 private _zoSec = selectRandom _zoList;

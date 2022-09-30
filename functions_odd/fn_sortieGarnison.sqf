@@ -1,39 +1,40 @@
 /*
-* Author: Wolv
-* Fonction permetant de faire sortir de garnison sous certaine condition 
+* Auteur : Wolv
+* Fonction pour faire sortir les AIs de leur garnison sous certaines conditions
 *
-* Arguments:
-* 0: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [] call ODD_fnc_sortieGarnison
 * [true] call ODD_fnc_sortieGarnison
 *
-* Public:
+* Variable publique :
 */
-params [["_Debug", false]];
-//["Test Sortie Garnison"] remoteExec ["systemChat", 0];
+params [];
 
 {
-	if (count (units _x) > 2) then {		//si il reste + de 2 units dans le groupe 
-		if (count(getpos ((units _x) select 0) nearEntities[["SoldierWB"], 40]) > 0) then { // si au moins 1 blue a moins de 40 m
-			if (floor(random 20) == 0) then {	//5 % de chance
+	if (count (units _x) > 2) then {
+		//s'il reste plus de deux unités dans le groupe 
+		if (count(getpos ((units _x) select 0) nearEntities[["SoldierWB"], 40]) > 0) then { 
+			// s'il y a au moins un joueur à moins de 40 m
+			if (floor(random 20) == 0) then {
 				[["TAIO"]] call ODD_fnc_log;
-				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; // sortir de la garnison
-				// { _x enableAI "PATH"; } forEach (units _g);
+				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; 
+				// Avec 5% de chance, les AIs quittent leur garnison
 			};
 		};
 	}
 	else {
-		if (count(getpos ((units _x) select 0) nearEntities[["SoldierWB"], 10]) > 0) then { // si au moins 1 blue a moins de 10 m
+		if (count(getpos ((units _x) select 0) nearEntities[["SoldierWB"], 10]) > 0) then { 
+			// s'il y a au moins un joueur à moins de 10 m
 			if (floor(random 5) <= 1) then {	//40 % de chance
 				[["TAIO"]] call ODD_fnc_log;
-				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; // sortir de la garnison
-				// { _x enableAI "PATH"; } forEach (units _g);
+				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; 
+				// Avec 40% de chance, les AIs quittent leur garnison
 			};
 		};
 	};
-}forEach ODD_var_GarnisonIA;
+}forEach ODD_var_GarnisonnedIA;

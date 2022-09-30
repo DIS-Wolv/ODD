@@ -1,28 +1,27 @@
 /*
-* Author: Wolv
+* Auteur : Wolv
 * Fonction de spawn des IEDs
 *
-* Arguments:
-* 0: Zo principale <OBJ>
+* Arguments :
+* 0: Est ce la zone principale <OBJ>
 * 1: Nombre d'IED <INT>
-* 2: Distance de la ZO <INT>
+* 2: Distance à la sone <INT>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [_zo] call ODD_fnc_pressureIED
 * [_zo, 2, 4000] call ODD_fnc_pressureIED
 *
-* Public:
+* Variable publique :
 */
-params ["_zo", ["_nb", 2], ["_isDecoy", False], ["_dist", ODD_var_DistanceZO]];
+params ["_zo", ["_nb", 2], ["_isDecoy", False], ["_dist", ODD_var_MissionArea]];
 
 _pos = position _zo; 
 private _props = [];
 private _IED = [];
 _IED resize _nb;
-
 private _trapTypeLand = [];
 private _trapTypeUrban = [];
 
@@ -35,11 +34,12 @@ _roads = _pos nearRoads _dist;
 	_posZo = position _x;
 	_roadZo = _posZo nearRoads ((size _x select 1));
 	_roads = _roads + _roadZo + _roadZo;
+	// Ajoute plusieurs fois les routes dans les localités
 } forEach _nearZO;
 
 _roadsFOB = position usine nearRoads 200;
-
 _roads = _roads - _roadsFOB;
+// Retire les routes près de l'objet "usine" à la liste
 {
 	_trapRoad = selectRandom _roads;
 	_cRoads = roadsConnectedTo _trapRoad;
@@ -50,20 +50,20 @@ _roads = _roads - _roadsFOB;
 	};
 
 	_cRoad = selectRandom _cRoads;
-
 	_dir = _trapRoad getDir _cRoad;
-
 	_roads = _roads - [_trapRoad];
-
 	_trapPos = _trapRoad getPos [(3 + random 2.5), (_dir + 90)]; 
+	// Défini la position de l'IED plus ou moins sur le coté de la route
 	
 	if (_isDecoy) then {
-		_trapTypeLand = ODD_var_IEDDecoyLand;
-		_trapTypeUrban = ODD_var_IEDDecoyUrban;
+		// Les leurs n'explosent que par action volontaire
+		_trapTypeLand = ODD_var_RemoteControlledStandartIED;
+		_trapTypeUrban = ODD_var_RemoteControlledUrbanIED;
 	}
 	else {
-		_trapTypeLand = ODD_var_IEDLand;
-		_trapTypeUrban = ODD_var_IEDUrban;
+		// Les "vrais" IEDs qui peuvent exploser lorsque l'on marche dessus
+		_trapTypeLand = ODD_var_PressurePlateStandardIED;
+		_trapTypeUrban = ODD_var_PressurePlateUrbanIED;
 	};
 
 	_trapType = _trapTypeLand + _trapTypeUrban;
@@ -93,32 +93,23 @@ _roads = _roads - _roadsFOB;
 	else {
 		_trapType = _trapType + _trapTypeLand;
 	};
+	// Change la probabilité qu'un IED soit de type urbain ou rural en fonction du nombre de maison a proximité 
 
-	/*_pos = getPos _trapRoad;
-	_markerGP = createMarker [(format ["IED x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
-	_markerGP setMarkerType "hd_dot"; 
-	if (_isDecoy) then {
-		_markerGP setMarkerColor "ColorBlue";
-	}
-	else {
-		_markerGP setMarkerColor "ColorOrange";
-	};//*/
-	
 	_trapClass = selectRandom _trapType; 
 	
 	_trap = createMine[_trapClass, _trapPos, [], 0];
 	
 	_IED set [_forEachIndex, _trap];
 
-}forEach _IED; //definir nombre
+}forEach _IED; 
 
-//ODD_var_IED = ODD_var_IED + _IED;
 if (_isDecoy) then {
-	[["Quantital : Nombre d'IED non activé placé : %1", count _IED]] call ODD_fnc_log;
+	[["ODD_Quantité : Nombre d'IED non activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 }
 else {
-	[["Quantital : Nombre d'IED activé placé : %1", count _IED]] call ODD_fnc_log;
-	ODD_var_IED = ODD_var_IED + _IED;
+	[["ODD_Quantité : Nombre d'IED activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
+	ODD_var_MissionIED = ODD_var_MissionIED + _IED;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 };
+// Ajoute les IEDs au log

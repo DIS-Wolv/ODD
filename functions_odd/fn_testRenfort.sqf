@@ -1,31 +1,29 @@
 /*
-* Author: Wolv
-* Fonction permetant de tester si des renfort deuvnent etre appeler
+* Auteur : Wolv
+* Fonction pour déterminer si des renforts doivnent être appeller
 *
-* Arguments:
-* 0: Determine si des renfort deuvent etre appeler <BOOL>
-* 1: Le nombre d'ia en vie sur zone <INT>
-* 2: Le nombre d'ia a l'origine sur la ZO <INT>
-* 3: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Détermine si des renforts doivent encore être appeller <BOOL>
+* 1: Le nombre d'AIs en vie sur zone <INT>
+* 2: Le nombre d'AIs sur la zone objectif au début de la mission <INT>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [_return, _nbIa, _BaseIa] call ODD_fnc_testRenfort
 * [_return, _nbIa, _BaseIa, true] call ODD_fnc_testRenfort
 *
-* Public:
+* Variable publique :
 */
-params ["_return", "_nbIa", "_BaseIa", ["_Debug", false]];
-
-//["Test Renfort"] remoteExec ["systemChat", 0];
+params ["_return", "_nbIa", "_BaseIa"];
 
 if (_BaseIa / 2 > _nbIa and _return) then {
 	_rdm = round (100/ (100 - ((_nbIa * 2)/_BaseIa) * 100));
 	[["Test renfort %1 / %2 => %3 ", _nbIa, _BaseIa, _rdm]] call ODD_fnc_log;
 	if (round(random (1 max _rdm)) == 0) then {	
-		[_zo, _Debug] spawn ODD_fnc_createRenfort; // appelle renfort
+		[_zo] spawn ODD_fnc_createRenfort; 
+		// Fonction qui appelle les renforts
 		_return = false;
 	};
 };

@@ -20,7 +20,7 @@
 params ["_zo", ["_action", false]];
 
 // Compte les joueurs
-private _human_players = ODD_var_NbPlayer;
+private _human_players = ODD_var_PlayerCount;
 // Supprime les clients Headless
 private _nbgroup = [];
 private _GBuild = [];
@@ -30,14 +30,14 @@ if (_action) then {
     _locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000];
     // Récupère les localités à moins de 3km (3000m)
     {
-        if (text _x in ODD_var_LocationBlkList) then {
+        if (text _x in ODD_var_BlackistedLocation) then {
             // Si la localité est dans la liste noire
             _locProx deleteAt _forEachindex;
             // La localité est supprimée de notre liste
         };
     }forEach _locProx;
     // Compte les localités à proximité
-    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
     // Nombre de maisons dans la localité
     _taille = size _zo select 0;
     // Taille de la zone
@@ -70,7 +70,7 @@ if (_action) then {
     // Prépare la création d'une caisse médicale
     
     // Récupère tous les batiments a proximité
-    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // S'il y a moins de batiments que de groupes
@@ -91,10 +91,10 @@ if (_action) then {
         private _group = [];
         // Choisi un groupe
         if (floor(random 2) == 0) then {
-            _group = selectRandom ODD_var_fireTeam;
+            _group = selectRandom ODD_var_FireTeam;
         }
         else {
-            _group = selectRandom ODD_var_squad;
+            _group = selectRandom ODD_var_Squad;
         };
         if (count _Buildings > 0 ) then {
             // Choisi un batiment aléatoirement
@@ -116,10 +116,10 @@ if (_action) then {
             _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
             
             // Ajoute le groupe à la liste des IA de la mission
-            ODD_var_MissionIA pushBack _g;
+            ODD_var_MainAreaIA pushBack _g;
             
             // Ajoute le groupe à la liste des IA en garnison
-            ODD_var_GarnisonIA pushBack _g;
+            ODD_var_GarnisonnedIA pushBack _g;
             
             _Buildings = _Buildings - [_GBuild];
 
@@ -152,7 +152,7 @@ else {
     _nbgroup resize _NbGarnison;
     
     // Récupère tous les batiments à proximité
-    _Buildings = nearestobjects [position _zo, ODD_var_Maison, size _zo select 0];
+    _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
     
     if (count _Buildings < count _nbgroup) then {
         // S'il y a moins de batiments que de groupes
@@ -166,7 +166,7 @@ else {
     // Pour tous les groupes nécessitant d'être en granison
     {
         // Choisi un groupe
-        private _group = selectRandom ODD_var_fireTeam;
+        private _group = selectRandom ODD_var_FireTeam;
         
         // Choisi un batiment aléatoirement
         _GBuild = selectRandom _Buildings;
@@ -175,7 +175,7 @@ else {
         _g = [position _GBuild, east, _group] call BIS_fnc_spawngroup;
         
         // Ajoute le groupe a la liste des IA de la missions
-        ODD_var_ZopiA pushBack _g;
+        ODD_var_SecondaryAreasIA pushBack _g;
 
         {
             _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC

@@ -1,24 +1,22 @@
 /*
-* Author: Wolv
-* Fonction permettant de crée des roadblock
+* Auteur : Wolv
+* Fonction pour créer des barrages sur les routes à proximité d'une localité
 *
-* Arguments:
-* 0: Zone souhaité <Obj>
-* 1: Nombre de roadblock souhaité <INT>
-* 2: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Zone souhaitée <OBJ>
+* 1: Nombre de roadblock souhaités <INT>
+* 2: Les IAs du checkpoint font parti de la zone principale <BOOL> 
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [_zo] call ODD_fnc_roadBlock
 * [_zo, 2, true] call ODD_fnc_roadBlock
 *
-* Public:
+* Variable publique :
 */
 params ["_zo", ["_nb", 2], ["_action", false]];
-
-//forcé l'apparition
 
 private _NbCP = _nb;
 
@@ -33,14 +31,13 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 	_road = selectRandom _roads;
 	_roads = _roads - [_road];
 	
-	_structure = selectRandom ODD_var_RoadBlock;
+	_structure = selectRandom ODD_var_RoadBlocks;
 	
 	_connectedRoad = roadsConnectedTo _road;
 
 	if (count(_connectedRoad) >= 2) then{
 
 		_roadPos = getPos _road; 
-		//systemChat(str(_roadPos));
 		_input = [_roadPos select 0, _roadPos select 1]; 
 	 
 		_posX = _input select 0; 
@@ -66,98 +63,87 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 
 			_aCacher = [];
 			{
-				_closeProps = nearestTerrainObjects [position _x, [], 10];		//recupère les objects proximité 
+				_closeProps = nearestTerrainObjects [position _x, [], 10];
+				// Récupère les objets proximité de la position voulue pour le barrage
 				
-				_closeProps = _closeProps - _aCacher;	// supprime les objects deja a cacher
-				_closeProps = _closeProps - _props;		// supprime les objects du checkpoint 
-				
-				_aCacher = _aCacher + _closeProps;		// ajoute les objects dans la liste a cahcher
-				
-			}forEach _props;		//pour tout les props du checkpoint
+				_closeProps = _closeProps - _aCacher;
+				_closeProps = _closeProps - _props;
+				_aCacher = _aCacher + _closeProps;
+			}forEach _props;
+			// Défini les objets à cacher sur la position pour acceuillir le checkpoint 
 
 			{
-				ODD_var_ObjetHide pushBack _x;		// ajoute les objects a caché
-				_x hideObjectGlobal true;	// cache les objets
-			}forEach _aCacher;	//pour toute les objects a caché 
-
+				ODD_var_HiddenObjects pushBack _x;
+				_x hideObjectGlobal true;
+			}forEach _aCacher;
+			// Cache les objets définis
 
 
 			
 			ODD_var_MissionProps = ODD_var_MissionProps + _props;
 			
-			_Bat = nearestObjects [_roadPos, ODD_var_Maison, 50];
+			_Bat = nearestObjects [_roadPos, ODD_var_Houses, 50];
 			
 			private _groupGar = [];
 			private _groupPat = [];
 			
 			if (count(_Bat) <= 2) then {
-				_groupGar = selectRandom ODD_var_pair;
-				_groupPat = selectRandom ODD_var_squad;
+				_groupGar = selectRandom ODD_var_Pair;
+				_groupPat = selectRandom ODD_var_Squad;
 				
 			}
 			else {
 				if (count(_Bat) <= 4) then {
-					_groupGar = selectRandom ODD_var_fireTeam;
-					_groupPat = selectRandom ODD_var_fireTeam;
+					_groupGar = selectRandom ODD_var_FireTeam;
+					_groupPat = selectRandom ODD_var_FireTeam;
 				}
 				else {
-					_groupGar = selectRandom ODD_var_fireTeam;
-					_groupPat = selectRandom ODD_var_pair;
+					_groupGar = selectRandom ODD_var_FireTeam;
+					_groupPat = selectRandom ODD_var_Pair;
 				};
 			};
 			
-			//spawn le groupe
 			_gp = [_roadPos, EAST, _groupPat] call BIS_fnc_spawnGroup;
+			// Crée un groupe
 			
 			if (_action) then {
-				//Ajoute le groupe a la liste des IA de la missions
-				ODD_var_MissionIA pushBack _gp;
+				ODD_var_MainAreaIA pushBack _gp;
 			}
 			else {
-				ODD_var_ZopiA pushBack _gp;
+				ODD_var_SecondaryAreasIA pushBack _gp;
 			};
+			// Ajoute le groupe à la liste des IAs de la mission
 			
 			sleep 1;
-			
-			//lui assigne des waypoint de patrouille
 			[_gp, _roadPos, 200] call bis_fnc_taskpatrol;
 			createGuardedPoint [east, _roadPos, -1, objNull];
+			// Assigne des points de passage autour du barrage au groupe
 
-
-			// Spawn les gars en garnison 
 			_gg = [_roadPos, EAST, _groupGar] call BIS_fnc_spawnGroup;
+			// Crée un groupe pour la garnison du barrage
 			
 			if (_action) then {
-				//Ajoute le groupe a la liste des IA de la missions
-				ODD_var_MissionIA pushBack _gg;
+				ODD_var_MainAreaIA pushBack _gg;
 			}
 			else {
-				ODD_var_ZopiA pushBack _gg;
+				ODD_var_SecondaryAreasIA pushBack _gg;
 			};
+			// Ajoute le groupe à la liste des IAs de la mission
 			
-			/*
-			if (!(IsNil "HC1")) then {
-				// systemChat "HC1 présent";
-				_HCID = owner HC1;
-
-				_g setGroupOwner _HCID;
-				{ _x setOwner _HCID; } forEach (units _g);
-			};
-			//*/
 			{
-				_x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
-			} forEach (units _gg);   //pour chaque units
+				_x setVariable ["acex_headless_blacklist", true, true]; 
+			} forEach (units _gg);
+			// Ajoute les IAs de la garnison à la liste noire des clients Headless
 
-			ODD_var_GarnisonIA pushBack _gg;
+			ODD_var_GarnisonnedIA pushBack _gg;
 			
-			[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; // Garnison Ace
-			{ _x disableAI "PATH"; } forEach (units _gg);
+			[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+			// Met le groupe en garnison
 			createGuardedPoint [east, _roadPos, -1, objNull];
 			
-			_NbCP = _NbCP - 1;
-			
-			//[myObject, true] remoteExec ["hideObjectGlobal", 2];
-			//InPolygon ? https://community.bistudio.com/wiki/inPolygon
+			if (count _props >= 1) then {
+				_NbCP = _NbCP - 1;
+			};
 			
 			_roadsNoCP = (_roadPos nearRoads (50));
 			_roads = _roads - _roadsNoCP;
@@ -167,9 +153,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 };
 
 publicVariable "ODD_var_MissionProps";
-publicVariable "ODD_var_ZopiA";
-publicVariable "ODD_var_MissionIA";
-publicVariable "ODD_var_GarnisonIA";
-publicVariable "ODD_var_ObjetHide";
-
-
+publicVariable "ODD_var_SecondaryAreasIA";
+publicVariable "ODD_var_MainAreaIA";
+publicVariable "ODD_var_GarnisonnedIA";
+publicVariable "ODD_var_HiddenObjects";

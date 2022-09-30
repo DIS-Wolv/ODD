@@ -1,20 +1,20 @@
 /*
-* Author: Wolv
-* Fonction d'initialisation des variables globale des checkpoint.
+* Auteur : Wolv
+* Fonction d'initialisation des checkpoint.
 *
-* Arguments:
+* Arguments :
 * 
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [] call ODD_fnc_varRoadBlock
 *
-* Public:
+* Variable publique :
 */
 
-ODD_var_RoadBlock = [
+ODD_var_RoadBlocks = [
 	[ 
 		["Land_BagFence_Short_F",[0.23584,-1.90479,-0.000999928],358.717,1,0,[0,0],"","",true,false],
 		["Land_BagFence_Long_F",[-5.75342,-2.20117,-0.000999928],358.516,1,0,[0,-0],"","",true,false],  
@@ -288,7 +288,3 @@ ODD_var_RoadBlock = [
 	]
 
 ];
-
-//publicVariable "RoadBlock";
-
-

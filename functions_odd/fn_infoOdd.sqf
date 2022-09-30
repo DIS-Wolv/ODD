@@ -1,17 +1,17 @@
 /*
-* Author: Wolv
-* Fonction pour afficher les information des ODD sur la carte
+* Auteur : Wolv
+* Fonction pour créer les crédits en entrées de journal
 *
-* Arguments:
+* Arguments :
 * 
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [] call ODD_fnc_infoOdd
 *
-* Public:
+* Variable publique :
 */
 player createDiaryRecord ["Diary", ["Crédits ODD", "Un grand merci à Hhaine et Number42 pour leur aide pour la conception et le developpement de scripts, ainsi qu'à tous les joueurs qui ont eu la patiente de tester et de me faire remonter les bugs. Autre participant au développement des ODDs : Ascestus, Aqualisa, Bernard"]];
 sleep 3;

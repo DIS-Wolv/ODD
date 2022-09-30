@@ -1,60 +1,56 @@
 /*
-* Author: Wolv
-* Fonction coeur des ODD.
+* Auteur : Wolv
+* Fonction pour créer et gérer les missions des ODD.
 *
-* Arguments:
-* 0: type de missions souhaité numéro du type de missions <inT>
-* 1: Nom de la localité souhaité <strinG>
-* 2: Activation ou pas des ZO+ <BOOL>
-* 3: Activation du ODD_var_DEBUG dans le chat <BOOL>
+* Arguments :
+* 0: Type de mission souhaitée (numéro du type de mission) <INT>
+* 1: Nom de la localité si forcée <STRING>
+* 2: Détermine s'il faut des zones secondaires ou non <BOOL>
+* 3: Index de la faction <INT>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [] call ODD_fnc_missions
 * [2, "Kavala", False, True] call ODD_fnc_missions
 *
-* Public:
+* Variable publique :
 */
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1]];
 
 [] call ODD_fnc_var;
 
-if (isNil "ODD_var_NbPlayer") then {
-    ODD_var_NbPlayer = (playersNumber west);
+if (isNil "ODD_var_PlayerCount") then {
+    ODD_var_PlayerCount = (playersNumber west);
 };
 if (isNil "ODD_var_DEBUG") then {
     ODD_var_DEBUG = False;
 };
-if (isNil "ODD_var_DistanceZO") then {
-    ODD_var_DistanceZO = 4000;
-    [["ODD_var_DistanceZO Init dans fn_MISSION"]] call ODD_fnc_log;
+if (isNil "ODD_var_MissionArea") then {
+    ODD_var_MissionArea = 4000;
+    [["ODD_var_MissionArea Init dans fn_MISSION"]] call ODD_fnc_log;
 };
 
 _Debug = ODD_var_DEBUG;
-//publicVariable "ODD_var_DEBUG";
 
 if (ODD_var_DEBUG) then { 
     [_FacForce, False, True] call ODD_fnc_varEne;
 };
 
-// systemChat("init ODD");
 if (ODD_var_CurrentMission == 0) then {
     private _future = servertime + 6;
-    // 5;
     ["Génération d'une mission"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 2;
     publicVariable "ODD_var_CurrentMission";
-    // Choix d'un Lieux odd_var_objectif
-    _zo = [_forceZO] call ODD_fnc_createZO;
-    ODD_var_zo = _zo;
-    publicVariable "ODD_var_zo";
-    // private _diff = [_zo] call _Calcdifficulty
-    // systemChat(str(_diff));
+    private _zo = [_forceZO] call ODD_fnc_createZO;
+    // Choisi la localité via la fonction ODD_fnc_createZO
+    ODD_var_SelectedArea = _zo;
+    publicVariable "ODD_var_SelectedArea";
+
     
-    // Choix d'une missions
-    ODD_var_Target = [_zo, _missiontype] call ODD_fnc_createTarget;
+    ODD_var_SelectedMissionType = [_zo, _missiontype] call ODD_fnc_createTarget;
+    // Choisi le type de mission via la fonction ODD_fnc_createTarget
     
     [_zo, True] call ODD_fnc_civil;
     
@@ -64,108 +60,104 @@ if (ODD_var_CurrentMission == 0) then {
     
     [_zo, 2, True] call ODD_fnc_roadBlock;
     
-    [_zo, True] spawn ODD_fnc_createVehicule;  //car on attend que les joueurs parte de la FOB/Base
+    [_zo, True] spawn ODD_fnc_createVehicule; 
+    // Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
     
     if (_ZOP) then {
-        // Ajouté des location a proximité ou il y aurai des patrouilles
-        // toute les loc a proximité
-        private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_DistanceZO];
-        private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 800];
+        private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
+        // Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
+        private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
         _location = _location - [_zo];
+        // Supprime la zone objectif de la liste des zones secondaire potentielles
         _location = _location - _closeLoc;
-        // location = location entre 800 et 5000 m
-        
-        {
-            [_x, False] call ODD_fnc_civil;
-        } forEach _location;
+        // Filtre les localités pour ne pas prendre celles trop proche de l'objectif
 
         private _i = 0;
         while {_i < count(_location)} do {
-            private _Buildings = nearestobjects[position (_location select _i), ODD_var_Maison, 200];
-            if ((text (_location select _i) in ODD_var_LocationBlkList) or (count _Buildings == 0)) then {
+            private _Buildings = nearestobjects[position (_location select _i), ODD_var_Houses, 200];
+            if ((text (_location select _i) in ODD_var_BlackistedLocation) or (count _Buildings == 0)) then {
                 _location = _location - [_location select _i];
             }
             else {
                 _i = _i + 1;
             };
         };
-        // degage les locations indésirable
+        // Supprime les localités indésirables 
         
-        // choix des locations a activation
-        _nbloc = round random [0, (count(_location)*3/5), count(_location)];
-        // on prend entre 0 et toute les loc a poximité centré sur 2/5
+        {
+            [_x, False] call ODD_fnc_civil;
+        } forEach _location;
+        // Ajoute des civils sur toutes les zones éligibles a proximité de la zone objectif
+        
+        private _nbloc = round random [0, (count(_location)*3/5), count(_location)];
+        // Choisi le nombre de localités a activer
         
         _nbloc = 5 min _nbloc;
+        // Limite le nombre de zones secondaires activées à 5
         
         while {count(_location) > _nbloc} do {
-            // tant que trop de loc
+            // Tant que la liste de localités secondaires potentielles est supérieure au nombre choisi
             _location = (_location) - [(selectRandom _location)];
-            // - 1 loc random // distance2D ???
+            // On supprime une localité aléatoirement dans la liste
         };
 
         [["Nombre de ZO+ : %1", _nbloc]] call ODD_fnc_log;
         
         {
             [["ZO+ %1 : %2", _forEachindex, text _x]] call ODD_fnc_log;
-            // *
-            _action = round random 100;
-            // random en 0 et 2
-            if (_action <= 10) then {};
-            // si 0 fait rien
-            if (_action > 10 and _action <= 40) then {
-                // si 1 (ZO-)
-                [_x, False, True] call ODD_fnc_createPatrol;
-                // patrouilles
 
+            private _action = round random 100;
+            if (_action <= 10) then {};
+            // 10% de chance qu'une zone secondaire soit occupée uniquement par des civils
+            if (_action > 10 and _action <= 40) then {
+                // 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des véhicules
+                [_x, False, True] call ODD_fnc_createPatrol;
                 [_x, True, True] spawn ODD_fnc_createVehicule;
-                //vl 
             };
             if (_action > 40 and _action <= 70) then {
-                // si 2
+            // 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des checkpoints
                 [_x, False] call ODD_fnc_createPatrol;
-                // patrouilles
-                
                 _nbCheckPoint = round random 4;
                 [_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
-                // RoadBlock
+                // Crée une quatité tirée aléatoirement de checkpoints (entre 0 et 4)
             };
             if (_action > 70 and _action <= 100) then {
-                // si 3
+            // 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des garnisons
                 [_x, False] call ODD_fnc_createPatrol;
-                // patrouilles
-                
                 [_x, False] call ODD_fnc_createGarnison;
-                // garnison
             };
-            // */
-            
+
             [_x, False] call ODD_fnc_civil;
-            // a chaque fois Civil
+            // Les zones secondaires choisies ont deux fois plus de civils que celles qui n'ont pas été choisies
         }forEach _location;
-        // */	// pour toute les ZO+ activé
+        // Applique ce traitement uniquement aux zones secondaires selectionnées
 
-        [_zo, 4, ODD_var_DistanceZO] call ODD_fnc_roadBlockZO; // ajout de checkpoint hors des ZO +
+        [_zo, 4, ODD_var_MissionArea] call ODD_fnc_roadBlockZO; 
+        // Ajout de checkpoints hors des localités
 
-        _action = round random 100;
-        if (_action >= 90) then {       // réglé le % plus tard
-            //creation des IED dans la ZO+
-            _nbIED = 5 + random 10;
+        private _action = round random 100;
+        if (_action >= 90) then {
+        // 90% de chance que la mission comporte des IEDs
+            _nbIED = 5 + round random 10;
+            // Crée entre 5 et 15 IEDs
             [_zo, _nbIED] call ODD_fnc_pressureIED;
-            _nbDecoy = 3 + random 7;
+            _nbDecoy = 3 + round random 7;
+            // Crée entre 3 et 10 IEDs qui n'exploseront que si l'on tire dessus
             [_zo, _nbDecoy, True] call ODD_fnc_pressureIED;
+        }
+        else {
+            [["ODD_Quantité : Pas d'IED positionné"]] call ODD_fnc_log;
         };
     };
 
     {
-        // normalement ne devrait pas servir mais on laisse au cas ou (sert a dégagé les gars mort au spawn)
         deletevehicle _x;
-        // supprime le corps
     } forEach allDead;
-    // pour chaque corps
+    // Permet de supprimer les unités qui auraient été dértuites lors de leur création
 
     {
         {
-            _id = _x addEventHandler["Killed", 
+            private _id = _x addEventHandler["Killed", 
                 { 
                     params ["_unit", "_killer"]; 
                     [_unit, _killer] call ODD_fnc_surrender;
@@ -173,11 +165,12 @@ if (ODD_var_CurrentMission == 0) then {
             ];
             _x setVariable ["ODD_var_SurrenderHandler", _id, True];
         }forEach units _x;
-    } forEach ODD_var_MissionIA; //ajout de l'option de ce rendre sur les gars
+    } forEach ODD_var_MainAreaIA; 
+    // Ajoute la possibilité qu'une unité se rende sur la zone objectif
 
     {
         {
-            _id = _x addEventHandler ["Killed", 
+            private _id = _x addEventHandler ["Killed", 
                 { 
                     params ["_unit", "_killer"]; 
                     [_unit, _killer] call ODD_fnc_surrender;
@@ -185,18 +178,19 @@ if (ODD_var_CurrentMission == 0) then {
             ];
             _x setVariable ["ODD_var_SurrenderHandler", _id, True];
         }forEach units _x;
-    } forEach ODD_var_ZopiA;    //ajout de l'option de ce rendre sur les ZO+
+    } forEach ODD_var_SecondaryAreasIA;    
+    // Ajoute la possibilité qu'une unité se rende sur une zone secondaire
 
-    [["Quantital : Nombre de Pax sur la ZO : %1", count ODD_var_MissionIA]] call ODD_fnc_log;
-    [["Quantital : Nombre de Pax en ZO+ : %1", count ODD_var_ZopiA]] call ODD_fnc_log;
-    [["Quantital : Nombre de Pax en Garnison : %1", count ODD_var_GarnisonIA]] call ODD_fnc_log;
-    [["Quantital : Nombre de ODD_var_Civils : %1", count ODD_var_MissionCivil]] call ODD_fnc_log;
-    [["Quantital : Nombre de Props : %1", count ODD_var_MissionProps]] call ODD_fnc_log;
-    [["Quantital : Nombre de LocalProps (par joueur) : %1", count ODD_var_ParticuleList]] call ODD_fnc_log;
-    [["Quantital : Missions Généré pour %1 joueurs", ODD_var_NbPlayer]] call ODD_fnc_log;
-    [["Quantital : Support détécté %1", ODD_var_support]] call ODD_fnc_log;
-    if (ODD_var_support) then {
-        [["Quantital : Support détécté %1", ODD_var_VlSupport]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de Pax en garnison : %1", count ODD_var_GarnisonnedIA]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de civils : %1", count ODD_var_MissionCivilians]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de props : %1", count ODD_var_MissionProps]] call ODD_fnc_log;
+    [["ODD_Quantité : Nombre de props local a chaque joueur : %1", count ODD_var_MissionSmokePillar]] call ODD_fnc_log;
+    [["ODD_Quantité : Missions générée pour %1 joueurs avec %2 joueurs présents", ODD_var_PlayerCount, (playersNumber west)]] call ODD_fnc_log;
+    [["ODD_Quantité : Support détécté %1", ODD_var_Support]] call ODD_fnc_log;
+    if (ODD_var_Support) then {
+        [["ODD_Quantité : Nombre de véhicules de support des joueurs : %1", ODD_var_CountSupportVehicles]] call ODD_fnc_log;
     };
 
     waitUntil {
@@ -204,33 +198,33 @@ if (ODD_var_CurrentMission == 0) then {
         servertime >= _future
     };
     ODD_var_TimeStart = servertime;
-    ["Mission Générée"] remoteExec ["systemChat", 0];
+    ["Mission générée"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 1;
     publicVariable "ODD_var_CurrentMission";
-    publicVariable "ODD_var_Objectif";
+    publicVariable "ODD_var_Objective";
     publicVariable "ODD_var_MissionProps";
-    publicVariable "ODD_var_GarnisonIA";
-    publicVariable "ODD_var_MissionIA";
-    publicVariable "ODD_var_ZopiA";
+    publicVariable "ODD_var_GarnisonnedIA";
+    publicVariable "ODD_var_MainAreaIA";
+    publicVariable "ODD_var_SecondaryAreasIA";
     publicVariable "ODD_var_TimeStart";
-    publicVariable "ODD_var_Target";
+    publicVariable "ODD_var_SelectedMissionType";
     private _NextTick = servertime + 60;
     
-    _nbIa = [] call ODD_fnc_countIA;
+    private _nbIa = [] call ODD_fnc_countIA;
     
     ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
     
-    _BaseIa = _nbIa;
+    private _BaseIa = _nbIa;
     private _Renfort = True;
     private _nbItt = 0;
     
-    [["Mission Lancée"]] call ODD_fnc_log;
+    [["Mission lancée"]] call ODD_fnc_log;
     if (ODD_var_DEBUG) then {
-        [["Skip de l'attente des joueurs sur obj"]] call ODD_fnc_log;
+        [["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODD_fnc_log;
     }
     else {
         waitUntil{
-            sleep 1;
+            sleep 600;
             count (position _zo nearEntities[["SoldierWB"], 1000]) >= 1
         };
     };
@@ -238,14 +232,11 @@ if (ODD_var_CurrentMission == 0) then {
     ODD_var_TimeZO = servertime;
     publicVariable "ODD_var_TimeZO";
     
-    // update + souvent la liste des objectifs
-    switch (ODD_var_Target) do {
-        case (ODD_var_TargetTypeName select 0): {       // obj est une caisse a detruire
-            while {(count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
-                // tant que la caisse comporte des explosif (donc pas explosé)
-                // sleep 60;
+    switch (ODD_var_SelectedMissionType) do {
+        case (ODD_var_MissionType select 0): {          // L'objectif est de détruire des caisses
+            while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
                 private _NextTick = servertime + 60;
-                
+            // Vérification toutes les minutes que la caisse n'est pas vide
                 call ODD_fnc_sortieGarnison;
                 
                 _nbIa = [] call ODD_fnc_countIA;
@@ -256,19 +247,18 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    (!((count (magazineCargo (ODD_var_Objectif select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
+                    sleep 10;
+                    (!((count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
                 };
             };
             
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            // tache accomplie
+            // La tâche est accomplie
         };
-        case (ODD_var_TargetTypeName select 1): {       // obj est un HVT kill
-            // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-            while {((alive (ODD_var_Objectif select 0) and (ODD_var_CurrentMission == 1)))} do {
-                // tant que la cible est et en vie et libre
+        case (ODD_var_MissionType select 1): {       // L'objectif est de tuer une HVT
+            while {((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1)))} do {
+                // Vérification toutes les minutes que la cible est en vie
                 _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -281,18 +271,17 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    (!((alive (ODD_var_Objectif select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
+                    sleep 10;
+                    (!((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
                 };
             };
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            // tache accomplie
+            // La tâche est accomplie
         };
-        case (ODD_var_TargetTypeName select 2): {       // obj est un HVT capture
-            // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-            while {((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))} do {
-                // tant que la cible est et en vie et libre
+        case (ODD_var_MissionType select 2): {       // L'objectif est de capturer une HVT
+            while {((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))} do {
+                // Vérification toutes les minutes que la cible n'est pas à la base ou à la fob et qu'elle est toujours en vie
                 _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -305,26 +294,25 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    (!((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
+                    sleep 10;
+                    (!((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
                 };
             };
             sleep(1);
-            if (alive (ODD_var_Objectif select 0)) then {
+            if (alive (ODD_var_Objective select 0)) then {
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
             }else {
                 ["Task", "FAILED"] call BIS_fnc_tasksetState;
             };
-            // tache accomplie
+            // La tâche est accomplie ou non selon l'état de santé de la HVT
         };
-        case (ODD_var_TargetTypeName select 3): {       // obj est une zone a securizé
-            _seuil = round (_BaseIa / 20);
-            ODD_var_Objectif = ODD_var_MissionIA;
-            publicVariable "ODD_var_Objectif";
+        case (ODD_var_MissionType select 3): {       // L'objectif est une zone à sécuriser
+            private _seuil = round (_BaseIa / 20);
+            ODD_var_Objective = ODD_var_MainAreaIA;
+            publicVariable "ODD_var_Objective";
             
             while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
-                // tant qu'il y as plus de 20% IA
-                // sleep 60;
+                // Vérification toutes les minutes que la qu'il y a plus d'IA que le seuil défini
                 _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -340,24 +328,25 @@ if (ODD_var_CurrentMission == 0) then {
                 
                 {
                     if (isNull(_x)) then {
-                        ODD_var_Objectif = ODD_var_Objectif - [_x];
+                        ODD_var_Objective = ODD_var_Objective - [_x];
                     }
-                }forEach ODD_var_Objectif;
-                publicVariable "ODD_var_Objectif";
+                    // Ajout de la gestion des catpifs, inconscients et fuyards
+                }forEach ODD_var_Objective;
+                publicVariable "ODD_var_Objective";
 
                 waitUntil {
-                    sleep 1;
+                    sleep 10;
                     _nbIa = [] call ODD_fnc_countIA;
                     ((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            // tache accomplie
+            // La tâche est accomplie
         };
-        case (ODD_var_TargetTypeName select 4);
-        case (ODD_var_TargetTypeName select 5): {       // obj est un intel ou un Helico
-            while {(ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)} do {
+        case (ODD_var_MissionType select 4);
+        case (ODD_var_MissionType select 5): {       // L'objectif sont des informations ou des boites noires
+            while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
                 private _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -370,17 +359,17 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    ((ODD_var_Objectif select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+                    sleep 10;
+                    ((ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            // tache accomplie
+            // La tâche est accomplie
         };
-        case (ODD_var_TargetTypeName select 6): {       // obj est un Prisonier
-            while {((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)} do {
-                // tant que la cible est captive
+        case (ODD_var_MissionType select 6): {       // L'objectif est un prisonier
+            while {((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)} do {
+                // Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il est toujours en vie
                 _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -393,61 +382,25 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    (((!(fob in nearestobjects[(ODD_var_Objectif select 0), [], 50])) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-                };
-                // systemChat(format["HVT en vie : %1, captif : %2", str(alive (ODD_var_Objectif select 0)), str(!(captive (ODD_var_Objectif select 0)))]);
-                // fait rien
-            };
-            
-            sleep(1);
-            if (alive (ODD_var_Objectif select 0)) then {
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-                // tache accomplie
-            }
-            else {
-                ["Task", "FAILED"] call BIS_fnc_tasksetState;
-                // tache échoué
-            };
-        };
-        case (ODD_var_TargetTypeName select 7): {       // obj vl secure
-            while {
-                ((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1)))
-            } do {
-                // tant que la cible est pas detruite
-                _NextTick = servertime + 60;
-                
-                call ODD_fnc_sortieGarnison;
-                
-                _nbIa = [] call ODD_fnc_countIA;
-                
-                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
-                
-                _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
-                
-                waitUntil {
-                    sleep 1;
-                    (((((!((fob in nearestobjects[(ODD_var_Objectif select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objectif select 0), [], 50]))) and (alive (ODD_var_Objectif select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+                    sleep 10;
+                    (((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
                 };
             };
             
             sleep(1);
-            if (alive (ODD_var_Objectif select 0)) then {
+            if (alive (ODD_var_Objective select 0)) then {
                 ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-                // tache accomplie
             }
             else {
                 ["Task", "FAILED"] call BIS_fnc_tasksetState;
-                // tache échoué
             };
+            // La tâche est accomplie ou non selon l'état de santé du prisonier
         };
-        case (ODD_var_TargetTypeName select 8): {       // obj vl destroy
-            //["TEST NOUVELLE MISSIONS FLOW"] remoteExec ["systemChat", 0];
+        case (ODD_var_MissionType select 7): {       // L'objectif est de sécuriser un véhicule
             while {
-                ((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1))
+                ((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
             } do {
-                // tant que la cible est pas detruite
+                // Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il n'est pas détruit
                 _NextTick = servertime + 60;
                 
                 call ODD_fnc_sortieGarnison;
@@ -460,14 +413,45 @@ if (ODD_var_CurrentMission == 0) then {
                 [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
-                    sleep 1;
-                    (!((alive (ODD_var_Objectif select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
+                    sleep 10;
+                    (((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+                };
+            };
+            
+            sleep(1);
+            if (alive (ODD_var_Objective select 0)) then {
+                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            }
+            else {
+                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+            };
+            // La tâche est accomplie ou non selon l'état de santé du prisonier
+        };
+        case (ODD_var_MissionType select 8): {       // L'objectif est de détruire un véhicule
+            while {
+                ((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1))
+            } do {
+                // Vérification toutes les minutes que la cible n'a pas été détruite
+                _NextTick = servertime + 60;
+                
+                call ODD_fnc_sortieGarnison;
+                
+                _nbIa = [] call ODD_fnc_countIA;
+                
+                _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
+                
+                _nbItt = _nbItt + 1;
+                [_nbItt] call ODD_fnc_garbageCollector;
+                
+                waitUntil {
+                    sleep 10;
+                    (!((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
                 };
             };
             
             sleep(1);
             ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
-            // tache accomplie
+            // La tâche est accomplie
         };
     };
 
@@ -477,26 +461,25 @@ if (ODD_var_CurrentMission == 0) then {
     sleep(5);
     
     if (ODD_var_CurrentMission == 1) then {
-        // cree la tache retour base
-        _task = [True, "Extract", ["Rentrez a la base", "RTB", "RTB"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
+        _task = [True, "Extract", ["Rentrez à la base", "RTB", "RTB"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
         ["Extract", "move"] call BIS_fnc_tasksettype;
+        // Crée la tâche de retour à la base
         sleep(1);
         
         waitUntil {
             sleep 1;
-            (count (getPos base nearEntities[["SoldierWB"], 150])) +	// nb joueur Base +
-            (count (getPos fob nearEntities[["SoldierWB"], 150])) 		// nb joueur FOB
-            >= count(allplayers - entities "HeadlessClient_F") 			// < nb joueur total (donc quand tout le monde sur base / FOB stop la boucle)
+            (count (getPos base nearEntities[["SoldierWB"], 150])) +
+            (count (getPos fob nearEntities[["SoldierWB"], 150]))
+            >= count(allplayers - entities "HeadlessClient_F")
         };
+        // Attends le retour des joueurs à la fob ou à la base
         
         ["Extract", "SUCCEEDED"] call BIS_fnc_tasksetState;
-        // Valide la tache
+        // La tâche est accomplie
         
         ODD_var_TimeEnd = servertime;
         publicVariable "ODD_var_TimeEnd";
-        
-        // sleep(2);
-        // Attend 2 s
+
         private _DebutNettoyage = servertime + 15;
         
         waitUntil {
@@ -505,13 +488,9 @@ if (ODD_var_CurrentMission == 0) then {
         };
         
         [] call ODD_fnc_clearZO;
-        // nettoye la ZO
+        // Nettoie la mission
     };
 }
 else {
     ["Une mission est déjà en cours"] remoteExec ["systemChat", 0];
 };
-
-// player setPosASL position _zo;
-// Affiche la Missions
-// systemChat(ODD_var_Target);

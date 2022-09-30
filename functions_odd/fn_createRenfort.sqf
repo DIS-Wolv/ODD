@@ -25,7 +25,7 @@ if (ODD_var_CurrentMission == 1) then {
     
     private _groups = [];
     
-    private _human_players = ODD_var_NbPlayer;
+    private _human_players = ODD_var_PlayerCount;
     // Retire les clients headless
     private _locType = 0;
     switch (type _zo) do {
@@ -48,11 +48,11 @@ if (ODD_var_CurrentMission == 1) then {
     _groups resize random[0, round((_locType/2) + (_human_players/4)), 7];
     
     {
-        _group = selectRandom ODD_var_VehiculeSel;
+        _group = selectRandom ODD_var_SpawnableVehicles;
         while {"brf_o_ard_uaz_dshkm" in _group} do {
-            _group = selectRandom ODD_var_VehiculeSel;
+            _group = selectRandom ODD_var_SpawnableVehicles;
         };
-        ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
+        ODD_var_SpawnableVehicles = ODD_var_SpawnableVehicles + (ODD_var_SpawnableVehicles - _group);
         _groups set[_forEachindex, _group];
         	// Défini le véhicule
     }forEach _groups;
@@ -61,7 +61,7 @@ if (ODD_var_CurrentMission == 1) then {
     _loc3 = nearestLocations [position _zo, ODD_var_LocationType, 3000];
     // Récupère les localités à moins de 3km (3000m)
     {
-        if (text _x in ODD_var_LocationBlkList) then {
+        if (text _x in ODD_var_BlackistedLocation) then {
             // Si la localité est dans la liste noire
             _loc3 deleteAt _forEachindex;
             // La localité est supprimée de notre liste
@@ -70,7 +70,7 @@ if (ODD_var_CurrentMission == 1) then {
     _loc6 = nearestLocations [position _zo, ODD_var_LocationType, 6000];
     // Récupère les localités à moins de 6km (6000m)
     {
-        if (text _x in ODD_var_LocationBlkList) then {
+        if (text _x in ODD_var_BlackistedLocation) then {
             // Si la localité est dans la liste noire
             _loc6 deleteAt _forEachindex;
             // La localité est supprimée de notre liste
@@ -125,22 +125,22 @@ if (ODD_var_CurrentMission == 1) then {
                 // Choisi un groupe
                 _g = [_pos, east, _group] call BIS_fnc_spawngroup;
                 // Crée le groupe
-                ODD_var_ZopiA pushBack _g;
+                ODD_var_SecondaryAreasIA pushBack _g;
                 // Ajoute le groupe à la liste des IA de la missions
 
                 _NbUnitRenfort = _NbUnitRenfort + count(units _g);
                 
                 if (!(("brf_o_ard_uaz" in _group) or ("brf_o_ard_uaz_open" in _group))) then {
-                    _infG = selectRandom ODD_var_squad;
+                    _infG = selectRandom ODD_var_Squad;
                     _pos set [1, (_pos select 1)+ 3];
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     // Ajoute des AI dans les véhicules
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
-                    ODD_var_ZopiA pushBack _inf;
+                    ODD_var_SecondaryAreasIA pushBack _inf;
                 }
                 else {
                     // Si le véhicule est un UAZ
-                    _infG = selectRandom ODD_var_squad;
+                    _infG = selectRandom ODD_var_Squad;
                     // Choisi un groupe
                     _pos set [1, (_pos select 1)+ 3];
                     // Déplace sur le coté
@@ -151,7 +151,7 @@ if (ODD_var_CurrentMission == 1) then {
                     
                     _inf = [_pos, east, _infG] call BIS_fnc_spawngroup;
                     // Crée le groupe
-                    ODD_var_ZopiA pushBack _inf;
+                    ODD_var_SecondaryAreasIA pushBack _inf;
                     // Ajoute le groupe à la liste des IA de la mission
 
                     _NbUnitRenfort = _NbUnitRenfort + count(units _inf);
@@ -190,4 +190,4 @@ if (ODD_var_CurrentMission == 1) then {
     };
 };
 
-[["Quantital : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call ODD_fnc_log;
+[["ODD_Quantité : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call ODD_fnc_log;

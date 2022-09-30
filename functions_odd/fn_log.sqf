@@ -1,19 +1,19 @@
 /*
-* Author: Wolv
-* Fonction de log des ODD
+* Auteur : Wolv
+* Fonction pour écrire dans le RPT (et possiblement dans le chat) les informations de débug
 *
-* Arguments:
-* 0: Tableau des argument a logger <Array>
+* Arguments :
+* 0: Tableau des argument que l'on veut dans le log <Array>
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
-* [["ma variable : %1", _var]] call ODD_fnc_log // log cote serveur
-* missionNamespace setVariable ["ODD_var_DEBUG", true, true] // active le ODD_var_DEBUG
-* [["exemple de ODD_var_DEBUG"]] call ODD_fnc_log // log cote serveur et dans le chat
+* Exemple :
+* [["ma variable : %1", _var]] call ODD_fnc_log // Pour log uniquement sur le RPT
+* missionNamespace setVariable ["ODD_var_DEBUG", true, true] // Pour commencer l'affichage des messages de débug dans le chat
+* [["exemple de ODD_var_DEBUG"]] call ODD_fnc_log // Pour log dans le RPT et dans le chat
 *
-* Public:
+* Variable publique :
 */
 params [["_arg",[""],[]]];
 

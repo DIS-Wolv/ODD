@@ -1,47 +1,53 @@
 /*
-* Author: Wolv
-* Fonction permetant de faire se rendre les bots a proximité
+* Auteur : Wolv
+* Fonction pour que certaines AIs se rendent
 *
-* Arguments:
-* unité tué 
+* Arguments :
+* 0: Unité qui vient de mourir <OBJ> 
+* 1: Unité venant de tuer 0 <OBJ>
 *
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
-* Example:
+* Exemple :
 * [Alpha1:1] call ODD_fnc_surrender
 *
-* Public:
+* Variable publique :
 */
 params ["_unit", "_killer"];
 
-if (side _killer == WEST ) then {	//si tué par blufort
-	// distance de recherche
+if (side _killer == WEST ) then {	
+	// Si L'IA a été tuée par un BLUFOR
 	_distSurrender = 20;
 	_distBlue = 15;  
 	_distRed = 30;
+	// Distance sur lesquelles on recherche 
 
-	_nearSurrender = position _unit nearEntities[["SoldierGB"], _distRed];   		//nb de soldat Red
+	_nearSurrender = position _unit nearEntities[["SoldierGB"], _distRed]; 
+	// Nombre d' OPFOR
 
 	{
-		_nearBlue = count (position _x nearEntities[["SoldierWB"], _distBlue]);  	//nb de soldat Blue
-		_nearRed = count (position _x nearEntities[["SoldierGB"], _distRed]) - 1;   //nb de soldat Red (sauf lui)
+		_nearBlue = count (position _x nearEntities[["SoldierWB"], _distBlue]);
+		// Nombre de BLUFOR
+		_nearRed = count (position _x nearEntities[["SoldierGB"], _distRed]) - 1;   
+		// Nombre d' OPFOR moins l'AI venant de décéder
 
-		_seuil = (exp((_nearRed/3)-(2.5 + _nearBlue /2)))/1.5;  //calcule du seuil
+		_seuil = (exp((_nearRed/3)-(2.5 + _nearBlue /2)))/1.5; 
+		// Calcul du seuil
 
-		if ((random 1) < _seuil) then {  //si rdm < seuil
+		if ((random 1) < _seuil) then {  
 			if (vehicle _x != _x) then {
 				{
-					moveout _x; //débarque
-					[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  //redition Ace
-					_id = _x getVariable "ODD_var_SurrenderHandler";		//recupe l'ID de sont eventHandler
-					_x removeEventHandler ["Killed", _id];					//remove l'eventHandler (pourra pas donné envie au autre de se rentre)
+					moveout _x; // Débarquement du véhicule
+					[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
+					_id = _x getVariable "ODD_var_SurrenderHandler";		// Récupère l'ID de son eventHandler
+					_x removeEventHandler ["Killed", _id];					// Pour empêcher que l'éxécution d'un prisonier crée plus de prisoniers
 				} forEach crew vehicle _x;
 			}
 			else {
-				[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  //redition Ace
-				_id = _x getVariable "ODD_var_SurrenderHandler";		//recupe l'ID de sont eventHandler
-				_x removeEventHandler ["Killed", _id];					//remove l'eventHandler (pourra pas donné envie au autre de se rentre)
+				[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
+				_id = _x getVariable "ODD_var_SurrenderHandler";		// Récupère l'ID de son eventHandler
+				_x removeEventHandler ["Killed", _id];					// Pour empêcher que l'éxécution d'un prisonier crée plus de prisoniers
 			};
 			
 			[
@@ -51,27 +57,18 @@ if (side _killer == WEST ) then {	//si tué par blufort
 				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
 				"(alive (_target)) and (_target distance _this < 3)", 
 				"True",
+				{},	{},
 				{
-					//[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-					// (_this select 0) disableAI "PATH"
-				}, 
-				{},
-				{
-					//[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-					// (_this select 0) enableAI "PATH";
 
 					[] remoteExec ["ODD_fnc_intel", 2];
 					[(_this select 0)] remoteExec ["removeAllActions"];
-				}, {
-					// (_this select 0) enableAI "PATH";
-					//[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-				}, [], (random[2, 10, 15]), nil, True, False
+				}, {}, [], 
+				(random[2, 10, 15]), nil, True, False
 			] remoteExec ["BIS_fnc_holdActionAdd"];
 
-			//Ajout de eventHandler pour baisé la reputation civil
+			// A FAIRE : eventHandler pour baisser la reputation civil lors de l'exécution d'un prisonnier
 
 		};
-
+		sleep ((random 1) / 10);
 	} forEach _nearSurrender;
-
 };

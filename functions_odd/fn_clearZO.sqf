@@ -31,7 +31,7 @@ if (ODD_var_CurrentMission == 1) then {
 	};
 
 	// Compte les joueurs
-	private _human_players = ODD_var_NbPlayer; // removing Headless Clients
+	private _human_players = ODD_var_PlayerCount; // removing Headless Clients
 
 	{
 		_markerN = _x splitString " ";
@@ -42,7 +42,7 @@ if (ODD_var_CurrentMission == 1) then {
 			waitUntil {
 				sleep 1;
 				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				if (ODD_var_Target == ODD_var_TargetTypeName select 6) then {	// Si c'est un prisonier
+				if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
 					_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 				};
 				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
@@ -62,13 +62,13 @@ if (ODD_var_CurrentMission == 1) then {
 				{
 					deleteVehicle _x;			// Supprime l'unité
 				} forEach units _x;				// Pour chaque unité du groupe
-			} forEach ODD_var_MissionIA;		// Pour chaque groupe
+			} forEach ODD_var_MainAreaIA;		// Pour chaque groupe
 			
 			{
 				{
 					deleteVehicle _x;			// Supprime l'unité
 				} forEach units _x;				// Pour chaque unité du groupe
-			} forEach ODD_var_ZopiA;			// Pour chaque groupe
+			} forEach ODD_var_SecondaryAreasIA;			// Pour chaque groupe
 			
 			{
 				deleteVehicle _x;				// Supprime l'unité
@@ -86,7 +86,7 @@ if (ODD_var_CurrentMission == 1) then {
 				};
 			} forEach _Supplies;						// Pour chaque objet
 
-			_obj = nearestObjects [_pos, ODD_var_SuppressObject, ODD_var_DistanceZO];
+			_obj = nearestObjects [_pos, ODD_var_DeleteObjects, ODD_var_MissionArea];
 			{
 				private _distance = (fob distance _x) min (base distance _x);
 				if (_distance > 100) then {
@@ -98,7 +98,7 @@ if (ODD_var_CurrentMission == 1) then {
 				{
 					deleteVehicle _x;			// Supprime l'unité
 				} forEach units _x;				// Pour chaque unité du groupe
-			} foreach ODD_var_MissionCivil;		// Pour chaque groupe civil
+			} foreach ODD_var_MissionCivilians;		// Pour chaque groupe civil
 			
 			{									// Ne devrait pas servir
 				deleteVehicle _x;				// Supprime le cadavre
@@ -106,10 +106,10 @@ if (ODD_var_CurrentMission == 1) then {
 
 			{
 				_x hideObjectGlobal false;		// Affiche l'object
-			} forEach ODD_var_ObjetHide;		// Pour object caché
+			} forEach ODD_var_HiddenObjects;		// Pour object caché
 
-			ODD_var_ParticuleList = [];
-			publicVariable "ODD_var_ParticuleList";
+			ODD_var_MissionSmokePillar = [];
+			publicVariable "ODD_var_MissionSmokePillar";
 			[False] remoteExec ["ODD_fnc_particules", 0];
 		}
 		else {

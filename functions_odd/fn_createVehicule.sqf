@@ -1,9 +1,9 @@
 /*
 * Auteur : Wolv
-* Fonction permetant de créé des vehicule sur la zone souhaité
+* Fonction pour créer des véhicules sur une zone
 *
 * Arguments :
-* 0: Zone souhaité <Objet>
+* 0: Zone sur laquelle les véhicules apparaitrons <Objet>
 * 1: Est-ce la zone principale <BOOL>
 * 2: Est-ce que le vl est en ZO- <BOOL>
 *
@@ -18,9 +18,9 @@
 */
 
 params ["_zo", ["_action", false], ["_ZOM", False]];
-// Récupère les argument
+// Récupère les arguments
 
-private _human_players = ODD_var_NbPlayer; 
+private _human_players = ODD_var_PlayerCount; 
 // Compte les joueur
 private _nbVehicule = [];
 private _nbVehiculeLourd = [];
@@ -42,7 +42,7 @@ waitUntil {
 if (ODD_var_CurrentMission == 1) then {
 	if (_action) then {
 
-		if (!isNil "ODD_var_VehiculeSel") then {
+		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
 			[-1, true, false] call ODD_fnc_varEne;
 			// Définition des véhicules
@@ -53,14 +53,14 @@ if (ODD_var_CurrentMission == 1) then {
 		_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; 
     	// Récupère les localités à moins de 3km (3000m)
 		{
-			if (text _x in ODD_var_LocationBlkList) then {
+			if (text _x in ODD_var_BlackistedLocation) then {
             // Si la localité est dans la liste noire
 				_locProx deleteAt _forEachIndex;
             // La localité est supprimée de notre liste
 			};
 		}forEach _locProx;
     	// Compte les localités à proximité
-		_Buildings = nearestObjects [position _zo, ODD_var_Maison, size _zo select 0];	
+		_Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];	
     	// Nombre de maisons dans la localité
 		_taille = size _zo select 0;
     	// Taille de la zone
@@ -69,9 +69,9 @@ if (ODD_var_CurrentMission == 1) then {
 		
 		// Définition du nombre de véhicules
 		_nbVl = (round random[0, (_human_players/8), 8]);
-		if (ODD_var_support) then {		
+		if (ODD_var_Support) then {		
 			// S'il y a du support
-			if (count (ODD_var_VlSupport) == 0) then { 
+			if (count (ODD_var_CountSupportVehicles) == 0) then { 
 				// Si les véhicules de supports ne sont pas encore partis de la base
 				_nbVl = _nbVl + 2;	
 				// Ajoute 2 véhicules légers
@@ -82,7 +82,7 @@ if (ODD_var_CurrentMission == 1) then {
 				_nbVehiculeLourd resize _nbVlLourd; 
 			}
 			else {
-				_nbVl = _nbVl + ODD_var_VlSupport;	
+				_nbVl = _nbVl + ODD_var_CountSupportVehicles;	
 				// Si les véhicules de supports ne sont pas encore partis de la base	
 				_nbVlLourd = round (((random 1) * 1/2 * (_nbVl - 1)) + 1); 	
 				// Détermine le nombre de véhicules lourd a créer
@@ -100,9 +100,9 @@ if (ODD_var_CurrentMission == 1) then {
 		
 		//Pour tous les groupes
 		{
-			private _group = selectRandom ODD_var_VehiculeSel;
+			private _group = selectRandom ODD_var_SpawnableVehicles;
         	// Choisi un groupe
-			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
+			ODD_var_SpawnableVehicles = ODD_var_SpawnableVehicles + (ODD_var_SpawnableVehicles - _group);
 			
 			if (count ((position _zo) nearRoads 300) > 0) then {
 			
@@ -134,7 +134,7 @@ if (ODD_var_CurrentMission == 1) then {
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 				// Crée le groupe
 				{
-					ODD_var_MissionIA pushBack _x;
+					ODD_var_MainAreaIA pushBack _x;
 				} forEach units _g;
 				// Ajoute le groupe à la liste des IA de la mission
 				
@@ -161,11 +161,11 @@ if (ODD_var_CurrentMission == 1) then {
 				};
 				
 				// systemChat(str(units _g));
-				if ((_group select 0) in ODD_var_VehiculeTransport) then {
-					_infG = selectRandom ODD_var_squad;
+				if ((_group select 0) in ODD_var_TransportVehicles) then {
+					_infG = selectRandom ODD_var_Squad;
 					_pos set [1,(_pos select 1)+ 3];
 					_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
-					ODD_var_MissionIA pushBack _inf;
+					ODD_var_MainAreaIA pushBack _inf;
 					
 					{
 						_x moveInCargo (vehicle (units _g select 0));
@@ -176,19 +176,19 @@ if (ODD_var_CurrentMission == 1) then {
 			
 			sleep 2;
 		}forEach _nbVehicule;
-		[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
 
 		{
-			private _group = selectRandom ODD_var_VehiculeLourdSel;
-			ODD_var_VehiculeLourdSel = ODD_var_VehiculeLourdSel + (ODD_var_VehiculeLourdSel - _group);
-			if (_group in ODD_var_VehiculeVollant) then {
+			private _group = selectRandom ODD_var_SpawnableHeavyVehicles;
+			ODD_var_SpawnableHeavyVehicles = ODD_var_SpawnableHeavyVehicles + (ODD_var_SpawnableHeavyVehicles - _group);
+			if (_group in ODD_var_FlyingVehicles) then {
 				_corner = [[0,0,500], [30000,0,500], [0,30000,500], [30000,30000,500]];
 
 				_pos = selectRandom _corner;
 				_pos getpos[(100 * _forEachIndex), 90];
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 				{
-					ODD_var_MissionIA pushBack _x;
+					ODD_var_MainAreaIA pushBack _x;
 				} forEach units _g;
 
 				_pos = _pos getpos[100,180];
@@ -236,7 +236,7 @@ if (ODD_var_CurrentMission == 1) then {
 					_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 					// Crée le groupe 
 					{
-						ODD_var_MissionIA pushBack _x;
+						ODD_var_MainAreaIA pushBack _x;
 					} forEach units _g;
 					// Ajoute le groupe à la liste des IA de la mission
 					
@@ -262,11 +262,11 @@ if (ODD_var_CurrentMission == 1) then {
 					};
 					
 					// systemChat(str(units _g));
-					if ((_group select 0) in ODD_var_VehiculeTransport) then {
-						_infG = selectRandom ODD_var_squad;
+					if ((_group select 0) in ODD_var_TransportVehicles) then {
+						_infG = selectRandom ODD_var_Squad;
 						_pos set [1,(_pos select 1)+ 3];
 						_inf = [_pos, EAST, _infG] call BIS_fnc_spawnGroup;
-						ODD_var_MissionIA pushBack _inf;
+						ODD_var_MainAreaIA pushBack _inf;
 						
 						{
 							_x moveInCargo (vehicle (units _g select 0));
@@ -276,11 +276,11 @@ if (ODD_var_CurrentMission == 1) then {
 			};
 			sleep 2;
 		} forEach _nbVehiculeLourd;
-		[["Quantital : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODD_fnc_log;
 	}
 	else {
 		sleep 1;
-		if (!isNil "ODD_var_VehiculeSel") then {
+		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
 			[-1, true, false] call ODD_fnc_varEne;	
 			// Définition des véhicules
@@ -291,13 +291,13 @@ if (ODD_var_CurrentMission == 1) then {
 			_nbVehicule resize round random[0,(_human_players/8),8];
 			// Défini le nombre de véhicules à créer
 			//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-			[["Quantital : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+			[["ODD_Quantité : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 
 			//Pour tous les groupes
 			{
-				private _group = selectRandom ODD_var_VehiculeSel;
+				private _group = selectRandom ODD_var_SpawnableVehicles;
 				// Choisi un groupe
-				ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
+				ODD_var_SpawnableVehicles = ODD_var_SpawnableVehicles + (ODD_var_SpawnableVehicles - _group);
 				
 				_pos = position _zo getPos [800 * random 1, random 360];
 				// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
@@ -311,7 +311,7 @@ if (ODD_var_CurrentMission == 1) then {
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 				// Crée le groupe
 				
-				ODD_var_ZopiA pushBack _g;
+				ODD_var_SecondaryAreasIA pushBack _g;
 				// Ajoute le groupe à la liste des IA de la mission
 				
 				sleep 1;
@@ -321,9 +321,9 @@ if (ODD_var_CurrentMission == 1) then {
 			}forEach _nbVehicule;
 		}
 		else {
-			private _group = selectRandom ODD_var_VehiculeSel;
+			private _group = selectRandom ODD_var_SpawnableVehicles;
 			// Choisi un groupe	
-			ODD_var_VehiculeSel = ODD_var_VehiculeSel + (ODD_var_VehiculeSel - _group);
+			ODD_var_SpawnableVehicles = ODD_var_SpawnableVehicles + (ODD_var_SpawnableVehicles - _group);
 			
 			_pos = position (selectrandom (_pos nearRoads 600));
 			// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
@@ -332,7 +332,7 @@ if (ODD_var_CurrentMission == 1) then {
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 			// Crée le groupe
 			
-			ODD_var_ZopiA pushBack _g;
+			ODD_var_SecondaryAreasIA pushBack _g;
 			// Ajoute le groupe à la liste des IA de la mission
 			
 			[_g] spawn ODD_fnc_patrolZoM;
