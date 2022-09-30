@@ -1,17 +1,17 @@
 /*
-* Author: Wolv
-* Script permetant d'update la list avec les vl proche 
+* Auteur: Wolv
+* Script pour mettre à jour la liste des véhicules à proximité
 * 
 * Return Value:
 * nil
 *
 */
 
-//nettoye la liste
 lbClear IdcListVL;
+// Nettoie la liste
 
-// recup les vl a proximité et les rajoute a la liste
 ListVL = nearestObjects [PosGarage, ["car", "tank", "plane", "ship", "helicopter"], 100];
+// Récupère les véhicules à proximité et les ajoute à la liste
 
 {
 	lbAdd [IdcListVL, getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName")];

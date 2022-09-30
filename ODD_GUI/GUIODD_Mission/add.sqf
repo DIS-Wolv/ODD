@@ -1,11 +1,11 @@
 /*
-* Author: Wolv
-* Script permetant d'ajouté des élément dans les listes
+* Auteur : Wolv
+* Script pour ajouter des éléments dans les listes
 * 
 * Argument :
-* idc de la Liste  
+* 0: ID du controlleur (idc)
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */
@@ -17,7 +17,7 @@ if ((_list == ODDGUI_var_IdcListObjAll) or (_list == ODDGUI_var_IdcListPosAll)) 
 
 	if (_index != -1) then {
 		if (_list == ODDGUI_var_IdcListObjAll) then {
-			_tg = ODD_var_TargetTypeName select _index;
+			_tg = ODD_var_MissionType select _index;
 			if (!(_tg in ODDGUI_var_SelTarg)) then {
 				lbAdd [ODDGUI_var_IdcListObjSel, _tg];
 				ODDGUI_var_SelTarg pushBack _tg;

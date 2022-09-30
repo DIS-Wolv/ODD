@@ -1,17 +1,17 @@
 /*
-* Author: Wolv
-* Script permetant d'ouvrir le GUI
+* Auteur : Wolv
+* Script pour ouvrir le GUI
 * 
 * Argument :
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */
 
 [-1, true] call ODD_fnc_varEne;
 
-// definition des IDD et IDC en variable 
+// definition des IDD et IDC en variables
 ODDGUI_var_IddDisplay = 270822;
 ODDGUI_var_IdcMissionStatus = 1107;
 
@@ -28,10 +28,10 @@ ODDGUI_var_IdcComboMeteo = 2103;
 
 private _isCreate = False;
 
-if (isNil "ODD_var_TargetTypeName" or isNil "ODD_var_NomFactions") then {
+if (isNil "ODD_var_MissionType" or isNil "ODD_var_FactionNames") then {
 	_localID = clientOwner;
-	[_localID] remoteExec ["publicVariableClient 'ODD_var_TargetTypeName';", 0];
-	[_localID] remoteExec ["publicVariableClient 'ODD_var_NomFactions';", 0];
+	[_localID] remoteExec ["publicVariableClient 'ODD_var_MissionType';", 0];
+	[_localID] remoteExec ["publicVariableClient 'ODD_var_FactionNames';", 0];
 };
 
 //Variable
@@ -47,19 +47,19 @@ _meteoValue = [2, 5, 8];
 ODDGUI_var_SelTarg = [];
 ODDGUI_var_SelPos = [];
 
-// Creation de la fenetre
+// Création de la fenêtre
 _isCreate = createDialog "ODDGUI_Mission";
 
-//si la fenetre est créé
+// Si la fenêtre est créée
 if (_isCreate) then {
 
 	{
 		lbAdd [ODDGUI_var_IdcListObjAll, _x];
-	} forEach ODD_var_TargetTypeName;
+	} forEach ODD_var_MissionType;
 	{
 		lbAdd [ODDGUI_var_IdcListObjSel, _x];
 		ODDGUI_var_SelTarg pushBack _x;
-	} forEach ODD_var_TargetTypeName;
+	} forEach ODD_var_MissionType;
 
 	{
 		lbAdd [ODDGUI_var_IdcListPosAll, _x];
@@ -78,9 +78,9 @@ if (_isCreate) then {
 	{
 		lbAdd [ODDGUI_var_IdcComboFaction, _x];
 		lbSetValue[ODDGUI_var_IdcComboFaction, _forEachIndex, (_forEachIndex + 1)];
-	} forEach ODD_var_NomFactions;
+	} forEach ODD_var_FactionNames;
 	lbAdd [ODDGUI_var_IdcComboFaction, "Aleatoire"];
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboFaction) lbSetCurSel (count ODD_var_NomFactions);
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboFaction) lbSetCurSel (count ODD_var_FactionNames);
 
 	{
 		lbAdd [ODDGUI_var_IdcComboHeure, Format["%1:00", _x]];

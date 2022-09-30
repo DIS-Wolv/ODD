@@ -1,11 +1,11 @@
 /*
-* Author: Wolv
-* Script permetant de retiré des élément dans les listes
+* Auteur : Wolv
+* Script pour retirer des éléments dans les listes
 * 
 * Argument :
 * idc de la Liste  
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */

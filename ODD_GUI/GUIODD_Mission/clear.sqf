@@ -1,10 +1,10 @@
 /*
-* Author: Wolv
-* Script permetant de clear la mission
+* Auteur : Wolv
+* Script pour nettoyer la mission
 * 
 * Argument :
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */

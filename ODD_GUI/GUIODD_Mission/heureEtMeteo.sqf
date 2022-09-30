@@ -1,10 +1,10 @@
 /*
-* Author: Wolv
-* Script permetant de modifier l'heure et la meteo
+* Auteur : Wolv
+* Script pour modifier l'heure et la meteo
 * 
 * Argument :
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */

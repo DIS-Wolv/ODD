@@ -1,26 +1,29 @@
 /*
-* Author: Wolv
-* Script permetant de supprimé le vl selectioné 
+* Auteur: Wolv
+* Script pour supprimer le véhicule selectioné 
 * 
 * Return Value:
 * nil
 *
 */
-// systemChat 'Test Delete VL';
 
-_index = lbCurSel IdcListVL; // recup l'index du vl
+_index = lbCurSel IdcListVL; 
+// Récupère l'index du véhicule
 
-// systemChat str _index;
-if (_index != -1) then {	// si un vl est selectioné
-	_vl = ListVL select _index;	 // recupère le vl sélectioné
-	//systemChat str _index;
-	deleteVehicle _vl;		// supprime le vl
+if (_index != -1) then {	
+	// Si un véhicule est selectioné
+	_vl = ListVL select _index;	 
+	// Récupère le véhicule sélectioné
+	deleteVehicle _vl;		
+	// Supprime le véhicule
 
-	lbDelete [IdcListVL, _index];	// supprime le vl de la list
+	lbDelete [IdcListVL, _index];	
+	// Supprime le véhicule de la liste
 
-	ListVL deleteAt _index;			// supprime le vl de la list des vl a proxmité
+	ListVL deleteAt _index;			
+	// Supprime le véhicule de la liste des véhicules a proxmité
 };
 
 sleep 0.5;
-// met a jour l'inventaire 
 call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';
+// Met à jour l'inventaire 

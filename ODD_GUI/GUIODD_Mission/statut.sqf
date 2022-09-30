@@ -1,10 +1,10 @@
 /*
-* Author: Wolv
-* Script permetant de mettre a jour le statut de la missions
+* Auteur : Wolv
+* Script pour mettre à jour le statut de la mission
 * 
 * Argument :
 * 
-* Return Value:
+* Valeur renvoyée :
 * nil
 *
 */
