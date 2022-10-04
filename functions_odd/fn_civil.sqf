@@ -96,7 +96,7 @@ _civil resize (_nbCivil);
         "<t color='#FF0000'>interoger le civil</t>", 
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-        "(alive (_target)) and (_target distance _this < 3)", 
+        "(alive (_target)) and (_target distance _this < 3) and (lifeState _x != 'INCAPACITATED')", 
         "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
@@ -188,7 +188,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         "<t color='#FF0000'>interoger le civil</t>", 
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-        "(alive (_target)) and (_target distance _this < 8)", 
+        "(alive (_target)) and (_target distance _this < 8) and (lifeState _x != 'INCAPACITATED')", 
         "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];

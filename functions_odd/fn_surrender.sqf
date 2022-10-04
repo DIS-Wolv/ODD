@@ -55,7 +55,7 @@ if (side _killer == WEST ) then {
 				"<t color='#FF0000'>Interoger le prisonier</t>", 
 				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
 				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-				"(alive (_target)) and (_target distance _this < 3)", 
+				"(alive (_target)) and (_target distance _this < 3) and (lifeState _x != 'INCAPACITATED')", 
 				"True",
 				{},	{},
 				{
