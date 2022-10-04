@@ -4,7 +4,7 @@
 [] execVM "scripts\halo\infoHalo.sqf";
 [] execVM "scripts\lights\init.sqf";
 [] execVM "scripts\retourPa.sqf";
-[] execVM "scripts\WOLV_garage\garageInfo.sqf";
+[] spawn WolvGarage_fnc_init;
 sleep 1;
 tawvd_disablenone = false;
 
@@ -115,6 +115,4 @@ else {
 	pInf addAction ["TE","loads\da\te.sqf",[],1.5,true,true,"","",5];
 };
 
-//Option Spawn-Delete Vl
-factory addAction ["<t color='#5c7038'>Garage</t>", {[position factory] call compile preprocessFile "scripts\WOLV_Garage\Open.sqf";},[],1.5,true,true,"","true",5];
 sleep 3;

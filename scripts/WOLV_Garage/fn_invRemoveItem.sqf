@@ -10,15 +10,15 @@
 *
 */
 params [["_Nb", 1]];
-_indexVL = lbCurSel IdcListVL;
+_indexVL = lbCurSel WolvGarage_var_IdcChoixVl;
 // Récupère l'index du véhicule 
 
 if (_indexVL != -1) then {
 // Si un véhicule est selectionner 
-	_vl = ListVL select _indexVL;		
+	_vl = WolvGarage_var_ListSpawn select _indexVL;		
 	// Récupère le véhicule 
 	
-	_indexObj = lbCurSel IdcListInv;	
+	_indexObj = lbCurSel WolvGarage_var_IdcListInv;	
 	// Récupère l'index de l'objet
 	
 	if (_indexObj != -1) then {		// Si un objet est selectionné
@@ -68,5 +68,5 @@ if (_indexVL != -1) then {
 	};
 };
 
-call compile preprocessFile "scripts\WOLV_garage\Inventaire.sqf";
+call WolvGarage_fnc_invUpdate;
 // Met à jour la liste des inventaires

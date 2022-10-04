@@ -7,21 +7,19 @@
 *
 */
 
-((findDisplay IddDisplay) displayCtrl IdcListSpawn) lbSetCurSel -1;		
-// Désélectionne le véhicule dans la liste de création
 
-lbClear IdcListInv;								// Nettoie la liste inventaire 
-_index = lbCurSel IdcListVL;					// Récupère l'index du véhicule
-_display = findDisplay IddDisplay;				// Récupère le GUI
-_ctrlBar = _display displayCtrl IdcBarreInv;	// Récupère la barre de charge du véhicule
-_ctrlBar progressSetPosition 0;					// Met la progression de la barre a 0
+lbClear WolvGarage_var_IdcListInv;								// Nettoie la liste inventaire 
+_index = lbCurSel WolvGarage_var_IdcChoixVl;					// Récupère l'index du véhicule
+_display = findDisplay WolvGarage_var_IddDisplayInv;			// Récupère le GUI
+_ctrlBar = _display displayCtrl WolvGarage_var_BarreInv;		// Récupère la barre de charge du véhicule
+_ctrlBar progressSetPosition 0;									// Met la progression de la barre a 0
 
-if ((_index != -1) and (count(ListVL) > 0)) then {  // Si un élément est séléctioné
-	_vl = ListVL select _index; 	// Récupère le véhicule 
+if ((_index != -1) and (count(WolvGarage_var_ListSpawn) > 0)) then {  // Si un élément est séléctioné
+	_vl = WolvGarage_var_ListSpawn select _index; 	// Récupère le véhicule 
 
 	_ListInvWeap = getWeaponCargo _vl;
 	{
-		lbAdd [IdcListInv, 
+		lbAdd [WolvGarage_var_IdcListInv, 
 			Format ["%1 × %2", str ((_ListInvWeap select 1) select _forEachIndex), getText (configFile >> "CfgWeapons" >> _x >> "displayName")
 		]];
 	} forEach (_ListInvWeap select 0);
@@ -29,7 +27,7 @@ if ((_index != -1) and (count(ListVL) > 0)) then {  // Si un élément est sél�
 
 	_ListInvMag = getMagazineCargo _vl;
 	{
-		lbAdd [IdcListInv, 
+		lbAdd [WolvGarage_var_IdcListInv, 
 			Format ["%1 × %2", str ((_ListInvMag select 1) select _forEachIndex), getText (configFile >> "CfgMagazines" >> _x >> "displayName")
 		]];
 	} forEach (_ListInvMag select 0);
@@ -37,7 +35,7 @@ if ((_index != -1) and (count(ListVL) > 0)) then {  // Si un élément est sél�
 
 	_ListInvItems = getItemCargo _vl;
 	{
-		lbAdd [IdcListInv, 
+		lbAdd [WolvGarage_var_IdcListInv, 
 			Format ["%1 × %2", str ((_ListInvItems select 1) select _forEachIndex), getText (configFile >> "CfgWeapons" >> _x >> "displayName")
 		]];
 	} forEach (_ListInvItems select 0);

@@ -1,23 +1,13 @@
-/*
-* Auteur: Wolv
-* Script pour créer des véhicules à proximité de l'usine
-* 
-* Return Value:
-* nil
-*
-*/
 
-_pos = position usine;
-_index = lbCurSel IdcListSpawn;
+
+_index = lbCurSel WolvGarage_var_IdcListVlUsine;
 if (_index != -1) then { 
-	_vlType = (ListSpawn select _index);
-	_pos = _pos findEmptyPosition [7, 100, _vlType];
+	_vlType = (WolvGarage_var_ListUsine select _index);
+	_pos = WolvGarage_var_pos findEmptyPosition [7, 100, _vlType];
 
 	if ((count _pos) != 0) then {
 		// Crée le véhicule
 		_vl = _vlType createvehicle _pos;
-
-		[_vl, 1] call BIS_fnc_initVehicle;
 
 		clearWeaponCargoGlobal _vl;	
 		clearMagazineCargoGlobal _vl; 
@@ -54,7 +44,7 @@ if (_index != -1) then {
 		//_vl addItemCargoGlobal ["ACE_tourniquet", 10]; 
 		// Ajoute des items médicaux ACE
 
-		//[_vl, 20] call ace_cargo_fnc_setSpace; //force la taille du cargo a 20 pour debug
+		[_vl, 30] call ace_cargo_fnc_setSpace; //force la taille du cargo a 30
 
 		["ACE_medicalSupplyCrate_advanced", _vl, 1] call ace_cargo_fnc_addCargoItem;
 		// Ajoute une caisse medicale ACE dans l'inventaire ACE du véhicule
@@ -66,7 +56,7 @@ if (_index != -1) then {
 			if (_inv != "ACE_medicalSupplyCrate_advanced" ) then {
 				[_inv, _vl, 3] call ace_cargo_fnc_addCargoItem;
 			};
-		// Ajoute une caisse médicale ACE s'il n'y en a pas
+			// Ajoute 3 roues ou chenilles de rechange
 		};
 	} 
 	else {
@@ -74,5 +64,5 @@ if (_index != -1) then {
 	};
 };
 
-call compile preprocessFile 'scripts\WOLV_garage\VLProx.sqf';
-// Met à jour la liste des inventaires
+call WolvGarage_fnc_garUpdateVlProx;
+
