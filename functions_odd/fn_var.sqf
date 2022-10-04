@@ -151,12 +151,10 @@ ODD_var_RemoteControlledUrbanIED = ["IEDUrbanSmall_F", "IEDUrbanSmall_F", "IEDUr
 ODD_var_Hostages = [["B_pilot_F"], ["B_Fighter_pilot_F"], ["B_helicrew_F"], ["B_Helipilot_F"]];
 
 // liste des vehicules objectif à sécuriser
-ODD_var_SercureVehicles = [
-    "rhsgref_ins_gaz66_r142", "rhs_gaz66_r142_vdv", "rhsgref_cdf_b_gaz66_r142", "rhsgref_cdf_gaz66_r142", "rhs_tigr_msv", "rhs_tigr_3camo_msv", "rhs_tigr_m_msv", "rhs_tigr_m_3camo_msv"
-];
+ODD_var_SercureVehicles = ["O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "O_Truck_03_device_F", "rhsgref_BRDM2UM_msv", "rhs_gaz66_r142_msv", "rhs_tigr_m_vdv", "I_MRAP_03_F"];
 
 // liste des vehicules objectif à détruire
-ODD_var_DestroyVehicles = ODD_var_SercureVehicles;
+ODD_var_DestroyVehicles = ["rhsgref_ins_zsu234", "rhsgref_ins_BM21", "O_SAM_System_04_F", "RHS_BM21_MSV_01", "rhs_prp3_msv", "rhs_9k79", "rhs_D30_vdv", "I_Truck_02_MRL_F", "rhs_gaz66_r142_msv", "O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "I_MRAP_03_F", "rhs_bmp3mera_msv", "rhs_btr80_msv"];
 
 ODD_var_HVTKill = [
 	["O_Officer_Parade_F"],
