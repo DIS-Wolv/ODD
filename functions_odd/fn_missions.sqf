@@ -136,7 +136,7 @@ if (ODD_var_CurrentMission == 0) then {
         // Ajout de checkpoints hors des localités
 
         private _action = round random 100;
-        if (_action >= 90) then {
+        if (_action >= 100) then {
         // 90% de chance que la mission comporte des IEDs
             _nbIED = 5 + round random 10;
             // Crée entre 5 et 15 IEDs
