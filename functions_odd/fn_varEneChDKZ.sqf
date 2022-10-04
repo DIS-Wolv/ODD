@@ -66,12 +66,3 @@ ODD_var_TransportVehicles = [
 ODD_var_FlyingVehicles = ["rhsgref_ins_Mi8amt"];
 //Liste des Vehicules
 
-ODD_var_HVT = [
-	["O_Officer_Parade_F"],
-	["O_Officer_Parade_Veteran_F"],
-	["rhssaf_army_o_m10_para_officer"],
-	["rhssaf_army_o_m93_oakleaf_summer_officer"],
-	["brf_o_afm_commander"],
-	["rhsgref_ins_commander"]
-];
-//Liste des HVT

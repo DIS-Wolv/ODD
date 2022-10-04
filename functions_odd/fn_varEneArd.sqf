@@ -60,12 +60,3 @@ ODD_var_TransportVehicles = [
 
 ODD_var_FlyingVehicles = ["brf_o_ard_mi24p","brf_o_ard_mi24v","brf_o_ard_mi24vt","brf_o_ard_mi8amt","brf_o_ard_mi8mt","brf_o_ard_mi8mtv3","brf_o_ard_su25"];
 
-ODD_var_HVT = [
-	["O_Officer_Parade_F"],
-	["O_Officer_Parade_Veteran_F"],
-	["rhssaf_army_o_m10_para_officer"],
-	["rhssaf_army_o_m93_oakleaf_summer_officer"],
-	["brf_o_afm_commander"]
-];
-// Liste des HVT
-

@@ -158,6 +158,22 @@ ODD_var_SercureVehicles = [
 // liste des vehicules objectif à détruire
 ODD_var_DestroyVehicles = ODD_var_SercureVehicles;
 
+ODD_var_HVTKill = [
+	["O_Officer_Parade_F"],
+	["O_Officer_Parade_Veteran_F"],
+	["rhssaf_army_o_m10_para_officer"],
+	["rhssaf_army_o_m93_oakleaf_summer_officer"],
+	["brf_o_afm_commander"],
+	["rhsgref_ins_commander"]
+];
+//Liste des HVT à tuer
+
+ODD_var_HVTSecure = [
+	["O_Officer_Parade_F"],
+	["O_Officer_Parade_Veteran_F"]
+];
+//Liste des HVT securiser
+
 // Liste des AIs de la zone objectif
 ODD_var_MainAreaIA = [];
 

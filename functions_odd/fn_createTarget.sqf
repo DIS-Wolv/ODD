@@ -86,7 +86,7 @@ switch (_Mission) do {
     };
     case (ODD_var_MissionType select 1): {
         // Mission d'élimination d'une HVT
-        private _group = selectRandom ODD_var_HVT;
+        private _group = selectRandom ODD_var_HVTKill;
         // Choisi une HVT aléatoire
         
         _group append selectRandom ODD_var_FireTeam;
@@ -123,7 +123,7 @@ switch (_Mission) do {
     };
     case (ODD_var_MissionType select 2): {
         // Mission de capture d'une HVT
-        private _group = selectRandom ODD_var_HVT;
+        private _group = selectRandom ODD_var_HVTSecure;
         // Choisi une HVT aléatoire
         
         _group append selectRandom ODD_var_FireTeam;
