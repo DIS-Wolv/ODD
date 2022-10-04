@@ -33,12 +33,14 @@ _roads = _pos nearRoads _dist;
 {
 	_posZo = position _x;
 	_roadZo = _posZo nearRoads ((size _x select 1));
-	_roads = _roads + _roadZo + _roadZo;
+	_roads = _roads + _roadZo + _roadZo + _roadZo;
 	// Ajoute plusieurs fois les routes dans les localités
 } forEach _nearZO;
 
 _roadsFOB = position usine nearRoads 200;
 _roads = _roads - _roadsFOB;
+
+_posIED = [];
 // Retire les routes près de l'objet "usine" à la liste
 {
 	_trapRoad = selectRandom _roads;
@@ -97,18 +99,20 @@ _roads = _roads - _roadsFOB;
 
 	_trapClass = selectRandom _trapType; 
 	
+	_posIED pushBack _trapPos;
 	_trap = createMine[_trapClass, _trapPos, [], 0];
 	
 	_IED set [_forEachIndex, _trap];
-
 }forEach _IED; 
 
 if (_isDecoy) then {
 	[["ODD_Quantité : Nombre d'IED non activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
+	[["ODD_Quantité : Position des IED non activé : %1", str _posIED]] call ODD_fnc_log;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 }
 else {
 	[["ODD_Quantité : Nombre d'IED activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
+	[["ODD_Quantité : Position des IED activé : %1", str _posIED]] call ODD_fnc_log;
 	ODD_var_MissionIED = ODD_var_MissionIED + _IED;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 };
