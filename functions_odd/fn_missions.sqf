@@ -329,7 +329,14 @@ if (ODD_var_CurrentMission == 0) then {
                 {
                     if (isNull(_x)) then {
                         ODD_var_Objective = ODD_var_Objective - [_x];
-                    }
+                    };
+                    if (lifeState _x != "INCAPACITATED") then {
+                        ODD_var_Objective = ODD_var_Objective - [_x];
+                    };
+                    if (captive _x) then {
+                        ODD_var_Objective = ODD_var_Objective - [_x];
+                    };
+
                     // Ajout de la gestion des catpifs, inconscients et fuyards
                 }forEach ODD_var_Objective;
                 publicVariable "ODD_var_Objective";
