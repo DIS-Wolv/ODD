@@ -19,7 +19,7 @@ private _nbIa = 0;		// Initialisation à 0
 
 { 
 	{ 
-	if (alive _x and !(captive _x)) then {		// Si l'unité est en vie
+	if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED")) then {		// Si l'unité est en vie
 		_nbIa = _nbIa + 1;						// Ajoute 1 au compte
 	};
 	} forEach units _x;  						// Pour chaque unité
