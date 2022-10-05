@@ -80,6 +80,7 @@ if (round (random 1) == 0) then {
 	_marker setMarkertype _markerType;
 	_marker setMarkerColor _color;
 	_marker setMarkerAlpha 0.8125;
+	ODD_var_IntelMarker pushBack _marker;
 }
 else {
 	_msg = "Je ne dirais rien.";
