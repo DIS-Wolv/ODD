@@ -39,6 +39,9 @@ if (ODD_var_DEBUG) then {
 };
 
 if (ODD_var_CurrentMission == 0) then {
+    _brief = [true, "Brief", ["Création du plan", "Préparation de la mission", ""], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+    ["Brief", "wait"] call BIS_fnc_tasksettype;
+
     private _future = servertime + 6;
     ["Génération d'une mission"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 2;
@@ -212,14 +215,15 @@ if (ODD_var_CurrentMission == 0) then {
     
     private _nbIa = [] call ODD_fnc_countIA;
     
-    ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
-    
     private _BaseIa = _nbIa;
     private _Renfort = True;
     private _nbItt = 0;
 
-    ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
+    // ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
 
+    sleep 5;
+
+    ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
     [["Mission lancée"]] call ODD_fnc_log;
     if (ODD_var_DEBUG) then {
         [["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODD_fnc_log;
@@ -459,7 +463,7 @@ if (ODD_var_CurrentMission == 0) then {
 
     ODD_var_TimeObj = servertime;
     publicVariable "ODD_var_TimeObj";
-    
+    [["Objectif Acomplie"]] call ODD_fnc_log;
     sleep(5);
     
     if (ODD_var_CurrentMission == 1) then {

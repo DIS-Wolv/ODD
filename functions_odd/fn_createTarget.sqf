@@ -17,9 +17,6 @@
 */
 params ["_zo", ["_type", -1]];
 
-_brief = [true, "Brief", ["Création du plan", "Préparation de la mission", ""], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-["Brief", "wait"] call BIS_fnc_tasksettype;
-
 private _Mission = selectRandom ODD_var_SelectedTarget;
 // Choisi une mission aléatoire parmi la lister
 
