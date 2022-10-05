@@ -14,7 +14,7 @@
 *
 * Variable publique :
 */
-params [];
+params ["_zo"];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
@@ -33,97 +33,90 @@ if (ODD_var_CurrentMission == 1) then {
 	// Compte les joueurs
 	private _human_players = ODD_var_PlayerCount; // removing Headless Clients
 
-	{
-		_markerN = _x splitString " ";
-		
-		if ("ODDOBJ" in _markerN) then {
-			_pos = getMarkerPos _x;
-			
-			waitUntil {
-				sleep 1;
-				_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
-				if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
-					_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
-				};
-				[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
-				_joueurInZO <= 0
-			};
-
-
-			// Supprime les taches
-			// ["Task","CANCELED"] call BIS_fnc_taskSetState;
-			["Brief"] call BIS_fnc_deleteTask;
-			["Task"] call BIS_fnc_deleteTask;
-			// ["Extract","CANCELED"] call BIS_fnc_taskSetState;
-			["Extract"] call BIS_fnc_deleteTask;
-			
-			// systemChat("nettoyage de la ZO");
-			deleteMarker _x;
-			{
-				{
-					deleteVehicle _x;			// Supprime l'unité
-				} forEach units _x;				// Pour chaque unité du groupe
-			} forEach ODD_var_MainAreaIA;		// Pour chaque groupe
-			
-			{
-				{
-					deleteVehicle _x;			// Supprime l'unité
-				} forEach units _x;				// Pour chaque unité du groupe
-			} forEach ODD_var_SecondaryAreasIA;			// Pour chaque groupe
-			
-			{
-				deleteVehicle _x;				// Supprime l'unité
-			} forEach ODD_var_MissionProps;		// Pour chaque unité du groupe
-			
-			// recup tout les objet par terre 
-			_Supplies = _pos nearSupplies 5000;
-			{
-				if (!(_x in [factory,medicalFob,lanceursFob,armesFob,repairPont,medical,para,armes,acces,lanceurs,dump,repair,refuel,rearm])) then { 
-												// Si ce n'est pas un objet de la fob ou de la base
-					private _distance = fob distance _x;
-					if (_distance > 100) then {
-						deleteVehicle _x;		// Supprime l'objet
-					};
-				};
-			} forEach _Supplies;						// Pour chaque objet
-
-			_obj = nearestObjects [_pos, ODD_var_DeleteObjects, ODD_var_MissionArea];
-			{
-				private _distance = (fob distance _x) min (base distance _x);
-				if (_distance > 100) then {
-					deleteVehicle _x;		// Supprime l'objet
-				};
-			}forEach _obj;
-			
-			{
-				{
-					deleteVehicle _x;			// Supprime l'unité
-				} forEach units _x;				// Pour chaque unité du groupe
-			} foreach ODD_var_MissionCivilians;		// Pour chaque groupe civil
-			
-			{									// Ne devrait pas servir
-				deleteVehicle _x;				// Supprime le cadavre
-			} forEach alldead;					// Pour chaque cadavre
-
-			{
-				_x hideObjectGlobal false;		// Affiche l'object
-			} forEach ODD_var_HiddenObjects;		// Pour object caché
-
-			ODD_var_MissionSmokePillar = [];
-			publicVariable "ODD_var_MissionSmokePillar";
-			[False] remoteExec ["ODD_fnc_particules", 0];
-		}
-		else {
-			if ("ODDTG" in _markerN) then { deleteMarker _x; };
+	_pos = position _zo;
+	
+	waitUntil {
+		sleep 1;
+		_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
+		if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
+			_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 		};
-		
-	}forEach allMapMarkers;
+		[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
+		_joueurInZO <= 0
+	};
+
+
+	// Supprime les taches
+	// ["Task","CANCELED"] call BIS_fnc_taskSetState;
+	["Brief"] call BIS_fnc_deleteTask;
+	["Task"] call BIS_fnc_deleteTask;
+	// ["Extract","CANCELED"] call BIS_fnc_taskSetState;
+	["Extract"] call BIS_fnc_deleteTask;
+	
+	{
+		{
+			deleteVehicle _x;			// Supprime l'unité
+		} forEach units _x;				// Pour chaque unité du groupe
+	} forEach ODD_var_MainAreaIA;		// Pour chaque groupe
+	
+	{
+		{
+			deleteVehicle _x;			// Supprime l'unité
+		} forEach units _x;				// Pour chaque unité du groupe
+	} forEach ODD_var_SecondaryAreasIA;			// Pour chaque groupe
+	
+	{
+		deleteVehicle _x;				// Supprime l'unité
+	} forEach ODD_var_MissionProps;		// Pour chaque unité du groupe
+	
+	// recup tout les objet par terre 
+	_Supplies = _pos nearSupplies 5000;
+	{
+		if (!(_x in [factory,medicalFob,lanceursFob,armesFob,repairPont,medical,para,armes,acces,lanceurs,dump,repair,refuel,rearm])) then { 
+										// Si ce n'est pas un objet de la fob ou de la base
+			private _distance = fob distance _x;
+			if (_distance > 100) then {
+				deleteVehicle _x;		// Supprime l'objet
+			};
+		};
+	} forEach _Supplies;						// Pour chaque objet
+
+	_obj = nearestObjects [_pos, ODD_var_DeleteObjects, ODD_var_MissionArea];
+	{
+		private _distance = (fob distance _x) min (base distance _x);
+		if (_distance > 100) then {
+			deleteVehicle _x;		// Supprime l'objet
+		};
+	}forEach _obj;
+	
+	{
+		{
+			deleteVehicle _x;			// Supprime l'unité
+		} forEach units _x;				// Pour chaque unité du groupe
+	} foreach ODD_var_MissionCivilians;		// Pour chaque groupe civil
+	
+	{									// Ne devrait pas servir
+		deleteVehicle _x;				// Supprime le cadavre
+	} forEach alldead;					// Pour chaque cadavre
+
+	{
+		_x hideObjectGlobal false;		// Affiche l'object
+	} forEach ODD_var_HiddenObjects;		// Pour object caché
+
+	ODD_var_MissionSmokePillar = [];
+	publicVariable "ODD_var_MissionSmokePillar";
+	[False] remoteExec ["ODD_fnc_particules", 0];
+
+	{
+		deleteMarker _x;
+	} forEach ODD_var_IntelMarker;
+	
 	sleep 5;
 
 	["Clear OK"] remoteExec ["systemChat", 0];
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
-	call ODD_fnc_var;
+	[] call ODD_fnc_var;
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];
