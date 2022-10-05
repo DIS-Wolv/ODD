@@ -25,16 +25,21 @@ private _human_players = ODD_var_PlayerCount;
 private _nbVehicule = [];
 private _nbVehiculeLourd = [];
 
-waitUntil {
-	sleep 1;
-	(
-		(count (getPos base nearEntities[["SoldierWB"], 300])) +	
-		// Compte les joueurs à la base
-		(count (getPos fob nearEntities[["SoldierWB"], 150])) 		
-		// Compte les joueurs à la FOB
-		<= (count(allplayers - entities "HeadlessClient_F") / 2) 	
-	)
-	//Les véhicules ne spawn qu'une fois les joueurs partis en mission
+if (ODD_var_DEBUG) then {
+	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules"]] call ODD_fnc_log;
+}
+else {
+	waitUntil {
+		sleep 1;
+		(
+			(count (getPos base nearEntities[["SoldierWB"], 300])) +	
+			// Compte les joueurs à la base
+			(count (getPos fob nearEntities[["SoldierWB"], 150])) 		
+			// Compte les joueurs à la FOB
+			<= (count(allplayers - entities "HeadlessClient_F") / 2) 	
+		)
+		//Les véhicules ne spawn qu'une fois les joueurs partis en mission
+	};
 };
 
 [["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
