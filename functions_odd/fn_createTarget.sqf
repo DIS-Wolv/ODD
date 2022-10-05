@@ -467,7 +467,7 @@ switch (_Mission) do {
 _pos = position _zo;
 
 _pos set [0, ((_pos select 0) + ((size _zo) select 0)/2)];
-_pos set [1, ((_pos select 1) + ((size _zo) select 0)/4)];
+_pos set [1, ((_pos select 1) + ((size _zo) select 0)/2)];
 
 ["Task", _pos] call BIS_fnc_taskSetDestination;
 
