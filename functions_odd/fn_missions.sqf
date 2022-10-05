@@ -136,7 +136,7 @@ if (ODD_var_CurrentMission == 0) then {
         // Ajout de checkpoints hors des localités
 
         private _action = round random 100;
-        if (_action >= 100) then {
+        if (_action <= 100) then {
         // 90% de chance que la mission comporte des IEDs
             _nbIED = 5 + round random 10;
             // Crée entre 5 et 15 IEDs
@@ -330,13 +330,6 @@ if (ODD_var_CurrentMission == 0) then {
                     if (isNull(_x)) then {
                         ODD_var_Objective = ODD_var_Objective - [_x];
                     };
-                    if (lifeState _x != "INCAPACITATED") then {
-                        ODD_var_Objective = ODD_var_Objective - [_x];
-                    };
-                    if (captive _x) then {
-                        ODD_var_Objective = ODD_var_Objective - [_x];
-                    };
-
                     // Ajout de la gestion des catpifs, inconscients et fuyards
                 }forEach ODD_var_Objective;
                 publicVariable "ODD_var_Objective";
