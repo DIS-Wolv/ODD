@@ -133,6 +133,9 @@ if (ODD_var_CurrentMission == 1) then {
 				
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 				// Crée le groupe
+
+				ODD_var_IAVehicles pushBack (vehicle ((units _g) select 0));
+
 				{
 					ODD_var_MainAreaIA pushBack _x;
 				} forEach units _g;
@@ -235,6 +238,9 @@ if (ODD_var_CurrentMission == 1) then {
 					
 					_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 					// Crée le groupe 
+
+					ODD_var_IAVehicles pushBack (vehicle ((units _g) select 0));
+
 					{
 						ODD_var_MainAreaIA pushBack _x;
 					} forEach units _g;
@@ -310,6 +316,8 @@ if (ODD_var_CurrentMission == 1) then {
 				// systemChat(str(_pos));
 				_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 				// Crée le groupe
+
+				ODD_var_IAVehicles pushBack (vehicle ((units _g) select 0));
 				
 				ODD_var_SecondaryAreasIA pushBack _g;
 				// Ajoute le groupe à la liste des IA de la mission
@@ -331,6 +339,8 @@ if (ODD_var_CurrentMission == 1) then {
 			// systemChat(str(_pos));
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 			// Crée le groupe
+
+			ODD_var_IAVehicles pushBack (vehicle ((units _g) select 0));
 			
 			ODD_var_SecondaryAreasIA pushBack _g;
 			// Ajoute le groupe à la liste des IA de la mission

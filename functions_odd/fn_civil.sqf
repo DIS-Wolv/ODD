@@ -96,7 +96,7 @@ _civil resize (_nbCivil);
         "<t color='#FF0000'>interoger le civil</t>", 
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-        "(alive (_target)) and (_target distance _this < 3) and (lifeState _x != 'INCAPACITATED')", 
+        "(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", 
         "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
@@ -158,6 +158,8 @@ sleep 1;
         _g = _vl createvehicle _pos;
         // Crée le véhicule
 
+        ODD_var_MissionCivilianVehicles pushBack _g;
+
         _g addItemCargoGlobal ["Toolkit", 1]; 
         // Ajoute un kit de réparation
         
@@ -199,7 +201,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         "<t color='#FF0000'>interoger le civil</t>", 
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
         "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-        "(alive (_target)) and (_target distance _this < 8) and (lifeState _x != 'INCAPACITATED')", 
+        "(alive (_target)) and (_target distance _this < 8) and (lifeState _target != 'INCAPACITATED')", 
         "True",
         {
             [(_this select 0), "PATH"] remoteExec ["disableAI", 2];
@@ -210,7 +212,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
             // (_this select 0) enableAI "PATH";
 
-            [] remoteExec ["ODD_fnc_intel", 2];
+            [1] remoteExec ["ODD_fnc_intel", 2];
             [(_this select 0)] remoteExec ["removeAllActions"];
         }, {
             // (_this select 0) enableAI "PATH";

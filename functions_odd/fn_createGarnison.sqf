@@ -108,6 +108,10 @@ if (_action) then {
                 _posBox set[2, 1];
                 _box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
                 // Place une caisse
+
+                ODD_var_MedicalCrates pushBack _box;
+                ODD_var_MissionProps pushBack _box;
+
                 _Med = false;
                 // Il n'y a plus besoin de caisse médicale
             };

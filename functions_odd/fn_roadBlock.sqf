@@ -61,6 +61,8 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			_roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
 			_props = [_roadPos, _roadDir, _structure] call BIS_fnc_objectsMapper;
 
+			ODD_var_MissionCheckPoint pushBack _roadPos;
+
 			_aCacher = [];
 			{
 				_closeProps = nearestTerrainObjects [position _x, [], 10];

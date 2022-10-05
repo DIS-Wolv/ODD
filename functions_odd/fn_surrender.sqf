@@ -55,12 +55,12 @@ if (side _killer == WEST ) then {
 				"<t color='#FF0000'>Interoger le prisonier</t>", 
 				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
 				"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-				"(alive (_target)) and (_target distance _this < 3) and (lifeState _x != 'INCAPACITATED')", 
+				"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", 
 				"True",
 				{},	{},
 				{
 
-					[] remoteExec ["ODD_fnc_intel", 2];
+					[2] remoteExec ["ODD_fnc_intel", 2];
 					[(_this select 0)] remoteExec ["removeAllActions"];
 				}, {}, [], 
 				(random[2, 10, 15]), nil, True, False

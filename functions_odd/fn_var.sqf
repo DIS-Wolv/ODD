@@ -181,14 +181,29 @@ ODD_var_SecondaryAreasIA = [];
 // Liste des IEDs 
 ODD_var_MissionIED = [];
 
+// Liste des IEDs
+ODD_var_MissionActiveIED = [];
+
 // Liste des AIs en garnison
 ODD_var_GarnisonnedIA = [];
+
+// Liste des véhicule IA
+ODD_var_IAVehicles = [];
+
+// Liste des caisses med de la mission
+ODD_var_MedicalCrates = [];
 
 // Liste des civils de la mission
 ODD_var_MissionCivilians = [];
 
+// Liste des vehicules civil de la mission
+ODD_var_MissionCivilianVehicles = [];
+
 // Liste des props de la mission
 ODD_var_MissionProps = [];
+
+// Liste des positions des checkpoints
+ODD_var_MissionCheckPoint = [];
 
 // Liste des props de la missions en local
 ODD_var_MissionSmokePillar = [];
@@ -213,6 +228,8 @@ ODD_var_LocationType = ['nameCityCapital', 'nameCity', 'nameVillage', 'name', 'n
 // Liste des localités en liste noire
 ODD_var_BlackistedLocation = ["", "Kavala Pier", "Fournos", "Agios Minas", "Monisi", "Agios Kosmas", "Cape Makrinos", "Pyrgi", "Sagonisi", "Agios Panagiotis", "Savri", "Cape Drakontas", "Riga", "Spokos", "Amoni", "Amfissa", "Kira", "Bomos", "Synneforos", "Atsalis", "Thronos", "Cape Agrios", "Nychi", "Zeloran", "Cape Zefyris", "Agios Georgios", "Almyra", "Agios andreas", "sideras", "Polemistia", "Skiptro", "Ochrolimni", "Chelonisi", "Didymos", "Mazi"];
 
+// Liste des posibilité d'intel
+ODD_var_IntelType = ["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
 
 // Liste des differentes possibilités de briefing
 ODD_var_MissionBriefDestroyCrate = [

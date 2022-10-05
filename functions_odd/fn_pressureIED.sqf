@@ -115,11 +115,13 @@ _markerIED = [];
 if (_isDecoy) then {
 	[["ODD_Quantité : Nombre d'IED non activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
 	[["ODD_Quantité : Position des IED non activé : %1", str _posIED]] call ODD_fnc_log;
+	ODD_var_MissionIED = ODD_var_MissionIED + _IED;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 }
 else {
 	[["ODD_Quantité : Nombre d'IED activé placé : %1", { !(isNull _x) } count _IED]] call ODD_fnc_log;
 	[["ODD_Quantité : Position des IED activé : %1", str _posIED]] call ODD_fnc_log;
+	ODD_var_MissionActiveIED = ODD_var_MissionActiveIED + _IED;
 	ODD_var_MissionIED = ODD_var_MissionIED + _IED;
 	ODD_var_MissionProps = ODD_var_MissionProps + _IED;
 };
