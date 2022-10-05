@@ -217,7 +217,9 @@ if (ODD_var_CurrentMission == 0) then {
     private _BaseIa = _nbIa;
     private _Renfort = True;
     private _nbItt = 0;
-    
+
+    ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
+
     [["Mission lancée"]] call ODD_fnc_log;
     if (ODD_var_DEBUG) then {
         [["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODD_fnc_log;

@@ -52,6 +52,7 @@ if (ODD_var_CurrentMission == 1) then {
 
 			// Supprime les taches
 			// ["Task","CANCELED"] call BIS_fnc_taskSetState;
+			["Brief"] call BIS_fnc_deleteTask;
 			["Task"] call BIS_fnc_deleteTask;
 			// ["Extract","CANCELED"] call BIS_fnc_taskSetState;
 			["Extract"] call BIS_fnc_deleteTask;
@@ -122,6 +123,7 @@ if (ODD_var_CurrentMission == 1) then {
 	["Clear OK"] remoteExec ["systemChat", 0];
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
+	call ODD_fnc_var;
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];

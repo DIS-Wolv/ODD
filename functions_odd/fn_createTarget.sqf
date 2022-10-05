@@ -17,6 +17,9 @@
 */
 params ["_zo", ["_type", -1]];
 
+_brief = [true, "Brief", ["Création du plan", "Préparation de la mission", ""], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
+["Brief", "wait"] call BIS_fnc_tasksettype;
+
 private _Mission = selectRandom ODD_var_SelectedTarget;
 // Choisi une mission aléatoire parmi la lister
 
@@ -435,12 +438,13 @@ switch (_Mission) do {
 
         [_g, 2] remoteExec ["lock", (owner _g)];
 
-        [_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
-        "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-        "true", "true", {}, {},
-        {
-            _target lock 0;
-        },{}, [], (random[2, 10, 15]), nil, true, true
+        [
+            _g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
+            "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
+            "true", "true", {}, {},
+            {
+                _target lock 0;
+            },{}, [], (random[2, 10, 15]), nil, true, true
         ] remoteExec ["BIS_fnc_holdActionAdd"];
         
         ODD_var_MissionProps pushBack _g;
