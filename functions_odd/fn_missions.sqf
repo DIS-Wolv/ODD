@@ -39,8 +39,8 @@ if (ODD_var_DEBUG) then {
 };
 
 if (ODD_var_CurrentMission == 0) then {
-    _brief = [true, "Brief", ["Création du plan", "Préparation de la mission", ""], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-    ["Brief", "wait"] call BIS_fnc_tasksettype;
+    _brief = [true, "Brief", ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], objNull, "ASSIGNED", -1, True, "wait"] call BIS_fnc_taskCreate;
+    // ["Brief", "wait"] call BIS_fnc_tasksettype;
 
     private _future = servertime + 6;
     ["Génération d'une mission"] remoteExec ["systemChat", 0];
@@ -219,7 +219,7 @@ if (ODD_var_CurrentMission == 0) then {
     private _Renfort = True;
     private _nbItt = 0;
 
-    // ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
+    ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
 
     sleep 5;
 
@@ -493,7 +493,7 @@ if (ODD_var_CurrentMission == 0) then {
             servertime > _DebutNettoyage
         };
         
-        [] call ODD_fnc_clearZO;
+        [_zo] call ODD_fnc_clearZO;
         // Nettoie la mission
     };
 }
