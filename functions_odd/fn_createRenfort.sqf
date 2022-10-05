@@ -190,4 +190,4 @@ if (ODD_var_CurrentMission == 1) then {
     };
 };
 
-[["ODD_Quantité : Nombre d'unité en Renfort : %1", count _NbUnitRenfort]] call ODD_fnc_log;
+[["ODD_Quantité : Nombre d'unité en Renfort : %1", _NbUnitRenfort]] call ODD_fnc_log;
