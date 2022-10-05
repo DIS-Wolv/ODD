@@ -6,7 +6,7 @@
 [] execVM "scripts\retourPa.sqf";
 [] spawn WolvGarage_fnc_init;
 sleep 1;
-tawvd_disablenone = false;
+//tawvd_disablenone = false;
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 call ODD_fnc_var;
