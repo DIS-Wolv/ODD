@@ -41,6 +41,7 @@ _roadsFOB = position usine nearRoads 200;
 _roads = _roads - _roadsFOB;
 
 _posIED = [];
+_markerIED = [];
 // Retire les routes près de l'objet "usine" à la liste
 {
 	_trapRoad = selectRandom _roads;
@@ -103,6 +104,12 @@ _posIED = [];
 	_trap = createMine[_trapClass, _trapPos, [], 0];
 	
 	_IED set [_forEachIndex, _trap];
+
+	// _markerIED set [_forEachindex, 
+	// 	createMarker [(format ["IED x %1, y %2, z %3", (_trapPos select 0), (_trapPos select 1), (_trapPos select 2)]), _trapPos]
+	// ];
+	// (_markerIED select _forEachindex) setMarkerType "hd_dot";
+	// (_markerIED select _forEachindex) setMarkerColor "ColorOrange";
 }forEach _IED; 
 
 if (_isDecoy) then {
