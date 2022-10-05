@@ -24,7 +24,7 @@ private _color = _colorPool select _source;
 private _markerType = "";
 
 
-if (round (random 1) >= 0) then {
+if (round (random 1) == 0) then {
 	_msg = "J'ai des informations.";
 	
 	_intelType = selectRandom ODD_var_IntelType;
