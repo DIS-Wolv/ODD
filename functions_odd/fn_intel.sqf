@@ -68,7 +68,7 @@ if (round (random 1) == 0) then {
 				_pos = position (ODD_var_Objective select 0);
 			};
 			
-			["Task", "UPDATED"] call BIS_fnc_taskHint;
+			["ODD_task_mission", "UPDATED"] call BIS_fnc_taskHint;
 
 			_markerType = (selectRandom _markerPool)
 		};
@@ -97,7 +97,7 @@ _msg;
 	// _marker setMarkertype (selectRandom _markerPool);
 	// _marker setMarkerColor (selectRandom _colorPool);
 	// _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
-	// ["Task", _pos] call BIS_fnc_taskSetDestination;
+	// ["ODD_task_mission", _pos] call BIS_fnc_taskSetDestination;
 
 /*
 Objectif				=> ODD_var_Objective
