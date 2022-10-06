@@ -21,6 +21,16 @@ params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1
 
 [] call ODD_fnc_var;
 
+if (isNil "ODD_var_Pair") then {
+    ODD_var_SelectedFaction = -1;
+    [ODD_var_SelectedFaction, true] call ODD_fnc_varEne;
+    [ODD_var_SelectedFaction, false, true] remoteExec ["ODD_fnc_varEne", 2];
+    ODD_var_SelectedTarget = ODD_var_MissionType;
+    publicVariable "ODD_var_SelectedTarget";
+    ODD_var_SelectedSector = [];
+    publicVariable "ODD_var_SelectedSector";
+};
+
 if (isNil "ODD_var_PlayerCount") then {
     ODD_var_PlayerCount = (playersNumber west);
 };
