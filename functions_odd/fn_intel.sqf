@@ -26,37 +26,67 @@ private _markerType = "";
 
 if (round (random 1) == 0) then {
 	_msg = "J'ai des informations.";
-	
 	_intelType = selectRandom ODD_var_IntelType;
 	ODD_var_IntelType = ODD_var_IntelType + (ODD_var_IntelType - [_intelType]);
 	private _pos = [0,0,0];
+	private _needMarker = True;
 
 	//["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
 	switch (_intelType) do {
 		case (ODD_var_IntelType select 5): {	// Medical Crate 
-			_msg = "Il y a une caisse médicale là bas !";
-			_pos = position (selectRandom ODD_var_MedicalCrates);
-			_markerType = "loc_heal";
+			if (count ODD_var_IAVehicles <= 0) then {
+				_msg = "Je n'ai pas vue de caisse médicale !";
+				_needMarker = False;
+			}
+			else {
+				_msg = "Il y a une caisse médicale là bas !";
+				_pos = position (selectRandom ODD_var_MedicalCrates);
+				_markerType = "loc_heal";
+			};
 		};
 		case (ODD_var_IntelType select 4): {	// VL Enemie pos 
-			_msg = "J'ai vu un de leurs véhicules !";
-			_pos = position (selectRandom ODD_var_IAVehicles);
-			_markerType = "loc_defend";
+			if (count ODD_var_IAVehicles <= 0) then {
+				_msg = "Les énemie n'on pas de véhicules !";
+				_needMarker = False;
+			}
+			else {
+				_msg = "J'ai vu un de leurs véhicules !";
+				_pos = position (selectRandom ODD_var_IAVehicles);
+				_markerType = "loc_defend";
+			};
 		};
 		case (ODD_var_IntelType select 3): {	// checkpoint 
-			_msg = "Cette route est surveillée.";
-			_pos = position (selectRandom ODD_var_MissionCheckPoint);
-			_markerType = "loc_Bunker";
+			if (count ODD_var_MissionCheckPoint <= 0) then {
+				_msg = "Les énemie n'on pas de Checkpoint !";
+				_needMarker = False;
+			}
+			else {
+				_msg = "Cette route est surveillée.";
+				_pos = position (selectRandom ODD_var_MissionCheckPoint);
+				_markerType = "loc_Bunker";
+			}
 		};
 		case (ODD_var_IntelType select 2): {	// IED Pos 
-			_msg = "Il y a des explosifs sur le bord de cette route !";
-			_pos = position (selectRandom ODD_var_MissionIED);
-			_markerType = "loc_mine";
+			if (count ODD_var_MissionIED <= 0) then {
+				_msg = "Les énemie n'utilise pas d'IED !";
+				_needMarker = False;
+			}
+			else {
+				_msg = "Il y a des explosifs sur le bord de cette route !";
+				_pos = position (selectRandom ODD_var_MissionIED);
+				_markerType = "loc_mine";
+			};
 		};
 		case (ODD_var_IntelType select 1): {	// VL civil Pos 
-			_msg = "C'est ici que j'ai garé ma voiture.";
-			_pos = position (selectRandom ODD_var_MissionCivilianVehicles);
-			_markerType = "loc_Truck";
+			if (count ODD_var_MissionIED <= 0) then {
+				_msg = "Je n'ai pas vue de voiture !";
+				_needMarker = False;
+			}
+			else {
+				_msg = "C'est ici que j'ai garé ma voiture.";
+				_pos = position (selectRandom ODD_var_MissionCivilianVehicles);
+				_markerType = "loc_Truck";
+			};
 		};
 		case (ODD_var_IntelType select 0);
 		default {		//ObjectifPos
@@ -74,13 +104,15 @@ if (round (random 1) == 0) then {
 		};
 	};
 
-	_posIntel = _pos getPos [(random 1 * _dist), random 360];
+	if (_needMarker) then {
+		_posIntel = _pos getPos [(random 1 * _dist), random 360];
 
-	_marker = createMarker [format["ODDTG %1 %2 %3", (_posIntel select 0), (_posIntel select 1), (_posIntel select 2)], _posIntel];
-	_marker setMarkertype _markerType;
-	_marker setMarkerColor _color;
-	_marker setMarkerAlpha 0.8125;
-	ODD_var_IntelMarker pushBack _marker;
+		_marker = createMarker [format["ODDTG %1 %2 %3", (_posIntel select 0), (_posIntel select 1), (_posIntel select 2)], _posIntel];
+		_marker setMarkertype _markerType;
+		_marker setMarkerColor _color;
+		_marker setMarkerAlpha 0.8125;
+		ODD_var_IntelMarker pushBack _marker;
+	};
 }
 else {
 	_msg = "Je ne dirais rien.";
