@@ -18,6 +18,7 @@ params ["_zo"];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
 	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
+	[true, ["ODD_task_clear", "ODD_task_main"], ["Retournez sur le porte avion pour les soins et le débriefing.", "Nettoyage de la mission", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
 	ODD_var_CurrentMission = 2;
 	publicVariable "ODD_var_CurrentMission";
 
@@ -47,11 +48,10 @@ if (ODD_var_CurrentMission == 1) then {
 
 
 	// Supprime les taches
-	// ["Task","CANCELED"] call BIS_fnc_taskSetState;
-	["Brief"] call BIS_fnc_deleteTask;
-	["Task"] call BIS_fnc_deleteTask;
-	// ["Extract","CANCELED"] call BIS_fnc_taskSetState;
-	["Extract"] call BIS_fnc_deleteTask;
+	// ["ODD_task_Brief"] call BIS_fnc_deleteTask;
+	// ["ODD_task_mission"] call BIS_fnc_deleteTask;
+	// ["ODD_task_Extract"] call BIS_fnc_deleteTask;
+	
 	
 	{
 		{
@@ -114,6 +114,8 @@ if (ODD_var_CurrentMission == 1) then {
 	sleep 5;
 
 	["Clear OK"] remoteExec ["systemChat", 0];
+	// ["ODD_task_clear"] call BIS_fnc_deleteTask;
+	["ODD_task_main"] call BIS_fnc_deleteTask;
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
 	[] call ODD_fnc_var;
