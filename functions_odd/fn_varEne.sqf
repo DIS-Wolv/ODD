@@ -22,9 +22,11 @@ if (!_init) then {
 	// Nombre de factions
 
 	private _nFaction = round ((random 1) * (_nbFaction - 1));
+	if (typeName _FacForce != "SCALAR") then {
+		_FacForce = -1;
+	};
 
-
-	if (_FacForce >= 0 AND _FacForce <= _nFaction) then {
+	if ((_FacForce >= 0) AND (_FacForce <= _nbFaction)) then {
 		_nFaction = _FacForce;
 	};
 
