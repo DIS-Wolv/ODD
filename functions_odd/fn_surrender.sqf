@@ -22,14 +22,15 @@ if (side _killer == WEST ) then {
 	_distBlue = 15;  
 	_distRed = 30;
 	// Distance sur lesquelles on recherche 
+	_pos = position _unit;
 
-	_nearSurrender = position _unit nearEntities[["SoldierGB"], _distRed]; 
+	_nearSurrender = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units opfor);
 	// Nombre d' OPFOR
 
 	{
-		_nearBlue = count (position _x nearEntities[["SoldierWB"], _distBlue]);
+		_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
 		// Nombre de BLUFOR
-		_nearRed = count (position _x nearEntities[["SoldierGB"], _distRed]) - 1;   
+		_nearRed = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units opfor);
 		// Nombre d' OPFOR moins l'AI venant de décéder
 
 		_seuil = (exp((_nearRed/3)-(2.5 + _nearBlue /2)))/1.5; 
