@@ -13,7 +13,7 @@ oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 sleep 5;
-tawvd_disablenone = true;
+//tawvd_disablenone = true;
 base setObjectTextureGlobal [0, "pics\disMoto.jpg"];
 rules setObjectTextureGlobal [0, "pics\tip.jpg"];
 pCav setObjectTextureGlobal [0, "pics\cav.jpg"];
