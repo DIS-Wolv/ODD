@@ -262,7 +262,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -286,7 +286,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -309,7 +309,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -340,7 +340,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
 
                 [["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODD_fnc_log;
                 
@@ -374,7 +374,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -397,7 +397,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -428,7 +428,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
@@ -459,7 +459,7 @@ if (ODD_var_CurrentMission == 0) then {
                 _Renfort = [_Renfort, _nbIa, _BaseIa] call ODD_fnc_testrenfort;
                 
                 _nbItt = _nbItt + 1;
-                [_nbItt] call ODD_fnc_garbageCollector;
+                // [_nbItt] call ODD_fnc_garbageCollector;
                 
                 waitUntil {
                     sleep 10;
