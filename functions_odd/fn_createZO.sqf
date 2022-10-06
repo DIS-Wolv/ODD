@@ -94,17 +94,15 @@ if (_forceZO != "") then {
 
 // private _pos = position _obj;
 // // Récupère la position de l'objectif
-
 // _pos set [0, ((_pos select 0) + ((size _obj) select 0)/2)];
 // _pos set [1, ((_pos select 1) + ((size _obj) select 0)/2)];
-
 // _marker = createMarker ["ODDOBJ", _pos];
 // _marker setMarkertype "hd_objective";
 // _marker setMarkerColor "coloropfor";
 // _marker setMarkertext "O";
 // // Ajoute un marqueur d'objectif
 
-[text _obj] remoteExec ["systemChat", 0];
+// [text _obj] remoteExec ["systemChat", 0];
 [["Marquer mis en place"]] call ODD_fnc_log;
 
 _obj;

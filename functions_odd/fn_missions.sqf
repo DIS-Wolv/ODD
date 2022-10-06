@@ -49,11 +49,13 @@ if (ODD_var_DEBUG) then {
 };
 
 if (ODD_var_CurrentMission == 0) then {
-    _brief = [true, "Brief", ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], objNull, "ASSIGNED", -1, True, "wait"] call BIS_fnc_taskCreate;
-    // ["Brief", "wait"] call BIS_fnc_tasksettype;
-
+    [true, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
+    sleep 1;
+    [true, ["ODD_task_Brief", "ODD_task_main"], ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], objNull, "ASSIGNED", -1, True, "meet"] call BIS_fnc_taskCreate;
+    ["ODD_task_mission", position base] call BIS_fnc_taskSetDestination;
+    sleep 1;
     private _future = servertime + 6;
-    ["Génération d'une mission"] remoteExec ["systemChat", 0];
+    // ["Génération d'une mission"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 2;
     publicVariable "ODD_var_CurrentMission";
     private _zo = [_forceZO] call ODD_fnc_createZO;
@@ -211,7 +213,7 @@ if (ODD_var_CurrentMission == 0) then {
         servertime >= _future
     };
     ODD_var_TimeStart = servertime;
-    ["Mission générée"] remoteExec ["systemChat", 0];
+    //["Mission générée"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 1;
     publicVariable "ODD_var_CurrentMission";
     publicVariable "ODD_var_Objective";
@@ -229,18 +231,18 @@ if (ODD_var_CurrentMission == 0) then {
     private _Renfort = True;
     private _nbItt = 0;
 
-    ["Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
+    ["ODD_task_Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
 
     sleep 5;
 
-    ["Task", "ASSIGNED", True] call BIS_fnc_tasksetState;
+    ["ODD_task_mission", "ASSIGNED", True] call BIS_fnc_tasksetState;
     [["Mission lancée"]] call ODD_fnc_log;
     if (ODD_var_DEBUG) then {
         [["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODD_fnc_log;
     }
     else {
         waitUntil{
-            sleep 600;
+            sleep 60;
             count (position _zo nearEntities[["SoldierWB"], 1000]) >= 1
         };
     };
@@ -269,7 +271,7 @@ if (ODD_var_CurrentMission == 0) then {
             };
             
             sleep(1);
-            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // La tâche est accomplie
         };
         case (ODD_var_MissionType select 1): {       // L'objectif est de tuer une HVT
@@ -292,7 +294,7 @@ if (ODD_var_CurrentMission == 0) then {
                 };
             };
             sleep(1);
-            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // La tâche est accomplie
         };
         case (ODD_var_MissionType select 2): {       // L'objectif est de capturer une HVT
@@ -316,9 +318,9 @@ if (ODD_var_CurrentMission == 0) then {
             };
             sleep(1);
             if (alive (ODD_var_Objective select 0)) then {
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             }else {
-                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
             };
             // La tâche est accomplie ou non selon l'état de santé de la HVT
         };
@@ -357,7 +359,7 @@ if (ODD_var_CurrentMission == 0) then {
                 };
             };
             sleep(1);
-            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // La tâche est accomplie
         };
         case (ODD_var_MissionType select 4);
@@ -380,7 +382,7 @@ if (ODD_var_CurrentMission == 0) then {
                 };
             };
             sleep(1);
-            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // La tâche est accomplie
         };
         case (ODD_var_MissionType select 6): {       // L'objectif est un prisonier
@@ -405,10 +407,10 @@ if (ODD_var_CurrentMission == 0) then {
             
             sleep(1);
             if (alive (ODD_var_Objective select 0)) then {
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             }
             else {
-                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
             };
             // La tâche est accomplie ou non selon l'état de santé du prisonier
         };
@@ -436,10 +438,10 @@ if (ODD_var_CurrentMission == 0) then {
             
             sleep(1);
             if (alive (ODD_var_Objective select 0)) then {
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             }
             else {
-                ["Task", "FAILED"] call BIS_fnc_tasksetState;
+                ["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
             };
             // La tâche est accomplie ou non selon l'état de santé du prisonier
         };
@@ -466,7 +468,7 @@ if (ODD_var_CurrentMission == 0) then {
             };
             
             sleep(1);
-            ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState;
+            ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
             // La tâche est accomplie
         };
     };
@@ -475,10 +477,9 @@ if (ODD_var_CurrentMission == 0) then {
     publicVariable "ODD_var_TimeObj";
     [["Objectif Acomplie"]] call ODD_fnc_log;
     sleep(5);
-    
+
     if (ODD_var_CurrentMission == 1) then {
-        _task = [True, "Extract", ["Rentrez à la base", "RTB", "RTB"], objNull, "ASSIGNED", 2] call BIS_fnc_taskCreate;
-        ["Extract", "move"] call BIS_fnc_tasksettype;
+        [True, ["ODD_task_Extract", "ODD_task_main"], ["Rentrez à la base", "RTB", "RTB"], objNull, "ASSIGNED", 2, True, "move"] call BIS_fnc_taskCreate;
         // Crée la tâche de retour à la base
         sleep(1);
         
@@ -490,7 +491,7 @@ if (ODD_var_CurrentMission == 0) then {
         };
         // Attends le retour des joueurs à la fob ou à la base
         
-        ["Extract", "SUCCEEDED"] call BIS_fnc_tasksetState;
+        ["ODD_task_Extract", "SUCCEEDED"] call BIS_fnc_tasksetState;
         // La tâche est accomplie
         
         ODD_var_TimeEnd = servertime;
