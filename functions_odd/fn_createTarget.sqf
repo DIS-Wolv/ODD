@@ -40,8 +40,7 @@ publicVariable "ODD_var_Objective";
 _tgBuild = selectRandom _Buildings;
 
 switch (_Mission) do {
-    case (ODD_var_MissionType select 0): {
-        // Mission de destruction d' une caisse
+    case (ODD_var_MissionType select 0): {        // Mission de destruction d' une caisse
         _posBox = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
         // Surélève la caisse de 2m 
         _box = "Box_IED_exp_F" createvehicle _posBox;
@@ -80,12 +79,10 @@ switch (_Mission) do {
         
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefDestroyCrate, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "destroy"] call BIS_fnc_tasksettype;
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyCrate, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2, True, "destroy"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
-    case (ODD_var_MissionType select 1): {
-        // Mission d'élimination d'une HVT
+    case (ODD_var_MissionType select 1): {        // Mission d'élimination d'une HVT
         private _group = selectRandom ODD_var_HVTKill;
         // Choisi une HVT aléatoire
         
@@ -117,12 +114,10 @@ switch (_Mission) do {
             // Sinon, le groupe est mis en garnison avec ACE
         };
         
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "target"] call BIS_fnc_tasksettype;
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "target"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
-    case (ODD_var_MissionType select 2): {
-        // Mission de capture d'une HVT
+    case (ODD_var_MissionType select 2): {        // Mission de capture d'une HVT
         private _group = selectRandom ODD_var_HVTSecure;
         // Choisi une HVT aléatoire
         
@@ -162,18 +157,14 @@ switch (_Mission) do {
             // Sinon, le groupe est mis en garnison avec ACE
         };
         
-        _task = [true, "Task", [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "kill"] call BIS_fnc_tasksettype;
+        _task = [true, "ODD_task_mission", [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
-    case (ODD_var_MissionType select 3): { 
-        // Mission de sécurisation de zone
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "attack"] call BIS_fnc_tasksettype;
+    case (ODD_var_MissionType select 3): {        // Mission de sécurisation de zone
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2, True, "attack"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
-    case (ODD_var_MissionType select 4): {
-        // Mission de récupération de renseignements
+    case (ODD_var_MissionType select 4): {        // Mission de récupération de renseignements
         _intellist = ["Item_SmartPhone", "Item_ItemalivePhoneOld", "Item_MobilePhone", "Item_SatPhone", "land_IPPhone_01_black_F", "land_IPPhone_01_olive_F", "land_IPPhone_01_sand_F", "land_Laptop_F", "land_Laptop_device_F", "land_Laptop_unfolded_F", "land_Laptop_intel_01_F", "land_Laptop_intel_02_F", "land_Laptop_intel_Oldman_F", "land_laptop_03_closed_black_F", "land_Laptop_03_black_F", "land_laptop_03_closed_olive_F", "land_Laptop_03_olive_F", "land_laptop_03_closed_sand_F", "land_Laptop_03_sand_F", "land_Laptop_02_F", "land_Laptop_02_unfolded_F"];
         _posintel = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
         _posintel set[2, 1];
@@ -191,7 +182,7 @@ switch (_Mission) do {
             _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "true", {}, {}, {
                 ODD_var_Objective set[1, false];
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions"];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions"];
             },
             {}, [], (random[2, 10, 15]), nil, true, true
         ] remoteExec ["BIS_fnc_holdActionAdd"];
@@ -204,8 +195,7 @@ switch (_Mission) do {
         sleep(1);
         // Attend une seconde pour ne pas tuer une AI
         
-        [true, "Task", [format[selectRandom ODD_var_MissionBriefSecureIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "intel"] call BIS_fnc_tasksettype;
+        [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2, True, "intel"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         private _group = [];
@@ -232,8 +222,7 @@ switch (_Mission) do {
 
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
-    case (ODD_var_MissionType select 5): {
-        // Mission de récupération de boites noires
+    case (ODD_var_MissionType select 5): {        // Mission de récupération de boites noires
         _pos = position _zo getPos [((size _zo)select 0) * random 1, random 360];
         
         while {(count nearestTerrainObjects [_pos, ["Rocks", "House"], 8] > 0) or ((_pos select 2) < 0)} do {
@@ -251,7 +240,7 @@ switch (_Mission) do {
             _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
                 ODD_var_Objective set [1, false];
-                ["Task", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions"];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions"];
             },
             {}, [], (random[10, 20, 30]), nil, true, false
         ] remoteExec ["BIS_fnc_holdActionAdd"];
@@ -274,14 +263,11 @@ switch (_Mission) do {
         
         sleep 1;
         [_g, _pos, 150] call bis_fnc_taskpatrol;
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefBlackBoxes, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "scout"] call BIS_fnc_tasksettype;
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefBlackBoxes, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2, True, "scout"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
-    case (ODD_var_MissionType select 6): {
-        // Mission de sauvetage d'un allié
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefSecureHostages, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "meet"] call BIS_fnc_tasksettype;
+    case (ODD_var_MissionType select 6): {        // Mission de sauvetage d'un allié
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureHostages, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2, True, "meet"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         private _group = selectRandom ODD_var_Hostages;
@@ -319,10 +305,8 @@ switch (_Mission) do {
         
         [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
-    case (ODD_var_MissionType select 7): { 
-        // Mission de sécurisation d'un véhicule ennemi
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefSecureVehicle, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "car"] call BIS_fnc_tasksettype;
+    case (ODD_var_MissionType select 7): {        // Mission de sécurisation d'un véhicule ennemi
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureVehicle, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         _vl = selectRandom ODD_var_SercureVehicles;
@@ -391,10 +375,8 @@ switch (_Mission) do {
         [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Place le groupe en garnison
     };
-    case (ODD_var_MissionType select 8): {
-        // Mission de destruction d'un véhicule ennemi
-        _task = [true, "Task", [format[selectRandom ODD_var_MissionBriefDestroyVehicle, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2] call BIS_fnc_taskCreate;
-        ["Task", "car"] call BIS_fnc_tasksettype;
+    case (ODD_var_MissionType select 8): {        // Mission de destruction d'un véhicule ennemi
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyVehicle, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         _vl = selectRandom ODD_var_DestroyVehicles;
@@ -470,7 +452,7 @@ _pos = position _zo;
 _pos set [0, ((_pos select 0) + ((size _zo) select 0)/2)];
 _pos set [1, ((_pos select 1) + ((size _zo) select 0)/2)];
 
-["Task", _pos] call BIS_fnc_taskSetDestination;
+["ODD_task_mission", _pos] call BIS_fnc_taskSetDestination;
 
 publicVariable "ODD_var_Objective";
 publicVariable "ODD_var_MissionProps";
