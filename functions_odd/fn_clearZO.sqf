@@ -17,7 +17,7 @@
 params ["_zo"];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
-	["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
+	// ["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
 	[true, ["ODD_task_clear", "ODD_task_main"], ["Retournez sur le porte avion pour les soins et le débriefing.", "Nettoyage de la mission", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
 	ODD_var_CurrentMission = 2;
 	publicVariable "ODD_var_CurrentMission";
@@ -33,12 +33,10 @@ if (ODD_var_CurrentMission == 1) then {
 
 	// Compte les joueurs
 	private _human_players = ODD_var_PlayerCount; // removing Headless Clients
-
-	_pos = position _zo;
 	
 	waitUntil {
 		sleep 1;
-		_joueurInZO = count (_pos nearEntities[["SoldierWB"], 5000]);
+		_joueurInZO = {(_x distance2D _pos) < 5000} count allPlayers;
 		if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
 			_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 		};
@@ -113,8 +111,10 @@ if (ODD_var_CurrentMission == 1) then {
 	
 	sleep 5;
 
-	["Clear OK"] remoteExec ["systemChat", 0];
+	// ["Clear OK"] remoteExec ["systemChat", 0];
 	// ["ODD_task_clear"] call BIS_fnc_deleteTask;
+	["ODD_task_clear", "SUCCEEDED"] call BIS_fnc_tasksetState;
+	sleep 1;
 	["ODD_task_main"] call BIS_fnc_deleteTask;
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
