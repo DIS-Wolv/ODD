@@ -33,11 +33,19 @@ while {count ((position _nextZo) nearRoads 300) <= 0} do {
 };
 // Choisi la localité suivante parmis la liste en s'assurant qu'elle compore des routes pour les véhicules
 
-private _nbWP = (round(random 4)) + 4;
+_roadZo = (position _pZo nearRoads 600);
+
+private _nbWP = (round((random 1) * (_roadZo / 2))) + 4;
+
+_nbWP = _nbWP min _roadZo;
 
 for "_i" from 0 to (_nbWP) do {
 
-	_posWP = getPos (selectrandom (position _pZo nearRoads 600));
+	_selectroad = (selectrandom _roadZo);
+
+	_roadZo = _roadZo - [_selectroad];
+
+	_posWP = getPos _selectroad;
 
 	_g addWaypoint [_posWP, 5];
 
