@@ -196,6 +196,15 @@ if (ODD_var_CurrentMission == 0) then {
     } forEach ODD_var_SecondaryAreasIA;    
     // Ajoute la possibilité qu'une unité se rende sur une zone secondaire
 
+    {
+        {
+            _x addEventHandler ["FiredNear", {
+                params ["_unit", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
+                [_unit, _distance] spawn ODD_fnc_civiesCover;
+            }];
+        }forEach units _x;
+    } forEach ODD_var_MissionCivilians;
+
     [["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODD_fnc_log;
     [["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODD_fnc_log;
     [["ODD_Quantité : Nombre de Pax en garnison : %1", count ODD_var_GarnisonnedIA]] call ODD_fnc_log;
