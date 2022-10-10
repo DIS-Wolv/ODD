@@ -26,7 +26,6 @@ armesFob execVM "loads\crate\armesFob.sqf";
 medicalFob execVM "loads\crate\medicalFob.sqf";
 lanceursFob execVM "loads\crate\lanceursFob.sqf";
 acces setVariable ["R3F_LOG_disabled", true];
-acces execVM "loads\crate\items.sqf";
 dump setVariable ["R3F_LOG_disabled", true];
 dump execVM "loads\crate\dump.sqf";
 
@@ -39,10 +38,12 @@ if(!isNil "ce")
 then {
 	pInf setVariable ["R3F_LOG_disabled", true];
 	pInf setObjectTextureGlobal [0, "pics\ce.jpg"];
+	acces execVM "loads\crate\itemsCe.sqf";
 }
 else {
 	pInf setVariable ["R3F_LOG_disabled", true];
 	pInf setObjectTextureGlobal [0, "pics\da.jpg"];
+	acces execVM "loads\crate\itemsDa.sqf";
 };
 
 //[] remoteExec ["scripts\rWeather.sqf"]; 

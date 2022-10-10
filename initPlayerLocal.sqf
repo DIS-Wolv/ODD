@@ -53,7 +53,6 @@ para setVariable ["R3F_LOG_disabled", true];
 armesFob addAction ["Recharger la caisse","loads\crate\armesFob.sqf",[],1.5,true,true,"","player distance2D armesFob < 10 && armesFob distance2D fob < 20",5];
 medicalFob addAction ["Recharger la caisse","loads\crate\medicalFob.sqf",[],1.5,true,true,"","player distance2D medicalFob < 10 && medicalFob distance2D fob < 20",5];
 lanceursFob addAction ["Recharger la caisse","loads\crate\lanceursFob.sqf",[],1.5,true,true,"","player distance2D lanceursFob < 10 && lanceursFob distance2D fob < 20",5];
-acces addAction ["Recharger la caisse","loads\crate\items.sqf",[],1.5,true,true,"","",5];
 acces setVariable ["R3F_LOG_disabled", true];
 dump addAction ["Vider la caisse","loads\crate\dump.sqf",[],1.5,true,true,"","",5];
 dump setVariable ["R3F_LOG_disabled", true];
@@ -94,6 +93,7 @@ then {
 	pInf addAction ["TP","loads\ce\tp.sqf",[],1.5,true,true,"","",5];
 	pInf addAction ["TP (groupe d'infanterie)","loads\ce\TPinf.sqf",[],1.5,true,true,"","",5];
 	pInf addAction ["TE","loads\ce\te.sqf",[],1.5,true,true,"","",5];
+	acces addAction ["Recharger la caisse","loads\crate\itemsCe.sqf",[],1.5,true,true,"","",5];
 }
 else {
 	pCav setVariable ["R3F_LOG_disabled", true];
@@ -112,6 +112,7 @@ else {
 	pInf addAction ["TP","loads\da\tp.sqf",[],1.5,true,true,"","",5];
 	pInf addAction ["TP (groupe d'infanterie)","loads\da\TPinf.sqf",[],1.5,true,true,"","",5];
 	pInf addAction ["TE","loads\da\te.sqf",[],1.5,true,true,"","",5];
+	acces addAction ["Recharger la caisse","loads\crate\itemsDa.sqf",[],1.5,true,true,"","",5];
 };
 
 sleep 3;
