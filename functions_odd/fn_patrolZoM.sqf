@@ -35,9 +35,9 @@ while {count ((position _nextZo) nearRoads 300) <= 0} do {
 
 _roadZo = (position _pZo nearRoads 600);
 
-private _nbWP = (round((random 1) * (_roadZo / 2))) + 4;
+private _nbWP = (round((random 1) * (((size _pZo) select 0) / 100))) + 2;
 
-_nbWP = _nbWP min _roadZo;
+// _nbWP = _nbWP min (count (_roadZo));
 
 for "_i" from 0 to (_nbWP) do {
 
