@@ -115,6 +115,7 @@ _civil resize (_nbCivil);
         }, [], (random[2, 10, 15]), nil, True, False
     ] remoteExec ["BIS_fnc_holdActionAdd"];
     
+    [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
 }forEach _civil;
 
 {
@@ -220,7 +221,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         }, [], (random[2, 10, 15]), nil, True, False
         ] remoteExec ["BIS_fnc_holdActionAdd"];
 
-         ODD_var_MissionCivilians pushBack _x;
+        ODD_var_MissionCivilians pushBack _x;
 
     } forEach units _g;
 
