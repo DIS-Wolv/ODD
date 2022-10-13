@@ -14,7 +14,7 @@
 *
 * Variable publique :
 */
-params ["_zo"];
+params [["_zo", ODD_var_SelectedArea]];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
 	// ["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
@@ -50,7 +50,10 @@ if (ODD_var_CurrentMission == 1) then {
 	// ["ODD_task_mission"] call BIS_fnc_deleteTask;
 	// ["ODD_task_Extract"] call BIS_fnc_deleteTask;
 	
-	
+	{
+		deleteVehicle _x;					// Supprime le Trigger
+	} forEach ODD_var_MissionIEDTrigger;	//pour chaque trigger
+
 	{
 		{
 			deleteVehicle _x;			// Supprime l'unité
