@@ -141,10 +141,10 @@ if (ODD_var_FirstDefinition) then {
     ODD_var_MissionArea = 4000;
 
     // Liste des IEDs ruraux plaque de pression
-    ODD_var_PressurePlateStandardIED = ["ACE_IEDLandSmall_Range", "ACE_IEDLandSmall_Range", "ACE_IEDLandBig_Range"];
+    ODD_var_IEDExplosive = ["rhsusf_explosive_m112", "DemoCharge_F", "Claymore_F", "rhsusf_explosive_m112x4", "IEDUrbanSmall_F", "IEDLandSmall_F", "IEDUrbanBig_F", "IEDLandBig_F", "rhs_mine_ozm72_c", "rhssaf_tm200", "rhs_ec200", "BombCluster_01_UXO3_F", "BombCluster_03_UXO3_F", "rhs_uxo_ao1_3", "rhs_uxo_ptab25m_3"];
 
     // Liste des IEDs urbains plaque de pression
-    ODD_var_PressurePlateUrbanIED = ["ACE_IEDLandSmall_Range", "ACE_IEDLandSmall_Range", "ACE_IEDLandBig_Range"];
+    ODD_var_IEDCover = ["Land_Garbage_square3_F", "Land_Garbage_square5_F", "Land_GarbageBarrel_02_buried_F", "Land_LuggageHeap_03_F", "Land_LuggageHeap_01_F", "Land_JunkPile_F", "Land_GarbageContainer_closed_F", "Land_GarbageContainer_open_F", "Tire_Van_02_F", "Land_Pillow_old_F", "Land_Bucket_F", "Land_Bucket_painted_F", "Land_GasTank_01_blue_F", "Land_GasTank_01_yellow_F", "Land_GasTank_01_khaki_F", "Land_Pallets_stack_F", "Land_AirConditioner_01_F", "Land_PaperBox_01_small_open_brown_F", "Land_PaperBox_01_small_ransacked_brown_F", "Land_FoodSack_01_empty_brown_F", "Land_PressureWasher_01_F", "Land_DieselGroundPowerUnit_01_F", "Land_Basket_F", "Land_ToolTrolley_02_F", "Land_ToolTrolley_01_F", "Land_WeldingTrolley_01_F", "Land_GarbageBags_F", "Land_GarbagePallet_F", "Land_GarbageWashingMachine_F", "Land_GarbageHeap_04_F", "Land_GarbageHeap_01_F", "Land_GarbageHeap_02_F", "Land_GarbageHeap_03_F", "Land_ShellCrater_01_F", "Land_CratesPlastic_F", "Land_CratesShabby_F"];
 
     // Liste des faux IEDs ruraux
     ODD_var_RemoteControlledStandartIED = ["IEDLandSmall_F", "IEDLandSmall_F", "IEDLandBig_F"];
@@ -162,20 +162,44 @@ if (ODD_var_FirstDefinition) then {
     ODD_var_DestroyVehicles = ["rhsgref_ins_zsu234", "rhsgref_ins_BM21", "O_SAM_System_04_F", "RHS_BM21_MSV_01", "rhs_prp3_msv", "rhs_9k79", "rhs_D30_vdv", "I_Truck_02_MRL_F", "rhs_gaz66_r142_msv", "O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "I_MRAP_03_F", "rhs_bmp3mera_msv", "rhs_btr80_msv"];
 
     ODD_var_HVTKill = [
-        ["O_Officer_Parade_F"],
-        ["O_Officer_Parade_Veteran_F"],
-        ["rhssaf_army_o_m10_para_officer"],
-        ["rhssaf_army_o_m93_oakleaf_summer_officer"],
         ["brf_o_afm_commander"],
-        ["rhsgref_ins_commander"]
-    ];
-    //Liste des HVT à tuer
+        ["brf_o_afr_commander"],
+        ["brf_o_agr_commander"],
+        ["brf_o_ard_commander"],
+        ["brf_o_sra_commander"],
+        ["rhsgref_ins_squadleader"],
+        ["rhsgref_ins_commander"],
+        ["O_officer_F"],
+        ["O_A_soldier_F"],
+        ["O_G_officer_F"],
+        ["O_GEN_Commander_F"],
+        ["rhs_vdv_flora_officer"],
+        ["rhs_vdv_flora_officer_armored"],
+        ["rhs_vdv_recon_officer"],
+        ["rhssaf_army_o_m93_oakleaf_summer_officer"],
+        ["rhsgref_tla_squadleader"]
+    ];  // Liste des HVT à tuer
 
     ODD_var_HVTSecure = [
         ["O_Officer_Parade_F"],
-        ["O_Officer_Parade_Veteran_F"]
-    ];
-    //Liste des HVT securiser
+        ["O_Officer_Parade_Veteran_F"],
+        ["brf_o_afm_commander"],
+        ["brf_o_afr_commander"],
+        ["brf_o_agr_commander"],
+        ["brf_o_ard_commander"],
+        ["brf_o_sra_commander"],
+        ["rhsgref_ins_squadleader"],
+        ["rhsgref_ins_commander"],
+        ["O_officer_F"],
+        ["O_A_soldier_F"],
+        ["O_G_officer_F"],
+        ["O_GEN_Commander_F"],
+        ["rhs_vdv_flora_officer"],
+        ["rhs_vdv_flora_officer_armored"],
+        ["rhs_vdv_recon_officer"],
+        ["rhssaf_army_o_m93_oakleaf_summer_officer"],
+        ["rhsgref_tla_squadleader"]
+    ];    // Liste des HVT securiser
 
     // Defini les différents objectifs possibles
     ODD_var_MissionType = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
@@ -245,20 +269,20 @@ if (ODD_var_FirstDefinition) then {
     ODD_var_GoClear = true;
 
     // Liste des véhicules pouvant etre utilisé par les alliés
-    ODD_var_BluforVehicles = ["B_APC_Tracked_01_AA_F","B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_AFV_Wheeled_01_cannon_F","B_AFV_Wheeled_01_up_cannon_F","B_APC_Tracked_01_CRV_F","B_MBT_01_mlrs_F",
-    "B_MBT_01_arty_F","B_Boat_Armed_01_minigun_F","B_Heli_Light_01_dynamicLoadout_F","B_Heli_Attack_01_dynamicLoadout_F","B_Plane_CAS_01_dynamicLoadout_F","B_Plane_Fighter_01_F","B_Plane_Fighter_01_Stealth_F",
-    "B_MBT_01_TUSK_F","B_MBT_01_cannon_F","B_T_APC_Tracked_01_AA_F","B_T_APC_Wheeled_01_cannon_F","B_T_APC_Tracked_01_rcws_F","B_T_APC_Tracked_01_CRV_F","B_T_AFV_Wheeled_01_cannon_F","B_T_AFV_Wheeled_01_up_cannon_F",
-    "B_T_MBT_01_mlrs_F","B_T_MBT_01_arty_F","B_T_Boat_Armed_01_minigun_F","B_T_UAV_03_dynamicLoadout_F","B_UAV_05_F","B_UAV_02_dynamicLoadout_F","B_T_VTOL_01_armed_F","B_T_VTOL_01_infantry_F","B_T_VTOL_01_vehicle_F",
-    "B_T_MBT_01_TUSK_F","B_T_MBT_01_cannon_F","rhsusf_stryker_m1126_m2_d","rhsusf_stryker_m1126_mk19_d","rhsusf_stryker_m1127_m2_d","rhsusf_stryker_m1132_m2_np_d","rhsusf_stryker_m1132_m2_d","rhsusf_stryker_m1134_d",
-    "rhsusf_m109d_usarmy","RHS_AH64D","RHS_AH64DGrey","RHS_M2A2","RHS_M2A2_BUSKI","RHS_M2A3","RHS_M2A3_BUSKI","RHS_M2A3_BUSKIII","RHS_M6","rhsusf_M1117_D","rhsusf_M1117_O","rhsusf_m1a1aimd_usarmy",
-    "rhsusf_m1a1aim_tuski_d","rhsusf_m1a2sep1d_usarmy","rhsusf_m1a2sep1tuskid_usarmy","rhsusf_m1a2sep1tuskiid_usarmy","rhsusf_m1a2sep2d_usarmy","rhsusf_stryker_m1126_m2_wd","rhsusf_stryker_m1126_mk19_wd",
-    "rhsusf_stryker_m1127_m2_wd","rhsusf_stryker_m1132_m2_np_wd","rhsusf_stryker_m1132_m2_wd","rhsusf_stryker_m1134_wd","rhsusf_m109_usarmy","RHS_AH64D_wd","RHS_M2A2_wd","RHS_M2A2_BUSKI_WD","RHS_M2A3_wd",
-    "RHS_M2A3_BUSKI_wd","RHS_M2A3_BUSKIII_wd","RHS_M6_wd","rhsusf_M1117_W","rhsusf_m1a1aimwd_usarmy","rhsusf_m1a1aim_tuski_wd","rhsusf_m1a2sep1wd_usarmy","rhsusf_m1a2sep1tuskiwd_usarmy","rhsusf_m1a2sep1tuskiiwd_usarmy",
-    "rhsusf_m1a2sep2wd_usarmy","rhsusf_mkvsoc","RHS_MELB_AH6M","RHS_MELB_MH6M","RHS_A10","rhsusf_f22","RHS_AH1Z","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","rhsusf_m1a1fep_d","rhsusf_M142_usmc_WD","RHS_AH1Z_wd",
-    "RHS_UH1Y_FFAR","RHS_UH1Y","rhsusf_m1a1fep_wd","rhsusf_m1a1fep_od","rhsusf_m1a1hc_wd"];
+    ODD_var_BluforVehicles = ["B_APC_Tracked_01_AA_F", "B_APC_Wheeled_01_cannon_F", "B_APC_Tracked_01_rcws_F", "B_AFV_Wheeled_01_cannon_F", "B_AFV_Wheeled_01_up_cannon_F", "B_APC_Tracked_01_CRV_F", "B_MBT_01_mlrs_F",
+    "B_MBT_01_arty_F", "B_Boat_Armed_01_minigun_F", "B_Heli_Light_01_dynamicLoadout_F", "B_Heli_Attack_01_dynamicLoadout_F", "B_Plane_CAS_01_dynamicLoadout_F", "B_Plane_Fighter_01_F", "B_Plane_Fighter_01_Stealth_F",
+    "B_MBT_01_TUSK_F", "B_MBT_01_cannon_F", "B_T_APC_Tracked_01_AA_F", "B_T_APC_Wheeled_01_cannon_F", "B_T_APC_Tracked_01_rcws_F", "B_T_APC_Tracked_01_CRV_F", "B_T_AFV_Wheeled_01_cannon_F", "B_T_AFV_Wheeled_01_up_cannon_F",
+    "B_T_MBT_01_mlrs_F", "B_T_MBT_01_arty_F", "B_T_Boat_Armed_01_minigun_F", "B_T_UAV_03_dynamicLoadout_F", "B_UAV_05_F", "B_UAV_02_dynamicLoadout_F", "B_T_VTOL_01_armed_F", "B_T_VTOL_01_infantry_F", "B_T_VTOL_01_vehicle_F",
+    "B_T_MBT_01_TUSK_F", "B_T_MBT_01_cannon_F", "rhsusf_stryker_m1126_m2_d", "rhsusf_stryker_m1126_mk19_d", "rhsusf_stryker_m1127_m2_d", "rhsusf_stryker_m1132_m2_np_d", "rhsusf_stryker_m1132_m2_d", "rhsusf_stryker_m1134_d",
+    "rhsusf_m109d_usarmy", "RHS_AH64D", "RHS_AH64DGrey", "RHS_M2A2", "RHS_M2A2_BUSKI", "RHS_M2A3", "RHS_M2A3_BUSKI", "RHS_M2A3_BUSKIII", "RHS_M6", "rhsusf_M1117_D", "rhsusf_M1117_O", "rhsusf_m1a1aimd_usarmy",
+    "rhsusf_m1a1aim_tuski_d", "rhsusf_m1a2sep1d_usarmy", "rhsusf_m1a2sep1tuskid_usarmy", "rhsusf_m1a2sep1tuskiid_usarmy", "rhsusf_m1a2sep2d_usarmy", "rhsusf_stryker_m1126_m2_wd", "rhsusf_stryker_m1126_mk19_wd",
+    "rhsusf_stryker_m1127_m2_wd", "rhsusf_stryker_m1132_m2_np_wd", "rhsusf_stryker_m1132_m2_wd", "rhsusf_stryker_m1134_wd", "rhsusf_m109_usarmy", "RHS_AH64D_wd", "RHS_M2A2_wd", "RHS_M2A2_BUSKI_WD", "RHS_M2A3_wd",
+    "RHS_M2A3_BUSKI_wd", "RHS_M2A3_BUSKIII_wd", "RHS_M6_wd", "rhsusf_M1117_W", "rhsusf_m1a1aimwd_usarmy", "rhsusf_m1a1aim_tuski_wd", "rhsusf_m1a2sep1wd_usarmy", "rhsusf_m1a2sep1tuskiwd_usarmy", "rhsusf_m1a2sep1tuskiiwd_usarmy",
+    "rhsusf_m1a2sep2wd_usarmy", "rhsusf_mkvsoc", "RHS_MELB_AH6M", "RHS_MELB_MH6M", "RHS_A10", "rhsusf_f22", "RHS_AH1Z", "RHS_UH1Y_FFAR_d", "RHS_UH1Y_d", "rhsusf_m1a1fep_d", "rhsusf_M142_usmc_WD", "RHS_AH1Z_wd",
+    "RHS_UH1Y_FFAR", "RHS_UH1Y", "rhsusf_m1a1fep_wd", "rhsusf_m1a1fep_od", "rhsusf_m1a1hc_wd"];
 
     // Liste des objets à supprimer à la fin de la mission 
-    ODD_var_DeleteObjects = ["ACE_Track","ACE_Wheel","ACE_envelope_big","GRAD_envelope_giant","GRAD_envelope_long","GRAD_envelope_short","ACE_envelope_small","GRAD_envelope_vehicle"];
+    ODD_var_DeleteObjects = ["ACE_Track", "ACE_Wheel", "ACE_envelope_big", "GRAD_envelope_giant", "GRAD_envelope_long", "GRAD_envelope_short", "ACE_envelope_small", "GRAD_envelope_vehicle"];
 
     [] call ODD_fnc_varRoadBlock;
 
@@ -273,9 +297,8 @@ ODD_var_SecondaryAreasIA = [];
 
 // Liste des IEDs 
 ODD_var_MissionIED = [];
-
-// Liste des IEDs
-ODD_var_MissionActiveIED = [];
+ODD_var_MissionIEDTriggerMan = [];
+ODD_var_MissionIEDTrigger = [];
 
 // Liste des AIs en garnison
 ODD_var_GarnisonnedIA = [];
