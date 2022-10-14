@@ -19,9 +19,11 @@ params [["_zo", ODD_var_SelectedArea]];
 if (ODD_var_CurrentMission == 1) then {
 	// ["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
 	[true, ["ODD_task_clear", "ODD_task_main"], ["Retournez sur le porte avion pour les soins et le débriefing.", "Nettoyage de la mission", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
-	ODD_var_CurrentMission = 2;
+	ODD_var_CurrentMission = 3;
 	publicVariable "ODD_var_CurrentMission";
 
+	_pos = position _zo;
+	
 	if (!ODD_var_GoClear) then {
 		waitUntil {
 			sleep 2; 
