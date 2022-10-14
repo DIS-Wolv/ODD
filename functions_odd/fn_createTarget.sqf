@@ -159,11 +159,13 @@ switch (_Mission) do {
         
         _hvt addEventHandler ["Hit", {
             params ["_unit", "_source", "_damage", "_instigator"];
-            ["Je me rends !!"] remoteExec ["systemChat", 0];
+            _hvtSurrenderSound = ["hvtSurrender1", "hvtSurrender2", "hvtSurrender3"];
+            _sound = getMissionPath "ODDSound\" + (selectRandom _hvtSurrenderSound) + ".ogg";
+            playSound3D [_sound, _unit, false, position _unit, 3, 1, 30];
             [_unit, true] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
         }];
 
-        _task = [true, "ODD_task_mission", [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
+        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 3): {        // Mission de sécurisation de zone
