@@ -42,8 +42,6 @@ if (isNil "ODD_var_MissionArea") then {
     [["ODD_var_MissionArea Init dans fn_MISSION"]] call ODD_fnc_log;
 };
 
-_Debug = ODD_var_DEBUG;
-
 if (ODD_var_DEBUG) then { 
     [_FacForce, False, True] call ODD_fnc_varEne;
 };
@@ -51,18 +49,17 @@ if (ODD_var_DEBUG) then {
 if (ODD_var_CurrentMission == 0) then {
     [true, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
     sleep 1;
-    [true, ["ODD_task_Brief", "ODD_task_main"], ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], objNull, "ASSIGNED", -1, True, "meet"] call BIS_fnc_taskCreate;
-    ["ODD_task_mission", position base] call BIS_fnc_taskSetDestination;
+    [true, ["ODD_task_Brief", "ODD_task_main"], ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], (position base), "ASSIGNED", -1, True, "meet"] call BIS_fnc_taskCreate;
     sleep 1;
     private _future = servertime + 6;
     // ["Génération d'une mission"] remoteExec ["systemChat", 0];
     ODD_var_CurrentMission = 2;
     publicVariable "ODD_var_CurrentMission";
+
     private _zo = [_forceZO] call ODD_fnc_createZO;
     // Choisi la localité via la fonction ODD_fnc_createZO
     ODD_var_SelectedArea = _zo;
     publicVariable "ODD_var_SelectedArea";
-
     
     ODD_var_SelectedMissionType = [_zo, _missiontype] call ODD_fnc_createTarget;
     // Choisi le type de mission via la fonction ODD_fnc_createTarget
@@ -79,7 +76,7 @@ if (ODD_var_CurrentMission == 0) then {
     // Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
     
     if (_ZOP) then {
-        private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
+       private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
         // Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
         private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
         _location = _location - [_zo];
@@ -155,14 +152,14 @@ if (ODD_var_CurrentMission == 0) then {
         // 90% de chance que la mission comporte des IEDs
             _nbIED = 5 + round random 10;
             // Crée entre 5 et 15 IEDs
-            [_zo, _nbIED] call ODD_fnc_pressureIED;
+            [_zo, _nbIED] spawn ODD_fnc_pressureIED;
             _nbDecoy = 3 + round random 7;
             // Crée entre 3 et 10 IEDs qui n'exploseront que si l'on tire dessus
-            [_zo, _nbDecoy, True] call ODD_fnc_pressureIED;
+            [_zo, _nbDecoy, True] spawn ODD_fnc_pressureIED;
         }
         else {
             [["ODD_Quantité : Pas d'IED positionné"]] call ODD_fnc_log;
-        };
+        }; //*/
     };
 
     {
