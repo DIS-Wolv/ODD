@@ -18,14 +18,14 @@ params ["_unit", "_dist"];
 
 if ((vehicle _unit == _unit) and !(captive _unit)) then {
     private _allVar = allVariables _unit;
-    if (!("ODD_var_stopped" in _allVar)) then {
-        _unit setVariable ["ODD_var_stopped", false, true];
+    if (!("odd_var_stopped" in _allVar)) then {
+        _unit setVariable ["odd_var_stopped", false, true];
     };
 
-    private _gar = _unit getVariable "ODD_var_stopped";
+    private _gar = _unit getVariable "odd_var_stopped";
 
     if (_gar == false) then {
-        _unit setVariable ["ODD_var_stopped", true, true];
+        _unit setVariable ["odd_var_stopped", true, true];
 
         private _g = group _unit;
         for "_i" from count waypoints _g - 1 to 0 step -1 do {
@@ -74,6 +74,6 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
 
         [_g, getPos _unit, (((size ODD_var_SelectedArea) select 0)/4)] call BIS_fnc_taskPatrol;
 
-        _unit setVariable ["ODD_var_stopped", false, true];
+        _unit setVariable ["odd_var_stopped", false, true];
     };
 };
