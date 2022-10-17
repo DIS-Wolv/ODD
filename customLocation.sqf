@@ -10,14 +10,14 @@ _factory1 setText "factory";
 _GhostHotel = createLocation ["NameLocal", [21830,21019,0], 200, 200];
 _GhostHotel setText "Ghost Hotel";
 
-_MillitaryLabBravo = createLocation ["NameLocal", [20888,19326,0], 250, 250];
-_MillitaryLabBravo setText "Millitary Lab Bravo";
+_MilitaryLabBravo = createLocation ["NameLocal", [20888,19326,0], 250, 250];
+_MilitaryLabBravo setText "Military lab bravo";
 
 _PyrgosBase = createLocation ["NameLocal", [17416,13184,0], 200, 200];
-_PyrgosBase setText "Pyrgos Base";
+_PyrgosBase setText "Pyrgos military base";
 
 // _loc = _PyrgosBase;
-// _pos = getPos _PyrgosBase;
+// _pos = getPos _loc;
 // _markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 // _markerG setMarkerShape "RECTANGLE";
 // _markerG setMarkerSize [(size _loc select 1),(size _loc select 1)];
