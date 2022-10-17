@@ -12,6 +12,8 @@ call ODD_fnc_var;
 call compile preprocessFile 'customLocation.sqf';
 oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];
+_haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa",{[player] call ODD_fnc_haltCivilian},{true}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions"], _haltAction] call ace_interact_menu_fnc_addActionToObject;
 [] call ODD_fnc_infoOdd;
 [True] call ODD_fnc_particules;
 

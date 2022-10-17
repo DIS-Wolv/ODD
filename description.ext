@@ -48,6 +48,7 @@ class CfgFunctions
 			class particules {};
 			class log {};
 			class civiesCover {};
+			class haltCivilian {};
 		}
 	}
 };
