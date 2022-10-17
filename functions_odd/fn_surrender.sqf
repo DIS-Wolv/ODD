@@ -24,7 +24,13 @@ if (side _killer == WEST ) then {
 	// Distance sur lesquelles on recherche 
 	_pos = position _unit;
 
-	_nearSurrender = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units opfor);
+	_nearSurrender = [];
+
+	{
+		if (((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)) then {
+			_nearSurrender pushBack _x;
+		};
+	} forEach (units opfor);
 	// Nombre d' OPFOR
 	if (count _nearSurrender != 0) then {
 		{
