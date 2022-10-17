@@ -169,7 +169,8 @@ sleep 1;
         "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
         "true", "true", {}, {},
         {
-            _target lock 0;
+            [_target, 0] remoteExec ["lock", (owner _target)];
+            [_target] remoteExec ["removeAllActions"];
         },{}, [], (random[2, 10, 15]), nil, true, true
         ] remoteExec ["BIS_fnc_holdActionAdd"];
 
