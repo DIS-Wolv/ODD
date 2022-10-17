@@ -22,11 +22,12 @@ _fnc_StopCivil = {
 
 	_civil setVariable ["odd_var_stopped", true, true];
 	_civil disableAI "PATH";
+	if ((floor random 3) == 0 ) then {
+		_civieSurrenderSound = ["civSurrender1","civSurrender2","civSurrender3","civSurrender4"];
+		_sound = getMissionPath "ODDSound\" + (selectRandom _civieSurrenderSound) + ".ogg";
+		playSound3D [_sound, _civil, false, getPosASL _civil, 3, 1, 30];
+	};
 
-	_civieSurrenderSound = ["civSurrender1","civSurrender2","civSurrender3","civSurrender4"];
-	_sound = getMissionPath "ODDSound\" + (selectRandom _civieSurrenderSound) + ".ogg";
-
-	playSound3D [_sound, _civil, false, getPosASL _civil, 3, 1, 30];
 	[_civil, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
 	sleep 10; //(30 + round (random 150));
 	[_civil] call zen_modules_fnc_moduleAmbientAnimEnd;
