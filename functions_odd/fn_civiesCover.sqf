@@ -16,7 +16,7 @@
 params ["_unit", "_dist"];
 //[format ["moi : %1, dist : %2", _unit, _dist]] remoteExec ["systemChat", 0];
 
-if (vehicle _unit == _unit) then {
+if ((vehicle _unit == _unit) and !(captive _unit)) then {
     private _allVar = allVariables _unit;
     if (!("garrisonned" in _allVar)) then {
         _unit setVariable ["garrisonned", false, true];
