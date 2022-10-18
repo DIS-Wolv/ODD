@@ -26,28 +26,28 @@ if (!isNil "ODD_var_SelectedSector") then {
                 case (ODDGUI_var_Secteur select 0): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 0);
                 };
-                case (ODDGUI_var_Secteur select 1 == _x): {
+                case (ODDGUI_var_Secteur select 1): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 1);
                 };
-                case (ODDGUI_var_Secteur select 2 == _x): {
+                case (ODDGUI_var_Secteur select 2): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 2);
                 };
-                case (ODDGUI_var_Secteur select 3 == _x): {
+                case (ODDGUI_var_Secteur select 3): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 3);
                 };
-                case (ODDGUI_var_Secteur select 4 == _x): {
+                case (ODDGUI_var_Secteur select 4): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 4);
                 };
-                case (ODDGUI_var_Secteur select 5 == _x): {
+                case (ODDGUI_var_Secteur select 5): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 5);
                 };
-                case (ODDGUI_var_Secteur select 6 == _x): {
+                case (ODDGUI_var_Secteur select 6): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 6);
                 };
-                case (ODDGUI_var_Secteur select 7 == _x): {
+                case (ODDGUI_var_Secteur select 7): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 7);
                 };
-                case (ODDGUI_var_Secteur select 8 == _x): {
+                case (ODDGUI_var_Secteur select 8): {
                     _SelectSector pushback (ODDGUI_var_SecteurMarker select 8);
                 };
             };
