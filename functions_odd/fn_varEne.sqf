@@ -15,19 +15,16 @@
 */
 params [["_FacForce", -1], ["_init", false], ["_initVL", false]];
 
-ODD_var_FactionNames = ["Ardistant", "BlackPond", "ChDKZ-Insurgents", "FIA", "Saf", "Tanoa Liberation army"];
-publicVariable "ODD_var_FactionNames";
 if (!_init) then {
-	private _nbFaction = count ODD_var_FactionNames;
+	private _nbFaction = (count ODD_var_FactionNames) - 1;
 	// Nombre de factions
 
 	private _nFaction = round ((random 1) * (_nbFaction - 1));
-	if (typeName _FacForce != "SCALAR") then {
-		_FacForce = -1;
-	};
-
-	if ((_FacForce >= 0) AND (_FacForce <= _nbFaction)) then {
-		_nFaction = _FacForce;
+	if (typeName _FacForce == "SCALAR") then {
+		if ((_FacForce >= 0) AND (_FacForce < _nbFaction)) then {
+			_nFaction = _FacForce;
+			[["Faction Forcé : %1", ODD_var_SelectedFaction]] call ODD_fnc_log;
+		};
 	};
 
 	switch (_nFaction) do {
