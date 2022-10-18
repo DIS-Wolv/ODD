@@ -11,7 +11,7 @@
 
 ODD_var_SelectedTarget = ODDGUI_var_SelTarg;
 publicVariable "ODD_var_SelectedTarget";
-ODD_var_SelectedSector = ODDGUI_var_SelPos;
+ODD_var_SelectedSector = ODDGUI_var_Secteur;
 publicVariable "ODD_var_SelectedSector";
 
 ODD_var_PlayerCount = lbValue[ODDGUI_var_IdcComboPlayer, (lbCurSel ODDGUI_var_IdcComboPlayer)];
