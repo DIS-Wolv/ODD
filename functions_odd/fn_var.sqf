@@ -285,6 +285,8 @@ if (ODD_var_FirstDefinition) then {
     // Liste des objets à supprimer à la fin de la mission 
     ODD_var_DeleteObjects = ["ACE_Track", "ACE_Wheel", "ACE_envelope_big", "GRAD_envelope_giant", "GRAD_envelope_long", "GRAD_envelope_short", "ACE_envelope_small", "GRAD_envelope_vehicle"];
 
+    ODD_var_FactionNames = ["Ardistant", "BlackPond", "ChDKZ-Insurgents", "FIA", "Saf", "Tanoa Liberation army"];
+
     [] call ODD_fnc_varRoadBlock;
 
     ODD_var_FirstDefinition = False;
