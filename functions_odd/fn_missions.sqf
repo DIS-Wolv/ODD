@@ -43,9 +43,6 @@ if (isNil "ODD_var_MissionArea") then {
 	[["ODD_var_MissionArea Init dans fn_MISSION"]] call ODD_fnc_log;
 };
 
-if (ODD_var_DEBUG) then { 
-	[_FacForce, False, True] call ODD_fnc_varEne;
-};
 
 if (ODD_var_CurrentMission == 0) then {
 	[true, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
