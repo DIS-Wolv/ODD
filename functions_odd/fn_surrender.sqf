@@ -68,10 +68,10 @@ if (side _killer == WEST ) then {
 					{
 
 						[2] remoteExec ["ODD_fnc_intel", 2];
-						[(_this select 0)] remoteExec ["removeAllActions"];
+						[(_this select 0)] remoteExec ["removeAllActions", 0, true];
 					}, {}, [], 
 					(random[2, 10, 15]), nil, True, False
-				] remoteExec ["BIS_fnc_holdActionAdd"];
+				] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
 
 				// A FAIRE : eventHandler pour baisser la reputation civil lors de l'exécution d'un prisonnier
 

@@ -190,10 +190,10 @@ switch (_Mission) do {
             _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "true", {}, {}, {
                 ODD_var_Objective set[1, false];
-                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions"];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions", 0, true];
             },
             {}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd"];
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
         // Ajoute l'interaction de récupération
 
         ODD_var_MissionProps pushBack _intel;
@@ -248,10 +248,10 @@ switch (_Mission) do {
             _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
             "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
                 ODD_var_Objective set [1, false];
-                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions"];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions", 0, true];
             },
             {}, [], (random[10, 20, 30]), nil, true, false
-        ] remoteExec ["BIS_fnc_holdActionAdd"];
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
         ODD_var_MissionProps pushBack _helico;
         ODD_var_Objective pushBack _helico;
         ODD_var_Objective pushBack true;
@@ -362,7 +362,7 @@ switch (_Mission) do {
         {
             _target lock 0;
         },{}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd"];
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
         
         ODD_var_MissionProps pushBack _g;
         ODD_var_Objective pushBack _g;
@@ -432,7 +432,7 @@ switch (_Mission) do {
             {
                 _target lock 0;
             },{}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd"];
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
         
         ODD_var_MissionProps pushBack _g;
         ODD_var_Objective pushBack _g;
