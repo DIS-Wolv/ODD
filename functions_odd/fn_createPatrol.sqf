@@ -41,12 +41,12 @@ switch (type _zo) do {
 
 private _patModifier = 0;
 switch (_loctype) do {
-	case 0: { _patModifier = 0; };
-	case 1: { _patModifier = 1; };
-	case 2: { _patModifier = 2; };
-	case 3: { _patModifier = 2; };
-	case 4: { _patModifier = 3; };
-	case 5: { _patModifier = 4; };
+	case 0: { _patModifier = -1; };
+	case 1: { _patModifier = 0; };
+	case 2: { _patModifier = 1; };
+	case 3: { _patModifier = 1; };
+	case 4: { _patModifier = 2; };
+	case 5: { _patModifier = 3; };
 	default { _patModifier = 0; };
 };
 
@@ -129,9 +129,9 @@ if (_action) then {
 }
 else {
 	//Calule le nombre de groupes
-	_nbPartol resize (round (2 + _human_players / (floor (2 + random 3)) + _patModifier));
+	_nbPartol resize (round (1 + _human_players / (floor (3 + random 3)) + _patModifier));
 	// Ajoute de l'aléatoire
-	_nbPartol resize 0 max (round random [(count _nbPartol) - 3, (count _nbPartol), (count _nbPartol) + 3]);
+	_nbPartol resize 0 max (round random [(count _nbPartol) - 3, (count _nbPartol), (count _nbPartol) + 1]);
 
 	if (!_ZOM) then {
 		[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODD_fnc_log;

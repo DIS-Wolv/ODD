@@ -42,12 +42,12 @@ switch (type _zo) do {
 
 private _garModifier = 0;
 switch (_loctype) do {
-	case 0: { _garModifier = 0; };
+	case 0: { _garModifier = -1; };
 	case 1: { _garModifier = 0; };
-	case 2: { _garModifier = 2; };
-	case 3: { _garModifier = 4; };
-	case 4: { _garModifier = 5; };
-	case 5: { _garModifier = 6; };
+	case 2: { _garModifier = 1; };
+	case 3: { _garModifier = 3; };
+	case 4: { _garModifier = 4; };
+	case 5: { _garModifier = 5; };
 	default { _garModifier = 0; };
 };
 
@@ -177,7 +177,7 @@ if (_action) then {
     }forEach _nbgroup;
 }
 else {
-    _NbGarnison = round (4 + _human_players / (floor (2 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
+    _NbGarnison = round (3 + _human_players / (floor (3 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
 
     _nbgroup resize _NbGarnison;
     
@@ -219,7 +219,7 @@ else {
         }; 
         
         // Place les unités en garnison
-        if (round(random 4) == 0) then {
+        if (floor(random 4) != 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
             [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         }
