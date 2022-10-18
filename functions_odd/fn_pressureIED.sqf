@@ -94,7 +94,7 @@ _markerIED = [];
 			ODD_var_MissionIED pushBack _trap;
 			ODD_var_MissionIEDTrigger pushBack _boom;
 
-			systemChat format ["%1 | %2 | %3", str _trapPos, _leader, _trap];
+			// systemChat format ["%1 | %2 | %3", str _trapPos, _leader, _trap];
 			_boom setTriggerStatements [
 				format [
 					"_mamineu = (ODD_var_MissionIED select %1);
@@ -164,12 +164,10 @@ _markerIED = [];
 
 if (_isDecoy) then {
 	[["ODD_Quantité : Nombre d'IED non activé placé : %1", count _IED]] call ODD_fnc_log;
-	[["ODD_Quantité : Position des IED non activé : %1", str _posIED]] call ODD_fnc_log;
 	ODD_var_MissionProps = ODD_var_MissionProps + _coverList;
 }
 else {
 	[["ODD_Quantité : Nombre d'IED activé placé : %1", count _IED]] call ODD_fnc_log;
-	[["ODD_Quantité : Position des IED activé : %1", str _posIED]] call ODD_fnc_log;
 	ODD_var_MissionProps = ODD_var_MissionProps + _coverList;
 };
 // Ajoute les IEDs au log
