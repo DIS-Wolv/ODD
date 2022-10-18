@@ -54,7 +54,7 @@ if (_action) then {
 	};
     
     {
-        if (_x in ["military", "airbase", "airfield"]) then {
+        if (_x in ODD_var_LocationMilitaryName) then {
             _loctype = 3;
         };
     }forEach ((text _zo) splitstring " ");
