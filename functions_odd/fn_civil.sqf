@@ -167,7 +167,7 @@ sleep 1;
 
         [_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
         "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-        "true", "true", {}, {},
+        "_target distance _this < 4", "true", {}, {},
         {
             [_target, 0] remoteExec ["lock", (owner _target)];
             [_target] remoteExec ["removeAllActions", 0, true];
