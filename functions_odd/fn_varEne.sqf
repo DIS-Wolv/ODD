@@ -15,7 +15,7 @@
 */
 params [["_FacForce", -1], ["_init", false], ["_initVL", false]];
 
-ODD_var_FactionNames = ["Ardistant","ChDKZ-Insurgents"];
+ODD_var_FactionNames = ["Ardistant", "BlackPond", "ChDKZ-Insurgents", "FIA", "Saf", "Tanoa Liberation army"];
 publicVariable "ODD_var_FactionNames";
 if (!_init) then {
 	private _nbFaction = count ODD_var_FactionNames;
@@ -35,14 +35,28 @@ if (!_init) then {
 			[] call ODD_fnc_varEneArd;
 		};
 		case 1: {
+			[] call ODD_fnc_varEneBlp;
+		};
+		case 2: {
 			[] call ODD_fnc_varEneChDKZ;
+		};
+		case 3: {
+			[] call ODD_fnc_varEneFia;
+		};
+		case 4: {
+			[] call ODD_fnc_varEneSaf;
+		};
+		case 5: {
+			[] call ODD_fnc_varEneTla;
 		};
 		default {
 			[] call ODD_fnc_varEneArd;
 		};
 	};
+	ODD_var_SelectedFaction = ODD_var_FactionNames select _nFaction;
+	publicVariable "ODD_var_SelectedFaction";
 
-	[["Faction Choisie : %1", ODD_var_FactionNames select _nFaction]] call ODD_fnc_log;
+	[["Faction Choisie : %1", ODD_var_SelectedFaction]] call ODD_fnc_log;
 };
 
 if (_initVL) then {

@@ -334,6 +334,7 @@ ODD_var_HiddenObjects = [];
 // Liste des marquer d'intel
 ODD_var_IntelMarker = [];
 
-
+// Nom de la faction selectionner
+ODD_var_SelectedFaction = "";
 
 
