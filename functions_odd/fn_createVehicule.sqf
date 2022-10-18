@@ -25,6 +25,32 @@ private _human_players = ODD_var_PlayerCount;
 private _nbVehicule = [];
 private _nbVehiculeLourd = [];
 
+private _loctype = 0;	// ODD_var_LocationType = ['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'];
+switch (type _zo) do {
+	case (ODD_var_LocationType select 5): {_loctype = 0;};
+	case (ODD_var_LocationType select 4): {_loctype = 1;};
+	case (ODD_var_LocationType select 3): {_loctype = 2;};
+	case (ODD_var_LocationType select 2): {_loctype = 3;};
+	case (ODD_var_LocationType select 1): {_loctype = 4;};
+	case (ODD_var_LocationType select 0): {_loctype = 5;};
+};
+{
+	if (_x in ODD_var_LocationMilitaryName) then {
+		_locType = 2;
+	};
+}forEach ((text _zo) splitstring " ");
+
+private _vlModifier = 0;
+switch (_loctype) do {
+	case 0: { _vlModifier = 1; };
+	case 1: { _vlModifier = 1; };
+	case 2: { _vlModifier = 1; };
+	case 3: { _vlModifier = 2; };
+	case 4: { _vlModifier = 2; };
+	case 5: { _vlModifier = 2; };
+	default { _vlModifier = 0; };
+};
+
 if (ODD_var_DEBUG) then {
 	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules"]] call ODD_fnc_log;
 }
@@ -299,10 +325,14 @@ if (ODD_var_CurrentMission == 1) then {
 		};
 
 		if (!_ZOM) then{
-			_nbVehicule resize round random[0,(_human_players/8),8];
+			_nbVehicule resize (_human_players/4 + _vlModifier);
+			if (_human_players <= 7) then {
+				_nbVehicule resize (count _nbVehicule - 1);
+			};
 			// Défini le nombre de véhicules à créer
-			//systemChat(Format["Vehicule : %1", count _nbVehicule]);
-			[["ODD_Quantité : Nombre de VL sur %1 : %2 groupes", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+			_nbVehicule resize 0 max (round random [(count _nbVehicule) - 3, (count _nbVehicule), (count _nbVehicule) + 1]);
+			
+			[["ODD_Quantité : Nombre de VL sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
 
 			//Pour tous les groupes
 			{
