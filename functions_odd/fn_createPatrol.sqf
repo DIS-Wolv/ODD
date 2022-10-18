@@ -24,6 +24,32 @@ params ["_zo", ["_action", False], ["_ZOM", False]];
 private _human_players = ODD_var_PlayerCount; // removing Headless Clients
 private _nbPartol = [];
 
+private _loctype = 0;	// ODD_var_LocationType = ['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'];
+switch (type _zo) do {
+	case (ODD_var_LocationType select 5): {_loctype = 0;};
+	case (ODD_var_LocationType select 4): {_loctype = 1;};
+	case (ODD_var_LocationType select 3): {_loctype = 2;};
+	case (ODD_var_LocationType select 2): {_loctype = 3;};
+	case (ODD_var_LocationType select 1): {_loctype = 4;};
+	case (ODD_var_LocationType select 0): {_loctype = 5;};
+};
+{
+	if (_x in ODD_var_LocationMilitaryName) then {
+		_locType = 2;
+	};
+}forEach ((text _zo) splitstring " ");
+
+private _patModifier = 0;
+switch (_loctype) do {
+	case 0: { _patModifier = 0; };
+	case 1: { _patModifier = 1; };
+	case 2: { _patModifier = 2; };
+	case 3: { _patModifier = 2; };
+	case 4: { _patModifier = 3; };
+	case 5: { _patModifier = 4; };
+	default { _patModifier = 0; };
+};
+
 if (_action) then {
 	
 	// Prépare les variables pour le calcul du nombre de groupes
@@ -103,7 +129,7 @@ if (_action) then {
 }
 else {
 	//Calule le nombre de groupes
-	_nbPartol resize round (6 + _human_players / 8);
+	_nbPartol resize (round (2 + _human_players / (floor (2 + random 3)) + _patModifier));
 	// Ajoute de l'aléatoire
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 3, (count _nbPartol), (count _nbPartol) + 3]);
 

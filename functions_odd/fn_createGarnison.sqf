@@ -25,6 +25,32 @@ private _human_players = ODD_var_PlayerCount;
 private _nbgroup = [];
 private _GBuild = [];
 
+private _loctype = 0;	// ODD_var_LocationType = ['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'];
+switch (type _zo) do {
+	case (ODD_var_LocationType select 5): {_loctype = 0;};
+	case (ODD_var_LocationType select 4): {_loctype = 1;};
+	case (ODD_var_LocationType select 3): {_loctype = 2;};
+	case (ODD_var_LocationType select 2): {_loctype = 3;};
+	case (ODD_var_LocationType select 1): {_loctype = 4;};
+	case (ODD_var_LocationType select 0): {_loctype = 5;};
+};
+{
+	if (_x in ODD_var_LocationMilitaryName) then {
+		_locType = 2;
+	};
+}forEach ((text _zo) splitstring " ");
+
+private _garModifier = 0;
+switch (_loctype) do {
+	case 0: { _garModifier = 0; };
+	case 1: { _garModifier = 0; };
+	case 2: { _garModifier = 2; };
+	case 3: { _garModifier = 4; };
+	case 4: { _garModifier = 5; };
+	case 5: { _garModifier = 6; };
+	default { _garModifier = 0; };
+};
+
 if (_action) then {
     // Préparation des variables pour le calcul du nombre de groupe à créer
     _locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000];
@@ -151,7 +177,7 @@ if (_action) then {
     }forEach _nbgroup;
 }
 else {
-    _NbGarnison = round (2 + _human_players / 2); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
+    _NbGarnison = round (4 + _human_players / (floor (2 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
 
     _nbgroup resize _NbGarnison;
     
