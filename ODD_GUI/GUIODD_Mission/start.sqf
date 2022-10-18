@@ -22,11 +22,11 @@ if (ODD_var_SelectedFaction == 0) then {
 };
 publicVariable "ODD_var_SelectedFaction";
 
-[ODD_var_SelectedFaction, false, true] remoteExec ["ODD_fnc_varEne", 2];
+// [ODD_var_SelectedFaction, false, true] remoteExec ["ODD_fnc_varEne", 2];
 
 [] execVM 'ODD_GUI\GUIODD_Mission\heureEtMeteo.sqf';
 
-[] remoteExec ["ODD_fnc_missions", 2];
+[-1, "", True, ODD_var_SelectedFaction] remoteExec ["ODD_fnc_missions", 2];
 
 sleep 0.5;
 

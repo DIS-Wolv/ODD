@@ -20,6 +20,7 @@
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1]];
 
 [] call ODD_fnc_var;
+[_FacForce, False, True] call ODD_fnc_varEne;
 
 if (isNil "ODD_var_Pair") then {
 	ODD_var_SelectedFaction = -1;
