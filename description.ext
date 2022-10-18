@@ -49,6 +49,7 @@ class CfgFunctions
 			class log {};
 			class civiesCover {};
 			class haltCivilian {};
+			class customLocation {};
 		}
 	}
 };
