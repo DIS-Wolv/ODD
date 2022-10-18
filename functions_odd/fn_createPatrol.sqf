@@ -53,7 +53,7 @@ if (_action) then {
 	};
 	
 	{
-		if (_x in ["military", "airbase", "airfield"]) then {_locType = 3;};
+		if (_x in ODD_var_LocationMilitaryName) then {_locType = 3;};
 	}forEach ((text _zo) splitString " ");
 	
 	_locType = (_locType + random[-1.2,0,1.2]) max 0;
