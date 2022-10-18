@@ -27,12 +27,20 @@ _fnc_StopCivil = {
 		_sound = getMissionPath "ODDSound\" + (selectRandom _civieSurrenderSound) + ".ogg";
 		playSound3D [_sound, _civil, false, getPosASL _civil, 3, 1, 30];
 	};
-
 	[_civil, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
-	sleep 10; //(30 + round (random 150));
+
+	_endAnim = serverTime + 10; //(30 + round (random 150));
+	waitUntil{
+		sleep 1;
+		((serverTime >= _endAnim) or (captive _civil))
+	};
+
 	[_civil] call zen_modules_fnc_moduleAmbientAnimEnd;
-	_civil setVariable ["odd_var_stopped", false, true];
+
+	sleep 5;
 	_civil enableAI "PATH";
+	
+	_civil setVariable ["odd_var_stopped", false, true];
 };
 
 _pos = position _units;
