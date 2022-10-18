@@ -247,7 +247,8 @@ if (ODD_var_CurrentMission == 0) then {
 			[["ZO+ %1 : %2, niveau : %3", _forEachindex, text _x, _loctype]] call ODD_fnc_log;
 		} forEach _location;
 
-		[_zo, 4, ODD_var_MissionArea] call ODD_fnc_roadBlockZO; 
+		Private _nbCheckpoint = (round random 5) + 2;
+		[_zo, _nbCheckpoint, ODD_var_MissionArea] call ODD_fnc_roadBlockZO; 
 		// Ajout de checkpoints hors des localités
 
 		private _action = round random 100;
