@@ -342,6 +342,7 @@ switch (_Mission) do {
         if (!alive _g) then {
         // Si le véhicule a été détruit lors de sa création
             _pos = position _g;
+            _posvl = _pos findEmptyposition [4, 100, "B_Heli_Transport_01_F"];
             deletevehicle _g;
             sleep 1;
             _g = _vl createvehicle _posvl;
@@ -407,10 +408,11 @@ switch (_Mission) do {
         _g setFuel 1;
         _g setDamage 0;
         
-        sleep 2;
+        sleep 5;
         if (!alive _g) then {
         // Si le véhicule a été détruit lors de sa création
             _pos = position _g;
+            _posvl = _pos findEmptyposition [4, 100, "B_Heli_Transport_01_F"];
             deletevehicle _g;
             sleep 1;
             _g = _vl createvehicle _posvl;
