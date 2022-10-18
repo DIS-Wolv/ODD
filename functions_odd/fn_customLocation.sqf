@@ -16,7 +16,10 @@ _MilitaryLabBravo setText "Military lab bravo";
 _PyrgosBase = createLocation ["NameLocal", [17416,13184,0], 200, 200];
 _PyrgosBase setText "Pyrgos military base";
 
-// _loc = _PyrgosBase;
+_SagonisiBase = createLocation ["NameLocal", [14200,13000,0], 200, 200];
+_SagonisiBase setText "Sagonisi military base";
+
+// _loc = _SagonisiBase;
 // _pos = getPos _loc;
 // _markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 // _markerG setMarkerShape "RECTANGLE";
