@@ -72,7 +72,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
             };
         };
 
-        [_g, getPos _unit, (((size ODD_var_SelectedArea) select 0)/4)] call BIS_fnc_taskPatrol;
+        // [_g, getPos _unit, (((size ODD_var_SelectedArea) select 0)/4)] call BIS_fnc_taskPatrol;
 
         _unit setVariable ["odd_var_stopped", false, true];
     };

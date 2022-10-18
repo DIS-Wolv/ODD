@@ -106,7 +106,7 @@ _civil resize (_nbCivil);
         }, [], (random[2, 10, 15]), nil, True, False
     ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
     
-    [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
+    // [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
 }forEach _civil;
 
 {
