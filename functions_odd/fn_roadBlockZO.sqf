@@ -24,6 +24,7 @@ private _props = [];
 _nearZO = nearestLocations[position _zo, ODD_var_LocationType, _dist];
 
 _roads = _pos nearRoads _dist;
+[["ODD_Quantité : Nombre de checkpoints Hors ZO : %1", _nb]] call ODD_fnc_log;
 
 _roadsFOB = position usine nearRoads 200;
 _roads = _roads - _roadsFOB;
