@@ -96,53 +96,156 @@ if (ODD_var_CurrentMission == 0) then {
 		};
 		// Supprime les localités indésirables 
 		
+		[["Nombre de ZO+ : %1", count(_location)]] call ODD_fnc_log;
+
 		{
 			[_x, False] call ODD_fnc_civil;
-		} forEach _location;
-		// Ajoute des civils sur toutes les zones éligibles a proximité de la zone objectif
-		
-		private _nbloc = round random [0, (count(_location)*3/5), count(_location)];
-		// Choisi le nombre de localités a activer
-		
-		_nbloc = 5 min _nbloc;
-		// Limite le nombre de zones secondaires activées à 5
-		
-		while {count(_location) > _nbloc} do {
-			// Tant que la liste de localités secondaires potentielles est supérieure au nombre choisi
-			_location = (_location) - [(selectRandom _location)];
-			// On supprime une localité aléatoirement dans la liste
-		};
-
-		[["Nombre de ZO+ : %1", _nbloc]] call ODD_fnc_log;
-        
-		{
-			[["ZO+ %1 : %2", _forEachindex, text _x]] call ODD_fnc_log;
+			private _loctype = 0;
+			switch (type _x) do {
+				case (ODD_var_LocationType select 5): {_loctype = 0;};
+				case (ODD_var_LocationType select 4): {_loctype = 1;};
+				case (ODD_var_LocationType select 3): {_loctype = 2;};
+				case (ODD_var_LocationType select 2): {_loctype = 3;};
+				case (ODD_var_LocationType select 1): {_loctype = 4;};
+				case (ODD_var_LocationType select 0): {_loctype = 5;};
+			};
+			{
+				if (_x in ODD_var_LocationMilitaryName) then {
+					_locType = 2;
+				};
+			}forEach ((text _x) splitstring " ");
 
 			private _action = round random 100;
-			if (_action <= 10) then {};
-			// 10% de chance qu'une zone secondaire soit occupée uniquement par des civils
-			if (_action > 10 and _action <= 40) then {
-				// 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des véhicules
-				[_x, False, True] call ODD_fnc_createPatrol;
-				[_x, True, True] spawn ODD_fnc_createVehicule;
+			switch (_loctype) do {
+				case (0): { // hill
+					if (_action > 85 and _action <= 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
+				case (1): { // namelocal
+					if (_action > 75 and _action <= 85) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 85) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
+				case (2): { // name
+					if (_action > 70 and _action <= 75) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 75 and _action <= 85) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 85 and _action <= 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						_nbCheckPoint = round random 3;
+						[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
+				case (3): { // nameVillage
+					if (_action > 65 and _action <= 70) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 70 and _action <= 85) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 85 and _action <= 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						_nbCheckPoint = round random 2;
+						[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
+				case (4): { // nameCity
+					if (_action > 50 and _action <= 55) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 55 and _action <= 65) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 65 and _action <= 80) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						_nbCheckPoint = round random 4;
+						[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 90) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
+				case (5): { // nameCityCapital
+					if (_action > 40 and _action <= 45) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 45 and _action <= 60) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 60 and _action <= 85) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						_nbCheckPoint = round random 5;
+						[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 85 and _action <= 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+					if (_action > 95) then {
+						[_x, False] call ODD_fnc_createPatrol;
+						[_x, False] call ODD_fnc_createGarnison;
+						_nbCheckPoint = round random 4;
+						[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
+						[_x, True, True] spawn ODD_fnc_createVehicule;
+						[_x, False] call ODD_fnc_civil;
+					};
+				};
 			};
-			if (_action > 40 and _action <= 70) then {
-			// 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des checkpoints
-				[_x, False] call ODD_fnc_createPatrol;
-				_nbCheckPoint = round random 4;
-				[_x, _nbCheckPoint, False] call ODD_fnc_roadBlock;
-				// Crée une quatité tirée aléatoirement de checkpoints (entre 0 et 4)
-			};
-			if (_action > 70 and _action <= 100) then {
-			// 30% de chance qu'une zone secondaire soit occupée par des civils, des patrouilles et des garnisons
-				[_x, False] call ODD_fnc_createPatrol;
-				[_x, False] call ODD_fnc_createGarnison;
-			};
-
-			[_x, False] call ODD_fnc_civil;
-			// Les zones secondaires choisies ont deux fois plus de civils que celles qui n'ont pas été choisies
-		}forEach _location;
-		// Applique ce traitement uniquement aux zones secondaires selectionnées
+			[["ZO+ %1 : %2, niveau : %3", _forEachindex, text _x, _loctype]] call ODD_fnc_log;
+		} forEach _location;
 
 		[_zo, 4, ODD_var_MissionArea] call ODD_fnc_roadBlockZO; 
 		// Ajout de checkpoints hors des localités
@@ -159,7 +262,7 @@ if (ODD_var_CurrentMission == 0) then {
 		}
 		else {
 			[["ODD_Quantité : Pas d'IED positionné"]] call ODD_fnc_log;
-		}; //*/
+		}; 
 	};
 
 	{
