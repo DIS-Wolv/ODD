@@ -19,7 +19,13 @@ _PyrgosBase setText "Pyrgos military base";
 _SagonisiBase = createLocation ["NameLocal", [14200,13000,0], 200, 200];
 _SagonisiBase setText "Sagonisi military base";
 
-// _loc = _SagonisiBase;
+_feresAirfield = createLocation ["NameLocal", [20800,7200,0], 200, 200];
+_feresAirfield setText "Feres airfield";
+
+_selakanoBase = createLocation ["NameLocal", [20050,6700,0], 200, 200];
+_selakanoBase setText "Selakano military base";
+
+// _loc = _selakanoBase;
 // _pos = getPos _loc;
 // _markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 // _markerG setMarkerShape "RECTANGLE";
