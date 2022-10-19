@@ -29,7 +29,7 @@ _fnc_StopCivil = {
 	};
 	[_civil, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
 
-	_endAnim = serverTime + 10; //(30 + round (random 150));
+	_endAnim = serverTime + (30 + round (random 150));
 	waitUntil{
 		sleep 1;
 		((serverTime >= _endAnim) or (captive _civil))
