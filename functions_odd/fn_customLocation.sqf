@@ -37,11 +37,11 @@ _AgiosTheodoros setText "Agios Theodoros";
 _Anemoessa = createLocation ["NameLocal", [16077,16300,0], 200, 200];
 _Anemoessa setText "Anemoessa";
 
-_loc = _Anemoessa;
-_pos = getPos _loc;
-_markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
-_markerG setMarkerShape "RECTANGLE";
-_markerG setMarkerSize [(size _loc select 1),(size _loc select 1)];
-_markerG setMarkerBrush "SolidBorder";
-_markerG setMarkerAlpha 0.5; 
-_markerG setMarkerColor "ColorBlue";	// rayon d'action des générateur affiché sur carte
+// _loc = _Anemoessa;
+// _pos = getPos _loc;
+// _markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
+// _markerG setMarkerShape "RECTANGLE";
+// _markerG setMarkerSize [(size _loc select 1),(size _loc select 1)];
+// _markerG setMarkerBrush "SolidBorder";
+// _markerG setMarkerAlpha 0.5; 
+// _markerG setMarkerColor "ColorBlue";	// rayon d'action des générateur affiché sur carte
