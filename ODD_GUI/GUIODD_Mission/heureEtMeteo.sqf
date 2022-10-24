@@ -13,6 +13,10 @@ ODDGUI_var_meteo = lbValue[ODDGUI_var_IdcComboMeteo, (lbCurSel ODDGUI_var_IdcCom
 
 if (ODDGUI_var_meteo != -1) then {
 	[0, (ODDGUI_var_meteo/10)] remoteExec["setOvercast", 0];
+		if (fog >= 0.15) then {
+		_foglvl = random 0.15;
+		[15, _foglvl] remoteExec["setFog", 0];
+	};
 	[] remoteExec["forceWeatherChange", 0];
 };
 if (ODDGUI_var_Heure != -1) then {
