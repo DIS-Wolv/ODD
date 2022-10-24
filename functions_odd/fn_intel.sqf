@@ -115,7 +115,8 @@ if (round (random 1) == 0) then {
 	};
 }
 else {
-	_msg = "Je ne dirais rien.";
+	_msgNon = ["Je ne dirais rien.", "Je ne dirais rien.", "Je ne veux pas vous parler."];
+	_msg = selectRandom _msgNon;
 };
 
 [_msg] remoteExec ["systemChat", 0];
