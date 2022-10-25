@@ -288,6 +288,7 @@ if (ODD_var_FirstDefinition) then {
     ODD_var_FactionNames = ["Ardistant", "BlackPond", "ChDKZ-Insurgents", "FIA", "Saf", "Tanoa Liberation army"];
 
     [] call ODD_fnc_varRoadBlock;
+    [] call ODD_fnc_varOutpost;
 
     ODD_var_FirstDefinition = False;
 };
