@@ -50,6 +50,7 @@ switch (_loctype) do {
 	case 5: { _garModifier = 5; };
 	default { _garModifier = 0; };
 };
+// modifier le modifier en fonction de la distance avec la ZO
 
 if (_action) then {
     // Préparation des variables pour le calcul du nombre de groupe à créer

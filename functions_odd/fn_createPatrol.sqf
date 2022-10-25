@@ -49,6 +49,7 @@ switch (_loctype) do {
 	case 5: { _patModifier = 3; };
 	default { _patModifier = 0; };
 };
+// modifier le modifier en fonction de la distance avec la ZO
 
 if (_action) then {
 	
