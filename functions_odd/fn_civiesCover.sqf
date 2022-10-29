@@ -37,14 +37,24 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
             private _a = round (random 10);
             if (_a <= 6) then {
                 [_unit, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
-                sleep (30 + round (random 90));
+                _endAnim = serverTime + (30 + round (random 90));
+                waitUntil{
+                    sleep 1;
+                    ((serverTime >= _endAnim) or (captive _civil))
+                };
                 [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
             }
             else {
                 [position _unit, nil, [_unit], 15, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 15;
                 [_unit, 30, false] call zen_modules_fnc_moduleAmbientAnimStart;
-                sleep (60 + round (random 240));
+
+                _endAnim = serverTime + (60 + round (random 240));
+                waitUntil{
+                    sleep 1;
+                    ((serverTime >= _endAnim) or (captive _civil))
+                };
+
                 [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
                 _unit setUnitPos "UP";
                 _unit setUnitPos "AUTO";
@@ -58,7 +68,13 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 [position _unit, nil, [_unit], 20, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 30;
                 [_unit, 30, false] call zen_modules_fnc_moduleAmbientAnimStart;
-                sleep (60 + round (random 240));
+
+                _endAnim = serverTime + (60 + round (random 240));
+                waitUntil{
+                    sleep 1;
+                    ((serverTime >= _endAnim) or (captive _civil))
+                };
+
                 [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
                 _unit setUnitPos "UP";
                 _unit setUnitPos "AUTO";
@@ -67,7 +83,13 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
             }
             else {
                 [_unit, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
-                sleep (30 + round (random 90));
+
+                _endAnim = serverTime + (30 + round (random 90));
+                waitUntil{
+                    sleep 1;
+                    ((serverTime >= _endAnim) or (captive _civil))
+                };
+
                 [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
             };
         };
