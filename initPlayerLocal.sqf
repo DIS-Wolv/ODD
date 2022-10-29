@@ -17,6 +17,10 @@ _haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa
 [] call ODD_fnc_infoOdd;
 [True] call ODD_fnc_particules;
 
+// Ajout de la fonction pour couper les petit buissons
+_nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wirecutter_ca.paa",{[player] spawn DISCommon_fnc_CutBushes;},{true}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
+
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
 base addAction ["FOB","scripts\tp\fob.sqf",["fob"],1.5,true,true,"","true",5];

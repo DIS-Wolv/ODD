@@ -13,6 +13,7 @@ reviveMode = 1;
 class CfgFunctions
 {
 	#include "taw_vd\CfgFunctions.hpp"
+	#include "functions\cfgFunctions.hpp"
 	#include "scripts\WOLV_Garage\CfgFunctions.hpp"
 	#include "functions_odd\cfgFunctions.hpp"
 };
