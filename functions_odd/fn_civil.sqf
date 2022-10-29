@@ -103,7 +103,7 @@ _civil resize (_nbCivil);
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-        }, [], (random[2, 10, 15]), nil, True, False
+        }, [], (random[2, 5, 10]), nil, True, False
     ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
     
     // [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
@@ -210,7 +210,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-        }, [], (random[2, 10, 15]), nil, True, False
+        }, [], (random[2, 5, 10]), nil, True, False
         ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
 
         ODD_var_MissionCivilians pushBack _x;
