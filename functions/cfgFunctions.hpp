@@ -1,6 +1,9 @@
+
 class DIS_Common {
-    class DISCommon {
+    tag = "DISCommon";
+    class Initialize {
         file = "functions\common";
+        
         class CutBushes {};
     };
 };
