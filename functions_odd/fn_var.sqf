@@ -18,6 +18,10 @@ if (isNil "ODD_var_FirstDefinition") then {
     ODD_var_FirstDefinition = True;
 };
 
+if (isNil "ODD_var_CivilianReputation") then {
+    ODD_var_CivilianReputation = 50;
+};
+
 if (ODD_var_FirstDefinition) then {
     // Liste des maisons comptées
     ODD_var_Houses = [

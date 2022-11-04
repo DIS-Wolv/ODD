@@ -373,6 +373,13 @@ if (ODD_var_CurrentMission == 0) then {
 				params ["_unit", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
 				[_unit, _distance] spawn ODD_fnc_civiesCover;
 			}];
+
+			_x addEventHandler ["Hit", {
+				params ["_unit", "_source", "_damage", "_instigator"];
+				if (((side _instigator) == WEST) and ((side _unit) == CIVILIAN)) then {
+					ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
+				};
+			}];
 		}forEach units _x;
 	} forEach ODD_var_MissionCivilians;
 

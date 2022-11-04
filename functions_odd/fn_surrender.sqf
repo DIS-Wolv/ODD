@@ -75,6 +75,13 @@ if (side _killer == WEST ) then {
 
 				// A FAIRE : eventHandler pour baisser la reputation civil lors de l'exécution d'un prisonnier
 
+				_x addEventHandler ["Hit", {
+					params ["_unit", "_source", "_damage", "_instigator"];
+					if (((side _instigator) == WEST) and (captive _unit)) then {
+						ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
+					};
+				}];
+
 			};
 			sleep ((random 1) / 10);
 		} forEach _nearSurrender;
