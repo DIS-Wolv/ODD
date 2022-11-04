@@ -78,7 +78,7 @@ if (round (random 1) == 0) then {
 			};
 		};
 		case (ODD_var_IntelType select 1): {	// VL civil Pos 
-			if (count ODD_var_MissionIED <= 0) then {
+			if (count ODD_var_MissionCivilianVehicles <= 0) then {
 				_msg = "Je n'ai pas vue de voiture !";
 				_needMarker = False;
 			}
