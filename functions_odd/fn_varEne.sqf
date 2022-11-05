@@ -32,7 +32,8 @@ if (!_init) then {
 			[] call ODD_fnc_varEneArd;
 		};
 		case 1: {
-			[] call ODD_fnc_varEneBlp;
+			// [] call ODD_fnc_varEneBlp;
+			[] call ODD_fnc_varEneArd;
 		};
 		case 2: {
 			[] call ODD_fnc_varEneChDKZ;
