@@ -4,6 +4,11 @@ if (!isNil("ce")) then {
 	switch (str(_unit)) do {
 		case "god";
 		case "god1": {_unit execVM "loads\ce\zeus.sqf"}; //god
+
+		case "coyCds": {_unit execVM "loads\ce\cds.sqf"}; //cds
+		case "coyMed": {_unit execVM "loads\ce\medecin.sqf"}; //Med
+		case "coyGvIng": {_unit execVM "loads\ce\gv.sqf"}; //Gv
+		case "coyCde": {_unit execVM "loads\ce\cde.sqf"}; //Cde
 		
 		case "grCdg";
 		case "sgCdg": {_unit execVM "loads\ce\cdg.sqf"}; //Cdg
@@ -56,6 +61,11 @@ else {
 	switch (str(_unit)) do {
 		case "god";
 		case "god1": {_unit execVM "loads\da\zeus.sqf"}; //god
+
+		case "coyCds": {_unit execVM "loads\da\cds.sqf"}; //cds
+		case "coyMed": {_unit execVM "loads\da\medecin.sqf"}; //Med
+		case "coyGvIng": {_unit execVM "loads\da\gv.sqf"}; //Gv
+		case "coyCde": {_unit execVM "loads\da\cde.sqf"}; //Cde
 		
 		case "grCdg";
 		case "sgCdg": {_unit execVM "loads\da\cdg.sqf"}; //Cdg
