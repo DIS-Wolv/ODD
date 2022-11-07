@@ -16,6 +16,8 @@
 params ["_unit", "_dist"];
 //[format ["moi : %1, dist : %2", _unit, _dist]] remoteExec ["systemChat", 0];
 
+_hidingCivil = ["Acts_CivilHiding_1", "Acts_CivilHiding_2"];
+
 if ((vehicle _unit == _unit) and !(captive _unit)) then {
     private _allVar = allVariables _unit;
     if (!("odd_var_stopped" in _allVar)) then {
@@ -36,18 +38,18 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
         if (_dist <= 10) then {
             private _a = round (random 10);
             if (_a <= 6) then {
-                [_unit, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
+                _unit playAction "Surrender";
                 _endAnim = serverTime + (30 + round (random 90));
                 waitUntil{
                     sleep 1;
                     ((serverTime >= _endAnim) or (captive _civil))
                 };
-                [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
+                _unit switchmove "";
             }
             else {
                 [position _unit, nil, [_unit], 15, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 15;
-                [_unit, 30, false] call zen_modules_fnc_moduleAmbientAnimStart;
+                _unit switchMove (selectRandom _hidingCivil);
 
                 _endAnim = serverTime + (60 + round (random 240));
                 waitUntil{
@@ -55,7 +57,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                     ((serverTime >= _endAnim) or (captive _civil))
                 };
 
-                [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
+                _unit switchMove "";
                 _unit setUnitPos "UP";
                 _unit setUnitPos "AUTO";
                 [[_unit]] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
@@ -67,7 +69,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
             if (_a <= 8) then {
                 [position _unit, nil, [_unit], 20, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 30;
-                [_unit, 30, false] call zen_modules_fnc_moduleAmbientAnimStart;
+                _unit switchMove (selectRandom _hidingCivil);
 
                 _endAnim = serverTime + (60 + round (random 240));
                 waitUntil{
@@ -75,14 +77,14 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                     ((serverTime >= _endAnim) or (captive _civil))
                 };
 
-                [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
+                _unit switchMove "";
                 _unit setUnitPos "UP";
                 _unit setUnitPos "AUTO";
                 [[_unit]] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
                 _g setSpeedMode "NORMAL";
             }
             else {
-                [_unit, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
+                _unit playAction "Surrender";
 
                 _endAnim = serverTime + (30 + round (random 90));
                 waitUntil{
@@ -90,7 +92,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                     ((serverTime >= _endAnim) or (captive _civil))
                 };
 
-                [_unit] call zen_modules_fnc_moduleAmbientAnimEnd;
+                _unit switchmove "";
             };
         };
 
