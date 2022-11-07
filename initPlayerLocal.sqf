@@ -2,8 +2,8 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\respawn.sqf";
 [] execVM "scripts\halo\infoHalo.sqf";
-[] execVM "scripts\lights\init.sqf";
 [] execVM "scripts\retourPa.sqf";
+[] spawn WolvLights_fnc_init;
 [] spawn WolvGarage_fnc_init;
 sleep 1;
 
