@@ -322,17 +322,22 @@ if (ODD_var_CurrentMission == 0) then {
 		// Ajout de checkpoints hors des localités
 
 		private _action = round random 100;
-		if (_action <= 100) then {
+		if (_action <= 75) then {
 		// 90% de chance que la mission comporte des IEDs
-			_nbIED = 20 + round random 10;
-			// Crée entre 20 et 30 IEDs
+			_nbIED = 20 + round random 20;
+			// Crée entre 20 et 40 IEDs
 			[_zo, _nbIED] spawn ODD_fnc_pressureIED;
-			_nbDecoy = 25 + round random 25;
-			// Crée entre 25 et 50 IEDs qui n'exploseront pas
+			_nbDecoy = 25 + round random 30;
+			// Crée entre 25 et 55 IEDs qui n'exploseront pas
 			[_zo, _nbDecoy, True] spawn ODD_fnc_pressureIED;
 		}
 		else {
-			[["ODD_Quantité : Pas d'IED positionné"]] call ODD_fnc_log;
+			_nbIED = 5 + round random 10;
+			// Crée entre 5 et 15 IEDs
+			[_zo, _nbIED] spawn ODD_fnc_pressureIED;
+			_nbDecoy = 10 + round random 10;
+			// Crée entre 10 et 20 IEDs qui n'exploseront pas
+			[_zo, _nbDecoy, True] spawn ODD_fnc_pressureIED;
 		}; 
 	};
 
