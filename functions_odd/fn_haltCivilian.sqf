@@ -27,7 +27,7 @@ _fnc_StopCivil = {
 		_sound = getMissionPath "ODDSound\" + (selectRandom _civieSurrenderSound) + ".ogg";
 		playSound3D [_sound, _civil, false, getPosASL _civil, 3, 1, 30];
 	};
-	[_civil, 31, false] call zen_modules_fnc_moduleAmbientAnimStart;
+	[_civil, 31, false] remoteExec ["zen_modules_fnc_moduleAmbientAnimStart",2];
 
 	_endAnim = serverTime + (30 + round (random 150));
 	waitUntil{
@@ -35,7 +35,7 @@ _fnc_StopCivil = {
 		((serverTime >= _endAnim) or (captive _civil))
 	};
 
-	[_civil] call zen_modules_fnc_moduleAmbientAnimEnd;
+	[_civil] remoteExec ["zen_modules_fnc_moduleAmbientAnimStart",2];
 
 	sleep 5;
 	_civil enableAI "PATH";
