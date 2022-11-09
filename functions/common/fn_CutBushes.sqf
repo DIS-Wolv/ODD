@@ -28,7 +28,7 @@ _objs = nearestTerrainObjects _args;
 		ODD_var_HiddenObjects = [];
 	};
 	{
-		_x hideObjectGlobal true;
+		[_x, true] remoteExec ["hideObjectGlobal", 2];
 		ODD_var_HiddenObjects pushBack _x;
 	} forEach (_objs select 0);
 	publicvariable "ODD_var_HiddenObjects";
