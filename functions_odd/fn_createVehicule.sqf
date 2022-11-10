@@ -52,7 +52,7 @@ switch (_loctype) do {
 };
 
 if (ODD_var_DEBUG) then {
-	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules"]] call ODD_fnc_log;
+	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules sur %1", text _zo]] call ODD_fnc_log;
 }
 else {
 	waitUntil {
@@ -70,9 +70,8 @@ else {
 	};
 };
 
-[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
-
 if (ODD_var_CurrentMission == 1) then {
+	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
 	if (_action) then {
 
 		if (!isNil "ODD_var_SpawnableVehicles") then {
@@ -387,4 +386,7 @@ if (ODD_var_CurrentMission == 1) then {
 		};
 		
 	};
+}
+else {
+	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODD_fnc_log;
 };
