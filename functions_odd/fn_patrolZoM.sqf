@@ -61,4 +61,6 @@ waitUntil {
 	((_leader distance2D (getPos _nextZo)) < 350)
 };
 
-[_g] spawn ODD_fnc_patrolZoM;
+if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
+	[_g] spawn ODD_fnc_patrolZoM;
+};
