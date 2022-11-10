@@ -58,11 +58,13 @@ else {
 	waitUntil {
 		sleep 1;
 		(
-			(count (getPos base nearEntities[["SoldierWB"], 300])) +	
-			// Compte les joueurs à la base
-			(count (getPos fob nearEntities[["SoldierWB"], 150])) 		
-			// Compte les joueurs à la FOB
-			<= (count(allplayers - entities "HeadlessClient_F") / 2) 	
+			(
+				(count (getPos base nearEntities[["SoldierWB"], 300])) +
+				// Compte les joueurs à la base
+				(count (getPos fob nearEntities[["SoldierWB"], 150]))
+				// Compte les joueurs à la FOB
+				<= (count(allplayers - entities "HeadlessClient_F") / 2)
+			) and (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2)
 		)
 		//Les véhicules ne spawn qu'une fois les joueurs partis en mission
 	};
