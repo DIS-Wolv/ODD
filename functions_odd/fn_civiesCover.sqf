@@ -42,7 +42,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 _endAnim = serverTime + (30 + round (random 90));
                 waitUntil{
                     sleep 1;
-                    ((serverTime >= _endAnim) or (captive _civil))
+                    ((serverTime >= _endAnim) or (captive _unit))
                 };
                 _unit switchmove "";
             }
@@ -54,7 +54,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 _endAnim = serverTime + (60 + round (random 240));
                 waitUntil{
                     sleep 1;
-                    ((serverTime >= _endAnim) or (captive _civil))
+                    ((serverTime >= _endAnim) or (captive _unit))
                 };
 
                 _unit switchMove "";
@@ -74,7 +74,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 _endAnim = serverTime + (60 + round (random 240));
                 waitUntil{
                     sleep 1;
-                    ((serverTime >= _endAnim) or (captive _civil))
+                    ((serverTime >= _endAnim) or (captive _unit))
                 };
 
                 _unit switchMove "";
@@ -89,7 +89,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 _endAnim = serverTime + (30 + round (random 90));
                 waitUntil{
                     sleep 1;
-                    ((serverTime >= _endAnim) or (captive _civil))
+                    ((serverTime >= _endAnim) or (captive _unit))
                 };
 
                 _unit switchmove "";
