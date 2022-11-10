@@ -5,14 +5,13 @@
 * Arguments :
 * 0: Zone souhaitée <Objet>
 * 1: Est-ce la zone principale <BOOL>
-* 2: Activation du débug dans le chat <BOOL>
 *
 * Valeur renvoyée :
 * nil
 *
 * Exemples :
 * [_zo] call ODD_fnc_civil
-* [_zo, True, False] call ODD_fnc_civil
+* [_zo, True] call ODD_fnc_civil
 *
 * Variable publique : 
 */
@@ -140,13 +139,19 @@ sleep 1;
         };
         
         _pos = position _GBuild;
+        // systemChat format ["pos bat %1 : ", _pos];
         // Récupère la position
         
         _pos = _pos findEmptyposition [3, 100, _vl];
-        //, "B_Heli_Transport_01_F"
+        // systemChat format ["pos libre %1 : ", _pos];
+        if (count(_pos) == 0) then {
+            _pos = (position _zo) findEmptyposition [3, 300, _vl];
+            // systemChat format ["pos autre %1 : ", _pos];
+        };
         
         // _pos = _pos getPos [3, [position _GBuild, _pos] call BIS_fnc_dirto];
         
+        // systemChat format ["%1 createvehicle %2;", _vl, _pos];
         _g = _vl createvehicle _pos;
         // Crée le véhicule
 
