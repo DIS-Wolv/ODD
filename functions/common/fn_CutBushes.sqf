@@ -43,9 +43,11 @@ if (_state) then {
 	}, {}] call ace_common_fnc_progressBar;
 }
 else {
-	{
-		[_x, 0] remoteExec ["setDamage", 2];
-	} foreach DISCommon_var_DestroyObject;
-	DISCommon_var_DestroyObject = [];
-	publicvariable "DISCommon_var_DestroyObject";
+	if (!isNil "DISCommon_var_DestroyObject") then {
+		{
+			[_x, 0] remoteExec ["setDamage", 2];
+		} foreach DISCommon_var_DestroyObject;
+		DISCommon_var_DestroyObject = [];
+		publicvariable "DISCommon_var_DestroyObject";
+	};
 };
