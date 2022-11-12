@@ -59,18 +59,22 @@ else {
 		sleep 1;
 		(
 			(
-				(count (getPos base nearEntities[["SoldierWB"], 300])) +
-				// Compte les joueurs à la base
-				(count (getPos fob nearEntities[["SoldierWB"], 150]))
-				// Compte les joueurs à la FOB
-				<= (count(allplayers - entities "HeadlessClient_F") / 2)
-			) and (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2)
+				(
+					(count (getPos base nearEntities[["SoldierWB"], 300])) +
+					// Compte les joueurs à la base
+					(count (getPos fob nearEntities[["SoldierWB"], 150]))
+					// Compte les joueurs à la FOB
+					<= (count(allplayers - entities "HeadlessClient_F") / 2)
+				)
+				and (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2)
+			)
+			or (ODD_var_DEBUG)
 		)
 		//Les véhicules ne spawn qu'une fois les joueurs partis en mission
 	};
 };
 
-if (ODD_var_CurrentMission == 1) then {
+if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
 	if (_action) then {
 
