@@ -446,7 +446,7 @@ if (ODD_var_CurrentMission == 0) then {
 		case (ODD_var_MissionType select 0): {		  // L'objectif est de détruire des caisses
 			while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
 				private _NextTick = servertime + 60;
-			// Vérification toutes les minutes que la caisse n'est pas vide
+				// Vérification toutes les minutes que la caisse n'est pas vide
 				call ODD_fnc_sortieGarnison;
 				
 				_nbIa = [] call ODD_fnc_countIA;
@@ -663,6 +663,7 @@ if (ODD_var_CurrentMission == 0) then {
 			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
 			// La tâche est accomplie
 		};
+
 	};
 
 	ODD_var_TimeObj = servertime;
