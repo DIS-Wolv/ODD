@@ -18,7 +18,7 @@
 */
 params ["_zo", ["_nb", 2]];
 
-_pos = position _zo; 
+private _pos = position _zo; 
 
 private _grad = 0.060;
 private _props = [];
@@ -41,67 +41,74 @@ _fnc_getDenivler = {
 	_denivele = _maxH - _minH;
 	_denivele;
 };
-/*
-_posOp = _pos getPos [random 900, random 360];
-_deniv = [_posOp, 50] call _fnc_getDenivler;
-_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
-_nearRoad = count (_posOp nearRoads 75);
-i = 0;
-systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
-while {(_deniv >= 13) or (_objects >= 3) or (_nearRoad > 1)} do {
+
+_nbOp = [];
+_nbOp resize _nb;
+
+{
+	//*
 	_posOp = _pos getPos [random 900, random 360];
 	_deniv = [_posOp, 50] call _fnc_getDenivler;
-	_nearRoad = count (_posOp nearRoads 75);
 	_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
-	i = i + 1; 
-	systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
-};
-//*/
-
-/*
-_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
-_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
-_nearRoad = count (_posOp nearRoads 75);
-i = 0;
-systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
-while {((count(_posOp) == 0) or (_objects >= 3) or (_nearRoad > 1)) and (i <= 1000)} do {
-	_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
 	_nearRoad = count (_posOp nearRoads 75);
-	_objects = count (nearestObjects [_posOp, ["house"], 0, true]);
-	i = i + 1;
-	sleep 0.01;
-	systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
-};
-*/
+	_i = 0;
+	systemChat format ["%1 | %2 | %3 | %4", _i, count (_posOp), _nearRoad, _objects];
+	while {((_deniv >= 13) or (_objects >= 3) or (_nearRoad > 1))and (_i < 1000)} do {
+		_posOp = _pos getPos [random 900, random 360];
+		_deniv = [_posOp, 50] call _fnc_getDenivler;
+		_nearRoad = count (_posOp nearRoads 75);
+		_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
+		_i = _i + 1; 
+		systemChat format ["%1 | %2 | %3 | %4", _i, count (_posOp), _nearRoad, _objects];
+	};
+	//*/
+
+	/*
+		_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
+		_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
+		_nearRoad = count (_posOp nearRoads 75);
+		i = 0;
+		systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
+		while {((count(_posOp) == 0) or (_objects >= 3) or (_nearRoad > 1)) and (i <= 1000)} do {
+			_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
+			_nearRoad = count (_posOp nearRoads 75);
+			_objects = count (nearestObjects [_posOp, ["house"], 0, true]);
+			i = i + 1;
+			sleep 0.01;
+			systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
+		};
+	*/
 
 
-_outpost = selectRandom ODD_var_Outpost;
-_props = [_posOp, random 360, _outpost] call BIS_fnc_objectsMapper;
+	_outpost = selectRandom ODD_var_Outpost;
+	_props = [_posOp, random 360, _outpost] call BIS_fnc_objectsMapper;
 
-ODD_var_MissionProps = ODD_var_MissionProps + _props;
+	ODD_var_MissionProps = ODD_var_MissionProps + _props;
 
-_aCacher = [];
-{
-	_closeProps = nearestTerrainObjects [position _x, [], 15];
-	// Récupère les objets proximité de la position voulue pour le barrage
-	
-	_closeProps = _closeProps - _aCacher;
-	_closeProps = _closeProps - _props;
-	_aCacher = _aCacher + _closeProps;
-}forEach _props;
-// Défini les objets à cacher sur la position pour acceuillir le checkpoint 
+	_aCacher = [];
+	{
+		_closeProps = nearestTerrainObjects [position _x, [], 15];
+		// Récupère les objets proximité de la position voulue pour le barrage
+		
+		_closeProps = _closeProps - _aCacher;
+		_closeProps = _closeProps - _props;
+		_aCacher = _aCacher + _closeProps;
+	}forEach _props;
+	// Défini les objets à cacher sur la position pour acceuillir le checkpoint 
 
-{
-	ODD_var_HiddenObjects pushBack _x;
-	_x hideObjectGlobal true;
-}forEach _aCacher;
-// Cache les objets définis
+	{
+		ODD_var_HiddenObjects pushBack _x;
+		_x hideObjectGlobal true;
+	}forEach _aCacher;
+	// Cache les objets définis
 
 
-_marker = createMarker [(format ["Camps P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp];
-_marker setMarkerType "hd_dot";
-_marker setMarkerColor "ColorPink";
+	_marker = createMarker [(format ["Camps P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp];
+	_marker setMarkerType "hd_dot";
+	_marker setMarkerColor "ColorPink";
 
+	_nbOp set[_forEachIndex, _marker];
+} forEach _nbOp;
 publicVariable "ODD_var_MissionProps";
 publicVariable "ODD_var_HiddenObjects";
 
