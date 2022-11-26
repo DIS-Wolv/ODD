@@ -38,17 +38,17 @@ if (! _isActive) then {
 	_IA = _pos nearEntities _radius;
 
 	if (!_state) then {
-		dostop _IA;
+		[_IA] remoteExec["dostop", 2];
 	};
 	{
 		if (_state) then {
-			_x enableAI 'All';
-			_x stop False;
+			[_x, 'ALL'] remoteExec ["enableAI", owner _x];
+			[_x, False] remoteExec ["stop", owner _x];
 		}
 		else {
-			_x stop True;
+			[_x, True] remoteExec ["stop", owner _x];
 			sleep 0.5;
-			_x disableAI 'All';
+			[_x, 'ALL'] remoteExec ["disableAI", owner _x];
 		}
 	} forEach _IA;
 
