@@ -5,6 +5,7 @@
 enableSaving [false, false];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
+["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
 call ODD_fnc_var;
 call ODD_fnc_customLocation;
 ODD_var_CurrentMission = 0;
