@@ -893,7 +893,7 @@ class RscShortcutButton
 		font = "RobotoCondensed";
 		color = "#E5E5E5";
 		align = "left";
-		shadow = "true";
+		shadow = "True";
 	};
 	idc = -1;
 	style = 0;
@@ -1013,13 +1013,13 @@ class RscShortcutButtonMain
 		font = "RobotoCondensed";
 		color = "#E5E5E5";
 		align = "left";
-		shadow = "false";
+		shadow = "False";
 	};
 	class AttributesImage
 	{
 		font = "RobotoCondensed";
 		color = "#E5E5E5";
-		align = "false";
+		align = "False";
 	};
 };
 class RscFrame
@@ -1483,7 +1483,7 @@ class RscButtonMenu
 		font = "PuristaLight";
 		color = "#E5E5E5";
 		align = "left";
-		shadow = "false";
+		shadow = "False";
 	};
 	class ShortcutPos
 	{

@@ -12,12 +12,12 @@
 *
 * Exemple :
 * [_zo] call ODD_fnc_createGarnison
-* [_zo, true, false] call ODD_fnc_createGarnison
+* [_zo, True, False] call ODD_fnc_createGarnison
 *
 * Variable publique :
 */
 
-params ["_zo", ["_action", false]];
+params ["_zo", ["_action", False]];
 
 // Compte les joueurs
 private _human_players = ODD_var_PlayerCount;
@@ -93,7 +93,7 @@ if (_action) then {
     
     _nbgroup resize _NbGarnison;
     
-    private _Med = true;
+    private _Med = True;
     // Prépare la création d'une caisse médicale
     
     // Récupère tous les batiments a proximité
@@ -139,7 +139,7 @@ if (_action) then {
                 ODD_var_MedicalCrates pushBack _box;
                 ODD_var_MissionProps pushBack _box;
 
-                _Med = false;
+                _Med = False;
                 // Il n'y a plus besoin de caisse médicale
             };
             
@@ -155,24 +155,24 @@ if (_action) then {
             _Buildings = _Buildings - [_GBuild];
 
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+                _x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
             } forEach (units _g);   // Pour chaque unité du groupe
             
             sleep 2;
 
-            _tp = false;
+            _tp = False;
 
             if ((position _GBuild select 2) < 0) then {
-                _tp = true;
+                _tp = True;
             }; 
             
             // Place les unités en garnison
             if (round(random 4) == 0) then {
                 // 25% de chance que toutes les unités ne soient pas dans le même batiment
-                [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+                [position _GBuild, nil, units _g, 20, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             }
             else {
-                [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+                [position _GBuild, nil, units _g, 20, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             };
         };
     }forEach _nbgroup;
@@ -209,23 +209,23 @@ else {
         ODD_var_SecondaryAreasIA pushBack _g;
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; //blacklist l'unit des HC
+            _x setVariable ["acex_headless_blacklist", True, True]; //blacklist l'unit des HC
         } forEach (units _g);   //pour chaque units
         
         sleep(2);
-        _tp = false;
+        _tp = False;
 
         if ((position _GBuild select 2) < 0) then {
-            _tp = true;
+            _tp = True;
         }; 
         
         // Place les unités en garnison
         if (floor(random 4) != 0) then {
             // 1 / 4 qu'il soit split dans plusieurs batiment
-            [position _GBuild, nil, units _g, 20, 1, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         }
         else {
-            [position _GBuild, nil, units _g, 20, 2, false, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _GBuild, nil, units _g, 20, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         };
         // La fonction de garnison utilisée est celle de ACE
     }forEach _nbgroup;

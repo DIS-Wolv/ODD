@@ -12,12 +12,12 @@
 *
 * Exemple :
 * [_zo] call ODD_fnc_createVehicule
-* [_zo, true, false] call ODD_fnc_createVehicule
+* [_zo, True, False] call ODD_fnc_createVehicule
 *
 * Variable publique :
 */
 
-params ["_zo", ["_action", false], ["_ZOM", False]];
+params ["_zo", ["_action", False], ["_ZOM", False]];
 // Récupère les arguments
 
 private _human_players = ODD_var_PlayerCount; 
@@ -80,7 +80,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, true, false] call ODD_fnc_varEne;
+			[-1, True, False] call ODD_fnc_varEne;
 			// Définition des véhicules
 			sleep 1;
 		};
@@ -180,7 +180,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 				
 				if (count (_pos nearRoads 300) > 0) then {
 				
-					_connectedRoad = roadsConnectedTo [_road, false];
+					_connectedRoad = roadsConnectedTo [_road, False];
 					if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
 						_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo; 
 						// Récupère la direction de la route
@@ -193,10 +193,10 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 				};
 				
 				if (round (random 1) == 0) then {
-					(vehicle (units _g select 0)) engineOn true;
+					(vehicle (units _g select 0)) engineOn True;
 				}
 				else {
-					(vehicle (units _g select 0)) engineOn false;
+					(vehicle (units _g select 0)) engineOn False;
 				};
 				
 				// systemChat(str(units _g));
@@ -284,7 +284,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 					
 					if (count (_pos nearRoads 300) > 0) then {
 					
-						_connectedRoad = roadsConnectedTo [_road, false];
+						_connectedRoad = roadsConnectedTo [_road, False];
 						if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
 							_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	
 							// Récupère la direction de la route
@@ -297,10 +297,10 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 					};
 					
 					if (round (random 1) == 0) then {
-						(vehicle (units _g select 0)) engineOn true;
+						(vehicle (units _g select 0)) engineOn True;
 					}
 					else {
-						(vehicle (units _g select 0)) engineOn false;
+						(vehicle (units _g select 0)) engineOn False;
 					};
 					
 					// systemChat(str(units _g));
@@ -324,7 +324,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 		sleep 1;
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, true, false] call ODD_fnc_varEne;	
+			[-1, True, False] call ODD_fnc_varEne;	
 			// Définition des véhicules
 			sleep 1;
 		};

@@ -271,7 +271,7 @@ if (ODD_var_FirstDefinition) then {
     ];
 
     // Autorisation de nettoyage (debug)
-    ODD_var_GoClear = true;
+    ODD_var_GoClear = True;
 
     // Liste des véhicules pouvant etre utilisé par les alliés
     ODD_var_BluforVehicles = ["B_APC_Tracked_01_AA_F", "B_APC_Wheeled_01_cannon_F", "B_APC_Tracked_01_rcws_F", "B_AFV_Wheeled_01_cannon_F", "B_AFV_Wheeled_01_up_cannon_F", "B_APC_Tracked_01_CRV_F", "B_MBT_01_mlrs_F",

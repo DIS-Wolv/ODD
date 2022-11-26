@@ -24,8 +24,8 @@ params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1
 
 // if (isNil "ODD_var_Pair") then {
 // 	ODD_var_SelectedFaction = -1;
-// 	[ODD_var_SelectedFaction, true] call ODD_fnc_varEne;
-// 	[ODD_var_SelectedFaction, false, true] remoteExec ["ODD_fnc_varEne", 2];
+// 	[ODD_var_SelectedFaction, True] call ODD_fnc_varEne;
+// 	[ODD_var_SelectedFaction, False, True] remoteExec ["ODD_fnc_varEne", 2];
 // 	ODD_var_SelectedTarget = ODD_var_MissionType;
 // 	publicVariable "ODD_var_SelectedTarget";
 // 	ODD_var_SelectedSector = [];
@@ -45,9 +45,9 @@ if (isNil "ODD_var_MissionArea") then {
 
 
 if (ODD_var_CurrentMission == 0) then {
-	[true, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
+	[True, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
 	sleep 1;
-	[true, ["ODD_task_Brief", "ODD_task_main"], ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], (position base), "ASSIGNED", -1, True, "meet"] call BIS_fnc_taskCreate;
+	[True, ["ODD_task_Brief", "ODD_task_main"], ["Mission en cours de création. Mettez vos bouchons anti-bruit, rejoignez votre chef d'équipe et rassemblez vous autour du chef de groupe pour recevoir les ordres !", "Début du briefing", ""], (position base), "ASSIGNED", -1, True, "meet"] call BIS_fnc_taskCreate;
 	sleep 1;
 	private _future = servertime + 6;
 	// ["Génération d'une mission"] remoteExec ["systemChat", 0];
@@ -392,9 +392,9 @@ if (ODD_var_CurrentMission == 0) then {
 		_rad = 2500;
 		_alt = 2000;
 		_pos = position _x;
-		private _LocTrigger = createTrigger ["EmptyDetector", _pos, true]; 
-		_LocTrigger setTriggerArea [_rad, _rad, 0, false, _alt]; 
-		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+		_LocTrigger setTriggerArea [_rad, _rad, 0, False, _alt]; 
+		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		
 		_LocTrigger setTriggerStatements ["this",
 		"

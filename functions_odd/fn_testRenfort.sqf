@@ -12,7 +12,7 @@
 *
 * Exemple :
 * [_return, _nbIa, _BaseIa] call ODD_fnc_testRenfort
-* [_return, _nbIa, _BaseIa, true] call ODD_fnc_testRenfort
+* [_return, _nbIa, _BaseIa, True] call ODD_fnc_testRenfort
 *
 * Variable publique :
 */
@@ -24,7 +24,7 @@ if (_BaseIa / 2 > _nbIa and _return) then {
 	if (round(random (1 max _rdm)) == 0) then {	
 		[_zo] spawn ODD_fnc_createRenfort; 
 		// Fonction qui appelle les renforts
-		_return = false;
+		_return = False;
 	};
 };
 

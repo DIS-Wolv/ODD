@@ -21,13 +21,13 @@ _hidingCivil = ["Acts_CivilHiding_1", "Acts_CivilHiding_2"];
 if ((vehicle _unit == _unit) and !(captive _unit)) then {
     private _allVar = allVariables _unit;
     if (!("odd_var_stopped" in _allVar)) then {
-        _unit setVariable ["odd_var_stopped", false, true];
+        _unit setVariable ["odd_var_stopped", False, True];
     };
 
     private _gar = _unit getVariable "odd_var_stopped";
 
-    if (_gar == false) then {
-        _unit setVariable ["odd_var_stopped", true, true];
+    if (_gar == False) then {
+        _unit setVariable ["odd_var_stopped", True, True];
 
         private _g = group _unit;
         for "_i" from count waypoints _g - 1 to 0 step -1 do {
@@ -47,7 +47,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
                 _unit switchmove "";
             }
             else {
-                [position _unit, nil, [_unit], 15, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+                [position _unit, nil, [_unit], 15, 2, True, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 15;
                 _unit switchMove (selectRandom _hidingCivil);
 
@@ -67,7 +67,7 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
         else {
             private _a = round (random 10);
             if (_a <= 8) then {
-                [position _unit, nil, [_unit], 20, 2, true, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+                [position _unit, nil, [_unit], 20, 2, True, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
                 sleep 30;
                 _unit switchMove (selectRandom _hidingCivil);
 
@@ -98,6 +98,6 @@ if ((vehicle _unit == _unit) and !(captive _unit)) then {
 
         // [_g, getPos _unit, (((size ODD_var_SelectedArea) select 0)/4)] call BIS_fnc_taskPatrol;
 
-        _unit setVariable ["odd_var_stopped", false, true];
+        _unit setVariable ["odd_var_stopped", False, True];
     };
 };

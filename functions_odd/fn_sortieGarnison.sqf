@@ -9,7 +9,7 @@
 *
 * Exemple :
 * [] call ODD_fnc_sortieGarnison
-* [true] call ODD_fnc_sortieGarnison
+* [True] call ODD_fnc_sortieGarnison
 *
 * Variable publique :
 */

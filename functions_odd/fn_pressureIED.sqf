@@ -12,7 +12,7 @@
 *
 * Exemple :
 * [_zo] call ODD_fnc_pressureIED
-* [_zo, 2, false, 4000] call ODD_fnc_pressureIED
+* [_zo, 2, False, 4000] call ODD_fnc_pressureIED
 *
 * Variable publique :
 */
@@ -89,9 +89,9 @@ if (count _roads != 0) then {
 						_leader addItemToVest "ACE_Cellphone";
 						// ajoute le detonateur
 
-						private _boom = createTrigger ["EmptyDetector", _trapPos, true];
-						_boom setTriggerArea [5, 5, 0, false, 2];
-						_boom setTriggerActivation ["WEST", "PRESENT", false];
+						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
+						_boom setTriggerArea [5, 5, 0, False, 2];
+						_boom setTriggerActivation ["WEST", "PRESENT", False];
 
 						ODD_var_MissionIEDTriggerMan pushBack _leader;
 						ODD_var_MissionIED pushBack _trap;
@@ -123,19 +123,19 @@ if (count _roads != 0) then {
 						private _Buildings = nearestobjects [_trapPos, ODD_var_Houses, 150];
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
-								_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 								_x setUnitPos "DOWN";
 							} forEach (units _g);   // Pour chaque unité du groupe
-							[_trapPos, nil, units _g, 150, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+							[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
 						else {
 							_Buildings = nearestobjects [_trapPos, ODD_var_Houses, 300];
 							if (count _Buildings >= 3) then {
 								{
-									_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 									_x setUnitPos "DOWN";
 								} forEach (units _g);   // Pour chaque unité du groupe
-								[_trapPos, nil, units _g, 300, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+								[_trapPos, nil, units _g, 300, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}
 							else {
 								_wpPos = _trapPos getPos [(30 + round random 20), (_dir + 90)];
@@ -188,16 +188,16 @@ if (count _roads != 0) then {
 								_msgNon = ["Je ne dirais rien.", "Je ne veux pas vous parler.", "Je ne veux pas vous parler."];
 								_msg = selectRandom _msgNon;
 								[_msg] remoteExec ["systemChat", 0];
-								[(_this select 0)] remoteExec ["removeAllActions", 0, true];
+								[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 							}, {
 								// (_this select 0) enableAI "PATH";
 								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 							}, [], (random[2, 10, 15]), nil, True, False
-						] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+						] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
-						private _boom = createTrigger ["EmptyDetector", _trapPos, true];
-						_boom setTriggerArea [5, 5, 0, false, 2];
-						_boom setTriggerActivation ["WEST", "PRESENT", false];
+						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
+						_boom setTriggerArea [5, 5, 0, False, 2];
+						_boom setTriggerActivation ["WEST", "PRESENT", False];
 
 						ODD_var_MissionIEDTriggerMan pushBack _leader;
 						ODD_var_MissionIED pushBack _trap;
@@ -229,17 +229,17 @@ if (count _roads != 0) then {
 						private _Buildings = nearestobjects [_trapPos, ODD_var_Houses, 150];
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
-								_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 							} forEach (units _g);   // Pour chaque unité du groupe
-							[_trapPos, nil, units _g, 150, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+							[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
 						else {
 							_Buildings = nearestobjects [_trapPos, ODD_var_Houses, 300];
 							if (count _Buildings >= 3) then {
 								{
-									_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 								} forEach (units _g);   // Pour chaque unité du groupe
-								[_trapPos, nil, units _g, 300, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+								[_trapPos, nil, units _g, 300, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}
 							else {
 								_wpPos = _trapPos getPos [(30 + round random 20), (_dir + 90)];
@@ -276,9 +276,9 @@ if (count _roads != 0) then {
 						_leader addItemToVest "ACE_Clacker";
 						// ajoute le detonateur
 
-						private _boom = createTrigger ["EmptyDetector", _trapPos, true];
-						_boom setTriggerArea [5, 5, 0, false, 2];
-						_boom setTriggerActivation ["WEST", "PRESENT", false];
+						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
+						_boom setTriggerArea [5, 5, 0, False, 2];
+						_boom setTriggerActivation ["WEST", "PRESENT", False];
 
 						ODD_var_MissionIEDTriggerMan pushBack _leader;
 						ODD_var_MissionIED pushBack _trap;
@@ -314,19 +314,19 @@ if (count _roads != 0) then {
 						private _Buildings = nearestobjects [_trapPos, ODD_var_Houses, 30];
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
-								_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 								_x setUnitPos "DOWN";
 							} forEach (units _g);   // Pour chaque unité du groupe
-							[_trapPos, nil, units _g, 30, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+							[_trapPos, nil, units _g, 30, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
 						else {
 							_Buildings = nearestobjects [_trapPos, ODD_var_Houses, 150];
 							if (count _Buildings >= 3) then {
 								{
-									_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 									_x setUnitPos "DOWN";
 								} forEach (units _g);   // Pour chaque unité du groupe
-								[_trapPos, nil, units _g, 150, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+								[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}
 							else {
 								_wpPos = _trapPos getPos [(30 + round random 20), (_dir + 90)];
@@ -378,16 +378,16 @@ if (count _roads != 0) then {
 								_msgNon = ["Je ne dirais rien.", "Je ne veux pas vous parler.", "Je ne veux pas vous parler."];
 								_msg = selectRandom _msgNon;
 								[_msg] remoteExec ["systemChat", 0];
-								[(_this select 0)] remoteExec ["removeAllActions", 0, true];
+								[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 							}, {
 								// (_this select 0) enableAI "PATH";
 								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 							}, [], (random[2, 10, 15]), nil, True, False
-						] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+						] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
-						private _boom = createTrigger ["EmptyDetector", _trapPos, true];
-						_boom setTriggerArea [5, 5, 0, false, 2];
-						_boom setTriggerActivation ["WEST", "PRESENT", false];
+						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
+						_boom setTriggerArea [5, 5, 0, False, 2];
+						_boom setTriggerActivation ["WEST", "PRESENT", False];
 
 						ODD_var_MissionIEDTriggerMan pushBack _leader;
 						ODD_var_MissionIED pushBack _trap;
@@ -423,17 +423,17 @@ if (count _roads != 0) then {
 						private _Buildings = nearestobjects [_trapPos, ODD_var_Houses, 30];
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
-								_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 							} forEach (units _g);   // Pour chaque unité du groupe
-							[_trapPos, nil, units _g, 30, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+							[_trapPos, nil, units _g, 30, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
 						else {
 							_Buildings = nearestobjects [_trapPos, ODD_var_Houses, 150];
 							if (count _Buildings >= 3) then {
 								{
-									_x setVariable ["acex_headless_blacklist", true, true]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
 								} forEach (units _g);   // Pour chaque unité du groupe
-								[_trapPos, nil, units _g, 150, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+								[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}
 							else {
 								_wpPos = _trapPos getPos [(30 + round random 20), (_dir + 90)];
@@ -461,9 +461,9 @@ if (count _roads != 0) then {
 						};
 					};
 					case 4: {	// ied mine qui explose s'il y a plus de 2 joueurs à portée
-						private _boom = createTrigger ["EmptyDetector", _trapPos, true];
-						_boom setTriggerArea [7, 7, 0, false, 2];
-						_boom setTriggerActivation ["WEST", "PRESENT", false];
+						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
+						_boom setTriggerArea [7, 7, 0, False, 2];
+						_boom setTriggerActivation ["WEST", "PRESENT", False];
 
 						ODD_var_MissionIEDTriggerMan pushBack _boom;
 						ODD_var_MissionIED pushBack _trap;

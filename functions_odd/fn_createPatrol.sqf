@@ -12,7 +12,7 @@
 *
 * Exemple:
 * [_zo] call ODD_fnc_createPatrol
-* [_zo, true, false] call ODD_fnc_createPatrol
+* [_zo, True, False] call ODD_fnc_createPatrol
 *
 * Variable publique :
 */

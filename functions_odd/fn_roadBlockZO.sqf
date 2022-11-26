@@ -73,7 +73,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 
 			{
 				ODD_var_HiddenObjects pushBack _x;
-				_x hideObjectGlobal true;
+				_x hideObjectGlobal True;
 			}forEach _aCacher;
 			// Cache les objets définis
 
@@ -124,13 +124,13 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 			ODD_var_SecondaryAreasIA pushBack _gg;
 
 			{
-				_x setVariable ["acex_headless_blacklist", true, true];
+				_x setVariable ["acex_headless_blacklist", True, True];
 			} forEach (units _gg); 
 			// Ajoute les IAs de la garnison à la liste noire des clients Headless
 
 			ODD_var_GarnisonnedIA pushBack _gg;
 			
-			[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+			[_roadPos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
 			{ _x disableAI "PATH"; } forEach (units _gg);
 			createGuardedPoint [east, _roadPos, -1, objNull];
 

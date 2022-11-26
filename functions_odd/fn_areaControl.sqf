@@ -67,7 +67,7 @@ _trigger setVariable ["trig_ODD_var_scriptID", -1, True];
 		_pos = position thisTrigger;
 		_IA = _pos nearEntities %2;
 		{
-			_x stop false;
+			_x stop False;
 		} forEach _IA;
 	", text _x, _rad], 
 	format ["
@@ -75,7 +75,7 @@ _trigger setVariable ["trig_ODD_var_scriptID", -1, True];
 		_pos = position thisTrigger;
 		_IA = _pos nearEntities %2;
 		{
-			_x stop true;
+			_x stop True;
 		} forEach _IA;
 	", text _x, _rad]
 

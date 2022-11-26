@@ -98,12 +98,12 @@ _civil resize (_nbCivil);
             // (_this select 0) enableAI "PATH";
 
             [] remoteExec ["ODD_fnc_intel", 2];
-            [(_this select 0)] remoteExec ["removeAllActions", 0, true];
+            [(_this select 0)] remoteExec ["removeAllActions", 0, True];
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
         }, [], (random[2, 5, 10]), nil, True, False
-    ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+    ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
     
     // [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
 }forEach _civil;
@@ -172,12 +172,12 @@ sleep 1;
 
         [_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
         "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-        "_target distance _this < 4", "true", {}, {},
+        "_target distance _this < 4", "True", {}, {},
         {
             [_target, 0] remoteExec ["lock", (owner _target)];
-            [_target] remoteExec ["removeAllActions", 0, true];
-        },{}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+            [_target] remoteExec ["removeAllActions", 0, True];
+        },{}, [], (random[2, 10, 15]), nil, True, True
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
         ODD_var_MissionProps pushBack _g;
     };
@@ -211,12 +211,12 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
             // (_this select 0) enableAI "PATH";
 
             [1] remoteExec ["ODD_fnc_intel", 2];
-            [(_this select 0)] remoteExec ["removeAllActions", 0, true];
+            [(_this select 0)] remoteExec ["removeAllActions", 0, True];
         }, {
             // (_this select 0) enableAI "PATH";
             [(_this select 0), "PATH"] remoteExec ["enableAI", 2];
         }, [], (random[2, 5, 10]), nil, True, False
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
         ODD_var_MissionCivilians pushBack _x;
 

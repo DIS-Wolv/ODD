@@ -10,7 +10,7 @@
 *
 * Exemple :
 * [] call ODD_fnc_clearZO
-* [true] call ODD_fnc_clearZO
+* [True] call ODD_fnc_clearZO
 *
 * Variable publique :
 */
@@ -18,7 +18,7 @@ params [["_zo", ODD_var_SelectedArea]];
 // sleep 5;
 if (ODD_var_CurrentMission == 1) then {
 	// ["Nettoyage de la ZO"] remoteExec ["systemChat", 0];
-	[true, ["ODD_task_clear", "ODD_task_main"], ["Retournez sur le porte avion pour les soins et le débriefing.", "Nettoyage de la mission", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
+	[True, ["ODD_task_clear", "ODD_task_main"], ["Retournez sur le porte avion pour les soins et le débriefing.", "Nettoyage de la mission", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
 	ODD_var_CurrentMission = 3;
 	publicVariable "ODD_var_CurrentMission";
 
@@ -107,7 +107,7 @@ if (ODD_var_CurrentMission == 1) then {
 	} forEach alldead;					// Pour chaque cadavre
 
 	{
-		_x hideObjectGlobal false;		// Affiche l'object
+		_x hideObjectGlobal False;		// Affiche l'object
 	} forEach ODD_var_HiddenObjects;		// Pour object caché
 
 	ODD_var_MissionSmokePillar = [];

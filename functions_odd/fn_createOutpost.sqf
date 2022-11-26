@@ -49,7 +49,7 @@ _nbOp resize _nb;
 	//*
 	_posOp = _pos getPos [random 900, random 360];
 	_deniv = [_posOp, 50] call _fnc_getDenivler;
-	_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
+	_objects = count (nearestObjects [_posOp, ["house"], 75, True]);
 	_nearRoad = count (_posOp nearRoads 75);
 	_i = 0;
 	systemChat format ["%1 | %2 | %3 | %4", _i, count (_posOp), _nearRoad, _objects];
@@ -57,7 +57,7 @@ _nbOp resize _nb;
 		_posOp = _pos getPos [random 900, random 360];
 		_deniv = [_posOp, 50] call _fnc_getDenivler;
 		_nearRoad = count (_posOp nearRoads 75);
-		_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
+		_objects = count (nearestObjects [_posOp, ["house"], 75, True]);
 		_i = _i + 1; 
 		systemChat format ["%1 | %2 | %3 | %4", _i, count (_posOp), _nearRoad, _objects];
 	};
@@ -65,14 +65,14 @@ _nbOp resize _nb;
 
 	/*
 		_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
-		_objects = count (nearestObjects [_posOp, ["house"], 75, true]);
+		_objects = count (nearestObjects [_posOp, ["house"], 75, True]);
 		_nearRoad = count (_posOp nearRoads 75);
 		i = 0;
 		systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
 		while {((count(_posOp) == 0) or (_objects >= 3) or (_nearRoad > 1)) and (i <= 1000)} do {
 			_posOp = [_pos, 10, 900, 10, 0, _grad] call BIS_fnc_findSafePos;
 			_nearRoad = count (_posOp nearRoads 75);
-			_objects = count (nearestObjects [_posOp, ["house"], 0, true]);
+			_objects = count (nearestObjects [_posOp, ["house"], 0, True]);
 			i = i + 1;
 			sleep 0.01;
 			systemChat format ["%1 | %2 | %3 | %4", i, count (_posOp), _nearRoad, _objects];
@@ -98,7 +98,7 @@ _nbOp resize _nb;
 
 	{
 		ODD_var_HiddenObjects pushBack _x;
-		_x hideObjectGlobal true;
+		_x hideObjectGlobal True;
 	}forEach _aCacher;
 	// Cache les objets définis
 
@@ -163,7 +163,7 @@ publicVariable "ODD_var_HiddenObjects";
 
 				{
 					ODD_var_HiddenObjects pushBack _x;
-					_x hideObjectGlobal true;
+					_x hideObjectGlobal True;
 				}forEach _aCacher;
 				// Cache les objets définis
 
@@ -204,13 +204,13 @@ publicVariable "ODD_var_HiddenObjects";
 				ODD_var_SecondaryAreasIA pushBack _gg;
 
 				{
-					_x setVariable ["acex_headless_blacklist", true, true];
+					_x setVariable ["acex_headless_blacklist", True, True];
 				} forEach (units _gg); 
 				// Ajoute les IAs de la garnison à la liste noire des clients Headless
 
 				ODD_var_GarnisonnedIA pushBack _gg;
 				
-				[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+				[_roadPos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
 				{ _x disableAI "PATH"; } forEach (units _gg);
 				createGuardedPoint [east, _roadPos, -1, objNull];
 

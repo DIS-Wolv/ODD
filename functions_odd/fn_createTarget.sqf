@@ -72,14 +72,14 @@ switch (_Mission) do {
         // Ajoute le groupe a la liste des IA de la missions
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; 
+            _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);
         // Réitère pour chaque unité du groupe
         
-        [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyCrate, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2, True, "destroy"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyCrate, text _zo], "Détruire les caisses", "ODdoBJ"], objNull, "CREATED", 2, True, "destroy"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 1): {        // Mission d'élimination d'une HVT
@@ -106,15 +106,15 @@ switch (_Mission) do {
         }
         else {
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; 
+                _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
             } forEach (units _g);  
         // Réitère pour chaque unité du groupe
-            [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             // Sinon, le groupe est mis en garnison avec ACE
         };
         
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "target"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefKillHVT, text _zo], "Neutraliser une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "target"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 2): {        // Mission de capture d'une HVT
@@ -149,11 +149,11 @@ switch (_Mission) do {
         }
         else {
             {
-                _x setVariable ["acex_headless_blacklist", true, true]; 
+                _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
             } forEach (units _g);   
         // Réitère pour chaque unité du groupe
-            [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+            [position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
             // Sinon, le groupe est mis en garnison avec ACE
         };
         
@@ -161,15 +161,15 @@ switch (_Mission) do {
             params ["_unit", "_source", "_damage", "_instigator"];
             _hvtSurrenderSound = ["hvtSurrender1", "hvtSurrender2", "hvtSurrender3"];
             _sound = getMissionPath "ODDSound\" + (selectRandom _hvtSurrenderSound) + ".ogg";
-            playSound3D [_sound, _unit, false, position _unit, 3, 1, 30];
-            [_unit, true] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
+            playSound3D [_sound, _unit, False, position _unit, 3, 1, 30];
+            [_unit, True] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
         }];
 
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 3): {        // Mission de sécurisation de zone
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2, True, "attack"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2, True, "attack"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 4): {        // Mission de récupération de renseignements
@@ -188,22 +188,22 @@ switch (_Mission) do {
         // Choisi un appareil dans la liste puis le pose sur un table
         [
             _intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
-            "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "true", {}, {}, {
-                ODD_var_Objective set[1, false];
-                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions", 0, true];
+            "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "True", {}, {}, {
+                ODD_var_Objective set[1, False];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions", 0, True];
             },
-            {}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+            {}, [], (random[2, 10, 15]), nil, True, True
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         // Ajoute l'interaction de récupération
 
         ODD_var_MissionProps pushBack _intel;
         ODD_var_Objective pushBack _intel;
-        ODD_var_Objective pushBack true;
+        ODD_var_Objective pushBack True;
         
         sleep(1);
         // Attend une seconde pour ne pas tuer une AI
         
-        [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2, True, "intel"] call BIS_fnc_taskCreate;
+        [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureIntel, text _zo], "Récupérer des informations", "ODdoBJ"], objNull, "CREATED", 2, True, "intel"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         private _group = [];
@@ -223,12 +223,12 @@ switch (_Mission) do {
         // Ajoute le groupe à la liste des IA de la mission
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true];
+            _x setVariable ["acex_headless_blacklist", True, True];
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);  
         // Réitère pour chaque unité du groupe
 
-        [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
     case (ODD_var_MissionType select 5): {        // Mission de récupération de boites noires
         _pos = position _zo getPos [((size _zo)select 0) * random 1, random 360];
@@ -246,15 +246,15 @@ switch (_Mission) do {
         [True] remoteExec ["ODD_fnc_particules", 0];
         [
             _helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
-            "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "true", {}, {}, {
-                ODD_var_Objective set [1, false];
-                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions", 0, true];
+            "\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "True", {}, {}, {
+                ODD_var_Objective set [1, False];
+                ["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions", 0, True];
             },
-            {}, [], (random[10, 20, 30]), nil, true, false
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+            {}, [], (random[10, 20, 30]), nil, True, False
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         ODD_var_MissionProps pushBack _helico;
         ODD_var_Objective pushBack _helico;
-        ODD_var_Objective pushBack true;
+        ODD_var_Objective pushBack True;
         
         _posSmoke = _pos;
         _posSmoke set [1, (_posSmoke select 1) - 3];
@@ -271,11 +271,11 @@ switch (_Mission) do {
         
         sleep 1;
         [_g, _pos, 150] call bis_fnc_taskpatrol;
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefBlackBoxes, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2, True, "scout"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefBlackBoxes, text _zo], "Récupérer les boîtes noires", "ODdoBJ"], objNull, "CREATED", 2, True, "scout"] call BIS_fnc_taskCreate;
         // Crée la tâche
     };
     case (ODD_var_MissionType select 6): {        // Mission de sauvetage d'un allié
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureHostages, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2, True, "meet"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureHostages, text _zo], "Sauver le pilote allié", "ODdoBJ"], objNull, "CREATED", 2, True, "meet"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         private _group = selectRandom ODD_var_Hostages;
@@ -285,15 +285,15 @@ switch (_Mission) do {
         // Crée le prisonier
 
         {
-            _x setVariable ["acex_headless_blacklist", true, true];
+            _x setVariable ["acex_headless_blacklist", True, True];
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);   
         // Réitère pour chaque unité du groupe
 
-        [position _tgBuild, nil, units _g, 10, 1, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [position _tgBuild, nil, units _g, 10, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Met le prisonier en garnison
         sleep 1;
-        [((units _g) select 0), true, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
+        [((units _g) select 0), True, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
         // Bascule le prisonier en captivité ACE
         
         ODD_var_MissionProps pushBack (units _g select 0);
@@ -306,15 +306,15 @@ switch (_Mission) do {
         ODD_var_MainAreaIA pushBack _g;
         ODD_var_GarnisonnedIA pushBack _g;
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; 
+            _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);   
         // Réitère pour chaque unité du groupe
         
-        [position _tgBuild, nil, units _g, 10, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
     };
     case (ODD_var_MissionType select 7): {        // Mission de sécurisation d'un véhicule ennemi
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureVehicle, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureVehicle, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         _vl = selectRandom ODD_var_SercureVehicles;
@@ -359,12 +359,12 @@ switch (_Mission) do {
 
         [_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
         "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-        "true", "true", {}, {},
+        "True", "True", {}, {},
         {
             //_target lock 0;
             [_target, 0] remoteExec ["lock", (owner _target)];
-        },{}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+        },{}, [], (random[2, 10, 15]), nil, True, True
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         
         ODD_var_MissionProps pushBack _g;
         ODD_var_Objective pushBack _g;
@@ -377,16 +377,16 @@ switch (_Mission) do {
         ODD_var_MainAreaIA pushBack _g;
         ODD_var_GarnisonnedIA pushBack _g;
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; 
+            _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);   
         // Réitère pour chaque unité du groupe
 
-        [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [_pos, nil, units _g, 5, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Place le groupe en garnison
     };
     case (ODD_var_MissionType select 8): {        // Mission de destruction d'un véhicule ennemi
-        _task = [true, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyVehicle, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
+        _task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyVehicle, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
         // Crée la tâche
         
         _vl = selectRandom ODD_var_DestroyVehicles;
@@ -431,11 +431,11 @@ switch (_Mission) do {
         [
             _g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
             "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-            "true", "true", {}, {},
+            "True", "True", {}, {},
             {
                 _target lock 0;
-            },{}, [], (random[2, 10, 15]), nil, true, true
-        ] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+            },{}, [], (random[2, 10, 15]), nil, True, True
+        ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         
         ODD_var_MissionProps pushBack _g;
         ODD_var_Objective pushBack _g;
@@ -448,12 +448,12 @@ switch (_Mission) do {
         ODD_var_MainAreaIA pushBack _g;
         ODD_var_GarnisonnedIA pushBack _g;
         {
-            _x setVariable ["acex_headless_blacklist", true, true]; 
+            _x setVariable ["acex_headless_blacklist", True, True]; 
             // Ajoute l'unité à la liste noire des clients headless
         } forEach (units _g);   
         // Réitère pour chaque unité du groupe
         
-        [_pos, nil, units _g, 5, 1, false, false] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+        [_pos, nil, units _g, 5, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
         // Place le groupe en garnison
     };
 };

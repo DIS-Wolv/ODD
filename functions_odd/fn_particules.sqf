@@ -3,14 +3,14 @@
 * Fonction pour créer les colonnes de fumées LOCALEMENT
 *
 * Arguments :
-* 0: Est-on en mode ajout (true) ou suppression (false) <BOOL> 
+* 0: Est-on en mode ajout (True) ou suppression (False) <BOOL> 
 *
 * Valeur renvoyée :
 * nil
 *
 * Exemple :
 * [_pos] remoteExec ["ODD_fnc_particules", 0]
-* [_pos, false] remoteExec ["ODD_fnc_particules", 0];
+* [_pos, False] remoteExec ["ODD_fnc_particules", 0];
 *
 * Variable publique :
 */

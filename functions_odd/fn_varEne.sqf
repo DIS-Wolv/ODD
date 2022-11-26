@@ -9,11 +9,11 @@
 * nil
 *
 * Exemple :
-* [-1, true, false] call ODD_fnc_varEne
+* [-1, True, False] call ODD_fnc_varEne
 *
 * Variable publique :
 */
-params [["_FacForce", -1], ["_init", false], ["_initVL", false]];
+params [["_FacForce", -1], ["_init", False], ["_initVL", False]];
 
 if (!_init) then {
 	private _nbFaction = (count ODD_var_FactionNames) - 1;
@@ -58,7 +58,7 @@ if (!_init) then {
 };
 
 if (_initVL) then {
-	ODD_var_Support = false; 
+	ODD_var_Support = False; 
 	// Défini la présence de support pour les joueurs 
 
 	private _supportSlot = ["crCdb","crEq1","crEq2","alCdb","alEq1","alEq2","haP1","haP2","haP3","haP4","albP1","albP2"];
@@ -67,7 +67,7 @@ if (_initVL) then {
 		private _slot = (getUserInfo (getPlayerID _x)) select 10;	
 		// Récupère le slot du joueur
 		if (_slot in _supportSlot) then {
-			ODD_var_Support = true;
+			ODD_var_Support = True;
 		};
 	} forEach _allp; 
 
@@ -78,7 +78,7 @@ if (_initVL) then {
 	ODD_var_CountSupportVehicles = _allVl - _VlBase;
 
 	if (count ODD_var_CountSupportVehicles != 0) then {
-		ODD_var_Support = true;
+		ODD_var_Support = True;
 	};
 
 	ODD_var_SpawnableVehicles = ODD_var_Vehicles;

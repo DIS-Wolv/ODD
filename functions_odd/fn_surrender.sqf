@@ -46,13 +46,13 @@ if (side _killer == WEST ) then {
 				if (vehicle _x != _x) then {
 					{
 						moveout _x; // Débarquement du véhicule
-						[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
+						[_x, True, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
 						_id = _x getVariable "ODD_var_SurrenderHandler";		// Récupère l'ID de son eventHandler
 						_x removeEventHandler ["Killed", _id];					// Pour empêcher que l'éxécution d'un prisonier crée plus de prisoniers
 					} forEach crew vehicle _x;
 				}
 				else {
-					[_x, true, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
+					[_x, True, player] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";  // Redition Ace
 					_id = _x getVariable "ODD_var_SurrenderHandler";		// Récupère l'ID de son eventHandler
 					_x removeEventHandler ["Killed", _id];					// Pour empêcher que l'éxécution d'un prisonier crée plus de prisoniers
 				};
@@ -68,10 +68,10 @@ if (side _killer == WEST ) then {
 					{
 
 						[2] remoteExec ["ODD_fnc_intel", 2];
-						[(_this select 0)] remoteExec ["removeAllActions", 0, true];
+						[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 					}, {}, [], 
 					(random[2, 10, 15]), nil, True, False
-				] remoteExec ["BIS_fnc_holdActionAdd", 0, true];
+				] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
 				// A FAIRE : eventHandler pour baisser la reputation civil lors de l'exécution d'un prisonnier
 

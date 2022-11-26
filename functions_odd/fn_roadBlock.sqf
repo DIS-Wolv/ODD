@@ -12,11 +12,11 @@
 *
 * Exemple :
 * [_zo] call ODD_fnc_roadBlock
-* [_zo, 2, true] call ODD_fnc_roadBlock
+* [_zo, 2, True] call ODD_fnc_roadBlock
 *
 * Variable publique :
 */
-params ["_zo", ["_nb", 2], ["_action", false]];
+params ["_zo", ["_nb", 2], ["_action", False]];
 
 private _NbCP = _nb;
 
@@ -54,7 +54,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 		};  
 		
 		_denivele = _maxH - _minH; 
-		_objects = count (nearestObjects [_input, [], 20, true]);
+		_objects = count (nearestObjects [_input, [], 20, True]);
 		
 		if (_denivele < 4 and _objects < 10) then{
 			_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;
@@ -76,7 +76,7 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 
 			{
 				ODD_var_HiddenObjects pushBack _x;
-				_x hideObjectGlobal true;
+				_x hideObjectGlobal True;
 			}forEach _aCacher;
 			// Cache les objets définis
 
@@ -143,13 +143,13 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			// Ajoute le groupe à la liste des IAs de la mission
 			
 			{
-				_x setVariable ["acex_headless_blacklist", true, true]; 
+				_x setVariable ["acex_headless_blacklist", True, True]; 
 			} forEach (units _gg);
 			// Ajoute les IAs de la garnison à la liste noire des clients Headless
 
 			ODD_var_GarnisonnedIA pushBack _gg;
 			
-			[_roadPos, nil, units _gg, 20, 0, false, true] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+			[_roadPos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
 			// Met le groupe en garnison
 			createGuardedPoint [east, _roadPos, -1, objNull];
 			
