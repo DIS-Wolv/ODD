@@ -117,7 +117,17 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			// Ajoute le groupe à la liste des IAs de la mission
 			
 			sleep 1;
-			[_gp, _roadPos, 200] call bis_fnc_taskpatrol;
+			
+			_dist = 50;
+			_listPos = [(_pos getPos[_dist, 45]), (_pos getPos[_dist, 135]), (_pos getPos[_dist, 225]), (_pos getPos[_dist, 315])];
+			[_listPos] call BIS_fnc_arrayShuffle;
+			_g addWaypoint [(_listPos select 0), 0];
+			_g addWaypoint [(_listPos select 1), 0];
+			_g addWaypoint [(_listPos select 2), 0];
+			_g addWaypoint [(_listPos select 3), 0];
+			_g addWaypoint [(_listPos select 0), 0];
+			(waypoints _g) select (count (waypoints _g) -1) setWaypointType "CYCLE";
+
 			createGuardedPoint [east, _roadPos, -1, objNull];
 			// Assigne des points de passage autour du barrage au groupe
 
