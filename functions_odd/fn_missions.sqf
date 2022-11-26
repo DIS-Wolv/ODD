@@ -73,14 +73,14 @@ if (ODD_var_CurrentMission == 0) then {
 	[_zo, True] spawn ODD_fnc_createVehicule; 
 	// Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
 	
+	private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
+	// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
+	private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
+	_location = _location - [_zo];
+	// Supprime la zone objectif de la liste des zones secondaire potentielles
+	_location = _location - _closeLoc;
+	// Filtre les localités pour ne pas prendre celles trop proche de l'objectif
 	if (_ZOP) then {
-	   private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
-		// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
-		private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
-		_location = _location - [_zo];
-		// Supprime la zone objectif de la liste des zones secondaire potentielles
-		_location = _location - _closeLoc;
-		// Filtre les localités pour ne pas prendre celles trop proche de l'objectif
 
 		private _i = 0;
 		while {_i < count(_location)} do {
@@ -388,6 +388,31 @@ if (ODD_var_CurrentMission == 0) then {
 		}forEach units _x;
 	} forEach ODD_var_MissionCivilians;
 
+	{
+		_rad = 2500;
+		_alt = 2000;
+		_pos = position _x;
+		private _LocTrigger = createTrigger ["EmptyDetector", _pos, true]; 
+		_LocTrigger setTriggerArea [_rad, _rad, 0, false, _alt]; 
+		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		
+		_LocTrigger setTriggerStatements ["this",
+		"
+			_scriptID = [thisTrigger, True] spawn ODD_fnc_areaControl;
+			thisTrigger setVariable ['trig_ODD_var_scriptID', _scriptID, True];
+		",
+		"
+			_scriptID = [thisTrigger, False] spawn ODD_fnc_areaControl;
+			thisTrigger setVariable ['trig_ODD_var_scriptID', _scriptID, True];
+		"
+		];
+		_LocTrigger setVariable ["trig_ODD_var_active", False, True];
+		_LocTrigger setVariable ['trig_ODD_var_scriptID', -1, True];
+
+		[_LocTrigger, False] spawn ODD_fnc_areaControl;
+		ODD_var_AreaTrigger pushBack _LocTrigger;
+	} forEach _location;
+
 	[["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODD_fnc_log;
 	[["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODD_fnc_log;
 	[["ODD_Quantité : Nombre de Pax en garnison : %1", count ODD_var_GarnisonnedIA]] call ODD_fnc_log;
@@ -422,6 +447,8 @@ if (ODD_var_CurrentMission == 0) then {
 	private _BaseIa = _nbIa;
 	private _Renfort = True;
 	private _nbItt = 0;
+
+
 
 	["ODD_task_Brief", "SUCCEEDED"] call BIS_fnc_tasksetState;
 

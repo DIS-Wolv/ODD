@@ -40,5 +40,6 @@ class ODD {
 		class haltCivilian {};
 		class customLocation {};
 		class varOutpost {};
+		class areaControl {};
 	}
 }

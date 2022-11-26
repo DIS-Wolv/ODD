@@ -54,7 +54,11 @@ if (ODD_var_CurrentMission == 1) then {
 	
 	{
 		deleteVehicle _x;					// Supprime le Trigger
-	} forEach ODD_var_MissionIEDTrigger;	//pour chaque trigger
+	} forEach ODD_var_MissionIEDTrigger;	// pour chaque trigger IED
+
+	{
+		deleteVehicle _x;					// Supprime le Trigger
+	} forEach ODD_var_AreaTrigger;			// pour chaque trigger de Zone
 
 	{
 		{

@@ -297,6 +297,9 @@ if (ODD_var_FirstDefinition) then {
     ODD_var_FirstDefinition = False;
 };
 
+// Liste des trigger pour enable/disable les IA dans les zones
+ODD_var_AreaTrigger = [];
+
 // Liste des AIs de la zone objectif
 ODD_var_MainAreaIA = [];
 
