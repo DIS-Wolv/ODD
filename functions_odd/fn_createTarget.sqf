@@ -362,7 +362,7 @@ switch (_Mission) do {
         "True", "True", {}, {},
         {
             //_target lock 0;
-            [_target, 0] remoteExec ["lock", (owner _target)];
+            [_target, 2] remoteExec ["lock", (owner _target)];
         },{}, [], (random[2, 10, 15]), nil, True, True
         ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         
@@ -433,7 +433,7 @@ switch (_Mission) do {
             "a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
             "True", "True", {}, {},
             {
-                _target lock 0;
+                [_target, 2] remoteExec ["lock", (owner _target)];
             },{}, [], (random[2, 10, 15]), nil, True, True
         ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
         
