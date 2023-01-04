@@ -544,7 +544,7 @@ if (ODD_var_CurrentMission == 0) then {
 			// La tâche est accomplie ou non selon l'état de santé de la HVT
 		};
 		case (ODD_var_MissionType select 3): {	   // L'objectif est une zone à sécuriser
-			private _seuil = round (_BaseIa / 20);
+			private _seuil = (round (_BaseIa / 20)) + 1;
 			ODD_var_Objective = ODD_var_MainAreaIA;
 			publicVariable "ODD_var_Objective";
 			
