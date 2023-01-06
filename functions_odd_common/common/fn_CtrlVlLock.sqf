@@ -13,7 +13,7 @@
 */
 
 // Récupère les arguments
-params ["_vl", ["_lock", True], ["_CanBeUnLock", True], ["_UnLockTime", 15]];
+params ["_vl", ["_lock", True], ["_CanBeUnlock", True], ["_UnlockTime", 15]];
 
 if (_lock) then {
 	[_vl, 2] remoteExec ["lock", (owner _vl)];

@@ -1,8 +1,8 @@
 
-class DIS_Common {
-    tag = "ODD_common";
+class ODD_Common {
+    tag = "ODDcommon";
     class Initialize {
-        file = "functions\common";
+        file = "functions_odd_common\common";
 
         class CtrlVlLock {};
     };
