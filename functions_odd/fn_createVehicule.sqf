@@ -85,23 +85,23 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			sleep 1;
 		};
 		
-    	// Préparation des variables pour le calcul du nombre de groupe à créer
+		// Préparation des variables pour le calcul du nombre de groupe à créer
 		_locProx = nearestLocations [position _zo, ODD_var_LocationType, 3000]; 
-    	// Récupère les localités à moins de 3km (3000m)
+		// Récupère les localités à moins de 3km (3000m)
 		{
 			if (text _x in ODD_var_BlackistedLocation) then {
-            // Si la localité est dans la liste noire
+			// Si la localité est dans la liste noire
 				_locProx deleteAt _forEachIndex;
-            // La localité est supprimée de notre liste
+			// La localité est supprimée de notre liste
 			};
 		}forEach _locProx;
-    	// Compte les localités à proximité
+		// Compte les localités à proximité
 		_Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];	
-    	// Nombre de maisons dans la localité
+		// Nombre de maisons dans la localité
 		_taille = size _zo select 0;
-    	// Taille de la zone
+		// Taille de la zone
 		_heure = date select 3;	
-    	// Heure de la journée
+		// Heure de la journée
 		
 		// Définition du nombre de véhicules
 		_nbVl = (round random[0, (_human_players/8), 8]);
@@ -137,7 +137,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 		//Pour tous les groupes
 		{
 			private _group = selectRandom ODD_var_SpawnableVehicles;
-        	// Choisi un groupe
+			// Choisi un groupe
 			ODD_var_SpawnableVehicles = ODD_var_SpawnableVehicles + (ODD_var_SpawnableVehicles - _group);
 			
 			if (count ((position _zo) nearRoads 300) > 0) then {
@@ -157,9 +157,9 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 				
 				
 				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 	
-            		// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
+					// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
 					_pos = position _zo getPos [random 800, random 360];		
-            		// Tire une nouvelle position
+					// Tire une nouvelle position
 					if (count (_pos nearRoads 300) > 0) then {
 						// S'il y a des routes à proximité 
 						_pos = position (selectRandom (_pos nearRoads 300) ); 
@@ -262,9 +262,9 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 					};
 					
 					while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or (!(isonRoad _pos))} do { 		
-            			// S'il y a des rochers ou des maisons à moins de 20m ou si la position est n'est pas sur une route
+						// S'il y a des rochers ou des maisons à moins de 20m ou si la position est n'est pas sur une route
 						_pos = position _zo getPos [random 800, random 360]; 	
-            			// Tire une nouvelle position
+						// Tire une nouvelle position
 						if (count (_pos nearRoads 300) > 0) then { 
 							// S'il y a des routes à proximité
 							_pos = position (selectRandom (_pos nearRoads 300) ); 
@@ -349,7 +349,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 				// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
 				
 				while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 20] > 0) or ((_pos select 2) < 0 )} do { 		
-            		// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
+					// S'il y a des rochers ou des maisons à moins de 20m ou si la position est sous l'eau
 					_pos = position _zo getPos [random 800, random 360]; 
 					// Tire une nouvelle position
 				};

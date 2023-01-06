@@ -27,7 +27,7 @@ ODD_var_FireTeam = [		// BFR Ardistan
 	["brf_o_blp_rifleman_akms","brf_o_blp_rifleman","brf_o_blp_lat_m72","brf_o_blp_marksman"],					// MKman
 	["brf_o_blp_leader","brf_o_blp_machinegunner","brf_o_blp_rifleman","brf_o_blp_rifleman_m16"],				// MG
 	["brf_o_blp_leader","brf_o_blp_rifleman","brf_o_blp_rifleman_akms","brf_o_blp_rifleman_m16"],				// Rifles
-	["brf_o_blp_leader","brf_o_blp_grenadier","brf_o_blp_rifleman_m16","brf_o_blp_rifleman_akms"]		        // GL
+	["brf_o_blp_leader","brf_o_blp_grenadier","brf_o_blp_rifleman_m16","brf_o_blp_rifleman_akms"]				// GL
 ];
 // Liste des équipes
 ODD_var_Squad = [
@@ -46,10 +46,10 @@ ODD_var_HeavyVehicles = [
 	["brf_o_blp_m1025_m2"]
 ];
 ODD_var_TransportVehicles = [
-    "brf_o_blp_m1025"
+	"brf_o_blp_m1025"
 ];
 // Liste des véhicules
 
 ODD_var_FlyingVehicles = [
-    "brf_o_blp_uh1h","brf_o_blp_uh1h_gunship"
+	"brf_o_blp_uh1h","brf_o_blp_uh1h_gunship"
 ];

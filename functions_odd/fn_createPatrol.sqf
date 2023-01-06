@@ -68,7 +68,7 @@ if (_action) then {
 	_taille = size _zo select 0;
 	// Taille de la Zone
 	_heure = date select 3;
-    // Heure de la journée
+	// Heure de la journée
 	private _locType = 0;
 	switch (type _zo) do {
 		case (ODD_var_LocationType select 5): { _locType = 0;};
@@ -98,7 +98,7 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-    [["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODD_fnc_log;
+	[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODD_fnc_log;
 
 	//Pour tous les groupes
 	{
@@ -110,9 +110,9 @@ if (_action) then {
 		_pos = position _zo getPos [(random _distPattrouille), random 360];
 		
 		while {(count nearestTerrainObjects [_pos, ["Rocks","House"], 10] > 0) or ((_pos select 2) < 0 )} do { 		
-            // S'il y a des rochers ou des maisons à moins de 10m ou si la position est sous l'eau
+			// S'il y a des rochers ou des maisons à moins de 10m ou si la position est sous l'eau
 			_pos = position _zo getPos [(random _distPattrouille), random 360];			
-            // Tire une nouvelle position
+			// Tire une nouvelle position
 		};
 		// systemChat(str(_pos));
 		// Crée le groupe

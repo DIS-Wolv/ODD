@@ -28,8 +28,8 @@ private _Mission = selectRandom ODD_var_TargetSecTypeName;
 // Choisi une mission secondaire aléatoirement
 
 if (_type >= 0 and _type < count ODD_var_TargetSecTypeName) then {
-    _Mission = ODD_var_TargetSecTypeName select _type;
-    [["Mission secondaire forcée : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
+	_Mission = ODD_var_TargetSecTypeName select _type;
+	[["Mission secondaire forcée : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
 };
 
 [["Mission secondaire : %1, sur : %2", _Mission, text _zoSec]] call ODD_fnc_log;
