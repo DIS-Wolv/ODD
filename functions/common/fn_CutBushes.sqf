@@ -1,4 +1,5 @@
 /*
+* Auteur : Number42 & Wolv
 * Cut all bushes x m around the player.
 *
 * Arguments :
@@ -11,7 +12,7 @@
 * nil
 *
 * Exemple:
-* [player] call cutbushes.sqf
+* [player] call DISCommon_fnc_CutBushes
 *
 * Variable publique :
 * ODD_var_HiddenObjects

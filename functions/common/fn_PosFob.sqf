@@ -1,3 +1,17 @@
+/*
+* Auteur : Wolv
+* Permet de deplacé la fob a des posistion prédéfinie
+*
+* Arguments :
+* 0: Marker destination
+*
+* Valeur renvoyée :
+* nil
+*
+* Exemple:
+* ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
+*
+*/
 
 params ["_marker"];
 
