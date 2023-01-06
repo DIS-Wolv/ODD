@@ -168,16 +168,7 @@ sleep 1;
 		
 		_g setDamage 0;
 
-		[_g, 2] remoteExec ["lock", (owner _g)];
-
-		[_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
-		"a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-		"_target distance _this < 4", "True", {}, {},
-		{
-			[_target, 0] remoteExec ["lock", (owner _target)];
-			[_target] remoteExec ["removeAllActions", 0, True];
-		},{}, [], (random[2, 10, 15]), nil, True, True
-		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+		[_g, True, True, (random[2, 10, 15])] call ODD_common_fnc_CtrlVlLock;
 
 		ODD_var_MissionProps pushBack _g;
 	};

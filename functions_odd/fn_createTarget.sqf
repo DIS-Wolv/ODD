@@ -355,16 +355,7 @@ switch (_Mission) do {
 			_g setDamage 0;
 		};
 
-		[_g, 2] remoteExec ["lock", (owner _g)];
-
-		[_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
-		"a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-		"True", "True", {}, {},
-		{
-			//_target lock 0;
-			[_target, 2] remoteExec ["lock", (owner _target)];
-		},{}, [], (random[2, 10, 15]), nil, True, True
-		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+		[_g, True, True, (random[2, 10, 15])] call ODD_common_fnc_CtrlVlLock;
 		
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
@@ -426,16 +417,7 @@ switch (_Mission) do {
 			_g setDamage 0;
 		};
 
-		[_g, 2] remoteExec ["lock", (owner _g)];
-
-		[
-			_g, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
-			"a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-			"True", "True", {}, {},
-			{
-				[_target, 2] remoteExec ["lock", (owner _target)];
-			},{}, [], (random[2, 10, 15]), nil, True, True
-		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+		[_g, True, True, (random[2, 10, 15])] call ODD_common_fnc_CtrlVlLock;
 		
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
