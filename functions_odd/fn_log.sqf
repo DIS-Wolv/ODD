@@ -27,4 +27,9 @@ diag_log format ["ODD-LOG : %1", _msg];
 
 if (_debug) then {
 	[_msg] remoteExec ["systemChat", 0];
+}
+else {
+	{
+		[_msg] remoteExec ["systemChat", _x];
+	} forEach ODD_var_Debbuger;
 };
