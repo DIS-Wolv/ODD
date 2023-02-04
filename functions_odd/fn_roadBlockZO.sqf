@@ -106,9 +106,11 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 			ODD_var_SecondaryAreasIA pushBack _gp;
 			sleep 1;
 
-			_dist = 50;
-			_listPos = [(_pos getPos[_dist, 45]), (_pos getPos[_dist, 135]), (_pos getPos[_dist, 225]), (_pos getPos[_dist, 315])];
+			_dist = 50 + random 100;
+			_listPos = [(_roadPos getPos[_dist, 45]), (_roadPos getPos[_dist, 135]), (_roadPos getPos[_dist, 225]), (_roadPos getPos[_dist, 315])];
 			[_listPos] call BIS_fnc_arrayShuffle;
+			_gp setFormation "STAG COLUMN";
+			_gp setBehaviour "AWARE";
 			_gp addWaypoint [(_listPos select 0), 0];
 			_gp addWaypoint [(_listPos select 1), 0];
 			_gp addWaypoint [(_listPos select 2), 0];
