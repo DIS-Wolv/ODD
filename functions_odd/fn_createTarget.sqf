@@ -355,7 +355,7 @@ switch (_Mission) do {
 			_g setDamage 0;
 		};
 
-		[_g, True, True, (random[2, 10, 15])] call ODD_common_fnc_CtrlVlLock;
+		[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
 		
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
@@ -417,7 +417,7 @@ switch (_Mission) do {
 			_g setDamage 0;
 		};
 
-		[_g, True, True, (random[2, 10, 15])] call ODD_common_fnc_CtrlVlLock;
+		[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
 		
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
