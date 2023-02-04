@@ -15,6 +15,7 @@ class ODD {
 		class createOutpost {};
 		class civil {};
 		class createGarnison {};
+		class createGarnisonV2 {};
 		class infoOdd {};
 		class createPatrol {};
 		class createVehicule {};
