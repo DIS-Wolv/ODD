@@ -184,7 +184,7 @@ if (_action) then {
 	}forEach _nbgroup;
 }
 else {
-	_NbGarnison = round (3 + _human_players / (floor (3 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
+	_NbGarnison = round (3 + _human_players / (floor (2 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
 
 	_nbgroup resize _NbGarnison;
 	
