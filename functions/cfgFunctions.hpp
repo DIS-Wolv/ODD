@@ -6,5 +6,6 @@ class DIS_Common {
 
         class CutBushes {};
         class PosFob {};
+        class customLocation {};
     };
 };

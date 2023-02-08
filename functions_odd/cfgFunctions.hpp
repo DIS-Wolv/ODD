@@ -39,7 +39,6 @@ class ODD {
 		class log {};
 		class civiesCover {};
 		class haltCivilian {};
-		class customLocation {};
 		class varOutpost {};
 		class areaControl {};
 	}
