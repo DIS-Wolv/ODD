@@ -59,10 +59,11 @@ if (ODD_var_CurrentMission == 0) then {
 	ODD_var_SelectedArea = _zo;
 	publicVariable "ODD_var_SelectedArea";
 
-	if ((FOB distance2D _zo)<= 4500) then {
+	if (((position FOB) distance2D (position ODD_var_SelectedArea)) <= 4500) then {
 		_mrkfob = ["DIS_mrk_FOB_0", "DIS_mrk_FOB_1", "DIS_mrk_FOB_2"];
-		_mrkfob = [_mrkfob, [], { _zo distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
+		_mrkfob = [_mrkfob, [_zo], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
 		[_mrkfob select 0] call DISCommon_fnc_PosFob;
+		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODD_fnc_log;
 	};
 	
 	ODD_var_SelectedMissionType = [_zo, _missiontype] call ODD_fnc_createTarget;
