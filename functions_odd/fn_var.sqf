@@ -294,7 +294,7 @@ if (ODD_var_FirstDefinition) then {
 	[] call ODD_fnc_varRoadBlock;
 	[] call ODD_fnc_varOutpost;
 
-	ODD_var_Debbuger = [0];
+	ODD_var_Debbuger = [];
 
 	ODD_var_FirstDefinition = False;
 };
