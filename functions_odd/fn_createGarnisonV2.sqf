@@ -161,8 +161,8 @@ if (_action) then {
 			sleep 2;
 
 			_radius = (size _zo select 0);
-			if (_forEachIndex <= (count _nbgroup)/3) then {
-				_radius = (size _zo select 0)/4;
+			if (_forEachIndex <= (count _nbgroup)/3) then { //verifier que qu'il y est assez de bat
+				_radius = (size _zo select 0)/2;
 			};
 
 			_tp = True; //False;
