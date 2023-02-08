@@ -388,28 +388,32 @@ if (ODD_var_CurrentMission == 0) then {
 		}forEach units _x;
 	} forEach ODD_var_MissionCivilians;
 
+	_location = _location + [_zo];
 	{
-		_rad = 2500;
-		_alt = 2000;
-		_pos = position _x;
-		private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-		_LocTrigger setTriggerArea [_rad, _rad, 0, False, _alt]; 
+		_radA = 1200;
+		_alt = 1000;
+		_loc = _x;
+		private _LocTrigger = createTrigger ["EmptyDetector", position _loc, True]; 
+		_LocTrigger setTriggerArea [_radA, _radA, 0, False, _alt]; 
 		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		
 		_LocTrigger setTriggerStatements ["this",
 		"
-			_scriptID = [thisTrigger, True] spawn ODD_fnc_areaControl;
-			thisTrigger setVariable ['trig_ODD_var_scriptID', _scriptID, True];
+			[thisTrigger, True] spawn ODD_fnc_areaControl;
 		",
 		"
-			_scriptID = [thisTrigger, False] spawn ODD_fnc_areaControl;
-			thisTrigger setVariable ['trig_ODD_var_scriptID', _scriptID, True];
+			[thisTrigger, False] spawn ODD_fnc_areaControl;
 		"
 		];
-		_LocTrigger setVariable ["trig_ODD_var_active", False, True];
-		_LocTrigger setVariable ['trig_ODD_var_scriptID', -1, True];
+		_pos = position _loc;
+		_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
+		_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
 
-		[_LocTrigger, False] spawn ODD_fnc_areaControl;
+		_LocTrigger setVariable ["trig_ODD_var_loc", _markerZ, True];
+
+		_markerZ setVariable ["trig_ODD_var_WantState", False, True];
+		_scriptID = [_LocTrigger, False] spawn ODD_fnc_areaControl;
+
 		ODD_var_AreaTrigger pushBack _LocTrigger;
 	} forEach _location;
 
