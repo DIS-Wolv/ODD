@@ -658,6 +658,62 @@ class RscButton_ODDGUI
 	offsetPressedY = 0;
 	borderSize = 0;
 };
+class RscFrame_ODDGUI
+{
+	type = 0;
+	idc = -1;
+	deletable = 0;
+	style = 64;
+	shadow = 2;
+	colorBackground[] = 
+	{
+		0,
+		0,
+		0,
+		0
+	};
+	colorText[] = 
+	{
+		1,
+		1,
+		1,
+		1
+	};
+	font = "RobotoCondensed";
+	sizeEx = 0.02;
+	text = "";
+	x = 0;
+	y = 0;
+	w = 0.3;
+	h = 0.3;
+};
+class RscSlider_ODDGUI
+{
+	deletable = 0;
+	fade = 0;
+	access = 0;
+	type = 3;
+	style = 1024;
+	color[] = 
+	{
+		1,
+		1,
+		1,
+		0.8
+	};
+	colorActive[] = 
+	{
+		1,
+		1,
+		1,
+		1
+	};
+	shadow = 0;
+	x = 0;
+	y = 0;
+	w = 0.3;
+	h = 0.025;
+};
 
 /*
 class RscPicture
@@ -1021,62 +1077,6 @@ class RscShortcutButtonMain
 		color = "#E5E5E5";
 		align = "False";
 	};
-};
-class RscFrame
-{
-	type = 0;
-	idc = -1;
-	deletable = 0;
-	style = 64;
-	shadow = 2;
-	colorBackground[] = 
-	{
-		0,
-		0,
-		0,
-		0
-	};
-	colorText[] = 
-	{
-		1,
-		1,
-		1,
-		1
-	};
-	font = "RobotoCondensed";
-	sizeEx = 0.02;
-	text = "";
-	x = 0;
-	y = 0;
-	w = 0.3;
-	h = 0.3;
-};
-class RscSlider
-{
-	deletable = 0;
-	fade = 0;
-	access = 0;
-	type = 3;
-	style = 1024;
-	color[] = 
-	{
-		1,
-		1,
-		1,
-		0.8
-	};
-	colorActive[] = 
-	{
-		1,
-		1,
-		1,
-		1
-	};
-	shadow = 0;
-	x = 0;
-	y = 0;
-	w = 0.3;
-	h = 0.025;
 };
 class IGUIBack
 {
