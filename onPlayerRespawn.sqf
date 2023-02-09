@@ -1,1 +1,1 @@
-[] execVM "scripts\equip.sqf";
+[player] call DISLoad_fnc_Equip;

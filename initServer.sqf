@@ -19,16 +19,16 @@ base setObjectTextureGlobal [0, "pics\disMoto.jpg"];
 rules setObjectTextureGlobal [0, "pics\tip.jpg"];
 pCav setObjectTextureGlobal [0, "pics\cav.jpg"];
 pPil setObjectTextureGlobal [0, "pics\pilot.jpg"];
-armes execVM "loads\crate\armes.sqf";
-medical execVM "loads\crate\medical.sqf";
-lanceurs execVM "loads\crate\lanceurs.sqf";
-para execVM "loads\crate\para.sqf";
-armesFob execVM "loads\crate\armesFob.sqf";
-medicalFob execVM "loads\crate\medicalFob.sqf";
-lanceursFob execVM "loads\crate\lanceursFob.sqf";
+armes spawn DISLoadCrate_fnc_armes;
+medical spawn DISLoadCrate_fnc_medical;
+lanceurs spawn DISLoadCrate_fnc_lanceurs;
+para spawn DISLoadCrate_fnc_para;
+armesFob spawn DISLoadCrate_fnc_armes;
+medicalFob spawn DISLoadCrate_fnc_medical;
+lanceursFob spawn DISLoadCrate_fnc_lanceurs;
 acces setVariable ["R3F_LOG_disabled", true];
 dump setVariable ["R3F_LOG_disabled", true];
-dump execVM "loads\crate\dump.sqf";
+dump spawn DISLoadCrate_fnc_dump;
 
 if(!isNil "pa") 
 then {
@@ -39,12 +39,12 @@ if(!isNil "ce")
 then {
 	pInf setVariable ["R3F_LOG_disabled", true];
 	pInf setObjectTextureGlobal [0, "pics\ce.jpg"];
-	acces execVM "loads\crate\itemsCe.sqf";
+	acces spawn DISLoadCrate_fnc_itemsCe;
 }
 else {
 	pInf setVariable ["R3F_LOG_disabled", true];
 	pInf setObjectTextureGlobal [0, "pics\da.jpg"];
-	acces execVM "loads\crate\itemsDa.sqf";
+	acces spawn DISLoadCrate_fnc_itemsDa;
 };
 
 //[] remoteExec ["scripts\rWeather.sqf"]; 
