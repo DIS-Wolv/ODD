@@ -1,6 +1,6 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\rDate.sqf";
-[] execVM "scripts\markers.sqf";
+[] spawn DISCommon_fnc_markers;
 
 enableSaving [false, false];
 
