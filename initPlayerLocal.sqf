@@ -22,8 +22,10 @@ _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wi
 [player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
+posBase = getPos base;
+posFob = getPos fob;
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
-base addAction ["FOB","scripts\tp\fob.sqf",["fob"],1.5,true,true,"","true",5];
+base addAction ["FOB", {[posFob] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 base addAction ["Afficher les générateurs",{[1] execVM "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
 base addAction ["Cacher les générateurs",{[0] execVM "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
 ob setVariable ["R3F_LOG_disabled", true];
@@ -66,10 +68,11 @@ dump setVariable ["R3F_LOG_disabled", true];
 
 if(!isNil "pa") 
 then {
-	base addAction ["Usine","scripts\tp\usine.sqf",["usine"],1.5,true,true,"","true",5]; 
-	usine addAction ["Base Navale","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5]; 
+	posUsine = getPos usine;
+	base addAction ["Usine", {[posUsine] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
+	usine addAction ["Base", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	usine setVariable ["R3F_LOG_disabled", true];
-	fob addAction ["Base Navale","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5];
+	fob addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	pDiv setVariable ["R3F_LOG_disabled", true];
 	pDiv addAction ["CdG (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cdg;},[],1.5,true,true,"","",5];
 	pDiv addAction ["CdE (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cde;},[],1.5,true,true,"","",5];
@@ -78,7 +81,7 @@ then {
 	pDiv addAction ["Médecin (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_medecin;},[],1.5,true,true,"","",5];
 }
 else {
-	fob addAction ["Base Opérationnelle","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5];
+	fob addAction ["Base", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 };
 
 if(!isNil "ce")
