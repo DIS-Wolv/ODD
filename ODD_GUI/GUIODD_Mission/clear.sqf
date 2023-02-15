@@ -15,4 +15,4 @@ if (ODD_var_CurrentMission==1) then {
 
 sleep 0.5 
 
-call compile preprocessFile "ODD_GUI\GUIODD_Mission\statut.sqf";
+call compile preprocessFile "odd_gui\GUIODD_Mission\statut.sqf";

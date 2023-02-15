@@ -1,6 +1,27 @@
-class ODD {
+
+class ODD_Common {
+    tag = "ODDcommon";
+    class Initialize {
+        file = "odd_function\common";
+
+        class CtrlVlLock {};
+        class PlaceTable {};
+    };
+};
+
+class ODD_Data {
+    tag = "ODDdata";
+    class Initialize {
+        file = "odd_function\data";
+
+        class Table {};
+    };
+
+};
+class ODD_advanced {
+    tag = "ODDadvanced"
 	class wolv_ODD {
-		file = "functions_odd";
+		file = "odd_functions\advanced";
 		class missions {
 			//recompile = 1;
 		};

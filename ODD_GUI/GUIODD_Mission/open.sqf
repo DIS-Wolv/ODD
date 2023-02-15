@@ -99,13 +99,13 @@ if (_isCreate) then {
 	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcComboMeteo) lbSetCurSel ((count ODDGUI_var_Meteo));
 
 	// Ajoute les eventHandler
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
-	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjAll] execVM 'odd_gui\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListObjSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListObjSel] execVM 'odd_gui\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosAll) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosAll] execVM 'odd_gui\GUIODD_Mission\add.sqf'"];		// double click pour Add Obj
+	((findDisplay ODDGUI_var_IddDisplay) displayCtrl ODDGUI_var_IdcListPosSel) ctrlSetEventHandler ["LBDblClick", "[ODDGUI_var_IdcListPosSel] execVM 'odd_gui\GUIODD_Mission\rem.sqf'"];		// double click pour Rem Obj
 };
 
 while {!(isNull (findDisplay ODDGUI_var_IddDisplay))} do {
-	call compile preprocessFile "ODD_GUI\GUIODD_Mission\statut.sqf";
+	call compile preprocessFile "odd_gui\GUIODD_Mission\statut.sqf";
 	sleep 1;
 };

@@ -160,7 +160,7 @@ switch (_Mission) do {
 		_hvt addEventHandler ["Hit", {
 			params ["_unit", "_source", "_damage", "_instigator"];
 			_hvtSurrenderSound = ["hvtSurrender1", "hvtSurrender2", "hvtSurrender3"];
-			_sound = getMissionPath "ODDSound\" + (selectRandom _hvtSurrenderSound) + ".ogg";
+			_sound = getMissionPath "odd_sounds\" + (selectRandom _hvtSurrenderSound) + ".ogg";
 			playSound3D [_sound, _unit, False, position _unit, 3, 1, 30];
 			[_unit, True] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
 		}];

@@ -24,7 +24,7 @@ _fnc_StopCivil = {
 	_civil disableAI "PATH";
 	if ((floor random 3) == 0 ) then {
 		_civieSurrenderSound = ["civSurrender1","civSurrender2","civSurrender3","civSurrender4"];
-		_sound = getMissionPath "ODDSound\" + (selectRandom _civieSurrenderSound) + ".ogg";
+		_sound = getMissionPath "odd_sounds\" + (selectRandom _civieSurrenderSound) + ".ogg";
 		playSound3D [_sound, _civil, False, getPosASL _civil, 3, 1, 30];
 	};
 	_civil playAction "Surrender";

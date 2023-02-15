@@ -10,7 +10,7 @@ sleep 1;
 // Partie pour les ODD (Opération Dynamique de la DIS)
 call ODD_fnc_var;
 call ODD_fnc_customLocation;
-oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
+oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "odd_gui\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];
 _haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa",{[player] call ODD_fnc_haltCivilian},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions"], _haltAction] call ace_interact_menu_fnc_addActionToObject;

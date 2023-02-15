@@ -1,6 +1,6 @@
 class ODDGUI {
 	class Mission {
-		file = "ODD_GUI\GUIODD_Mission";
+		file = "odd_gui\GUIODD_Mission";
 		class open {
 				recompile	= 1;
 		};
