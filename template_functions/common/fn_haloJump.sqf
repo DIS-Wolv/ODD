@@ -19,5 +19,5 @@ if (_posHalo isEqualTo [0,0,0]) then {
 	hintSilent "";
 } else {
 	_player setPosASL _posHalo;
-	hintSilent format ["Teleported to %1", _posHalo];
+	hintSilent "Teleported to DZ";
 };
