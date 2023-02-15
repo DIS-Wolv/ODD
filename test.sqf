@@ -105,7 +105,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 			((((_heure - 12)^2)/ 48 ) + 3 ),
 			((_human_players / 2) + (_taille / 50) + (4*(_locType^(1.2))) - (((count _locProx)/ 7) ^ 2) - ((((_heure - 12)^2)/ 48 ) + 3 ) + 4),
 			round((_human_players / 2) + (_taille / 50) + (4*(_locType^(1.2))) - (((count _locProx)/ 7) ^ 2) - ((((_heure - 12)^2)/ 48 ) + 3 ) + 4)]
-		);//*/
+		);//*//*
 		_NbPatrouille = round(
 			(
 				(_taille / 75)
@@ -159,7 +159,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 			_NbPatrouille,
 			count _Buildings,
 			_NbCivil,
-			_foreachindex]; /*/
+			_foreachindex]; /*
 
 		_markerG = createMarker [(format ["obj Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_markerG setMarkerShape "ELLIPSE";
@@ -168,7 +168,7 @@ _location = nearestLocations[[15000,15000], locationType, 30000];
 		_markerG setMarkerAlpha 0.4; 
 		_markerG setMarkerColor "colorOPFOR"; //*/
 		
-		/*_markerG2 = createMarker [(format ["obj Z2 x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
+		_markerG2 = createMarker [(format ["obj Z2 x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 		_markerG2 setMarkerShape "RECTANGLE";
 		_markerG2 setMarkerSize [size _x select 1,size _x select 1];
 		_markerG2 setMarkerBrush "SolidBorder";
