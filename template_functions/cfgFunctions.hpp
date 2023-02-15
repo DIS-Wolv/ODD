@@ -8,13 +8,14 @@ class DIS_Common {
         class PosFob {};
         class customLocation {};
         class markers {};
+        class fastTravel {};
     };
 };
 
 class DIS_Load {
     tag = "DISLoad";
     class Initialize {
-        file = "functions\Loads";
+        file = "functions\loads";
 
         class Helo {};
         class Pilot {};
@@ -26,7 +27,7 @@ class DIS_Load {
 class DIS_LoadCE {
     tag = "DISLoadCe";
     class Initialize {
-        file = "functions\Loads\ce";
+        file = "functions\loads\ce";
 
         class cdb {};
         class cdbr {};
@@ -50,7 +51,7 @@ class DIS_LoadCE {
 class DIS_LoadDa {
     tag = "DISLoadDa";
     class Initialize {
-        file = "functions\Loads\da";
+        file = "functions\loads\da";
 
         class cdb {};
         class cdbr {};
@@ -74,7 +75,7 @@ class DIS_LoadDa {
 class DIS_LoadCrate {
     tag = "DISLoadCrate";
     class Initialize {
-        file = "functions\Loads\crate";
+        file = "functions\loads\crate";
 
         class armes {};
         class dump {};
@@ -90,7 +91,7 @@ class DIS_LoadCrate {
 class DIS_LoadDivers {
     tag = "DISLoadDivers";
     class Initialize {
-        file = "functions\Loads\divers";
+        file = "functions\loads\divers";
 
         class cde {};
         class cdg {};
