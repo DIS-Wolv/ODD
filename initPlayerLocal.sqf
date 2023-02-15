@@ -2,7 +2,6 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\respawn.sqf";
 [] execVM "scripts\infoHalo.sqf";
-[] execVM "scripts\retourPa.sqf";
 [] spawn WolvLights_fnc_init;
 [] spawn WolvGarage_fnc_init;
 sleep 1;
@@ -39,15 +38,6 @@ rearm setVariable ["R3F_LOG_disabled", true];
 rules setVariable ["R3F_LOG_disabled", true];
 pCav setVariable ["R3F_LOG_disabled", true];
 pPil setVariable ["R3F_LOG_disabled", true];
-lifeboat setVariable ["R3F_LOG_disabled", true];
-lifeboat1 setVariable ["R3F_LOG_disabled", true];
-lifeboat2 setVariable ["R3F_LOG_disabled", true];
-lifeboat3 setVariable ["R3F_LOG_disabled", true];
-lifeboat4 setVariable ["R3F_LOG_disabled", true];
-boatRack setVariable ["R3F_LOG_disabled", true];
-pierLadder setVariable ["R3F_LOG_disabled", true];
-boatRack addAction ["Sortir un semi-rigide", "scripts\boats\spawnBateau.sqf",[],1.5,true,true,"","true",5];
-boatRack addAction ["Récupérer les bateaux", "scripts\boats\delBateaux.sqf",[],1.5,true,true,"","true",5];
 pPil addAction ["Hélicoptère",{[_this select 1] call DISLoad_fnc_Helo;},[],1.5,true,true,"","",5];
 pPil addAction ["Chasseur",{[_this select 1] call DISLoad_fnc_Pilot;},[],1.5,true,true,"","",5];
 armes addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_armes;},[],1.5,true,true,"","",5];
@@ -68,7 +58,18 @@ dump setVariable ["R3F_LOG_disabled", true];
 
 if(!isNil "pa") 
 then {
+	[] execVM "scripts\infoBoat.sqf";
+	[] execVM "scripts\retourPa.sqf";
 	posUsine = getPos usine;
+	lifeboat setVariable ["R3F_LOG_disabled", true];
+	lifeboat1 setVariable ["R3F_LOG_disabled", true];
+	lifeboat2 setVariable ["R3F_LOG_disabled", true];
+	lifeboat3 setVariable ["R3F_LOG_disabled", true];
+	lifeboat4 setVariable ["R3F_LOG_disabled", true];
+	boatRack setVariable ["R3F_LOG_disabled", true];
+	pierLadder setVariable ["R3F_LOG_disabled", true];
+	boatRack addAction ["Sortir un semi-rigide", {[] call DISCommon_fnc_createBoat},[],1.5,true,true,"","true",5];
+	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,true,true,"","true",5];
 	base addAction ["Usine", {[posUsine] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	usine addAction ["Base", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	usine setVariable ["R3F_LOG_disabled", true];

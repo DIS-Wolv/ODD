@@ -10,6 +10,8 @@ class DIS_Common {
         class markers {};
         class fastTravel {};
         class haloJump {};
+        class createBoat {};
+        class deleteBoats {};
     };
 };
 
