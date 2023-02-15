@@ -9,6 +9,7 @@ class DIS_Common {
         class customLocation {};
         class markers {};
         class fastTravel {};
+        class haloJump {};
     };
 };
 

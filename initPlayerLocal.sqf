@@ -1,7 +1,7 @@
 [] execVM "scripts\intro.sqf";
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\respawn.sqf";
-[] execVM "scripts\halo\infoHalo.sqf";
+[] execVM "scripts\infoHalo.sqf";
 [] execVM "scripts\retourPa.sqf";
 [] spawn WolvLights_fnc_init;
 [] spawn WolvGarage_fnc_init;
@@ -17,7 +17,7 @@ _haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa
 [] call ODD_fnc_infoOdd;
 [True] call ODD_fnc_particules;
 
-// Ajout de la fonction pour couper les petit buissons
+// Ajout de la fonction pour couper les petits buissons
 _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wirecutter_ca.paa",{[player] spawn DISCommon_fnc_CutBushes;},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
 
@@ -30,7 +30,7 @@ base addAction ["Afficher les générateurs",{[1] execVM "scripts\lights\mapGen.
 base addAction ["Cacher les générateurs",{[0] execVM "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
 ob setVariable ["R3F_LOG_disabled", true];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,true,true,"","true",2];
-halo addAction ["Saut", "scripts\halo\halo.sqf",[],1.5,true,true,"","true",5];
+halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,true,true,"","true",5];
 halo setVariable ["R3F_LOG_disabled", true];
 factory setVariable ["R3F_LOG_disabled", true];
 repair setVariable ["R3F_LOG_disabled", true];
