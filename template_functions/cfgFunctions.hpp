@@ -2,7 +2,7 @@
 class DIS_Common {
     tag = "DISCommon";
     class Initialize {
-        file = "functions\common";
+        file = "template_functions\common";
 
         class CutBushes {};
         class PosFob {};
@@ -18,7 +18,7 @@ class DIS_Common {
 class DIS_Load {
     tag = "DISLoad";
     class Initialize {
-        file = "functions\loads";
+        file = "template_functions\loads";
 
         class Helo {};
         class Pilot {};
@@ -30,7 +30,7 @@ class DIS_Load {
 class DIS_LoadCE {
     tag = "DISLoadCe";
     class Initialize {
-        file = "functions\loads\ce";
+        file = "template_functions\loads\ce";
 
         class cdb {};
         class cdbr {};
@@ -54,7 +54,7 @@ class DIS_LoadCE {
 class DIS_LoadDa {
     tag = "DISLoadDa";
     class Initialize {
-        file = "functions\loads\da";
+        file = "template_functions\loads\da";
 
         class cdb {};
         class cdbr {};
@@ -78,7 +78,7 @@ class DIS_LoadDa {
 class DIS_LoadCrate {
     tag = "DISLoadCrate";
     class Initialize {
-        file = "functions\loads\crate";
+        file = "template_functions\loads\crate";
 
         class armes {};
         class dump {};
@@ -94,7 +94,7 @@ class DIS_LoadCrate {
 class DIS_LoadDivers {
     tag = "DISLoadDivers";
     class Initialize {
-        file = "functions\loads\divers";
+        file = "template_functions\loads\divers";
 
         class cde {};
         class cdg {};
