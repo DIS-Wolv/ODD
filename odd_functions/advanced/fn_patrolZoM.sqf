@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [_g] call ODD_fnc_patrolZoM
+* [_g] call ODDadvanced_fnc_patrolZoM
 *
 * Variable publique :
 */
@@ -62,5 +62,5 @@ waitUntil {
 };
 
 if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
-	[_g] spawn ODD_fnc_patrolZoM;
+	[_g] spawn ODDadvanced_fnc_patrolZoM;
 };

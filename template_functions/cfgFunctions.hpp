@@ -6,7 +6,7 @@ class DIS_Common {
 
         class CutBushes {};
         class PosFob {};
-        class customLocation {};
+        class customLocations {};
         class markers {};
         class fastTravel {};
         class haloJump {};

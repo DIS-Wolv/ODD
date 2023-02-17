@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [] call ODD_fnc_var
+* [] call ODDadvanced_fnc_var
 *
 * Variable publique :
 */
@@ -291,8 +291,8 @@ if (ODD_var_FirstDefinition) then {
 
 	ODD_var_FactionNames = ["Ardistant", "BlackPond", "ChDKZ-Insurgents", "FIA", "Saf", "Tanoa Liberation army"];
 
-	[] call ODD_fnc_varRoadBlock;
-	[] call ODD_fnc_varOutpost;
+	[] call ODDadvanced_fnc_varRoadBlock;
+	[] call ODDadvanced_fnc_varOutpost;
 
 	ODD_var_Debbuger = [];
 

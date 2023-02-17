@@ -11,8 +11,8 @@
 * nil
 *
 * Exemple :
-* [_zo] call ODD_fnc_roadBlock
-* [_zo, 2, True] call ODD_fnc_roadBlock
+* [_zo] call ODDadvanced_fnc_roadBlock
+* [_zo, 2, True] call ODDadvanced_fnc_roadBlock
 *
 * Variable publique :
 */
@@ -23,7 +23,7 @@ private _NbCP = _nb;
 _pos = position _zo; 
 private _props = [];
 
-[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] call ODD_fnc_log;
+[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] call ODDadvanced_fnc_log;
 
 _roads = (_pos nearRoads ((size _zo select 0)*1.5)) -(_pos nearRoads (size _zo select 1));
 

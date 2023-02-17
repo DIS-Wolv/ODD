@@ -9,7 +9,7 @@
 * Nombre d'IA en vie <INT>
 *
 * Exemple :
-* [] call ODD_fnc_countIA
+* [] call ODDadvanced_fnc_countIA
 *
 * Variable publique :
 */
@@ -25,5 +25,5 @@ private _nbIa = 0;		// Initialisation à 0
 	} forEach units _x;  						// Pour chaque unité
 } forEach ODD_var_MainAreaIA;					// De chaque groupe
 
-[["Nombre d'IA : %1", str(_nbIa)]] call ODD_fnc_log;
+[["Nombre d'IA : %1", str(_nbIa)]] call ODDadvanced_fnc_log;
 _nbIa;											// Renvoie le nombre d'IA

@@ -9,8 +9,8 @@
 * nil
 *
 * Exemple :
-* [_pos] remoteExec ["ODD_fnc_particules", 0]
-* [_pos, False] remoteExec ["ODD_fnc_particules", 0];
+* [_pos] remoteExec ["ODDadvanced_fnc_particules", 0]
+* [_pos, False] remoteExec ["ODDadvanced_fnc_particules", 0];
 *
 * Variable publique :
 */

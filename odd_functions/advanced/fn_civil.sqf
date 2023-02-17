@@ -10,8 +10,8 @@
 * nil
 *
 * Exemples :
-* [_zo] call ODD_fnc_civil
-* [_zo, True] call ODD_fnc_civil
+* [_zo] call ODDadvanced_fnc_civil
+* [_zo, True] call ODDadvanced_fnc_civil
 *
 * Variable publique : 
 */
@@ -64,7 +64,7 @@ if (not _action) then {
 
 _nbCivil = (round (0 max _nbCivil));
 
-[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODD_fnc_log;
+[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODDadvanced_fnc_log;
 private _g = [];
 private _civil = [];
 _civil resize (_nbCivil);
@@ -97,7 +97,7 @@ _civil resize (_nbCivil);
 			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 			// (_this select 0) enableAI "PATH";
 
-			[] remoteExec ["ODD_fnc_intel", 2];
+			[] remoteExec ["ODDadvanced_fnc_intel", 2];
 			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 		}, {
 			// (_this select 0) enableAI "PATH";
@@ -201,7 +201,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 			// (_this select 0) enableAI "PATH";
 
-			[1] remoteExec ["ODD_fnc_intel", 2];
+			[1] remoteExec ["ODDadvanced_fnc_intel", 2];
 			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 		}, {
 			// (_this select 0) enableAI "PATH";
@@ -217,7 +217,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 
 	//_g addItemCargoGlobal ["Toolkit", 1]; 
 
-	[_g] spawn ODD_fnc_patrolZoM;
+	[_g] spawn ODDadvanced_fnc_patrolZoM;
 
 };
 

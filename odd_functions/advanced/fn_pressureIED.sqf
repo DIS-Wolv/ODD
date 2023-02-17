@@ -11,8 +11,8 @@
 * nil
 *
 * Exemple :
-* [_zo] call ODD_fnc_pressureIED
-* [_zo, 2, False, 4000] call ODD_fnc_pressureIED
+* [_zo] call ODDadvanced_fnc_pressureIED
+* [_zo, 2, False, 4000] call ODDadvanced_fnc_pressureIED
 *
 * Variable publique :
 */
@@ -482,7 +482,7 @@ if (count _roads != 0) then {
 						];
 					};
 					default {
-						[["ODD_BUG : Action IED non prévue : %1", _action]] call ODD_fnc_log;
+						[["ODD_BUG : Action IED non prévue : %1", _action]] call ODDadvanced_fnc_log;
 					};
 				}; 
 			};
@@ -495,15 +495,15 @@ if (count _roads != 0) then {
 	}forEach _IED; 
 
 	if (_isDecoy) then {
-		[["ODD_Quantité : Nombre d'IED non activé placé : %1", count _IED]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre d'IED non activé placé : %1", count _IED]] call ODDadvanced_fnc_log;
 		ODD_var_MissionProps = ODD_var_MissionProps + _coverList;
 	}
 	else {
-		[["ODD_Quantité : Nombre d'IED activé placé : %1", count _IED]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre d'IED activé placé : %1", count _IED]] call ODDadvanced_fnc_log;
 		ODD_var_MissionProps = ODD_var_MissionProps + _coverList;
 	};
 	// Ajoute les IEDs au log
 }
 else {
-	[["ODD_BUG : Il n'y a pas de routes a moins de %1 m  de %2", text _zo, _dist]] call ODD_fnc_log;
+	[["ODD_BUG : Il n'y a pas de routes a moins de %1 m  de %2", text _zo, _dist]] call ODDadvanced_fnc_log;
 };

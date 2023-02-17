@@ -11,8 +11,8 @@
 * nil
 *
 * Exemple :
-* [_zo] call ODD_fnc_createGarnison
-* [_zo, True, False] call ODD_fnc_createGarnison
+* [_zo] call ODDadvanced_fnc_createGarnison
+* [_zo, True, False] call ODDadvanced_fnc_createGarnison
 *
 * Variable publique :
 */
@@ -89,7 +89,7 @@ if (_action) then {
 	_loctype = (_loctype + random[-1.2, 0, 1.2]) max 0;
 	
 	_NbGarnison = round((((_human_players + 2 )/ 2) + (_taille / 50) + (4*(_loctype^(1.2))) - (((count _locProx)/ 7) ^ 2) - ((((_heure - 12)^2)/ 48 ) + 3 ) + 4)/3);
-	[["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
+	[["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODDadvanced_fnc_log;
 	
 	_nbgroup resize _NbGarnison;
 	
@@ -192,7 +192,7 @@ else {
 	};
 	// Au maximum, toutes les maisons sauf 2 sont occupées 
 	
-	[["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODD_fnc_log;
+	[["Nombre de Garnison sur %1 : %2 groupes", text _zo, _NbGarnison]] call ODDadvanced_fnc_log;
 
 	// Pour tous les groupes nécessitant d'être en granison
 	{

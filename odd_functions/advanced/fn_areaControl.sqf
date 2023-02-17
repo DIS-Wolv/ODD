@@ -9,7 +9,7 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_trigger, True] call ODD_fnc_areaControl
+* [_trigger, True] call ODDadvanced_fnc_areaControl
 *
 * Variable publique :
 */
@@ -20,7 +20,7 @@ _loc = _trigger getVariable ["trig_ODD_var_loc", -1];
 
 if ((typeName _loc) != "SCALAR") then {
 	_textLoc = _loc getVariable ["trig_ODD_var_locName", ""];
-	[["ON-OFF : Zone %1 : status %2", _textLoc, _state]] call ODD_fnc_log;
+	[["ON-OFF : Zone %1 : status %2", _textLoc, _state]] call ODDadvanced_fnc_log;
 	
 	_loc setVariable ["trig_ODD_var_WantState", _state, True];
 
@@ -51,7 +51,7 @@ if ((typeName _loc) != "SCALAR") then {
 		_WantState = _loc getVariable ["trig_ODD_var_WantState", _state];
 		_loc setVariable ["trig_ODD_var_active", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState] spawn ODD_fnc_areaControl;
+			[_trigger, _WantState] spawn ODDadvanced_fnc_areaControl;
 		}
 	};
 };
@@ -63,7 +63,7 @@ if ((typeName _loc) != "SCALAR") then {
 
 // if (_isActive) then {
 // 	_scriptID = _trigger getVariable ["trig_ODD_var_scriptID", -1];
-// 	[["ScriptID : %1 | IsDone : %2", _scriptID, scriptDone _scriptID]] call ODD_fnc_log;
+// 	[["ScriptID : %1 | IsDone : %2", _scriptID, scriptDone _scriptID]] call ODDadvanced_fnc_log;
 // 	if (_scriptID != -1) then {
 // 		terminate _scriptID;
 // 		_trigger setVariable ["trig_ODD_var_active", False, True];
@@ -97,7 +97,7 @@ if ((typeName _loc) != "SCALAR") then {
 // 	_trigger setVariable ["trig_ODD_var_active", False, True];
 // }
 // else {
-// 	[["Erreur coupure du script arera control"]] call ODD_fnc_log;
+// 	[["Erreur coupure du script arera control"]] call ODDadvanced_fnc_log;
 // };
 
 // _trigger setVariable ["trig_ODD_var_active", False, True];

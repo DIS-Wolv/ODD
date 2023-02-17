@@ -9,7 +9,7 @@
 *
 */
 
-//[-1, True] call ODD_fnc_varEne;
+//[-1, True] call ODDadvanced_fnc_varEne;
 
 // definition des IDD et IDC en variables
 ODDGUI_var_IddDisplay = 270822;

@@ -9,7 +9,7 @@
 * Nom de la localité
 *
 * Exemple :
-* [_itt] call ODD_fnc_garbageCollector
+* [_itt] call ODDadvanced_fnc_garbageCollector
 *
 * Variable publique :
 */
@@ -33,5 +33,5 @@ if (_nbItt/_tGarbage == round ( _nbItt/_tGarbage)) then {
 		};
 	} forEach alldead;
 	// Pour chaque élément
-	[["ODD_Quantité : Nombre d'élement supprimé : %1", _nbEle]] call ODD_fnc_log;
+	[["ODD_Quantité : Nombre d'élement supprimé : %1", _nbEle]] call ODDadvanced_fnc_log;
 };

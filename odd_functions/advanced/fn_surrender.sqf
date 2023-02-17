@@ -10,7 +10,7 @@
 * nil
 *
 * Exemple :
-* [Alpha1:1] call ODD_fnc_surrender
+* [Alpha1:1] call ODDadvanced_fnc_surrender
 *
 * Variable publique :
 */
@@ -67,7 +67,7 @@ if (side _killer == WEST ) then {
 					{},	{},
 					{
 
-						[2] remoteExec ["ODD_fnc_intel", 2];
+						[2] remoteExec ["ODDadvanced_fnc_intel", 2];
 						[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 					}, {}, [], 
 					(random[2, 10, 15]), nil, True, False

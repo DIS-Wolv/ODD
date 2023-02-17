@@ -9,8 +9,8 @@
 * nil
 *
 * Exemple :
-* [] call ODD_fnc_clearZO
-* [True] call ODD_fnc_clearZO
+* [] call ODDadvanced_fnc_clearZO
+* [True] call ODDadvanced_fnc_clearZO
 *
 * Variable publique :
 */
@@ -42,7 +42,7 @@ if (ODD_var_CurrentMission == 1) then {
 		if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
 			_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 		};
-		[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODD_fnc_log;
+		[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODDadvanced_fnc_log;
 		_joueurInZO <= 0
 	};
 
@@ -112,7 +112,7 @@ if (ODD_var_CurrentMission == 1) then {
 
 	ODD_var_MissionSmokePillar = [];
 	publicVariable "ODD_var_MissionSmokePillar";
-	[False] remoteExec ["ODD_fnc_particules", 0];
+	[False] remoteExec ["ODDadvanced_fnc_particules", 0];
 
 	{
 		deleteMarker _x;
@@ -127,7 +127,7 @@ if (ODD_var_CurrentMission == 1) then {
 	["ODD_task_main"] call BIS_fnc_deleteTask;
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
-	[] call ODD_fnc_var;
+	[] call ODDadvanced_fnc_var;
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];

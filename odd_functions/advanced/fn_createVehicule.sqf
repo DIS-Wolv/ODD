@@ -11,8 +11,8 @@
 * Nil
 *
 * Exemple :
-* [_zo] call ODD_fnc_createVehicule
-* [_zo, True, False] call ODD_fnc_createVehicule
+* [_zo] call ODDadvanced_fnc_createVehicule
+* [_zo, True, False] call ODDadvanced_fnc_createVehicule
 *
 * Variable publique :
 */
@@ -52,7 +52,7 @@ switch (_loctype) do {
 };
 
 if (ODD_var_DEBUG) then {
-	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules sur %1", text _zo]] call ODD_fnc_log;
+	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules sur %1", text _zo]] call ODDadvanced_fnc_log;
 }
 else {
 	waitUntil {
@@ -75,12 +75,12 @@ else {
 };
 
 if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
-	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODD_fnc_log;
+	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODDadvanced_fnc_log;
 	if (_action) then {
 
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, True, False] call ODD_fnc_varEne;
+			[-1, True, False] call ODDadvanced_fnc_varEne;
 			// Définition des véhicules
 			sleep 1;
 		};
@@ -132,7 +132,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 		};
 		// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 
-		[["Nombre de véhicules sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+		[["Nombre de véhicules sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDadvanced_fnc_log;
 		
 		//Pour tous les groupes
 		{
@@ -215,7 +215,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			
 			sleep 2;
 		}forEach _nbVehicule;
-		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODDadvanced_fnc_log;
 
 		{
 			private _group = selectRandom ODD_var_SpawnableHeavyVehicles;
@@ -318,13 +318,13 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			};
 			sleep 2;
 		} forEach _nbVehiculeLourd;
-		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODD_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODDadvanced_fnc_log;
 	}
 	else {
 		sleep 1;
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, True, False] call ODD_fnc_varEne;	
+			[-1, True, False] call ODDadvanced_fnc_varEne;	
 			// Définition des véhicules
 			sleep 1;
 		};
@@ -337,7 +337,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			// Défini le nombre de véhicules à créer
 			_nbVehicule resize 0 max (round random [(count _nbVehicule) - 3, (count _nbVehicule), (count _nbVehicule) + 1]);
 			
-			[["ODD_Quantité : Nombre de VL sur %1 : %2", text _zo, count(_nbVehicule)]] call ODD_fnc_log;
+			[["ODD_Quantité : Nombre de VL sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDadvanced_fnc_log;
 
 			//Pour tous les groupes
 			{
@@ -385,12 +385,12 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			ODD_var_SecondaryAreasIA pushBack _g;
 			// Ajoute le groupe à la liste des IA de la mission
 			
-			[_g] spawn ODD_fnc_patrolZoM;
+			[_g] spawn ODDadvanced_fnc_patrolZoM;
 
 		};
 		
 	};
 }
 else {
-	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODD_fnc_log;
+	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODDadvanced_fnc_log;
 };

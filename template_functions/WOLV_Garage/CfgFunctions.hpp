@@ -2,7 +2,7 @@ class WOLV_Garage {
 	tag = "WolvGarage";
 
 	class Initialize {
-		file = "scripts\WOLV_Garage";
+		file = "template_functions\WOLV_Garage";
 
 		class init {};
 		class switchDisplay {};

@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [-1, True, False] call ODD_fnc_varEne
+* [-1, True, False] call ODDadvanced_fnc_varEne
 *
 * Variable publique :
 */
@@ -23,38 +23,38 @@ if (!_init) then {
 	if (typeName _FacForce == "SCALAR") then {
 		if ((_FacForce >= 0) AND (_FacForce < _nbFaction)) then {
 			_nFaction = _FacForce;
-			[["Faction Forcé : %1", ODD_var_SelectedFaction]] call ODD_fnc_log;
+			[["Faction Forcé : %1", ODD_var_SelectedFaction]] call ODDadvanced_fnc_log;
 		};
 	};
 
 	switch (_nFaction) do {
 		case 0: {
-			[] call ODD_fnc_varEneArd;
+			[] call ODDadvanced_fnc_varEneArd;
 		};
 		case 1: {
-			// [] call ODD_fnc_varEneBlp;
-			[] call ODD_fnc_varEneArd;
+			// [] call ODDadvanced_fnc_varEneBlp;
+			[] call ODDadvanced_fnc_varEneArd;
 		};
 		case 2: {
-			[] call ODD_fnc_varEneChDKZ;
+			[] call ODDadvanced_fnc_varEneChDKZ;
 		};
 		case 3: {
-			[] call ODD_fnc_varEneFia;
+			[] call ODDadvanced_fnc_varEneFia;
 		};
 		case 4: {
-			[] call ODD_fnc_varEneSaf;
+			[] call ODDadvanced_fnc_varEneSaf;
 		};
 		case 5: {
-			[] call ODD_fnc_varEneTla;
+			[] call ODDadvanced_fnc_varEneTla;
 		};
 		default {
-			[] call ODD_fnc_varEneArd;
+			[] call ODDadvanced_fnc_varEneArd;
 		};
 	};
 	ODD_var_SelectedFaction = ODD_var_FactionNames select _nFaction;
 	publicVariable "ODD_var_SelectedFaction";
 
-	[["Faction Choisie : %1", ODD_var_SelectedFaction]] call ODD_fnc_log;
+	[["Faction Choisie : %1", ODD_var_SelectedFaction]] call ODDadvanced_fnc_log;
 };
 
 if (_initVL) then {

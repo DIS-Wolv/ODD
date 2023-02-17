@@ -8,7 +8,7 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_zo] call ODD_fnc_civiesCover
+* [_zo] call ODDadvanced_fnc_civiesCover
 *
 * Variable publique :
 */

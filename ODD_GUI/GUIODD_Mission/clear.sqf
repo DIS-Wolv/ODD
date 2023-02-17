@@ -10,7 +10,7 @@
 */
 
 if (ODD_var_CurrentMission==1) then {
-	[] remoteExec ["ODD_fnc_clearZO", 2];
+	[] remoteExec ["ODDadvanced_fnc_clearZO", 2];
 };
 
 sleep 0.5 

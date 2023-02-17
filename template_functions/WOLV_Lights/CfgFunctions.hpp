@@ -2,7 +2,7 @@ class WOLV_Lights {
 	tag = "WolvLights";
 
 	class Initialize {
-		file = "WOLV_Lights";
+		file = "template_functions\WOLV_Lights";
 
 		class init {};
 		class generators {};

@@ -10,8 +10,8 @@
 * Nom de l'objectif créé
 *
 * Exemple:
-* [_zo] call ODD_fnc_createTarget
-* [_zo, _missiontype] call ODD_fnc_createTarget
+* [_zo] call ODDadvanced_fnc_createTarget
+* [_zo, _missiontype] call ODDadvanced_fnc_createTarget
 *
 * Variable publique :
 */
@@ -20,18 +20,18 @@ params ["_zo", ["_type", -1]];
 private _Mission = selectRandom ODD_var_SelectedTarget;
 // Choisi une mission aléatoire parmi la lister
 
-[["Mission choisie : %1", _Mission]] call ODD_fnc_log;
+[["Mission choisie : %1", _Mission]] call ODDadvanced_fnc_log;
 
 if (_type >= 0 and _type < count ODD_var_MissionType) then {
 	_Mission = ODD_var_MissionType select _type;
-	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODD_fnc_log;
+	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDadvanced_fnc_log;
 };
 
 _Buildings = [];
 
 while {count _Buildings == 0} do {
 	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
-	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODD_fnc_log;
+	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDadvanced_fnc_log;
 };
 
 ODD_var_Objective = [];
@@ -243,7 +243,7 @@ switch (_Mission) do {
 		ODD_var_MissionSmokePillar pushBack _pos;
 		publicVariable "ODD_var_MissionSmokePillar";
 		
-		[True] remoteExec ["ODD_fnc_particules", 0];
+		[True] remoteExec ["ODDadvanced_fnc_particules", 0];
 		[
 			_helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
 			"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "True", {}, {}, {

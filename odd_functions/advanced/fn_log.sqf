@@ -9,9 +9,9 @@
 * nil
 *
 * Exemple :
-* [["ma variable : %1", _var]] call ODD_fnc_log // Pour log uniquement sur le RPT
+* [["ma variable : %1", _var]] call ODDadvanced_fnc_log // Pour log uniquement sur le RPT
 * missionNamespace setVariable ["ODD_var_DEBUG", True, True] // Pour commencer l'affichage des messages de débug dans le chat
-* [["exemple de ODD_var_DEBUG"]] call ODD_fnc_log // Pour log dans le RPT et dans le chat
+* [["exemple de ODD_var_DEBUG"]] call ODDadvanced_fnc_log // Pour log dans le RPT et dans le chat
 *
 * Variable publique :
 */

@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [] call ODD_fnc_varRoadBlock
+* [] call ODDadvanced_fnc_varRoadBlock
 *
 * Variable publique :
 */
