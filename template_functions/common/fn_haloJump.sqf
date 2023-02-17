@@ -14,7 +14,7 @@ private _coordZ = [0,0,0];
 // Calculate the position and teleport the player
 private _posHalo = _coord2D vectorAdd _coordZ;
 if (_posHalo isEqualTo [0,0,0]) then {
-	hint "Pas de zone de saut, \n définissez une zone de saut";
+	systemChat "Pas de zone de saut, définissez une zone de saut";
 	sleep 10;
 	hintSilent "";
 } else {

@@ -1,8 +1,6 @@
-params ["_posFT"];
-
-// Get the player object and the selected location
-_player = player;
-_location = _this select 0;
+params ["_posFT", ["_player", player]];
 
 // Teleport the player to the selected location
-_player setPos _location;
+private _pos = _posFT getPos [random 1 + 0.5, random 360];
+_pos set [2, (_posFT select 2)];
+_player setPosASL _pos;

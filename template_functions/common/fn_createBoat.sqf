@@ -10,4 +10,3 @@ then {
 else {
 	createVehicle ["rhsgref_hidf_rhib", _pos, [], 5, "CAN_COLLIDE"];
 };
-};
