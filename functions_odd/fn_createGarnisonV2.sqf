@@ -156,6 +156,7 @@ if (_action) then {
 
 			{
 				_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);   // Pour chaque unité du groupe
 			
 			sleep 2;

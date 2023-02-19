@@ -23,6 +23,7 @@ params [];
 			if (floor(random 20) == 0) then {
 				[["TAIO"]] call ODD_fnc_log;
 				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; 
+				_x setVariable ["ODD_var_IsInGarnison", False, True];
 				// Avec 5% de chance, les AIs quittent leur garnison
 			};
 		};
@@ -33,6 +34,7 @@ params [];
 			if (floor(random 5) <= 1) then {	//40 % de chance
 				[["TAIO"]] call ODD_fnc_log;
 				[units _x] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf"; 
+				_x setVariable ["ODD_var_IsInGarnison", False, True];
 				// Avec 40% de chance, les AIs quittent leur garnison
 			};
 		};

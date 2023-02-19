@@ -38,7 +38,7 @@ if ((typeName _loc) != "SCALAR") then {
 			if (_state) then {
 				[_x, 'ALL'] remoteExec ["enableAI", owner _x];
 				
-				if ((_x getVariable ["acex_headless_blacklist", False]) == True) then {
+				if ((_x getVariable ["ODD_var_IsInGarnison", False]) == True) then {
 					[_x, 'PATH'] remoteExec ["disableAI", owner _x];
 				};
 
