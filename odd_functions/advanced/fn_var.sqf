@@ -297,6 +297,8 @@ if (ODD_var_FirstDefinition) then {
 	ODD_var_Debbuger = [];
 
 	ODD_var_FirstDefinition = False;
+
+	ODD_var_ZonePad = [];
 };
 
 // Liste des trigger pour enable/disable les IA dans les zones

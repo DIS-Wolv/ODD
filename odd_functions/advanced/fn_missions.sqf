@@ -61,7 +61,7 @@ if (ODD_var_CurrentMission == 0) then {
 
 	if (((position FOB) distance2D (position ODD_var_SelectedArea)) <= 4500) then {
 		_mrkfob = ["DIS_mrk_FOB_0", "DIS_mrk_FOB_1", "DIS_mrk_FOB_2"];
-		_mrkfob = [_mrkfob, [_zo], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
+		_mrkfob = [_mrkfob, [getPos _zo], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
 		[_mrkfob select 0] call DISCommon_fnc_PosFob;
 		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODDadvanced_fnc_log;
 	};
@@ -420,6 +420,8 @@ if (ODD_var_CurrentMission == 0) then {
 
 		_markerZ setVariable ["trig_ODD_var_WantState", False, True];
 		_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
+
+		ODD_var_ZonePad pushBack _markerZ;
 
 		ODD_var_AreaTrigger pushBack _LocTrigger;
 	} forEach _location;

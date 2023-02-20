@@ -108,7 +108,13 @@ if (ODD_var_CurrentMission == 1) then {
 
 	{
 		_x hideObjectGlobal False;		// Affiche l'object
+		ODD_var_HiddenObjects = ODD_var_HiddenObjects - _x;
 	} forEach ODD_var_HiddenObjects;		// Pour object caché
+
+	{
+		deleteVehicle _x;
+	} forEach ODD_var_ZonePad;
+	ODD_var_ZonePad = [];
 
 	ODD_var_MissionSmokePillar = [];
 	publicVariable "ODD_var_MissionSmokePillar";
@@ -117,6 +123,7 @@ if (ODD_var_CurrentMission == 1) then {
 	{
 		deleteMarker _x;
 	} forEach ODD_var_IntelMarker;
+	ODD_var_IntelMarker = [];
 	
 	sleep 5;
 
