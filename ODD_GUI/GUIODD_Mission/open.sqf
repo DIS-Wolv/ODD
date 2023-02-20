@@ -41,8 +41,8 @@ ODDGUI_var_Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud
 publicVariableServer "ODDGUI_var_Secteur";
 ODDGUI_var_SecteurMarker = ["ODD_MarkerNW", "ODD_MarkerW", "ODD_MarkerSW", "ODD_MarkerN", "ODD_MarkerC", "ODD_MarkerS", "ODD_MarkerNE", "ODD_MarkerE", "ODD_MarkerSE"];
 publicVariableServer "ODDGUI_var_SecteurMarker";
-_meteoName = ["Ciel Bleu", "Nuageux", "Gris"]; // 0, 0.5, 1
-_meteoValue = [2, 5, 8];
+ODDGUI_var_Meteo = ["Ciel Bleu", "Nuageux", "Gris"]; // 0, 0.5, 1
+private _meteoValue = [2, 5, 8];
 
 ODDGUI_var_SelTarg = [];
 ODDGUI_var_SelPos = [];
