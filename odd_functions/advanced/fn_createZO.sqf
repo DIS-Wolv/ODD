@@ -76,7 +76,7 @@ private _obj = selectRandom _location;
 private _Buildings = nearestobjects[position _obj, ODD_var_Houses, 200];
 
 private _loctype = 0;
-switch (type _zo) do {
+switch (type _obj) do {
 	case (ODD_var_LocationType select 5): { _locType = 0;};
 	case (ODD_var_LocationType select 4): { _locType = 1;};
 	case (ODD_var_LocationType select 3): { _locType = 2;};
@@ -88,7 +88,7 @@ switch (type _zo) do {
 	if (_x in ODD_var_LocationMilitaryName) then {
 		_loctype = 3;
 	};
-}forEach ((text _zo) splitstring " ");
+}forEach ((text _obj) splitstring " ");
 
 while {(text _obj in ODD_var_BlackistedLocation) or (count _Buildings == 0) or (_locType <= 2)/*limite l'utilisation des petites localité*/} do {
 	// On s'assure que la localité est viable
@@ -96,7 +96,7 @@ while {(text _obj in ODD_var_BlackistedLocation) or (count _Buildings == 0) or (
 	_Buildings = nearestobjects[position _obj, ODD_var_Houses, 200];
 	
 	_loctype = 0;
-	switch (type _zo) do {
+	switch (type _obj) do {
 		case (ODD_var_LocationType select 5): { _locType = 0;};
 		case (ODD_var_LocationType select 4): { _locType = 1;};
 		case (ODD_var_LocationType select 3): { _locType = 2;};
@@ -108,7 +108,7 @@ while {(text _obj in ODD_var_BlackistedLocation) or (count _Buildings == 0) or (
 		if (_x in ODD_var_LocationMilitaryName) then {
 			_loctype = 3;
 		};
-	}forEach ((text _zo) splitstring " ");
+	}forEach ((text _obj) splitstring " ");
 };
 
 [["Localité choisie : %1", text _obj]] call ODDadvanced_fnc_log;
