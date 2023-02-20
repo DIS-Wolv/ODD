@@ -10,9 +10,9 @@
 */
 
 if (ODD_var_CurrentMission==1) then {
-	[] remoteExec ["ODD_fnc_clearZO", 2];
+	[] remoteExec ["ODDadvanced_fnc_clearZO", 2];
 };
 
 sleep 0.5 
 
-call compile preprocessFile "ODD_GUI\GUIODD_Mission\statut.sqf";
+call compile preprocessFile "odd_gui\GUIODD_Mission\statut.sqf";
