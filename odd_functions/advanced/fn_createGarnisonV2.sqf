@@ -217,6 +217,7 @@ else {
 
 		{
 			_x setVariable ["acex_headless_blacklist", True, True]; //blacklist l'unit des HC
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);   //pour chaque units
 		
 		sleep(2);
