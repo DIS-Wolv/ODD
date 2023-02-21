@@ -6,6 +6,7 @@ clearItemCargoGlobal _crate;
 clearBackpackCargoGlobal _crate;
 
 _crate addItemCargoGlobal ["rhsusf_acc_eotech_xps3", 5];
+_crate addItemCargoGlobal ["rhsusf_acc_g33_xps3", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d145", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d10", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d145_m320", 5];
