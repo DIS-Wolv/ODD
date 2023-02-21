@@ -41,28 +41,28 @@ WolvLights_var_grandPoteauType = ["highvoltagetower_largecorner_f.p3d","highvolt
 	];	//liste des grand Poteaux
 
 WolvLights_var_lampsType = [
-    "Land_LampAirport_off_F", 
-    "Land_LampAirport_F", 
-    "Land_LampDecor_off_F",
-    "Land_LampDecor_F",
-    "Land_LampHalogen_off_F",
-    "Land_LampHalogen_F",
-    "Land_LampHarbour_off_F",
-    "Land_LampHarbour_F",
-    "Land_LampShabby_off_F",
-    "Land_LampShabby_F",
-    "Land_LampSolar_off_F",
-    "Land_LampSolar_F",
-    "Land_LampStadium_F",
-    "Land_LampStreet_off_F",
-    "Land_LampStreet_F",
-    "Land_LampStreet_small_off_F",
-    "Land_LampStreet_small_F",
-    "Land_PowerPoleWooden_L_off_F",
-    "Land_PowerPoleWooden_L_F",
-    "Land_PowerLine_01_pole_lamp_F",
-    "Land_PowerLine_01_pole_lamp_off_F",
-    "Land_fs_roof_F",
+	"Land_LampAirport_off_F", 
+	"Land_LampAirport_F", 
+	"Land_LampDecor_off_F",
+	"Land_LampDecor_F",
+	"Land_LampHalogen_off_F",
+	"Land_LampHalogen_F",
+	"Land_LampHarbour_off_F",
+	"Land_LampHarbour_F",
+	"Land_LampShabby_off_F",
+	"Land_LampShabby_F",
+	"Land_LampSolar_off_F",
+	"Land_LampSolar_F",
+	"Land_LampStadium_F",
+	"Land_LampStreet_off_F",
+	"Land_LampStreet_F",
+	"Land_LampStreet_small_off_F",
+	"Land_LampStreet_small_F",
+	"Land_PowerPoleWooden_L_off_F",
+	"Land_PowerPoleWooden_L_F",
+	"Land_PowerLine_01_pole_lamp_F",
+	"Land_PowerLine_01_pole_lamp_off_F",
+	"Land_fs_roof_F",
 	//DLC contact
 		"Land_LampStreet_02_F", 
 		"Land_LampStreet_02_off_F", 
@@ -96,7 +96,7 @@ private _rGenL = 500;	//raduis de désactivation des lamps
 
 private _gen = nearestObjects [[15000, 15000, 0], WolvLights_var_genType, 30000]; //recupère les générateur de la carte dans un rayon de 15 km autour du centre de la carte
 {
-    _posMarkerG = (position _x);	//recupère la position
+	_posMarkerG = (position _x);	//recupère la position
 	
 	// ajoute les actions
 	_x addAction ["Turn ON",{

@@ -48,7 +48,7 @@ private _grandPoteauPool = [0];	//grand
 
 
 {
-    _posG = position _x;	//recupère la position
+	_posG = position _x;	//recupère la position
 
 	if (_power == 3) then {	//a 3 affiche les générateur et leur rayon d'action et les poteaux
 

@@ -1,25 +1,25 @@
 
 class ODD_Common {
-    tag = "ODDcommon";
-    class Initialize {
-        file = "odd_function\common";
+	tag = "ODDcommon";
+	class Initialize {
+		file = "odd_function\common";
 
-        class CtrlVlLock {};
-        class PlaceTable {};
-    };
+		class CtrlVlLock {};
+		class PlaceTable {};
+	};
 };
 
 class ODD_Data {
-    tag = "ODDdata";
-    class Initialize {
-        file = "odd_function\data";
+	tag = "ODDdata";
+	class Initialize {
+		file = "odd_function\data";
 
-        class Table {};
-    };
+		class Table {};
+	};
 
 };
 class ODD_advanced {
-    tag = "ODDadvanced"
+	tag = "ODDadvanced"
 	class wolv_ODD {
 		file = "odd_functions\advanced";
 		class missions {

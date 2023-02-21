@@ -1,4 +1,4 @@
-    params ["_unit"];
+	params ["_unit"];
 
 removeAllWeapons _unit;
 removeAllItems _unit;
