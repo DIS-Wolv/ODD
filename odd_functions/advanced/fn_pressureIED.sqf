@@ -124,6 +124,7 @@ if (count _roads != 0) then {
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
 								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["ODD_var_IsInGarnison", True, True];
 								_x setUnitPos "DOWN";
 							} forEach (units _g);   // Pour chaque unité du groupe
 							[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -133,6 +134,7 @@ if (count _roads != 0) then {
 							if (count _Buildings >= 3) then {
 								{
 									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["ODD_var_IsInGarnison", True, True];
 									_x setUnitPos "DOWN";
 								} forEach (units _g);   // Pour chaque unité du groupe
 								[_trapPos, nil, units _g, 300, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -230,6 +232,7 @@ if (count _roads != 0) then {
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
 								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["ODD_var_IsInGarnison", True, True];
 							} forEach (units _g);   // Pour chaque unité du groupe
 							[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
@@ -238,6 +241,7 @@ if (count _roads != 0) then {
 							if (count _Buildings >= 3) then {
 								{
 									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["ODD_var_IsInGarnison", True, True];
 								} forEach (units _g);   // Pour chaque unité du groupe
 								[_trapPos, nil, units _g, 300, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}
@@ -315,6 +319,7 @@ if (count _roads != 0) then {
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
 								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["ODD_var_IsInGarnison", True, True];
 								_x setUnitPos "DOWN";
 							} forEach (units _g);   // Pour chaque unité du groupe
 							[_trapPos, nil, units _g, 30, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -324,6 +329,7 @@ if (count _roads != 0) then {
 							if (count _Buildings >= 3) then {
 								{
 									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["ODD_var_IsInGarnison", True, True];
 									_x setUnitPos "DOWN";
 								} forEach (units _g);   // Pour chaque unité du groupe
 								[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -424,6 +430,7 @@ if (count _roads != 0) then {
 						if (count _Buildings >= 3) then {	//si il y a des batiments dans les 150 m
 							{
 								_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+								_x setVariable ["ODD_var_IsInGarnison", True, True];
 							} forEach (units _g);   // Pour chaque unité du groupe
 							[_trapPos, nil, units _g, 30, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 						}
@@ -432,6 +439,7 @@ if (count _roads != 0) then {
 							if (count _Buildings >= 3) then {
 								{
 									_x setVariable ["acex_headless_blacklist", True, True]; // Ajoute l'unité à la liste noire des clients Headless
+									_x setVariable ["ODD_var_IsInGarnison", True, True];
 								} forEach (units _g);   // Pour chaque unité du groupe
 								[_trapPos, nil, units _g, 150, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 							}

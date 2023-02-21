@@ -145,7 +145,8 @@ while {(_NbCP > 0) and (count(_roads) > 0)} do {
 			// Ajoute le groupe à la liste des IAs de la mission
 			
 			{
-				_x setVariable ["acex_headless_blacklist", True, True]; 
+				_x setVariable ["acex_headless_blacklist", True, True];
+				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _gg);
 			// Ajoute les IAs de la garnison à la liste noire des clients Headless
 

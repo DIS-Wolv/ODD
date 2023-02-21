@@ -205,6 +205,7 @@ publicVariable "ODD_var_HiddenObjects";
 
 				{
 					_x setVariable ["acex_headless_blacklist", True, True];
+					_x setVariable ["ODD_var_IsInGarnison", True, True];
 				} forEach (units _gg); 
 				// Ajoute les IAs de la garnison à la liste noire des clients Headless
 

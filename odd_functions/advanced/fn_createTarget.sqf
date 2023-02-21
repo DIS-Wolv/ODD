@@ -72,8 +72,9 @@ switch (_Mission) do {
 		// Ajoute le groupe a la liste des IA de la missions
 
 		{
-			_x setVariable ["acex_headless_blacklist", True, True]; 
+			_x setVariable ["acex_headless_blacklist", True, True];
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);
 		// Réitère pour chaque unité du groupe
 		
@@ -108,6 +109,7 @@ switch (_Mission) do {
 			{
 				_x setVariable ["acex_headless_blacklist", True, True]; 
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);  
 		// Réitère pour chaque unité du groupe
 			[position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -150,7 +152,8 @@ switch (_Mission) do {
 		else {
 			{
 				_x setVariable ["acex_headless_blacklist", True, True]; 
-			// Ajoute l'unité à la liste noire des clients headless
+				// Ajoute l'unité à la liste noire des clients headless
+				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);   
 		// Réitère pour chaque unité du groupe
 			[position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
@@ -225,6 +228,7 @@ switch (_Mission) do {
 		{
 			_x setVariable ["acex_headless_blacklist", True, True];
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);  
 		// Réitère pour chaque unité du groupe
 
@@ -287,6 +291,7 @@ switch (_Mission) do {
 		{
 			_x setVariable ["acex_headless_blacklist", True, True];
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);   
 		// Réitère pour chaque unité du groupe
 
@@ -308,6 +313,7 @@ switch (_Mission) do {
 		{
 			_x setVariable ["acex_headless_blacklist", True, True]; 
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);   
 		// Réitère pour chaque unité du groupe
 		
@@ -370,6 +376,7 @@ switch (_Mission) do {
 		{
 			_x setVariable ["acex_headless_blacklist", True, True]; 
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);   
 		// Réitère pour chaque unité du groupe
 
@@ -432,6 +439,7 @@ switch (_Mission) do {
 		{
 			_x setVariable ["acex_headless_blacklist", True, True]; 
 			// Ajoute l'unité à la liste noire des clients headless
+			_x setVariable ["ODD_var_IsInGarnison", True, True];
 		} forEach (units _g);   
 		// Réitère pour chaque unité du groupe
 		
