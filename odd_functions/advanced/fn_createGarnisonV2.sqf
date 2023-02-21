@@ -143,8 +143,11 @@ if (_action) then {
 				// Il n'y a plus besoin de caisse médicale
 			};
 			
+			private _pos = getPos _zo; 
+			_pos set [2, 0];
+
 			// Crée le groupe
-			_g = [getPos _zo, east, _group] call BIS_fnc_spawngroup;
+			_g = [_pos, east, _group] call BIS_fnc_spawngroup;
 			
 			// Ajoute le groupe à la liste des IA de la mission
 			ODD_var_MainAreaIA pushBack _g;
@@ -166,7 +169,7 @@ if (_action) then {
 				_radius = (size _zo select 0)/2;
 			};
 
-			_tp = True; //False;
+			private _tp = True; //False;
 
 			// if ((position _GBuild select 2) < 0) then {
 			// if (round(random 4) == 0) then {
@@ -176,13 +179,13 @@ if (_action) then {
 			// Place les unités en garnison
 			if (round(random 4) == 0) then {
 				// 25% de chance que toutes les unités ne soient pas dans le même batiment
-				[position _zo, nil, units _g, _radius, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+				[_pos, nil, units _g, _radius, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 			}
 			else {
-				[position _zo, nil, units _g, _radius, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+				[_pos, nil, units _g, _radius, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 			};
 		};
-	}forEach _nbgroup;
+	} forEach _nbgroup;
 }
 else {
 	_NbGarnison = round (3 + _human_players / (floor (2 + random 3)) + _garModifier); // Nombre de garnisons sur la zone si ca n'est pas la zone principale
@@ -209,8 +212,11 @@ else {
 		// Choisi un batiment aléatoirement
 		_GBuild = selectRandom _Buildings;
 		
+		private _pos = getPos _zo; 
+		_pos set [2, 0];
+
 		// Crée le groupe
-		_g = [position _GBuild, east, _group] call BIS_fnc_spawngroup;
+		_g = [_pos, east, _group] call BIS_fnc_spawngroup;
 		
 		// Ajoute le groupe a la liste des IA de la missions
 		ODD_var_SecondaryAreasIA pushBack _g;
@@ -227,7 +233,7 @@ else {
 			_radius = (size _zo select 0)/4;
 		};
 
-		_tp = True; // False;
+		private _tp = True; // False;
 
 		// if ((position _GBuild select 2) < 0) then {
 		// 	_tp = True;
@@ -236,10 +242,10 @@ else {
 		// Place les unités en garnison
 		if (floor(random 4) != 0) then {
 			// 1 / 4 qu'il soit split dans plusieurs batiment
-			[position _zo, nil, units _g, _radius, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+			[_pos, nil, units _g, _radius, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		}
 		else {
-			[position _zo, nil, units _g, _radius, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
+			[_pos, nil, units _g, _radius, 2, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		};
 		// La fonction de garnison utilisée est celle de ACE
 	}forEach _nbgroup;
