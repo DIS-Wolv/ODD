@@ -33,5 +33,5 @@ if (_nbItt/_tGarbage == round ( _nbItt/_tGarbage)) then {
 		};
 	} forEach alldead;
 	// Pour chaque élément
-	[["ODD_Quantité : Nombre d'élement supprimé : %1", _nbEle]] call ODDadvanced_fnc_log;
+	[["ODD_Quantité : Nombre d'élement supprimé : %1", _nbEle]] call ODDcommon_fnc_log;
 };

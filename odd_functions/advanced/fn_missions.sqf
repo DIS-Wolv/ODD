@@ -40,7 +40,7 @@ if (isNil "ODD_var_DEBUG") then {
 };
 if (isNil "ODD_var_MissionArea") then {
 	ODD_var_MissionArea = 4000;
-	[["ODD_var_MissionArea Init dans fn_MISSION"]] call ODDadvanced_fnc_log;
+	[["ODD_var_MissionArea Init dans fn_MISSION"]] call ODDcommon_fnc_log;
 };
 
 
@@ -63,7 +63,7 @@ if (ODD_var_CurrentMission == 0) then {
 		_mrkfob = ["DIS_mrk_FOB_0", "DIS_mrk_FOB_1", "DIS_mrk_FOB_2"];
 		_mrkfob = [_mrkfob, [getPos _zo], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
 		[_mrkfob select 0] call DISCommon_fnc_PosFob;
-		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODDadvanced_fnc_log;
+		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODDcommon_fnc_log;
 	};
 	
 	ODD_var_SelectedMissionType = [_zo, _missiontype] call ODDadvanced_fnc_createTarget;
@@ -101,7 +101,7 @@ if (ODD_var_CurrentMission == 0) then {
 		};
 		// Supprime les localités indésirables 
 		
-		[["Nombre de ZO+ : %1", count(_location)]] call ODDadvanced_fnc_log;
+		[["Nombre de ZO+ : %1", count(_location)]] call ODDcommon_fnc_log;
 
 		private _mod = 0;
 		{
@@ -321,7 +321,7 @@ if (ODD_var_CurrentMission == 0) then {
 					};
 				};
 			};
-			[["ZO+ %1 : %2, niveau : %3", _forEachindex, text _x, _loctype]] call ODDadvanced_fnc_log;
+			[["ZO+ %1 : %2, niveau : %3", _forEachindex, text _x, _loctype]] call ODDcommon_fnc_log;
 		} forEach _location;
 
 		Private _nbCheckpoint = (round random 5) + 2;
@@ -426,16 +426,16 @@ if (ODD_var_CurrentMission == 0) then {
 		ODD_var_AreaTrigger pushBack _LocTrigger;
 	} forEach _location;
 
-	[["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Nombre de Pax en garnison : %1", count ODD_var_GarnisonnedIA]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Nombre de civils : %1", count ODD_var_MissionCivilians]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Nombre de props : %1", count ODD_var_MissionProps]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Nombre de props local a chaque joueur : %1", count ODD_var_MissionSmokePillar]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Missions générée pour %1 joueurs avec %2 joueurs présents", ODD_var_PlayerCount, (playersNumber west)]] call ODDadvanced_fnc_log;
-	[["ODD_Quantité : Support détécté %1", ODD_var_Support]] call ODDadvanced_fnc_log;
+	[["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Nombre de Pax en garnison : %1", count ODD_var_GarnisonnedIA]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Nombre de civils : %1", count ODD_var_MissionCivilians]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Nombre de props : %1", count ODD_var_MissionProps]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Nombre de props local a chaque joueur : %1", count ODD_var_MissionSmokePillar]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Missions générée pour %1 joueurs avec %2 joueurs présents", ODD_var_PlayerCount, (playersNumber west)]] call ODDcommon_fnc_log;
+	[["ODD_Quantité : Support détécté %1", ODD_var_Support]] call ODDcommon_fnc_log;
 	if (ODD_var_Support) then {
-		[["ODD_Quantité : Nombre de véhicules de support des joueurs : %1", ODD_var_CountSupportVehicles]] call ODDadvanced_fnc_log;
+		[["ODD_Quantité : Nombre de véhicules de support des joueurs : %1", ODD_var_CountSupportVehicles]] call ODDcommon_fnc_log;
 	};
 
 	waitUntil {
@@ -468,9 +468,9 @@ if (ODD_var_CurrentMission == 0) then {
 	sleep 5;
 
 	["ODD_task_mission", "ASSIGNED", True] call BIS_fnc_tasksetState;
-	[["Mission lancée"]] call ODDadvanced_fnc_log;
+	[["Mission lancée"]] call ODDcommon_fnc_log;
 	if (ODD_var_DEBUG) then {
-		[["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODDadvanced_fnc_log;
+		[["N'a pas attendu la présence de joueurs sur zone pour commencer à vérifier les conditions de l'objectif"]] call ODDcommon_fnc_log;
 	}
 	else {
 		waitUntil{
@@ -574,7 +574,7 @@ if (ODD_var_CurrentMission == 0) then {
 				_nbItt = _nbItt + 1;
 				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 
-				[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDadvanced_fnc_log;
+				[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDcommon_fnc_log;
 				
 				{
 					if (isNull(_x)) then {
@@ -708,7 +708,7 @@ if (ODD_var_CurrentMission == 0) then {
 
 	ODD_var_TimeObj = servertime;
 	publicVariable "ODD_var_TimeObj";
-	[["Objectif Acomplie"]] call ODDadvanced_fnc_log;
+	[["Objectif Acomplie"]] call ODDcommon_fnc_log;
 	sleep(5);
 
 	if (ODD_var_CurrentMission == 1) then {

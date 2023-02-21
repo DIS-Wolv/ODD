@@ -56,7 +56,7 @@ if (!isNil "ODD_var_SelectedSector") then {
 	else {
 		_SelectSector = ODDGUI_var_SecteurMarker;
 	};
-	[["Secteur choisi : %1", str _SelectSector]] call ODDadvanced_fnc_log;
+	[["Secteur choisi : %1", str _SelectSector]] call ODDcommon_fnc_log;
 	{
 		_pos = getMarkerPos _x;
 		_loc = nearestLocations[_pos, ODD_var_LocationType, 5000];
@@ -69,7 +69,7 @@ else {
 	// Récupère toutes les localités de la carte
 };
 
-[["Nombre de locations : %1", str(count(_location))]] call ODDadvanced_fnc_log;
+[["Nombre de locations : %1", str(count(_location))]] call ODDcommon_fnc_log;
 
 private _obj = selectRandom _location;
 // Choisi un objectif aléatoirement
@@ -111,7 +111,7 @@ while {(text _obj in ODD_var_BlackistedLocation) or (count _Buildings == 0) or (
 	}forEach ((text _obj) splitstring " ");
 };
 
-[["Localité choisie : %1", text _obj]] call ODDadvanced_fnc_log;
+[["Localité choisie : %1", text _obj]] call ODDcommon_fnc_log;
 
 if (_forceZO != "") then {
 	{
@@ -119,7 +119,7 @@ if (_forceZO != "") then {
 			_obj = _x;
 		};
 	}forEach _location;
-	[["Localité imposée : %1", text _obj]] call ODDadvanced_fnc_log;
+	[["Localité imposée : %1", text _obj]] call ODDcommon_fnc_log;
 };
 
 // private _pos = position _obj;
@@ -133,7 +133,7 @@ if (_forceZO != "") then {
 // // Ajoute un marqueur d'objectif
 
 // [text _obj] remoteExec ["systemChat", 0];
-[["Marquer mis en place"]] call ODDadvanced_fnc_log;
+[["Marquer mis en place"]] call ODDcommon_fnc_log;
 
 _obj;
 // Renvoie la localité

@@ -42,7 +42,7 @@ if (ODD_var_CurrentMission == 1) then {
 		if (ODD_var_SelectedMissionType == ODD_var_MissionType select 6) then {	// Si c'est un prisonier
 			_joueurInZO = _joueurInZO - 1;								// Retire le prisonier de la liste
 		};
-		[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODDadvanced_fnc_log;
+		[["Il y a %1 joueur dans la ZO", _joueurInZO]] call ODDcommon_fnc_log;
 		_joueurInZO <= 0
 	};
 

@@ -4,6 +4,7 @@ class ODD_Common {
     class Initialize {
         file = "odd_function\common";
 
+		class log {};
         class CtrlVlLock {};
         class PlaceTable {};
     };
@@ -57,7 +58,6 @@ class ODD_advanced {
 		class varEneTla {};
 		class varRoadBlock {};
 		class particules {};
-		class log {};
 		class civiesCover {};
 		class haltCivilian {};
 		class varOutpost {};
