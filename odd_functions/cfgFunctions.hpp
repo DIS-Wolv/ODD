@@ -2,11 +2,12 @@
 class ODD_Common {
     tag = "ODDcommon";
     class Initialize {
-        file = "odd_function\common";
+        file = "odd_functions\common";
 
 		class log {};
         class CtrlVlLock {};
         class PlaceTable {};
+		class CountOnBase {};
     };
 };
 
@@ -23,9 +24,7 @@ class ODD_advanced {
     tag = "ODDadvanced"
 	class wolv_ODD {
 		file = "odd_functions\advanced";
-		class missions {
-			//recompile = 1;
-		};
+		class missions {/*recompile = 1;*/};
 		class countIA {};
 		class garbageCollector {};
 		class sortieGarnison {};
@@ -62,5 +61,10 @@ class ODD_advanced {
 		class haltCivilian {};
 		class varOutpost {};
 		class areaControl {};
+
+		// fonctions "Propres"
+		class TrigCreateRtb {};
+		class TrigWaitRtb {};
+		class TrigOkRtb {};
 	}
 }
