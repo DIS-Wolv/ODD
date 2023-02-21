@@ -108,7 +108,7 @@ if (ODD_var_CurrentMission == 1) then {
 
 	{
 		_x hideObjectGlobal False;		// Affiche l'object
-		ODD_var_HiddenObjects = ODD_var_HiddenObjects - _x;
+		ODD_var_HiddenObjects = ODD_var_HiddenObjects - [_x];
 	} forEach ODD_var_HiddenObjects;		// Pour object caché
 
 	{
