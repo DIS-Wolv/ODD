@@ -1,5 +1,5 @@
-#include "scripts\WOLV_garage\includeMaster.hpp"
-#include "ODD_GUI\includeMaster.hpp"
+#include "template_functions\WOLV_Garage\includeMaster.hpp"
+#include "odd_gui\includeMaster.hpp"
 #include "R3F_LOG\desc_include.h"
 #include "taw_vd\GUI.h"
 
@@ -13,9 +13,10 @@ reviveMode = 1;
 class CfgFunctions
 {
 	#include "taw_vd\CfgFunctions.hpp"
-	#include "functions\cfgFunctions.hpp"
-	#include "scripts\WOLV_Garage\CfgFunctions.hpp"
-	#include "WOLV_Lights\CfgFunctions.hpp"
-	#include "functions_odd\cfgFunctions.hpp"
-	#include "functions_odd_common\cfgFunctions.hpp"
+
+	#include "template_functions\WOLV_Garage\CfgFunctions.hpp"
+	#include "template_functions\WOLV_Lights\CfgFunctions.hpp"
+
+	#include "template_functions\cfgFunctions.hpp"
+	#include "odd_functions\cfgFunctions.hpp"
 };

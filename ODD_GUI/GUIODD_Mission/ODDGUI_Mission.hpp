@@ -165,7 +165,7 @@ class ODDGUI_Mission
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[ODDGUI_var_IdcListObjAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'";
+			action = "[ODDGUI_var_IdcListObjAll] execVM 'odd_gui\GUIODD_Mission\add.sqf'";
 		};
 		class GUIODD_Mission_ButtonObjRem: RscButton_ODDGUI
 		{
@@ -175,7 +175,7 @@ class ODDGUI_Mission
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[ODDGUI_var_IdcListObjSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'";
+			action = "[ODDGUI_var_IdcListObjSel] execVM 'odd_gui\GUIODD_Mission\rem.sqf'";
 		};
 		class GUIODD_Mission_ButtonPosAdd: RscButton_ODDGUI
 		{
@@ -185,7 +185,7 @@ class ODDGUI_Mission
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[ODDGUI_var_IdcListPosAll] execVM 'ODD_GUI\GUIODD_Mission\add.sqf'";
+			action = "[ODDGUI_var_IdcListPosAll] execVM 'odd_gui\GUIODD_Mission\add.sqf'";
 		};
 		class GUIODD_Mission_ButtonPosRem: RscButton_ODDGUI
 		{
@@ -195,7 +195,7 @@ class ODDGUI_Mission
 			y = 0.76 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[ODDGUI_var_IdcListPosSel] execVM 'ODD_GUI\GUIODD_Mission\rem.sqf'";
+			action = "[ODDGUI_var_IdcListPosSel] execVM 'odd_gui\GUIODD_Mission\rem.sqf'";
 		};
 		class GUIODD_Mission_ButtonGen: RscButton_ODDGUI
 		{
@@ -205,7 +205,7 @@ class ODDGUI_Mission
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[] execVM 'ODD_GUI\GUIODD_Mission\start.sqf'";
+			action = "[] execVM 'odd_gui\GUIODD_Mission\start.sqf'";
 		};
 		class GUIODD_Mission_ButtonClear: RscButton_ODDGUI
 		{
@@ -215,7 +215,7 @@ class ODDGUI_Mission
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[] execVM 'ODD_GUI\GUIODD_Mission\clear.sqf'";
+			action = "[] execVM 'odd_gui\GUIODD_Mission\clear.sqf'";
 		};
 		class GUIODD_Mission_Button: RscButton_ODDGUI
 		{
@@ -225,7 +225,7 @@ class ODDGUI_Mission
 			y = 0.84 * safezoneH + safezoneY;
 			w = 0.15 * safezoneW;
 			h = 0.04 * safezoneH;
-			action = "[] execVM 'ODD_GUI\GUIODD_Mission\heureEtMeteo.sqf'";
+			action = "[] execVM 'odd_gui\GUIODD_Mission\heureEtMeteo.sqf'";
 		};
 	}
 };

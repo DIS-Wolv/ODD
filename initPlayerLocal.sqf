@@ -1,34 +1,35 @@
 [] execVM "scripts\intro.sqf";
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\respawn.sqf";
-[] execVM "scripts\halo\infoHalo.sqf";
-[] execVM "scripts\retourPa.sqf";
+[] execVM "scripts\infoHalo.sqf";
 [] spawn WolvLights_fnc_init;
 [] spawn WolvGarage_fnc_init;
 sleep 1;
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-call ODD_fnc_var;
-call DISCommon_fnc_customLocation;
-oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "ODD_GUI\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
+call ODDadvanced_fnc_var;
+call DIScommon_fnc_customLocations;
+oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call compile preprocessFile "odd_gui\GUIODD_Mission\open.sqf";},[],1.5,true,true,"","true",5];
 oddCtrl setVariable ["R3F_LOG_disabled", true];
-_haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa",{[player] call ODD_fnc_haltCivilian},{true}] call ace_interact_menu_fnc_createAction;
+_haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa",{[player] call ODDadvanced_fnc_haltCivilian},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions"], _haltAction] call ace_interact_menu_fnc_addActionToObject;
-[] call ODD_fnc_infoOdd;
-[True] call ODD_fnc_particules;
+[] call ODDadvanced_fnc_infoOdd;
+[True] call ODDadvanced_fnc_particules;
 
-// Ajout de la fonction pour couper les petit buissons
+// Ajout de la fonction pour couper les petits buissons
 _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wirecutter_ca.paa",{[player] spawn DISCommon_fnc_CutBushes;},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
+posBase = getPosASL ob;
+posFob = getPosASL fob;
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
-base addAction ["FOB","scripts\tp\fob.sqf",["fob"],1.5,true,true,"","true",5];
+base addAction ["FOB", {[posFob] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 base addAction ["Afficher les générateurs",{[1] execVM "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
 base addAction ["Cacher les générateurs",{[0] execVM "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
 ob setVariable ["R3F_LOG_disabled", true];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,true,true,"","true",2];
-halo addAction ["Saut", "scripts\halo\halo.sqf",[],1.5,true,true,"","true",5];
+halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,true,true,"","true",5];
 halo setVariable ["R3F_LOG_disabled", true];
 factory setVariable ["R3F_LOG_disabled", true];
 repair setVariable ["R3F_LOG_disabled", true];
@@ -37,15 +38,6 @@ rearm setVariable ["R3F_LOG_disabled", true];
 rules setVariable ["R3F_LOG_disabled", true];
 pCav setVariable ["R3F_LOG_disabled", true];
 pPil setVariable ["R3F_LOG_disabled", true];
-lifeboat setVariable ["R3F_LOG_disabled", true];
-lifeboat1 setVariable ["R3F_LOG_disabled", true];
-lifeboat2 setVariable ["R3F_LOG_disabled", true];
-lifeboat3 setVariable ["R3F_LOG_disabled", true];
-lifeboat4 setVariable ["R3F_LOG_disabled", true];
-boatRack setVariable ["R3F_LOG_disabled", true];
-pierLadder setVariable ["R3F_LOG_disabled", true];
-boatRack addAction ["Sortir un semi-rigide", "scripts\boats\spawnBateau.sqf",[],1.5,true,true,"","true",5];
-boatRack addAction ["Récupérer les bateaux", "scripts\boats\delBateaux.sqf",[],1.5,true,true,"","true",5];
 pPil addAction ["Hélicoptère",{[_this select 1] call DISLoad_fnc_Helo;},[],1.5,true,true,"","",5];
 pPil addAction ["Chasseur",{[_this select 1] call DISLoad_fnc_Pilot;},[],1.5,true,true,"","",5];
 armes addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_armes;},[],1.5,true,true,"","",5];
@@ -66,10 +58,22 @@ dump setVariable ["R3F_LOG_disabled", true];
 
 if(!isNil "pa") 
 then {
-	base addAction ["Usine","scripts\tp\usine.sqf",["usine"],1.5,true,true,"","true",5]; 
-	usine addAction ["Base Navale","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5]; 
+	[] execVM "scripts\infoBoat.sqf";
+	[] execVM "scripts\retourPa.sqf";
+	posUsine = getPosASL usine;
+	lifeboat setVariable ["R3F_LOG_disabled", true];
+	lifeboat1 setVariable ["R3F_LOG_disabled", true];
+	lifeboat2 setVariable ["R3F_LOG_disabled", true];
+	lifeboat3 setVariable ["R3F_LOG_disabled", true];
+	lifeboat4 setVariable ["R3F_LOG_disabled", true];
+	boatRack setVariable ["R3F_LOG_disabled", true];
+	pierLadder setVariable ["R3F_LOG_disabled", true];
+	boatRack addAction ["Sortir un semi-rigide", {[] call DISCommon_fnc_createBoat},[],1.5,true,true,"","true",5];
+	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,true,true,"","true",5];
+	base addAction ["Usine", {[posUsine] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
+	usine addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	usine setVariable ["R3F_LOG_disabled", true];
-	fob addAction ["Base Navale","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5];
+	fob addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 	pDiv setVariable ["R3F_LOG_disabled", true];
 	pDiv addAction ["CdG (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cdg;},[],1.5,true,true,"","",5];
 	pDiv addAction ["CdE (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cde;},[],1.5,true,true,"","",5];
@@ -78,7 +82,7 @@ then {
 	pDiv addAction ["Médecin (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_medecin;},[],1.5,true,true,"","",5];
 }
 else {
-	fob addAction ["Base Opérationnelle","scripts\tp\ob.sqf",["ob"],1.5,true,true,"","true",5];
+	fob addAction ["Base", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,true,true,"","true",5];
 };
 
 if(!isNil "ce")
