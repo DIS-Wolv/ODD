@@ -40,3 +40,5 @@ medicalFob setDir (_dir + 180);
 
 lanceursFob setPos (_pos getPos [3, (46+_dir)%360]);
 lanceursFob setDir (_dir + 330);
+
+["marker_1", FOB, False] call DISCommon_fnc_markers;
