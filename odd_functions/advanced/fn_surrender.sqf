@@ -83,7 +83,7 @@ if (side _killer == WEST ) then {
 				}];
 
 			};
-			sleep ((random 1) / 10);
+			// sleep ((random 1) / 10);
 		} forEach _nearSurrender;
 	};
 };
