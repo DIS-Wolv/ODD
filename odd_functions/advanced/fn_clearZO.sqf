@@ -61,6 +61,12 @@ if (ODD_var_CurrentMission == 1) then {
 	} forEach ODD_var_AreaTrigger;			// pour chaque trigger de Zone
 
 	{
+		ODD_var_AreaTrigger = ODD_var_AreaTrigger - [_x];
+		deleteVehicle _x;
+	} forEach ODD_var_AreaTrigger;
+
+
+	{
 		{
 			deleteVehicle _x;			// Supprime l'unité
 		} forEach units _x;				// Pour chaque unité du groupe
