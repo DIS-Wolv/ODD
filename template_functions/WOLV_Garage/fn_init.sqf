@@ -22,6 +22,6 @@ WolvGarage_var_ItemAce = ["ACE_medicalSupplyCrate_advanced", "ACE_Wheel", "ACE_T
 
 WolvGarage_var_ListVL = [];
 
-_obj addAction ["<t color='#5c7038'>Garage</t>", {call WolvGarage_fnc_garCreate},[],1.5,true,true,"", "true",5];
+_obj addAction ["<t color='#5c7038'>Garage</t>", {call WolvGarage_fnc_garCreate},[],1.5,True,True,"", "True",5];
 
 

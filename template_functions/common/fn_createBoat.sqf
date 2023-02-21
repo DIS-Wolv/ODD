@@ -1,5 +1,5 @@
 private _pos = getpos BoatSpawn; //A renseigner en fonction de la carte
-private _nbBoat = count nearestObjects [pierLadder, ["rhsgref_hidf_rhib"], 100, true];
+private _nbBoat = count nearestObjects [pierLadder, ["rhsgref_hidf_rhib"], 100, True];
 
 if (_nbBoat > 3) 
 then {

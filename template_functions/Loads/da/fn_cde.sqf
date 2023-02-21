@@ -50,4 +50,4 @@ _unit linkItem "ItemWatch";
 _unit linkItem "TFAR_anprc152";
 _unit linkItem "R3F_ITEM_DAGR";
 
-if(true) exitWith{};
+if(True) exitWith{};

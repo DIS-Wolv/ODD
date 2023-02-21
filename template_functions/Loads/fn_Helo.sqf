@@ -40,4 +40,4 @@ _unit linkItem "TFAR_anprc152";
 _unit linkItem "ItemGPS";
 //_unit linkItem "ACE_NVG_Wide";
 
-if(true) exitWith{};
+if(True) exitWith{};

@@ -4,7 +4,7 @@
  *	Argument : 
 		- _power		:	état souhaité 
  *	Appellé par : addAction
- *		- this addAction ["Cacher les lights",{[0] spawn "scripts\lights\lightsMap.sqf";},[],1.5,true,true,"","true",5];
+ *		- this addAction ["Cacher les lights",{[0] spawn "scripts\lights\lightsMap.sqf";},[],1.5,True,True,"","True",5];
  *	Apelle : 0/
  */
 

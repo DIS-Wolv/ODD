@@ -1,4 +1,4 @@
-// rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,true,true,"","true",2];
+// rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,True,True,"","True",2];
 {
 	if (!isNil("god")) then {
 		unassignCurator cur;

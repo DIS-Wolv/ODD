@@ -22,7 +22,7 @@ _Buildings = nearestObjects [position player, Maison, 100];
 	_g = [position _x, EAST, _group] call BIS_fnc_spawnGroup;
 	
 	//met en garnison
-	[position _x, ["Building"], _g, 20, 1, false, true] execVM "/z/ace/addons/ai/functions/fnc_garrison.sqf";
+	[position _x, ["Building"], _g, 20, 1, False, True] execVM "/z/ace/addons/ai/functions/fnc_garrison.sqf";
 	
 	sleep 5;
 	
