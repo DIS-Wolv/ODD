@@ -55,7 +55,7 @@ if (_isInPool == -1) then {		//si le poteaux n'est pas dans la liste
 		};
 	};
 	
-	private _petitPoteau = nearestObjects [_posPoteau, [], _rPetitP, true]; // recupère tout les obj
+	private _petitPoteau = nearestObjects [_posPoteau, [], _rPetitP, True]; // recupère tout les obj
 	{
 		_objType = (getModelInfo _x) select 0;
 		_isPetitPoteaux = WolvLights_var_petitPoteauType find _objType;
@@ -72,7 +72,7 @@ if (_isInPool == -1) then {		//si le poteaux n'est pas dans la liste
 				}
 			};
 			
-			private _gen = nearestObjects [_posPoteau, WolvLights_var_genType, _rGenP / 2, true];
+			private _gen = nearestObjects [_posPoteau, WolvLights_var_genType, _rGenP / 2, True];
 			if ((count _gen) == 0) then {		//si pas de générateur a proximité
 				[_posPoteauNV, _petitPoteauPool, _forEachindex, _rPetitL, _rPetitP, _rGenP, _state, _speedL, _speedP] spawn WolvLights_fnc_petitPoteaux;
 			};

@@ -14,23 +14,23 @@ params["_center", "_state", "_max_range", "_speed"];
 
  private _l1 = [];
  private _l2 = [];
- private _switch = true;
+ private _switch = True;
 
 if (_state <= 1) then {
 	
 	if (_state == 1) then {
-		_switch = true;
+		_switch = True;
 	};
 	if (_state == 0) then {
-		_switch = false;
+		_switch = False;
 	};
 	
 	for "_r" from 0 to _max_range do {
 		uiSleep (_speed);
-		_l1 = nearestObjects[_center, WolvLights_var_lampsType, _r, true];
-		_l2 = nearestObjects [_center, WolvLights_var_lampsType, _r + 1, true];
+		_l1 = nearestObjects[_center, WolvLights_var_lampsType, _r, True];
+		_l2 = nearestObjects [_center, WolvLights_var_lampsType, _r + 1, True];
 		private _lamps = _l2 - _l1;
-		//private _lamps = nearestObjects[_center, WolvLights_var_lampsType, _r, true];
+		//private _lamps = nearestObjects[_center, WolvLights_var_lampsType, _r, True];
 		//systemChat format["%1 lamps", _lamps];
 		if ((count _lamps) != 0) then 
 		{

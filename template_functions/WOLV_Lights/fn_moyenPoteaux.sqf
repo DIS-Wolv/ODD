@@ -56,7 +56,7 @@ if (_isInPool == -1) then {		//si le poteaux n'est pas dans la liste
 	};
 	
 	//test les objet a proximité
-	private _moyenPoteau =  nearestObjects [_posPoteau, [], _rMoyenP, true]; // recupère tout les moyens poteau
+	private _moyenPoteau =  nearestObjects [_posPoteau, [], _rMoyenP, True]; // recupère tout les moyens poteau
 	{
 		_objType = (getModelInfo _x) select 0;
 		_isMoyenPoteaux = WolvLights_var_moyenPoteauType find _objType;
@@ -72,7 +72,7 @@ if (_isInPool == -1) then {		//si le poteaux n'est pas dans la liste
 				}
 			};
 			
-			private _gen = nearestObjects [_posPoteau, WolvLights_var_genType, _rGenP / 2, true];
+			private _gen = nearestObjects [_posPoteau, WolvLights_var_genType, _rGenP / 2, True];
 			if ((count _gen) == 0) then {		//si pas de générateur a proximité
 				[_posPoteauNV, _moyenPoteauPool, _forEachindex, _rMoyenL, _rMoyenP, _rGenP, _state, _speedL, _speedP] spawn WolvLights_fnc_moyenPoteaux;
 			};

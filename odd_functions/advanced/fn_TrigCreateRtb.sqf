@@ -22,19 +22,19 @@ if (ODD_var_CurrentMission == 1) then {
 	sleep(1);
 	Private _Trigger = [];
 
-	Private _TrigFob = createTrigger ["EmptyDetector", fob, true];
-	_TrigFob setTriggerArea [15, 15, 0, false, 2];
-	_TrigFob setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	Private _TrigFob = createTrigger ["EmptyDetector", fob, True];
+	_TrigFob setTriggerArea [15, 15, 0, False, 2];
+	_TrigFob setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 	_TrigFob setTriggerStatements ["this", "[True] call ODDadvanced_fnc_TrigWaitRtb","[False] call ODDadvanced_fnc_TrigWaitRtb"];
 	_Trigger pushBack _TrigFob;
 
-	Private _TrigBase = createTrigger ["EmptyDetector", base, true];
-	_TrigBase setTriggerArea [20, 20, 0, false, 2];
-	_TrigBase setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	Private _TrigBase = createTrigger ["EmptyDetector", base, True];
+	_TrigBase setTriggerArea [20, 20, 0, False, 2];
+	_TrigBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 	_TrigBase setTriggerStatements ["this", "[True] call ODDadvanced_fnc_TrigWaitRtb","[False] call ODDadvanced_fnc_TrigWaitRtb"];
 	_Trigger pushBack _TrigBase;
 
-	Private _TrigCount = createTrigger ["EmptyDetector", [100, 100], true];
+	Private _TrigCount = createTrigger ["EmptyDetector", [100, 100], True];
 	_TrigCount setTriggerStatements ["(Base getVariable ['ODD_var_CountActive', False]) && round (time %5) == 5", "[] call ODDadvanced_fnc_TrigOkRtb;",""];
 	_Trigger pushBack _TrigCount;
 

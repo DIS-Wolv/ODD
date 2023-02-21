@@ -43,4 +43,4 @@ _unit linkItem "ItemCompass";
 _unit linkItem "ItemWatch";
 _unit linkItem "TFAR_anprc152";
 
-if(true) exitWith{};
+if(True) exitWith{};

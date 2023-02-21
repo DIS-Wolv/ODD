@@ -4,7 +4,7 @@
  *	Argument : 
 		- _power		:	état souhaité 
  *	Appellé par : addAction
- *		- this addAction ["Cacher les générateur",{[Parrametre] spawn "scripts\lights\mapGen.sqf";},[],1.5,true,true,"","true",5];
+ *		- this addAction ["Cacher les générateur",{[Parrametre] spawn "scripts\lights\mapGen.sqf";},[],1.5,True,True,"","True",5];
  *	Apelle : 0/
  */
 params ["_power"];
@@ -63,7 +63,7 @@ private _grandPoteauPool = [0];	//grand
 		(_markerGP select _forEachindex) setMarkerType "loc_Power";
 		(_markerGP select _forEachindex) setMarkerColor "ColorYellow";
 		
-		private _poteau = nearestObjects [_posG, [], _rGenP, true]; 	// recupère tout les obj
+		private _poteau = nearestObjects [_posG, [], _rGenP, True]; 	// recupère tout les obj
 		
 		
 		{		//pour chaque petit poteau
@@ -121,7 +121,7 @@ private _grandPoteauPool = [0];	//grand
 					
 					_state = 4;
 					
-					private _poteau = nearestObjects [_posG, [], _rGenP, true]; 	// recupère tout les obj
+					private _poteau = nearestObjects [_posG, [], _rGenP, True]; 	// recupère tout les obj
 					{		//pour chaque petit poteau
 						_objType = (getModelInfo _x) select 0; //récupère l'élément 0 des info de l'objet voir note en bas de page de generators.sqf
 						

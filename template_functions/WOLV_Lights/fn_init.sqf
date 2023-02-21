@@ -101,11 +101,11 @@ private _gen = nearestObjects [[15000, 15000, 0], WolvLights_var_genType, 30000]
 	// ajoute les actions
 	_x addAction ["Turn ON",{
 		params ["_target","_caller","_actionId","_posMarkerG"]; [_target, _caller, _actionId, _posMarkerG, 1] spawn WolvLights_fnc_generators;
-	},_posMarkerG,1.5,true,true,"","true",5]; // turn ON
+	},_posMarkerG,1.5,True,True,"","True",5]; // turn ON
 	
 	_x addAction ["Turn OFF",{
 		params ["_target","_caller","_actionId","_posMarkerG"]; [_target, _caller, _actionId, _posMarkerG, 0] spawn WolvLights_fnc_generators;
-	},_posMarkerG,1.5,true,true,"","true",5]; // turn OFF
+	},_posMarkerG,1.5,True,True,"","True",5]; // turn OFF
 	
 }forEach _gen; //pour chaque générateur
 
@@ -116,14 +116,14 @@ private _LightHouse = nearestObjects [[15000, 15000, 0], WolvLights_var_lightHou
 	_x addAction ["Turn ON",{
 		params ["_target"]; 
 		[_target, True] remoteExecCall["BIS_fnc_switchLamp"]; 
-		playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", (position _target) , false, (position _target), 2];
-	},nil,1.5,true,true,"","(_this distance2D _target) <= 2",50]; // turn ON
+		playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", (position _target) , False, (position _target), 2];
+	},nil,1.5,True,True,"","(_this distance2D _target) <= 2",50]; // turn ON
 	
 	_x addAction ["Turn OFF",{
 		params ["_target"]; 
 		[_target, False] remoteExecCall["BIS_fnc_switchLamp"]; 
-		playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", (position _target) , false, (position _target), 2];
-	},nil,1.5,true,true,"","(_this distance2D _target) <= 2",50]; // turn OFF
+		playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", (position _target) , False, (position _target), 2];
+	},nil,1.5,True,True,"","(_this distance2D _target) <= 2",50]; // turn OFF
 } forEach _LightHouse;
 
 sleep 5;

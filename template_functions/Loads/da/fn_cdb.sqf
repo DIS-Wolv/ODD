@@ -50,4 +50,4 @@ _unit linkItem "TFAR_anprc152";
 _unit linkItem "R3F_ITEM_DAGR";
 _unit linkItem "ACE_NVG_Wide";
 
-if(true) exitWith{};
+if(True) exitWith{};
