@@ -1,6 +1,6 @@
 
 
-
+WolvGarage_var_pos = getpos WolvGarage_var_OBJ;
 WolvGarage_var_IdcListVlProx = 1500;
 WolvGarage_var_IdcListVlUsine = 1501;
 WolvGarage_var_IdcButtonSpawn = 1603;

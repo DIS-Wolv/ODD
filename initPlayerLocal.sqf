@@ -21,10 +21,8 @@ _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wi
 [player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
-posBase = getPosASL ob;
-posFob = getPosASL fob;
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
-base addAction ["FOB", {[posFob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 base addAction ["Afficher les générateurs",{[1] execVM "scripts\lights\mapGen.sqf";},[],1.5,True,True,"","True",5];
 base addAction ["Cacher les générateurs",{[0] execVM "scripts\lights\mapGen.sqf";},[],1.5,True,True,"","True",5];
 ob setVariable ["R3F_LOG_disabled", True];
@@ -71,9 +69,9 @@ then {
 	boatRack addAction ["Sortir un semi-rigide", {[] call DISCommon_fnc_createBoat},[],1.5,True,True,"","True",5];
 	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,True,True,"","True",5];
 	base addAction ["Usine", {[posUsine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
-	usine addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	usine addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	usine setVariable ["R3F_LOG_disabled", True];
-	fob addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	pDiv setVariable ["R3F_LOG_disabled", True];
 	pDiv addAction ["CdG (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cdg;},[],1.5,True,True,"","",5];
 	pDiv addAction ["CdE (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cde;},[],1.5,True,True,"","",5];
@@ -82,7 +80,7 @@ then {
 	pDiv addAction ["Médecin (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_medecin;},[],1.5,True,True,"","",5];
 }
 else {
-	fob addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 };
 
 if(!isNil "ce")
