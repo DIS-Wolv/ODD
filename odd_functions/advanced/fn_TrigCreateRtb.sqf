@@ -17,7 +17,7 @@ publicVariable "ODD_var_TimeObj";
 sleep(5);
 
 if (ODD_var_CurrentMission == 1) then {
-	[True, ["ODD_task_Extract", "ODD_task_main"], ["Rentrez à la base", "RTB", "RTB"], objNull, "ASSIGNED", 2, True, "move"] call BIS_fnc_taskCreate;
+	[True, ["ODD_task_Extract", "ODD_task_main"], ["Rentrez à la base", "RTB", "RTB"], (position base), "ASSIGNED", 2, True, "move"] call BIS_fnc_taskCreate;
 	// Crée la tâche de retour à la base
 	sleep(1);
 	Private _Trigger = [];
