@@ -167,7 +167,7 @@ if (_action) then {
 			sleep 2;
 
 			_radius = (size _zo select 0);
-			if (_forEachIndex <= (count _BuildingsClose)/2) then { //verifier que qu'il y est assez de bat
+			if (_forEachIndex <= (_BuildingsClose)/2) then { //verifier que qu'il y est assez de bat
 				_radius = (size _zo select 0)/2;
 			};
 			_BuildingsClose = _BuildingsClose - 1;
