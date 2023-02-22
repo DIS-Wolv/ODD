@@ -64,7 +64,7 @@ if (not _action) then {
 
 _nbCivil = (round (0 max _nbCivil));
 
-[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODDadvanced_fnc_log;
+[["Nombre de Civil sur %1 : %2", text _zo, _nbCivil]] call ODDcommon_fnc_log;
 private _g = [];
 private _civil = [];
 _civil resize (_nbCivil);

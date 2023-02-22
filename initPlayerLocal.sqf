@@ -82,7 +82,7 @@ then {
 	pDiv addAction ["Médecin (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_medecin;},[],1.5,True,True,"","",5];
 }
 else {
-	fob addAction ["Base", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	fob addAction ["Porte-avions", {[posBase] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 };
 
 if(!isNil "ce")

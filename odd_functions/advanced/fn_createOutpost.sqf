@@ -114,7 +114,7 @@ publicVariable "ODD_var_HiddenObjects";
 
 /*
 	_roads = _pos nearRoads _dist;
-	[["ODD_Quantité : Nombre de Outpost : %1", _nb]] call ODDadvanced_fnc_log;
+	[["ODD_Quantité : Nombre de Outpost : %1", _nb]] call ODDcommon_fnc_log;
 
 	_roadsFOB = position usine nearRoads 200;
 	_roads = _roads - _roadsFOB;

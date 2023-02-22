@@ -100,7 +100,7 @@ if (ODD_var_CurrentMission == 1) then {
 				_loc = selectRandom _refloc;
 					// Choisi une localité aléatoire
 				
-				[["Renfort en approche de %1", text _loc]] call ODDadvanced_fnc_log;
+				[["Renfort en approche de %1", text _loc]] call ODDcommon_fnc_log;
 				
 				_pos = position _loc getPos [300 * random 1, random 360];
 					// Choisi une position aléatoire dans un cercle autour du centre de l'objectif
@@ -190,4 +190,4 @@ if (ODD_var_CurrentMission == 1) then {
 	};
 };
 
-[["ODD_Quantité : Nombre d'unité en Renfort : %1", _NbUnitRenfort]] call ODDadvanced_fnc_log;
+[["ODD_Quantité : Nombre d'unité en Renfort : %1", _NbUnitRenfort]] call ODDcommon_fnc_log;

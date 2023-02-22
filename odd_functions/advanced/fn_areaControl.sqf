@@ -20,7 +20,7 @@ _loc = _trigger getVariable ["trig_ODD_var_loc", -1];
 
 if ((typeName _loc) != "SCALAR") then {
 	_textLoc = _loc getVariable ["trig_ODD_var_locName", ""];
-	[["ON-OFF : Zone %1 : status %2", _textLoc, _state]] call ODDadvanced_fnc_log;
+	[["ON-OFF : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
 	
 	_loc setVariable ["trig_ODD_var_WantState", _state, True];
 
@@ -60,7 +60,23 @@ if ((typeName _loc) != "SCALAR") then {
 		}
 	};
 };
-
+/////////////////////////////////////////////////////////////////////////////////////
+// à désactiver 
+/*
+WEAPONAIM
+FSM
+TARGET
+MOVE
+ANIM
+*/
+// à réactiver
+/*
+ANIM
+MOVE
+TARGET
+FSM
+WEAPONAIM
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,7 +84,7 @@ if ((typeName _loc) != "SCALAR") then {
 
 // if (_isActive) then {
 // 	_scriptID = _trigger getVariable ["trig_ODD_var_scriptID", -1];
-// 	[["ScriptID : %1 | IsDone : %2", _scriptID, scriptDone _scriptID]] call ODDadvanced_fnc_log;
+// 	[["ScriptID : %1 | IsDone : %2", _scriptID, scriptDone _scriptID]] call ODDcommon_fnc_log;
 // 	if (_scriptID != -1) then {
 // 		terminate _scriptID;
 // 		_trigger setVariable ["trig_ODD_var_active", False, True];
@@ -102,7 +118,7 @@ if ((typeName _loc) != "SCALAR") then {
 // 	_trigger setVariable ["trig_ODD_var_active", False, True];
 // }
 // else {
-// 	[["Erreur coupure du script arera control"]] call ODDadvanced_fnc_log;
+// 	[["Erreur coupure du script arera control"]] call ODDcommon_fnc_log;
 // };
 
 // _trigger setVariable ["trig_ODD_var_active", False, True];

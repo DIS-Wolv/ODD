@@ -98,7 +98,7 @@ if (_action) then {
 		)/4);
 	_nbPartol resize _NbPatrouille;
 	
-	[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODDadvanced_fnc_log;
+	[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODDcommon_fnc_log;
 
 	//Pour tous les groupes
 	{
@@ -135,7 +135,7 @@ else {
 	_nbPartol resize 0 max (round random [(count _nbPartol) - 3, (count _nbPartol), (count _nbPartol) + 1]);
 
 	if (!_ZOM) then {
-		[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODDadvanced_fnc_log;
+		[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODDcommon_fnc_log;
 
 		{
 			// Choisi un groupe	
@@ -160,7 +160,7 @@ else {
 		} forEach _nbPartol;
 	}
 	else {
-		[["Nombre de Patrouille en ZO- sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODDadvanced_fnc_log;
+		[["Nombre de Patrouille en ZO- sur %1 : %2 groupes", text _zo, count(_nbPartol)]] call ODDcommon_fnc_log;
 
 		{
 			// Choisi un groupe

@@ -1,9 +1,9 @@
 private _pos = getpos BoatSpawn; //A renseigner en fonction de la carte
-private _nbBoat = count nearestObjects [pierLadder, ["rhsgref_hidf_rhib"], 100, True];
+private _nbBoat = count nearestObjects [_pos, ["rhsgref_hidf_rhib"], 25, True];
 
 if (_nbBoat > 3) 
 then {
-	hint "Trop de bateaux, \n eloignez les bateaux !";
+	systemChat "Trop de bateaux, \n eloignez les bateaux !";
 	sleep 10;
 	hintSilent "";
 }

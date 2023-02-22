@@ -23,7 +23,7 @@ if (!_init) then {
 	if (typeName _FacForce == "SCALAR") then {
 		if ((_FacForce >= 0) AND (_FacForce < _nbFaction)) then {
 			_nFaction = _FacForce;
-			[["Faction Forcé : %1", ODD_var_SelectedFaction]] call ODDadvanced_fnc_log;
+			[["Faction Forcé : %1", ODD_var_SelectedFaction]] call ODDcommon_fnc_log;
 		};
 	};
 
@@ -54,7 +54,7 @@ if (!_init) then {
 	ODD_var_SelectedFaction = ODD_var_FactionNames select _nFaction;
 	publicVariable "ODD_var_SelectedFaction";
 
-	[["Faction Choisie : %1", ODD_var_SelectedFaction]] call ODDadvanced_fnc_log;
+	[["Faction Choisie : %1", ODD_var_SelectedFaction]] call ODDcommon_fnc_log;
 };
 
 if (_initVL) then {

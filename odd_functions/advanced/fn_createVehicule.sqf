@@ -52,7 +52,7 @@ switch (_loctype) do {
 };
 
 if (ODD_var_DEBUG) then {
-	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules sur %1", text _zo]] call ODDadvanced_fnc_log;
+	[["N'a pas attendu la présence de joueurs hors du PA/FOB pour commencer à créer les véhicules sur %1", text _zo]] call ODDcommon_fnc_log;
 }
 else {
 	waitUntil {
@@ -75,7 +75,7 @@ else {
 };
 
 if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
-	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODDadvanced_fnc_log;
+	[["Debut du spawn de Vehicule sur : %1", text _zo]] call ODDcommon_fnc_log;
 	if (_action) then {
 
 		if (!isNil "ODD_var_SpawnableVehicles") then {
@@ -132,7 +132,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 		};
 		// systemChat(Format["Vehicule : %1", count _nbVehicule]);
 
-		[["Nombre de véhicules sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDadvanced_fnc_log;
+		[["Nombre de véhicules sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDcommon_fnc_log;
 		
 		//Pour tous les groupes
 		{
@@ -215,7 +215,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			
 			sleep 2;
 		}forEach _nbVehicule;
-		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODDadvanced_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehicule]] call ODDcommon_fnc_log;
 
 		{
 			private _group = selectRandom ODD_var_SpawnableHeavyVehicles;
@@ -318,7 +318,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			};
 			sleep 2;
 		} forEach _nbVehiculeLourd;
-		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODDadvanced_fnc_log;
+		[["ODD_Quantité : Nombre de VL sur la ZO : %1", count _nbVehiculeLourd]] call ODDcommon_fnc_log;
 	}
 	else {
 		sleep 1;
@@ -337,7 +337,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 			// Défini le nombre de véhicules à créer
 			_nbVehicule resize 0 max (round random [(count _nbVehicule) - 3, (count _nbVehicule), (count _nbVehicule) + 1]);
 			
-			[["ODD_Quantité : Nombre de VL sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDadvanced_fnc_log;
+			[["ODD_Quantité : Nombre de VL sur %1 : %2", text _zo, count(_nbVehicule)]] call ODDcommon_fnc_log;
 
 			//Pour tous les groupes
 			{
@@ -392,5 +392,5 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 	};
 }
 else {
-	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODDadvanced_fnc_log;
+	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODDcommon_fnc_log;
 };

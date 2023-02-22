@@ -29,10 +29,10 @@ private _Mission = selectRandom ODD_var_TargetSecTypeName;
 
 if (_type >= 0 and _type < count ODD_var_TargetSecTypeName) then {
 	_Mission = ODD_var_TargetSecTypeName select _type;
-	[["Mission secondaire forcée : %1 (%2)", _Mission, _type]] call ODDadvanced_fnc_log;
+	[["Mission secondaire forcée : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
 };
 
-[["Mission secondaire : %1, sur : %2", _Mission, text _zoSec]] call ODDadvanced_fnc_log;
+[["Mission secondaire : %1, sur : %2", _Mission, text _zoSec]] call ODDcommon_fnc_log;
 
 switch (_Mission) do {
 	case(ODD_var_TargetSecTypeName select 0): {		//IED
@@ -43,7 +43,7 @@ switch (_Mission) do {
 		//definir type 
 		//definir une condition de victoire distance ?
 		private _zoDest = selectRandom _zoList;
-		[["Mission secondaire destination : %1", text _zoDest]] call ODDadvanced_fnc_log;
+		[["Mission secondaire destination : %1", text _zoDest]] call ODDcommon_fnc_log;
 	};
 };
 
