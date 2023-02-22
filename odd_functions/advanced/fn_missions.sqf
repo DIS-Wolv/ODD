@@ -71,11 +71,11 @@ if (ODD_var_CurrentMission == 0) then {
 	
 	[_zo, True] call ODDadvanced_fnc_civil;
 	
+	[_zo, 2, True] call ODDadvanced_fnc_roadBlock;
+	
 	[_zo, True] call ODDadvanced_fnc_createGarnisonV2;
 	
 	[_zo, True] call ODDadvanced_fnc_createPatrol;
-	
-	[_zo, 2, True] call ODDadvanced_fnc_roadBlock;
 	
 	[_zo, True] spawn ODDadvanced_fnc_createVehicule; 
 	// Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
