@@ -66,7 +66,7 @@ class DIS_LoadDa {
 		class gv {};
 		class medecin {};
 		class minimi5 {};
-		class minimi6 {};
+		class minimi7 {};
 		class spotter {};
 		class te {};
 		class tp {};

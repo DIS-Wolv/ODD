@@ -14,7 +14,7 @@ class ODD_Common {
 class ODD_Data {
 	tag = "ODDdata";
 	class Initialize {
-		file = "odd_function\data";
+		file = "odd_functions\data";
 
 		class Table {};
 	};
