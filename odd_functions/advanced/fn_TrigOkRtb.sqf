@@ -28,7 +28,7 @@ if (_playercheck == _humanPlayers) then {
 		ODD_var_TimeEnd = servertime;
 		publicVariable "ODD_var_TimeEnd";
 		
-		[_zo] call ODDadvanced_fnc_clearZO;
+		[_zo] spawn ODDadvanced_fnc_clearZO;
 		// Nettoie la mission
 	};
 };
