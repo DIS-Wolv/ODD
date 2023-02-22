@@ -113,6 +113,8 @@ if (_action) then {
 	// Au maximum, 90% des maisons sont occupées
 	// systemChat(format["Garnison : %1", count _nbgroup]);
 	
+	private _BuildingsClose = count (nearestobjects [position _zo, ODD_var_Houses, ((size _zo select 0)/2)]);
+
 	// Pour tous les groupes
 	{
 		private _group = [];
@@ -165,9 +167,10 @@ if (_action) then {
 			sleep 2;
 
 			_radius = (size _zo select 0);
-			if (_forEachIndex <= (count _nbgroup)/3) then { //verifier que qu'il y est assez de bat
+			if (_forEachIndex <= (count _BuildingsClose)/2) then { //verifier que qu'il y est assez de bat
 				_radius = (size _zo select 0)/2;
 			};
+			_BuildingsClose = _BuildingsClose - 1;
 
 			private _tp = True; //False;
 
