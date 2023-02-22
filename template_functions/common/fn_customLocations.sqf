@@ -34,6 +34,9 @@ _pefkasBase setText "Pefkas military base";
 private _AgiosTheodoros = createLocation ["NameLocal", [22452,20050,0], 250, 250];
 _AgiosTheodoros setText "Agios Theodoros";
 
+private _Anemoessa = createLocation ["NameLocal", [16077,16300,0], 200, 200];
+_Anemoessa setText "Anemoessa";
+
 //////
 
 private _Morasitis = createLocation ["Name", [3800,20100], 430, 430];
