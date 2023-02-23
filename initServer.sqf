@@ -47,4 +47,4 @@ else {
 	acces spawn DISLoadCrate_fnc_itemsDa;
 };
 
-//[] remoteExec ["scripts\rWeather.sqf"]; 
+//[] remoteExec ["scripts\rWeather.sqf"];
