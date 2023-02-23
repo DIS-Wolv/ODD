@@ -66,5 +66,6 @@ class ODD_advanced {
 		class TrigCreateRtb {};
 		class TrigWaitRtb {};
 		class TrigOkRtb {};
+		class CompleteObj {};
 	}
 }

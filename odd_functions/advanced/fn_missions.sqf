@@ -483,7 +483,7 @@ if (ODD_var_CurrentMission == 0) then {
 	publicVariable "ODD_var_TimeZO";
 	
 	switch (ODD_var_SelectedMissionType) do {
-		case (ODD_var_MissionType select 0): {		  // L'objectif est de détruire des caisses
+		case (ODD_var_MissionType select 0): {		// L'objectif est de détruire des caisses
 			while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
 				private _NextTick = servertime + 60;
 				// Vérification toutes les minutes que la caisse n'est pas vide
@@ -502,11 +502,16 @@ if (ODD_var_CurrentMission == 0) then {
 				};
 			};
 			
+			// (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+			// 1. remplacer le while par l'Event Handler /!\ test TOUT les HC pour les different obj (killed sur vl ou caisse ?)
+			// 2. cree l'EH ici ou dans le createTarget ??
+			// 3. importance du spawn car Unscheduled + sleep 
+
 			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+
+			[] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 1): {	   // L'objectif est de tuer une HVT
+		case (ODD_var_MissionType select 1): {		// L'objectif est de tuer une HVT
 			while {((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1)))} do {
 				// Vérification toutes les minutes que la cible est en vie
 				_NextTick = servertime + 60;
@@ -525,11 +530,14 @@ if (ODD_var_CurrentMission == 0) then {
 					(!((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
 				};
 			};
+			
+			// (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+
 			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+			
+			[] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 2): {	   // L'objectif est de capturer une HVT
+		case (ODD_var_MissionType select 2): {		// L'objectif est de capturer une HVT
 			while {((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))} do {
 				// Vérification toutes les minutes que la cible n'est pas à la base ou à la fob et qu'elle est toujours en vie
 				_NextTick = servertime + 60;
@@ -548,15 +556,12 @@ if (ODD_var_CurrentMission == 0) then {
 					(!((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
 				};
 			};
+
 			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé de la HVT
+
+			[alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 3): {	   // L'objectif est une zone à sécuriser
+		case (ODD_var_MissionType select 3): {		// L'objectif est une zone à sécuriser
 			private _seuil = (round (_BaseIa / 20)) + 1;
 			ODD_var_Objective = ODD_var_MainAreaIA;
 			publicVariable "ODD_var_Objective";
@@ -591,11 +596,11 @@ if (ODD_var_CurrentMission == 0) then {
 				};
 			};
 			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+
+			[] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 4);
-		case (ODD_var_MissionType select 5): {	   // L'objectif sont des informations ou des boites noires
+		case (ODD_var_MissionType select 5): {		// L'objectif sont des informations ou des boites noires
 			while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
 				private _NextTick = servertime + 60;
 				
@@ -614,10 +619,13 @@ if (ODD_var_CurrentMission == 0) then {
 				};
 			};
 			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+
+			// dans le addAction => {[True] spawn ODDadvanced_fnc_CompleteObj};
+			
+			
+			[] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 6): {	   // L'objectif est un prisonier
+		case (ODD_var_MissionType select 6): {		// L'objectif est un prisonier
 			while {((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)} do {
 				// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il est toujours en vie
 				_NextTick = servertime + 60;
@@ -638,15 +646,10 @@ if (ODD_var_CurrentMission == 0) then {
 			};
 			
 			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}
-			else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé du prisonier
+			
+			[alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 7): {	   // L'objectif est de sécuriser un véhicule
+		case (ODD_var_MissionType select 7): {		// L'objectif est de sécuriser un véhicule
 			while {
 				((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
 			} do {
@@ -669,15 +672,10 @@ if (ODD_var_CurrentMission == 0) then {
 			};
 			
 			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}
-			else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé du prisonier
+			
+			[alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 8): {	   // L'objectif est de détruire un véhicule
+		case (ODD_var_MissionType select 8): {		// L'objectif est de détruire un véhicule
 			while {
 				((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1))
 			} do {
@@ -699,14 +697,15 @@ if (ODD_var_CurrentMission == 0) then {
 				};
 			};
 			
+			// ODD_var_Objective addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+			
 			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+			
+			[] spawn ODDadvanced_fnc_CompleteObj;
 		};
-
 	};
 
-	[] call ODDadvanced_fnc_TrigCreateRtb;
+	// [] call ODDadvanced_fnc_TrigCreateRtb;
 	
 }
 else {
