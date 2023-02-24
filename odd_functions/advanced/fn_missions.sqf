@@ -332,15 +332,15 @@ if (ODD_var_CurrentMission == 0) then {
 		if (_action <= 75) then {
 			// 75% de chance que la mission comporte des IEDs
 			_nbIED = 25 + round random 30;
-			// Crée entre 20 et 40 IEDs
+			// Crée entre 25 et 55 IEDs
 			[_zo, _nbIED] spawn ODDadvanced_fnc_pressureIED;
-			_nbDecoy = 25 + round random 30;
-			// Crée entre 25 et 55 IEDs qui n'exploseront pas
+			_nbDecoy = 20 + round random 30;
+			// Crée entre 20 et 50 IEDs qui n'exploseront pas
 			[_zo, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 		}
 		else {
-			_nbIED = 5 + round random 10;
-			// Crée entre 5 et 15 IEDs
+			_nbIED = 10 + round random 10;
+			// Crée entre 10 et 15 IEDs
 			[_zo, _nbIED] spawn ODDadvanced_fnc_pressureIED;
 			_nbDecoy = 10 + round random 10;
 			// Crée entre 10 et 20 IEDs qui n'exploseront pas
