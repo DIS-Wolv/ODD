@@ -19,12 +19,12 @@ sleep _S;
 
 while {isServer} do 
 {
-Oc_ = overcast;
-_s = [300, 2100] call BIS_fnc_randomInt;
-_t = [60, 600] call BIS_fnc_randomInt;
-_oc1 = random [0, _Oc, 20];
-_oc2 = _oc1/20;
-//hint str(_oct1);
-_t setOvercast _oc2 ;
-sleep _s;
+	Oc_ = overcast;
+	_s = [300, 2100] call BIS_fnc_randomInt;
+	_t = [60, 600] call BIS_fnc_randomInt;
+	_oc1 = random [0, _Oc, 20];
+	_oc2 = _oc1/20;
+	//hint str(_oct1);
+	_t setOvercast _oc2 ;
+	sleep _s;
 };
