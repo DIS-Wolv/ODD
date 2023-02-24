@@ -39,7 +39,7 @@ if (side _killer == WEST ) then {
 			_nearRed = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x) and !(_x getVariable ['ace_captives_issurrendering', False])} count (units opfor);
 			// Nombre d' OPFOR moins l'AI venant de décéder
 
-			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;
+			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR
 			// Calcul du seuil
 
 			if ((random 1) < _seuil) then {  
