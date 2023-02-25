@@ -400,7 +400,8 @@ if (ODD_var_CurrentMission == 0) then {
 		_radA = 1200;
 		_alt = 1000;
 		_loc = _x;
-		private _LocTrigger = createTrigger ["EmptyDetector", position _loc, True]; 
+		_pos = position _loc;
+		private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 		_LocTrigger setTriggerArea [_radA, _radA, 0, False, _alt]; 
 		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		
@@ -412,7 +413,6 @@ if (ODD_var_CurrentMission == 0) then {
 			[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 		"
 		];
-		_pos = position _loc;
 		_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
 		_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
 
