@@ -601,29 +601,29 @@ if (ODD_var_CurrentMission == 0) then {
 		};
 		case (ODD_var_MissionType select 4);
 		case (ODD_var_MissionType select 5): {		// L'objectif sont des informations ou des boites noires
-			while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
-				private _NextTick = servertime + 60;
+			// while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
+			// 	private _NextTick = servertime + 60;
 				
-				call ODDadvanced_fnc_sortieGarnison;
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					((ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-				};
-			};
-			sleep(1);
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		((ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+			// 	};
+			// };
+			// sleep(1);
 
-			// dans le addAction => {[True] spawn ODDadvanced_fnc_CompleteObj};
+			// // dans le addAction => {[True] spawn ODDadvanced_fnc_CompleteObj};
 			
 			
-			[] spawn ODDadvanced_fnc_CompleteObj;
+			// [] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 6): {		// L'objectif est un prisonier
 			while {((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)} do {
