@@ -31,23 +31,22 @@ if ((typeName _loc) != "SCALAR") then {
 		_pos = position _loc;
 
 		_IA = _pos nearEntities _radius;
-		if (!_state) then {
-			[_IA] remoteExec["dostop", 2];
-		};
 		{
+			_own = owner _x;
 			if (_state) then {
-				[_x, 'ALL'] remoteExec ["enableAI", owner _x];
+				[_x, 'ALL'] remoteExec ["enableAI", _own];
 				
 				if ((_x getVariable ["ODD_var_IsInGarnison", False]) == True) then {
-					[_x, 'PATH'] remoteExec ["disableAI", owner _x];
+					[_x, 'PATH'] remoteExec ["disableAI", _own];
 				};
 
-				[_x, False] remoteExec ["stop", owner _x];
+				[_x, False] remoteExec ["stop", _own];
 			}
 			else {
-				[_x, True] remoteExec ["stop", owner _x];
-				sleep 0.5;
-				[_x, 'ALL'] remoteExec ["disableAI", owner _x];
+				[_x] remoteExec ["dostop", _own];
+				[_x, True] remoteExec ["stop", _own];
+				uisleep 1;
+				[_x, 'ALL'] remoteExec ["disableAI", _own];
 			}
 		} forEach _IA;
 
