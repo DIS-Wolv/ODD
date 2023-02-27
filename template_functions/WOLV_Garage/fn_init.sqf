@@ -1,7 +1,7 @@
 
 params [["_obj", factory]];
 
-WolvGarage_var_OBJ = _obj,
+WolvGarage_var_OBJ = _obj;
 WolvGarage_var_IddDisplayGarage = 0310221;
 WolvGarage_var_IddDisplayInv = 0310222;
 WolvGarage_var_IddDisplayInvAce = 0310223;
