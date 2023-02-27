@@ -49,6 +49,8 @@ switch (_Mission) do {
 		_box additemCargoGlobal ["DemoCharge_Remote_Mag", 2];
 		// Ajoute des charges explosives à la caisse
 		
+		_box addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+
 		ODD_var_Objective pushBack _box;
 
 		sleep(1);

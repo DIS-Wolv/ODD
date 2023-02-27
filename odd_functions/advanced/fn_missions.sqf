@@ -484,32 +484,32 @@ if (ODD_var_CurrentMission == 0) then {
 	
 	switch (ODD_var_SelectedMissionType) do {
 		case (ODD_var_MissionType select 0): {		// L'objectif est de détruire des caisses
-			while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
-				private _NextTick = servertime + 60;
-				// Vérification toutes les minutes que la caisse n'est pas vide
-				call ODDadvanced_fnc_sortieGarnison;
+			// while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
+			// 	private _NextTick = servertime + 60;
+			// 	// Vérification toutes les minutes que la caisse n'est pas vide
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					(!((count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
-				};
-			};
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(!((count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
+			// 	};
+			// };
 			
-			// (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
-			// 1. remplacer le while par l'Event Handler /!\ test TOUT les HC pour les different obj (killed sur vl ou caisse ?)
-			// 2. cree l'EH ici ou dans le createTarget ??
-			// 3. importance du spawn car Unscheduled + sleep 
+			// // (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+			// // 1. remplacer le while par l'Event Handler /!\ test TOUT les HC pour les different obj (killed sur vl ou caisse ?)
+			// // 2. cree l'EH ici ou dans le createTarget ??
+			// // 3. importance du spawn car Unscheduled + sleep 
 
-			sleep(1);
+			// sleep(1);
 
-			[] spawn ODDadvanced_fnc_CompleteObj;
+			// [] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 1): {		// L'objectif est de tuer une HVT
 			while {((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1)))} do {
