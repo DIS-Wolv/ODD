@@ -102,6 +102,10 @@ switch (_Mission) do {
 		// systemChat(str(units _g select 0));
 		
 		((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
+
+
+		((units _g) select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+
 		if (round random 4 == 1) then {
 			// Avec 25% de chance 
 			[_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
