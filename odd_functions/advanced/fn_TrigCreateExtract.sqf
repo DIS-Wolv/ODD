@@ -19,7 +19,7 @@ sleep(5);
 
 if (ODD_var_CurrentMission == 1) then {
 	base setVariable ["ODD_var_ObjectifExtract", _obj, True];
-	// ["ODD_task_mission", "UPDATED"] call BIS_fnc_tasksetState;
+	["ODD_task_mission", "UPDATED"] call BIS_fnc_tasksetState;
 	["ODD_task_mission", position base] call BIS_fnc_taskSetDestination;
 
 	// Crée la tâche de retour à la base
