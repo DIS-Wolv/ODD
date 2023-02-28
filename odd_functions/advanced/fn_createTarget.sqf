@@ -161,7 +161,7 @@ switch (_Mission) do {
 				// Ajoute l'unité à la liste noire des clients headless
 				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);   
-		// Réitère pour chaque unité du groupe
+			// Réitère pour chaque unité du groupe
 			[position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 			// Sinon, le groupe est mis en garnison avec ACE
 		};
@@ -173,6 +173,18 @@ switch (_Mission) do {
 			playSound3D [_sound, _unit, False, position _unit, 3, 1, 30];
 			[_unit, True] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
 		}];
+		
+		_hvt addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+
+		_trg = createTrigger ["EmptyDetector", _hvt]; 
+		_trg setTriggerArea [5, 5, 0, false]; 
+		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		_trg setTriggerStatements ["this", 
+			"_vehicle = attachedTo thisTrigger;
+			[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			deleteVehicle thisTrigger;",
+		""];
+		_trg attachTo [_hvt];
 
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
 		// Crée la tâche
@@ -293,6 +305,7 @@ switch (_Mission) do {
 		
 		_g = [position _tgBuild, west, _group] call BIS_fnc_spawngroup;
 		// Crée le prisonier
+		_hvt = (units _g) select 0;
 
 		{
 			_x setVariable ["acex_headless_blacklist", True, True];
@@ -304,11 +317,23 @@ switch (_Mission) do {
 		[position _tgBuild, nil, units _g, 10, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		// Met le prisonier en garnison
 		sleep 1;
-		[((units _g) select 0), True, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
+		[_hvt, True, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
 		// Bascule le prisonier en captivité ACE
 		
-		ODD_var_MissionProps pushBack (units _g select 0);
-		ODD_var_Objective pushBack (units _g select 0);
+		ODD_var_MissionProps pushBack _hvt;
+		ODD_var_Objective pushBack _hvt;
+
+		_hvt addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+
+		_trg = createTrigger ["EmptyDetector", _hvt]; 
+		_trg setTriggerArea [5, 5, 0, false]; 
+		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		_trg setTriggerStatements ["this", 
+			"_vehicle = attachedTo thisTrigger;
+			[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			deleteVehicle thisTrigger;",
+		""];
+		_trg attachTo [_hvt];
 		
 		_group = selectRandom ODD_var_FireTeam;
 		
