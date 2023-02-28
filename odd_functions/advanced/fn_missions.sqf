@@ -562,42 +562,42 @@ if (ODD_var_CurrentMission == 0) then {
 			// [alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 3): {		// L'objectif est une zone à sécuriser
-			private _seuil = (round (_BaseIa / 20)) + 1;
-			ODD_var_Objective = ODD_var_MainAreaIA;
-			publicVariable "ODD_var_Objective";
+			// private _seuil = (round (_BaseIa / 20)) + 1;
+			// ODD_var_Objective = ODD_var_MainAreaIA;
+			// publicVariable "ODD_var_Objective";
 			
-			while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
-				// Vérification toutes les minutes que la qu'il y a plus d'IA que le seuil défini
-				_NextTick = servertime + 60;
+			// while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
+			// 	// Vérification toutes les minutes que la qu'il y a plus d'IA que le seuil défini
+			// 	_NextTick = servertime + 60;
 				
-				call ODDadvanced_fnc_sortieGarnison;
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 
-				[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDcommon_fnc_log;
+			// 	[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDcommon_fnc_log;
 				
-				{
-					if (isNull(_x)) then {
-						ODD_var_Objective = ODD_var_Objective - [_x];
-					};
-					// Ajout de la gestion des catpifs, inconscients et fuyards
-				}forEach ODD_var_Objective;
-				publicVariable "ODD_var_Objective";
+			// 	{
+			// 		if (isNull(_x)) then {
+			// 			ODD_var_Objective = ODD_var_Objective - [_x];
+			// 		};
+			// 		// Ajout de la gestion des catpifs, inconscients et fuyards
+			// 	}forEach ODD_var_Objective;
+			// 	publicVariable "ODD_var_Objective";
 
-				waitUntil {
-					sleep 10;
-					_nbIa = [] call ODDadvanced_fnc_countIA;
-					((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-				};
-			};
-			sleep(1);
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 		((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+			// 	};
+			// };
+			// sleep(1);
 
-			[] spawn ODDadvanced_fnc_CompleteObj;
+			// [] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 4);
 		case (ODD_var_MissionType select 5): {		// L'objectif sont des informations ou des boites noires
