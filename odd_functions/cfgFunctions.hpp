@@ -63,8 +63,10 @@ class ODD_advanced {
 		class areaControl {};
 
 		// fonctions "Propres"
+		class TrigCreateExtract {};
 		class TrigCreateRtb {};
 		class TrigWaitRtb {};
+		class TrigOkExtract {};
 		class TrigOkRtb {};
 		class CompleteObj {};
 	}
