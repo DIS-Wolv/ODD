@@ -22,7 +22,7 @@ if (_playercheck == _humanPlayers) then {
 	} forEach _trig;
 	Base setVariable ["ODD_var_TrigRTB", [], True];
 	if (ODD_var_CurrentMission == 1) then {
-		["ODD_task_Extract", "SUCCEEDED"] call BIS_fnc_tasksetState;
+		["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
 		// La tâche est accomplie
 		
 		ODD_var_TimeEnd = servertime;

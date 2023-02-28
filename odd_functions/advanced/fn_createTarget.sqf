@@ -368,7 +368,19 @@ switch (_Mission) do {
 		};
 
 		[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
-		
+
+		_g addEventHandler ["GetIn", { 
+			params ["_vehicle", "_role", "_unit", "_turret"]; 
+			private _dest = "ODD_task_mission" call BIS_fnc_taskDestination;
+			private _base = position base;
+			if ((isPlayer _unit) and ((_dest select 0 != _base select 0) or (_dest select 1 != _base select 1))) then { 
+				[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			};
+		}];
+		_g addEventHandler ["Killed", {
+			[False] spawn ODDadvanced_fnc_CompleteObj;
+		}];
+
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
 		

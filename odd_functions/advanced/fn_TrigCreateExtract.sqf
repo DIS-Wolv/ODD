@@ -19,8 +19,9 @@ sleep(5);
 
 if (ODD_var_CurrentMission == 1) then {
 	base setVariable ["ODD_var_ObjectifExtract", _obj, True];
+	// ["ODD_task_mission", "UPDATED"] call BIS_fnc_tasksetState;
+	["ODD_task_mission", position base] call BIS_fnc_taskSetDestination;
 
-	[True, ["ODD_task_ExtractOjb", "ODD_task_main"], ["Ramenez l'objectif à la base", "Extraction", "Extraction"], (position base), "ASSIGNED", 2, True, "move"] call BIS_fnc_taskCreate;
 	// Crée la tâche de retour à la base
 	sleep(1);
 	Private _Trigger = [];
@@ -53,11 +54,6 @@ if (ODD_var_CurrentMission == 1) then {
 	_Trigger pushBack _TrigCount;
 
 	Base setVariable ["ODD_var_TrigRTB", _Trigger, True];
-
-	_obj addEventHandler ["Killed", {
-		["ODD_task_ExtractOjb", "FAILED"] call BIS_fnc_tasksetState;
-		[] spawn ODDadvanced_fnc_TrigCreateRtb;
-	}];
 
 	[["Creation des triggers de RTB OK"]] call ODDcommon_fnc_log;
 };

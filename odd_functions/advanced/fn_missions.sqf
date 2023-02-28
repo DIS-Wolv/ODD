@@ -650,30 +650,30 @@ if (ODD_var_CurrentMission == 0) then {
 			[alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 7): {		// L'objectif est de sécuriser un véhicule
-			while {
-				((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
-			} do {
-				// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il n'est pas détruit
-				_NextTick = servertime + 60;
+			// while {
+			// 	((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
+			// } do {
+			// 	// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il n'est pas détruit
+			// 	_NextTick = servertime + 60;
 				
-				call ODDadvanced_fnc_sortieGarnison;
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					(((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
-				};
-			};
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+			// 	};
+			// };
 			
-			sleep(1);
+			// sleep(1);
 			
-			[alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
+			// [alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 8): {		// L'objectif est de détruire un véhicule
 			// while {
