@@ -7,6 +7,7 @@ if (_index != -1) then {
 	private _coord2D = [0,0,0];
 	private _coordZ = [0,0,0];
 	private _alt = 0;
+	private _dropTime = 0;
 
 	{
 		private _markerHalo = (markerText _x splitString " ");
@@ -21,6 +22,7 @@ if (_index != -1) then {
 			}
 			else {
 				_coordZ = [0,0, _alt];
+				_dropTime = parseNumber (_markerHalo select 2);
 			}
 		};
 	}forEach allMapMarkers;
@@ -34,22 +36,34 @@ if (_index != -1) then {
 	hintSilent "";
 	}
 	else {
-		_vl setPos _posHalo; 
-
-		sleep 0.1;
-		call WolvGarage_fnc_garUpdateVlProx;
-		
-		_posChute = [position _vl select 0, position _vl select 1, (position _vl select 2) + 2];
-		_chute = createvehicle ["i_parachute_02_f", position _vl,[],0,"can_collide"];
-		_vl attachto [_chute,[0,0,2.5]];
-
-		waitUntil{
-			sleep 1; 
-			(((position _vl) select 2) <= 10)
+		if (!isNil "_dropTime") then {
+			_dropTimeH = floor (_dropTime / 100);
+			_dropTimeM = _dropTime - 100 * _dropTimeH;
+			waitUntil {
+				sleep 59;
+				_timeNow = date;
+				//systemChat format ["%1:%2 | %3:%4", (_timeNow select 3),(_timeNow select 4),_dropTimeH,_dropTimeM];
+				((((_timeNow select 3) == _dropTimeH) && ((_timeNow select 4) == _dropTimeM)) or ((_vl distance2D WolvGarage_var_OBJ) >= 150))
+			};
 		};
+		if ((_vl distance2D WolvGarage_var_OBJ) < 150) then {
+			_vl setPos _posHalo; 
 
-		_smoke = "SmokeShellGreen" createVehicle _posChute;
-		_smoke attachto [_vl,[1,1,0]];
+			sleep 0.1;
+			call WolvGarage_fnc_garUpdateVlProx;
+			
+			_posChute = [position _vl select 0, position _vl select 1, (position _vl select 2) + 2];
+			_chute = createvehicle ["i_parachute_02_f", position _vl,[],0,"can_collide"];
+			_vl attachto [_chute,[0,0,2.5]];
+
+			waitUntil{
+				sleep 1; 
+				(((position _vl) select 2) <= 10)
+			};
+
+			_smoke = "SmokeShellGreen" createVehicle _posChute;
+			_smoke attachto [_vl,[1,1,0]];
+		};
 	};
 };
 
