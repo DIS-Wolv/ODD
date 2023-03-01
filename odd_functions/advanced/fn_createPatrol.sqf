@@ -96,7 +96,7 @@ if (_action) then {
 			- ((((_heure - 12)^2)/ 48 ) + 3 ) 
 			+ 4
 		)/4);
-	_nbPartol resize _NbPatrouille;
+	_nbPartol resize (_NbPatrouille max 1);
 	
 	[["Nombre de Patrouille sur %1 : %2 groupes", text _zo, _NbPatrouille]] call ODDcommon_fnc_log;
 

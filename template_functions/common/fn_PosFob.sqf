@@ -22,6 +22,7 @@ if (isNil "_marker") then {
 _pos = MarkerPos _marker;
 _dir = MarkerDir _marker;
 
+_man = getPos fob nearEntities ["Man", 100];
 
 fob setPos _pos;
 fob setDir _dir;
@@ -40,5 +41,12 @@ medicalFob setDir (_dir + 180);
 
 lanceursFob setPos (_pos getPos [3, (46+_dir)%360]);
 lanceursFob setDir (_dir + 330);
+
+{
+	if (side _x == WEST) then {
+		[fob, _x] call DISCommon_fnc_fastTravel;
+	};
+} forEach _man;
+
 
 ["marker_1", FOB, False] call DISCommon_fnc_markers;

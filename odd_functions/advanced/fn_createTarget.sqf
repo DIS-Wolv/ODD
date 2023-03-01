@@ -49,6 +49,8 @@ switch (_Mission) do {
 		_box additemCargoGlobal ["DemoCharge_Remote_Mag", 2];
 		// Ajoute des charges explosives à la caisse
 		
+		_box addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+
 		ODD_var_Objective pushBack _box;
 
 		sleep(1);
@@ -100,6 +102,10 @@ switch (_Mission) do {
 		// systemChat(str(units _g select 0));
 		
 		((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
+
+
+		((units _g) select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+
 		if (round random 4 == 1) then {
 			// Avec 25% de chance 
 			[_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
@@ -155,7 +161,7 @@ switch (_Mission) do {
 				// Ajoute l'unité à la liste noire des clients headless
 				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);   
-		// Réitère pour chaque unité du groupe
+			// Réitère pour chaque unité du groupe
 			[position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 			// Sinon, le groupe est mis en garnison avec ACE
 		};
@@ -167,6 +173,18 @@ switch (_Mission) do {
 			playSound3D [_sound, _unit, False, position _unit, 3, 1, 30];
 			[_unit, True] execVM "\z\ace\addons\captives\functions\fnc_setSurrendered.sqf";
 		}];
+		
+		_hvt addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+
+		_trg = createTrigger ["EmptyDetector", _hvt]; 
+		_trg setTriggerArea [5, 5, 0, false]; 
+		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		_trg setTriggerStatements ["this", 
+			"_vehicle = attachedTo thisTrigger;
+			[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			deleteVehicle thisTrigger;",
+		""];
+		_trg attachTo [_hvt];
 
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[((selectRandom ODD_var_MissionBriefSecureHVT)+ " Il possède une chemlight jaune."), text _zo, name _hvt], "Capturer une HVT", "ODdoBJ"], objNull, "CREATED", 2, True, "kill"] call BIS_fnc_taskCreate;
 		// Crée la tâche
@@ -174,6 +192,13 @@ switch (_Mission) do {
 	case (ODD_var_MissionType select 3): {		// Mission de sécurisation de zone
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2, True, "attack"] call BIS_fnc_taskCreate;
 		// Crée la tâche
+		_trg = createTrigger ["EmptyDetector", getpos _zo];
+		_trg setTriggerArea [size _zo select 1, size _zo select 1, 0, false]; 
+		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		_trg setTriggerStatements ["this && (round (time % 30) == 0)", 
+			"private _nbia = [] call ODDadvanced_fnc_countIA;
+			if (_nbia < 10) then {[True] spawn ODDadvanced_fnc_CompleteObj;};",
+		""];
 	};
 	case (ODD_var_MissionType select 4): {		// Mission de récupération de renseignements
 		_intellist = ["Item_SmartPhone", "Item_ItemalivePhoneOld", "Item_MobilePhone", "Item_SatPhone", "land_IPPhone_01_black_F", "land_IPPhone_01_olive_F", "land_IPPhone_01_sand_F", "land_Laptop_F", "land_Laptop_device_F", "land_Laptop_unfolded_F", "land_Laptop_intel_01_F", "land_Laptop_intel_02_F", "land_Laptop_intel_Oldman_F", "land_laptop_03_closed_black_F", "land_Laptop_03_black_F", "land_laptop_03_closed_olive_F", "land_Laptop_03_olive_F", "land_laptop_03_closed_sand_F", "land_Laptop_03_sand_F", "land_Laptop_02_F", "land_Laptop_02_unfolded_F"];
@@ -193,7 +218,7 @@ switch (_Mission) do {
 			_intel, "<t color='#FF0000'>Recupérer les intels</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
 			"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 3", "True", {}, {}, {
 				ODD_var_Objective set[1, False];
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective"; [(_this select 0)] remoteExec ["removeAllActions", 0, True];
+				[True] spawn ODDadvanced_fnc_CompleteObj; [(_this select 0)] remoteExec ["removeAllActions", 0, True];
 			},
 			{}, [], (random[2, 10, 15]), nil, True, True
 		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
@@ -252,7 +277,7 @@ switch (_Mission) do {
 			_helico, "<t color='#FF0000'>Recupérer les boîtes noires</t>", 	"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa",
 			"\A3\Ui_f\data\IGUI\Cfg\Holdactions\holdaction_search_ca.paa", "_target distance _this < 4", "True", {}, {}, {
 				ODD_var_Objective set [1, False];
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState; publicVariable "ODD_var_Objective";[(_this select 0)] remoteExec ["removeAllActions", 0, True];
+				[True] spawn ODDadvanced_fnc_CompleteObj; [(_this select 0)] remoteExec ["removeAllActions", 0, True];
 			},
 			{}, [], (random[10, 20, 30]), nil, True, False
 		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
@@ -287,6 +312,7 @@ switch (_Mission) do {
 		
 		_g = [position _tgBuild, west, _group] call BIS_fnc_spawngroup;
 		// Crée le prisonier
+		_hvt = (units _g) select 0;
 
 		{
 			_x setVariable ["acex_headless_blacklist", True, True];
@@ -298,11 +324,23 @@ switch (_Mission) do {
 		[position _tgBuild, nil, units _g, 10, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		// Met le prisonier en garnison
 		sleep 1;
-		[((units _g) select 0), True, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
+		[_hvt, True, player] execVM "\z\ace\addons\captives\functions\fnc_setHandcuffed.sqf";
 		// Bascule le prisonier en captivité ACE
 		
-		ODD_var_MissionProps pushBack (units _g select 0);
-		ODD_var_Objective pushBack (units _g select 0);
+		ODD_var_MissionProps pushBack _hvt;
+		ODD_var_Objective pushBack _hvt;
+
+		_hvt addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+
+		_trg = createTrigger ["EmptyDetector", _hvt]; 
+		_trg setTriggerArea [5, 5, 0, false]; 
+		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
+		_trg setTriggerStatements ["this", 
+			"_vehicle = attachedTo thisTrigger;
+			[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			deleteVehicle thisTrigger;",
+		""];
+		_trg attachTo [_hvt];
 		
 		_group = selectRandom ODD_var_FireTeam;
 		
@@ -362,7 +400,19 @@ switch (_Mission) do {
 		};
 
 		[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
-		
+
+		_g addEventHandler ["GetIn", { 
+			params ["_vehicle", "_role", "_unit", "_turret"]; 
+			private _dest = "ODD_task_mission" call BIS_fnc_taskDestination;
+			private _base = position base;
+			if ((isPlayer _unit) and ((_dest select 0 != _base select 0) or (_dest select 1 != _base select 1))) then { 
+				[_vehicle] spawn ODDadvanced_fnc_TrigCreateExtract;
+			};
+		}];
+		_g addEventHandler ["Killed", {
+			[False] spawn ODDadvanced_fnc_CompleteObj;
+		}];
+
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
 		
@@ -428,6 +478,8 @@ switch (_Mission) do {
 		
 		ODD_var_MissionProps pushBack _g;
 		ODD_var_Objective pushBack _g;
+
+		_g addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
 		
 		sleep 1;
 		_group = selectRandom ODD_var_FireTeam;

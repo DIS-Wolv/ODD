@@ -20,7 +20,7 @@ if (_state != _act) then {
 		[["Compte des joueurs sur base : %1", _state]] call ODDcommon_fnc_log;
 	}
 	else {
-		systemChat str(_state);
+		// systemChat str(_state);
 		private _playercheck = [] call ODDcommon_fnc_CountOnBase;
 		if (_playercheck == 0) then {
 			Base setVariable ["ODD_var_CountActive", _state, True];

@@ -331,11 +331,11 @@ if (ODD_var_CurrentMission == 0) then {
 		private _action = round random 100;
 		if (_action <= 75) then {
 			// 75% de chance que la mission comporte des IEDs
-			_nbIED = 25 + round random 30;
-			// Crée entre 25 et 55 IEDs
+			_nbIED = 25 + round random 20;
+			// Crée entre 25 et 45 IEDs
 			[_zo, _nbIED] spawn ODDadvanced_fnc_pressureIED;
-			_nbDecoy = 20 + round random 30;
-			// Crée entre 20 et 50 IEDs qui n'exploseront pas
+			_nbDecoy = 5 + round random 10;
+			// Crée entre 5 et 15 IEDs qui n'exploseront pas
 			[_zo, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 		}
 		else {
@@ -400,7 +400,8 @@ if (ODD_var_CurrentMission == 0) then {
 		_radA = 1200;
 		_alt = 1000;
 		_loc = _x;
-		private _LocTrigger = createTrigger ["EmptyDetector", position _loc, True]; 
+		_pos = position _loc;
+		private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 		_LocTrigger setTriggerArea [_radA, _radA, 0, False, _alt]; 
 		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		
@@ -412,7 +413,6 @@ if (ODD_var_CurrentMission == 0) then {
 			[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 		"
 		];
-		_pos = position _loc;
 		_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
 		_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
 
@@ -483,230 +483,229 @@ if (ODD_var_CurrentMission == 0) then {
 	publicVariable "ODD_var_TimeZO";
 	
 	switch (ODD_var_SelectedMissionType) do {
-		case (ODD_var_MissionType select 0): {		  // L'objectif est de détruire des caisses
-			while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
-				private _NextTick = servertime + 60;
-				// Vérification toutes les minutes que la caisse n'est pas vide
-				call ODDadvanced_fnc_sortieGarnison;
+		case (ODD_var_MissionType select 0): {		// L'objectif est de détruire des caisses
+			// while {(count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1)} do {
+			// 	private _NextTick = servertime + 60;
+			// 	// Vérification toutes les minutes que la caisse n'est pas vide
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					(!((count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
-				};
-			};
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(!((count (magazineCargo (ODD_var_Objective select 0)) != 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick
+			// 	};
+			// };
 			
-			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+			// // (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+			// // 1. remplacer le while par l'Event Handler /!\ test TOUT les HC pour les different obj (killed sur vl ou caisse ?)
+			// // 2. cree l'EH ici ou dans le createTarget ??
+			// // 3. importance du spawn car Unscheduled + sleep 
+
+			// sleep(1);
+
+			// [] spawn ODDadvanced_fnc_CompleteObj;
 		};
-		case (ODD_var_MissionType select 1): {	   // L'objectif est de tuer une HVT
-			while {((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1)))} do {
-				// Vérification toutes les minutes que la cible est en vie
-				_NextTick = servertime + 60;
+		case (ODD_var_MissionType select 1): {		// L'objectif est de tuer une HVT
+			// while {((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1)))} do {
+			// 	// Vérification toutes les minutes que la cible est en vie
+			// 	_NextTick = servertime + 60;
 				
-				call ODDadvanced_fnc_sortieGarnison;
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					(!((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
-				};
-			};
-			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
-		};
-		case (ODD_var_MissionType select 2): {	   // L'objectif est de capturer une HVT
-			while {((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))} do {
-				// Vérification toutes les minutes que la cible n'est pas à la base ou à la fob et qu'elle est toujours en vie
-				_NextTick = servertime + 60;
-				
-				call ODDadvanced_fnc_sortieGarnison;
-				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
-				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
-				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
-				
-				waitUntil {
-					sleep 10;
-					(!((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
-				};
-			};
-			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé de la HVT
-		};
-		case (ODD_var_MissionType select 3): {	   // L'objectif est une zone à sécuriser
-			private _seuil = (round (_BaseIa / 20)) + 1;
-			ODD_var_Objective = ODD_var_MainAreaIA;
-			publicVariable "ODD_var_Objective";
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(!((alive (ODD_var_Objective select 0) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
+			// 	};
+			// };
 			
-			while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
-				// Vérification toutes les minutes que la qu'il y a plus d'IA que le seuil défini
-				_NextTick = servertime + 60;
-				
-				call ODDadvanced_fnc_sortieGarnison;
-				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
-				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
-				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// // (ODD_var_Objective select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
 
-				[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDcommon_fnc_log;
+			// sleep(1);
+			
+			// [] spawn ODDadvanced_fnc_CompleteObj;
+		};
+		case (ODD_var_MissionType select 2): {		// L'objectif est de capturer une HVT
+			// while {((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))} do {
+			// 	// Vérification toutes les minutes que la cible n'est pas à la base ou à la fob et qu'elle est toujours en vie
+			// 	_NextTick = servertime + 60;
 				
-				{
-					if (isNull(_x)) then {
-						ODD_var_Objective = ODD_var_Objective - [_x];
-					};
-					// Ajout de la gestion des catpifs, inconscients et fuyards
-				}forEach ODD_var_Objective;
-				publicVariable "ODD_var_Objective";
+			// 	call ODDadvanced_fnc_sortieGarnison;
+				
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
+				
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+				
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+				
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(!((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or servertime > _NextTick)
+			// 	};
+			// };
 
-				waitUntil {
-					sleep 10;
-					_nbIa = [] call ODDadvanced_fnc_countIA;
-					((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-				};
-			};
-			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
+			// sleep(1);
+
+			// [alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
+		};
+		case (ODD_var_MissionType select 3): {		// L'objectif est une zone à sécuriser
+			// private _seuil = (round (_BaseIa / 20)) + 1;
+			// ODD_var_Objective = ODD_var_MainAreaIA;
+			// publicVariable "ODD_var_Objective";
+			
+			// while {(_nbIa > _seuil) and (ODD_var_CurrentMission == 1)} do {
+			// 	// Vérification toutes les minutes que la qu'il y a plus d'IA que le seuil défini
+			// 	_NextTick = servertime + 60;
+				
+			// 	call ODDadvanced_fnc_sortieGarnison;
+				
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
+				
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+				
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+
+			// 	[["Progression de l'objectif : %1 / %2", _nbIa, _seuil]] call ODDcommon_fnc_log;
+				
+			// 	{
+			// 		if (isNull(_x)) then {
+			// 			ODD_var_Objective = ODD_var_Objective - [_x];
+			// 		};
+			// 		// Ajout de la gestion des catpifs, inconscients et fuyards
+			// 	}forEach ODD_var_Objective;
+			// 	publicVariable "ODD_var_Objective";
+
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 		((_nbIa > _seuil) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+			// 	};
+			// };
+			// sleep(1);
+
+			// [] spawn ODDadvanced_fnc_CompleteObj;
 		};
 		case (ODD_var_MissionType select 4);
-		case (ODD_var_MissionType select 5): {	   // L'objectif sont des informations ou des boites noires
-			while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
-				private _NextTick = servertime + 60;
+		case (ODD_var_MissionType select 5): {		// L'objectif sont des informations ou des boites noires
+			// while {(ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)} do {
+			// 	private _NextTick = servertime + 60;
 				
-				call ODDadvanced_fnc_sortieGarnison;
+			// 	call ODDadvanced_fnc_sortieGarnison;
 				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
 				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
 				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
 				
-				waitUntil {
-					sleep 10;
-					((ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-				};
-			};
-			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
-		};
-		case (ODD_var_MissionType select 6): {	   // L'objectif est un prisonier
-			while {((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)} do {
-				// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il est toujours en vie
-				_NextTick = servertime + 60;
-				
-				call ODDadvanced_fnc_sortieGarnison;
-				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
-				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
-				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
-				
-				waitUntil {
-					sleep 10;
-					(((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
-				};
-			};
-			
-			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}
-			else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé du prisonier
-		};
-		case (ODD_var_MissionType select 7): {	   // L'objectif est de sécuriser un véhicule
-			while {
-				((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
-			} do {
-				// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il n'est pas détruit
-				_NextTick = servertime + 60;
-				
-				call ODDadvanced_fnc_sortieGarnison;
-				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
-				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
-				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
-				
-				waitUntil {
-					sleep 10;
-					(((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
-				};
-			};
-			
-			sleep(1);
-			if (alive (ODD_var_Objective select 0)) then {
-				["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			}
-			else {
-				["ODD_task_mission", "FAILED"] call BIS_fnc_tasksetState;
-			};
-			// La tâche est accomplie ou non selon l'état de santé du prisonier
-		};
-		case (ODD_var_MissionType select 8): {	   // L'objectif est de détruire un véhicule
-			while {
-				((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1))
-			} do {
-				// Vérification toutes les minutes que la cible n'a pas été détruite
-				_NextTick = servertime + 60;
-				
-				call ODDadvanced_fnc_sortieGarnison;
-				
-				_nbIa = [] call ODDadvanced_fnc_countIA;
-				
-				_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
-				
-				_nbItt = _nbItt + 1;
-				// [_nbItt] call ODDadvanced_fnc_garbageCollector;
-				
-				waitUntil {
-					sleep 10;
-					(!((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
-				};
-			};
-			
-			sleep(1);
-			["ODD_task_mission", "SUCCEEDED"] call BIS_fnc_tasksetState;
-			// La tâche est accomplie
-		};
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		((ODD_var_Objective select 1) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+			// 	};
+			// };
+			// sleep(1);
 
+			// // dans le addAction => {[True] spawn ODDadvanced_fnc_CompleteObj};
+			
+			
+			// [] spawn ODDadvanced_fnc_CompleteObj;
+		};
+		case (ODD_var_MissionType select 6): {		// L'objectif est un prisonier
+			// while {((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)} do {
+			// 	// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il est toujours en vie
+			// 	_NextTick = servertime + 60;
+				
+			// 	call ODDadvanced_fnc_sortieGarnison;
+				
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
+				
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+				
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+				
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)) == False or servertime > _NextTick
+			// 	};
+			// };
+			
+			// sleep(1);
+			
+			// [alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
+		};
+		case (ODD_var_MissionType select 7): {		// L'objectif est de sécuriser un véhicule
+			// while {
+			// 	((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1)))
+			// } do {
+			// 	// Vérification toutes les minutes que le prisonier n'est pas à la base ou à la fob et qu'il n'est pas détruit
+			// 	_NextTick = servertime + 60;
+				
+			// 	call ODDadvanced_fnc_sortieGarnison;
+				
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
+				
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+				
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+				
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(((((!((fob in nearestobjects[(ODD_var_Objective select 0), [], 50]) or (base in nearestobjects[(ODD_var_Objective select 0), [], 50]))) and (alive (ODD_var_Objective select 0))) and (ODD_var_CurrentMission == 1))) or (servertime > _NextTick))
+			// 	};
+			// };
+			
+			// sleep(1);
+			
+			// [alive (ODD_var_Objective select 0)] spawn ODDadvanced_fnc_CompleteObj;
+		};
+		case (ODD_var_MissionType select 8): {		// L'objectif est de détruire un véhicule
+			// while {
+			// 	((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1))
+			// } do {
+			// 	// Vérification toutes les minutes que la cible n'a pas été détruite
+			// 	_NextTick = servertime + 60;
+				
+			// 	call ODDadvanced_fnc_sortieGarnison;
+				
+			// 	_nbIa = [] call ODDadvanced_fnc_countIA;
+				
+			// 	_Renfort = [_Renfort, _nbIa, _BaseIa] call ODDadvanced_fnc_testRenfort;
+				
+			// 	_nbItt = _nbItt + 1;
+			// 	// [_nbItt] call ODDadvanced_fnc_garbageCollector;
+				
+			// 	waitUntil {
+			// 		sleep 10;
+			// 		(!((alive (ODD_var_Objective select 0)) and (ODD_var_CurrentMission == 1)) or (servertime > _NextTick))
+			// 	};
+			// };
+			
+			// // ODD_var_Objective addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
+			
+			// sleep(1);
+			
+			// [] spawn ODDadvanced_fnc_CompleteObj;
+		};
 	};
 
-	[] call ODDadvanced_fnc_TrigCreateRtb;
+	// [] call ODDadvanced_fnc_TrigCreateRtb;
 	
 }
 else {

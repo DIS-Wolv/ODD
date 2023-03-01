@@ -58,7 +58,6 @@ if(!isNil "pa")
 then {
 	[] execVM "scripts\infoBoat.sqf";
 	[] execVM "scripts\retourPa.sqf";
-	posUsine = getPosASL usine;
 	lifeboat setVariable ["R3F_LOG_disabled", True];
 	lifeboat1 setVariable ["R3F_LOG_disabled", True];
 	lifeboat2 setVariable ["R3F_LOG_disabled", True];
@@ -68,7 +67,7 @@ then {
 	pierLadder setVariable ["R3F_LOG_disabled", True];
 	boatRack addAction ["Sortir un semi-rigide", {[] call DISCommon_fnc_createBoat},[],1.5,True,True,"","True",5];
 	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,True,True,"","True",5];
-	base addAction ["Usine", {[posUsine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	base addAction ["Usine", {[usine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	usine addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	usine setVariable ["R3F_LOG_disabled", True];
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
