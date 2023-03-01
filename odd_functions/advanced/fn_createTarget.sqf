@@ -193,12 +193,19 @@ switch (_Mission) do {
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureArea, text _zo], "Sécuriser la zone", "ODdoBJ"], objNull, "CREATED", 2, True, "attack"] call BIS_fnc_taskCreate;
 		// Crée la tâche
 		_trg = createTrigger ["EmptyDetector", getpos _zo];
-		_trg setTriggerArea [size _zo select 1, size _zo select 1, 0, false]; 
+		_trg setTriggerArea [1000, 1000, 0, false]; 
 		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
 		_trg setTriggerStatements ["this && (round (time % 30) == 0)", 
 			"private _nbia = [] call ODDadvanced_fnc_countIA;
 			if (_nbia < 10) then {[True] spawn ODDadvanced_fnc_CompleteObj;};",
 		""];
+		// waitUntil {sleep 1; ODD_var_CurrentMission == 1};
+		// if (ODD_var_CurrentMission == (ODD_var_MissionType select 3)) then {
+		//		{
+		//			_x addEventHandler ["Killed", {private _nbia = [] call ODDadvanced_fnc_countIA; if (_nbia < 10) then {[True] spawn ODDadvanced_fnc_CompleteObj;};}];
+		//		} forEach ODD_var_MainAreaIA;
+		// };
+		// 
 	};
 	case (ODD_var_MissionType select 4): {		// Mission de récupération de renseignements
 		_intellist = ["Item_SmartPhone", "Item_ItemalivePhoneOld", "Item_MobilePhone", "Item_SatPhone", "land_IPPhone_01_black_F", "land_IPPhone_01_olive_F", "land_IPPhone_01_sand_F", "land_Laptop_F", "land_Laptop_device_F", "land_Laptop_unfolded_F", "land_Laptop_intel_01_F", "land_Laptop_intel_02_F", "land_Laptop_intel_Oldman_F", "land_laptop_03_closed_black_F", "land_Laptop_03_black_F", "land_laptop_03_closed_olive_F", "land_Laptop_03_olive_F", "land_laptop_03_closed_sand_F", "land_Laptop_03_sand_F", "land_Laptop_02_F", "land_Laptop_02_unfolded_F"];
