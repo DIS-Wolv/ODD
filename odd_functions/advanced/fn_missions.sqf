@@ -362,6 +362,7 @@ if (ODD_var_CurrentMission == 0) then {
 				}
 			];
 			_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+			// EH pour secure Area ?
 		}forEach units _x;
 	} forEach ODD_var_MainAreaIA; 
 	// Ajoute la possibilité qu'une unité se rende sur la zone objectif
