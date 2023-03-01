@@ -19,9 +19,9 @@ private _nbIa = 0;		// Initialisation à 0
 
 { 
 	{ 
-	if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {		// Si l'unité est en vie
-		_nbIa = _nbIa + 1;						// Ajoute 1 au compte
-	};
+		if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {		// Si l'unité est en vie
+			_nbIa = _nbIa + 1;						// Ajoute 1 au compte
+		};
 	} forEach units _x;  						// Pour chaque unité
 } forEach ODD_var_MainAreaIA;					// De chaque groupe
 
