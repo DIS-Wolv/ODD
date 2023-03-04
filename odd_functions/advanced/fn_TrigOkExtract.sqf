@@ -15,7 +15,7 @@ private _humanPlayers = count (allPlayers) - _headlessClients;
 private _playercheck = [] call ODDcommon_fnc_CountOnBase;
 // systemChat format["%1 | %2", _playercheck, _humanPlayers];
 
-if (_playercheck == _humanPlayers) then {
+if (_playercheck >= _humanPlayers) then {
 	_trig = Base getVariable ["ODD_var_TrigRTB", False];
 	{
 		deleteVehicle _x;
