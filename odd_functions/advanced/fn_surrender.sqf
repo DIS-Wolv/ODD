@@ -16,6 +16,8 @@
 */
 params ["_unit", "_killer"];
 
+private _maxSurrender = 2;
+
 if (side _killer == WEST ) then {	
 	// Si L'IA a été tuée par un BLUFOR
 	_distSurrender = 20;
@@ -33,6 +35,7 @@ if (side _killer == WEST ) then {
 	} forEach (units opfor);
 	// Nombre d' OPFOR
 	if (count _nearSurrender != 0) then {
+		private _nbSurrender = 0;
 		{
 			_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
 			// Nombre de BLUFOR
@@ -42,7 +45,7 @@ if (side _killer == WEST ) then {
 			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR
 			// Calcul du seuil
 
-			if ((random 1) < _seuil) then {  
+			if (((random 1) < _seuil) and (_nbSurrender =< _maxSurrender)) then {  
 				if (vehicle _x != _x) then {
 					{
 						moveout _x; // Débarquement du véhicule
@@ -82,6 +85,7 @@ if (side _killer == WEST ) then {
 					};
 				}];
 
+				_nbSurrender = _nbSurrender + 1;
 			};
 			// sleep ((random 1) / 10);
 		} forEach _nearSurrender;
