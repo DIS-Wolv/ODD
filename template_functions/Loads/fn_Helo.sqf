@@ -11,6 +11,7 @@ removeGoggles _unit;
 
 _unit addWeapon "rhsusf_weap_MP7A2";
 _unit addPrimaryWeaponItem "rhsusf_mag_40Rnd_46x30_FMJ";
+_unit addPrimaryWeaponItem "rhsusf_acc_eotech_xps3";
 _unit addWeapon "rhsusf_weap_glock17g4";
 _unit addHandgunItem "rhsusf_mag_17Rnd_9x19_JHP";
 
