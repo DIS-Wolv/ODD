@@ -175,6 +175,11 @@ else {
 			// Crée le groupe
 			_g = [_pos, EAST, _group] call BIS_fnc_spawnGroup;
 
+			{
+				// Current result is saved in variable _x
+				_x setVariable ["ODD_var_ZOM", True, True];
+			} forEach (units _g);
+
 			// Ajoute le groupe à la liste des IA de la missions
 			ODD_var_SecondaryAreasIA pushBack _g;
 
