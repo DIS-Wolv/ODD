@@ -243,8 +243,8 @@ else {
 		// }; 
 		
 		// Place les unités en garnison
-		if (floor(random 4) != 0) then {
-			// 1 / 4 qu'il soit split dans plusieurs batiment
+		if (floor(random 6) != 0) then {
+			// 1 / 6 qu'il soit split dans plusieurs batiment
 			[_pos, nil, units _g, _radius, 1, False, _tp] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		}
 		else {
