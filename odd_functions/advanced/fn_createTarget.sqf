@@ -106,7 +106,7 @@ switch (_Mission) do {
 
 		((units _g) select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
 
-		if (round random 4 == 1) then {
+		if (round random 8 == 1) then {
 			// Avec 25% de chance 
 			[_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
 			// Le groupe est en patrouille
@@ -150,7 +150,7 @@ switch (_Mission) do {
 		_hvt addHandgunItem "6Rnd_45ACP_Cylinder";
 		for "_i" from 0 to (round(random 3)) do {_hvt addMagazine "6Rnd_45ACP_Cylinder";};
 
-		if (round random 4 == 1) then {
+		if (round random 8 == 1) then {
 			// Avec 25% de chance 
 			[_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
 			// Le groupe est en patrouille
