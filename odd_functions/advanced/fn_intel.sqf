@@ -30,10 +30,9 @@ private _msgChkpt = ["J'ai vu qu'ils controllaient des véhicules là-bas.","J'a
 private _msgNoChkpt = ["Vos ennemis ne controllent pas les routes.","Je n'ai pas vu de checkpoints.","Je ne crois pas qu'ils aient installé de barrages routiers.","Les routes ne sont pas contrôllées","Nous pouvons circuler librement."];
 private _msgIed = ["J'ai vu les insurgés piéger cette route.","Il y a des explosifs sur le bord de cette route.","J'ai vu des explosifs là-bas !","Attention au pièges sur cette route.","J'ai entendu qu'ils avaient posé une bombe là-bas.","Evitez cette route là !"];
 private _msgNoIed = ["Je n'ai pas vu de pièges.","Je crois que les routes ne sont pas piégées.","J'ai entendu les rebelles se plaindre qu'ils n'avaient pas d'explosifs.","Les insurgents essayent de respecter les LOAC."];
-private _msgTransport = [""];
-private _msgNoTransport = [""];
-private _msgObj = [""];
-private _msgNoObj = [""];
+private _msgTransport = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez ma voiture elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Utilisez ce véhicule si vous voulez.", "Si vous voulez, ce véhicule peut vous aider à vous déplacer plus vite","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
+private _msgNoTransport = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé","Vous n'allez pas tirer ma caisse","Je vous donnerais pas mes clefs","Personne ne circule en voiture ici, on pense à la planète nous !"];
+private _msgObj = ["Ce que vous cherchez est ici.", "Je crois que j'ai vu ce que vous cherchez"];
 
 private _color = _colorPool select _source;
 private _markerType = "";
@@ -72,40 +71,40 @@ if (round (random 1) == 0) then {
 		};
 		case (ODD_var_IntelType select 3): {	// checkpoint 
 			if (count ODD_var_MissionCheckPoint <= 0) then {
-				_msg = "Les énemie n'on pas de Checkpoint !";
+				_msg = selectRandom _msgNoChkpt;
 				_needMarker = False;
 			}
 			else {
-				_msg = "Cette route est surveillée.";
+				_msg = selectRandom _msgChkpt;
 				_pos = position (selectRandom ODD_var_MissionCheckPoint);
 				_markerType = "loc_Bunker";
 			}
 		};
 		case (ODD_var_IntelType select 2): {	// IED Pos 
 			if (count ODD_var_MissionIED <= 0) then {
-				_msg = "Les énemie n'utilise pas d'IED !";
+				_msg = selectRandom _msgNoIed;
 				_needMarker = False;
 			}
 			else {
-				_msg = "Il y a des explosifs sur le bord de cette route !";
+				_msg = selectRandom _msgIed;
 				_pos = position (selectRandom ODD_var_MissionIED);
 				_markerType = "loc_mine";
 			};
 		};
 		case (ODD_var_IntelType select 1): {	// VL civil Pos 
 			if (count ODD_var_MissionCivilianVehicles <= 0) then {
-				_msg = "Je n'ai pas vue de voiture !";
+				_msg = selectRandom _msgNoTransport;
 				_needMarker = False;
 			}
 			else {
-				_msg = "C'est ici que j'ai garé ma voiture.";
+				_msg = selectRandom _msgTransport;
 				_pos = position (selectRandom ODD_var_MissionCivilianVehicles);
 				_markerType = "loc_Truck";
 			};
 		};
 		case (ODD_var_IntelType select 0);
 		default {		//ObjectifPos
-			_msg = "Je crois que ce que vous cherchez est là.";
+			_msg = selectRandom _msgObj;
 			if (ODD_var_SelectedMissionType == (ODD_var_MissionType select 2)) then {
 				_pos = position (units (ODD_var_Objective select 0) select 0);
 			}
