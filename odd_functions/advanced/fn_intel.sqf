@@ -121,7 +121,7 @@ if (round (random 1) == 0) then {
 	if (_needMarker) then {
 		_posIntel = _pos getPos [(random 1 * _dist), random 360];
 
-		_marker = createMarker [format["ODDTG %1 %2 %3", (_posIntel select 0), (_posIntel select 1), (_posIntel select 2)], _posIntel];
+		_marker = createMarker [format["ODDTG %1 %2 %3", (_posIntel select 0), (_posIntel select 1), (_posIntel select 2)], _posIntel,1];
 		_marker setMarkertype _markerType;
 		_marker setMarkerColor _color;
 		_marker setMarkerAlpha 0.8125;
@@ -140,7 +140,7 @@ _msg;
 	// private _hours = floor _daytime;
 	// private _minutes = floor ((_daytime - _hours) * 60);
 	// private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
-	// _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos];
+	// _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos,1];
 	// _marker setMarkertype (selectRandom _markerPool);
 	// _marker setMarkerColor (selectRandom _colorPool);
 	// _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
