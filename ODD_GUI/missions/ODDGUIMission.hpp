@@ -175,7 +175,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,1.00,0.00,0.8}; // "Electric green"
-			action = "call OddGuiMissions_fnc_createMission";
+			action = "call OddGuiMissions_fnc_createMission; (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
 		};
 		class ODDGUIMissions_Button_Clear: RscButton_ODDGUI
 		{
@@ -186,7 +186,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {1.00,0.16,0.00,0.8}; // "Ferrari red"
-			action = "[] remoteExec ['ODDadvanced_fnc_clearZO', 2];";
+			action = "[] remoteExec ['ODDadvanced_fnc_clearZO', 2]; (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
 		};
 		class ODDGUIMissions_Button_Prep: RscButton_ODDGUI
 		{
