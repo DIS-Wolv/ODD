@@ -6,6 +6,8 @@ class ODD_Gui {
 		class open {};
 		class udpateLocation {};
 		class updateTime {};
+		class setTime {};
+		class setWeather {};
 	};
 
 };
