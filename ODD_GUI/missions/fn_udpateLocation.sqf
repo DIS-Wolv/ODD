@@ -45,7 +45,7 @@ private _loc = nearestLocations[_posA, _locType, _radA];
 
 _loc = _loc apply {[text _x, _x]};
 
-private _needAdd = ["quarry", "power plant", "military", "factory"];
+private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro"];
 {
 	if ((_x select 0) in _needAdd) then {
 		private _add = (nearestLocations [position (_x select 1), ['NameCityCapital', 'NameCity', 'NameVillage', 'Name'], 4000, position (_x select 1)]) select 0;
