@@ -14,14 +14,11 @@
 *	- ODD_var_SelectedSector
 */
 
-
-
 private _location = [];
 private _SelectSector = [];
+private _obj = 0;
 
-// systemChat "Patate";
 if (!isNil "ODD_var_SelectedSector") then {
-	// systemChat "chaude";
 	if (count(ODD_var_SelectedSector) != 0) then {
 		{
 			switch (_x) do {
@@ -67,7 +64,6 @@ if (!isNil "ODD_var_SelectedSector") then {
 	} forEach _SelectSector;
 }
 else {
-	// systemChat "froide";
 	_location = nearestLocations[[15000, 15000], ODD_var_LocationType, 30000];
 	// Récupère toutes les localités de la carte
 };
