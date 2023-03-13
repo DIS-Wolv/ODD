@@ -93,3 +93,5 @@ if (_isCreate) then {
 } else {
 	systemChat "t'es mauvais Jack, appelles @Wolv (il adore les GUIs)";
 };
+
+ODDGUIMissions_var_SelectedParams = [-1,"",-1];
