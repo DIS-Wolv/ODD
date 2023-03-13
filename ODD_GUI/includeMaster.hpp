@@ -1,2 +1,2 @@
 #include "DefineA3.hpp"
-#include "odd_gui\missions\ODDGUIMission.hpp"
+#include "missions\ODDGUIMission.hpp"
