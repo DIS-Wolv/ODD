@@ -150,8 +150,8 @@ switch (_Mission) do {
 		_hvt addHandgunItem "6Rnd_45ACP_Cylinder";
 		for "_i" from 0 to (round(random 3)) do {_hvt addMagazine "6Rnd_45ACP_Cylinder";};
 
-		if (round random 4 == 1) then {
-			// Avec 25% de chance 
+		if (round random 10 == 0) then {
+			// Avec 10% de chance 
 			[_g, getPos _tgBuild, 100] call bis_fnc_taskpatrol;
 			// Le groupe est en patrouille
 		}
