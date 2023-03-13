@@ -208,7 +208,7 @@ class ODDGUIMission
 			w = 0.15 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,0.60,0.60,0.8}; // "Persian green"
-			action = "systemChat str (sliderPosition ODDGUIMissions_Slider_Time_IDC)";
+			action = "call OddGuiMissions_fnc_setTimeWeather";
 		};
     }
 };
