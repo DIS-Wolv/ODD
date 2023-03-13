@@ -47,7 +47,7 @@ if (side _killer == WEST ) then {
 			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR
 			// Calcul du seuil
 
-			if (((random 1) < _seuil) and (_nbSurrender =< _maxSurrender)) then {  
+			if (((random 1) < _seuil) and (_nbSurrender <= _maxSurrender)) then {  
 				if (vehicle _x != _x) then {
 					{
 						moveout _x; // Débarquement du véhicule
