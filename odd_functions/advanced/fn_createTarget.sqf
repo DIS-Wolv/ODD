@@ -17,22 +17,28 @@
 */
 params ["_zo", ["_type", -1]];
 
-private _Mission = selectRandom ODD_var_SelectedTarget;
+private _Mission = 0;
+if ((_type >= 0) and (_type < count ODD_var_MissionType)) then {
+	_Mission = ODD_var_MissionType select _type;
+}
+else {
+	_Mission = selectRandom ODD_var_MissionType;
+};
 // Choisi une mission aléatoire parmi la lister
 
 [["Mission choisie : %1", _Mission]] call ODDcommon_fnc_log;
 
-if (_type >= 0 and _type < count ODD_var_MissionType) then {
-	_Mission = ODD_var_MissionType select _type;
-	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
-};
+// if (_type >= 0 and _type < count ODD_var_MissionType) then {
+// 	_Mission = ODD_var_MissionType select _type;
+// 	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
+// };
 
-_Buildings = [];
+// _Buildings = [];
 
-while {count _Buildings == 0} do {
-	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
-	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
-};
+// while {count _Buildings == 0} do {
+// 	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
+// 	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
+// };
 
 ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
