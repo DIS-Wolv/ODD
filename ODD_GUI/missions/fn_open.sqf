@@ -1,4 +1,3 @@
-
 ODDGUIMissions_IddDisplay = 090223;
 //Liste des IDC (permet de pointer les controlleurs)
 ODDGUIMissions_Combo_Area_IDC = 2100;		// OK
@@ -50,7 +49,7 @@ if (_isCreate) then {
 	lbAdd [ODDGUIMissions_Combo_Area_IDC, "Aléatoire"];
 	lbSetValue[ODDGUIMissions_Combo_Area_IDC, count _Secteur, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) lbSetCurSel ((count _Secteur));
-	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] execVM "udpateLocation.sqf";}];
+	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] call OddGuiMissions_fnc_udpateLocation;}];
 	
 	// combo localité type
 	{
@@ -60,7 +59,7 @@ if (_isCreate) then {
 	lbAdd [ODDGUIMissions_Combo_Location_IDC, "Aléatoire"];
 	lbSetValue[ODDGUIMissions_Combo_Location_IDC, count _location, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) lbSetCurSel ((count _location));
-	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] execVM "udpateLocation.sqf";}];
+	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] call OddGuiMissions_fnc_udpateLocation;}];
 	
 
 	// combo factions
@@ -82,13 +81,13 @@ if (_isCreate) then {
 
 	// slider time
 	sliderSetRange [ODDGUIMissions_Slider_Time_IDC, 0, 1440];
-	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] execVM "updateTime.sqf";}];
+	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] call OddGuiMissions_fnc_updateTime;}];
 
 	// sText time
-	[0] execVM 'updateTime.sqf';
+	[0] call OddGuiMissions_fnc_updateTime;
 
 	// list Location
-	[] execVM 'udpateLocation.sqf';
+	[] call OddGuiMissions_fnc_udpateLocation;
 	
 } else {
 	systemChat "t'es mauvais Jack, appelles @Wolv (il adore les GUIs)";
