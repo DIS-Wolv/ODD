@@ -19,4 +19,5 @@ class CfgFunctions
 
 	#include "template_functions\cfgFunctions.hpp"
 	#include "odd_functions\cfgFunctions.hpp"
+	#include "odd_gui\CfgFunctions.hpp"
 };
