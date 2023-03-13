@@ -34,19 +34,19 @@ if (round (random 1) == 0) then {
 	//["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
 	switch (_intelType) do {
 		case (ODD_var_IntelType select 5): {	// Medical Crate 
-			if (count ODD_var_IAVehicles <= 0) then {
-				_msg = "Je n'ai pas vue de caisse médicale !";
+			if (count ODD_var_MedicalCrates <= 0) then {
+				_msg = selectRandom _msgNoMedical;
 				_needMarker = False;
 			}
 			else {
-				_msg = "Il y a une caisse médicale là bas !";
+				_msg = selectRandom _msgMedical;
 				_pos = position (selectRandom ODD_var_MedicalCrates);
 				_markerType = "loc_heal";
 			};
 		};
 		case (ODD_var_IntelType select 4): {	// VL Enemie pos 
 			if (count ODD_var_IAVehicles <= 0) then {
-				_msg = "Les énemie n'on pas de véhicules !";
+				_msg = "Les ennemis n'ont pas de véhicules !";
 				_needMarker = False;
 			}
 			else {
