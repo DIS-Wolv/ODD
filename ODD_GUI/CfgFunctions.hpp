@@ -3,7 +3,9 @@ class ODD_Gui {
 	class Initialize {
 		file = "odd_gui\missions";
 
-		class Table {};
+		class open {};
+		class udpateLocation {};
+		class updateTime {};
 	};
 
 };
