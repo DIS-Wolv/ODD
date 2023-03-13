@@ -9,6 +9,7 @@ class ODD_Gui {
 		class setTimeWeather {};
 		class missionPrep {};
 		class createMission {};
+		class missionStatus {};
 	};
 
 };
