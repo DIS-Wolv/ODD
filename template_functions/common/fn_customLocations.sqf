@@ -1,6 +1,6 @@
 /*
 * Auteur: Wolv
-* Script ajoutant des locations custom
+* Script ajoutant des locations personalisées
 */
 
 // factory au sud est de Alikampos
