@@ -18,7 +18,6 @@ if (_indexArea >= 0 and _indexArea < count (ODDGUIMissions_var_SecteurMarker)) t
 };
 
 // systemChat format ["%1 %2", _valLocationType, _valArea];
-///////////////////////////////
 
 private _posA = [15000, 15000];
 private _radA = 30000;
@@ -61,3 +60,5 @@ lbClear ODDGUIMissions_List_Location_IDC;
 	lbAdd [ODDGUIMissions_List_Location_IDC, (_x select 0)];
 } forEach _loc;
 
+ODDGUIMissions_var_FilteredLocations = _loc;
+publicVariableServer "ODDGUIMissions_var_FilteredLocations";

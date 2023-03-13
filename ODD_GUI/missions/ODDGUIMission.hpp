@@ -175,7 +175,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,1.00,0.00,0.8}; // "Electric green"
-			action = "systemChat 'génération'";
+			action = "call OddGuiMissions_fnc_createMission";
 		};
 		class ODDGUIMissions_Button_Clear: RscButton_ODDGUI
 		{
@@ -186,7 +186,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {1.00,0.16,0.00,0.8}; // "Ferrari red"
-			action = "systemChat 'nettoyage'";
+			action = "[] remoteExec ['ODDadvanced_fnc_clearZO', 2];";
 		};
 		class ODDGUIMissions_Button_Prep: RscButton_ODDGUI
 		{
@@ -197,7 +197,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.40,0.60,0.00,0.8}; // "Heart gold"
-			action = "systemChat 'préparation'";
+			action = "call OddGuiMissions_fnc_missionPrep";
 		};
 		class ODDGUIMissions_Button_Time: RscButton_ODDGUI
 		{

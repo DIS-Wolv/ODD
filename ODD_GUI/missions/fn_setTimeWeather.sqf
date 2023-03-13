@@ -1,5 +1,5 @@
-private _sliderValue = sliderPosition ODDGUIMissions_Slider_Time_IDC;
-private _comboValue = lbCurSel ODDGUIMissions_Combo_Weather_IDC;
+private _sliderValue = sliderPosition ODDGUIMissions_Slider_Time_IDC; // Récupère la valeur du slider pour passer le temps
+private _comboValue = lbCurSel ODDGUIMissions_Combo_Weather_IDC; // Récupère la valeur du menu deroulant de la météo
 
 private _display = (findDisplay ODDGUIMissions_IddDisplay);
 private _date = date;

@@ -1,14 +1,15 @@
 ODDGUIMissions_IddDisplay = 090223;
 //Liste des IDC (permet de pointer les controlleurs)
 ODDGUIMissions_Combo_Area_IDC = 2100;		// OK
-ODDGUIMissions_Combo_Location_IDC = 2101;	// A FAIRE
+ODDGUIMissions_Combo_Location_IDC = 2101;	// OK
 ODDGUIMissions_Combo_Mission_IDC = 2102;	// OK
 ODDGUIMissions_Combo_Faction_IDC = 2103;	// OK
 ODDGUIMissions_Combo_Players_IDC = 2104;	// OK
 ODDGUIMissions_Combo_Weather_IDC = 2105;	// OK
 ODDGUIMissions_Slider_Time_IDC = 1900;		// OK
-ODDGUIMissions_List_Location_IDC = 1500;	// A FAIRE
+ODDGUIMissions_List_Location_IDC = 1500;	// OK
 ODDGUIMissions_SText_Time_IDC = 1102;		// OK
+ODDGUIMissions_SText_Recap_IDC = 1101;
 
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 
