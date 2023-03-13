@@ -49,9 +49,6 @@ else {
 
 private _nbPlayers = lbValue [ODDGUIMissions_Combo_Players_IDC, _indexPlayers];
 
-private _recap = parseText (format ["<t size='1' align='center'> Zone : %1 // Type : %2 // Location : %3 // Objectif : %4 // Faction : %5 // Joueurs : %6<t/>", _valArea, _valLocationType,text _selectedLoc,_selectedObj,_selectedFaction,_nbPlayers]);
-(_display displayCtrl ODDGUIMissions_SText_Recap_IDC) ctrlSetStructuredText _recap;
-
 if (_indexObj >= 0 and _indexObj < count (ODD_var_MissionType)) then {
 	_selectedObj = _indexObj;
 }
@@ -70,3 +67,4 @@ ODD_var_PlayerCount = _nbPlayers;
 publicVariableServer "ODD_var_PlayerCount";
 
 ODDGUIMissions_var_SelectedParams = [_selectedObj,_selectedLoc,_selectedFaction];
+call OddGuiMissions_fnc_missionStatus;
