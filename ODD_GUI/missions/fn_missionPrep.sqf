@@ -30,40 +30,40 @@ if (_indexArea >= 0 and _indexArea < count (ODDGUIMissions_var_SecteurMarker)) t
 if (_index >= 0) then {
 	_selectedLoc = _listLocations select _index;
 } else {
-	_selectedLoc = selectRandom _listLocations;
+	_selectedLoc = (selectRandom _listLocations) select 1;
 };
 
 if (_indexObj >= 0 and _indexObj < count (ODD_var_MissionType)) then {
 	_selectedObj = ODD_var_MissionType select _indexObj;
 }
 else {
-	_selectedObj = "Aléatoire";
+	_selectedObj = selectRandom ODD_var_MissionType;
 };
 
 if (_indexFaction >= 0 and _indexFaction < count (ODD_var_FactionNames)) then {
 	_selectedFaction = ODD_var_FactionNames select _indexFaction;
 }
 else {
-	_selectedFaction = "Aléatoire";
+	_selectedFaction = selectRandom ODD_var_FactionNames;
 };
 
 private _nbPlayers = lbValue [ODDGUIMissions_Combo_Players_IDC, _indexPlayers];
 
-private _recap = parseText (format ["<t size='1' align='center'> Zone : %1 </br> Type : %2 </br> Location : %3 </br> Objectif : %4 </br> Faction : %5 </br> Joueurs : %6<t/>", _valArea, _valLocationType,_selectedLoc,_selectedObj,_selectedFaction,_nbPlayers]);
+private _recap = parseText (format ["<t size='1' align='center'> Zone : %1 // Type : %2 // Location : %3 // Objectif : %4 // Faction : %5 // Joueurs : %6<t/>", _valArea, _valLocationType,text _selectedLoc,_selectedObj,_selectedFaction,_nbPlayers]);
 (_display displayCtrl ODDGUIMissions_SText_Recap_IDC) ctrlSetStructuredText _recap;
 
 if (_indexObj >= 0 and _indexObj < count (ODD_var_MissionType)) then {
 	_selectedObj = _indexObj;
 }
 else {
-	_selectedObj = -1;
+	_selectedObj = ODD_var_MissionType find _selectedObj;
 };
 
 if (_indexFaction >= 0 and _indexFaction < count (ODD_var_FactionNames)) then {
 	_selectedFaction = _indexFaction;
 }
 else {
-	_selectedFaction = -1;
+	_selectedFaction = ODD_var_FactionNames find _selectedFaction;
 };
 
 ODD_var_PlayerCount = _nbPlayers;
