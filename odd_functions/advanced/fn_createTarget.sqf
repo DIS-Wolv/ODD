@@ -33,12 +33,12 @@ else {
 // 	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
 // };
 
-// _Buildings = [];
+_Buildings = [];
 
-// while {count _Buildings == 0} do {
-// 	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
-// 	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
-// };
+while {count _Buildings == 0} do {
+	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
+	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
+};
 
 ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
