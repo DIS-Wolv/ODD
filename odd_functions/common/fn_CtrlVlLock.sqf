@@ -26,6 +26,7 @@ if (_lock) then {
 			format ["_target distance _this < %1", _unlockDistance], "True", {}, {},
 			{
 				[_target, 0] remoteExec ["lock", (owner _target)];
+				//https://community.bistudio.com/wiki/BIS_fnc_holdActionRemove
 			}, {}, [], _unlockTime, nil, True, True
 		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 	}
