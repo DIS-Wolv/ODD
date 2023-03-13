@@ -23,8 +23,8 @@ _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wi
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
 base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
-base addAction ["Afficher les générateurs",{[1] execVM "scripts\lights\mapGen.sqf";},[],1.5,True,True,"","True",5];
-base addAction ["Cacher les générateurs",{[0] execVM "scripts\lights\mapGen.sqf";},[],1.5,True,True,"","True",5];
+base addAction ["Afficher les générateurs",{[1] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
+base addAction ["Cacher les générateurs",{[0] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
 ob setVariable ["R3F_LOG_disabled", True];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,True,True,"","True",2];
 halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,True,True,"","True",5];
