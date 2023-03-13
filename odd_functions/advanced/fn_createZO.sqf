@@ -23,7 +23,6 @@ if (typeName _forceZO != "LOCATION") then {
 	[["Localité choisie : %1", text _obj]] call ODDcommon_fnc_log;
 }
 else {
-	systemChat "carrote";
 	_obj = _forceZO;
 	[["Localité Forcé : %1", text _obj]] call ODDcommon_fnc_log;
 };
