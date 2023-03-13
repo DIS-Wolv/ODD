@@ -1,8 +1,9 @@
-class ODDGUI {
-	class Mission {
-		file = "ODD_GUI\GUIODD_Mission";
-		class open {
-				recompile	= 1;
-		};
+class ODD_Gui {
+	tag = "OddGuiMissions";
+	class Initialize {
+		file = "odd_gui\missions";
+
+		class Table {};
 	};
+
 };
