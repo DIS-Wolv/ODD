@@ -7,6 +7,8 @@ class ODD_Gui {
 		class udpateLocation {};
 		class updateTime {};
 		class setTimeWeather {};
+		class missionPrep {};
+		class createMission {};
 	};
 
 };
