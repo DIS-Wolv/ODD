@@ -16,8 +16,10 @@ if(!isNil "ODD_var_PlayerCount") then {
 } else {
 	ODD_var_PlayerCount = (playersNumber west);
 	_nbPlayers = ODD_var_PlayerCount;
+	publicVariableServer "ODD_var_PlayerCount";
 };
 
+clientOwner publicVariableClient "ODD_var_CurrentMission";
 switch (ODD_var_CurrentMission) do {
 	
 	case 0: {
@@ -38,6 +40,10 @@ switch (ODD_var_CurrentMission) do {
 	};
 	
 	case 1: { // mission générée
+		clientOwner publicVariableClient "ODD_var_SelectedArea";
+		clientOwner publicVariableClient "ODD_var_SelectedMissionType";
+		clientOwner publicVariableClient "ODD_var_PlayerCount";
+		clientOwner publicVariableClient "ODD_var_SelectedFaction";
 		private _zo = ODD_var_SelectedArea;
 		_zo = text _zo;
 		private _obj = ODD_var_SelectedMissionType;
