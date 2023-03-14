@@ -37,7 +37,7 @@ class ODDGUIMission
 			w = 0.275 * safezoneW;
 			h = 0.3 * safezoneH;
 			colorBackground[] = {0.00,0.05,0.10,0.75};
-			text = "<t size='0.75' align='center'>lorem ipsum KaKa prout<t/>";
+			text = "<t size='3' align='center' valign='middle'>GUI en préparation ...<t/>";
 		};
 		class ODDGUIMissions_SText_Time: RscStructuredText_ODDGUI
 		{
