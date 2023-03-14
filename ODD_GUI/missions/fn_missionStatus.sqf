@@ -35,7 +35,7 @@ switch (ODD_var_CurrentMission) do {
 				_nbPlayers]
 				);
 		} else { // récap mission préparée
-			_MissionsStatus = parseText "<t size='1' align='center' valign='middle'>Pas de mission en cours ! <br/> Vous pouvez choisir des paramètres précis pour générer la mission que vous voulez. <br/> Alternativement, vous pouvez appliquer des fitres ou laisser tout en aléatoire et cliquer sur 'préparer la mission' pour que le jeu tire des paramètres alétoirement. Une fois que les paramètres tirés vous conviennent, vous pouvez générer votre mission. <br/><br/> La gestion de l'heure et de la météo sont complètement indépendants de la génération de la mission et peuvent être ajustés a tout moment !<t/>";
+			_MissionsStatus = parseText "<t size='1' align='center' valign='middle'>Pas de mission en cours ! <br/> Vous pouvez choisir des paramètres précis pour générer la mission que vous voulez. <br/> Alternativement, vous pouvez appliquer des fitres ou laisser tout en aléatoire et cliquer sur 'préparer la mission' pour que le jeu tire des paramètres alétoirement. Une fois que les paramètres tirés vous conviennent, vous pouvez générer votre mission. <br/><br/> La gestion de l'heure et de la météo sont complètement indépendants de la génération de la mission et peuvent être ajustés à tout moment !<t/>";
 		};
 	};
 	
