@@ -66,5 +66,5 @@ else {
 ODD_var_PlayerCount = _nbPlayers;
 publicVariableServer "ODD_var_PlayerCount";
 
-ODDGUIMissions_var_SelectedParams = [_selectedObj,_selectedLoc,_selectedFaction];
+ODDGUIMissions_var_SelectedParams = [_selectedObj,_selectedLoc,_selectedFaction,_valArea,_valLocationType];
 [True] call OddGuiMissions_fnc_missionStatus;

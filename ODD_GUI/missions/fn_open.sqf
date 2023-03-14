@@ -90,8 +90,8 @@ if (_isCreate) then {
 	// list Location
 	[] call OddGuiMissions_fnc_udpateLocation;
 
-	ODDGUIMissions_var_SelectedParams = [-1,"",-1];
-	call OddGuiMissions_fnc_missionStatus;
+	ODDGUIMissions_var_SelectedParams = [-1,"",-1,"Aléatoire","Aléatoire"];
+	[] call OddGuiMissions_fnc_missionStatus;
 } else {
 	systemChat "t'es mauvais Jack, appelles @Wolv (il adore les GUIs)";
 };
