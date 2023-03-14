@@ -32,11 +32,27 @@ private _msgIed = ["J'ai vu les insurgés piéger cette route.","Il y a des expl
 private _msgNoIed = ["Je n'ai pas vu de pièges.","Je crois que les routes ne sont pas piégées.","J'ai entendu les rebelles se plaindre qu'ils n'avaient pas d'explosifs.","Les insurgents essayent de respecter les LOAC."];
 private _msgTransport = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez ma voiture elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Utilisez ce véhicule si vous voulez.", "Si vous voulez, ce véhicule peut vous aider à vous déplacer plus vite","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
 private _msgNoTransport = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé","Vous n'allez pas tirer ma caisse","Je vous donnerais pas mes clefs","Personne ne circule en voiture ici, on pense à la planète nous !"];
+
+clientOwner publicVariableClient "ODD_var_SelectedMissionType";
+private _missionType = ODD_var_SelectedMissionType;
+// ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
+switch (_missionType) do {
+	case "Caisse": {_msgObj = ["J'ai vu des caisses là-bas.","Ils stockent du matériel dans ce bâtiment.","Je crois que ce que vous cherchez est là-bas.","J'ai vu un camion transporter du matériel vers ce quartier.","Ils ont récemment déchargé un camion ici.","Leur ravitaillement est stockée dans cette maison","J'ai entendu une patrouille parler de matériel stocké là bas"] };
+	case "Tuer un HVT"; 
+	case "Capturer un HVT": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.","Leur chef se trouve là-bas.","Je crois que les patrouilles rendent compte dans ce bâtiment","J'ai entendu dire qu'un officier réside dans ce quartier.","Leur leader ce cache ici !","J'ai vu un homme payer leur soldats !","J'ai entendu que ceux qui avaient besoin d'ordres allaient dans ce quartier."] };
+	case "Sécurisation de zone": {_msgObj = ["J'ai vu des rebelles planqués dans ce quartier.","J'ai entendu dire qu'il y avait des patrouilles dans ce secteur","Certains de vos ennemis se cachent là-bas"] };
+	case "intel": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Helico": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Prisonniers": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Sécurisation de véhicule": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Destruction de véhicule": {_msgObj = ["Je crois que ce que vous cherchez est là-bas.",""] };
+	default { };
+};
+
 private _msgObj = ["Ce que vous cherchez est ici.", "Je crois que j'ai vu ce que vous cherchez"];
 
 private _color = _colorPool select _source;
 private _markerType = "";
-
 
 if (round (random 1) == 0) then {
 	_msg = "J'ai des informations.";
