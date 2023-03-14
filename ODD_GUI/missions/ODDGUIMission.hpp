@@ -175,7 +175,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,1.00,0.00,0.8}; // "Electric green"
-			action = "call OddGuiMissions_fnc_createMission; (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
+			action = "[] call OddGuiMissions_fnc_createMission; (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
 		};
 		class ODDGUIMissions_Button_Clear: RscButton_ODDGUI
 		{
@@ -197,7 +197,7 @@ class ODDGUIMission
 			w = 0.1 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.40,0.60,0.00,0.8}; // "Heart gold"
-			action = "call OddGuiMissions_fnc_missionPrep";
+			action = "[] call OddGuiMissions_fnc_missionPrep";
 		};
 		class ODDGUIMissions_Button_Time: RscButton_ODDGUI
 		{
@@ -208,7 +208,7 @@ class ODDGUIMission
 			w = 0.15 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,0.60,0.60,0.8}; // "Persian green"
-			action = "call OddGuiMissions_fnc_setTimeWeather";
+			action = "[] call OddGuiMissions_fnc_setTimeWeather";
 		};
     }
 };

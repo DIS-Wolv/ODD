@@ -52,7 +52,6 @@ private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro"];
 		_loc set [_forEachIndex, [_textAdd, ((_loc select _forEachIndex) select 1)]];
 	};
 } forEach _loc;
-
 _loc sort True;
 
 lbClear ODDGUIMissions_List_Location_IDC;
@@ -60,5 +59,4 @@ lbClear ODDGUIMissions_List_Location_IDC;
 	lbAdd [ODDGUIMissions_List_Location_IDC, (_x select 0)];
 } forEach _loc;
 
-ODDGUIMissions_var_FilteredLocations = _loc;
-publicVariableServer "ODDGUIMissions_var_FilteredLocations";
+_loc;

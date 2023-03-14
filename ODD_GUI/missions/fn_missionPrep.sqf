@@ -12,7 +12,7 @@ private _indexFaction = lbCurSel ODDGUIMissions_Combo_Faction_IDC;
 private _selectedFaction = "";
 private _indexPlayers = lbCurSel ODDGUIMissions_Combo_Players_IDC;
 
-if (!isNil "ODDGUIMissions_var_FilteredLocations") then {_listLocations = ODDGUIMissions_var_FilteredLocations;};
+_listLocations = [] call OddGuiMissions_fnc_udpateLocation;
 
 if (_indexLocation >= 0 and _indexLocation < count (ODDGUIMissions_var_LocationClassName)) then {
 	_valLocationType = ODDGUIMissions_var_LocationClassName select _indexLocation;
@@ -28,7 +28,7 @@ if (_indexArea >= 0 and _indexArea < count (ODDGUIMissions_var_SecteurMarker)) t
 };
 
 if (_index >= 0) then {
-	_selectedLoc = _listLocations select _index;
+	_selectedLoc = (_listLocations select _index) select 1;
 } else {
 	_selectedLoc = (selectRandom _listLocations) select 1;
 };

@@ -11,7 +11,7 @@ private _selectedFaction = _missionParams select 2;
 private _nbPlayers = 0;
 private _MissionsStatus = "";
 
-if(!isNil ODD_var_PlayerCount) then {
+if(!isNil "ODD_var_PlayerCount") then {
 	_nbPlayers = ODD_var_PlayerCount;
 } else {
 	ODD_var_PlayerCount = (playersNumber west);
