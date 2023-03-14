@@ -1,6 +1,6 @@
 /*
 * Auteur: Wolv
-* Script ajoutant des locations custom
+* Script ajoutant des locations personalisées
 */
 
 // factory au sud est de Alikampos
@@ -36,8 +36,6 @@ _AgiosTheodoros setText "Agios Theodoros";
 
 private _Anemoessa = createLocation ["NameLocal", [16077,16300,0], 200, 200];
 _Anemoessa setText "Anemoessa";
-
-//////
 
 private _Morasitis = createLocation ["Name", [3800,20100], 430, 430];
 _Morasitis setText "Morasitis";

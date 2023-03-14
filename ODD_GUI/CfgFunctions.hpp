@@ -1,8 +1,15 @@
-class ODDGUI {
-	class Mission {
-		file = "ODD_GUI\GUIODD_Mission";
-		class open {
-				recompile	= 1;
-		};
+class ODD_Gui {
+	tag = "OddGuiMissions";
+	class Initialize {
+		file = "odd_gui\missions";
+
+		class open {};
+		class udpateLocation {};
+		class updateTime {};
+		class setTimeWeather {};
+		class missionPrep {};
+		class createMission {};
+		class missionStatus {};
 	};
+
 };

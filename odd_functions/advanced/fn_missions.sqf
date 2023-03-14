@@ -13,7 +13,7 @@
 *
 * Exemple :
 * [] call ODDadvanced_fnc_missions
-* [2, "Kavala", False, True] call ODDadvanced_fnc_missions
+* [2, <Kavala>, False, True] call ODDadvanced_fnc_missions
 *
 * Variable publique :
 */

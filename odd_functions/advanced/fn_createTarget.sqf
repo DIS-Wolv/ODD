@@ -17,15 +17,21 @@
 */
 params ["_zo", ["_type", -1]];
 
-private _Mission = selectRandom ODD_var_SelectedTarget;
+private _Mission = 0;
+if ((_type >= 0) and (_type < count ODD_var_MissionType)) then {
+	_Mission = ODD_var_MissionType select _type;
+}
+else {
+	_Mission = selectRandom ODD_var_MissionType;
+};
 // Choisi une mission aléatoire parmi la lister
 
 [["Mission choisie : %1", _Mission]] call ODDcommon_fnc_log;
 
-if (_type >= 0 and _type < count ODD_var_MissionType) then {
-	_Mission = ODD_var_MissionType select _type;
-	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
-};
+// if (_type >= 0 and _type < count ODD_var_MissionType) then {
+// 	_Mission = ODD_var_MissionType select _type;
+// 	[["Mission forcé : %1 (%2)", _Mission, _type]] call ODDcommon_fnc_log;
+// };
 
 _Buildings = [];
 
