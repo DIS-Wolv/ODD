@@ -67,4 +67,4 @@ ODD_var_PlayerCount = _nbPlayers;
 publicVariableServer "ODD_var_PlayerCount";
 
 ODDGUIMissions_var_SelectedParams = [_selectedObj,_selectedLoc,_selectedFaction];
-call OddGuiMissions_fnc_missionStatus;
+[True] call OddGuiMissions_fnc_missionStatus;
