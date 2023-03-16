@@ -27,7 +27,7 @@ switch (_missionType) do {
 };
 
 
-private _msgMedical2 = ["Il y a une caisse médicale là-bas.", "C'est là bas que nos blessés sont soignés !", "Le matériel médical est stocké à cette position", "Le matériel médical de surplus est entreposé dans ce bâtiment."];
+private _msgMedical2 = ["Il y a une caisse médicale là-bas.", "C'est là bas que nos blessés sont soignés !", "Le matériel médical est stocké à cette position", "Le matériel médical de surplus est entreposé dans ce bâtiment.","Notre infirmerie se situe dans ce quartier."];
 private _msgNoMedical2 = ["Je n'ai pas vu de caisse médicale.","Je n'ai repéré aucune caisse médicale.","Je ne pense pas qu'ils aient de matériel médical.","Ils sont a court de matériel médical.","Ils n'ont plus de matériel médical !","Leurs infirmeries sont à sec !","Le ravitaillement de matériel médical est attendu depuis plusieurs semaines."];
 private _msgVl2 = ["J'ai vu un de leur véhicules.","Ils sont passés en véhicule ce matin.","Je crois que vos ennemis sont soutenus par des véhicules","J'ai entendu dire que des véhicules patrouillent la zone.","Leurs véhicules patrouillent la zone !","Leurs véhicules ont sifflé tout le fuel de la station service !","J'ai entendu une patrouille dire que leur véhicule avait été réparé."];
 private _msgNoVl2 = ["Ils n'ont pas de véhicules.","Les insurgés n'ont pas de véhicules.", "La station service est encore bien approvisionnée","Je n'ai pas vu de véhicule.","J'ai entendu que leurs véhicules étaient en réparation", "Ils ont pris ma voiture parce qu'ils ne voulaient pas marcher"];
