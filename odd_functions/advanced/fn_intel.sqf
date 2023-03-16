@@ -38,12 +38,22 @@ private _msgTransport = _allmsg select 8;
 private _msgNoTransport = _allmsg select 9;
 private _msgObj = _allmsg select 10;
 
-
-
 private _color = _colorPool select _source;
 private _markerType = "";
 
-if (round (random 1) == 0) then {
+
+private _proba = 1;
+if (_source == 2) then {
+	private _torture = _author getVariable ["ace_medical_medications", []];
+	if (count (_torture) > 0) then {
+		_proba = 0; 
+	} else {
+		_proba = round (random 2);
+	};
+} else {
+	_proba = round (random 1);
+};
+if (_proba == 0) then {
 	_msg = "J'ai des informations.";
 	_intelType = selectRandom ODD_var_IntelType;
 	ODD_var_IntelType = ODD_var_IntelType + (ODD_var_IntelType - [_intelType]);
