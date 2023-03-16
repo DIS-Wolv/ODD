@@ -13,7 +13,7 @@
 *
 * Variable publique :
 */
-params[["_source", 0], ["_dist", 50]];
+params[["_source", 0], ["_author",objNull],["_dist", 50]];
 
 private _colorPool = ["colorIndependent", "colorCivilian", "colorOPFOR"];
 private _markerPool = ["Contact_circle1", "Contact_circle2", "Contact_circle3", "Contact_circle4", "Contact_pencilTask1", "Contact_pencilTask2",
@@ -38,15 +38,15 @@ clientOwner publicVariableClient "ODD_var_SelectedMissionType";
 private _missionType = ODD_var_SelectedMissionType;
 // ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 switch (_missionType) do {
-	case "Caisse": {_msgObj append ["J'ai vu des caisses là-bas.","Ils stockent du matériel dans ce bâtiment.","Je crois que ce que vous cherchez est là-bas.","J'ai vu un camion transporter du matériel vers ce quartier.","Ils ont récemment déchargé un camion ici.","Leur ravitaillement est stockée dans cette maison","J'ai entendu une patrouille parler de matériel stocké là bas"] };
-	case "Tuer un HVT"; 
-	case "Capturer un HVT": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Leur chef se trouve là-bas.","Je crois que les patrouilles rendent compte dans ce bâtiment","J'ai entendu dire qu'un officier réside dans ce quartier.","Leur leader ce cache ici !","J'ai vu un homme payer leur soldats !","J'ai entendu que ceux qui avaient besoin d'ordres allaient dans ce quartier."] };
-	case "Sécurisation de zone": {_msgObj append ["J'ai vu des rebelles planqués dans ce quartier.","J'ai entendu dire qu'il y avait des patrouilles dans ce secteur","Certains de vos ennemis se cachent là-bas"] };
-	case "intel": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Le poste de commandement des rebelles se trouve dans cette maison.","J'ai entendu dire que les ordres étaient donnés dans ce quartier.","J'ai entendu une patrouille parler d'un centre de données dans ce secteur.","L'entreprise d'informatique de la ville a récemment fait des travaux dans ce quartier.","Je dois donner des cours d'informatique à un groupe dans cette maison mardi prochain !","J'ai vu plein de cables près de cette maison."] };
-	case "Helico": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai vu l'hélicopttère essayer de se poser dans ce secteur","J'ai entendu une explosion, le bruit venait de là-bas !","J'ai vu de la fumée par là-bas.","J'ai entendu qu'un sergeant avait abattu un hélicoptère dans cette zone.","Je l'ai vu votre hélicoptère, il est là !"] };
-	case "Prisonniers": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai entendu une patrouille se plaindre du prisonier qui serait detenu dans ce secteur.","Les insurgés ont récemment renforcés leur patrouilles dans cette zone.","J'ai vu le prisonnier arriver en véhicule, c'était là-bas.","J'ai entendu dire qu'un pilote était détenu dans ce quartier.","Le garagiste a été détenu pendant trois jours dans cette maison !"] };
-	case "Sécurisation de véhicule";
-	case "Destruction de véhicule": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Il y a un véhicule bizarre dans cette zone.","Je suis passé devant leur véhicule en allant faire des course, il était ici !","J'ai entendu qu'un véhicule était stationné dans ce quartier.","J'ai vu un convoi s'arrêter ici.","Oui j'ai vu le tank, près de cette maison !"] };
+	case (ODD_var_IntelType select 0): {_msgObj append ["J'ai vu des caisses là-bas.","Ils stockent du matériel dans ce bâtiment.","Je crois que ce que vous cherchez est là-bas.","J'ai vu un camion transporter du matériel vers ce quartier.","Ils ont récemment déchargé un camion ici.","Leur ravitaillement est stockée dans cette maison","J'ai entendu une patrouille parler de matériel stocké là bas"] };
+	case (ODD_var_IntelType select 1); 
+	case (ODD_var_IntelType select 2): {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Leur chef se trouve là-bas.","Je crois que les patrouilles rendent compte dans ce bâtiment","J'ai entendu dire qu'un officier réside dans ce quartier.","Leur leader ce cache ici !","J'ai vu un homme payer leur soldats !","J'ai entendu que ceux qui avaient besoin d'ordres allaient dans ce quartier."] };
+	case (ODD_var_IntelType select 3): {_msgObj append ["J'ai vu des rebelles planqués dans ce quartier.","J'ai entendu dire qu'il y avait des patrouilles dans ce secteur","Certains de vos ennemis se cachent là-bas"] };
+	case (ODD_var_IntelType select 4): {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Le poste de commandement des rebelles se trouve dans cette maison.","J'ai entendu dire que les ordres étaient donnés dans ce quartier.","J'ai entendu une patrouille parler d'un centre de données dans ce secteur.","L'entreprise d'informatique de la ville a récemment fait des travaux dans ce quartier.","Je dois donner des cours d'informatique à un groupe dans cette maison mardi prochain !","J'ai vu plein de cables près de cette maison."] };
+	case (ODD_var_IntelType select 5): {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai vu l'hélicopttère essayer de se poser dans ce secteur","J'ai entendu une explosion, le bruit venait de là-bas !","J'ai vu de la fumée par là-bas.","J'ai entendu qu'un sergeant avait abattu un hélicoptère dans cette zone.","Je l'ai vu votre hélicoptère, il est là !"] };
+	case (ODD_var_IntelType select 6): {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai entendu une patrouille se plaindre du prisonier qui serait detenu dans ce secteur.","Les insurgés ont récemment renforcés leur patrouilles dans cette zone.","J'ai vu le prisonnier arriver en véhicule, c'était là-bas.","J'ai entendu dire qu'un pilote était détenu dans ce quartier.","Le garagiste a été détenu pendant trois jours dans cette maison !"] };
+	case (ODD_var_IntelType select 7);
+	case (ODD_var_IntelType select 8): {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Il y a un véhicule bizarre dans cette zone.","Je suis passé devant leur véhicule en allant faire des course, il était ici !","J'ai entendu qu'un véhicule était stationné dans ce quartier.","J'ai vu un convoi s'arrêter ici.","Oui j'ai vu le tank, près de cette maison !"] };
 	default { };
 };
 
@@ -70,7 +70,7 @@ if (round (random 1) == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgMedical;
-				_pos = position (selectRandom ODD_var_MedicalCrates);
+				_pos = [_intelType, getPos _author, 1500] call ODDcommon_fnc_sortIntels;
 				_markerType = "loc_heal";
 			};
 		};
@@ -81,7 +81,7 @@ if (round (random 1) == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgVl;
-				_pos = position (selectRandom ODD_var_IAVehicles);
+				_pos = [_intelType, getPos _author, 2500] call ODDcommon_fnc_sortIntels;
 				_markerType = "loc_defend";
 			};
 		};
@@ -92,7 +92,7 @@ if (round (random 1) == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgChkpt;
-				_pos = position (selectRandom ODD_var_MissionCheckPoint);
+				_pos = [_intelType, getPos _author, 2000] call ODDcommon_fnc_sortIntels;
 				_markerType = "loc_Bunker";
 			}
 		};
@@ -103,7 +103,7 @@ if (round (random 1) == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgIed;
-				_pos = position (selectRandom ODD_var_MissionIED);
+				_pos = [_intelType, getPos _author, 750] call ODDcommon_fnc_sortIntels;
 				_markerType = "loc_mine";
 			};
 		};
@@ -114,20 +114,14 @@ if (round (random 1) == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgTransport;
-				_pos = position (selectRandom ODD_var_MissionCivilianVehicles);
+				_pos = [_intelType, getPos _author, 500] call ODDcommon_fnc_sortIntels;
 				_markerType = "loc_Truck";
 			};
 		};
 		case (ODD_var_IntelType select 0);
 		default {		//ObjectifPos
 			_msg = selectRandom _msgObj;
-			if (ODD_var_SelectedMissionType == (ODD_var_MissionType select 2)) then {
-				_pos = position (units (ODD_var_Objective select 0) select 0);
-			}
-			else {
-				_pos = position (ODD_var_Objective select 0);
-			};
-			
+			_pos = [0, getPos _author, 2000] call ODDcommon_fnc_sortIntels;
 			["ODD_task_mission", "UPDATED"] call BIS_fnc_taskHint;
 
 			_markerType = (selectRandom _markerPool)
