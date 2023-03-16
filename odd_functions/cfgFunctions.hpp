@@ -8,7 +8,7 @@ class ODD_Common {
         class CtrlVlLock {};
         class PlaceTable {};
 		class CountOnBase {};
-		class sortIntel {};
+		class sortIntels {};
     };
 };
 
