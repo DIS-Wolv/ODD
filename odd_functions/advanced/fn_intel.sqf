@@ -32,7 +32,7 @@ private _msgIed = ["J'ai vu les insurgés piéger cette route.","Il y a des expl
 private _msgNoIed = ["Je n'ai pas vu de pièges.","Je crois que les routes ne sont pas piégées.","J'ai entendu les rebelles se plaindre qu'ils n'avaient pas d'explosifs.","Les insurgents essayent de respecter les LOAC."];
 private _msgTransport = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez ma voiture elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Utilisez ce véhicule si vous voulez.", "Si vous voulez, ce véhicule peut vous aider à vous déplacer plus vite","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
 private _msgNoTransport = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé","Vous n'allez pas tirer ma caisse","Je vous donnerais pas mes clefs","Personne ne circule en voiture ici, on pense à la planète nous !"];
-private _msgObj = ["Je crois que j'ai vu ce que vous cherchez",];
+private _msgObj = ["Je crois que j'ai vu ce que vous cherchez"];
 
 clientOwner publicVariableClient "ODD_var_SelectedMissionType";
 private _missionType = ODD_var_SelectedMissionType;
@@ -43,10 +43,10 @@ switch (_missionType) do {
 	case "Capturer un HVT": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Leur chef se trouve là-bas.","Je crois que les patrouilles rendent compte dans ce bâtiment","J'ai entendu dire qu'un officier réside dans ce quartier.","Leur leader ce cache ici !","J'ai vu un homme payer leur soldats !","J'ai entendu que ceux qui avaient besoin d'ordres allaient dans ce quartier."] };
 	case "Sécurisation de zone": {_msgObj append ["J'ai vu des rebelles planqués dans ce quartier.","J'ai entendu dire qu'il y avait des patrouilles dans ce secteur","Certains de vos ennemis se cachent là-bas"] };
 	case "intel": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Le poste de commandement des rebelles se trouve dans cette maison.","J'ai entendu dire que les ordres étaient donnés dans ce quartier.","J'ai entendu une patrouille parler d'un centre de données dans ce secteur.","L'entreprise d'informatique de la ville a récemment fait des travaux dans ce quartier.","Je dois donner des cours d'informatique à un groupe dans cette maison mardi prochain !","J'ai vu plein de cables près de cette maison."] };
-	case "Helico": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai vu l'hélicopttère essayer de se poser dans ce secteur","J'ai entendu une explosion, le bruit venait de là-bas !","J'ai vu de la fumée par là-bas.","J'ai entendu que les patrouilles"] };
-	case "Prisonniers": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Helico": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai vu l'hélicopttère essayer de se poser dans ce secteur","J'ai entendu une explosion, le bruit venait de là-bas !","J'ai vu de la fumée par là-bas.","J'ai entendu qu'un sergeant avait abattu un hélicoptère dans cette zone.","Je l'ai vu votre hélicoptère, il est là !"] };
+	case "Prisonniers": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","J'ai entendu une patrouille se plaindre du prisonier qui serait detenu dans ce secteur.","Les insurgés ont récemment renforcés leur patrouilles dans cette zone.","J'ai vu le prisonnier arriver en véhicule, c'était là-bas.","J'ai entendu dire qu'un pilote était détenu dans ce quartier.","Le garagiste a été détenu pendant trois jours dans cette maison !"] };
 	case "Sécurisation de véhicule";
-	case "Destruction de véhicule": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.",""] };
+	case "Destruction de véhicule": {_msgObj append ["Je crois que ce que vous cherchez est là-bas.","Il y a un véhicule bizarre dans cette zone.","Je suis passé devant leur véhicule en allant faire des course, il était ici !","J'ai entendu qu'un véhicule était stationné dans ce quartier.","J'ai vu un convoi s'arrêter ici.","Oui j'ai vu le tank, près de cette maison !"] };
 	default { };
 };
 
