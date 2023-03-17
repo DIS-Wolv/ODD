@@ -18,7 +18,7 @@ class ODD_Data {
 		file = "odd_functions\data";
 
 		class Table {};
-		class intelText {};
+		class intelText {}; // ODDdata_fnc_intelText; 
 	};
 
 };
