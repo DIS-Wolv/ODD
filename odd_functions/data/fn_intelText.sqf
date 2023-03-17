@@ -82,8 +82,8 @@ switch (_source) do {
 		_allmsg set [7,_msgNoIed2];
 		_allmsg set [8,_msgTransport2];
 		_allmsg set [9,_msgNoTransport2];
-		_allmsg set [10,_msgObj2];};
-		_allmsg set [11,_msgNon2];};
+		_allmsg set [10,_msgObj2];
+		_allmsg set [11,_msgNon2];
 	default { };
 };
 
