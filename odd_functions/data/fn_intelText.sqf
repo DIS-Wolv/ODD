@@ -11,6 +11,7 @@ private _msgNoIed1 = ["Je n'ai pas vu de pièges.","Je crois que les routes ne s
 private _msgTransport1 = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez ma voiture elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Utilisez ce véhicule si vous voulez.", "Si vous voulez, ce véhicule peut vous aider à vous déplacer plus vite","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
 private _msgNoTransport1 = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé","Vous n'allez pas tirer ma caisse !","Je vous donnerais pas mes clefs.","Personne ne circule en voiture ici, on pense à la planète nous !"];
 private _msgObj1 = ["Je crois que j'ai vu ce que vous cherchez"];
+private _msgNon1 = ["Je ne veux pas vous parler.","Je n'ai rien vu.", "Je ne veux pas parler.","Si je vous parle ma famille est en danger.","Ils nous écoutent.","Quels manteaux ?","I can't speak french"];
 
 // ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 switch (_missionType) do {
@@ -39,6 +40,7 @@ private _msgNoIed2 = ["Nous n'avons pas posé de pièges.","Les routes ne sont p
 private _msgTransport2 = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez la voiture qui traîne, elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Si vous voulez vous casser, prenez ce véhicule et fouttez moi la paix","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
 private _msgNoTransport2 = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé la voiture qu'on m'a prêtté","Vous n'allez pas tirer ma caisse nouvelle caisse, je l'ai gagné à la roulette russe contre le maire.","Personne ne circule en voiture ici, on s'en est assuré !"];
 private _msgObj2 = ["Je crois que j'ai vu ce que vous cherchez"];
+private _msgNon2 = ["Je ne dirais rien.", "Je ne veux pas parler.","VIVA LA REVOLUTION !!","Quels manteaux ?","I can't speak french"];
 
 // ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 switch (_missionType) do {
@@ -58,29 +60,31 @@ private _allmsg = [];
 switch (_source) do {
 	case 1: { //civils
 		_allmsg set [0,_msgMedical1];
-		_allmsg set [0,_msgNoMedical1];
-		_allmsg set [0,_msgVl1];
-		_allmsg set [0,_msgNoVl1];
-		_allmsg set [0,_msgChkpt1];
-		_allmsg set [0,_msgNoChkpt1];
-		_allmsg set [0,_msgIed1];
-		_allmsg set [0,_msgNoIed1];
-		_allmsg set [0,_msgTransport1];
-		_allmsg set [0,_msgNoTransport1];
-		_allmsg set [0,_msgObj1];
+		_allmsg set [1,_msgNoMedical1];
+		_allmsg set [2,_msgVl1];
+		_allmsg set [3,_msgNoVl1];
+		_allmsg set [4,_msgChkpt1];
+		_allmsg set [5,_msgNoChkpt1];
+		_allmsg set [6,_msgIed1];
+		_allmsg set [7,_msgNoIed1];
+		_allmsg set [8,_msgTransport1];
+		_allmsg set [9,_msgNoTransport1];
+		_allmsg set [10,_msgObj1];
+		_allmsg set [11,_msgNon1];
 	};
 	case 2: { //opfor
 		_allmsg set [0,_msgMedical2];
-		_allmsg set [0,_msgNoMedical2];
-		_allmsg set [0,_msgVl2];
-		_allmsg set [0,_msgNoVl2];
-		_allmsg set [0,_msgChkpt2];
-		_allmsg set [0,_msgNoChkpt2];
-		_allmsg set [0,_msgIed2];
-		_allmsg set [0,_msgNoIed2];
-		_allmsg set [0,_msgTransport2];
-		_allmsg set [0,_msgNoTransport2];
-		_allmsg set [0,_msgObj2];};
+		_allmsg set [1,_msgNoMedical2];
+		_allmsg set [2,_msgVl2];
+		_allmsg set [3,_msgNoVl2];
+		_allmsg set [4,_msgChkpt2];
+		_allmsg set [5,_msgNoChkpt2];
+		_allmsg set [6,_msgIed2];
+		_allmsg set [7,_msgNoIed2];
+		_allmsg set [8,_msgTransport2];
+		_allmsg set [9,_msgNoTransport2];
+		_allmsg set [10,_msgObj2];};
+		_allmsg set [11,_msgNon2];};
 	default { };
 };
 

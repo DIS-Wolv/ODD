@@ -138,7 +138,7 @@ if (_proba == 0) then {
 	};
 }
 else {
-	_msgNon = ["Je ne dirais rien.", "Je ne dirais rien.", "Je ne veux pas vous parler.","Je n'ai rien vu.", "Je ne veux pas parler.","Si je vous parle ma famille est en danger.","VIVA LA REVOLUTION !!","Ils nous écoutent.","Quels manteaux ?","I can't speak french"];
+	_msgNon = _allmsg select 10;
 	_msg = selectRandom _msgNon;
 };
 
