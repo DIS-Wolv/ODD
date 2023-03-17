@@ -65,7 +65,7 @@ if (count(_allIntels) > 0) then {
 };
 
 /*Il faut conter les _sortedIntels pour créer une array sortedweights pour pouvoir utiliser BIS_fnc_selectRandomWeighted */
-private _length = count(_sortedIntels)
+private _length = count(_sortedIntels);
 if (_length > 0) then {
 	{
 		_sortedWeights set [_forEachIndex, ((_length - _forEachIndex)/ _length)];
@@ -73,7 +73,7 @@ if (_length > 0) then {
 };
 
 {
-	_sortedIntels insert [((find _x) +1),_sortedWeights select (find _x)];
+	_sortedIntels insert [((_sortedIntels find _x) +1),_sortedWeights select (_sortedIntels find _x)];
 	
 } forEach _sortedIntels;
 
