@@ -36,11 +36,10 @@ private _msgChkpt2 = ["Il y a un point de contrôle là-bas.","J'étais en poste
 private _msgNoChkpt2 = ["Nous ne controllons pas les routes.","Je jamais été de garde a un checkpoint.","Je ne crois pas qu'ont ai déjà des barrages routiers.","Contrôller les routes est au dessus de nos forces.","Nous laissons les civils circuler librement."];
 private _msgIed2 = ["J'ai vu des plans, cette route est piégée.","Il y a des explosifs sur le bord de cette route.","J'ai posé des explosifs là-bas !","Le petit nouveau a posé une bombe là-bas.",];
 private _msgNoIed2 = ["Nous n'avons pas posé de pièges.","Les routes ne sont pas piégées.","Il n'y a pas d'explosifs pour faire des bombes, sinon vous seriez dejà en morceaux.","Je ne suis pas du génie, et si c'était le cas je vous dirais d'aller vous faire fouttre."];
-//
 private _msgTransport2 = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez la voiture qui traîne, elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Si vous voulez vous casser, prenez ce véhicule et fouttez moi la paix","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
-private _msgNoTransport2 = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé la voiture qu'on m'a prêtté","Vous n'allez pas tirer ma caisse nouvelle caisse, je l'ai gagné à la roulette russe contre le maire.","Personne ne circule en voiture ici, on s'en est assuré !"];
+private _msgNoTransport2 = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé la voiture qu'on m'a prêtté","Vous n'allez pas tirer ma caisse nouvelle caisse, je l'ai gagné à la roulette russe contre le maire.","Personne ne circule en voiture ici, on s'en est assuré !","Vous aussi vous volez les voitures aux civils ? Il y en a une pas mal là-bas !"];
 private _msgObj2 = ["Je crois que j'ai vu ce que vous cherchez"];
-private _msgNon2 = ["Je ne dirais rien.", "Je ne veux pas parler.","VIVA LA REVOLUTION !!","Quels manteaux ?","I can't speak french"];
+private _msgNon2 = ["Je ne dirais rien.", "Je ne veux pas parler.","VIVA LA REVOLUTION !!","Quels manteaux ?","Je ne trahirais pas mes compagnons.","I can't speak french"];
 
 // ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 switch (_missionType) do {
