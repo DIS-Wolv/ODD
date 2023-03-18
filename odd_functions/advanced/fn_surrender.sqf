@@ -44,7 +44,7 @@ if (side _killer == WEST ) then {
 
 			_maxSurrender = ((_nearRed/5) min 10) max 2; //entre 2 et 10 pax peuvent se rende
 
-			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR
+			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR : trop croissant, a essayer avec une 1 < racine < 2  (ex : _nearRed^(1/1.5))
 			// Calcul du seuil
 
 			if (((random 1) < _seuil) and (_nbSurrender <= _maxSurrender)) then {  
