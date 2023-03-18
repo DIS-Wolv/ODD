@@ -22,7 +22,7 @@ if (side _killer == WEST ) then {
 	// Si L'IA a été tuée par un BLUFOR
 	_distSurrender = 20;
 	_distBlue = 15;  
-	_distRed = 30;
+	_distRed = 30; // Augmenter la distance ici 
 	// Distance sur lesquelles on recherche 
 	_pos = position _unit;
 
@@ -34,7 +34,7 @@ if (side _killer == WEST ) then {
 		};
 	} forEach (units opfor);
 	// Nombre d' OPFOR
-	if (count _nearSurrender != 0) then {
+	if (count _nearSurrender != 0) then { // Negatif plutot ?
 		private _nbSurrender = 0;
 		{
 			_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
@@ -72,7 +72,7 @@ if (side _killer == WEST ) then {
 					{},	{},
 					{
 
-						[2] remoteExec ["ODDadvanced_fnc_intel", 2];
+						[2, _this] remoteExec ["ODDadvanced_fnc_intel", 2];
 						[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 					}, {}, [], 
 					(random[2, 10, 15]), nil, True, False

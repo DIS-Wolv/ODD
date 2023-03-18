@@ -97,7 +97,7 @@ _civil resize (_nbCivil);
 			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 			// (_this select 0) enableAI "PATH";
 
-			[] remoteExec ["ODDadvanced_fnc_intel", 2];
+			[1, _this] remoteExec ["ODDadvanced_fnc_intel", 2];
 			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 		}, {
 			// (_this select 0) enableAI "PATH";
@@ -201,7 +201,7 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
 			// (_this select 0) enableAI "PATH";
 
-			[1] remoteExec ["ODDadvanced_fnc_intel", 2];
+			[1,_this] remoteExec ["ODDadvanced_fnc_intel", 2];
 			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 		}, {
 			// (_this select 0) enableAI "PATH";
