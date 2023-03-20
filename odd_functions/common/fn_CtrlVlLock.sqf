@@ -25,7 +25,9 @@ if (_lock) then {
 			"a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
 			format ["_target distance _this < %1", _unlockDistance], "True", {}, {},
 			{
+				params ["_target", "_caller", "_actionId", "_arguments"];
 				[_target, 0] remoteExec ["lock", (owner _target)];
+				[_target, _actionId] remoteExec ["BIS_fnc_holdActionRemove", 0, True];
 				//https://community.bistudio.com/wiki/BIS_fnc_holdActionRemove
 			}, {}, [], _unlockTime, nil, True, True
 		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
