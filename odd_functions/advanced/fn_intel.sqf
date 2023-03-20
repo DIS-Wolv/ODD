@@ -127,6 +127,7 @@ if (_proba == 0) then {
 		};
 	};
 
+	systemChat str(_pos);
 	if (_needMarker) then {
 		_posIntel = _pos getPos [(random 1 * _dist), random 360];
 
