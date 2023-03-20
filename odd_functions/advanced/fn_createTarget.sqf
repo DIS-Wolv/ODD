@@ -108,7 +108,7 @@ switch (_Mission) do {
 		// systemChat(str(units _g select 0));
 		
 		((units _g) select 0) addHandgunItem "hgun_pistol_heavy_02_F";
-
+		((units _g) select 0) addItemToUniform "Chemlight_yellow";
 
 		((units _g) select 0) addEventHandler ["Killed", {[True] spawn ODDadvanced_fnc_CompleteObj;}];
 
@@ -120,8 +120,8 @@ switch (_Mission) do {
 		else {
 			{
 				_x setVariable ["acex_headless_blacklist", True, True]; 
-			// Ajoute l'unité à la liste noire des clients headless
-			_x setVariable ["ODD_var_IsInGarnison", True, True];
+				// Ajoute l'unité à la liste noire des clients headless
+				_x setVariable ["ODD_var_IsInGarnison", True, True];
 			} forEach (units _g);  
 		// Réitère pour chaque unité du groupe
 			[position _tgBuild, nil, units _g, 10, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
