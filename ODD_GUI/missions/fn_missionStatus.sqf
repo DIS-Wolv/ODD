@@ -9,7 +9,7 @@ private _selectedLoc = _missionParams select 1;
 private _selectedObj = _missionParams select 0;
 private _selectedFaction = _missionParams select 2;
 private _nbPlayers = 0;
-private _MissionsStatus = "";
+private _MissionsStatus = text "error in fn_missionStatus.sqf line 12";
 
 if(!isNil "ODD_var_PlayerCount") then {
 	_nbPlayers = ODD_var_PlayerCount;
@@ -21,9 +21,24 @@ if(!isNil "ODD_var_PlayerCount") then {
 
 clientOwner publicVariableClient "ODD_var_CurrentMission";
 switch (ODD_var_CurrentMission) do {
-	
-	case 0: {
-		if (_prep == True) then { // pas de mission
+      case 0: {
+        if (_prep == True) then { // pas de mission
+            private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro"];
+			private _text = text _selectedLoc; 
+            if (_text in _needAdd) then {  //je regarde si le texte à besoin de préscision
+                private _add = (nearestLocations [position _selectedLoc, ['NameCityCapital', 'NameCity', 'NameVillage', 'Name'], 4000, position _selectedLoc]) select 0; //si oui recup la location a proximité
+                private _text = format ["%1 %2", text _add, _text]; // et modifie _text avec le nom de la loc a proximité
+				_MissionsStatus = parseText (format [
+				"<t size='1' align='center' valign='middle'> Mission préparée, <br/> Zone : %2 <br/> Type : %3 <br/> Location : %4 <br/> Objectif : %5 <br/> Faction : %6 <br/> Joueurs : %7<t/>", 
+				lineBreak,
+				_valArea, 
+				_valLocationType,
+				_text,
+				ODD_var_MissionType select _selectedObj,
+				ODD_var_FactionNames select _selectedFaction,
+				_nbPlayers]
+				);
+            } else {
 			_MissionsStatus = parseText (format [
 				"<t size='1' align='center' valign='middle'> Mission préparée, <br/> Zone : %2 <br/> Type : %3 <br/> Location : %4 <br/> Objectif : %5 <br/> Faction : %6 <br/> Joueurs : %7<t/>", 
 				lineBreak,
@@ -34,6 +49,7 @@ switch (ODD_var_CurrentMission) do {
 				ODD_var_FactionNames select _selectedFaction,
 				_nbPlayers]
 				);
+			};
 		} else { // récap mission préparée
 			_MissionsStatus = parseText "<t size='1' align='center' valign='middle'>Pas de mission en cours ! <br/> Vous pouvez choisir des paramètres précis pour générer la mission que vous voulez. <br/> Alternativement, vous pouvez appliquer des fitres ou laisser tout en aléatoire et cliquer sur 'préparer la mission' pour que le jeu tire des paramètres alétoirement. Une fois que les paramètres tirés vous conviennent, vous pouvez générer votre mission. <br/><br/> La gestion de l'heure et de la météo sont complètement indépendants de la génération de la mission et peuvent être ajustés à tout moment !<t/>";
 		};
