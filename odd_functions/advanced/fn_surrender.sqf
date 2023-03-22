@@ -71,8 +71,8 @@ if (side _killer == WEST ) then {
 					"True",
 					{},	{},
 					{
-
-						[2, _this] remoteExec ["ODDadvanced_fnc_intel", 2];
+						params ["_target", "_caller", "_actionId", "_arguments"];
+						[2, _target] remoteExec ["ODDadvanced_fnc_intel", 2];
 						[(_this select 0)] remoteExec ["removeAllActions", 0, True];
 					}, {}, [], 
 					(random[2, 10, 15]), nil, True, False
