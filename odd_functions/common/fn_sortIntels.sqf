@@ -14,12 +14,12 @@
 *
 * Variable publique :
 */
-params [[_type,0],[_center,[15000,15000,0]],[_maxRange,1500]];
+params [["_type",0], ["_center",[15000,15000,0]], ["_maxRange",1500]];
 
 private _allIntels = [];
 private _sortedIntels = [];
 private _sortedWeights = [];
-private _intelPos =[0,0,0];
+private _intelPos = [0,0,0];
 
 switch (_type) do {
 	case (ODD_var_IntelType select 5): {
@@ -59,9 +59,10 @@ switch (_type) do {
 };
 
 if (count(_allIntels) > 0) then {
-	_sortedIntels = [_allIntels, [_center], {_input0 distance2D _x}, "ASCEND", {(_input0 distance2D _x) <= _maxRange}] call BIS_fnc_sortBy;
+	[_allIntels, [_center, _maxRange], {_input0 distance2D _x}, "ASCEND", {(_input0 distance2D _x) <= _input1}] call BIS_fnc_sortBy;
+	_sortedIntels = _allIntels;
 } else {
-	systemChat "ERROR fn_sortIntel : _allIntels = []";
+	systemChat "ERROR fn_sortIntel : _allIntels = []"; // => LOG
 };
 
 /*Il faut conter les _sortedIntels pour créer une array sortedweights pour pouvoir utiliser BIS_fnc_selectRandomWeighted */
@@ -71,13 +72,15 @@ if (_length > 0) then {
 		_sortedWeights set [_forEachIndex, ((_length - _forEachIndex)/ _length)];
 	} forEach _sortedIntels;
 };
+// // systemChat str _sortedWeights;
+// private _intelSortedWeights = [];
+// {
+// 	_intelSortedWeights pushBack _x;
+// 	_intelSortedWeights pushBack (_sortedWeights select (_sortedIntels find _x));
+// 	// _sortedIntels insert [((_sortedIntels find _x) + 1), _sortedWeights select (_sortedIntels find _x)];
+// } forEach _sortedIntels;
 
-{
-	_sortedIntels insert [((_sortedIntels find _x) +1),_sortedWeights select (_sortedIntels find _x)];
-	
-} forEach _sortedIntels;
-
-private _intel = selectRandomWeighted _sortedIntels;
-_intelPos =position _intel;
-
-_intelPos;
+// systemChat str _sortedIntels;
+private _intel = _sortedIntels selectRandomWeighted _sortedWeights;
+// systemChat str _intel;
+_intel;
