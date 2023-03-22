@@ -14,6 +14,7 @@
 * Variable publique :
 */
 params[["_source", 0], ["_author",objNull],["_dist", 50]];
+// systemChat 'PROUT INTEL';
 
 private _colorPool = ["colorIndependent", "colorCivilian", "colorOPFOR"];
 private _markerPool = ["Contact_circle1", "Contact_circle2", "Contact_circle3", "Contact_circle4", "Contact_pencilTask1", "Contact_pencilTask2",
@@ -53,11 +54,14 @@ if (_source == 2) then {
 } else {
 	_proba = round (random 1);
 };
+// _proba = 0;
+private _pos = [0,0,0];
 if (_proba == 0) then {
+	// systemChat 'PROUT info';
 	_msg = "J'ai des informations.";
 	_intelType = selectRandom ODD_var_IntelType;
+	// _intelType = ODD_var_IntelType select 5; // force le type d'intel
 	ODD_var_IntelType = ODD_var_IntelType + (ODD_var_IntelType - [_intelType]);
-	private _pos = [0,0,0];
 	private _needMarker = True;
 
 	//["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
@@ -69,7 +73,7 @@ if (_proba == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgMedical;
-				_pos = [_intelType, getPos _author, 1500] call ODDcommon_fnc_sortIntels;
+				_pos = [_intelType, getPos _author, 1500] call ODDcommon_fnc_sortintels;
 				_markerType = "loc_heal";
 			};
 		};
@@ -80,7 +84,7 @@ if (_proba == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgVl;
-				_pos = [_intelType, getPos _author, 2500] call ODDcommon_fnc_sortIntels;
+				_pos = [_intelType, getPos _author, 2500] call ODDcommon_fnc_sortintels;
 				_markerType = "loc_defend";
 			};
 		};
@@ -91,7 +95,7 @@ if (_proba == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgChkpt;
-				_pos = [_intelType, getPos _author, 2000] call ODDcommon_fnc_sortIntels;
+				_pos = [_intelType, getPos _author, 2000] call ODDcommon_fnc_sortintels;
 				_markerType = "loc_Bunker";
 			}
 		};
@@ -102,7 +106,7 @@ if (_proba == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgIed;
-				_pos = [_intelType, getPos _author, 750] call ODDcommon_fnc_sortIntels;
+				_pos = [_intelType, getPos _author, 750] call ODDcommon_fnc_sortintels;
 				_markerType = "loc_mine";
 			};
 		};
@@ -113,24 +117,29 @@ if (_proba == 0) then {
 			}
 			else {
 				_msg = selectRandom _msgTransport;
-				_pos = [_intelType, getPos _author, 500] call ODDcommon_fnc_sortIntels;
+				_pos = [_intelType, getPos _author, 500] call ODDcommon_fnc_sortintels;
 				_markerType = "loc_Truck";
 			};
 		};
 		case (ODD_var_IntelType select 0);
 		default {		//ObjectifPos
 			_msg = selectRandom _msgObj;
-			_pos = [0, getPos _author, 2000] call ODDcommon_fnc_sortIntels;
+			_pos = [0, getPos _author, 2000] call ODDcommon_fnc_sortintels;
 			["ODD_task_mission", "UPDATED"] call BIS_fnc_taskHint;
 
 			_markerType = (selectRandom _markerPool)
 		};
 	};
-
+	// systemChat format ["YOLO : %1", _pos];
+	if ((count (_pos)) < 2) then {
+		_needMarker = False;
+		_msgNon = _allmsg select 11;
+		_msg = selectRandom _msgNon;
+	};
 	if (_needMarker) then {
-		_posIntel = _pos getPos [(random 1 * _dist), random 360];
+		_posMarker = _pos getPos [(random 1 * _dist), random 360];
 
-		_marker = createMarker [format["ODDTG %1 %2 %3", (_posIntel select 0), (_posIntel select 1), (_posIntel select 2)], _posIntel,1];
+		_marker = createMarker [format["ODDTG %1 %2 %3", (_posMarker select 0), (_posMarker select 1), (_posMarker select 2)], _posMarker,1];
 		_marker setMarkertype _markerType;
 		_marker setMarkerColor _color;
 		_marker setMarkerAlpha 0.8125;
@@ -138,7 +147,7 @@ if (_proba == 0) then {
 	};
 }
 else {
-	_msgNon = _allmsg select 10;
+	_msgNon = _allmsg select 11;
 	_msg = selectRandom _msgNon;
 };
 
