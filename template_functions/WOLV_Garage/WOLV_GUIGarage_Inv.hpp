@@ -144,7 +144,7 @@ class GUIgarage_Inv
 			x = 0.425 * safezoneW + safezoneX;
 			y = 0.6 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;
-			h = 0.04 * safezoneH
+			h = 0.04 * safezoneH;
 			action = "[10] spawn WolvGarage_fnc_invRemoveItem;";
 		};
 
