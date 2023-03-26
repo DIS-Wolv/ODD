@@ -23,7 +23,7 @@ clientOwner publicVariableClient "ODD_var_CurrentMission";
 switch (ODD_var_CurrentMission) do {
       case 0: {
         if (_prep == True) then { // pas de mission
-            private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro"];
+            private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro", "carrière", "centrale", "armée", "usine"];
 			private _text = text _selectedLoc; 
             if (_text in _needAdd) then {  //je regarde si le texte à besoin de préscision
                 private _add = (nearestLocations [position _selectedLoc, ['NameCityCapital', 'NameCity', 'NameVillage', 'Name'], 4000, position _selectedLoc]) select 0; //si oui recup la location a proximité
