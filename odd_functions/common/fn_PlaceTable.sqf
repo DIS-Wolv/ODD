@@ -35,9 +35,11 @@ private _ndirt = _dirt + _dirh;
 private _npost = _bat getPos [_disht, (_dirht + _dirh)];
 _npost set [2, ((_posh select 2) + _altt + 0.2)];
 
-
-_t = createVehicle [(_table select 0), _npost, [], 0, "CAN_COLLIDE"];
+_base = createVehicle ["Land_VR_Block_02_F", [0,0,200], [], 0, "FLY"];
+_t = createVehicle [(_table select 0), [0,0,220], [], 0, "FLY"];
 _t setDir _ndirt;
+_t setPos _npost;
+deleteVehicle _base;
 
 _t;
 
