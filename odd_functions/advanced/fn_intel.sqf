@@ -47,7 +47,7 @@ private _proba = 1;
 if (_source == 2) then {
 	private _torture = _author getVariable ["ace_medical_medications", []];
 	if (count (_torture) > 0) then {
-		_proba = 0; 
+		_proba = 0; // tweek la valeur
 	} else {
 		_proba = round (random 2);
 	};
