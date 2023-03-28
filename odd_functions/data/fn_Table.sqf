@@ -202,6 +202,82 @@ ODDdata_var_table = [
 		]
 	],
 	[
+		"Land_Airport_Tower_F",
+		[
+   			["Land_CampingTable_F",360,186.039,5.39896,12.9157],
+			["Land_CampingTable_small_F",360,322.991,2.72121,9.2238],
+    		["Land_CampingTable_small_white_F",360,358.366,3.9616,0.223305],
+    		["Land_WoodenTable_large_F",359.999,219.771,4.02678,12.9184],
+    		["Land_RattanTable_01_F",226.287,106.808,1.7257,9.22138],
+    		["OfficeTable_01_old_F",360,213.907,3.99003,9.22087],
+    		["Land_WoodenTable_small_F",8.26121e-006,173.955,5.84928,9.22101],
+    		["Land_TablePlastic_01_F",314.887,251.67,3.11612,9.22139],
+    		["Land_CampingTable_small_white_F",228.202,109.796,1.61731,12.921],
+    		["Land_CampingTable_small_F",2.33339e-005,314.484,2.19349,0.223305]
+		]
+	],
+	[
+		"Land_i_House_Small_03_V1_F",
+		[
+    		["OfficeTable_01_new_F",360,49.8687,3.69099,0.319001],
+    		["Land_CampingTable_F",360,114.478,3.47532,0.316408],
+    		["Land_CampingTable_small_white_F",360,129.687,6.20107,0.321603],
+    		["Land_WoodenTable_02_large_F",0.000501895,273.743,4.30374,0.331911],
+    		["Land_CampingTable_small_F",0.00149303,169.051,5.49706,0.00260162],
+    		["Land_CampingTable_white_F",360,238.574,3.55202,0.316408],
+    		["Land_RattanTable_01_F",359.999,133.039,3.98831,0.318998],
+    		["Land_TableSmall_01_F",359.999,352.978,4,0.321818],
+    		["Land_TableSmall_01_F",0.000124966,308.358,6.44398,0.321818],
+    		["Land_TableBig_01_F",360,280.871,3.63727,0.318999]
+		]
+	],
+	[
+		"Land_u_House_Big_02_V1_F",
+		[
+		    ["Land_CampingTable_small_F",360,22.3274,6.55438,3.5616],
+    		["Land_CampingTable_white_F",89.9995,38.7456,3.02463,3.61641],
+    		["Land_RattanTable_01_F",0.000497669,236.039,4.28736,3.61899],
+    		["Land_CampingTable_white_F",0.000731809,80.6077,1.83861,3.61641],
+    		["Land_CampingTable_small_F",359.998,276.265,3.55523,3.6216],
+    		["Land_RattanTable_01_F",0,309.745,2.3852,0],
+    		["Land_TablePlastic_01_F",90,306.14,4.28815,0.258255],
+    		["Land_TableBig_01_F",0.000316117,352.944,2.3034,0.258255],
+    		["OfficeTable_01_old_F",303.842,28.8136,3.40684,0.258255],
+    		["OfficeTable_01_old_F",180.001,174.994,3.56456,3.619]
+		],
+	],
+	[
+		"Land_i_House_Big_02_V3_F",
+		[
+		    ["Land_TablePlastic_01_F",269.999,348.161,2.7393,0.258255],
+    		["Land_CampingTable_white_F",360,355.847,2.41736,0.255663],
+    		["Land_CampingTable_small_F",3.71337e-005,86.3546,4.02609,0.260858],
+    		["Land_TableSmall_01_F",0.00017273,56.9723,0.456886,3.66841],
+    		["Land_Table_small_EP1_lxWS",5.68314e-006,38.6195,3.08586,3.66559],
+    		["Land_CampingTable_small_white_F",360,175.96,5.16683,3.66819],
+    		["Land_RattanTable_01_F",359.998,180.37,3.40211,3.66559],
+    		["OfficeTable_01_old_F",0.000731758,2.74633,4.71642,3.66559],
+    		["OfficeTable_01_new_F",269.976,200.431,1.54592,0.260656],
+    		["Land_WoodenTable_02_large_F",360,39.5654,3.13268,0.271166]
+		]
+	],
+	[
+		"Land_i_House_Big_02_V1_F",
+		[
+			["Land_CampingTable_small_white_F",360,58.5443,2.06203,3.66819],
+			["Land_WoodenTable_large_F",89.9999,152.337,1.54005,0.258255],
+			["Land_WoodenTable_small_F",0.000695118,321.139,5.56712,0.258255],
+			["Land_PortableDesk_01_olive_F",0.000545936,43.9192,3.25817,0.258192],
+			["Land_PortableDesk_01_black_F",0.000176536,11.121,2.62833,3.66554],
+			["Land_CampingTable_F",90,239.199,4.58349,0.255663],
+			["Land_CampingTable_F",360,356.35,4.66547,3.663],
+			["Land_CampingTable_small_F",0.00239198,244.659,2.86679,3.66819],
+			["Land_TableSmall_01_F",360,23.5734,6.7536,3.60841],
+			["Land_RattanTable_01_F",0.000958293,143.116,6.57117,0.595592]
+		]
+	],
+
+	[
 		"Land_u_House_Small_02_V1_F",
 		[
 			["Land_TablePlastic_01_F",360,93.0253,4.33906,0.419927],
