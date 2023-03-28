@@ -276,7 +276,53 @@ ODDdata_var_table = [
 			["Land_RattanTable_01_F",0.000958293,143.116,6.57117,0.595592]
 		]
 	],
-
+	[
+		"Land_i_Shop_01_V1_F",
+		[
+			["Land_CampingTable_small_white_F",0.000441094,294.477,3.44896,0.304688],
+			["Land_CampingTable_white_F",0.000304175,337.612,6.97583,0.299495],
+			["Land_TableSmall_01_F",0.00113356,36.6331,5.66623,0.304903],
+			["Land_PortableDesk_01_black_F",2.38726e-005,326.02,4.38474,4.17347],
+			["Land_PortableDesk_01_sand_F",89.9995,40.0666,1.10459,4.17298],
+			["Land_CampingTable_small_F",0.00115357,34.0158,5.60752,0.304687],
+			["Land_WoodenTable_large_F",360,35.219,2.10695,4.17267],
+			["OfficeTable_01_new_F",0.000745442,241.118,0.807468,0.302085],
+			["Land_TableSmall_01_F",0.000511619,224.879,4.66832,4.14678],
+			["Land_CampingTable_small_F",359.998,240.074,3.66798,4.17646],
+			["OfficeTable_01_old_F",270,330.952,6.89881,4.17379],
+			["OfficeTable_01_new_F",359.999,27.9931,2.72507,4.17246],
+			["Land_RattanTable_01_F",359.998,18.22,4.49116,4.17211],
+			["Land_TableBig_01_F",0.000537939,335.33,1.69801,4.17298],
+			["OfficeTable_01_old_F",180.001,182.046,1.81915,0.302084],
+			["OfficeTable_01_new_F",360,8.18506,4.48169,0.302084]
+		]
+	],
+	[
+		"Land_i_Shop_01_V3_F",
+		[
+			["Land_RattanTable_01_F",4.74062e-005,18.743,4.52815,0.302086],
+			["Land_TableSmall_01_F",0.00121725,250.908,3.59244,4.17662],
+			["Land_Table_small_EP1_lxWS",360,52.4851,1.53558,4.17292],
+			["Land_CampingTable_F",360,11.9435,4.41659,0.299493],
+			["Land_CampingTable_small_F",0.0023245,323.311,5.30864,4.17632],
+			["Land_CampingTable_white_F",0.00100358,333.902,6.22801,4.17098],
+			["Land_WoodenTable_large_F",0.00118295,305.196,3.8205,0.302084],
+			["Land_CampingTable_small_F",0.000741409,142.37,2.17024,4.17638]
+		]
+	],
+	[
+		"Land_u_Shop_01_V1_F",
+		[
+			["Land_RattanTable_01_F",8.34747e-005,305.194,3.76164,0.302083],
+			["Land_TablePlastic_01_F",1.20837e-006,338.583,6.61368,0.302085],
+			["Land_CampingTable_white_F",359.999,235.778,3.05979,4.17123],
+			["Land_WoodenTable_02_large_F",0.000358975,295.462,2.64234,0.314996],
+			["OfficeTable_01_old_F",180,18.5991,1.75885,0.302085],
+			["Land_TableBig_01_F",360,332.375,2.54287,0.302084],
+			["Land_WoodenTable_small_F",0.000246501,8.89207,4.08919,0.302084],
+			["Land_CampingTable_small_white_F",2.00882e-005,298.481,3.60055,4.17634]
+		]
+	],
 	[
 		"Land_u_House_Small_02_V1_F",
 		[
