@@ -41,6 +41,7 @@ class ODD_advanced {
 		class createGarnison {};
 		class createGarnisonV2 {};
 		class infoOdd {};
+		class initMissionArea {};
 		class initPatrol {};
 		class createPatrol {};
 		class createVehicule {};
