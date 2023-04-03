@@ -1,6 +1,6 @@
 /*
 * Auteur : Wolv
-* Fonction pour préparer la création de patrouilles dans la zone
+* Fonction pour calculer la réserve totale de patrouilles dans une zone
 *
 * Arguments :
 * 0: Zone <Objet>
@@ -45,7 +45,7 @@ _prox = nearestLocations [position _zo, ODD_var_LocationType, 2000];
 	case (ODD_var_LocationType select 2): {_proxModifier = 1;};
 	case (ODD_var_LocationType select 1): {_proxModifier = 2;};
 	case (ODD_var_LocationType select 0): {_proxModifier = 4;};
-	_patrolPool = _patrolPool + _proxModifier ; // ?? Incrémente la pool en fonction du nombre et du type des locations aux environs
+	_patrolPool = _patrolPool + _proxModifier ; // ?? Incrémente la pool en fonction du nombre et du type des localités aux environs
 };
 } forEach _prox;
 
