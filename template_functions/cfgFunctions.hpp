@@ -12,6 +12,7 @@ class DIS_Common {
 		class haloJump {};
 		class createBoat {};
 		class deleteBoats {};
+		class resetRadio {};
 	};
 };
 

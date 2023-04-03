@@ -20,6 +20,10 @@ _haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa
 _nobushAction = ["noBush","Cut bushes","\z\ace\addons\logistics_wirecutter\ui\wirecutter_ca.paa",{[player] spawn DISCommon_fnc_CutBushes;},{True}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions", "ACE_Equipment"], _nobushAction] call ace_interact_menu_fnc_addActionToObject;
 
+// Ajout de la fonction pour reset la radio
+_RadioAction = ["Radio","Reset Radio","\z\tfar\addons\core\ui\ACE_Interaction_Radio_Icon.paa",{[player] spawn DISCommon_fnc_resetRadio;},{True}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions", "ACE_Equipment"], _RadioAction] call ace_interact_menu_fnc_addActionToObject;
+
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
 base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
