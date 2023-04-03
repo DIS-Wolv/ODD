@@ -16,7 +16,7 @@
 *
 * Variable publique :
 */
-params ["_zo", ["_obj", False], ["_debug", False]];
+params ["_zo", ["_obj", False]];
 
 private _patrolPool = 4;
 private _typeModifier = 0;
@@ -39,15 +39,17 @@ _patrolPool = _patrolPool + _typeModifier;
 _prox = nearestLocations [position _zo, ODD_var_LocationType, 2000];
 {
 	switch (type _x) do {
-	case (ODD_var_LocationType select 5): {_proxModifier = 0;};
-	case (ODD_var_LocationType select 4): {_proxModifier = 0;};
-	case (ODD_var_LocationType select 3): {_proxModifier = 1;};
-	case (ODD_var_LocationType select 2): {_proxModifier = 1;};
-	case (ODD_var_LocationType select 1): {_proxModifier = 2;};
-	case (ODD_var_LocationType select 0): {_proxModifier = 4;};
-	_patrolPool = _patrolPool + _proxModifier ; // ?? Incrémente la pool en fonction du nombre et du type des localités aux environs
-};
+		case (ODD_var_LocationType select 5): {_proxModifier = 0;};
+		case (ODD_var_LocationType select 4): {_proxModifier = 0;};
+		case (ODD_var_LocationType select 3): {_proxModifier = 1;};
+		case (ODD_var_LocationType select 2): {_proxModifier = 1;};
+		case (ODD_var_LocationType select 1): {_proxModifier = 2;};
+		case (ODD_var_LocationType select 0): {_proxModifier = 4;};
+	};
+	_patrolPool = _patrolPool + _proxModifier;
 } forEach _prox;
+
+// Modif avec le nombre de batiments militaires
 
 if (_obj == True) then {
 	_objModifier = 3;
@@ -60,4 +62,4 @@ _randomizationCeiling = random [_patrolPool, _patrolPool * 2];
 
 _patrolPool = random [_randomizationFloor,_patrolPool,_randomizationCeiling]; 
 
-// helipad setVariable _patrolPool;
+_patrolPool;
