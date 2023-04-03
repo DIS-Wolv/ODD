@@ -53,3 +53,11 @@ if (_obj == True) then {
 	_objModifier = 3;
 };
 _patrolPool = _patrolPool + _objModifier; 
+
+
+_randomizationFloor = random [floor (_patrolPool * 0.8),_patrolPool];
+_randomizationCeiling = random [_patrolPool, _patrolPool * 2];
+
+_patrolPool = random [_randomizationFloor,_patrolPool,_randomizationCeiling]; 
+
+// helipad setVariable _patrolPool;
