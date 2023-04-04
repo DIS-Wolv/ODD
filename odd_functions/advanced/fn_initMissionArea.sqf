@@ -38,7 +38,7 @@ private _alt = 1000;
 
 	// utilise les fonctions pour calculer les reserves sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
-	private _patrolLimit = [XXXX] call ODDcommon_fnc_LimitPatrol;
+	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
 	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
 
 	// crée les triggers pour spawn/déspawn les patrouilles
