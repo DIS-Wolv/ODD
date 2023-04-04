@@ -12,6 +12,7 @@ class ODD_Common {
 		class sortIntels {};
 		class initPatrol {};
 		class limitPatrols {};
+		class defineZo {};
     };
 };
 
