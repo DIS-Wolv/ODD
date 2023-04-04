@@ -21,7 +21,7 @@
 params ["_zo","_locations"];
 private _radSpawnPatrols = 2000;
 private _radDisable = 1200;
-private _radSpawnCivils = 1500;
+private _radSpawnCivils = 1600;
 private _alt = 1000;
 
 {

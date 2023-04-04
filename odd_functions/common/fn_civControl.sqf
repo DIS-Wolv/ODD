@@ -14,7 +14,7 @@
 * Variable publique :
 */
 
-params ["_trigger", ["_state", False], ["_radius", 1000]];
+params ["_trigger", ["_state", False], ["_radius", 1400]];
 private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
 
 if ((typeName _loc) != "SCALAR") then {
@@ -56,7 +56,7 @@ if ((typeName _loc) != "SCALAR") then {
 			};
 		}
 		else {
-			private _nearMen = _pos nearEntities ["man", 1400];
+			private _nearMen = _pos nearEntities ["man", _radius];
 			{
 				if ((side _x) == civilian) then {
 					deleteVehicle _x;
