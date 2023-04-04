@@ -8,6 +8,8 @@
 * Valeur renvoyée :
 * <Array> [<int> type pour la zo, <bool> civils]
 *
+* [civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
+*
 * Exemple:
 * [_zo] call ODDcommon_fnc_defineZo
 * [_zo, True, False] ODDcommon_fnc_defineZo
