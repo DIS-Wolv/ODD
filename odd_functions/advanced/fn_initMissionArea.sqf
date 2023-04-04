@@ -38,7 +38,7 @@ private _alt = 1000;
 
 	// utilise les fonctions pour calculer le nombre et la composition des civils
 	private _civils = [_loc] call ODDcommon_fnc_initCivils;
-	_variablesPad setVariable ["trig_ODD_var_civ",_civils ,True];
+	_variablesPad setVariable ["trig_ODD_var_civ",_civils, True];
 
 	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
