@@ -10,6 +10,7 @@ class ODD_Common {
 		class CountOnBase {};
 		class SelectZO {};
 		class sortIntels {};
+		class initPatrol {};
     };
 };
 
@@ -42,7 +43,6 @@ class ODD_advanced {
 		class createGarnisonV2 {};
 		class infoOdd {};
 		class initMissionArea {};
-		class initPatrol {};
 		class createPatrol {};
 		class createVehicule {};
 		class roadBlock {};
