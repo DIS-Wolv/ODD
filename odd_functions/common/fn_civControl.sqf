@@ -28,26 +28,38 @@ if ((typeName _loc) != "SCALAR") then {
 		_loc setVariable ["trig_ODD_var_civControlActive", True, True];
 		
 		// Spawn des civils
+		private _civils = _loc getVariable ["trig_ODD_var_civ"];
+		private _nbCivil = _civils select 0;
+		private _garCivil = _civils select 1;
+		private _vlCivil = _civils select 2;
+		private _patGroup = [];
+		private _garGroup = [];
+		private _vlGroup = [];
 		_pos = position _loc;
-		_IA = _pos nearEntities _radius;
-		{
-			_own = owner _x;
-			if (_state) then {
-				[_x, 'ALL'] remoteExec ["enableAI", _own];
-				
-				if ((_x getVariable ["ODD_var_IsInGarnison", False]) == True) then {
-					[_x, 'PATH'] remoteExec ["disableAI", _own];
+		if (_state) then {
+			for "_i" from 0 to _nbCivil do {
+				private _pat = [] call ODDcommon_fnc_civPatrol;
+				_patGroup pushBack _pat;
+			};
+			for "_i" from 0 to _garCivil do {
+				private _gar = [] call ODDcommon_fnc_civGarnison;
+				_garGroup pushBack _gar;
+			};
+			for "_i" from 0 to _vlCivil do {
+				private _vl = [] call ODDcommon_fnc_civVl;
+				_vlGroup pushBack _vl;
+			};
+			_loc setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True]
+		}
+		else {
+			private _nearMen = _pos nearEntities ["man", 1400];
+			{
+				if ((side _x) == civilian) then {
+					deleteVehicle _x;
 				};
-
-				[_x, False] remoteExec ["stop", _own];
-			}
-			else {
-				[_x] remoteExec ["dostop", _own];
-				[_x, True] remoteExec ["stop", _own];
-				uisleep 1;
-				[_x, 'ALL'] remoteExec ["disableAI", _own];
-			}
-		} forEach _IA;
+				
+			} forEach _nearMen;
+		}
 		// Fin du spawn 
 
 		_WantState = _loc getVariable ["trig_ODD_var_civWantState", _state];
