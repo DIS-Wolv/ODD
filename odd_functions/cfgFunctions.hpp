@@ -14,7 +14,8 @@ class ODD_Common {
 		class limitPatrols {};
 		class defineZo {};
 		class civControl {};
-		class patrolsControl{};
+		class patrolsControl {};
+		class initCivils {};
     };
 };
 
