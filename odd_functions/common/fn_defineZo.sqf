@@ -4,6 +4,7 @@
 *
 * Arguments :
 * 0: Localité <Objet>
+* 1: mod <int>
 *
 * Valeur renvoyée :
 * <Array> [<int> type pour la zo, <bool> civils]
@@ -16,9 +17,8 @@
 * Variable publique :
 */
 
-params [_loc];
+params [_loc, _mod];
 private _zoType = 0;
-private _mod = 0;
 private _civ = True;
 
 {
@@ -49,15 +49,10 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 75 and _action <= 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 2;
 		};
@@ -68,15 +63,10 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 65 and _action <= 75) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 75) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
@@ -87,32 +77,18 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 45 and _action <= 50) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 50 and _action <= 75) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
 		if (_action > 75 and _action <= 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			_nbCheckPoint = round random 3;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 4;
 		};
 		if (_action > 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
@@ -123,32 +99,18 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 40 and _action <= 50) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 50 and _action <= 70) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
 		if (_action > 70 and _action <= 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			_nbCheckPoint = round random 2;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 4;
 		};
 		if (_action > 90) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
@@ -159,32 +121,18 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 30 and _action <= 35) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 35 and _action <= 65) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
 		if (_action > 65 and _action <= 85) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			_nbCheckPoint = round random 4;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 4;
 		};
 		if (_action > 85) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
@@ -195,42 +143,22 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 30 and _action <= 35) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 1;
 		};
 		if (_action > 35 and _action <= 55) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
 		if (_action > 55 and _action <= 85) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			_nbCheckPoint = round random 5;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 4;
 		};
 		if (_action > 85 and _action <= 95) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
 		if (_action > 95) then {
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			_nbCheckPoint = round random 4;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
-			[_loc, False] call ODDadvanced_fnc_civil;
 			_mod = _mod + 1;
 			_zoType = 6;
 		};
@@ -241,28 +169,18 @@ switch (_loctype) do {
 			_zoType = 0;
 		};
 		if (_action > 40 and _action <= 50) then {
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
 			_mod = _mod + 1;
 			_zoType = 7;
 		};
 		if (_action > 50 and _action <= 60) then {
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
 			_mod = _mod + 1;
 			_zoType = 3;
 		};
 		if (_action > 60 and _action <= 80) then {
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			_nbCheckPoint = round random 3;
-			[_loc, _nbCheckPoint, False] call ODDadvanced_fnc_roadBlock;
 			_mod = _mod + 1;
 			_zoType = 4;
 		};
 		if (_action > 80) then {
-			[_loc, False] call ODDadvanced_fnc_createGarnisonV2;
-			[_loc, False] call ODDadvanced_fnc_createPatrol;
-			[_loc, True, True] spawn ODDadvanced_fnc_createVehicule;
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
@@ -270,4 +188,4 @@ switch (_loctype) do {
 	};
 };
 
-[_zoType,_civ];
+[_zoType,_civ,_mod];

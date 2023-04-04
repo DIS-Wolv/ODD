@@ -33,7 +33,10 @@ private _alt = 1000;
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 
 	// utilise une fonction pour déterminer l'état de la zone 
-	private _zoType = [_loc] call ODDcommon_fnc_defineZo;
+	private _mod = 0;
+	private _zoType = [_loc, _mod] call ODDcommon_fnc_defineZo;
+	_mod = _zoType select 2;
+	_zoType resize 2;
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
 	// utilise les fonctions pour calculer le nombre et la composition des civils
