@@ -16,6 +16,9 @@ class ODD_Common {
 		class civControl {};
 		class patrolsControl {};
 		class initCivils {};
+		class civPatrol {};
+		class civGarnison {};
+		class civVehicle {};
     };
 };
 
