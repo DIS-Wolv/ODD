@@ -29,17 +29,17 @@ private _alt = 1000;
 	_pos = position _loc;
 	
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
-	_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
-	_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
+	_variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
+	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 
 	// utilise une fonction pour déterminer l'état de la zone 
 	private _zoType = [] call ODDcommon_fnc_defineZo;
-	_markerZ setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
+	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
 	// utilise les fonctions pour calculer les reserves sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
 	private _patrolLimit = [XXXX] call ODDcommon_fnc_LimitPatrol;
-	_markerZ setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
+	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
 
 	// crée les triggers pour spawn/déspawn les patrouilles
 	private _PatTrigger = createTrigger ["EmptyDetector", _pos, True]; 
@@ -53,13 +53,13 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 	"
 	];
-	_LocTrigger setVariable ["trig_ODD_var_pat", _markerZ, True];
+	_LocTrigger setVariable ["trig_ODD_var_pat", _variablesPad, True];
 
-	_markerZ setVariable ["trig_ODD_var_patWantState", False, True];
+	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
 
 	// log les hélipads et les triggers dans le fichier var
-	ODD_var_ZonePad pushBack _markerZ;
+	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger pushBack _LocTrigger;
 
 	// crée les triggers pour activer/désactiver les AIs
@@ -74,13 +74,13 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 	"
 	];
-	_LocTrigger setVariable ["trig_ODD_var_loc", _markerZ, True];
+	_LocTrigger setVariable ["trig_ODD_var_loc", _variablesPad, True];
 
-	_markerZ setVariable ["trig_ODD_var_WantState", False, True];
+	_variablesPad setVariable ["trig_ODD_var_WantState", False, True];
 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
 
 	// log les hélipads et les triggers dans le fichier var
-	ODD_var_ZonePad pushBack _markerZ;
+	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger pushBack _LocTrigger;
 } forEach _location;
 
