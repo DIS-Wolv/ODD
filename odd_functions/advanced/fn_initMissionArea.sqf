@@ -41,11 +41,28 @@ private _alt = 1000;
 	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
 	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
 
+	// crée les triggers pour spawn/déspawn les civls
+	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	_civTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
+	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	_civTrigger setTriggerStatements ["this",
+	"
+		[thisTrigger, True] spawn ODDcommon_fnc_civControl;
+	",
+	"
+		[thisTrigger, False] spawn ODDcommon_fnc_civControl;
+	"
+	];
+	_civTrigger setVariable ["trig_ODD_var_civ", _variablesPad, True];
+
+	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
+	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
+
 	// crée les triggers pour spawn/déspawn les patrouilles
-	private _PatTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-	_LocTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
-	_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
-	_LocTrigger setTriggerStatements ["this",
+	private _patTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
+	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	_patTrigger setTriggerStatements ["this",
 	"
 		[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;
 	",
@@ -53,10 +70,10 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 	"
 	];
-	_LocTrigger setVariable ["trig_ODD_var_pat", _variablesPad, True];
+	_patTrigger setVariable ["trig_ODD_var_pat", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
+	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_areaControl;
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
