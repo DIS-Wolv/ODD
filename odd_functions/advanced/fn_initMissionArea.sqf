@@ -29,12 +29,16 @@ private _alt = 1000;
 	_pos = position _loc;
 	
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
-	_variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
+	private _variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 
 	// utilise une fonction pour déterminer l'état de la zone 
 	private _zoType = [_loc] call ODDcommon_fnc_defineZo;
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
+
+	// utilise les fonctions pour calculer le nombre et la composition des civils
+	private _civils = [_loc] call ODDcommon_fnc_initCivils;
+	_variablesPad setVariable ["trig_ODD_var_civ",_civils ,True];
 
 	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
@@ -43,7 +47,7 @@ private _alt = 1000;
 
 	// crée les triggers pour spawn/déspawn les civls
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-	_civTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
+	_civTrigger setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, False, _alt]; 
 	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_civTrigger setTriggerStatements ["this",
 	"
@@ -53,7 +57,7 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDcommon_fnc_civControl;
 	"
 	];
-	_civTrigger setVariable ["trig_ODD_var_civ", _variablesPad, True];
+	_civTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
@@ -70,7 +74,7 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 	"
 	];
-	_patTrigger setVariable ["trig_ODD_var_pat", _variablesPad, True];
+	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_areaControl;
@@ -91,7 +95,7 @@ private _alt = 1000;
 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
 	"
 	];
-	_LocTrigger setVariable ["trig_ODD_var_loc", _variablesPad, True];
+	_LocTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_WantState", False, True];
 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
