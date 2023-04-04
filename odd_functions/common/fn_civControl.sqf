@@ -28,6 +28,8 @@ if ((typeName _loc) != "SCALAR") then {
 		_loc setVariable ["trig_ODD_var_civControlActive", True, True];
 		
 		// Spawn des civils
+		private _varCivil = _loc getVariable ["trig_ODD_var_zoType"];
+		private _spawnCivil = _varCivil select 1;
 		private _civils = _loc getVariable ["trig_ODD_var_civ"];
 		private _nbCivil = _civils select 0;
 		private _garCivil = _civils select 1;
@@ -37,19 +39,21 @@ if ((typeName _loc) != "SCALAR") then {
 		private _vlGroup = [];
 		_pos = position _loc;
 		if (_state) then {
-			for "_i" from 0 to _nbCivil do {
-				private _pat = [] call ODDcommon_fnc_civPatrol;
-				_patGroup pushBack _pat;
+			if (_spawnCivil == True) then {
+				for "_i" from 0 to _nbCivil do {
+					private _pat = [] call ODDcommon_fnc_civPatrol;
+					_patGroup pushBack _pat;
+				};
+				for "_i" from 0 to _garCivil do {
+					private _gar = [] call ODDcommon_fnc_civGarnison;
+					_garGroup pushBack _gar;
+				};
+				for "_i" from 0 to _vlCivil do {
+					private _vl = [] call ODDcommon_fnc_civVehicle;
+					_vlGroup pushBack _vl;
+				};
+				_loc setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True];
 			};
-			for "_i" from 0 to _garCivil do {
-				private _gar = [] call ODDcommon_fnc_civGarnison;
-				_garGroup pushBack _gar;
-			};
-			for "_i" from 0 to _vlCivil do {
-				private _vl = [] call ODDcommon_fnc_civVehicle;
-				_vlGroup pushBack _vl;
-			};
-			_loc setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True]
 		}
 		else {
 			private _nearMen = _pos nearEntities ["man", 1400];
