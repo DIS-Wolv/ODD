@@ -12,7 +12,6 @@
 *
 * Exemple:
 * [_zo] call ODDcommon_fnc_defineZo
-* [_zo, True, False] ODDcommon_fnc_defineZo
 *
 * Variable publique :
 */
@@ -267,7 +266,7 @@ switch (_loctype) do {
 			_mod = _mod + 1;
 			_zoType = 5;
 		};
-	_civ = True;
+	_civ = False;
 	};
 };
 
