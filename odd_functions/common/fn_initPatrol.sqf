@@ -11,8 +11,8 @@
 * <ARRAY> [patrolPool, objActive]
 *
 * Exemple:
-* [_zo] call ODDadvanced_fnc_initPatrol
-* [_zo, True, False] call ODDadvanced_fnc_initPatrol
+* [_zo] call ODDcommon_fnc_initPatrols
+* [_zo, True, False] call ODDcommon_fnc_initPatrols
 *
 * Variable publique :
 */
