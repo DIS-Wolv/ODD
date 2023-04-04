@@ -36,7 +36,7 @@ private _alt = 1000;
 	private _zoType = [] call ODDcommon_fnc_defineZo;
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
-	// utilise les fonctions pour calculer les reserves sur chaque localité	
+	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
 	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
 	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
