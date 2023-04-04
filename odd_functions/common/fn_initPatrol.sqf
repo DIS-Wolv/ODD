@@ -1,5 +1,5 @@
 /*
-* Auteur : Wolv
+* Auteur : Hhaine, Wolv
 * Fonction pour calculer la réserve totale de patrouilles dans une zone
 *
 * Arguments :

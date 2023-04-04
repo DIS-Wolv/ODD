@@ -1,5 +1,5 @@
 /*
-* Auteur : Wolv
+* Auteur : Hhaine, Wolv
 * Fonction pour assigner le nombre de patrouilles, garnisons et véhicules en réserve dans une zone. 
 *
 * Arguments :
