@@ -33,7 +33,7 @@ private _alt = 1000;
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 
 	// utilise une fonction pour déterminer l'état de la zone 
-	private _zoType = [] call ODDcommon_fnc_defineZo;
+	private _zoType = [_loc] call ODDcommon_fnc_defineZo;
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
 	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
