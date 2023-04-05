@@ -3,7 +3,7 @@
 * Fonction pour choisir le nombre et la composition des civils
 *
 * Arguments :
-* 0: Zone <Objet>
+* 0: Localités en zo <array>
 *
 * Valeur renvoyée :
 * <ARRAY> [patrouille, garnisons, véhicules]
