@@ -63,7 +63,7 @@ if ((typeName _loc) != "SCALAR") then {
 				};
 				
 			} forEach _nearMen;
-		}
+		};
 		// Fin du spawn 
 
 		_WantState = _loc getVariable ["trig_ODD_var_civWantState", _state];

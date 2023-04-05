@@ -21,7 +21,6 @@ params [_loc, _mod];
 private _zoType = 0;
 private _civ = True;
 
-{
 private _loctype = 0;
 switch (type _zo) do {
 	case (ODD_var_LocationType select 5): {_loctype = 0;};
