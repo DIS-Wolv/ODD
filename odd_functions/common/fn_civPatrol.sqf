@@ -49,16 +49,9 @@ private _g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
 	}, [], (random[2, 5, 10]), nil, True, False
 ] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
 
-{
-	_x setVariable ["acex_headless_blacklist", True, True]; // blacklist l'unit des HC
-} forEach (units _g);
 [position ((units _g) select 0), nil, units _g, 100, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 sleep 1;
 [units _g] execVM "\z\ace\addons\ai\functions\fnc_unGarrison.sqf";
-{
-	_x setVariable ["acex_headless_blacklist", False, True]; // unblacklist l'unit des HC
-} forEach (units _g);
-
 
 {
 	_x addEventHandler ["FiredNear", {
