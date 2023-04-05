@@ -41,15 +41,15 @@ if ((typeName _loc) != "SCALAR") then {
 		if (_state) then {
 			if (_spawnCivil == True) then {
 				for "_i" from 0 to _nbCivil do {
-					private _pat = [] call ODDcommon_fnc_civPatrol;
+					private _pat = [_loc] call ODDcommon_fnc_civPatrol;
 					_patGroup pushBack _pat;
 				};
 				for "_i" from 0 to _garCivil do {
-					private _gar = [] call ODDcommon_fnc_civGarnison;
+					private _gar = [_loc] call ODDcommon_fnc_civGarnison;
 					_garGroup pushBack _gar;
 				};
 				for "_i" from 0 to _vlCivil do {
-					private _vl = [] call ODDcommon_fnc_civVehicle;
+					private _vl = [_loc] call ODDcommon_fnc_civVehicle;
 					_vlGroup pushBack _vl;
 				};
 				_loc setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True];
