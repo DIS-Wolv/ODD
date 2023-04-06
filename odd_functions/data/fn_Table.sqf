@@ -244,7 +244,7 @@ ODDdata_var_table = [
     		["Land_TableBig_01_F",0.000316117,352.944,2.3034,0.258255],
     		["OfficeTable_01_old_F",303.842,28.8136,3.40684,0.258255],
     		["OfficeTable_01_old_F",180.001,174.994,3.56456,3.619]
-		],
+		]
 	],
 	[
 		"Land_i_House_Big_02_V3_F",
