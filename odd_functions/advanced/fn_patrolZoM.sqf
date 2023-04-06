@@ -19,14 +19,14 @@ private _leader = (units _g select 0);
 private _pos = position _leader;
 // Récupère le chef du groupe et sa position
 
-_zoList = nearestLocations[getpos ODD_var_SelectedArea, ODD_var_LocationType, 4000, _pos]; 
+private _zoList = nearestLocations[getpos ODD_var_SelectedArea, ODD_var_LocationType, 4000, _pos]; 
 // Liste des localités à proximité (4km) de la zone objectif
 
-_pZo = _zoList select 0;
+private _pZo = _zoList select 0;
 _zoList = _zoList - [_pZo];
 // Retire la localité dans laquelle il se trouve de la liste
 
-_nextZo = selectrandom _zoList;
+private _nextZo = selectrandom _zoList;
 while {count ((position _nextZo) nearRoads 300) <= 0} do {
 	_zoList = _zoList - [_nextZo];
 	_nextZo = selectrandom _zoList;
