@@ -47,7 +47,7 @@ _pos = position _units;
 
 _nearEntitie = _pos nearEntities _distance;
 {
-	if ((side _x) == civilian) then { // La en plus vérifier que dans la config il n'appartienne pas a caisse
+	if (((side _x) == civilian) and !(_x isKindOf "Thing")) then { // La en plus vérifier que dans la config il n'appartienne pas a caisse
 
 		if (!("odd_var_stopped" in (allVariables _x))) then {
 			_x setVariable ["odd_var_stopped", False, True];

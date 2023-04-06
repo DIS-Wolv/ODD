@@ -39,6 +39,7 @@ if (_index != -1) then {
 		if (!isNil "_dropTime") then {
 			_dropTimeH = floor (_dropTime / 100);
 			_dropTimeM = _dropTime - 100 * _dropTimeH;
+			systemChat format ["VL parrachuter à %1 %2", _dropTimeH, _dropTimeM];
 			waitUntil {
 				sleep 59;
 				_timeNow = date;
