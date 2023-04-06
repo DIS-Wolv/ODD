@@ -3,7 +3,7 @@
 * Fonction pour assigner le nombre de patrouilles, garnisons et véhicules en réserve dans une zone. 
 *
 * Arguments :
-* 0: Centre de la zone (localité de l'obj) <Objet>
+* 0: Centre de la zone (localité de l'objectif) <Objet>
 * 1: arrays de localités autour
 * 2: Activation du débug dans le chat <BOOL>
 *
