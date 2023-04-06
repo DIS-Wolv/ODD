@@ -6,8 +6,10 @@ private _coordZ = [0,0,0];
 {
 	private _markerHalo = (markerText _x splitString " ");
 	if ("DZ" in _markerHalo) then {
-		_coord2D = getMarkerPos _x;
-		_coordZ = [0,0,parseNumber (_markerHalo select 1)];
+		if (parseNumber (_markerHalo select 1) != 0) then {
+			_coord2D = getMarkerPos _x;
+			_coordZ = [0,0,parseNumber (_markerHalo select 1)];
+		};
 	};
 } forEach allMapMarkers;
 
