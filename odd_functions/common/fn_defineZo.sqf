@@ -17,7 +17,7 @@
 * Variable publique :
 */
 
-params [_loc, _mod];
+params ["_loc", "_mod"];
 private _zoType = 0;
 private _civ = True;
 

@@ -1,4 +1,4 @@
-params [_loc];
+params ["_loc"];
 private _loctype = 0;
 private _patrolLimit = 0;
 
