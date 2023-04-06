@@ -141,7 +141,7 @@ if (ODD_var_CurrentMission == 1) then {
 	ODD_var_CurrentMission = 0;
 	publicVariable "ODD_var_CurrentMission";
 	[] call ODDadvanced_fnc_var;
-	["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
+	//["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
 }
 else {
 	["Nettoyage impossible"] remoteExec ["systemChat", 0];
