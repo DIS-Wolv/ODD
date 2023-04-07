@@ -19,7 +19,7 @@ private _loctype = 0;
 private _nbCivil = 1;
 private _garCivil = 1;
 private _vlCivil = 0;
-private _Buildings = nearestobjects [position _loc, ODD_var_Houses, size _loc select 0];
+private _Buildings = nearestObjects [position _loc, ODD_var_Houses, size _loc select 0];
 // Nombre de maisons dans la localité
 
 switch (type _loc) do {		//['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
