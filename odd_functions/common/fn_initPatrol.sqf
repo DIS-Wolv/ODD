@@ -11,8 +11,8 @@
 * <ARRAY> [patrolPool, objActive]
 *
 * Exemple:
-* [_zo] call ODDcommon_fnc_initPatrols
-* [_zo, True, False] call ODDcommon_fnc_initPatrols
+* [_zo] call ODDcommon_fnc_initPatrol
+* [_zo, True, False] call ODDcommon_fnc_initPatrol
 *
 * Variable publique :
 */
@@ -24,32 +24,34 @@ private _proxModifier = 0;
 private _objModifier = 0;
 private _batModifier = 0;
 
-private _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
+// systemchat format ["%1 | %2", position _zo, size _zo select 0];
+private _Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];
+// systemChat str(count(_Buildings));
 
 switch (type _zo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 	case (ODD_var_LocationType select 5): {
 		_typeModifier = 3;
-		_batModifier = (count buildings) / 5;
+		_batModifier = (count _Buildings) / 5;
 	};
 	case (ODD_var_LocationType select 4): {
 		_typeModifier = 3;
-		_batModifier = (count buildings) / 5;
+		_batModifier = (count _Buildings) / 5;
 	};
 	case (ODD_var_LocationType select 3): {
 		_typeModifier = 5;
-		_batModifier = (count buildings) / 10;
+		_batModifier = (count _Buildings) / 10;
 	};
 	case (ODD_var_LocationType select 2): {
 		_typeModifier = 7;
-		_batModifier = (count buildings) / 20;
+		_batModifier = (count _Buildings) / 20;
 	};
 	case (ODD_var_LocationType select 1): {
 		_typeModifier = 7;
-		_batModifier = (count buildings) / 20;
+		_batModifier = (count _Buildings) / 20;
 	};
 	case (ODD_var_LocationType select 0): {
 		_typeModifier = 10;
-		_batModifier = (count buildings) / 50;
+		_batModifier = (count _Buildings) / 50;
 	};
 };
 _patrolPool = _patrolPool + _typeModifier + _batModifier;
@@ -57,12 +59,12 @@ _patrolPool = _patrolPool + _typeModifier + _batModifier;
 private _prox = nearestLocations [position _zo, ODD_var_LocationType, 2000];
 {
 	switch (type _x) do {
-		case (ODD_var_LocationType select 5): {_proxModifier = 1;};
-		case (ODD_var_LocationType select 4): {_proxModifier = 2;};
-		case (ODD_var_LocationType select 3): {_proxModifier = 4;};
-		case (ODD_var_LocationType select 2): {_proxModifier = 6;};
-		case (ODD_var_LocationType select 1): {_proxModifier = 6;};
-		case (ODD_var_LocationType select 0): {_proxModifier = 8;};
+		case (ODD_var_LocationType select 5): {_proxModifier = 0.2;};
+		case (ODD_var_LocationType select 4): {_proxModifier = 0.3;};
+		case (ODD_var_LocationType select 3): {_proxModifier = 0.6;};
+		case (ODD_var_LocationType select 2): {_proxModifier = 1;};
+		case (ODD_var_LocationType select 1): {_proxModifier = 1;};
+		case (ODD_var_LocationType select 0): {_proxModifier = 3;};
 	};
 	_patrolPool = _patrolPool + _proxModifier;
 } forEach _prox;
@@ -73,7 +75,7 @@ if (_obj == True) then {
 	_objModifier = 3;
 };
 _patrolPool = _patrolPool + _objModifier; 
-__patrolPool = round _patrolPool;
+_patrolPool = round _patrolPool;
 
 // private _randomizationFloor = 0;
 // private _randomizationCeiling = 0;
@@ -81,4 +83,4 @@ __patrolPool = round _patrolPool;
 // _randomizationCeiling = random [_patrolPool, _patrolPool * 2];
 // _patrolPool = random [_randomizationFloor,_patrolPool,_randomizationCeiling]; 
 
-_patrolPool;
+[_typeModifier,_batModifier,(_patrolPool - (_typeModifier + _batModifier + 4)),_patrolPool];
