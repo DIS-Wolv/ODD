@@ -20,7 +20,7 @@
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
 systemChat "prout 0";
-private _radSpawnPatrols = 2000;
+private _radSpawnPatrols = 1800;
 private _radDisable = 1200;
 private _radSpawnCivils = 1600;
 private _alt = 1000;
@@ -42,12 +42,12 @@ private _alt = 1000;
 	// utilise les fonctions pour calculer le nombre et la composition des civils
 	private _civils = [_loc] call ODDcommon_fnc_initCivils;
 	_variablesPad setVariable ["trig_ODD_var_civ",_civils, True];
-/*
+
 	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
 	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
 	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
 	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
-*/
+
 	// crée les triggers pour spawn/déspawn les civls
 	systemChat "prout 1";
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
