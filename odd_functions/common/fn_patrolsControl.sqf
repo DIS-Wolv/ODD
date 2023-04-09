@@ -31,6 +31,8 @@ if ((typeName _loc) != "SCALAR") then {
 		// Spawn des patrouilles
 		private _zoDefined = _loc getVariable ["trig_ODD_var_zoType", []];
 		private _zo = _loc getVariable ["trig_ODD_var_loc", ""];
+		private _pos = position _zo;
+		private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
 		private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
@@ -90,6 +92,7 @@ if ((typeName _loc) != "SCALAR") then {
 			_patOut = _patOut * (_typeModifier + _batModifier + _playersModifier);
 
 			_patOut = _patOut min _patLimit;
+			_patOut = round _patOut;
 			for "_i" from 0 to _patOut do {
 				private _pat = [_loc] call ODDcommon_fnc_eniPatrol;
 				_patGroup pushBack _pat;

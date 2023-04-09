@@ -14,6 +14,7 @@
 */
 params ["_loc"];
 private _zo = _loc getVariable ["trig_ODD_var_loc", ""];
+private _pos = position _zo;
 private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 private _players = (playersNumber west);
 private _group = [];
@@ -62,3 +63,5 @@ private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
 }forEach units _g;
 
 [_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
+
+_g;
