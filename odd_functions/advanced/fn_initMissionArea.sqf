@@ -32,6 +32,7 @@ private _alt = 1000;
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
 	private _variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
+	_variablesPad setVariable ["trig_ODD_var_loc", _loc, True];
 	// utilise une fonction pour déterminer l'état de la zone 
 	private _mod = 0;
 	private _zoType = [_loc, _mod] call ODDcommon_fnc_defineZo;
@@ -65,24 +66,24 @@ private _alt = 1000;
 
 	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
-/*
+
 	// crée les triggers pour spawn/déspawn les patrouilles
 	private _patTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_patTrigger setTriggerStatements ["this",
 	"
-		[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;
+		[thisTrigger, True] spawn ODDadvanced_fnc_patrolsControl;
 	",
 	"
-		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
+		[thisTrigger, False] spawn ODDadvanced_fnc_patrolsControl;
 	"
 	];
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_areaControl;
-*/
+
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger pushBack _LocTrigger;
