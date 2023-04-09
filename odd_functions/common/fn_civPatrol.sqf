@@ -13,8 +13,7 @@
 * Variable publique :
 */
 params ["_loc"];
-private _pos = position _loc;
-private _zo = nearestLocation [_pos,""];
+private _zo = _loc getVariable ["trig_ODD_var_loc", ""];
 private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 private _group = selectRandom ODD_var_Civilians;
 
