@@ -12,12 +12,12 @@ switch (type _loc) do {
 };
 
 switch (_loctype) do {
-	case "0": {_patrolLimit = 8;};
-	case "1": {_patrolLimit = 10;};
-	case "2": {_patrolLimit = 10;};
-	case "3": {_patrolLimit = 12;};
-	case "4": {_patrolLimit = 14;};
-	case "5": {_patrolLimit = 15;};
+	case 0: {_patrolLimit = 8;};
+	case 1: {_patrolLimit = 10;};
+	case 2: {_patrolLimit = 10;};
+	case 3: {_patrolLimit = 12;};
+	case 4: {_patrolLimit = 14;};
+	case 5: {_patrolLimit = 15;};
 };
 
 _patrolLimit;
