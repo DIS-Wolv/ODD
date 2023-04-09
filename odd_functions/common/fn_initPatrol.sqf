@@ -83,4 +83,5 @@ _patrolPool = round _patrolPool;
 // _randomizationCeiling = random [_patrolPool, _patrolPool * 2];
 // _patrolPool = random [_randomizationFloor,_patrolPool,_randomizationCeiling]; 
 
-[_typeModifier,_batModifier,(_patrolPool - (_typeModifier + _batModifier + 4)),_patrolPool];
+//[_typeModifier,_batModifier,(_patrolPool - (_typeModifier + _batModifier + 4)),_patrolPool];
+_patrolPool;
