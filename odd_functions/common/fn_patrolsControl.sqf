@@ -110,15 +110,14 @@ if ((typeName _loc) != "SCALAR") then {
 		}
 		else {
 			private _nearMen = _pos nearEntities ["man", _radius];
+			private _spawnedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
 			{
-				private _spawnedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
-				if ((side _x) == east and (group _x) in _spawnedPat) then {
+				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
 					deleteVehicle _x;
 					_spawedPat = _spawedPat - (group _x);
-					_loc setVariable ["trig_ODD_var_spawnedPat",_spawedPat, True];
 				};
-				
 			} forEach _nearMen;
+			_loc setVariable ["trig_ODD_var_spawnedPat",_spawedPat, True];
 		};
 		// Fin du spawn 
 

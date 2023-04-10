@@ -64,4 +64,6 @@ private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
 
 [_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
 
+_g setVariable ["trig_ODD_var_Pat", True, True];
+
 _g;
