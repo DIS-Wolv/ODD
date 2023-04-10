@@ -98,6 +98,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
 			private _patPool = _pat select 0;
 			private _patLimit = _pat select 1;
+			private _patGroup = [];
 			_patOut = _patOut min _patLimit;
 			_patOut = _patOut min _patPool;
 			// systemChat "caca c";
