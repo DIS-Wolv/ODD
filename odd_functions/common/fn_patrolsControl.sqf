@@ -14,7 +14,7 @@
 * Variable publique :
 */
 
-params ["_trigger", ["_state", False], ["_radius", 1600]];
+params ["_trigger", ["_state", False], ["_radius", 1400]];
 // systemChat 'prout 1';
 private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
 // systemChat "caca a";

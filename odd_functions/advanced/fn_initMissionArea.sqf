@@ -20,9 +20,9 @@
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
 // systemChat "prout 0";
-private _radSpawnPatrols = 1800;
+private _radSpawnPatrols = 1600;
 private _radDisable = 1200;
-private _radSpawnCivils = 1600;
+private _radSpawnCivils = 1400;
 private _alt = 1000;
 
 {
