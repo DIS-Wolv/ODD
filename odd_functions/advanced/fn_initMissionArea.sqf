@@ -19,7 +19,7 @@
 
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
-systemChat "prout 0";
+// systemChat "prout 0";
 private _radSpawnPatrols = 1800;
 private _radDisable = 1200;
 private _radSpawnCivils = 1600;
@@ -50,7 +50,6 @@ private _alt = 1000;
 	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
 
 	// crée les triggers pour spawn/déspawn les civls
-	systemChat "prout 1";
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 	_civTrigger setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, False, _alt]; 
 	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
@@ -68,6 +67,7 @@ private _alt = 1000;
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
 
 	// crée les triggers pour spawn/déspawn les patrouilles
+	systemChat "prout 1";
 	private _patTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
@@ -82,7 +82,7 @@ private _alt = 1000;
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_areaControl;
+	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_patrolsControl;
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
@@ -108,7 +108,7 @@ private _alt = 1000;
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger pushBack _LocTrigger;
-	systemChat "prout 2";
+	// systemChat "prout 2";
 } forEach _locations;
 
 // crée et assigne a chaque hélipad une variable contenant les valeurs de reserve pour la zone
