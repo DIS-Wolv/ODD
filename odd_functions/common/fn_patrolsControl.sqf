@@ -35,9 +35,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
-		private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
-		private _patPool = _pat select 0;
-		private _patLimit = _pat select 1;
+
 		// systemChat "prout b";
 		_pos = position _loc;
 		private _patOut = 0;
@@ -45,85 +43,78 @@ if ((typeName _loc) != "SCALAR") then {
 		if (_state) then {
 			switch (_zoActivationType) do {
 				case 0: {_patOut = 0};
-				case 1: {_patOut = 2;};
-				case 3: {_patOut = 0.5;};
+				case 1: {_patOut = 1.2;};
+				case 3: {_patOut = 0.7;};
 				case 4: {_patOut = 1;};
 				case 5: {_patOut = 0.7;};
 				case 6: {_patOut = 0.8;};
-				case 7: {};
 			};
 
 			private _players = (playersNumber west);
 			private _playersModifier = 0;
 			private _typeModifier = 0;
 			private _batModifier = 0;
+
 			switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 				case (ODD_var_LocationType select 5): {
-					_typeModifier = 1;
-					_batModifier = (count _Buildings) / 6;
-					_playersModifier = _players / 7;
-				};
-				case (ODD_var_LocationType select 4): {
-					_typeModifier = 2;
+					_typeModifier = -1;
 					_batModifier = (count _Buildings) / 8;
 					_playersModifier = _players / 7;
 				};
+				case (ODD_var_LocationType select 4): {
+					_typeModifier = 0;
+					_batModifier = (count _Buildings) / 10;
+					_playersModifier = _players / 7;
+				};
 				case (ODD_var_LocationType select 3): {
-					_typeModifier = 4;
-					_batModifier = (count _Buildings) / 12;
+					_typeModifier = 1;
+					_batModifier = (count _Buildings) / 14;
 					_playersModifier = _players / 6;
 				};
 				case (ODD_var_LocationType select 2): {
-					_typeModifier = 6;
-					_batModifier = (count _Buildings) / 24;
+					if ((count _Buildings) > 25) then {
+						_typeModifier = 3;
+						_batModifier = (count _Buildings) / 62;
+					}
+					else {
+						_typeModifier = 4;
+						_batModifier = (count _Buildings) / 15;
+					};
 					_playersModifier = _players / 5;
 				};
 				case (ODD_var_LocationType select 1): {
-					_typeModifier = 6;
-					_batModifier = (count _Buildings) / 24;
-					_playersModifier = _players / 5;
+					_typeModifier = 4;
+					_batModifier = (count _Buildings) / 58;
+					_playersModifier = _players / 6;
 				};
 				case (ODD_var_LocationType select 0): {
-					_typeModifier = 7;
-					_batModifier = (count _Buildings) / 60;
-					_playersModifier = _players / 4;
+					_typeModifier = 3;
+					_batModifier = (count _Buildings) / 92;
+					_playersModifier = _players / 5;
 				};
 			};
-			_patOut = _patOut * (_typeModifier + _batModifier + _playersModifier);
-
-			_patOut = _patOut min _patLimit;
+			_patOut = _patOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_patOut = round _patOut;
+			private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
+			private _patPool = _pat select 0;
+			private _patLimit = _pat select 1;
+			_patOut = _patOut min _patLimit;
+			_patOut = _patOut min _patPool;
 			for "_i" from 0 to _patOut do {
 				private _pat = [_loc] call ODDcommon_fnc_eniPatrol;
 				_patGroup pushBack _pat;
 			};
 			_loc setVariable ["trig_ODD_var_spawnedPat",_patGroup, True];
 
-
-
-
-
-			// if (_spawnCivil == True) then {
-			// 	for "_i" from 0 to _nbCivil do {
-			// 		private _pat = [_loc] call ODDcommon_fnc_civPatrol;
-			// 		_patGroup pushBack _pat;
-			// 	};
-			// 	for "_i" from 0 to _garCivil do {
-			// 		private _gar = [_loc] call ODDcommon_fnc_civGarnison;
-			// 		_garGroup pushBack _gar;
-			// 	};
-			// 	for "_i" from 0 to _vlCivil do {
-			// 		private _vl = [_loc] call ODDcommon_fnc_civVehicle;
-			// 		_vlGroup pushBack _vl;
-			// 	};
-			// 	_loc setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True];
-			// };
 		}
 		else {
 			private _nearMen = _pos nearEntities ["man", _radius];
 			{
-				if ((side _x) == east) then { // + patrouille
+				private _spawnedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
+				if ((side _x) == east and (group _x) in _spawnedPat) then {
 					deleteVehicle _x;
+					_spawedPat = _spawedPat - (group _x);
+					_loc setVariable ["trig_ODD_var_spawnedPat",_spawedPat, True];
 				};
 				
 			} forEach _nearMen;
