@@ -67,22 +67,21 @@ private _alt = 1000;
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
 
 	// crée les triggers pour spawn/déspawn les patrouilles
-	systemChat "prout 1";
 	private _patTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_patTrigger setTriggerStatements ["this",
 	"
-		[thisTrigger, True] spawn ODDadvanced_fnc_patrolsControl;
+		[thisTrigger, True] spawn ODDcommon_fnc_patrolsControl;
 	",
 	"
-		[thisTrigger, False] spawn ODDadvanced_fnc_patrolsControl;
+		[thisTrigger, False] spawn ODDcommon_fnc_patrolsControl;
 	"
 	];
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_patTrigger, False] spawn ODDadvanced_fnc_patrolsControl;
+	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_patrolsControl;
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
