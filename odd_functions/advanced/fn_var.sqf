@@ -123,22 +123,22 @@ if (ODD_var_FirstDefinition) then {
 	];
 
 	// Liste des véhicule civils
-	ODD_var_CivilianVehicles = ["C_Hatchback_01_F",
-		"C_Hatchback_01_sport_F",
-		"C_Offroad_02_unarmed_F",
-		"C_Offroad_01_F",
-		"C_Offroad_01_covered_F",
-		"C_Offroad_01_repair_F",
-		"C_Tractor_01_F",
-		"C_SUV_01_F",
-		"C_Van_01_transport_F",
-		"C_Van_01_box_F",
-		"C_Van_02_transport_F",
-		"C_Van_02_vehicle_F",
-		"C_Van_02_service_F",
-		"C_Van_02_medevac_F",
-		"brf_c_afc_zil131_blue",
-		"brf_c_afc_zil131_orange"
+	ODD_var_CivilianVehicles = [["C_Hatchback_01_F"],
+		["C_Hatchback_01_sport_F"],
+		["C_Offroad_02_unarmed_F"],
+		["C_Offroad_01_F"],
+		["C_Offroad_01_covered_F"],
+		["C_Offroad_01_repair_F"],
+		["C_Tractor_01_F"],
+		["C_SUV_01_F"],
+		["C_Van_01_transport_F"],
+		["C_Van_01_box_F"],
+		["C_Van_02_transport_F"],
+		["C_Van_02_vehicle_F"],
+		["C_Van_02_service_F"],
+		["C_Van_02_medevac_F"],
+		["brf_c_afc_zil131_blue"],
+		["brf_c_afc_zil131_orange"]
 	];
 
 	// Distance autour de la zone objectif qui est considérée comme zone de mission
