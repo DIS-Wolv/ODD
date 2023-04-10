@@ -15,7 +15,7 @@
 */
 params ["_g"];
 
-private _leader = (units _g select 0);
+private _leader = ((units _g) select 0);
 private _pos = position _leader;
 // Récupère le chef du groupe et sa position
 

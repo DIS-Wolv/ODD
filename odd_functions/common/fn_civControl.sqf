@@ -15,7 +15,7 @@
 */
 
 params ["_trigger", ["_state", False], ["_radius", 1400]];
-systemChat "prout a";
+// systemChat "prout a";
 private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
 
 if ((typeName _loc) != "SCALAR") then {
@@ -29,7 +29,7 @@ if ((typeName _loc) != "SCALAR") then {
 		_loc setVariable ["trig_ODD_var_civControlActive", True, True];
 		
 		// Spawn des civils
-		systemChat "prout b";
+		// systemChat "prout b";
 		private _varCivil = _loc getVariable ["trig_ODD_var_zoType",""];
 		private _spawnCivil = _varCivil select 1;
 		private _civils = _loc getVariable ["trig_ODD_var_civ",""];
