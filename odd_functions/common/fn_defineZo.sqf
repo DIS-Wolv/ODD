@@ -10,7 +10,7 @@
 * <Array> [<int> type pour la zo, <bool> civils]
 *
 * [civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
-*
+*	0, 1, 2
 * Exemple:
 * [_zo] call ODDcommon_fnc_defineZo
 *
