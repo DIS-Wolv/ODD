@@ -58,7 +58,7 @@ if ((typeName _loc) != "SCALAR") then {
 			};
 		}
 		else {
-			private _nearMen = _pos nearEntities ["man", _radius];
+			private _nearMen = _pos nearEntities [["man", "Cars", "Air"], _radius];
 			{
 				if ((side _x) == civilian) then {
 					deleteVehicle _x;
