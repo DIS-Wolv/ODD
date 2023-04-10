@@ -52,7 +52,7 @@ _g setSpeedMode "LIMITED";
 	_x setVariable ["ODD_var_ZOM", True, True];
 } forEach (units _g);
 //_g addItemCargoGlobal ["Toolkit", 1]; 
-[_g] spawn ODDadvanced_fnc_patrolZoM;
+// [_g] spawn ODDadvanced_fnc_patrolZoM;
 
 {
 	_x addEventHandler ["FiredNear", {
