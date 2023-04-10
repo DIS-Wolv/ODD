@@ -107,19 +107,25 @@ if ((typeName _loc) != "SCALAR") then {
 				_patGroup pushBack _pat;
 			};
 			_loc setVariable ["trig_ODD_var_spawnedPat",_patGroup, True];
-
+			_patPool = _patPool - _patOut;
+			_loc setVariable ["trig_ODD_var_patrols", [_patPool,_patLimit], True];
 		}
 		else {
 			private _nearMen = _pos nearEntities ["man", _radius];
 			private _spawedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
+			private _despawnedPat = 0;
 			{
 				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
-					deleteVehicle _x;
+					{
+						deleteVehicle _x;
+					} forEach units (group _x);
 					if ((group _x) in _spawedPat) then {
 						_spawedPat = _spawedPat - (group _x);
+						_despawnedPat = _despawnedPat + 1;
 					};
 				};
 			} forEach _nearMen;
+			_patPool = _patPool + _despawnedPat; // /!\ les patrouilles spawn sur la location a et despawn sur la location b ne sont pas réajoutées à la _patPool !!!!!
 			_loc setVariable ["trig_ODD_var_spawnedPat", _spawedPat, True];
 		};
 		// Fin du spawn 
