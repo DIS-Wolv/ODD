@@ -8,13 +8,13 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_loc] call ODDcommon_fnc_civGarnison;
+* [_zo] call ODDcommon_fnc_civGarnison;
 *
 * Variable publique :
 */
-params ["_loc"];
-private _pos = position _loc;
-private _zo = nearestLocation [_pos,""];
+params ["_zo"];
+
+private _pos = position _zo;
 private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 private _players = (playersNumber west);
 private _group = selectRandom ODD_var_Pair;

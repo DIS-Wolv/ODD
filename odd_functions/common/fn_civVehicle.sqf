@@ -8,19 +8,29 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_loc] call ODDcommon_fnc_civPatrol;
+* [_zo] call ODDcommon_fnc_civPatrol;
 *
 * Variable publique :
 */
-params ["_loc"];
-private _pos = position _loc;
-private _zo = nearestLocation [_pos,""];
+params ["_zo"];
+
+private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
 
-_road = position selectrandom (_pos nearRoads 600);
+_road = selectrandom (_pos nearRoads 600);
 // spawn le groupe
-private _g = [_road, civilian, _group] call BIS_fnc_spawngroup;
+private _g = [position _road, civilian, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
+
+_connectedRoad = roadsConnectedTo [_road, False];
+if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
+	_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	
+	// Récupère la direction de la route
+	
+	_roadDir = (_roadDir + ((round (random 2))* 180)) % 360; 
+	(vehicle (units _g select 0)) setDir _roadDir; 
+	// Oriente le véhicule sur l'axe de route
+};
 
 [
 	((units _g)select 0), 
@@ -65,5 +75,6 @@ _g setSpeedMode "LIMITED";
 			ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
 		};
 	}];
-}forEach units _g;
+} forEach units _g;
+
 _g;

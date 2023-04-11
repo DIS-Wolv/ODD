@@ -15,30 +15,30 @@
 */
 params ["_trigger", ["_state", False], ["_radius", 1400]];
 
-private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
+private _pad = _trigger getVariable ["trig_ODD_var_Pad", -1];
 
-if ((typeName _loc) != "SCALAR") then {
-	private _textLoc = _loc getVariable ["trig_ODD_var_locName", ""];
+if ((typeName _pad) != "SCALAR") then {
+	private _textLoc = _pad getVariable ["trig_ODD_var_locName", ""];
 	[["Spawn patrol : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
 	
-	_loc setVariable ["trig_ODD_var_patWantState", _state, True];
+	_pad setVariable ["trig_ODD_var_patWantState", _state, True];
 
-	_isActive = _loc getVariable ["trig_ODD_var_patControlActive", False];
+	_isActive = _pad getVariable ["trig_ODD_var_patControlActive", False];
 	if (!_isActive) then {
-		_loc setVariable ["trig_ODD_var_patControlActive", True, True];
+		_pad setVariable ["trig_ODD_var_patControlActive", True, True];
 		
-		private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
+		// Spawn des patrouilles
+		private _pat = _pad getVariable ["trig_ODD_var_patrols", []];
 		private _patPool = _pat select 0;
 		private _patLimit = _pat select 1;
-		// Spawn des patrouilles
-		private _zoDefined = _loc getVariable ["trig_ODD_var_zoType", []];
-		private _zo = _loc getVariable ["trig_ODD_var_loc", ""];
+		private _zoDefined = _pad getVariable ["trig_ODD_var_zoType", []];
+		private _zo = _pad getVariable ["trig_ODD_var_loc", ""];
 		private _pos = position _zo;
 		private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
 
-		_pos = position _loc;
+		_pos = position _pad;
 		private _patOut = 0;
 
 		if (_state) then {
@@ -101,16 +101,16 @@ if ((typeName _loc) != "SCALAR") then {
 			_patOut = _patOut min _patPool;
 			_patOut = _patOut + round (random 1);
 			for "_i" from 0 to _patOut do {
-				private _pat = [_loc] call ODDcommon_fnc_eniPatrol;
+				private _pat = [_zo] call ODDcommon_fnc_eniPatrol;
 				_patGroup pushBack _pat;
 			};
-			_loc setVariable ["trig_ODD_var_spawnedPat",_patGroup, True];
+			_pad setVariable ["trig_ODD_var_spawnedPat",_patGroup, True];
 			_patPool = _patPool - _patOut;
-			_loc setVariable ["trig_ODD_var_patrols", [_patPool,_patLimit], True];
+			_pad setVariable ["trig_ODD_var_patrols", [_patPool,_patLimit], True];
 		}
 		else {
 			private _nearMen = _pos nearEntities ["man", _radius];
-			private _spawedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
+			private _spawedPat = _pad getVariable ["trig_ODD_var_spawnedPat",[]];
 			private _despawnedPat = 0;
 			{
 				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
@@ -118,18 +118,18 @@ if ((typeName _loc) != "SCALAR") then {
 						deleteVehicle _x;
 					} forEach units (group _x);
 					if ((group _x) in _spawedPat) then {
-						_spawedPat = _spawedPat - (group _x);
+						_spawedPat = _spawedPat - [(group _x)];
 						_despawnedPat = _despawnedPat + 1;
 					};
 				};
 			} forEach _nearMen;
 			_patPool = _patPool + _despawnedPat; // /!\ les patrouilles spawn sur la location a et despawn sur la location b ne sont pas réajoutées à la _patPool !!!!!
-			_loc setVariable ["trig_ODD_var_spawnedPat", _spawedPat, True];
+			_pad setVariable ["trig_ODD_var_spawnedPat", _spawedPat, True];
 		};
 		// Fin du spawn 
 
-		_WantState = _loc getVariable ["trig_ODD_var_patWantState", _state];
-		_loc setVariable ["trig_ODD_var_patControlActive", False, True];
+		_WantState = _pad getVariable ["trig_ODD_var_patWantState", _state];
+		_pad setVariable ["trig_ODD_var_patControlActive", False, True];
 		if (!(_WantState == _state)) then {
 			[_trigger, _WantState] spawn ODDcommon_fnc_patrolsControl;
 		}

@@ -69,6 +69,7 @@ switch (_loctype) do {
 		};
 	};
 	case (1): {
+		private _action = random 2;
 		_nbCivil = _nbCivil + (count _Buildings) / 10;
 		_garCivil = _garCivil + (count _Buildings) / 10;
 		if (_action > 1) then {
