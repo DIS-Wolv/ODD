@@ -14,7 +14,7 @@
 * Variable publique :
 */
 
-params ["_trigger", ["_state", False], ["_radius", 1100]];
+params ["_trigger", ["_state", False], ["_radius", 1000]];
 
 private _pad = _trigger getVariable ["trig_ODD_var_Pad", -1];
 
