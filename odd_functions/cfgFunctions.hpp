@@ -20,6 +20,8 @@ class ODD_Common {
 		class civGarnison {};
 		class civVehicle {};
 		class eniPatrol {};
+		class initGarison {};
+		class limitGarison {};
     };
 };
 
