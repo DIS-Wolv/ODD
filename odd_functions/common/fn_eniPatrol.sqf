@@ -49,7 +49,6 @@ if (_players < 5) then {		// si moins de 5 joueurs
 private _GBuild = selectRandom _Buildings;
 // spawn le groupe
 private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
-// ODD_var_MissionCivilians pushBack _g;
 
 {
 	private _id = _x addEventHandler["Killed", 
