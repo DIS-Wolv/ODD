@@ -25,8 +25,9 @@ private _radSpawngarisons = 1100;
 private _alt = 1000;
 
 {
-	_loc = _x;
-	_pos = position _loc;
+	private _loc = _x;
+	private _pos = position _loc;
+	private _triggers = [];
 	
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
 	private _variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
@@ -37,6 +38,9 @@ private _alt = 1000;
 	private _zoType = [_loc, _mod] call ODDcommon_fnc_defineZo;
 	_mod = _zoType select 2;
 	_zoType resize 2;
+	if ((_loc == _zo) and ((_zoType select 0) < 3)) then { //si Zone principale force de tout
+		_zoType set [0, 5];
+	};
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
 	// utilise les fonctions pour calculer le nombre et la composition des civils
@@ -53,7 +57,8 @@ private _alt = 1000;
 	_variablesPad setVariable ["trig_ODD_var_garison", _garisonPool, True];
 
 	// crée les triggers pour spawn/déspawn les civls
-	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	private _civTrigger = createTrigger ["EmptyDetector", _pos, True];
+	_triggers pushBack _civTrigger;
 	_civTrigger setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, False, _alt]; 
 	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_civTrigger setTriggerStatements ["this",
@@ -70,7 +75,8 @@ private _alt = 1000;
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
 
 	// crée les triggers pour spawn/déspawn les patrouilles
-	private _patTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	private _patTrigger = createTrigger ["EmptyDetector", _pos, True];
+	_triggers pushBack _patTrigger;
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_patTrigger setTriggerStatements ["this",
@@ -87,7 +93,8 @@ private _alt = 1000;
 	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_patrolsControl;
 
 	// crée les triggers pour spawn/déspawn les garnisons
-	private _garTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	private _garTrigger = createTrigger ["EmptyDetector", _pos, True];
+	_triggers pushBack _garTrigger;
 	_garTrigger setTriggerArea [_radSpawngarisons, _radSpawngarisons, 0, False, _alt]; 
 	_garTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_garTrigger setTriggerStatements ["this",
@@ -103,12 +110,9 @@ private _alt = 1000;
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_garisonsControl;
 
-	// log les hélipads et les triggers dans le fichier var
-	ODD_var_ZonePad pushBack _variablesPad;
-	ODD_var_AreaTrigger pushBack _LocTrigger;
-
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	_triggers pushBack _LocTrigger;
 	_LocTrigger setTriggerArea [_radDisable, _radDisable, 0, False, _alt]; 
 	_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_LocTrigger setTriggerStatements ["this",
@@ -126,7 +130,7 @@ private _alt = 1000;
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
-	ODD_var_AreaTrigger pushBack _LocTrigger;
+	ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
 } forEach _locations;
 
 // crée et assigne a chaque hélipad une variable contenant les valeurs de reserve pour la zone
