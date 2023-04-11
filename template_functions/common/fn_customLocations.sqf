@@ -52,7 +52,7 @@ _AgiosPanteleimon setText "Agios Panteleimon";
 private _Plaka = createLocation ["NameLocal", [4410,13980.6], 330, 330];
 _Plaka setText "Plaka";
 
-private _AgiosMeli = createLocation ["NameLocal", [6164.45,15005.4], 250, 250];
+private _AgiosMeli = createLocation ["Name", [6164.45,15005.4], 250, 250];
 _AgiosMeli setText "Agios Meli";
 
 private _factory2 = createLocation ["NameLocal", [6805.07,15577.7], 300, 300];
@@ -118,7 +118,7 @@ _KalochoriPowerPlant setText "Kalochori power plant";
 private _AgiosModestos = createLocation ["NameLocal", [21420.6,15397.1], 200, 200];
 _AgiosModestos setText "Agios Modestos";
 
-private _AgiosGeorgios = createLocation ["NameLocal", [22162.7,15416.9], 200, 200];
+private _AgiosGeorgios = createLocation ["Name", [22162.7,15416.9], 200, 200];
 _AgiosGeorgios setText "Agios Georgios";
 
 private _Akili = createLocation ["NameLocal", [22406,16261.5], 300, 300];
@@ -126,6 +126,12 @@ _Akili setText "Akili";
 
 private _Kontopouli = createLocation ["NameLocal", [22521.3,17032], 200, 200];
 _Kontopouli setText "Kontopouli";
+
+private _GatoliaPowerPlant = createLocation ["NameLocal", [27025.1,21495.6], 200, 200];
+_GatoliaPowerPlant setText "Gatolia powerplant";
+
+private _galatiMilitary = createLocation ["NameLocal", [9857.96,19401.2], 150, 150];
+_galatiMilitary setText "Galati military";
 
 // _loc = _Anemoessa;
 // _pos = getPos _loc;
