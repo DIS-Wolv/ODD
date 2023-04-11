@@ -34,7 +34,7 @@ switch (type _zo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 
 		_batModifier = (count _Buildings) / 3;
 	};
 	case (ODD_var_LocationType select 4): {
-		_typeModifier = 2;
+		_typeModifier = 5;
 		_batModifier = (count _Buildings) / 5;
 	};
 	case (ODD_var_LocationType select 3): {
@@ -42,16 +42,16 @@ switch (type _zo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 
 		_batModifier = (count _Buildings) / 10;
 	};
 	case (ODD_var_LocationType select 2): {
-		_typeModifier = 7;
-		_batModifier = (count _Buildings) / 35;
+		_typeModifier = 6;
+		_batModifier = (count _Buildings) / 15;
 	};
 	case (ODD_var_LocationType select 1): {
 		_typeModifier = 7;
-		_batModifier = (count _Buildings) / 35;
+		_batModifier = (count _Buildings) / 15;
 	};
 	case (ODD_var_LocationType select 0): {
-		_typeModifier = 8;
-		_batModifier = (count _Buildings) / 55;
+		_typeModifier = 10;
+		_batModifier = (count _Buildings) / 20;
 	};
 };
 _garisonPool = _garisonPool + _typeModifier + _batModifier;
