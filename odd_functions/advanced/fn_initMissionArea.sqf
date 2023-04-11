@@ -56,6 +56,10 @@ private _alt = 1000;
 	private _garisonPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
 	_variablesPad setVariable ["trig_ODD_var_garison", _garisonPool, True];
 
+	// utilise les fonctions pour calculer les reserves de VL
+	// private _VlPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
+	// _variablesPad setVariable ["trig_ODD_var_vl", _VlPool, True];
+
 	// crée les triggers pour spawn/déspawn les civls
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True];
 	_triggers pushBack _civTrigger;
@@ -66,7 +70,6 @@ private _alt = 1000;
 		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_civControl;", _radSpawnCivils]
 	];
 	_civTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-
 	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
 
@@ -80,7 +83,6 @@ private _alt = 1000;
 		Format ["[thisTrigger, False] spawn ODDcommon_fnc_patrolsControl;", _radSpawnPatrols]
 	];
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_patrolsControl;
 
@@ -94,9 +96,21 @@ private _alt = 1000;
 		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_garisonsControl;", _radSpawngarisons]
 	];
 	_garTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_garisonsControl;
+
+	// crée le trigger pour spawn/déspawn les vls
+	// private _VlTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	// _triggers pushBack _LocTrigger;
+	// _VlTrigger setTriggerArea [_radVl, _radVl, 0, False, _alt]; 
+	// _VlTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	// _VlTrigger setTriggerStatements ["this",
+	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radVl],
+	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radVl]
+	// ];
+	// _VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
+	// _variablesPad setVariable ["trig_ODD_var_VlWantState", False, True];
+	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
 
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
@@ -108,7 +122,6 @@ private _alt = 1000;
 		Format ["[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;", _radDisable]
 	];
 	_LocTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-
 	_variablesPad setVariable ["trig_ODD_var_WantState", False, True];
 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
 
