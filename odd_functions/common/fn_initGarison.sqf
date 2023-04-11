@@ -24,9 +24,7 @@ private _proxModifier = 0;
 private _objModifier = 0;
 private _batModifier = 0;
 
-// systemchat format ["%1 | %2", position _zo, size _zo select 0];
 private _Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];
-// systemChat str(count(_Buildings));
 
 switch (type _zo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 	case (ODD_var_LocationType select 5): {

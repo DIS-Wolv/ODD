@@ -1,7 +1,7 @@
 params [["_prep",False,[True]]];
-//systemChat TypeName _prep;
+
 private _missionParams = ODDGUIMissions_var_SelectedParams;
-// systemChat str(_missionParams);
+
 //ODDGUIMissions_var_SelectedParams = [_selectedObj,_selectedLoc,_selectedFaction,_valArea,_valLocationType];
 private _valArea = _missionParams select 3;
 private _valLocationType = _missionParams select 4;

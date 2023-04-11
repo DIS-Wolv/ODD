@@ -14,7 +14,6 @@
 * Variable publique :
 */
 params[["_source", 0], ["_author",objNull],["_dist", 50]];
-// systemChat 'PROUT INTEL';
 
 private _colorPool = ["colorIndependent", "colorCivilian", "colorOPFOR"];
 private _markerPool = ["Contact_circle1", "Contact_circle2", "Contact_circle3", "Contact_circle4", "Contact_pencilTask1", "Contact_pencilTask2",
@@ -57,7 +56,6 @@ if (_source == 2) then {
 // _proba = 0;
 private _pos = [0,0,0];
 if (_proba == 0) then {
-	// systemChat 'PROUT info';
 	_msg = "J'ai des informations.";
 	_intelType = selectRandom ODD_var_IntelType;
 	// _intelType = ODD_var_IntelType select 5; // force le type d'intel
@@ -130,7 +128,7 @@ if (_proba == 0) then {
 			_markerType = (selectRandom _markerPool)
 		};
 	};
-	// systemChat format ["YOLO : %1", _pos];
+
 	if ((count (_pos)) < 2) then {
 		_needMarker = False;
 		_msgNon = _allmsg select 11;

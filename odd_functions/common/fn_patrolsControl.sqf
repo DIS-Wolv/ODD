@@ -13,11 +13,10 @@
 *
 * Variable publique :
 */
-
 params ["_trigger", ["_state", False], ["_radius", 1400]];
-// systemChat 'prout 1';
+
 private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
-// systemChat "caca a";
+
 if ((typeName _loc) != "SCALAR") then {
 	private _textLoc = _loc getVariable ["trig_ODD_var_locName", ""];
 	[["Spawn patrol : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
@@ -39,7 +38,6 @@ if ((typeName _loc) != "SCALAR") then {
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
 
-		// systemChat "caca b";
 		_pos = position _loc;
 		private _patOut = 0;
 
@@ -102,7 +100,6 @@ if ((typeName _loc) != "SCALAR") then {
 			_patOut = _patOut min _patLimit;
 			_patOut = _patOut min _patPool;
 			_patOut = _patOut + round (random 1);
-			// systemChat "caca c";
 			for "_i" from 0 to _patOut do {
 				private _pat = [_loc] call ODDcommon_fnc_eniPatrol;
 				_patGroup pushBack _pat;

@@ -13,7 +13,6 @@
 * Variable publique :
 */
 params ["_loc"];
-systemChat "caca1";
 private _pos = position _loc;
 private _zo = nearestLocation [_pos,""];
 private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
@@ -43,9 +42,8 @@ if (_players < 5) then {		// si moins de 5 joueurs
 
 // choisi un batiment aléatoirement
 private _GBuild = selectRandom _Buildings;
-// systemChat "caca2";
+
 // spawn le groupe
-systemChat format ["%1 | %2", getPos _GBuild, _group];
 private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
 
@@ -65,7 +63,7 @@ sleep 1;
 	_x setVariable ["ODD_var_SurrenderHandler", _id, True];
 	// EH pour secure Area ?
 }forEach units _g;
-// systemChat "caca3";
+
 
 _g setVariable ["trig_ODD_var_Gar", True, True];
 

@@ -69,25 +69,22 @@ if (ODD_var_CurrentMission == 0) then {
 	ODD_var_SelectedMissionType = [_zo, _missiontype] call ODDadvanced_fnc_createTarget;
 	// Choisi le type de mission via la fonction ODDadvanced_fnc_createTarget
 	
-	[_zo, True] call ODDadvanced_fnc_civil;
-	
 	[_zo, 2, True] call ODDadvanced_fnc_roadBlock;
 	
-	[_zo, True] call ODDadvanced_fnc_createGarnisonV2;
-	
-	[_zo, True] call ODDadvanced_fnc_createPatrol;
+	// [_zo, True] call ODDadvanced_fnc_createGarnisonV2;
+	// [_zo, True] call ODDadvanced_fnc_civil;
+	// [_zo, True] call ODDadvanced_fnc_createPatrol;
 	
 	[_zo, True] spawn ODDadvanced_fnc_createVehicule; 
 	// Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
 	
-	private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
-	// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
-	private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
-	_location = _location - [_zo];
-	// Supprime la zone objectif de la liste des zones secondaire potentielles
-	_location = _location - _closeLoc;
-	// Filtre les localités pour ne pas prendre celles trop proche de l'objectif
 	if (_ZOP) then {
+		private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
+		// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
+		private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
+		_location = _location - _closeLoc;
+		// Filtre les localités pour ne pas prendre celles trop proche de l'objectif
+		_location = _location + [_zo];
 
 		private _i = 0;
 		while {_i < count(_location)} do {
@@ -103,6 +100,8 @@ if (ODD_var_CurrentMission == 0) then {
 		
 		[["Nombre de ZO+ : %1", count(_location)]] call ODDcommon_fnc_log;
 
+		[_zo, _location] call ODDadvanced_fnc_initMissionArea;
+		/*
 		private _mod = 0;
 		{
 			[_x, False] call ODDadvanced_fnc_civil;
@@ -322,7 +321,7 @@ if (ODD_var_CurrentMission == 0) then {
 				};
 			};
 			[["ZO+ %1 : %2, niveau : %3", _forEachindex, text _x, _loctype]] call ODDcommon_fnc_log;
-		} forEach _location;
+		} forEach _location; //*/
 
 		Private _nbCheckpoint = (round random 5) + 2;
 		[_zo, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
@@ -380,36 +379,36 @@ if (ODD_var_CurrentMission == 0) then {
 	} forEach ODD_var_SecondaryAreasIA;	
 	// Ajoute la possibilité qu'une unité se rende sur une zone secondaire
 
-	_location = _location + [_zo];
-	{
-		_radA = 1200;
-		_alt = 1000;
-		_loc = _x;
-		_pos = position _loc;
-		private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-		_LocTrigger setTriggerArea [_radA, _radA, 0, False, _alt]; 
-		_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	
+	// {
+	// 	_radA = 1200;
+	// 	_alt = 1000;
+	// 	_loc = _x;
+	// 	_pos = position _loc;
+	// 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	// 	_LocTrigger setTriggerArea [_radA, _radA, 0, False, _alt]; 
+	// 	_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		
-		_LocTrigger setTriggerStatements ["this",
-		"
-			[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;
-		",
-		"
-			[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
-		"
-		];
-		_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
-		_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
+	// 	_LocTrigger setTriggerStatements ["this",
+	// 	"
+	// 		[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;
+	// 	",
+	// 	"
+	// 		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
+	// 	"
+	// 	];
+	// 	_markerZ = "Land_HelipadEmpty_F" createVehicle _pos;
+	// 	_markerZ setVariable ["trig_ODD_var_locName", text _loc, True];
 
-		_LocTrigger setVariable ["trig_ODD_var_loc", _markerZ, True];
+	// 	_LocTrigger setVariable ["trig_ODD_var_loc", _markerZ, True];
 
-		_markerZ setVariable ["trig_ODD_var_WantState", False, True];
-		_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
+	// 	_markerZ setVariable ["trig_ODD_var_WantState", False, True];
+	// 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
 
-		ODD_var_ZonePad pushBack _markerZ;
+	// 	ODD_var_ZonePad pushBack _markerZ;
 
-		ODD_var_AreaTrigger pushBack _LocTrigger;
-	} forEach _location;
+	// 	ODD_var_AreaTrigger pushBack _LocTrigger;
+	// } forEach _location;
 
 	[["ODD_Quantité : Nombre de Pax sur la zone objectif : %1", count ODD_var_MainAreaIA]] call ODDcommon_fnc_log;
 	[["ODD_Quantité : Nombre de Pax en zones secondaire : %1", count ODD_var_SecondaryAreasIA]] call ODDcommon_fnc_log;

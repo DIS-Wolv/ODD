@@ -15,9 +15,9 @@
 */
 
 params ["_trigger", ["_state", False], ["_radius", 1100]];
-// systemChat 'prout 1';
+
 private _loc = _trigger getVariable ["trig_ODD_var_Pad", -1];
-// systemChat "caca a";
+
 if ((typeName _loc) != "SCALAR") then {
 	private _textLoc = _loc getVariable ["trig_ODD_var_locName", ""];
 	[["Spawned garisons : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
@@ -38,7 +38,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _garPool = _loc getVariable ["trig_ODD_var_garison", 25];
 		private _garGroup = [];
 
-		// systemChat "caca b";
+
 		_pos = position _loc;
 		private _garOut = 0;
 
@@ -104,7 +104,7 @@ if ((typeName _loc) != "SCALAR") then {
 			_garOut = _garOut min _garPool;
 			_garOut = _garOut min (count _Buildings);
 			_garOut = _garOut + round (random 1);
-			// systemChat "caca c";
+
 			for "_i" from 0 to _garOut do {
 				private _gar = [_loc] call ODDcommon_fnc_eniGarison;
 				_garGroup pushBack _gar;

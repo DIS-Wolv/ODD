@@ -5,7 +5,6 @@
 * Arguments :
 * 0: Centre de la zone (localité de l'objectif) <Objet>
 * 1: arrays de localités autour
-* 2: Activation du débug dans le chat <BOOL>
 *
 * Valeur renvoyée :
 * <ARRAY> [patrolPool, objActive]
@@ -19,7 +18,6 @@
 
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
-// systemChat "prout 0";
 private _radSpawnPatrols = 1600;
 private _radDisable = 1000;
 private _radSpawnCivils = 1400;
@@ -129,7 +127,6 @@ private _alt = 1000;
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger pushBack _LocTrigger;
-	// systemChat "prout 2";
 } forEach _locations;
 
 // crée et assigne a chaque hélipad une variable contenant les valeurs de reserve pour la zone
