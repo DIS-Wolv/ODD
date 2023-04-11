@@ -52,8 +52,7 @@ private _alt = 1000;
 
 	// utilise les fonctions pour calculer les reserves de garnison sur chaque localité	
 	private _garisonPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
-	private _garisonLimit = [_loc] call ODDcommon_fnc_LimitGarison;
-	_variablesPad setVariable ["trig_ODD_var_garison", [_garisonPool,_garisonLimit], True];
+	_variablesPad setVariable ["trig_ODD_var_garison", _garisonPool, True];
 
 	// crée les triggers pour spawn/déspawn les civls
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True]; 
