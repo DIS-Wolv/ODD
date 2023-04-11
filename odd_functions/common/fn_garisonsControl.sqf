@@ -35,6 +35,8 @@ if ((typeName _loc) != "SCALAR") then {
 		private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
+		private _garPool = _loc getVariable ["trig_ODD_var_garison", 25];
+		private _garGroup = [];
 
 		// systemChat "caca b";
 		_pos = position _loc;
@@ -51,7 +53,7 @@ if ((typeName _loc) != "SCALAR") then {
 				case 6: {_garOut = 0.9;};
 			};
 
-			switch (type _x) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
+			switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 				case (ODD_var_LocationType select 5): {
 					_typeModifier = 1;
 					_batModifier = (count _Buildings) / 8;
@@ -93,8 +95,6 @@ if ((typeName _loc) != "SCALAR") then {
 
 			_garOut = _garOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_garOut = round _garOut;
-			private _garPool = _loc getVariable ["trig_ODD_var_garison", 25];
-			private _garGroup = [];
 
 			_garOut = _garOut min _garPool;
 			_garOut = _garOut min (count _Buildings);
