@@ -93,7 +93,7 @@ if ((typeName _loc) != "SCALAR") then {
 
 			_garOut = _garOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_garOut = round _garOut;
-			private _garPool = _loc getVariable ["trig_ODD_var_garison", []];
+			private _garPool = _loc getVariable ["trig_ODD_var_garison", 25];
 			private _garGroup = [];
 
 			_garOut = _garOut min _garPool;
@@ -113,7 +113,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _spawedGar = _loc getVariable ["trig_ODD_var_spawnedGar",[]];
 			private _despawnedGar = 0;
 			{
-				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
+				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_spawnedGar", False])) then {
 					{
 						deleteVehicle _x;
 					} forEach units (group _x);
