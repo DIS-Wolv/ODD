@@ -74,7 +74,6 @@ if (ODD_var_CurrentMission == 0) then {
 	[_zo, True] spawn ODDadvanced_fnc_createVehicule; 
 	// Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
 	
-
 	private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
 	// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
 	private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
@@ -341,7 +340,6 @@ if (ODD_var_CurrentMission == 0) then {
 		// Crée entre 10 et 20 IEDs qui n'exploseront pas
 		[_zo, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 	}; 
-
 
 	{
 		deletevehicle _x;
