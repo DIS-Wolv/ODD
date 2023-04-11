@@ -28,6 +28,9 @@ if ((typeName _loc) != "SCALAR") then {
 	if (!_isActive) then {
 		_loc setVariable ["trig_ODD_var_patControlActive", True, True];
 		
+		private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
+		private _patPool = _pat select 0;
+		private _patLimit = _pat select 1;
 		// Spawn des patrouilles
 		private _zoDefined = _loc getVariable ["trig_ODD_var_zoType", []];
 		private _zo = _loc getVariable ["trig_ODD_var_loc", ""];
@@ -95,9 +98,6 @@ if ((typeName _loc) != "SCALAR") then {
 			};
 			_patOut = _patOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_patOut = round _patOut;
-			private _pat = _loc getVariable ["trig_ODD_var_patrols", []];
-			private _patPool = _pat select 0;
-			private _patLimit = _pat select 1;
 			private _patGroup = [];
 			_patOut = _patOut min _patLimit;
 			_patOut = _patOut min _patPool;
