@@ -30,10 +30,10 @@ if (_index != -1) then {
 	private _posHalo = _coord2D vectorAdd _coordZ;
 
 	if (_posHalo isEqualTo [0,0,0]) then {
-	systemChat "Pas de zone de saut, définissez une zone de saut";
-	hint "Pas de zone de saut, \n définissez une zone de saut";
-	sleep 10;
-	hintSilent "";
+		systemChat "Pas de zone de saut, définissez une zone de saut";
+		hint "Pas de zone de saut, \n définissez une zone de saut";
+		sleep 10;
+		hintSilent "";
 	}
 	else {
 		if (!isNil "_dropTime") then {
@@ -43,7 +43,6 @@ if (_index != -1) then {
 			waitUntil {
 				sleep 59;
 				_timeNow = date;
-				//systemChat format ["%1:%2 | %3:%4", (_timeNow select 3),(_timeNow select 4),_dropTimeH,_dropTimeM];
 				((((_timeNow select 3) == _dropTimeH) && ((_timeNow select 4) == _dropTimeM)) or ((_vl distance2D WolvGarage_var_OBJ) >= 150))
 			};
 		};

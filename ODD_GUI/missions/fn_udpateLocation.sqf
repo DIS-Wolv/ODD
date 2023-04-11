@@ -17,7 +17,6 @@ if (_indexArea >= 0 and _indexArea < count (ODDGUIMissions_var_SecteurMarker)) t
 	_valArea = -1;
 };
 
-// systemChat format ["%1 %2", _valLocationType, _valArea];
 
 private _posA = [15000, 15000];
 private _radA = 30000;
@@ -31,9 +30,7 @@ if ((typeName _valLocationType) == "STRING") then {
 	_locType = [_valLocationType];
 };
 
-// systemChat format ["%1 %2 %3", _posA, _locType, _radA];
 private _loc = nearestLocations[_posA, _locType, _radA];
-// systemChat str _loc;
 
 {
 	private _Buildings = nearestobjects[position _x, ODD_var_Houses, 200];

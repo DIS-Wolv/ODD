@@ -28,7 +28,6 @@ if (!isNil 'ODD_var_MissionSmokePillar') then {
 
 		if ((count ODD_var_MissionSmokePillar) != 0) then {
 			{
-				// systemChat str _x;
 				_pos = _x;
 				private _ps1 = "#particlesource" createVehicleLocal _pos; 
 				_ps1 setParticleParams [ 
