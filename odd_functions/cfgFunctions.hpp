@@ -22,6 +22,7 @@ class ODD_Common {
 		class eniPatrol {};
 		class initGarison {};
 		class garisonsControl {};
+		class eniGarison {};
     };
 };
 
