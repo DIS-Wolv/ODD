@@ -95,7 +95,9 @@ if ((typeName _loc) != "SCALAR") then {
 			_garOut = round _garOut;
 			private _garPool = _loc getVariable ["trig_ODD_var_garison", []];
 			private _garGroup = [];
+
 			_garOut = _garOut min _garPool;
+			_garOut = _garOut min (count _Buildings);
 			_garOut = _garOut + round (random 1);
 			// systemChat "caca c";
 			for "_i" from 0 to _garOut do {
