@@ -116,7 +116,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _spawedPat = _loc getVariable ["trig_ODD_var_spawnedPat",[]];
 			private _despawnedPat = 0;
 			{
-				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_spawnedPat", False])) then {
+				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
 					{
 						deleteVehicle _x;
 					} forEach units (group _x);

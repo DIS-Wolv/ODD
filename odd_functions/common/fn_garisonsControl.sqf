@@ -53,6 +53,11 @@ if ((typeName _loc) != "SCALAR") then {
 				case 6: {_garOut = 0.9;};
 			};
 
+		private _players = (playersNumber west);
+		private _playersModifier = 0;
+		private _typeModifier = 0;
+		private _batModifier = 0;
+
 			switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 				case (ODD_var_LocationType select 5): {
 					_typeModifier = 1;
@@ -104,7 +109,7 @@ if ((typeName _loc) != "SCALAR") then {
 				private _gar = [_loc] call ODDcommon_fnc_eniGarison;
 				_garGroup pushBack _gar;
 			};
-			_loc setVariable ["trig_ODD_var_spawnedGar",_garGroup, True];
+			
 			_garPool = _garPool - _garOut;
 			_loc setVariable ["trig_ODD_var_garison", _garPool, True];
 		}
@@ -113,7 +118,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _spawedGar = _loc getVariable ["trig_ODD_var_spawnedGar",[]];
 			private _despawnedGar = 0;
 			{
-				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_spawnedGar", False])) then {
+				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Gar", False])) then {
 					{
 						deleteVehicle _x;
 					} forEach units (group _x);
