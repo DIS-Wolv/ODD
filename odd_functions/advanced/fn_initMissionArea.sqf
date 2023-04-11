@@ -94,16 +94,16 @@ private _alt = 1000;
 	_garTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_garTrigger setTriggerStatements ["this",
 	"
-		[thisTrigger, True] spawn ODDcommon_fnc_garisonControl;
+		[thisTrigger, True] spawn ODDcommon_fnc_garisonsControl;
 	",
 	"
-		[thisTrigger, False] spawn ODDcommon_fnc_garisonControl;
+		[thisTrigger, False] spawn ODDcommon_fnc_garisonsControl;
 	"
 	];
 	_garTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_garisonControl;
+	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_garisonsControl;
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
