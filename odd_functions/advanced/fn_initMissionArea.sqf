@@ -62,12 +62,8 @@ private _alt = 1000;
 	_civTrigger setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, False, _alt]; 
 	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_civTrigger setTriggerStatements ["this",
-	"
-		[thisTrigger, True] spawn ODDcommon_fnc_civControl;
-	",
-	"
-		[thisTrigger, False] spawn ODDcommon_fnc_civControl;
-	"
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_civControl;", _radSpawnCivils],
+		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_civControl;", _radSpawnCivils]
 	];
 	_civTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
@@ -80,12 +76,8 @@ private _alt = 1000;
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_patTrigger setTriggerStatements ["this",
-	"
-		[thisTrigger, True] spawn ODDcommon_fnc_patrolsControl;
-	",
-	"
-		[thisTrigger, False] spawn ODDcommon_fnc_patrolsControl;
-	"
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_patrolsControl;", _radSpawnPatrols],
+		Format ["[thisTrigger, False] spawn ODDcommon_fnc_patrolsControl;", _radSpawnPatrols]
 	];
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
@@ -98,12 +90,8 @@ private _alt = 1000;
 	_garTrigger setTriggerArea [_radSpawngarisons, _radSpawngarisons, 0, False, _alt]; 
 	_garTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_garTrigger setTriggerStatements ["this",
-	"
-		[thisTrigger, True] spawn ODDcommon_fnc_garisonsControl;
-	",
-	"
-		[thisTrigger, False] spawn ODDcommon_fnc_garisonsControl;
-	"
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_garisonsControl;", _radSpawngarisons],
+		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_garisonsControl;", _radSpawngarisons]
 	];
 	_garTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
@@ -116,12 +104,8 @@ private _alt = 1000;
 	_LocTrigger setTriggerArea [_radDisable, _radDisable, 0, False, _alt]; 
 	_LocTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_LocTrigger setTriggerStatements ["this",
-	"
-		[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;
-	",
-	"
-		[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;
-	"
+		Format ["[thisTrigger, True] spawn ODDadvanced_fnc_areaControl;", _radDisable],
+		Format ["[thisTrigger, False] spawn ODDadvanced_fnc_areaControl;", _radDisable]
 	];
 	_LocTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 
