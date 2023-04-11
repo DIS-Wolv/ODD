@@ -101,6 +101,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _patGroup = [];
 			_patOut = _patOut min _patLimit;
 			_patOut = _patOut min _patPool;
+			_patOut = _patOut + round (random 1);
 			// systemChat "caca c";
 			for "_i" from 0 to _patOut do {
 				private _pat = [_loc] call ODDcommon_fnc_eniPatrol;
