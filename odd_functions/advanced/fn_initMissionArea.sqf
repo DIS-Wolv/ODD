@@ -23,6 +23,7 @@ private _radDisable = 1000;
 private _radSpawnCivils = 900;
 private _radSpawngarisons = 1000;
 private _alt = 1000;
+private _radVl = 2000;
 
 {
 	private _loc = _x;
