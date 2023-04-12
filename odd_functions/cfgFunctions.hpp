@@ -23,6 +23,7 @@ class ODD_Common {
 		class initGarison {};
 		class garisonsControl {};
 		class eniGarison {};
+		class ZoType {};
     };
 };
 
