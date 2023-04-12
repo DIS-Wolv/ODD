@@ -15,6 +15,7 @@
 */
 
 params ["_zo"];
+
 private _loctype = [_zo] call ODDcommon_fnc_ZoType;
 private _nbCivil = 1;
 private _garCivil = 1;
