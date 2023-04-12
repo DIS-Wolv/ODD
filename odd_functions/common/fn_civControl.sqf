@@ -50,7 +50,7 @@ if ((typeName _pad) != "SCALAR") then {
 					_garGroup pushBack _gar;
 				};
 				for "_i" from 0 to _vlCivil do {
-					private _vl = [_zo] call ODDcommon_fnc_civVehicle;
+					private _vl = [_zo, (_radius/2)] call ODDcommon_fnc_civVehicle;
 					_vlGroup pushBack _vl;
 				};
 				_pad setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True];

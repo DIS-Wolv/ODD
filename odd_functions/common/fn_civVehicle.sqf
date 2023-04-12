@@ -12,12 +12,12 @@
 *
 * Variable publique :
 */
-params ["_zo"];
+params ["_zo", ["_radius", 1000]];
 
 private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
 
-_road = selectrandom (_pos nearRoads 600);
+_road = selectrandom (_pos nearRoads _radius);
 // spawn le groupe
 private _g = [position _road, civilian, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
@@ -78,5 +78,6 @@ _g setSpeedMode "LIMITED";
 } forEach units _g;
 
 _g setVariable ["trig_ODD_var_Civ", True, True];
+(vehicle ((units _g) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
 
 _g;
