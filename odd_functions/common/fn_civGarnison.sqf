@@ -68,4 +68,6 @@ sleep 1;
 	}];
 }forEach units _g;
 
+_g setVariable ["trig_ODD_var_Civ", True, True];
+
 _g;

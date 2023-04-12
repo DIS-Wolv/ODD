@@ -77,4 +77,6 @@ _g setSpeedMode "LIMITED";
 	}];
 } forEach units _g;
 
+_g setVariable ["trig_ODD_var_Civ", True, True];
+
 _g;

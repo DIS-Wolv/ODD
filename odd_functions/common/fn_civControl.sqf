@@ -60,7 +60,7 @@ if ((typeName _pad) != "SCALAR") then {
 			private _pos = position _zo;
 			private _nearMen = _pos nearEntities [["man", "Car", "Air"], _radius];
 			{
-				if (((side _x) == civilian) and ((count (units _x)) > 0)) then {
+				if (((side _x) == civilian) and ((group _x) getVariable ["trig_ODD_var_Civ", False])) then {
 					deleteVehicle _x;
 				};
 				
