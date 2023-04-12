@@ -14,28 +14,19 @@
 * Variable publique :
 */
 
-params ["_loc"];
-private _loctype = 0;
+params ["_zo"];
+private _loctype = [_zo] call ODDcommon_fnc_ZoType;
 private _nbCivil = 1;
 private _garCivil = 1;
 private _vlCivil = 0;
-private _Buildings = nearestObjects [position _loc, ODD_var_Houses, size _loc select 0];
+private _Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];
 // Nombre de maisons dans la localité
-
-switch (type _loc) do {		//['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
-	case (ODD_var_LocationType select 5): {_loctype = 0;};
-	case (ODD_var_LocationType select 4): {_loctype = 1;};
-	case (ODD_var_LocationType select 3): {_loctype = 2;};
-	case (ODD_var_LocationType select 2): {_loctype = 3;};
-	case (ODD_var_LocationType select 1): {_loctype = 4;};
-	case (ODD_var_LocationType select 0): {_loctype = 5;};
-};
 
 {
 	if (_x in ODD_var_LocationMilitaryName) then {
 		_locType = 10;
 	};
-}forEach ((text _loc) splitstring " ");
+}forEach ((text _zo) splitstring " ");
 
 switch (_loctype) do {
 	case (10): {

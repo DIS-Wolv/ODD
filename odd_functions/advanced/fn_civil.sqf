@@ -17,15 +17,7 @@
 */
 params ["_zo", ["_action", False]];
 
-private _loctype = 0;
-switch (type _zo) do {
-	case (ODD_var_LocationType select 5): {_loctype = 0;};
-	case (ODD_var_LocationType select 4): {_loctype = 1;};
-	case (ODD_var_LocationType select 3): {_loctype = 2;};
-	case (ODD_var_LocationType select 2): {_loctype = 3;};
-	case (ODD_var_LocationType select 1): {_loctype = 4;};
-	case (ODD_var_LocationType select 0): {_loctype = 5;};
-};
+private _loctype = [_zo] call ODDcommon_fnc_ZoType;
 
 {
 	if (_x in ODD_var_LocationMilitaryName) then {

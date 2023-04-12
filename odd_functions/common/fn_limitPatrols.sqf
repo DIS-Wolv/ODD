@@ -1,15 +1,6 @@
-params ["_loc"];
-private _loctype = 0;
+params ["_zo"];
+private _loctype = [_zo] call ODDcommon_fnc_ZoType;;
 private _patrolLimit = 0;
-
-switch (type _loc) do {
-	case (ODD_var_LocationType select 5): {_loctype = 0;};
-	case (ODD_var_LocationType select 4): {_loctype = 1;};
-	case (ODD_var_LocationType select 3): {_loctype = 2;};
-	case (ODD_var_LocationType select 2): {_loctype = 3;};
-	case (ODD_var_LocationType select 1): {_loctype = 4;};
-	case (ODD_var_LocationType select 0): {_loctype = 5;};
-};
 
 switch (_loctype) do {
 	case 0: {_patrolLimit = 6;};
