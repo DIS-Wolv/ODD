@@ -41,11 +41,10 @@ private _distSurrender = 20;
 private _distBlue = 15;  
 private _distRed = 30;
 
-if (side _killer == WEST ) then {
+if (side _killer == WEST) then {
 	_pos = position _unit;
 
 	_nearSurrender = [];
-
 	{
 		if (((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)) then {
 			_nearSurrender pushBack _x;
@@ -62,7 +61,7 @@ if (side _killer == WEST ) then {
 
 		{
 			if (
-				(_nearRed > 10) // [3] plus de 10 = no surrender
+				(_nearRed <= 10) // [3] plus de 10 = no surrender
 				and
 				(_nbSurrender <= ((_nearRed/5) min 10) max 2)  // [5] Max ennemis qui peuvent se rendre
 				and
