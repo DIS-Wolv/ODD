@@ -85,7 +85,20 @@ switch (_source) do {
 		_allmsg set [10,_msgObj2];
 		_allmsg set [11,_msgNon2];
 	};
-	default { };
+	default {
+		_allmsg set [0,_msgMedical1];
+		_allmsg set [1,_msgNoMedical1];
+		_allmsg set [2,_msgVl1];
+		_allmsg set [3,_msgNoVl1];
+		_allmsg set [4,_msgChkpt1];
+		_allmsg set [5,_msgNoChkpt1];
+		_allmsg set [6,_msgIed1];
+		_allmsg set [7,_msgNoIed1];
+		_allmsg set [8,_msgTransport1];
+		_allmsg set [9,_msgNoTransport1];
+		_allmsg set [10,_msgObj1];
+		_allmsg set [11,_msgNon1];
+	};
 };
 
 _allmsg;
