@@ -43,7 +43,6 @@ if (isNil "ODD_var_MissionArea") then {
 	[["ODD_var_MissionArea Init dans fn_MISSION"]] call ODDcommon_fnc_log;
 };
 
-
 if (ODD_var_CurrentMission == 0) then {
 	[True, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
 	sleep 1;
@@ -56,30 +55,31 @@ if (ODD_var_CurrentMission == 0) then {
 
 	private _zo = [_forceZO] call ODDadvanced_fnc_createZO;
 	// Choisi la localité via la fonction ODDadvanced_fnc_createZO
+
 	ODD_var_SelectedArea = _zo;
 	publicVariable "ODD_var_SelectedArea";
 
 	if (((position FOB) distance2D (position ODD_var_SelectedArea)) <= 4500) then {
 		_mrkfob = ["DIS_mrk_FOB_0", "DIS_mrk_FOB_1", "DIS_mrk_FOB_2"];
-		_mrkfob = [_mrkfob, [getPos _zo], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
+		_mrkfob = [_mrkfob, [getPos ODD_var_SelectedArea], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
 		[_mrkfob select 0] call DISCommon_fnc_PosFob;
 		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODDcommon_fnc_log;
 	};
 	
-	ODD_var_SelectedMissionType = [_zo, _missiontype] call ODDadvanced_fnc_createTarget;
+	ODD_var_SelectedMissionType = [ODD_var_SelectedArea, _missiontype] call ODDadvanced_fnc_createTarget;
 	// Choisi le type de mission via la fonction ODDadvanced_fnc_createTarget
 	
-	[_zo, 2, True] call ODDadvanced_fnc_roadBlock;
+	[ODD_var_SelectedArea, 2, True] call ODDadvanced_fnc_roadBlock;
 	
-	[_zo, True] spawn ODDadvanced_fnc_createVehicule; 
+	[ODD_var_SelectedArea, True] spawn ODDadvanced_fnc_createVehicule; 
 	// Spawn est utilisé pour ne pas spawn les véhicules tant que les joueurs ne sont pas partis en mission
 	
-	private _location = nearestLocations[position _zo, ODD_var_LocationType, ODD_var_MissionArea];
+	private _location = nearestLocations[position ODD_var_SelectedArea, ODD_var_LocationType, ODD_var_MissionArea];
 	// Ajoute toutes les localités a proximité de la zone objectif (proximité définie dans fn_var.sqf ligne 136)
-	private _closeLoc = nearestLocations[position _zo, ODD_var_LocationType, 500];
+	private _closeLoc = nearestLocations[position ODD_var_SelectedArea, ODD_var_LocationType, 500];
 	_location = _location - _closeLoc;
 	// Filtre les localités pour ne pas prendre celles trop proche de l'objectif
-	_location = _location + [_zo];
+	_location = _location + [ODD_var_SelectedArea];
 
 	private _i = 0;
 	while {_i < count(_location)} do {
@@ -95,7 +95,7 @@ if (ODD_var_CurrentMission == 0) then {
 	
 	[["Nombre de ZO+ : %1", count(_location)]] call ODDcommon_fnc_log;
 
-	[_zo, _location] call ODDadvanced_fnc_initMissionArea;
+	[ODD_var_SelectedArea, _location] call ODDadvanced_fnc_initMissionArea;
 	/* // ajoute de la gestion des vl dans le initMissionArea
 	private _mod = 0; 
 	{
@@ -319,7 +319,7 @@ if (ODD_var_CurrentMission == 0) then {
 	} forEach _location; //*/
 
 	Private _nbCheckpoint = (round random 5) + 2;
-	[_zo, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
+	[ODD_var_SelectedArea, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
 	// Ajout de checkpoints hors des localités
 
 	private _action = round random 100;
@@ -327,18 +327,18 @@ if (ODD_var_CurrentMission == 0) then {
 		// 75% de chance que la mission comporte des IEDs
 		_nbIED = 25 + round random 20;
 		// Crée entre 25 et 45 IEDs
-		[_zo, _nbIED] spawn ODDadvanced_fnc_pressureIED;
+		[ODD_var_SelectedArea, _nbIED] spawn ODDadvanced_fnc_pressureIED;
 		_nbDecoy = 5 + round random 10;
 		// Crée entre 5 et 15 IEDs qui n'exploseront pas
-		[_zo, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
+		[ODD_var_SelectedArea, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 	}
 	else {
 		_nbIED = 10 + round random 10;
 		// Crée entre 10 et 15 IEDs
-		[_zo, _nbIED] spawn ODDadvanced_fnc_pressureIED;
+		[ODD_var_SelectedArea, _nbIED] spawn ODDadvanced_fnc_pressureIED;
 		_nbDecoy = 10 + round random 10;
 		// Crée entre 10 et 20 IEDs qui n'exploseront pas
-		[_zo, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
+		[ODD_var_SelectedArea, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 	}; 
 
 	{
