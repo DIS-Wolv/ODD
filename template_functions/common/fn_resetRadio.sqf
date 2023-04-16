@@ -1,7 +1,21 @@
-
-
-
+/*
+* Auteur : Wolv
+* change la radio
+*
+* Arguments :
+* 0: player
+*
+* Valeur renvoyée :
+* nil
+*
+* Exemple:
+* [player] call DISCommon_fnc_resetRadio
+*
+* Variable publique :
+*/
 params ["_unit"];
+
+// bugé ?
 
 _radio = (assignedItems _unit) select 3;
 _channel = player getVariable "tfar_freq_sr";
