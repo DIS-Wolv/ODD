@@ -35,7 +35,6 @@ else {
 
 _Buildings = [];
 _Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
-systemChat format ["%1", text _zo];
 
 while {count _Buildings == 0} do {
 	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
@@ -45,7 +44,6 @@ while {count _Buildings == 0} do {
 		ODD_var_SelectedArea = _zo;
 	};
 };
-systemChat format ["%1", text _zo];
 ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
 
