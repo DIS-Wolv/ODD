@@ -57,7 +57,8 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 			_roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
 			_props = [_roadPos, _roadDir, _structure] call BIS_fnc_objectsMapper;
 
-			ODD_var_MissionCheckPoint pushBack _roadPos;
+			private _variablesPad = "Land_HelipadEmpty_F" createVehicle _roadPos;
+			ODD_var_MissionCheckPoint pushBack _variablesPad;
 
 			_aCacher = [];
 			{
