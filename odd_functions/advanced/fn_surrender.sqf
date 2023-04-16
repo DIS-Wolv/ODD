@@ -2,6 +2,24 @@
 * Auteur : Wolv
 * Fonction pour que certaines AIs se rendent
 *
+* Dans les zones de rayon definit en [1] (calculee en [2])
+* S'il ce trouve quils sont plus de 10, personne ne se rend [3]
+* Sinon, suivant le nombre d'IA, on applique la fonction :
+*
+*     chances = (NB_blue/3)/((NB_blue/3) + NB_red)    [4]
+*
+*  le bot doit avoir x chance de se rendre :
+*  | NB_blue | NB_red | chances  	 |
+*  | 0+      | 10+    | 0            |
+*  | 9       | 10     | 3/13 = 0.23  |
+*  | 3       | 10     | 1/11 = 0.09  |
+*  | 9       | 1      | 3/4  = 0.75  |
+*  | 18      | 1      | 6/7  = 0.86  |
+*  | 3       | 1      | 1/2  = 0.50  |
+*  | 1       | 1      | 1/4  = 0.25  |
+*  | 1       | 6      |        0.05  |
+*
+* Au total entre 2 et 10 pax peuvent se rende [5].
 * Arguments :
 * 0: Unité qui vient de mourir <OBJ> 
 * 1: Unité venant de tuer 0 <OBJ>
@@ -18,12 +36,12 @@ params ["_unit", "_killer"];
 
 private _maxSurrender = 2;
 
-if (side _killer == WEST ) then {	
-	// Si L'IA a été tuée par un BLUFOR
-	_distSurrender = 20;
-	_distBlue = 15;  
-	_distRed = 30; // Augmenter la distance ici 
-	// Distance sur lesquelles on recherche 
+// [1] Distance sur lesquelles on recherche
+private _distSurrender = 20;
+private _distBlue = 15;  
+private _distRed = 30;
+
+if (side _killer == WEST ) then {
 	_pos = position _unit;
 
 	_nearSurrender = [];
@@ -33,21 +51,23 @@ if (side _killer == WEST ) then {
 			_nearSurrender pushBack _x;
 		};
 	} forEach (units opfor);
-	// Nombre d' OPFOR
-	if (count _nearSurrender != 0) then { // Negatif plutot ?
+
+	if (count _nearSurrender != 0) then {
 		private _nbSurrender = 0;
+		// [2] Calcul des nbs de :
+		// BLUFOR
+		_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
+		// OPFOR moins l'AI venant de décéder
+		_nearRed = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x) and !(_x getVariable ['ace_captives_issurrendering', False])} count (units opfor);
+
 		{
-			_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
-			// Nombre de BLUFOR
-			_nearRed = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x) and !(_x getVariable ['ace_captives_issurrendering', False])} count (units opfor);
-			// Nombre d' OPFOR moins l'AI venant de décéder
-
-			_maxSurrender = ((_nearRed/5) min 10) max 2; //entre 2 et 10 pax peuvent se rende
-
-			_seuil = (exp((_nearRed/3) - (2.5 + _nearBlue / 2)))/1.5;		// A REVOIR : trop croissant, a essayer avec une 1 < racine < 2  (ex : _nearRed^(1/1.5))
-			// Calcul du seuil
-
-			if (((random 1) < _seuil) and (_nbSurrender <= _maxSurrender)) then {  
+			if (
+				(_nearRed > 10) // [3] plus de 10 = no surrender
+				and
+				(_nbSurrender <= ((_nearRed/5) min 10) max 2)  // [5] Max ennemis qui peuvent se rendre
+				and
+				((random 1) < (_nearBlue/3)/((_nearBlue/3) + _nearRed))  // [4] seuil
+			) then {
 				if (vehicle _x != _x) then {
 					{
 						moveout _x; // Débarquement du véhicule
