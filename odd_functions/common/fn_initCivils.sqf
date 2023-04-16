@@ -75,7 +75,7 @@ switch (_loctype) do {
 
 _nbCivil = round _nbCivil;
 _garCivil = round _garCivil;
-_staticVl = round (_vlCivil / 4);
+_staticVl = round (_vlCivil / 3);
 _vlCivil = round _vlCivil;
 
 [_nbCivil,_garCivil,_vlCivil, _staticVl];
