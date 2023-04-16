@@ -128,20 +128,26 @@ if (_proba == 0) then {
 			_markerType = (selectRandom _markerPool)
 		};
 	};
+	if (!isNil _pos) then {
+		if ((count (_pos)) < 2) then {
+			_needMarker = False;
+			_msgNon = _allmsg select 11;
+			_msg = selectRandom _msgNon;
+		};
+		if (_needMarker) then {
+			_posMarker = _pos getPos [(random 1 * _dist), random 360];
 
-	if ((count (_pos)) < 2) then {
-		_needMarker = False;
+			_marker = createMarker [format["ODDTG %1 %2 %3", (_posMarker select 0), (_posMarker select 1), (_posMarker select 2)], _posMarker,1];
+			_marker setMarkertype _markerType;
+			_marker setMarkerColor _color;
+			_marker setMarkerAlpha 0.8125;
+			ODD_var_IntelMarker pushBack _marker;
+		};
+	}
+	else {
+		[["Erreur INTEL => Type : %1", _intelType]] call ODDcommon_fnc_log;
 		_msgNon = _allmsg select 11;
 		_msg = selectRandom _msgNon;
-	};
-	if (_needMarker) then {
-		_posMarker = _pos getPos [(random 1 * _dist), random 360];
-
-		_marker = createMarker [format["ODDTG %1 %2 %3", (_posMarker select 0), (_posMarker select 1), (_posMarker select 2)], _posMarker,1];
-		_marker setMarkertype _markerType;
-		_marker setMarkerColor _color;
-		_marker setMarkerAlpha 0.8125;
-		ODD_var_IntelMarker pushBack _marker;
 	};
 }
 else {

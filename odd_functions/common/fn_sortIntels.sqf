@@ -75,4 +75,6 @@ if (_length > 0) then {
 
 private _intel = _sortedIntels selectRandomWeighted _sortedWeights;
 
-_intel;
+private _posIntel = position _intel;
+
+_posIntel;
