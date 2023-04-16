@@ -24,30 +24,7 @@ private _GBuild = selectRandom _Buildings;
 private _g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
 
-[
-	((units _g)select 0), 
-	"<t color='#FF0000'>interoger le civil</t>", 
-	"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-	"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-	"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", 
-	"True",
-	{
-		[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-		// (_this select 0) disableAI "PATH"
-	}, 
-	{},
-	{
-		params ["_target", "_caller", "_actionId", "_arguments"];
-		[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-		// (_this select 0) enableAI "PATH";
-
-		[1, _target] remoteExec ["ODDadvanced_fnc_intel", 2, True];
-		[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-	}, {
-		// (_this select 0) enableAI "PATH";
-		[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-	}, [], (random[2, 5, 10]), nil, True, False
-] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+[((units _g)select 0)] call ODDcommon_fnc_addIntel;
 
 [position ((units _g) select 0), nil, units _g, 100, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 sleep 1;

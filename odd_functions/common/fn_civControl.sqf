@@ -41,6 +41,10 @@ if ((typeName _pad) != "SCALAR") then {
 		private _pos = position _zo;
 		if (_state) then {
 			if (_spawnCivil == True) then {
+				for "_i" from 0 to _vlCivil do {
+					private _vl = [_zo, (_radius/2)] call ODDcommon_fnc_civVehicle;
+					_vlGroup pushBack _vl;
+				};
 				for "_i" from 0 to _nbCivil do {
 					private _pat = [_zo] call ODDcommon_fnc_civPatrol;
 					_patGroup pushBack _pat;
@@ -48,10 +52,6 @@ if ((typeName _pad) != "SCALAR") then {
 				for "_i" from 0 to _garCivil do {
 					private _gar = [_zo] call ODDcommon_fnc_civGarnison;
 					_garGroup pushBack _gar;
-				};
-				for "_i" from 0 to _vlCivil do {
-					private _vl = [_zo, (_radius/2)] call ODDcommon_fnc_civVehicle;
-					_vlGroup pushBack _vl;
 				};
 				_pad setVariable ["trig_ODD_var_spawnedCiv",[_patGroup, _garGroup, _vlGroup], True];
 			};
