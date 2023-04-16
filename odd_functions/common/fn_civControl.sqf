@@ -68,7 +68,9 @@ if ((typeName _pad) != "SCALAR") then {
 				if (((side _x) == civilian) and ((group _x) getVariable ["trig_ODD_var_Civ", False])) then {
 					deleteVehicle _x;
 				};
-				
+				if (_x getVariable ["trig_ODD_var_Civ", False]) then {
+					deleteVehicle _x;
+				};
 			} forEach _nearMen;
 		};
 		// Fin du spawn 

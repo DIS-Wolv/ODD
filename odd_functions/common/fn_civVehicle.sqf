@@ -57,5 +57,5 @@ _g setSpeedMode "LIMITED";
 } forEach units _g;
 
 (vehicle ((units _g) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
-
+_g setVariable ["trig_ODD_var_Civ", True, True];
 _g;
