@@ -24,6 +24,7 @@ class ODD_Common {
 		class garisonsControl {};
 		class eniGarison {};
 		class ZoType {};
+		class addIntel {};
     };
 };
 
@@ -39,7 +40,7 @@ class ODD_Data {
 };
 class ODD_advanced {
 	tag = "ODDadvanced"
-	class wolv_ODD {
+	class Initialize {
 		file = "odd_functions\advanced";
 		class missions {/*recompile = 1;*/};
 		class countIA {};
