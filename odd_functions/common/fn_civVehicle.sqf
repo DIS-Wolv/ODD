@@ -18,8 +18,9 @@ private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
 
 _road = selectrandom (_pos nearRoads _radius); // findEmptyPosition
+_pos = (position _road) findEmptyposition [3, 100, (_group select 0)];
 // spawn le groupe
-private _g = [position _road, civilian, _group] call BIS_fnc_spawngroup;
+private _g = [_pos, civilian, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
 
 _connectedRoad = roadsConnectedTo [_road, False];
@@ -52,9 +53,9 @@ _g setSpeedMode "LIMITED";
 			ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
 		};
 	}];
+	_x setVariable ["trig_ODD_var_Civ", True, True];
 } forEach units _g;
 
-_g setVariable ["trig_ODD_var_Civ", True, True];
 (vehicle ((units _g) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
 
 _g;
