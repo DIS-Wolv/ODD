@@ -20,6 +20,7 @@ private _loctype = [_zo] call ODDcommon_fnc_ZoType;
 private _nbCivil = 1;
 private _garCivil = 1;
 private _vlCivil = 0;
+private _staticVl = 0;
 private _Buildings = nearestObjects [position _zo, ODD_var_Houses, size _zo select 0];
 // Nombre de maisons dans la localité
 
@@ -74,6 +75,7 @@ switch (_loctype) do {
 
 _nbCivil = round _nbCivil;
 _garCivil = round _garCivil;
+_staticVl = round (_vlCivil / 4);
 _vlCivil = round _vlCivil;
 
-[_nbCivil,_garCivil,_vlCivil];
+[_nbCivil,_garCivil,_vlCivil, _staticVl];
