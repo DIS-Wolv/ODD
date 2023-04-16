@@ -26,6 +26,8 @@ class ODD_Common {
 		class eniGarison {};
 		class ZoType {};
 		class addIntel {};
+		class roadBlockAoControl {};
+		class roadBlockAo {};
     };
 };
 

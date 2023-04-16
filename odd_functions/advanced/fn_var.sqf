@@ -144,6 +144,9 @@ if (ODD_var_FirstDefinition) then {
 	// Distance autour de la zone objectif qui est considérée comme zone de mission
 	ODD_var_MissionArea = 4000;
 
+	// Type de ponts
+	ODD_var_BridgeType = ["Land_Bridge_Concrete_PathLod_F", "Land_Bridge_HighWay_PathLod_F", "Land_Bridge_Asphalt_PathLod_F", "Land_Bridge_01_PathLod_F"];
+
 	// Liste des IEDs ruraux plaque de pression
 	ODD_var_IEDExplosive = ["rhsusf_explosive_m112", "rhsusf_explosive_m112x4", "DemoCharge_F", "IEDLandBig_F", "IEDUrbanBig_F", "IEDLandSmall_F", "IEDUrbanSmall_F", "rhs_mine_ozm72_c", "rhssaf_tm200", "rhs_ec200_sand", "BombCluster_01_UXO3_F", "BombCluster_03_UXO3_F", "rhs_uxo_ao1_3", "rhs_uxo_ptab25m_3", "APERSMineDispenser_Mine_F", "ATMine", "ACE_SLAMBottomMine", "BombCluster_01_UXO4_F", "BombCluster_02_UXO4_F", "rhs_uxo_ptab1m_2", "rhs_uxo_ptab25ko_2", "rhs_uxo_ptab25m_2"];
 

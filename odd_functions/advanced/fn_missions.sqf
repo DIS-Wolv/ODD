@@ -319,7 +319,7 @@ if (ODD_var_CurrentMission == 0) then {
 	} forEach _location; //*/
 
 	Private _nbCheckpoint = (round random 5) + 2;
-	[ODD_var_SelectedArea, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
+	// [ODD_var_SelectedArea, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
 	// Ajout de checkpoints hors des localités
 
 	private _action = round random 100;

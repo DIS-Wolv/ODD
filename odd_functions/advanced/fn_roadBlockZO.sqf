@@ -134,7 +134,7 @@ for [{ _i = 0 }, { _i < _nb }, { _i = _i + 1 }] do {
 
 			ODD_var_GarnisonnedIA pushBack _gg;
 			
-			[_roadPos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+			[_roadPos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 			{ _x disableAI "PATH"; } forEach (units _gg);
 			createGuardedPoint [east, _roadPos, -1, objNull];
 

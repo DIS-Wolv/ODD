@@ -10,14 +10,14 @@
 * <ARRAY> [patrolPool, objActive]
 *
 * Exemple:
-* [_zo] call ODDadvanced_fnc_initPatrol
-* [_zo, True, False] call ODDadvanced_fnc_initPatrol
+* [_zo, _location] call ODDadvanced_fnc_initMissionArea
 *
 * Variable publique :
 */
-
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
+
+private _radRoadBlock = 1000;
 private _radSpawnPatrols = 1400;
 private _radDisable = 1000;
 private _radSpawnCivils = 900;
@@ -38,6 +38,7 @@ private _radVl = 2000;
 
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 	_variablesPad setVariable ["trig_ODD_var_loc", _loc, True];
+
 	// utilise une fonction pour déterminer l'état de la zone 
 	private _mod = 0;
 	private _zoType = [_loc, _mod] call ODDcommon_fnc_defineZo;
@@ -134,5 +135,72 @@ private _radVl = 2000;
 	ODD_var_ZonePad pushBack _variablesPad;
 	ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
 } forEach _locations;
-
 // crée et assigne a chaque hélipad une variable contenant les valeurs de reserve pour la zone
+
+
+// cree les checkpoint hors des localité
+private _roadBlock = [];
+Private _nbRoadBlock = (round random 8) + 3;
+_roadBlock resize _nbRoadBlock;
+
+private _dist = ODD_var_MissionArea;
+private _pos = position _zo;
+Private _roads = _pos nearRoads _dist;
+[["ODD_Quantité : Nombre de checkpoints Hors ZO : %1", _nbRoadBlock]] call ODDcommon_fnc_log;
+
+// supprime les routes trop dans les villes
+Private _nearZO = nearestLocations[position _zo, ODD_var_LocationType, _dist];
+{
+	_posZo = position _x;
+	_roadZo = _posZo nearRoads ((size _x select 1) * 4);
+	_roads = _roads - _roadZo;
+} forEach _nearZO;
+
+// supprime les routes trop proches de ponts
+Private _bridge = [];
+{
+	_bt = _pos nearObjects [_x, 30000];
+	_bridge = _bridge + _bt;
+} forEach ODD_var_BridgeType;
+{
+	_roadBridge = (position _x) nearRoads 30;
+	_roads = _roads - _roadBridge;
+} forEach _bridge;
+
+{
+	if (count _roads >= 1) then { // si la route est sur un pont /!\
+		_road = selectRandom _roads;	// choisi une route random
+		_posr = position _road; 		// recup sa position
+
+		private _variablesPad = "Land_HelipadEmpty_F" createVehicle _posr;
+		// ODD_var_MissionCheckPoint pushBack _variablesPad;
+		_variablesPad setVariable ["trig_ODD_var_RoadPos", _posr, True];
+		_roadBlock set [_forEachIndex, _variablesPad];
+
+		_nearroads = _posr nearRoads 50;
+		_roads = _roads - [_road] - _nearroads; 	// supprime la route et les routes proche de la liste
+
+		private _roadDir = 0; // récupe la direction de la route
+		_connectedRoad = roadsConnectedTo _road;
+		if ((count _connectedRoad) >= 1) then {
+			_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;
+			_roadDir = (_roadDir + ((round (random 2))* 180)) % 360;
+		};
+		_variablesPad setVariable ["trig_ODD_var_RoadDir", _roadDir, True];
+
+		_structure = selectRandom ODD_var_RoadBlocks;
+		_variablesPad setVariable ["trig_ODD_var_Structure", _structure, True];
+
+		private _RbTrigger = createTrigger ["EmptyDetector", _posr, True];
+		_RbTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
+		_triggers pushBack _RbTrigger;
+		_RbTrigger setTriggerArea [_radRoadBlock, _radRoadBlock, 0, False, _alt]; 
+		_RbTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+		_RbTrigger setTriggerStatements ["this",
+			"[thisTrigger, True] call ODDcommon_fnc_roadBlockAoControl;",
+			"[thisTrigger, False] call ODDcommon_fnc_roadBlockAoControl;"
+		];
+		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
+		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_roadBlockAoControl;
+	};
+} forEach _roadBlock;
