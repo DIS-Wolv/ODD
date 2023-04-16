@@ -34,12 +34,18 @@ else {
 // };
 
 _Buildings = [];
+_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
+systemChat format ["%1", text _zo];
 
 while {count _Buildings == 0} do {
 	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
 	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
+	if (count _Buildings == 0) then {
+		_zo = [] call ODDadvanced_fnc_createZO;
+		ODD_var_SelectedArea = _zo;
+	};
 };
-
+systemChat format ["%1", text _zo];
 ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
 
@@ -202,8 +208,10 @@ switch (_Mission) do {
 		_trg setTriggerArea [1000, 1000, 0, false]; 
 		_trg setTriggerActivation ["ANYPLAYER", "PRESENT", true]; 
 		_trg setTriggerStatements ["this && (round (time % 30) == 0)", 
-			"private _nbia = [] call ODDadvanced_fnc_countIA;
-			if (_nbia < 10) then {[True] spawn ODDadvanced_fnc_CompleteObj;};",
+			"private _state = ODD_var_SelectedAreaPad getVariable ['trig_ODD_var_garWantState', False];
+			private _active = ODD_var_SelectedAreaPad getVariable ['trig_ODD_var_garControlActive', False];
+			private _nbia = [] call ODDadvanced_fnc_countIA;
+			if ((_nbia < 10) and _state and !_active) then {[True] spawn ODDadvanced_fnc_CompleteObj;};",
 		""];
 		// waitUntil {sleep 1; ODD_var_CurrentMission == 1};
 		// if (ODD_var_CurrentMission == (ODD_var_MissionType select 3)) then {

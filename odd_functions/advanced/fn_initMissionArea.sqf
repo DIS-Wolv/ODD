@@ -32,6 +32,10 @@ private _radVl = 2000;
 	
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
 	private _variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
+	if (_loc == _zo) then {
+		ODD_var_SelectedAreaPad = _variablesPad;
+	};
+
 	_variablesPad setVariable ["trig_ODD_var_locName", text _loc, True];
 	_variablesPad setVariable ["trig_ODD_var_loc", _loc, True];
 	// utilise une fonction pour déterminer l'état de la zone 
