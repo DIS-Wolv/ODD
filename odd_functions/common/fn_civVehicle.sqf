@@ -17,7 +17,7 @@ params ["_zo", ["_radius", 1000]];
 private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
 
-_road = selectrandom (_pos nearRoads _radius); // findEmptyPosition
+_road = selectrandom (_pos nearRoads _radius);
 _pos = (position _road) findEmptyposition [3, 100, (_group select 0)];
 // spawn le groupe
 private _g = [_pos, civilian, _group] call BIS_fnc_spawngroup;
