@@ -46,10 +46,10 @@ ODD_var_HeavyVehicles = [
 	["brf_o_blp_m1025_m2"]
 ];
 ODD_var_TransportVehicles = [
-	"brf_o_blp_m1025"
+	["brf_o_blp_m1025"]
 ];
 // Liste des véhicules
 
 ODD_var_FlyingVehicles = [
-	"brf_o_blp_uh1h","brf_o_blp_uh1h_gunship"
+	["brf_o_blp_uh1h"],["brf_o_blp_uh1h_gunship"]
 ];

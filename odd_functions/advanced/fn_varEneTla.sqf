@@ -53,7 +53,7 @@ ODD_var_HeavyVehicles = [
 	["rhsgref_tla_btr60"]
 ];
 ODD_var_TransportVehicles = [
-	"rhsgref_tla_offroad","rhsgref_tla_btr60","rhsgref_tla_kraz255b1_cargo_open"
+	["rhsgref_tla_offroad"],["rhsgref_tla_btr60"],["rhsgref_tla_kraz255b1_cargo_open"]
 ];
 // Liste des véhicules
 

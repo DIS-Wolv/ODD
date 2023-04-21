@@ -53,10 +53,10 @@ ODD_var_HeavyVehicles = [
 	["rhssaf_army_o_t72s"]
 ];
 ODD_var_TransportVehicles = [
-	"rhssaf_army_o_m1025_olive","rhssaf_army_o_m998_olive_2dr_fulltop","rhssaf_army_o_ural"
+	["rhssaf_army_o_m1025_olive"],["rhssaf_army_o_m998_olive_2dr_fulltop"],["rhssaf_army_o_ural"]
 ];
 // Liste des véhicules
 
 ODD_var_FlyingVehicles = [
-	"rhssaf_airforce_o_ht40","rhssaf_airforce_o_l_18"
+	["rhssaf_airforce_o_ht40"],["rhssaf_airforce_o_l_18"]
 ];

@@ -50,7 +50,7 @@ ODD_var_HeavyVehicles = [
 	["O_G_Offroad_01_armed_F"]
 ];
 ODD_var_TransportVehicles = [
-	"O_G_Offroad_01_F","O_G_Van_01_transport_F","O_G_Van_02_transport_F"
+	["O_G_Offroad_01_F"],["O_G_Van_01_transport_F"],["O_G_Van_02_transport_F"]
 ];
 // Liste des véhicules
 
