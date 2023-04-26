@@ -140,6 +140,7 @@ private _radVl = 2000;
 
 // cree les checkpoint hors des localité
 private _roadBlock = [];
+private _triggers = [];
 Private _nbRoadBlock = (round random 8) + 3;
 _roadBlock resize _nbRoadBlock;
 
@@ -203,5 +204,5 @@ Private _bridge = [];
 		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
 		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_roadBlockAoControl;
 	};
-	ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
 } forEach _roadBlock;
+ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
