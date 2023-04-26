@@ -11,13 +11,17 @@ if (!isNil("ce")) then {
 		case "coyCde": {[_unit] call DISLoadCe_fnc_cde}; //Cde
 		
 		case "grCdg";
+		case "trCdg";
 		case "sgCdg": {[_unit] call DISLoadCe_fnc_cdg}; //Cdg
 		
 		case "grMed";
+		case "trMed";
 		case "sgMed": {[_unit] call DISLoadCe_fnc_medecin}; //Med
 		
 		case "sgBlCde";
 		case "sgGrCde";
+		case "trBlCde";
+		case "trGrCde";
 		case "grBlCde";
 		case "grGrCde": {[_unit] call DISLoadCe_fnc_cde}; //Cde
 		
@@ -26,6 +30,12 @@ if (!isNil("ce")) then {
 		case "sgBlGv2";
 		case "sgGrGv1";
 		case "sgGrGv2";
+
+		case "trGvIng";
+		case "trBlGv1";
+		case "trBlGv2";
+		case "trGrGv1";
+		case "trGrGv2";
 		
 		case "grGvIng";
 		case "grBlGv1";
@@ -34,13 +44,16 @@ if (!isNil("ce")) then {
 		case "grGrGv2": {[_unit] call DISLoadCe_fnc_gv}; //Gv
 		
 		case "sgCdb";
+		case "trCdb";
 		case "grCdb": {[_unit] call DISLoadCe_fnc_cdbr};
 
 		case "crCdb";
+		case "trCdb";
 		case "alCdb": {[_unit] call DISLoadCe_fnc_cdb}; //CdB
 		
 		case "sgEq";
 		case "grEq";
+		case "trEq";
 		case "crEq1";
 		case "crEq2";
 		case "alEq1";
