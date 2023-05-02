@@ -16,7 +16,7 @@
 params ["_marker"];
 
 if (isNil "_marker") then {
-	_marker = "DIS_mrk_FOB_1";
+	_marker = "DIS_mrk_FOB_0";
 };
 
 _pos = MarkerPos _marker;
