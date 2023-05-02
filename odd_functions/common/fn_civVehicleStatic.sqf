@@ -20,7 +20,7 @@ private _GBuild = selectRandom _Buildings;
 
 private _group = selectRandom ODD_var_CivilianVehicles;
 
-_pos = (position _GBuild) findEmptyposition [3, 100, (_group select 0)];
+_pos = (position _GBuild) findEmptyPosition [3, 100, (_group select 0)];
 // spawn le groupe
 private _g = (_group select 0) createVehicle _pos;
 
