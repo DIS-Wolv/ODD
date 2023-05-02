@@ -83,7 +83,7 @@ if (ODD_var_CurrentMission == 0) then {
 
 	private _i = 0;
 	while {_i < count(_location)} do {
-		private _Buildings = nearestobjects[position (_location select _i), ODD_var_Houses, 200];
+		private _Buildings = nearestobjects[position (_location select _i), ODD_var_Houses, 200, True];
 		if ((text (_location select _i) in ODD_var_BlackistedLocation) or (count _Buildings == 0)) then {
 			_location = _location - [_location select _i];
 		}

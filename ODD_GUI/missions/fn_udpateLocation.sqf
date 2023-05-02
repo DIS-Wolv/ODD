@@ -33,7 +33,7 @@ if ((typeName _valLocationType) == "STRING") then {
 private _loc = nearestLocations[_posA, _locType, _radA];
 
 {
-	private _Buildings = nearestobjects[position _x, ODD_var_Houses, 200];
+	private _Buildings = nearestobjects[position _x, ODD_var_Houses, 200, True];
 	if ((text _x in ODD_var_BlackistedLocation) or (count _Buildings == 0)) then {
 		_loc = _loc - [_x];
 	};
@@ -41,7 +41,7 @@ private _loc = nearestLocations[_posA, _locType, _radA];
 
 _loc = _loc apply {[text _x, _x]};
 
-private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro"];
+private _needAdd = ["quarry", "power plant", "military", "factory", "Kastro", "castle", "storage", "dump", "mine"];
 {
 	if ((_x select 0) in _needAdd) then {
 		private _add = (nearestLocations [position (_x select 1), ['NameCityCapital', 'NameCity', 'NameVillage', 'Name'], 4000, position (_x select 1)]) select 0;

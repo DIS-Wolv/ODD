@@ -34,10 +34,10 @@ else {
 // };
 
 _Buildings = [];
-_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
+_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200, True];
 
 while {count _Buildings == 0} do {
-	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200];
+	_Buildings = nearestobjects[position _zo, ODD_var_Houses, 200, True];
 	[["Nombre de batiments sur la %1 : %2", text _zo, count _Buildings]] call ODDcommon_fnc_log;
 	if (count _Buildings == 0) then {
 		_zo = [] call ODDadvanced_fnc_createZO;
@@ -50,7 +50,7 @@ publicVariable "ODD_var_Objective";
 _tgBuild = selectRandom _Buildings;
 
 switch (_Mission) do {
-	case (ODD_var_MissionType select 0): {		// Mission de destruction d' une caisse
+	case (ODD_var_MissionType select 0): {		// Mission de destruction d'une caisse
 		_posBox = [position _tgBuild select 0, position _tgBuild select 1, (position _tgBuild select 2) + 2];
 		// Surélève la caisse de 2m 
 		_box = "Box_IED_exp_F" createvehicle _posBox;

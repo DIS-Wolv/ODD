@@ -72,7 +72,7 @@ else {
 
 _obj = selectRandom _location;
 // Choisi un objectif aléatoirement
-private _Buildings = nearestobjects[position _obj, ODD_var_Houses, 200];
+private _Buildings = nearestobjects[position _obj, ODD_var_Houses, 200, True];
 
 private _loctype = 0;
 switch (type _obj) do {
@@ -93,7 +93,7 @@ while {((text _obj in ODD_var_BlackistedLocation) or (count _Buildings == 0) or 
 	// On s'assure que la localité est viable
 	_location = _location - [_obj];
 	_obj = selectRandom _location;
-	_Buildings = nearestobjects[position _obj, ODD_var_Houses, 200];
+	_Buildings = nearestobjects[position _obj, ODD_var_Houses, 200, True];
 	
 	_loctype = 0;
 	switch (type _obj) do {
