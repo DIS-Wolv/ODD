@@ -110,7 +110,7 @@ private _Kortisonas = createLocation ["NameLocal", [24956.9,20930.5], 200, 200];
 _Kortisonas setText "Kortisonas";
 
 private _MolosResidences = createLocation ["Name", [27020.5,24222.6], 200, 200];
-_MolosResidences setText "Molos Residences";
+_MolosResidences setText "Molos residences";
 
 private _KalochoriPowerPlant = createLocation ["NameLocal", [20629.5,15822], 300, 300];
 _KalochoriPowerPlant setText "Kalochori power plant";
