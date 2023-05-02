@@ -16,7 +16,7 @@ _unit addWeapon "rhsusf_weap_glock17g4";
 _unit addHandgunItem "rhsusf_mag_17Rnd_9x19_JHP";
 
 _unit forceAddUniform "Tenue_pilote_CARACAL_CE";
-_unit addVest "V_TacVestIR_blk";
+_unit addVest "vest_pilot_combat";
 
 _unit addItemToUniform "ACE_EarPlugs";
 for "_i" from 1 to 4 do {_unit addItemToUniform "ACE_tourniquet";};
