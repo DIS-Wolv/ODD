@@ -58,6 +58,9 @@ switch (ODD_var_SelectedMissionType) do {
 	case (ODD_var_MissionType select 8): {		// L'objectif est de détruire un véhicule
 		[] call ODDadvanced_fnc_TrigCreateRtb;
 	};
+	case (ODD_var_MissionType select 9): {		// Mission de convoie d'un véhicule amie
+		[] call ODDadvanced_fnc_TrigCreateRtb;
+	};
 };
 
 

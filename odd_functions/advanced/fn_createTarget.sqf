@@ -48,6 +48,7 @@ ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
 
 _tgBuild = selectRandom _Buildings;
+_Mission = ODD_var_MissionType select 9;
 
 switch (_Mission) do {
 	case (ODD_var_MissionType select 0): {		// Mission de destruction d'une caisse
@@ -516,6 +517,50 @@ switch (_Mission) do {
 		
 		[_pos, nil, units _g, 5, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		// Place le groupe en garnison
+	};
+	case (ODD_var_MissionType select 9): {		// Mission de convoie d'un véhicule amie
+		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefConvHuma, text _zo], "Véhicule humanitaire", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
+		// Crée la tâche
+		
+		_vl = selectRandom ODD_var_HumaVehicles;
+		// Choisi un véhicule
+		
+		_pos = position FOB;
+		_dir = ((getDir FOB) + 270) % 360;
+		// Récupère la position pour spawn l'objectif
+
+		_posvl = _pos findEmptyposition [4, 100, _vl];
+		_g = _vl createvehicle _posvl;
+		// Crée le véhicule
+
+		_g addItemCargoGlobal ["Toolkit", 1]; 
+		// Ajoute un kit de réparation au véhicule
+		
+		_g setDir _dir;
+		
+		sleep 1;
+		_g setDamage 0;
+		_g setFuel 1;
+		
+		ODD_var_MissionProps pushBack _g;
+		ODD_var_Objective pushBack _g;
+
+		base setVariable ["ODD_var_Objectif", _g, True];
+
+		_g addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+		
+		sleep 1;
+
+		//trigger de validation
+
+		private _ObjTrig = createTrigger ["EmptyDetector", position _zo, True];
+		_ObjTrig setTriggerArea [50, 50, 0, False, -1];
+		_ObjTrig setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+		_ObjTrig setTriggerStatements ["this && (((base getVariable ['ODD_var_Objectif', objNull]) distance2D thisTrigger) < 200)
+			&& (alive (base getVariable ['ODD_var_Objectif', objNull]))",
+			"[True] spawn ODDadvanced_fnc_CompleteObj;",""
+		];
+
 	};
 };
 
