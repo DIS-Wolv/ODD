@@ -48,7 +48,7 @@ ODD_var_Objective = [];
 publicVariable "ODD_var_Objective";
 
 _tgBuild = selectRandom _Buildings;
-_Mission = ODD_var_MissionType select 9;
+// _Mission = ODD_var_MissionType select 9;
 
 switch (_Mission) do {
 	case (ODD_var_MissionType select 0): {		// Mission de destruction d'une caisse
