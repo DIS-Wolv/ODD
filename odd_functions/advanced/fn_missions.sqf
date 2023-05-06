@@ -336,7 +336,7 @@ if (ODD_var_CurrentMission == 0) then {
 		_nbIED = 10 + round random 10;
 		// Crée entre 10 et 15 IEDs
 		[ODD_var_SelectedArea, _nbIED] spawn ODDadvanced_fnc_pressureIED;
-		_nbDecoy = 10 + round random 10;
+		_nbDecoy = 5 + round random 10;
 		// Crée entre 10 et 20 IEDs qui n'exploseront pas
 		[ODD_var_SelectedArea, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
 	}; 
