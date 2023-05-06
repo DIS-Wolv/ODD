@@ -176,6 +176,7 @@ Private _bridge = [];
 		private _variablesPad = "Land_HelipadEmpty_F" createVehicle _posr;
 		// ODD_var_MissionCheckPoint pushBack _variablesPad;
 		_variablesPad setVariable ["trig_ODD_var_RoadPos", _posr, True];
+		_variablesPad setVariable ["trig_ODD_var_EniPool", 8, True];
 		_roadBlock set [_forEachIndex, _variablesPad];
 
 		_nearroads = _posr nearRoads 50;
