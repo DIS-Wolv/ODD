@@ -168,6 +168,8 @@ if (ODD_var_FirstDefinition) then {
 	// liste des vehicules objectif à détruire
 	ODD_var_DestroyVehicles = ["rhsgref_ins_zsu234", "rhsgref_ins_BM21", "O_SAM_System_04_F", "RHS_BM21_MSV_01", "rhs_prp3_msv", "rhs_9k79", "rhs_D30_vdv", "I_Truck_02_MRL_F", "rhs_gaz66_r142_msv", "O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "I_MRAP_03_F", "rhs_bmp3mera_msv", "rhs_btr80_msv"];
 
+	ODD_var_HumaVehicles = [ "C_IDAP_Truck_02_water_F", "B_Truck_01_box_F", "C_Truck_02_box_F"];
+
 	ODD_var_HVTKill = [
 		["brf_o_afm_commander"],
 		["brf_o_afr_commander"],
@@ -209,7 +211,7 @@ if (ODD_var_FirstDefinition) then {
 	];	// Liste des HVT securiser
 
 	// Defini les différents objectifs possibles
-	ODD_var_MissionType = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
+	ODD_var_MissionType = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule", "Convoie Humanitaire"];
 		// convoi hummanitaire, bombe, convoi à intercepter
 
 	// Defini les différents objectifs secondaires possibles
@@ -254,7 +256,8 @@ if (ODD_var_FirstDefinition) then {
 
 	ODD_var_MissionBriefSecureIntel = [
 		"Des intel ont été repérés dans la région de %1, rendez-vous sur place et sécurisez-les.",
-		"Les forces ennemies détiennent des informations importantes. Rendez vous dans la région de %1 et récupérez les."
+		"Les forces ennemies détiennent des informations importantes. Rendez vous dans la région de %1 et récupérez les.",
+		"On a repéré un flux de données confidentiel émanant du secteur de %1. Votre mission est de sécuriser la zone et de récupérer les données."
 	];
 
 	ODD_var_MissionBriefBlackBoxes = [
@@ -271,6 +274,10 @@ if (ODD_var_FirstDefinition) then {
 
 	ODD_var_MissionBriefDestroyVehicle = [
 		"Un véhicule ennemi important a été repéré à proximité de %1, votre missions, allez le détruire."
+	];
+	ODD_var_MissionBriefConvHuma = [
+		"Du matériels humanitaire dois être livré dans la zone de %1, votre missions est de conduire le véhicule de la FOB, jusqu'à ça destination.",
+		"Une organisation internationale nous demande d'apporter une cargaison humanitaire dans la zone de %1 pour subvenir aux besoins de la population et du centre de soins."
 	];
 
 	// Autorisation de nettoyage (debug)
