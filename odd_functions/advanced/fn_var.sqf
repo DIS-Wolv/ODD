@@ -251,7 +251,9 @@ if (ODD_var_FirstDefinition) then {
 	];
 
 	ODD_var_MissionBriefSecureArea = [
-		"La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone."
+		"La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en y neutralisant les forces armées présentes sur zone.",
+		"La région de %1 est de plus en plus instable. Vous devez vous rendre sur place et pacifier la zone en neutralisant les forces armées présentes.",
+		"Le gouverneur de %1 nous demande notre aide pour sécuriser son village qui est en proie à des raids d'une force armée. Rendez-vous sur place et nettoyez la zone."
 	];
 
 	ODD_var_MissionBriefSecureIntel = [
@@ -261,20 +263,29 @@ if (ODD_var_FirstDefinition) then {
 	];
 
 	ODD_var_MissionBriefBlackBoxes = [
-		"Un hélicoptère allié s'est écrasé a proximité de la zone de %1. Rendez-vous sur place et recupérez les boîtes noires."
+		"Un hélicoptère allié s'est écrasé a proximité de la zone de %1. Rendez-vous sur place et recupérez les boîtes noires.",
+		"Un hélicoptère allié s'est écrasé à proximité de la zone de %1. Rendez-vous sur place et recupérez les boîtes noires",
+		"Notre pôle scientifique nous demande de récupérer les boîtes noires d’un hélicoptère qui a été abattu aux alentours de la zone %1."
 	];
 
 	ODD_var_MissionBriefSecureHostages = [
-		"Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base."
+		"Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base.",
+		"Un pilote allié a été capturé dans la zone de %1. Votre mission est d’aller le chercher et de le ramener à la base.";
+		"Suite au crash d'un avion notre pilote a été capturé dans la zone %1. Veuillez le récupérer sain et sauf avant l’arrivée du 'Boucher' pour son interrogatoire."
 	];
 
 	ODD_var_MissionBriefSecureVehicle = [
-		"Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1, allez le récupérer et ramener le à la FOB."
+		"Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1, allez le récupérer et ramener le à la FOB.",
+		"Un véhicule ennemi comportant une technologie importante a été repéré à proximité de %1. Allez le récupérer et ramener le à la FOB",
+		"Nos services secrets ont repéré qu’une technologie ultra confidentielle est en transit dans le véhicule se trouve en se moment dans la zone %1. Il est impératif de récupérer le véhicule et de le ramener en un seul morceau à la FOB"
 	];
 
 	ODD_var_MissionBriefDestroyVehicle = [
-		"Un véhicule ennemi important a été repéré à proximité de %1, votre missions, allez le détruire."
+		"Un véhicule ennemi important a été repéré à proximité de %1, votre missions, allez le détruire.",
+		"Un véhicule ennemi important a été repéré à proximité de %1. Votre mission : aller le détruire",
+		"Les services secrets ont la certitude qu’un véhicule ennemi se trouvant dans la zone %1 contient une mallette de déclenchement nucléaire qu’il faut impérativement détruire avec le véhicule"
 	];
+	
 	ODD_var_MissionBriefConvHuma = [
 		"Du matériels humanitaire dois être livré dans la zone de %1, votre missions est de conduire le véhicule de la FOB, jusqu'à ça destination.",
 		"Une organisation internationale nous demande d'apporter une cargaison humanitaire dans la zone de %1 pour subvenir aux besoins de la population et du centre de soins."
