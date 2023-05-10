@@ -270,7 +270,7 @@ if (ODD_var_FirstDefinition) then {
 
 	ODD_var_MissionBriefSecureHostages = [
 		"Un pilote allié a été capturé dans la zone de %1, votre mission est d’aller le chercher et de le ramener a la base.",
-		"Un pilote allié a été capturé dans la zone de %1. Votre mission est d’aller le chercher et de le ramener à la base.";
+		"Un pilote allié a été capturé dans la zone de %1. Votre mission est d’aller le chercher et de le ramener à la base.",
 		"Suite au crash d'un avion notre pilote a été capturé dans la zone %1. Veuillez le récupérer sain et sauf avant l’arrivée du 'Boucher' pour son interrogatoire."
 	];
 
