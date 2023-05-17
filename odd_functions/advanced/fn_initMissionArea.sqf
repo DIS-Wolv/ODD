@@ -17,7 +17,7 @@
 // récupère la taille de la zone d'opération ODD_var_MissionArea
 params ["_zo","_locations"];
 
-private _radRoadBlock = 1000;
+private _radRoadBlock = 1500;
 private _radSpawnPatrols = 1400;
 private _radDisable = 1000;
 private _radSpawnCivils = 900;
