@@ -19,6 +19,7 @@ params ["_zo","_locations"];
 
 private _radRoadBlock = 1500;
 private _radSpawnPatrols = 1400;
+private _radIED = 1400;
 private _radDisable = 1000;
 private _radSpawnCivils = 900;
 private _radSpawngarisons = 1000;
@@ -107,7 +108,7 @@ private _radVl = 2000;
 
 	// crée le trigger pour spawn/déspawn les vls
 	// private _VlTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-	// _triggers pushBack _LocTrigger;
+	// _triggers pushBack _VlTrigger;
 	// _VlTrigger setTriggerArea [_radVl, _radVl, 0, False, _alt]; 
 	// _VlTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	// _VlTrigger setTriggerStatements ["this",
@@ -117,6 +118,19 @@ private _radVl = 2000;
 	// _VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	// _variablesPad setVariable ["trig_ODD_var_VlWantState", False, True];
 	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
+
+	// crée le trigger pour spawn/déspawn les IEDS
+	// private _IEDTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	// _triggers pushBack _IEDTrigger;
+	// _IEDTrigger setTriggerArea [_radIED, _radIED, 0, False, _alt]; 
+	// _IEDTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	// _IEDTrigger setTriggerStatements ["this",
+	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radIED],
+	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radIED]
+	// ];
+	// _IEDTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
+	// _variablesPad setVariable ["trig_ODD_var_IEDWantState", False, True];
+	// _scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_vlsControl;
 
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
