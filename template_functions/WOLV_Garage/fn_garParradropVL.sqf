@@ -52,9 +52,14 @@ if (_index != -1) then {
 			sleep 0.1;
 			call WolvGarage_fnc_garUpdateVlProx;
 			
+			waitUntil{
+				sleep 1; 
+				(((position _vl) select 2) <= 150)
+			};
+
 			_posChute = [position _vl select 0, position _vl select 1, (position _vl select 2) + 2];
 			_chute = createvehicle ["i_parachute_02_f", position _vl,[],0,"can_collide"];
-			_vl attachto [_chute,[0,0,2.5]];
+			_vl attachto [_chute,[0,0,1.5]];
 
 			waitUntil{
 				sleep 1; 
