@@ -125,12 +125,12 @@ private _radVl = 2000;
 	// _IEDTrigger setTriggerArea [_radIED, _radIED, 0, False, _alt]; 
 	// _IEDTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	// _IEDTrigger setTriggerStatements ["this",
-	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radIED],
-	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radIED]
+	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_IEDControl;", _radIED],
+	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_IEDControl;", _radIED]
 	// ];
 	// _IEDTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	// _variablesPad setVariable ["trig_ODD_var_IEDWantState", False, True];
-	// _scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_vlsControl;
+	// _scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_IEDControl;
 
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
