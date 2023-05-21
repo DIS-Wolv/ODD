@@ -10,23 +10,29 @@ class ODD_Common {
 		class CountOnBase {};
 		class SelectZO {};
 		class sortIntels {};
-		class initPatrol {};
 		class limitPatrols {};
 		class defineZo {};
-		class civControl {};
-		class patrolsControl {};
+		class ZoType {};
+		class addIntel {};
+
 		class initCivils {};
+		class initPatrol {};
+		class initGarison {};
+		class initIED {};
+
+		class controlCiv {};
+		class controlPatrols {};
+		class controlGarisons {};
+		class controlRoadBlockAo {};
+		class controlIED {};
+
 		class civPatrol {};
 		class civGarnison {};
 		class civVehicle {};
 		class civVehicleStatic {};
+
 		class eniPatrol {};
-		class initGarison {};
-		class garisonsControl {};
 		class eniGarison {};
-		class ZoType {};
-		class addIntel {};
-		class roadBlockAoControl {};
 		class roadBlockAo {};
     };
 };

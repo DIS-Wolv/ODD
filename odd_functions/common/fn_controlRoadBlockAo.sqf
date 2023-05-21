@@ -9,7 +9,7 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_trigger, True] call ODDcommon_fnc_roadBlockAoControl
+* [_trigger, True] call ODDcommon_fnc_controlRoadBlockAo
 *
 * Variable publique :
 */
@@ -139,7 +139,7 @@ if ((typeName _pad) != "SCALAR") then {
 		_WantState = _pad getVariable ["trig_ODD_var_RbWantState", _state];
 		_pad setVariable ["trig_ODD_var_RbControlActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState] spawn ODDcommon_fnc_civControl;
+			[_trigger, _WantState] spawn ODDcommon_fnc_controlCiv;
 		}
 	};
 };

@@ -73,12 +73,12 @@ private _radVl = 2000;
 	_civTrigger setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, False, _alt]; 
 	_civTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_civTrigger setTriggerStatements ["this",
-		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_civControl;", _radSpawnCivils],
-		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_civControl;", _radSpawnCivils]
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_controlCiv;", _radSpawnCivils],
+		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_controlCiv;", _radSpawnCivils]
 	];
 	_civTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
-	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_civControl;
+	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_controlCiv;
 
 	// crée les triggers pour spawn/déspawn les patrouilles
 	private _patTrigger = createTrigger ["EmptyDetector", _pos, True];
@@ -86,12 +86,12 @@ private _radVl = 2000;
 	_patTrigger setTriggerArea [_radSpawnPatrols, _radSpawnPatrols, 0, False, _alt]; 
 	_patTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_patTrigger setTriggerStatements ["this",
-		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_patrolsControl;", _radSpawnPatrols],
-		Format ["[thisTrigger, False] spawn ODDcommon_fnc_patrolsControl;", _radSpawnPatrols]
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_controlPatrols;", _radSpawnPatrols],
+		Format ["[thisTrigger, False] spawn ODDcommon_fnc_controlPatrols;", _radSpawnPatrols]
 	];
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_patrolsControl;
+	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_controlPatrols;
 
 	// crée les triggers pour spawn/déspawn les garnisons
 	private _garTrigger = createTrigger ["EmptyDetector", _pos, True];
@@ -99,12 +99,12 @@ private _radVl = 2000;
 	_garTrigger setTriggerArea [_radSpawngarisons, _radSpawngarisons, 0, False, _alt]; 
 	_garTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_garTrigger setTriggerStatements ["this",
-		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_garisonsControl;", _radSpawngarisons],
-		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_garisonsControl;", _radSpawngarisons]
+		Format ["[thisTrigger, True, %1] spawn ODDcommon_fnc_controlGarisons;", _radSpawngarisons],
+		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_controlGarisons;", _radSpawngarisons]
 	];
 	_garTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
-	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_garisonsControl;
+	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_controlGarisons;
 
 	// crée le trigger pour spawn/déspawn les vls
 	// private _VlTrigger = createTrigger ["EmptyDetector", _pos, True]; 
@@ -213,11 +213,11 @@ Private _bridge = [];
 		_RbTrigger setTriggerArea [_radRoadBlock, _radRoadBlock, 0, False, _alt]; 
 		_RbTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 		_RbTrigger setTriggerStatements ["this",
-			"[thisTrigger, True] call ODDcommon_fnc_roadBlockAoControl;",
-			"[thisTrigger, False] call ODDcommon_fnc_roadBlockAoControl;"
+			"[thisTrigger, True] call ODDcommon_fnc_controlRoadBlockAo;",
+			"[thisTrigger, False] call ODDcommon_fnc_controlRoadBlockAo;"
 		];
 		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
-		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_roadBlockAoControl;
+		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_controlRoadBlockAo;
 	};
 } forEach _roadBlock;
 ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
