@@ -3,7 +3,7 @@
 _index = lbCurSel WolvGarage_var_IdcListVlUsine;
 if (_index != -1) then { 
 	_vlType = (WolvGarage_var_ListUsine select _index);
-	_pos = WolvGarage_var_pos findEmptyPosition [7, 100, _vlType];
+	_pos = WolvGarage_var_pos findEmptyPosition [sizeOf _vlType, 100, _vlType];
 
 	if ((count _pos) != 0) then {
 		// Crée le véhicule
