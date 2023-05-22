@@ -322,6 +322,7 @@ if (ODD_var_CurrentMission == 0) then {
 	// [ODD_var_SelectedArea, _nbCheckpoint, ODD_var_MissionArea] call ODDadvanced_fnc_roadBlockZO; 
 	// Ajout de checkpoints hors des localités
 
+	/* IED géré dans InitMissionArea
 	private _action = round random 100;
 	if (_action <= 75) then {
 		// 75% de chance que la mission comporte des IEDs
@@ -339,7 +340,8 @@ if (ODD_var_CurrentMission == 0) then {
 		_nbDecoy = 5 + round random 10;
 		// Crée entre 10 et 20 IEDs qui n'exploseront pas
 		[ODD_var_SelectedArea, _nbDecoy, True] spawn ODDadvanced_fnc_pressureIED;
-	}; 
+	};
+	*/
 
 	{
 		deletevehicle _x;

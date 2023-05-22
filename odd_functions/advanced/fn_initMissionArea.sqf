@@ -30,6 +30,7 @@ private _radVl = 2000;
 	private _loc = _x;
 	private _pos = position _loc;
 	private _triggers = [];
+	private _roads = _pos nearRoads (size _loc select 0);
 	
 	// crée des hélipads invisibles sur chaque localité autout de l'objectif avec ODD_var_MissionArea 
 	private _variablesPad = "Land_HelipadEmpty_F" createVehicle _pos;
@@ -119,18 +120,25 @@ private _radVl = 2000;
 	// _variablesPad setVariable ["trig_ODD_var_VlWantState", False, True];
 	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
 
+	// calcule le nombre d'IED sur la zone :
+	private _minIED = round (((count _roads) *  2 / 100)) max 0;
+	private _maxIED = round ((count _roads) * 5 / 100);
+	private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
+	_variablesPad setVariable ["trig_ODD_var_nbIED", _nbIED, True];
+	private _IEDs = call ODDcommon_fnc_initIED;
+	_variablesPad setVariable ["trig_ODD_var_IEDs", _IEDs, True];
 	// crée le trigger pour spawn/déspawn les IEDS
-	// private _IEDTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-	// _triggers pushBack _IEDTrigger;
-	// _IEDTrigger setTriggerArea [_radIED, _radIED, 0, False, _alt]; 
-	// _IEDTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
-	// _IEDTrigger setTriggerStatements ["this",
-	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_IEDControl;", _radIED],
-	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_IEDControl;", _radIED]
-	// ];
-	// _IEDTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-	// _variablesPad setVariable ["trig_ODD_var_IEDWantState", False, True];
-	// _scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_IEDControl;
+	private _IEDTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	_triggers pushBack _IEDTrigger;
+	_IEDTrigger setTriggerArea [_radIED, _radIED, 0, False, _alt]; 
+	_IEDTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	_IEDTrigger setTriggerStatements ["this",
+		Format ["[thisTrigger, True] spawn ODDcommon_fnc_IEDControl;", _radIED],
+		Format ["[thisTrigger, False] spawn ODDcommon_fnc_IEDControl;", _radIED]
+	];
+	_IEDTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
+	_variablesPad setVariable ["trig_ODD_var_iedWantState", False, True];
+	_scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_controlIED;
 
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
