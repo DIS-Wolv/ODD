@@ -280,10 +280,10 @@ if (_type >= 0) then {
 		};
 	};
 
-	_marker = createMarker [(format ["IED P x %1, y %2, z %3", (_exploPos select 0), (_exploPos select 1), (_exploPos select 2)]), _exploPos]; 
-	_marker setMarkerType "hd_dot";
-	_marker setMarkerColor "colorOPFOR";
-	_marker setMarkerText format["%1", _type];
+	// _marker = createMarker [(format ["IED P x %1, y %2, z %3", (_exploPos select 0), (_exploPos select 1), (_exploPos select 2)]), _exploPos]; 
+	// _marker setMarkerType "hd_dot";
+	// _marker setMarkerColor "colorOPFOR";
+	// _marker setMarkerText format["%1", _type];
 };
 
 _cover;
