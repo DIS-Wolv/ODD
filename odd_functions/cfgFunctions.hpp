@@ -33,7 +33,9 @@ class ODD_Common {
 
 		class eniPatrol {};
 		class eniGarison {};
+
 		class roadBlockAo {};
+		class ied {};
     };
 };
 
