@@ -16,7 +16,9 @@
 params ["_zo", ["_nb", 0]];
 
 private _IEDs = [];
-_IEDS resize [_nb, []];
+if (_nb > 0) then {
+	_IEDS resize [_nb, []];
+};
 
 private _roads = (getPos _zo) nearRoads (size _loc select 0);
 
@@ -34,6 +36,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 			_coverDir = _road getDir (selectrandom _cRoads); // si au moins 1 route connecté prend la direction de la route
 		};
 		_roadPos = _roadPos getPos [(3 + random 2.5), (_coverDir + 90)]; // choisie une position sur le coté
+
 		// définie le cover et ca position
 		private _cover = selectRandom ODD_var_IEDCover;
 		private _coverPos = _roadPos findEmptyPosition [sizeOf _cover, 50, _cover];
@@ -45,13 +48,13 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 		private _type = floor random 5; // choisie le type de l'IED
 		if ((floor random 4) == 0) then { _type = -1; }; // 1/4 chance que ca soit un faux
 		
-		private _triggerMan = "";
+		private _triggerMan = selectRandom ODD_var_Civilians;
 		private _triggerManPos = [0,0,0];
 
 		// _type = 0;
 		switch (_type) do {
 			case 0: {	// IED détonné radio, brouillable, triggerman ennemi loin
-				_triggerMan = [selectRandom ODD_var_Pair];
+				_triggerMan = [selectRandom (selectRandom ODD_var_Pair)];
 
 				// recupère uniquement les batiment entre 50 et 100 m
 				private _bclist = nearestobjects [_coverPos, ODD_var_Houses, 20];
@@ -86,11 +89,11 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 
 				// recupère les positions dans le batiment 
 				private _poslist = [_b] call BIS_fnc_buildingPositions;
-				if (!(count _poslist > 0)) then {_poslist = position _b};
+				if (!(count _poslist > 0)) then {_poslist = [position _b]};
 				_triggerManPos = selectrandom _poslist; // en choisie une position random
 			};
 			case 2: {	// ied détonné par fil, non brouillable, triggerman ennemi proche
-				_triggerMan = [selectRandom ODD_var_Pair];
+				_triggerMan = [selectRandom (selectRandom ODD_var_Pair)];
 
 				// recupère uniquement les batiment entre 10 et 50 m
 				private _bclist = nearestobjects [_coverPos, ODD_var_Houses, 10];
@@ -104,7 +107,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 
 				// recupère les positions dans le batiment 
 				private _poslist = [_b] call BIS_fnc_buildingPositions;
-				if (!(count _poslist > 0)) then {_poslist = position _b};
+				if (!(count _poslist > 0)) then {_poslist = [position _b]};
 				_triggerManPos = selectrandom _poslist; // en choisie une position random
 			};
 			case 3: {	// ied détonné par fil, non brouillable, triggerman civil proche
@@ -122,7 +125,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 
 				// recupère les positions dans le batiment 
 				private _poslist = [_b] call BIS_fnc_buildingPositions;
-				if (!(count _poslist > 0)) then {_poslist = position _b};
+				if (!(count _poslist > 0)) then {_poslist = [position _b]};
 				_triggerManPos = selectrandom _poslist; // en choisie une position random
 			};
 			case 4: {	// ied mine qui explose s'il y a plus de 2 joueurs à portée
