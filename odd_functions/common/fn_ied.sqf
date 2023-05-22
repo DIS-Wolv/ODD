@@ -92,9 +92,6 @@ if (_type >= 0) then {
 			_cover setVariable ["ODD_var_IED_TriggerManType", _triggerManType, True];
 			_cover setVariable ["ODD_var_IED_TriggerManPos", _triggerManPos, True];
 
-			_map ctrlAddEventHandler ["Draw",
-				format["(_this select 0) drawLine [%1,%2,[0,0,1,1]];", str(_exploPos), str(_triggerManPos)]
-			];
 		};
 		case 1: {	// IED détonné radio, brouillable, triggerman civil loin
 			// création du triggerMan
@@ -143,10 +140,6 @@ if (_type >= 0) then {
 			_explo setVariable ["ODD_var_IED_Trigger", _triggerExplo, True];
 			_cover setVariable ["ODD_var_IED_TriggerManType", _triggerManType, True];
 			_cover setVariable ["ODD_var_IED_TriggerManPos", _triggerManPos, True];
-
-			_map ctrlAddEventHandler ["Draw",
-				format["(_this select 0) drawLine [%1,%2,[0,0,1,1]];", str(_exploPos), str(_triggerManPos)]
-			];
 		};
 		case 2: {	// ied détonné par fil, non brouillable, triggerman ennemi proche
 			// création du triggerMan
@@ -198,10 +191,6 @@ if (_type >= 0) then {
 			_explo setVariable ["ODD_var_IED_Trigger", _triggerExplo, True];
 			_cover setVariable ["ODD_var_IED_TriggerManType", _triggerManType, True];
 			_cover setVariable ["ODD_var_IED_TriggerManPos", _triggerManPos, True];
-			
-			_map ctrlAddEventHandler ["Draw",
-				format["(_this select 0) drawLine [%1,%2,[0,0,1,1]];", str(_exploPos), str(_triggerManPos)]
-			];
 		};
 		case 3: {	// ied détonné par fil, non brouillable, triggerman civil proche
 			// création du triggerMan
@@ -253,10 +242,6 @@ if (_type >= 0) then {
 			_explo setVariable ["ODD_var_IED_Trigger", _triggerExplo, True];
 			_cover setVariable ["ODD_var_IED_TriggerManType", _triggerManType, True];
 			_cover setVariable ["ODD_var_IED_TriggerManPos", _triggerManPos, True];
-			
-			_map ctrlAddEventHandler ["Draw",
-				format["(_this select 0) drawLine [%1,%2,[0,0,1,1]];", str(_exploPos), str(_triggerManPos)]
-			];
 		};
 		case 4: {	// ied mine qui explose s'il y a plus de 2 joueurs à portée							
 
