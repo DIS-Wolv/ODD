@@ -9,7 +9,8 @@ _crate addItemCargoGlobal ["rhsusf_acc_nt4_black", 20]; //sds 5.56
 _crate addItemCargoGlobal ["rhsusf_acc_omega9k", 20]; //sds 9mm
 _crate addItemCargoGlobal ["rhsusf_acc_anpeq15side_bk", 20];
 _crate addItemCargoGlobal ["rhsusf_acc_wmx_bk", 20];
-_crate addItemCargoGlobal ["acc_flashlight_pistol", 20]; 
+_crate addItemCargoGlobal ["ACE_SpraypaintGreen", 20];
+_crate addItemCargoGlobal ["acc_flashlight_pistol", 20];
 
 // Explosifs
 _crate addItemCargoGlobal ["ACE_DefusalKit", 5]; 

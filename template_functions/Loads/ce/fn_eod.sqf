@@ -24,6 +24,7 @@ for "_i" from 1 to 15 do {_unit addItemToUniform "ACE_elasticBandage";};
 for "_i" from 1 to 20 do {_unit addItemToUniform "ACE_packingBandage";};
 for "_i" from 1 to 4 do {_unit addItemToUniform "ACE_tourniquet";};
 _unit addItemToVest "ACE_EarPlugs";
+_unit addItemToVest "ACE_SpraypaintGreen";
 for "_i" from 1 to 5 do {_unit addItemToVest "ACE_packingBandage";};
 for "_i" from 1 to 2 do {_unit addItemToVest "ACE_epinephrine";};
 for "_i" from 1 to 2 do {_unit addItemToVest "ACE_morphine";};
