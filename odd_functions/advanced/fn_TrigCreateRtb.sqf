@@ -23,13 +23,13 @@ if (ODD_var_CurrentMission == 1) then {
 	Private _Trigger = [];
 
 	Private _TrigFob = createTrigger ["EmptyDetector", fob, True];
-	_TrigFob setTriggerArea [15, 15, 0, False, 2];
+	_TrigFob setTriggerArea [30, 30, 0, False, -1];
 	_TrigFob setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 	_TrigFob setTriggerStatements ["this", "[True] call ODDadvanced_fnc_TrigWaitRtb","[False] call ODDadvanced_fnc_TrigWaitRtb"];
 	_Trigger pushBack _TrigFob;
 
 	Private _TrigBase = createTrigger ["EmptyDetector", base, True];
-	_TrigBase setTriggerArea [20, 20, 0, False, 2];
+	_TrigBase setTriggerArea [50, 50, 0, False, -1];
 	_TrigBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 	_TrigBase setTriggerStatements ["this", "[True] call ODDadvanced_fnc_TrigWaitRtb","[False] call ODDadvanced_fnc_TrigWaitRtb"];
 	_Trigger pushBack _TrigBase;
