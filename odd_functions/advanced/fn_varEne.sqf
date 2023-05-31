@@ -42,7 +42,8 @@ if (!_init) then {
 			[] call ODDadvanced_fnc_varEneFia;
 		};
 		case 4: {
-			[] call ODDadvanced_fnc_varEneSaf;
+			// [] call ODDadvanced_fnc_varEneSaf;
+			[] call ODDadvanced_fnc_varEneArd;
 		};
 		case 5: {
 			[] call ODDadvanced_fnc_varEneTla;
