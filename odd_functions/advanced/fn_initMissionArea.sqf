@@ -121,8 +121,8 @@ private _radVl = 2000;
 	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
 
 	// calcule le nombre d'IED sur la zone :
-	private _minIED = round (((count _roads) *  2 / 100)) max 0;
-	private _maxIED = round ((count _roads) * 5 / 100);
+	private _minIED = round (((count _roads) *  1 / 100)) max 0;
+	private _maxIED = round ((count _roads) * 4 / 100);
 	private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
 	_variablesPad setVariable ["trig_ODD_var_nbIED", _nbIED, True];
 	private _IEDs = [_loc, _nbIED] call ODDcommon_fnc_initIED;
