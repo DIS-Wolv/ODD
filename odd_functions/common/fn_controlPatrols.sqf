@@ -94,7 +94,7 @@ if ((typeName _pad) != "SCALAR") then {
 					_playersModifier = _players / 5;
 				};
 			};
-			_patOut = _patOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
+			_patOut = _patOut * (_typeModifier + _batModifier + _playersModifier);
 			_patOut = round _patOut;
 			private _patGroup = [];
 			_patOut = _patOut min _patLimit;
