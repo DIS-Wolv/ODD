@@ -53,10 +53,10 @@ if ((typeName _pad) != "SCALAR") then {
 				case 6: {_garOut = 0.9;};
 			};
 
-		private _players = (playersNumber west);
-		private _playersModifier = 0;
-		private _typeModifier = 0;
-		private _batModifier = 0;
+			private _players = (playersNumber west);
+			private _playersModifier = 0;
+			private _typeModifier = 0;
+			private _batModifier = 0;
 
 			switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 				case (ODD_var_LocationType select 5): {
