@@ -98,6 +98,7 @@ if ((typeName _pad) != "SCALAR") then {
 			};
 			_garOut = _garOut * (_typeModifier + _batModifier + _playersModifier);
 
+			_garOut = _garOut * 2;
 			// _garOut = _garOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_garOut = round _garOut;
 
