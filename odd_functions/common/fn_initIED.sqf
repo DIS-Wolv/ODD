@@ -117,7 +117,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 				private _bclist = nearestobjects [_coverPos, ODD_var_Houses, 10];
 				private _blist = nearestobjects [_coverPos, ODD_var_Houses, 50];
 				if (count _blist <= count _bclist) then {_blist = nearestobjects [_coverPos, ODD_var_Houses, 250];};
-				_bList = _bList - _bclist;;
+				_bList = _bList - _bclist;
 
 				// choisie un batiment random
 				private _b = selectRandom _bList;
