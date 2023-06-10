@@ -1,11 +1,10 @@
 /*
-* Auteur : Wolv
-* Fonction pour créer des barrages sur les routes
+* Auteur : QuentinN42
+* Fonction pour créer des camps autours d'une ville
 *
 * Arguments :
-* 0: Zone objectif <OBJ>
-* 1: Nombre de barrages souhaités <INT>
-* 2: 
+* 0: Zone objectif <position>
+* 1: Nombre de camps souhaités <INT>
 *
 * Valeur renvoyée :
 * nil

@@ -1,24 +1,26 @@
 /*
-* Auteur : Wolv
-* Fonction pour créer des barrages sur les routes
+* Auteur : QuentinN42
+* Fonction pour créer un camps pas loin de la position demande
 *
 * Arguments :
-* 0: Zone objectif <OBJ>
-* 1: Nombre de barrages souhaités <INT>
-* 2: 
+* 0: Zone objectif <position>
+* 1: Flavors (cf. fn_varOutpost.sqf) <Liste de str>
 *
 * Valeur renvoyée :
-* nil
+* Bool : si le camps a ete cree
 *
 * Exemple :
-* [position player] call ODDadvanced_fnc_createOutpostAtPos
+private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
+if (_created) {
+	systemChat "Created.";
+} else {
+	systemChat "Unable to find a position to spawn the outpost.";
+};
 */
 params ["_pos", ["_flavors", []]];
 
-systemChat format ["OUTPOST %1 %2", _pos, _flavors];
-
 // # Validate params and prepare variables
-if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; };
+if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; false };
 
 private _batiments_proba_by_type_matching_flavor = createHashMap;
 {_batiments_proba_by_type_matching_flavor set [_x, createHashMap]} forEach keys ODD_var_outpost_bat_types;
@@ -91,47 +93,47 @@ private _posOp = _pos findEmptyPosition [12, 150];
 private _angle = random 360;
 
 
-if ((count _posOp) == 0) then {
-	systemChat "Unable to find a position to spawn the outpost."
-} else {
-	// marker pour debug
-	_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp]; 
-	_marker setMarkerType "hd_dot";
-	_marker setMarkerColor "ColorBlack";
-	_marker setMarkerText "Outpost";
+if ((count _posOp) == 0) exitWith { false };
 
-	private _centre_batiment = (["centre"] call _random_batiment);
-	//   puis on cree le batiment
-	private _centre_spawned_object = _centre_batiment createVehicle _posOp;
-	_centre_spawned_object setDir _angle;
+// marker pour debug
+_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp]; 
+_marker setMarkerType "hd_dot";
+_marker setMarkerColor "ColorBlack";
+_marker setMarkerText "Outpost";
 
-	{
-		private _type = _x select 0;
-		private _distance = _x select 1;
-		private _to_gen_nb = _x select 2;
-		// # on cree les elements
-		for "_i" from 0 to _to_gen_nb - 1 do {
-			// On choisit un batiment
-			private _to_gen_batiment = ([_type] call _random_batiment);
-			private _to_gen_orientation = (ODD_var_outpost_batiments getOrDefault [_to_gen_batiment, createHashMap])  getOrDefault ["orientation", -1];
+private _centre_batiment = (["centre"] call _random_batiment);
+//   puis on cree le batiment
+private _centre_spawned_object = _centre_batiment createVehicle _posOp;
+_centre_spawned_object setDir _angle;
 
-			// on lui trouve une position
-			private _to_gen_pos = _posOp getPos [_distance, _i * 360 / _to_gen_nb];
-			_to_gen_pos = _to_gen_pos findEmptyPosition [10, 50];
-			if ((count _to_gen_pos) != 0) then {
-				//   puis on cree le batiment
-				private _to_gen_spawned_object = _to_gen_batiment createVehicle _to_gen_pos;
-				// et on l'oriente suivant ses config
-				if (_to_gen_orientation == -1) then {
-					// Random orientation
-					_to_gen_spawned_object setDir random 360;
-				} else {
-					// orientation = orentation avec le centre et l'ofset + petit random
-					private _petit_random = random [-10, 0, 10];
-					private _orientation_avec_le_centre = _centre_spawned_object getDir _to_gen_spawned_object;
-					_to_gen_spawned_object setDir (_petit_random + _orientation_avec_le_centre + _to_gen_orientation) % 360;
-				};
+{
+	private _type = _x select 0;
+	private _distance = _x select 1;
+	private _to_gen_nb = _x select 2;
+	// # on cree les elements
+	for "_i" from 0 to _to_gen_nb - 1 do {
+		// On choisit un batiment
+		private _to_gen_batiment = ([_type] call _random_batiment);
+		private _to_gen_orientation = (ODD_var_outpost_batiments getOrDefault [_to_gen_batiment, createHashMap])  getOrDefault ["orientation", -1];
+
+		// on lui trouve une position
+		private _to_gen_pos = _posOp getPos [_distance, _i * 360 / _to_gen_nb];
+		_to_gen_pos = _to_gen_pos findEmptyPosition [10, 50];
+		if ((count _to_gen_pos) != 0) then {
+			//   puis on cree le batiment
+			private _to_gen_spawned_object = _to_gen_batiment createVehicle _to_gen_pos;
+			// et on l'oriente suivant ses config
+			if (_to_gen_orientation == -1) then {
+				// Random orientation
+				_to_gen_spawned_object setDir random 360;
+			} else {
+				// orientation = orentation avec le centre et l'ofset + petit random
+				private _petit_random = random [-10, 0, 10];
+				private _orientation_avec_le_centre = _centre_spawned_object getDir _to_gen_spawned_object;
+				_to_gen_spawned_object setDir (_petit_random + _orientation_avec_le_centre + _to_gen_orientation) % 360;
 			};
 		};
-	} forEach [["cercle", 20, floor random [2, 4, 8]], ["fortification", 30, floor random [4, 8, 10]]];
-};
+	};
+} forEach [["cercle", 20, floor random [2, 4, 8]], ["fortification", 30, floor random [4, 8, 10]]];
+
+true
