@@ -3,12 +3,15 @@
 } foreach allMapMarkers;
 private _zo = nearestLocations[position player, ['NameCityCapital','NameCity','NameVillage','Name','NameLocal','Hill'], 1000] select 0;
 
+try {
+	{
+		deleteVehicle(_x);
+	} foreach ODD_var_MissionProps;
+} catch { hint str _exception };
+
 // variable globales
 [] call ODDadvanced_fnc_varOutpost;
-
-{
-    deleteVehicle(_x);
-} foreach nearestObjects [position _zo, keys ODD_var_outpost_batiments, 2000];
+[] call ODDadvanced_fnc_var;
 
 // debut func
 // ### params

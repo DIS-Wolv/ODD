@@ -5,6 +5,7 @@
 * Arguments :
 * 0: Zone objectif <position>
 * 1: Flavors (cf. fn_varOutpost.sqf) <Liste de str>
+* 2: Est la zone principale <bool>
 *
 * Valeur renvoyée :
 * Bool : si le camps a ete cree
@@ -17,7 +18,7 @@ if (_created) {
 	systemChat "Unable to find a position to spawn the outpost.";
 };
 */
-params ["_pos", ["_flavors", []]];
+params ["_pos", ["_flavors", []], ["_estLaZonePrincipale", true]];
 
 // # Validate params and prepare variables
 if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; false };
@@ -104,6 +105,7 @@ _marker setMarkerText "Outpost";
 private _centre_batiment = (["centre"] call _random_batiment);
 //   puis on cree le batiment
 private _centre_spawned_object = _centre_batiment createVehicle _posOp;
+ODD_var_MissionProps pushBack _centre_spawned_object;
 _centre_spawned_object setDir _angle;
 
 {
@@ -122,6 +124,7 @@ _centre_spawned_object setDir _angle;
 		if ((count _to_gen_pos) != 0) then {
 			//   puis on cree le batiment
 			private _to_gen_spawned_object = _to_gen_batiment createVehicle _to_gen_pos;
+			ODD_var_MissionProps pushBack _to_gen_spawned_object;
 			// et on l'oriente suivant ses config
 			if (_to_gen_orientation == -1) then {
 				// Random orientation
