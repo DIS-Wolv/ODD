@@ -12,6 +12,7 @@ try {
 // variable globales
 [] call ODDadvanced_fnc_varOutpost;
 [] call ODDadvanced_fnc_var;
+[] call ODDadvanced_fnc_varEneArd;
 
 // debut func
 // ### params
@@ -20,11 +21,11 @@ try {
 private _outpost_nb = 5;
 // ### params
 
-// [position player, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
+[position player, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
 
-private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
-if (_created) then {
-	systemChat "Created.";
-} else {
-	systemChat "Unable to find a position to spawn the outpost.";
-};
+// private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
+// if (_created) then {
+// 	systemChat "Created.";
+// } else {
+// 	systemChat "Unable to find a position to spawn the outpost.";
+// };
