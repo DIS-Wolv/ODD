@@ -31,7 +31,7 @@ if ((typeName _pad) != "SCALAR") then {
 
 		if (_state) then {
 			// spawn du road block
-			_props = [_pos, _dir, _struct] call ODDcommon_fnc_roadBlockAo;
+			// _props = [_pos, _dir, _struct] call ODDcommon_fnc_roadBlockAo;
 			_pad setVariable ["trig_ODD_var_Props", (_props select 0), True];
 			_pad setVariable ["trig_ODD_var_HideObject", (_props select 1), True];
 
@@ -107,13 +107,6 @@ if ((typeName _pad) != "SCALAR") then {
 			private _nbGar = 0;
 			private _nbPat = 0;
 
-			{
-				deleteVehicle _x;
-			} forEach _props;
-			{
-				ODD_var_HiddenObjects = ODD_var_HiddenObjects - [_x];
-				_x hideObjectGlobal False;
-			} forEach _hideObject;
 			{
 				if ((_x distance2D _pos) <= 200) then {
 					if (alive _x) then {

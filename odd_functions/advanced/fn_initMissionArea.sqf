@@ -104,7 +104,7 @@ private _radVl = 2000;
 		Format ["[thisTrigger, False, %1] spawn ODDcommon_fnc_controlGarisons;", _radSpawngarisons]
 	];
 	_garTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
+	_variablesPad setVariable ["trig_ODD_var_gatWantState", False, True];
 	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_controlGarisons;
 
 	// crée le trigger pour spawn/déspawn les vls
@@ -215,6 +215,9 @@ Private _bridge = [];
 		_structure = selectRandom ODD_var_RoadBlocks;
 		_variablesPad setVariable ["trig_ODD_var_Structure", _structure, True];
 
+		_props = [_posr, _roadDir, _structure] call ODDcommon_fnc_roadBlockAo;
+		ODD_var_MissionProps = ODD_var_MissionProps + (_props select 0);
+
 		private _RbTrigger = createTrigger ["EmptyDetector", _posr, True];
 		_RbTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 		_triggers pushBack _RbTrigger;
@@ -226,6 +229,7 @@ Private _bridge = [];
 		];
 		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
 		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_controlRoadBlockAo;
+		ODD_var_AreaTrigger pushBack _triggers;
 	};
 } forEach _roadBlock;
-ODD_var_AreaTrigger = ODD_var_AreaTrigger + _triggers;
+
