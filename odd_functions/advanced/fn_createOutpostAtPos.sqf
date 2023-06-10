@@ -75,7 +75,7 @@ private _batiments_proba_by_type_matching_flavor = createHashMap;
 		case (ODD_var_outpost_bat_types get "centre"): {
 			// une chance sur dix de prendre un batiment du centre pour faire des camps plus gros
 			_centres insert [[_bat_name, _selected_flavors]];
-			_cercles insert [[_bat_name, _selected_flavors/10]];
+			_cercles insert [[_bat_name, _selected_flavors/20]];
 		};
 		case (ODD_var_outpost_bat_types get "cercle"): {
 			_cercles insert [[_bat_name, _selected_flavors]];

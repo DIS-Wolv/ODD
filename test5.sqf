@@ -21,7 +21,7 @@ try {
 private _outpost_nb = 5;
 // ### params
 
-// [position player, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
+[position player, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
 
 // private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
 // if (_created) then {
@@ -30,4 +30,4 @@ private _outpost_nb = 5;
 // 	systemChat "Unable to find a position to spawn the outpost.";
 // };
 
-["C_Van_01_box_F", ((position player) getpos [10, 0]), random 360] call ODDcommon_fnc_createAndLockVl;
+// ["C_Van_01_box_F", ((position player) getpos [10, 0]), random 360] call ODDcommon_fnc_createAndLockVl;
