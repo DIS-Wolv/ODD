@@ -230,6 +230,8 @@ Private _bridge = [];
 		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
 		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_controlRoadBlockAo;
 		ODD_var_AreaTrigger pushBack _RbTrigger;
+
+		ODD_var_ZonePad pushBack _variablesPad;
 	};
 } forEach _roadBlock;
 
