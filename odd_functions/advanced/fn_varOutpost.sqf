@@ -40,7 +40,7 @@ ODD_var_outpost_batiments = createHashMapFromArray [
 			_HQ_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
-				[(ODD_var_outpost_flavor get "Medevac"), 20]
+				[(ODD_var_outpost_flavor get "Medevac"), 100]
 			]
 		]
 	],
@@ -51,7 +51,7 @@ ODD_var_outpost_batiments = createHashMapFromArray [
 			_HQ_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
-				[(ODD_var_outpost_flavor get "Research"), 20]
+				[(ODD_var_outpost_flavor get "Research"), 100]
 			]
 		]
 	],
@@ -86,7 +86,11 @@ for "_i" from 1 to 7 do {
 			ODD_var_outpost_bat_types get "centre",
 			_Tower_orientation,
 			createHashMapFromArray [
-				[(ODD_var_outpost_flavor get "default"), 1]
+				[(ODD_var_outpost_flavor get "default"), 1],
+				[(ODD_var_outpost_flavor get "Green"), 2],
+				[(ODD_var_outpost_flavor get "Rusty"), 0],
+				[(ODD_var_outpost_flavor get "Brown"), 0],
+				[(ODD_var_outpost_flavor get "Jungle"), 0.5]
 			]
 		]
 	];
@@ -100,6 +104,10 @@ for "_i" from 1 to 7 do {
 			_Tower_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
+				[(ODD_var_outpost_flavor get "Green"), 0],
+				[(ODD_var_outpost_flavor get "Rusty"), 0.5],
+				[(ODD_var_outpost_flavor get "Brown"), 0],
+				[(ODD_var_outpost_flavor get "Jungle"), 0],
 				[(ODD_var_outpost_flavor get _x), 8]
 			]
 		]
@@ -111,6 +119,10 @@ for "_i" from 1 to 7 do {
 			_HQ_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
+				[(ODD_var_outpost_flavor get "Green"), 0],
+				[(ODD_var_outpost_flavor get "Rusty"), 0.5],
+				[(ODD_var_outpost_flavor get "Brown"), 0],
+				[(ODD_var_outpost_flavor get "Jungle"), 0],
 				[(ODD_var_outpost_flavor get _x), 8]
 			]
 		]
@@ -122,7 +134,11 @@ for "_i" from 1 to 7 do {
 			_House_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
-				[(ODD_var_outpost_flavor get _x), 3]
+				[(ODD_var_outpost_flavor get "Green"), 0],
+				[(ODD_var_outpost_flavor get "Rusty"), 0.5],
+				[(ODD_var_outpost_flavor get "Brown"), 0],
+				[(ODD_var_outpost_flavor get "Jungle"), 0],
+				[(ODD_var_outpost_flavor get _x), 5]
 			]
 		]
 	];
@@ -133,7 +149,11 @@ for "_i" from 1 to 7 do {
 			_Patrol_orientation,
 			createHashMapFromArray [
 				[(ODD_var_outpost_flavor get "default"), 0.5],
-				[(ODD_var_outpost_flavor get _x), 3]
+				[(ODD_var_outpost_flavor get "Green"), 0],
+				[(ODD_var_outpost_flavor get "Rusty"), 0.5],
+				[(ODD_var_outpost_flavor get "Brown"), 0],
+				[(ODD_var_outpost_flavor get "Jungle"), 0],
+				[(ODD_var_outpost_flavor get _x), 5]
 			]
 		]
 	];
@@ -180,8 +200,7 @@ for "_i" from 1 to 7 do {
 	"Land_HBarrierWall4_F",
 	"Land_HBarrierWall6_F",
 	"Land_BagFence_Long_F",
-	"Land_CncBarrier_F",
-	"Land_CncBarrier_stripes_F"
+	"Land_Rampart_F"
 ];
 //    less frequent
 {
@@ -191,7 +210,7 @@ for "_i" from 1 to 7 do {
 			ODD_var_outpost_bat_types get "fortification",
 			0,
 			createHashMapFromArray [
-				[(ODD_var_outpost_flavor get "default"), 0.5]
+				[(ODD_var_outpost_flavor get "default"), 0.25]
 			]
 		]
 	];
