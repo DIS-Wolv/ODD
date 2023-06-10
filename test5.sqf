@@ -16,11 +16,11 @@ try {
 // debut func
 // ### params
 // private _flavors = ["Medevac"];
-private _pos = position _zo;
+// private _pos = position _zo;
 private _outpost_nb = 5;
 // ### params
 
-// [_zo, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
+// [position player, _outpost_nb] call ODDadvanced_fnc_createOutpostsAroundZo;
 
 private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
 if (_created) then {

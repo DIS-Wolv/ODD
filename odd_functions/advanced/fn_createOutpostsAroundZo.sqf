@@ -29,9 +29,16 @@ for "_i" from 0 to _outpost_nb - 1 do {
 	_marker setMarkerType "hd_dot";
 	_marker setMarkerColor "ColorBlue";
 
-	private _posOpPossible = selectBestPlaces [_p, 150, "meadow + hills - 2*forest - houses", 1, 5];
-	systemChat str _posOpPossible;
-	private _posOp = (selectRandom _posOpPossible) select 0;
-
-	[_posOp] call ODDadvanced_fnc_createOutpostAtPos;
+	private _tries = 0;
+	while {_tries < 5} do {
+		_tries = _tries + 1;
+		private _posOpPossible = selectBestPlaces [_p, 150, "meadow + hills - 2*forest - houses", 1, 5];
+		private _posOp = (selectRandom _posOpPossible) select 0;
+		private _created = [_posOp] call ODDadvanced_fnc_createOutpostAtPos;
+		if (_created) then {
+			break
+		} else {
+			systemChat format ["Unable to generate camps : %1 tries.", _tries];
+		};
+	}
 };
