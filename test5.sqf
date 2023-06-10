@@ -4,197 +4,12 @@
 private _zo = nearestLocations[position player, ['NameCityCapital','NameCity','NameVillage','Name','NameLocal','Hill'], 1000] select 0;
 
 // variable globales
-
-private _HQ_orientation = 270;
-private _House_orientation = 0;
-private _Patrol_orientation = 180;
-private _Tower_orientation = -1;
-
-private _bat_types = ["centre", "cercle", "fortification"];
-private _ODD_var_outpost_bat_types = createHashMap;
-{_ODD_var_outpost_bat_types set [_x, _forEachIndex]} forEach _bat_types;
-
-private _flavor = ["default", "Medevac", "Research", "Green", "Rusty", "Brown", "Jungle"];
-private _ODD_var_outpost_flavor = createHashMap;
-{_ODD_var_outpost_flavor set [_x, _forEachIndex]} forEach _flavor;
-
-
-private _ODD_var_outpost_batiments = createHashMapFromArray [
-	[
-		"Land_Medevac_HQ_V1_F",
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "centre",
-			_HQ_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get "Medevac"), 20]
-			]
-		]
-	],
-	[
-		"Land_Research_HQ_F",
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "centre",
-			_HQ_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get "Research"), 20]
-			]
-		]
-	],
-	[
-		"Land_Medevac_house_V1_F",
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "cercle",
-			_House_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get "Research"), 2]
-			]
-		]
-	],
-	[
-		"Land_Research_house_V1_F",
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "cercle",
-			_House_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get "Research"), 2]
-			]
-		]
-	]
-];
-// ajout des 7 types de tours
-for "_i" from 1 to 7 do {
-	_ODD_var_outpost_batiments set [
-		format ["Land_Cargo_Tower_V1_No%1_F", _i],
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "centre",
-			_Tower_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 1]
-			]
-		]
-	];
-};
-// ajout des blocks par flavor
-{
-	_ODD_var_outpost_batiments set [
-		format ["Land_Cargo_Tower_V%1_F", _forEachIndex + 1],
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "centre",
-			_Tower_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get _x), 8]
-			]
-		]
-	];
-	_ODD_var_outpost_batiments set [
-		format ["Land_Cargo_HQ_V%1_F", _forEachIndex + 1],
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "centre",
-			_HQ_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get _x), 8]
-			]
-		]
-	];
-	_ODD_var_outpost_batiments set [
-		format ["Land_Cargo_House_V%1_F", _forEachIndex + 1],
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "cercle",
-			_House_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get _x), 3]
-			]
-		]
-	];
-	_ODD_var_outpost_batiments set [
-		format ["Land_Cargo_Patrol_V%1_F", _forEachIndex + 1],
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "cercle",
-			_Patrol_orientation,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5],
-				[(_ODD_var_outpost_flavor get _x), 3]
-			]
-		]
-	];
-} forEach ["Green", "Rusty", "Brown", "Jungle"];
-// Ajout des fillets de cammouflage
-{
-	private _type = _x;
-	{
-		private _side = _x;
-		_ODD_var_outpost_batiments set [
-			format ["CamoNet_%1%2_F", _side, _type],
-			["type", "orientation", "flavor"] createHashMapFromArray [
-				_ODD_var_outpost_bat_types get "cercle",
-				-1,
-				createHashMapFromArray [
-					[(_ODD_var_outpost_flavor get "Green"),  if (_x in ["BLUFOR",          "INDP"        ]) then { 1 } else { 0 }],
-					[(_ODD_var_outpost_flavor get "Jungle"), if (_x in ["BLUFOR",          "INDP", "ghex"]) then { 1 } else { 0 }],
-					[(_ODD_var_outpost_flavor get "Rusty"),  if (_x in [          "OPFOR", "INDP", "ghex"]) then { 0.75 } else { 0 }],
-					[(_ODD_var_outpost_flavor get "Brown"),  if (_x in [          "OPFOR",         "ghex"]) then { 1 } else { 0 }],
-					[(_ODD_var_outpost_flavor get "default"), 0.5]
-				]
-			]
-		];
-	} forEach ["BLUFOR", "OPFOR", "INDP", "ghex"];
-} forEach ["", "_open", "_big"];
-
-// Fortifications
-//   Frequent
-{
-	_ODD_var_outpost_batiments set [
-		_x,
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "fortification",
-			0,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 1]
-			]
-		]
-	];
-} forEach [
-	"Land_HBarrier_3_F",
-	"Land_HBarrier_5_F",
-	"Land_HBarrier_Big_F",
-	"Land_HBarrierWall4_F",
-	"Land_HBarrierWall6_F",
-	"Land_BagFence_Long_F",
-	"Land_CncBarrier_F",
-	"Land_CncBarrier_stripes_F"
-];
-//    less frequent
-{
-	_ODD_var_outpost_batiments set [
-		_x,
-		["type", "orientation", "flavor"] createHashMapFromArray [
-			_ODD_var_outpost_bat_types get "fortification",
-			0,
-			createHashMapFromArray [
-				[(_ODD_var_outpost_flavor get "default"), 0.5]
-			]
-		]
-	];
-} forEach [
-	"Land_DragonsTeeth_01_4x2_new_F",
-	"Land_DragonsTeeth_01_4x2_old_F",
-	"Land_DragonsTeeth_01_4x2_new_redwhite_F ",
-	"Land_DragonsTeeth_01_4x2_old_redwhite_F",
-	"Land_CzechHedgehog_01_new_F",
-	"Land_ConcreteHedgehog_01_F"
-];
+[] call ODDadvanced_fnc_varOutpost;
 
 
 {
     deleteVehicle(_x);
-} foreach nearestObjects [position _zo, keys _ODD_var_outpost_batiments, 2000];
+} foreach nearestObjects [position _zo, keys ODD_var_outpost_batiments, 2000];
 
 
 // debut func
@@ -206,12 +21,12 @@ private _outpost_nb = 5;
 
 
 
-if ({ ! (_x in _flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; };
+if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; };
 
 
 
 private _batiments_proba_by_type_matching_flavor = createHashMap;
-{_batiments_proba_by_type_matching_flavor set [_x, createHashMap]} forEach _bat_types;
+{_batiments_proba_by_type_matching_flavor set [_x, createHashMap]} forEach keys ODD_var_outpost_bat_types;
 {
 	private _bat_name = _x;
 	private _bat_flavors = _y getOrDefault ["flavor", createHashMap];
@@ -221,14 +36,14 @@ private _batiments_proba_by_type_matching_flavor = createHashMap;
 
 	// extract flavors for this run
 	{
-		private _flavor_value = _bat_flavors getOrDefault [(_ODD_var_outpost_flavor get _x), -1];
+		private _flavor_value = _bat_flavors getOrDefault [(ODD_var_outpost_flavor get _x), -1];
 		if (_flavor_value == -1) then {continue;};
 		_got_flavors = true;
 		_selected_flavors = _selected_flavors + _flavor_value;
 	} forEach _flavors;
 	// handle default : no flavor matched
 	if (!_got_flavors) then {
-		_selected_flavors = _bat_flavors getOrDefault [(_ODD_var_outpost_flavor get "default"), 1];
+		_selected_flavors = _bat_flavors getOrDefault [(ODD_var_outpost_flavor get "default"), 1];
 	};
 
 	// flavor ponderation depending on bat type
@@ -238,15 +53,15 @@ private _batiments_proba_by_type_matching_flavor = createHashMap;
 	private _fortifications = _batiments_proba_by_type_matching_flavor get "fortification";
 	switch (_bat_type) do
 	{
-		case (_ODD_var_outpost_bat_types get "centre"): {
+		case (ODD_var_outpost_bat_types get "centre"): {
 			_centres insert [[_bat_name, _selected_flavors]];
 		};
-		case (_ODD_var_outpost_bat_types get "cercle"): {
+		case (ODD_var_outpost_bat_types get "cercle"): {
 			_cercles insert [[_bat_name, _selected_flavors]];
 			// une chance sur dix de prendre un batiment du centre pour faire des camps plus gros
 			_centres insert [[_bat_name, _selected_flavors/10]];
 		};
-		case (_ODD_var_outpost_bat_types get "fortification"): {
+		case (ODD_var_outpost_bat_types get "fortification"): {
 			_fortifications insert [[_bat_name, _selected_flavors]];
 		};
 		default { systemChat format ["_bat_type '%1' Unknown", _bat_type] };
@@ -254,7 +69,7 @@ private _batiments_proba_by_type_matching_flavor = createHashMap;
 	_batiments_proba_by_type_matching_flavor set ["centre", _centres];
 	_batiments_proba_by_type_matching_flavor set ["cercle", _cercles];
 	_batiments_proba_by_type_matching_flavor set ["fortification", _fortifications];
-} forEach _ODD_var_outpost_batiments;
+} forEach ODD_var_outpost_batiments;
 
 
 
@@ -313,7 +128,7 @@ for "_i" from 0 to _outpost_nb - 1 do {
 			for "_i" from 0 to _to_gen_nb - 1 do {
 				// On choisit un batiment
 				private _to_gen_batiment = ([_type] call _random_batiment);
-				private _to_gen_orientation = (_ODD_var_outpost_batiments getOrDefault [_to_gen_batiment, createHashMap])  getOrDefault ["orientation", -1];
+				private _to_gen_orientation = (ODD_var_outpost_batiments getOrDefault [_to_gen_batiment, createHashMap])  getOrDefault ["orientation", -1];
 
 				// on lui trouve une position
 				private _to_gen_pos = _posOp getPos [_distance, _i * 360 / _to_gen_nb];
