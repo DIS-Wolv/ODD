@@ -9,10 +9,10 @@ if (_index != -1) then {
 		// Crée le véhicule
 		_vl = _vlType createvehicle _pos;
 
-		clearWeaponCargoGlobal _vl;	
-		clearMagazineCargoGlobal _vl; 
-		clearBackpackCargoGlobal _vl; 
-		clearItemCargoGlobal _vl; 
+		clearWeaponCargoGlobal _vl;
+		clearMagazineCargoGlobal _vl;
+		clearBackpackCargoGlobal _vl;
+		clearItemCargoGlobal _vl;
 		//vide le véhicule
 
 		_vl addWeaponCargoGlobal ["rhs_weap_M136", 5];
