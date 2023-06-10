@@ -533,7 +533,24 @@ switch (_Mission) do {
 		_g = _vl createvehicle _posvl;
 		// Crée le véhicule
 
-		_g addItemCargoGlobal ["Toolkit", 1]; 
+		clearWeaponCargoGlobal _g;	
+		clearMagazineCargoGlobal _g; 
+		clearBackpackCargoGlobal _g; 
+		clearItemCargoGlobal _g; 
+
+		[_g, 30] call ace_cargo_fnc_setSpace;
+
+		["ACE_medicalSupplyCrate_advanced", _g, 5] call ace_cargo_fnc_addCargoItem;
+		["ACE_Wheel", _g, 5] call ace_cargo_fnc_addCargoItem;
+
+		_g addItemCargoGlobal ["Toolkit", 1];
+		_g addMagazineCargoGlobal ["rhs_mag_30Rnd_556x45_M855A1_Stanag", 30];
+		_g addMagazineCargoGlobal ["rhsusf_200Rnd_556x45_box", 5];
+		_g addItemCargoGlobal ["SmokeShell", 10];
+		_g addItemCargoGlobal ["ACE_EntrenchingTool", 1];
+		_g addItemCargoGlobal ["ACE_elasticBandage", 30];
+		_g addItemCargoGlobal ["ACE_packingBandage", 30];
+		_g addItemCargoGlobal ["ACE_plasmaIV", 5];
 		// Ajoute un kit de réparation au véhicule
 		
 		_g setDir _dir;
