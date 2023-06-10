@@ -121,10 +121,10 @@ private _routes_trop_proches = _posOp nearRoads (_radius_cercle * 2);
 if ((count _routes_trop_proches) > 0) exitWith { [] };
 
 // marker pour debug
-_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp]; 
-_marker setMarkerType "hd_dot";
-_marker setMarkerColor "ColorBlack";
-_marker setMarkerText str _flavors;
+// _marker = createMarker [(format ["obj P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp]; 
+// _marker setMarkerType "hd_dot";
+// _marker setMarkerColor "ColorBlack";
+// _marker setMarkerText str _flavors;
 
 private _centre_batiment = (["centre"] call _random_batiment);
 //   puis on cree le batiment
