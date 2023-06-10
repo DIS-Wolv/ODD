@@ -18,6 +18,7 @@
 params ["_zo","_locations"];
 
 private _radRoadBlock = 1500;
+private _radOutpost = 1500;
 private _radSpawnPatrols = 1400;
 private _radIED = 1400;
 private _radDisable = 1000;
@@ -233,3 +234,25 @@ Private _bridge = [];
 	};
 } forEach _roadBlock;
 
+// cree les camps
+Private _nb_outposts = (round random 8) + 5;
+private _outposts = [_zo, _nb_outposts] call ODDcommon_fnc_initOutpost;
+
+{
+	_pos = _x select 0;
+	_flavors = _x select 1;
+	// Cree le pad de controle
+	private _pad = "Land_HelipadEmpty_F" createVehicle _pos;
+
+	// crée le trigger pour spawn/déspawn
+	private _trigger = createTrigger ["EmptyDetector", _pad, True]; 
+	ODD_var_AreaTrigger pushBack _trigger;
+	_trigger setTriggerArea [_radOutpost, _radOutpost, 0, False, _alt]; 
+	_trigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	_trigger setTriggerStatements ["this",
+		"[thisTrigger, True] spawn ODDcommon_fnc_controlOutpost;",
+		"[thisTrigger, False] spawn ODDcommon_fnc_controlOutpost;"
+	];
+	_trigger setVariable ["trig_ODD_var_Pad", _pad, True];
+	_pad setVariable ["trig_ODD_var_OutpostWantState", False, True];
+} forEach _outposts;

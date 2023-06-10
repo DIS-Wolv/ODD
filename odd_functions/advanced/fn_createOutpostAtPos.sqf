@@ -5,10 +5,9 @@
 * Arguments :
 * 0: Zone objectif <position>
 * 1: Flavors (cf. fn_varOutpost.sqf) <Liste de str>
-* 2: Est la zone principale <bool>
 *
 * Valeur renvoyée :
-* Bool : si le camps a ete cree
+* position du camp ou [] si erreur
 *
 * Exemple :
 private _created = [position player] call ODDadvanced_fnc_createOutpostAtPos;
@@ -18,15 +17,11 @@ if (_created) {
 	systemChat "Unable to find a position to spawn the outpost.";
 };
 */
-params ["_pos", ["_flavors", []], ["_estLaZonePrincipale", true]];
+params ["_pos", ["_flavors", []]];
 
 // Config
 private _radius_cercle = 20;
 private _radius_fortification = 25;
-
-private _nb_ai_gar = 2;
-private _nb_ai_pat = 2;
-
 
 
 /*
@@ -42,7 +37,7 @@ private _nb_ai_pat = 2;
 
 
 // # Validate params and prepare variables
-if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; false };
+if ({ ! (_x in keys ODD_var_outpost_flavor) } count _flavors > 0) exitWith { systemChat "Error: invalid flavors"; [] };
 
 private _batiments_proba_by_type_matching_flavor = createHashMap;
 {_batiments_proba_by_type_matching_flavor set [_x, createHashMap]} forEach keys ODD_var_outpost_bat_types;
@@ -113,24 +108,17 @@ private _random_batiment = {
  */
 
 
-
-// Debug : on met la position entrante
-_start_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
-_start_marker setMarkerType "hd_dot";
-_start_marker setMarkerColor "ColorRed";
-
-
 // # on cree le centre
 // 	 on commence par update le centre avec une position ou on peut faire spawn le batiment
 private _posOp = _pos findEmptyPosition [12, 150];
 
 
-if ((count _posOp) == 0) exitWith { false };
+if ((count _posOp) == 0) exitWith { [] };
 
 // If we are too close to a road, we dont create the camp
 // This will be retried by fn_createOutpostsAroundZo.sqf
 private _routes_trop_proches = _posOp nearRoads (_radius_cercle * 2);
-if ((count _routes_trop_proches) > 0) exitWith { false };
+if ((count _routes_trop_proches) > 0) exitWith { [] };
 
 // marker pour debug
 _marker = createMarker [(format ["obj P x %1, y %2, z %3", (_posOp select 0), (_posOp select 1), (_posOp select 2)]), _posOp]; 
@@ -206,87 +194,9 @@ _centre_spawned_object setDir _angle;
 ];
 
 
-
-/*
- *
- *
- *
- *  III. Generation des IA
- *
- *
- *
- */
-
-
-
-// GARNISON
-for "_i" from 0 to _nb_ai_gar - 1 do {
-	// Choisit un grp
-	_to_spawn = selectRandom ODD_var_FireTeam;
-
-	// Crée un groupe
-	_grp = [_posOp findEmptyPosition [2, 50], EAST, _to_spawn] call BIS_fnc_spawnGroup;
-
-	// Ajoute le groupe à la liste des IAs de la mission
-	if (_estLaZonePrincipale) then {
-		ODD_var_MainAreaIA pushBack _grp;
-	}
-	else {
-		ODD_var_SecondaryAreasIA pushBack _grp;
-	};
-
-	// Ajoute les IAs de la garnison à la liste noire des clients Headless
-	{
-		_x setVariable ["acex_headless_blacklist", True, True];
-		_x setVariable ["ODD_var_IsInGarnison", True, True];
-	} forEach (units _grp);
-
-	// Met le groupe en garnison
-	ODD_var_GarnisonnedIA pushBack _grp;
-	[_posOp, nil, units _grp, 30, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
-	createGuardedPoint [east, _posOp, -1, objNull];
-};
-
-// PATROUILLE
-for "_i" from 0 to _nb_ai_pat - 1 do {
-	// Cree les waypoints
-	private _waypoints_nb =  floor random [4, 8, 10];
-	private _angle_shift = random 360;
-	private _base_dist = _radius_fortification + random 100;
-	private _angles = [];
-	for "_i" from 0 to _waypoints_nb - 1 do { _angles pushBack ((_i * 360 / _waypoints_nb + _angle_shift) % 360); };
-	private _listPos = _angles apply {_posOp getPos[_base_dist, _x]};
-
-	// Choisit un grp
-	_to_spawn = selectRandom ODD_var_FireTeam;
-
-	// Crée un groupe
-	_grp = [(_listPos select 0) findEmptyPosition [2, 50], EAST, _to_spawn] call BIS_fnc_spawnGroup;
-
-	// Ajoute le groupe à la liste des IAs de la mission
-	if (_estLaZonePrincipale) then {
-		ODD_var_MainAreaIA pushBack _grp;
-	}
-	else {
-		ODD_var_SecondaryAreasIA pushBack _grp;
-	};
-
-
-	// Assigne des points de passage autour du barrage au groupe
-	_grp setFormation "STAG COLUMN";
-	_grp setBehaviour "SAFE";
-	{
-		_grp addWaypoint [_x, 10];
-	} forEach _listPos;
-
-	// Defini un "CYCLE" pour continuer indefiniement
-	_grp addWaypoint [_listPos select ((count _listPos) - 1), 0];
-	(waypoints _grp) select (count (waypoints _grp) - 1) setWaypointType "CYCLE";
-};
-
+// On definit cette zone comme un point d'interet
 createGuardedPoint [east, _posOp, -1, objNull];
 
 
-
 // Fin
-true
+_posOp

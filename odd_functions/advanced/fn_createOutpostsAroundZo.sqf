@@ -13,7 +13,7 @@
 * [_zo] call ODDadvanced_fnc_createOutpostsAroundZo
 * [_zo, 2] call ODDadvanced_fnc_createOutpostsAroundZo
 */
-params ["_zo", ["_outpost_nb", 4], ["_estLaZonePrincipale", true]];
+params ["_zo", ["_outpost_nb", 4]];
 
 private _research_max = 1;
 private _research_proba = 0.05;
@@ -77,7 +77,7 @@ for "_i" from 0 to _outpost_nb - 1 do {
 		_tries = _tries + 1;
 		private _posOpPossible = selectBestPlaces [_p, 150, "meadow + hills - 2*forest - houses", 1, 5];
 		private _posOp = (selectRandom _posOpPossible) select 0;
-		private _created = [_posOp, _current_flavors, _estLaZonePrincipale] call ODDadvanced_fnc_createOutpostAtPos;
+		private _created = [_posOp, _current_flavors] call ODDadvanced_fnc_createOutpostAtPos;
 		if (_created) then {
 			break
 		} else {

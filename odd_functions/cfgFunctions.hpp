@@ -20,12 +20,14 @@ class ODD_Common {
 		class initPatrol {};
 		class initGarison {};
 		class initIED {};
+		class initOutpost {};
 
 		class controlCiv {};
 		class controlPatrols {};
 		class controlGarisons {};
 		class controlRoadBlockAo {};
 		class controlIED {};
+		class controlOutpost {};
 
 		class civPatrol {};
 		class civGarnison {};
