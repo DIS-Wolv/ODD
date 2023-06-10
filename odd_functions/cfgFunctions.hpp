@@ -6,6 +6,7 @@ class ODD_Common {
 
 		class log {};
         class CtrlVlLock {};
+        class createAndLockVl {};
         class PlaceTable {};
 		class CountOnBase {};
 		class SelectZO {};
