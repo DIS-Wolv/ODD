@@ -11,10 +11,8 @@
 * nil
 *
 * Exemple :
-* [_zo] call ODDadvanced_fnc_roadBlockZO
-* [_zo, 2] call ODDadvanced_fnc_roadBlockZO
-*
-* Variable publique :
+* [_zo] call ODDadvanced_fnc_createOutpostsAroundZo
+* [_zo, 2] call ODDadvanced_fnc_createOutpostsAroundZo
 */
 params ["_zo", ["_nb", 2]];
 

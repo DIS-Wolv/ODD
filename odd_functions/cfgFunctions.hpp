@@ -62,7 +62,6 @@ class ODD_advanced {
 		class clearZO {};
 		class createTarget {};
 		class createTargetSec {};
-		class createOutpost {};
 		class civil {};
 		class createGarnison {};
 		class createGarnisonV2 {};
@@ -89,8 +88,12 @@ class ODD_advanced {
 		class particules {};
 		class civiesCover {};
 		class haltCivilian {};
-		class varOutpost {};
 		class areaControl {};
+
+		// outpost
+		class varOutpost {};
+		class createOutpostAtPos {};
+		class createOutpostsAroundZo {};
 
 		// fonctions "Propres"
 		class TrigCreateExtract {};
