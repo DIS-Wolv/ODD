@@ -135,10 +135,10 @@ sleep 1;
 		// systemChat format ["pos bat %1 : ", _pos];
 		// Récupère la position
 		
-		_pos = _pos findEmptyposition [sizeOf _vl, 100, _vl];
+		_pos = _pos findEmptyPosition [50, 100, _vl];
 		// systemChat format ["pos libre %1 : ", _pos];
 		if (count(_pos) == 0) then {
-			_pos = (position _zo) findEmptyposition [sizeOf _vl, 300, _vl];
+			_pos = (position _zo) findEmptyPosition [50, 300, _vl];
 			// systemChat format ["pos autre %1 : ", _pos];
 		};
 		
