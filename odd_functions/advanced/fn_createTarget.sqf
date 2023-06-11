@@ -388,7 +388,7 @@ switch (_Mission) do {
 		// Récupère la position pour l'objectif
 		
 		_dir = getDir _tgBuild;
-		_posvl = _pos findEmptyPosition [50, 100, _vlType];
+		_posvl = _pos findEmptyPosition [5, 100, _vlType];
 		
 		_g = _vlType createvehicle _posvl;
 		// Crée le véhicule
@@ -406,7 +406,7 @@ switch (_Mission) do {
 		if (!alive _g) then {
 		// Si le véhicule a été détruit lors de sa création
 			_pos = position _g;
-			_posvl = _pos findEmptyPosition [50, 100, "B_Heli_Transport_01_F"];
+			_posvl = _pos findEmptyPosition [5, 100, "B_Heli_Transport_01_F"];
 			deletevehicle _g;
 			sleep 1;
 			_g = _vlType createvehicle _posvl;
@@ -464,7 +464,7 @@ switch (_Mission) do {
 		_dir = getDir _tgBuild;
 		// Récupère la position pour l'objectif
 
-		_posvl = _pos findEmptyPosition [50, 100, _vlType];
+		_posvl = _pos findEmptyPosition [5, 100, _vlType];
 		_g = _vlType createvehicle _posvl;
 		// Crée le véhicule
 
@@ -481,7 +481,7 @@ switch (_Mission) do {
 		if (!alive _g) then {
 		// Si le véhicule a été détruit lors de sa création
 			_pos = position _g;
-			_posvl = _pos findEmptyPosition [50, 100, "B_Heli_Transport_01_F"];
+			_posvl = _pos findEmptyPosition [5, 100, "B_Heli_Transport_01_F"];
 			deletevehicle _g;
 			sleep 1;
 			_g = _vlType createvehicle _posvl;
