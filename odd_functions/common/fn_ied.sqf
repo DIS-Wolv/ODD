@@ -70,8 +70,15 @@ if (_type >= 0) then {
 				_pos = position _explo;
 				_brouilleur = nearestObjects [_pos, ['R3F_Brouilleur'], 15];
 				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count _brouilleur == 0);",
+				if (typeName _cover == 'OBJECT') then {
+					_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+					this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count _brouilleur == 0);
+				}
+				else {
+					[['IED-BUG : Cover not a object : %1', typeName _cover]] call ODDcommon_fnc_log;
+					this
+				}
+				",
 				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
 				_explo setDamage 1;
 				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];

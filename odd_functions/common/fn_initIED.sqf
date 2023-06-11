@@ -54,7 +54,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 		private _triggerMan = selectRandom ODD_var_Civilians;
 		private _triggerManPos = [0,0,0];
 
-		_type = 0;
+		// _type = 0; // a modifié
 		switch (_type) do {
 			case 0: {	// IED détonné radio, brouillable, triggerman ennemi loin
 				_triggerMan = [selectRandom (selectRandom ODD_var_Pair)];
