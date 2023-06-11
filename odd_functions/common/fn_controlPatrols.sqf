@@ -104,27 +104,31 @@ if ((typeName _pad) != "SCALAR") then {
 				private _pat = [_zo] call ODDcommon_fnc_eniPatrol;
 				_patGroup pushBack _pat;
 			};
-			_pad setVariable ["trig_ODD_var_spawnedPat",_patGroup, True];
 			_patPool = _patPool - _patOut;
+
+			[['Quantité Patrouille : Spawn %1 : %2 group(s)', (text _zo), _patOut]] call oddcommon_fnc_log;
+
 			_pad setVariable ["trig_ODD_var_patrols", [_patPool,_patLimit], True];
+			_pad setVariable ["trig_ODD_var_patrolsGroups",_patGroup, True];
 		}
 		else {
-			private _nearMen = _pos nearEntities ["man", _radius];
-			private _spawedPat = _pad getVariable ["trig_ODD_var_spawnedPat",[]];
-			private _despawnedPat = 0;
+			private _despawnPat = 0;
+			private _patGroup = _pad getVariable ["trig_ODD_var_patrolsGroups", []];
+
 			{
-				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Pat", False])) then {
-					{
-						deleteVehicle _x;
-					} forEach units (group _x);
-					if ((group _x) in _spawedPat) then {
-						_spawedPat = _spawedPat - [(group _x)];
-						_despawnedPat = _despawnedPat + 1;
-					};
-				};
-			} forEach _nearMen;
-			_patPool = _patPool + _despawnedPat; // /!\ les patrouilles spawn sur la location a et despawn sur la location b ne sont pas réajoutées à la _patPool !!!!!
-			_pad setVariable ["trig_ODD_var_spawnedPat", _spawedPat, True];
+				// vérification qu'il sont pas trop proche des joueurs ?
+				{
+					deleteVehicle _x;
+				} forEach units _x;
+				_despawnPat = _despawnPat + 1;
+				_patGroup = _patGroup - [_x];
+			} forEach _patGroup;
+			_patPool = _patPool + _despawnPat;
+
+			[['Quantité Patrouille : Despawn %1 : %2 group(s)', (text _zo), _despawnPat]] call oddcommon_fnc_log;
+
+			_pad setVariable ["trig_ODD_var_patrolsGroups", _patGroup, True];
+			// _pad setVariable ["trig_ODD_var_spawnedGar", _spawedGar, True]; //update de la pool a faire 
 		};
 		// Fin du spawn 
 
