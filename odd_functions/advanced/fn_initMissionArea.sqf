@@ -93,7 +93,7 @@ private _radVl = 2000;
 
 	// utilise les fonctions pour calculer les reserves de garnison sur chaque localité	
 	private _garisonPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
-	_variablesPad setVariable ["trig_ODD_var_garison", _garisonPool, True];
+	_variablesPad setVariable ["trig_ODD_var_garisonPool", _garisonPool, True];
 	// crée les triggers pour spawn/déspawn les garnisons
 	private _garTrigger = createTrigger ["EmptyDetector", _pos, True];
 	_triggers pushBack _garTrigger;
