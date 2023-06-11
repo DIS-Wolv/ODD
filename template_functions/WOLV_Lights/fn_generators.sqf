@@ -38,9 +38,9 @@ private _speedL = 0; 	// des poteaus
 private _speedP = 2000; 	// des lampes
 
 //groupe de poteaux deja changé d'etat
-private _petitPoteauPool = [0]; //Petit
-private _moyenPoteauPool = [0];	//moyen
-private _grandPoteauPool = [0];	//grand
+private _petitPoteauPool = []; //Petit
+private _moyenPoteauPool = [];	//moyen
+private _grandPoteauPool = [];	//grand
 
 private _poteau =  nearestObjects [_posPoteauG, [], _rGenP, True]; // recupère tout les obj
 private _gen = nearestObjects [_posPoteauG, WolvLights_var_genType, _rGenP, True]; // les grand poteaux

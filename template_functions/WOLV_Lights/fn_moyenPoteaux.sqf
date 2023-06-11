@@ -18,9 +18,8 @@
 //récupération des parametre 
 params ["_posPoteau", "_moyenPoteauPool", "_i", "_rMoyenL", "_rMoyenP", "_rGenP", "_state", "_speedL", "_speedP"];
 
-private _posPoteau = 0;
-private _marker = [0];
-private _markerP = [0];
+private _marker = [];
+private _markerP = [];
 
 //liste des grand poteaux et des générateur a proximité
 private _moyenPoteau = [];
@@ -42,11 +41,11 @@ if (_isInPool == -1) then {		//si le poteaux n'est pas dans la liste
 		(_marker select _i) setMarkerSize [_rMoyenL,_rMoyenL];
 		(_marker select _i) setMarkerBrush "SolidBorder";
 		(_marker select _i) setMarkerAlpha 0.2; 
-		(_marker select _i) setMarkerColor "ColorBlue";//*/
+		(_marker select _i) setMarkerColor "ColorOrange";//*/
 		
 		_markerP set [_i, createMarker [(format ["Moyen Poteaux P x %1, y %2, z %3", (_posPoteau select 0), (_posPoteau select 1), (_posPoteau select 2)]), _posPoteau]]; 
 		(_markerP select _i) setMarkerType "hd_dot";
-		(_markerP select _i) setMarkerColor "ColorBlue";
+		(_markerP select _i) setMarkerColor "ColorOrange";
 	}
 	else { //sinon on change l'état des poteaux
 		if (_state == 4) then {}
