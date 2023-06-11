@@ -39,7 +39,7 @@ private _roads = (getPos _zo) nearRoads (size _loc select 0);
 
 		// définie le cover et ca position
 		private _cover = selectRandom ODD_var_IEDCover;
-		private _coverPos = _roadPos findEmptyPosition [sizeOf _cover, 50, _cover];
+		private _coverPos = _roadPos findEmptyPosition [10, 50, _cover];
 
 		// définie l'explosif et ca position 
 		private _explo = selectRandom ODD_var_IEDExplosive;
