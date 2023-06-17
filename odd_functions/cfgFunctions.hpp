@@ -1,12 +1,13 @@
 
 class ODD_Common {
-    tag = "ODDcommon";
-    class Initialize {
-        file = "odd_functions\common";
+	tag = "ODDcommon";
+	class Initialize {
+		file = "odd_functions\common";
 
 		class log {};
-        class CtrlVlLock {};
-        class PlaceTable {};
+		class CtrlVlLock {};
+		class createAndLockVl {};
+		class PlaceTable {};
 		class CountOnBase {};
 		class SelectZO {};
 		class sortIntels {};
@@ -19,12 +20,14 @@ class ODD_Common {
 		class initPatrol {};
 		class initGarison {};
 		class initIED {};
+		class initOutpost {};
 
 		class controlCiv {};
 		class controlPatrols {};
 		class controlGarisons {};
 		class controlRoadBlockAo {};
 		class controlIED {};
+		class controlOutpost {};
 
 		class civPatrol {};
 		class civGarnison {};
@@ -36,7 +39,7 @@ class ODD_Common {
 
 		class roadBlockAo {};
 		class ied {};
-    };
+	};
 };
 
 class ODD_Data {
@@ -62,7 +65,6 @@ class ODD_advanced {
 		class clearZO {};
 		class createTarget {};
 		class createTargetSec {};
-		class createOutpost {};
 		class civil {};
 		class createGarnison {};
 		class createGarnisonV2 {};
@@ -89,8 +91,12 @@ class ODD_advanced {
 		class particules {};
 		class civiesCover {};
 		class haltCivilian {};
-		class varOutpost {};
 		class areaControl {};
+
+		// outpost
+		class varOutpost {};
+		class createOutpostAtPos {};
+		class createOutpostsAroundZo {};
 
 		// fonctions "Propres"
 		class TrigCreateExtract {};
