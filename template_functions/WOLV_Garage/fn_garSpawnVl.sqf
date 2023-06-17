@@ -3,16 +3,16 @@
 _index = lbCurSel WolvGarage_var_IdcListVlUsine;
 if (_index != -1) then { 
 	_vlType = (WolvGarage_var_ListUsine select _index);
-	_pos = WolvGarage_var_pos findEmptyPosition [sizeOf _vlType, 100, _vlType];
+	_pos = WolvGarage_var_pos findEmptyPosition [5, 100, _vlType];
 
 	if ((count _pos) != 0) then {
 		// Crée le véhicule
 		_vl = _vlType createvehicle _pos;
 
-		clearWeaponCargoGlobal _vl;	
-		clearMagazineCargoGlobal _vl; 
-		clearBackpackCargoGlobal _vl; 
-		clearItemCargoGlobal _vl; 
+		clearWeaponCargoGlobal _vl;
+		clearMagazineCargoGlobal _vl;
+		clearBackpackCargoGlobal _vl;
+		clearItemCargoGlobal _vl;
 		//vide le véhicule
 
 		_vl addWeaponCargoGlobal ["rhs_weap_M136", 5];

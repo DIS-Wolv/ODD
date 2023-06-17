@@ -19,9 +19,8 @@
 //récupération des parametre 
 params["_posPoteau", "_petitPoteauPool", "_i", "_rPetitL", "_rPetitP", "_rGenP", "_state", "_speedL", "_speedP"];
 
-private _posPoteau = 0;
-private _marker = [0];
-private _markerP = [0];
+private _marker = [];
+private _markerP = [];
 
 //liste des grand poteaux et des générateur a proximité
 private _gen = [];

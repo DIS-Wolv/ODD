@@ -381,16 +381,16 @@ switch (_Mission) do {
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefSecureVehicle, text _zo], "Securiser le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
 		// Crée la tâche
 		
-		_vl = selectRandom ODD_var_SercureVehicles;
+		_vlType = selectRandom ODD_var_SercureVehicles;
 		// Choisi un véhicule
 		
 		_pos = position _tgBuild;
 		// Récupère la position pour l'objectif
 		
 		_dir = getDir _tgBuild;
-		_posvl = _pos findEmptyposition [sizeOf _vl, 100, _vl];
+		_posvl = _pos findEmptyPosition [5, 100, _vlType];
 		
-		_g = _vl createvehicle _posvl;
+		_g = _vlType createvehicle _posvl;
 		// Crée le véhicule
 
 		_g addItemCargoGlobal ["Toolkit", 1]; 
@@ -406,10 +406,10 @@ switch (_Mission) do {
 		if (!alive _g) then {
 		// Si le véhicule a été détruit lors de sa création
 			_pos = position _g;
-			_posvl = _pos findEmptyposition [sizeOf _vl, 100, "B_Heli_Transport_01_F"];
+			_posvl = _pos findEmptyPosition [5, 100, "B_Heli_Transport_01_F"];
 			deletevehicle _g;
 			sleep 1;
-			_g = _vl createvehicle _posvl;
+			_g = _vlType createvehicle _posvl;
 			//On le recrée
 			_g addItemCargoGlobal ["Toolkit", 1];
 			_g setDir _dir;
@@ -457,15 +457,15 @@ switch (_Mission) do {
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefDestroyVehicle, text _zo], "Détruire le véhicule", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
 		// Crée la tâche
 		
-		_vl = selectRandom ODD_var_DestroyVehicles;
+		_vlType = selectRandom ODD_var_DestroyVehicles;
 		// Choisi un véhicule
 		
 		_pos = position _tgBuild;
 		_dir = getDir _tgBuild;
 		// Récupère la position pour l'objectif
 
-		_posvl = _pos findEmptyposition [sizeOf _vl, 100, _vl];
-		_g = _vl createvehicle _posvl;
+		_posvl = _pos findEmptyPosition [5, 100, _vlType];
+		_g = _vlType createvehicle _posvl;
 		// Crée le véhicule
 
 		_g addItemCargoGlobal ["Toolkit", 1]; 
@@ -481,10 +481,10 @@ switch (_Mission) do {
 		if (!alive _g) then {
 		// Si le véhicule a été détruit lors de sa création
 			_pos = position _g;
-			_posvl = _pos findEmptyposition [sizeOf _vl, 100, "B_Heli_Transport_01_F"];
+			_posvl = _pos findEmptyPosition [5, 100, "B_Heli_Transport_01_F"];
 			deletevehicle _g;
 			sleep 1;
-			_g = _vl createvehicle _posvl;
+			_g = _vlType createvehicle _posvl;
 			//On le recrée
 			_g addItemCargoGlobal ["Toolkit", 1]; 
 			// Ajoute un repaire kit
@@ -522,32 +522,49 @@ switch (_Mission) do {
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefConvHuma, text _zo], "Véhicule humanitaire", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
 		// Crée la tâche
 		
-		_vl = selectRandom ODD_var_HumaVehicles;
+		_vlType = selectRandom ODD_var_HumaVehicles;
 		// Choisi un véhicule
 		
 		_pos = position FOB;
 		_dir = ((getDir FOB) + 270) % 360;
 		// Récupère la position pour spawn l'objectif
 
-		_posvl = _pos findEmptyposition [sizeOf _vl, 100, _vl];
-		_g = _vl createvehicle _posvl;
+		_posvl = _pos findEmptyPosition [4, 100, _vlType];
+		_vl = _vlType createvehicle _posvl;
 		// Crée le véhicule
 
-		_g addItemCargoGlobal ["Toolkit", 1]; 
+		clearWeaponCargoGlobal _vl;	
+		clearMagazineCargoGlobal _vl; 
+		clearBackpackCargoGlobal _vl; 
+		clearItemCargoGlobal _vl; 
+
+		[_vl, 30] call ace_cargo_fnc_setSpace;
+
+		["ACE_medicalSupplyCrate_advanced", _vl, 5] call ace_cargo_fnc_addCargoItem;
+		["ACE_Wheel", _vl, 5] call ace_cargo_fnc_addCargoItem;
+
+		_vl addItemCargoGlobal ["Toolkit", 1];
+		_vl addMagazineCargoGlobal ["rhs_mag_30Rnd_556x45_M855A1_Stanag", 30];
+		_vl addMagazineCargoGlobal ["rhsusf_200Rnd_556x45_box", 5];
+		_vl addItemCargoGlobal ["SmokeShell", 10];
+		_vl addItemCargoGlobal ["ACE_EntrenchingTool", 1];
+		_vl addItemCargoGlobal ["ACE_elasticBandage", 30];
+		_vl addItemCargoGlobal ["ACE_packingBandage", 30];
+		_vl addItemCargoGlobal ["ACE_plasmaIV", 5];
 		// Ajoute un kit de réparation au véhicule
 		
-		_g setDir _dir;
+		_vl setDir _dir;
 		
 		sleep 1;
-		_g setDamage 0;
-		_g setFuel 1;
+		_vl setDamage 0;
+		_vl setFuel 1;
 		
-		ODD_var_MissionProps pushBack _g;
-		ODD_var_Objective pushBack _g;
+		ODD_var_MissionProps pushBack _vl;
+		ODD_var_Objective pushBack _vl;
 
-		base setVariable ["ODD_var_Objectif", _g, True];
+		base setVariable ["ODD_var_Objectif", _vl, True];
 
-		_g addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
+		_vl addEventHandler ["Killed", {[False] spawn ODDadvanced_fnc_CompleteObj;}];
 		
 		sleep 1;
 

@@ -52,23 +52,14 @@ private _radVl = 2000;
 	};
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
-	// utilise les fonctions pour calculer le nombre et la composition des civils
-	private _civils = [_loc] call ODDcommon_fnc_initCivils;
-	_variablesPad setVariable ["trig_ODD_var_civ",_civils, True];
-
-	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
-	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
-	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
-	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
-
-	// utilise les fonctions pour calculer les reserves de garnison sur chaque localité	
-	private _garisonPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
-	_variablesPad setVariable ["trig_ODD_var_garison", _garisonPool, True];
 
 	// utilise les fonctions pour calculer les reserves de VL
 	// private _VlPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
 	// _variablesPad setVariable ["trig_ODD_var_vl", _VlPool, True];
 
+	// utilise les fonctions pour calculer le nombre et la composition des civils
+	private _civils = [_loc] call ODDcommon_fnc_initCivils;
+	_variablesPad setVariable ["trig_ODD_var_civ",_civils, True];
 	// crée les triggers pour spawn/déspawn les civls
 	private _civTrigger = createTrigger ["EmptyDetector", _pos, True];
 	_triggers pushBack _civTrigger;
@@ -82,6 +73,11 @@ private _radVl = 2000;
 	_civTrigger setVariable ["trig_ODD_var_civWantState", False, True];
 	_scriptID = [_civTrigger, False] spawn ODDcommon_fnc_controlCiv;
 
+
+	// utilise les fonctions pour calculer les reserves de patrouilles sur chaque localité	
+	private _patrolPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initPatrol;
+	private _patrolLimit = [_loc] call ODDcommon_fnc_LimitPatrols;
+	_variablesPad setVariable ["trig_ODD_var_patrols", [_patrolPool,_patrolLimit], True];
 	// crée les triggers pour spawn/déspawn les patrouilles
 	private _patTrigger = createTrigger ["EmptyDetector", _pos, True];
 	_triggers pushBack _patTrigger;
@@ -95,6 +91,10 @@ private _radVl = 2000;
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_controlPatrols;
 
+
+	// utilise les fonctions pour calculer les reserves de garnison sur chaque localité	
+	private _garisonPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
+	_variablesPad setVariable ["trig_ODD_var_garisonPool", _garisonPool, True];
 	// crée les triggers pour spawn/déspawn les garnisons
 	private _garTrigger = createTrigger ["EmptyDetector", _pos, True];
 	_triggers pushBack _garTrigger;
@@ -121,6 +121,7 @@ private _radVl = 2000;
 	// _variablesPad setVariable ["trig_ODD_var_VlWantState", False, True];
 	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
 
+
 	// calcule le nombre d'IED sur la zone :
 	private _minIED = round (((count _roads) *  1 / 100)) max 0;
 	private _maxIED = round ((count _roads) * 4 / 100);
@@ -141,6 +142,7 @@ private _radVl = 2000;
 	_variablesPad setVariable ["trig_ODD_var_iedWantState", False, True];
 	// _scriptID = [_IEDTrigger, False] spawn ODDcommon_fnc_controlIED;
 
+
 	// crée les triggers pour activer/désactiver les AIs
 	private _LocTrigger = createTrigger ["EmptyDetector", _pos, True]; 
 	_triggers pushBack _LocTrigger;
@@ -153,6 +155,7 @@ private _radVl = 2000;
 	_LocTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_WantState", False, True];
 	_scriptID = [_LocTrigger, False] spawn ODDadvanced_fnc_areaControl;
+
 
 	// log les hélipads et les triggers dans le fichier var
 	ODD_var_ZonePad pushBack _variablesPad;
@@ -231,6 +234,8 @@ Private _bridge = [];
 		_RbTrigger setVariable ["trig_ODD_var_RbWantState", False, True];
 		_scriptID = [_RbTrigger, False] spawn ODDcommon_fnc_controlRoadBlockAo;
 		ODD_var_AreaTrigger pushBack _RbTrigger;
+
+		ODD_var_ZonePad pushBack _variablesPad;
 	};
 } forEach _roadBlock;
 

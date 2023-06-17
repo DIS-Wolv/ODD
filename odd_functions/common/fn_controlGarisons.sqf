@@ -35,7 +35,7 @@ if ((typeName _pad) != "SCALAR") then {
 		private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _zo select 0];
 		private _typeZo = type (_zo); //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill']
 		private _zoActivationType = _zoDefined select 0; //[civils, pat, pat+vl, pat+garnison, pat+garnison+chkpt, pat+garnison+vl, pat+garnison+chkpt+vl]
-		private _garPool = _pad getVariable ["trig_ODD_var_garison", 25];
+		private _garPool = _pad getVariable ["trig_ODD_var_garisonPool", 25];
 		private _garGroup = [];
 
 
@@ -98,7 +98,7 @@ if ((typeName _pad) != "SCALAR") then {
 			};
 			_garOut = _garOut * (_typeModifier + _batModifier + _playersModifier);
 
-			_garOut = _garOut * 2;
+			_garOut = _garOut * 4;
 			// _garOut = _garOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_garOut = round _garOut;
 
@@ -111,26 +111,30 @@ if ((typeName _pad) != "SCALAR") then {
 				_garGroup pushBack _gar;
 			};
 			
+			[['Quantité Garnison : Spawn %1 : %2 group(s)', (text _zo), _garOut]] call oddcommon_fnc_log;
+
 			_garPool = _garPool - _garOut;
-			_pad setVariable ["trig_ODD_var_garison", _garPool, True];
+			_pad setVariable ["trig_ODD_var_garisonPool", _garPool, True];
+			_pad setVariable ["trig_ODD_var_garisonPoolGroups", _garGroup, True];
 		}
 		else {
-			private _nearMen = _pos nearEntities ["man", _radius];
-			private _spawedGar = _pad getVariable ["trig_ODD_var_spawnedGar",[]];
 			private _despawnedGar = 0;
+			private _garGroup = _pad getVariable ["trig_ODD_var_garisonPoolGroups", []];
+
 			{
-				if ((side _x) == east and ((group _x) getVariable ["trig_ODD_var_Gar", False])) then {
-					{
-						deleteVehicle _x;
-					} forEach units (group _x);
-					if ((group _x) in _spawedGar) then {
-						_spawedGar = _spawedGar - [(group _x)];
-						_despawnedGar = _despawnedGar + 1;
-					};
-				};
-			} forEach _nearMen;
-			_garPool = _garPool + _despawnedGar; // /!\ les patrouilles spawn sur la location a et despawn sur la location b ne sont pas réajoutées à la _patPool !!!!!
-			_pad setVariable ["trig_ODD_var_spawnedGar", _spawedGar, True];
+				// vérification qu'il sont pas trop proche des joueurs ?
+				{
+					deleteVehicle _x;
+				} forEach units _x;
+				_despawnedGar = _despawnedGar + 1;
+				_garGroup = _garGroup - [_x];
+			} forEach _garGroup;
+			_garPool = _garPool + _despawnedGar;
+
+			[['Quantité Garnison : Despawn %1 : %2 group(s)', (text _zo), _despawnedGar]] call oddcommon_fnc_log;
+
+			_pad setVariable ["trig_ODD_var_garisonPool", _garPool, True];
+			_pad setVariable ["trig_ODD_var_garisonPoolGroups", _garGroup, True];
 		};
 		// Fin du spawn 
 
