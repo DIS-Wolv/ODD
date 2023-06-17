@@ -1,13 +1,13 @@
 
 class ODD_Common {
-    tag = "ODDcommon";
-    class Initialize {
-        file = "odd_functions\common";
+	tag = "ODDcommon";
+	class Initialize {
+		file = "odd_functions\common";
 
 		class log {};
-        class CtrlVlLock {};
-        class createAndLockVl {};
-        class PlaceTable {};
+		class CtrlVlLock {};
+		class createAndLockVl {};
+		class PlaceTable {};
 		class CountOnBase {};
 		class SelectZO {};
 		class sortIntels {};
@@ -39,7 +39,7 @@ class ODD_Common {
 
 		class roadBlockAo {};
 		class ied {};
-    };
+	};
 };
 
 class ODD_Data {
