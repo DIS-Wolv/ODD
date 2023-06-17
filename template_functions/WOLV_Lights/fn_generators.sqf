@@ -45,7 +45,7 @@ private _grandPoteauPool = [];	//grand
 private _poteau =  nearestObjects [_posPoteauG, [], _rGenP, True]; // recupère tout les obj
 private _gen = nearestObjects [_posPoteauG, WolvLights_var_genType, _rGenP, True]; // les grand poteaux
 
-playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", _posPoteauG , False, _posPoteauG, 2];
+playSound3D [getMissionPath "template_functions\WOLV_Lights\Toggle.wav", _posPoteauG , False, _posPoteauG, 2];
 
 
 {		//pour chaque petit poteau
