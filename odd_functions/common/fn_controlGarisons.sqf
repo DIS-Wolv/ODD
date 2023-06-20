@@ -58,47 +58,46 @@ if ((typeName _pad) != "SCALAR") then {
 			private _typeModifier = 0;
 			private _batModifier = 0;
 
-		switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'] 
-			case (ODD_var_LocationType select 5): { 
-				_typeModifier = 1; 
-				_batModifier = (count _Buildings) / 6; 
-				_playersModifier = _players / 7; 
-			}; 
-			case (ODD_var_LocationType select 4): { 
-				_typeModifier = 1; 
-				_batModifier = (count _Buildings) / 14; 
-				_playersModifier = _players / 7; 
-			}; 
-			case (ODD_var_LocationType select 3): { 
-				_typeModifier = 3; 
-				_batModifier = (count _Buildings) / 12; 
-				_playersModifier = _players / 6; 
-			}; 
-			case (ODD_var_LocationType select 2): { 
-	 			if ((count _Buildings) > 25) then { 
-					_typeModifier = 5; 
-					_batModifier = (count _Buildings) / 60; 
-					} 
-				else { 
-					_typeModifier = 4; 
-					_batModifier = (count _Buildings) / 20; 
+			switch (_typeZo) do { //['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'] 
+				case (ODD_var_LocationType select 5): { 
+					_typeModifier = 1; 
+					_batModifier = (count _Buildings) / 6; 
+					_playersModifier = _players / 7; 
 				}; 
-				_playersModifier = _players / 5; 
+				case (ODD_var_LocationType select 4): { 
+					_typeModifier = 1; 
+					_batModifier = (count _Buildings) / 14; 
+					_playersModifier = _players / 7; 
+				}; 
+				case (ODD_var_LocationType select 3): { 
+					_typeModifier = 3; 
+					_batModifier = (count _Buildings) / 12; 
+					_playersModifier = _players / 6; 
+				}; 
+				case (ODD_var_LocationType select 2): { 
+					if ((count _Buildings) > 25) then { 
+						_typeModifier = 5; 
+						_batModifier = (count _Buildings) / 60; 
+						} 
+					else { 
+						_typeModifier = 4; 
+						_batModifier = (count _Buildings) / 20; 
+					}; 
+					_playersModifier = _players / 5; 
+				}; 
+				case (ODD_var_LocationType select 1): { 
+					_typeModifier = 6; 
+					_batModifier = (count _Buildings) / 54; 
+					_playersModifier = _players / 4; 
+				}; 
+				case (ODD_var_LocationType select 0): { 
+					_typeModifier = 7; 
+					_batModifier = (count _Buildings) / 66; 
+					_playersModifier = _players / 4; 
+				}; 
 			}; 
-			case (ODD_var_LocationType select 1): { 
-				_typeModifier = 6; 
-				_batModifier = (count _Buildings) / 54; 
-				_playersModifier = _players / 4; 
-			}; 
-			case (ODD_var_LocationType select 0): { 
-				_typeModifier = 7; 
-				_batModifier = (count _Buildings) / 66; 
-				_playersModifier = _players / 4; 
-			}; 
-   		}; 
-		_garOut = _garOut * (_typeModifier + _batModifier + _playersModifier); 
-
-
+			
+			_garOut = _garOut * (_typeModifier + _batModifier + _playersModifier); 
 			//_garOut = _garOut * 4;
 			// _garOut = _garOut * (_typeModifier + (0.8 * _batModifier) + _playersModifier);
 			_garOut = round _garOut;
