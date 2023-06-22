@@ -6,6 +6,7 @@ ODDGUIMissions_Combo_Mission_IDC = 2102;	// OK
 ODDGUIMissions_Combo_Faction_IDC = 2103;	// OK
 ODDGUIMissions_Combo_Players_IDC = 2104;	// OK
 ODDGUIMissions_Combo_Weather_IDC = 2105;	// OK
+ODDGUIMissions_Combo_Fog_IDC = 2106;		// OK
 ODDGUIMissions_Slider_Time_IDC = 1900;		// OK
 ODDGUIMissions_List_Location_IDC = 1500;	// OK
 ODDGUIMissions_SText_Time_IDC = 1102;		// OK
@@ -14,6 +15,10 @@ ODDGUIMissions_SText_Recap_IDC = 1101;
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 
 private _meteoName = ["Ciel bleu", "Nuageux", "Mauvais temps"];
+
+private _foglvl = [0, 1, 2, 3, 4, 5];
+
+
 private _meteoValue = [2, 5, 8];
 
 private _Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
@@ -41,6 +46,11 @@ if (_isCreate) then {
 	lbAdd [ODDGUIMissions_Combo_Weather_IDC, "Actuel"];
 	lbSetValue[ODDGUIMissions_Combo_Weather_IDC, count _meteoName, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_Weather_IDC) lbSetCurSel ((count _meteoName));
+	{
+		lbAdd [ODDGUIMissions_Combo_Fog_IDC, str(_x)]; 				// ajoute l'entrée
+		lbSetValue [ODDGUIMissions_Combo_Fog_IDC, _forEachIndex, _x]; 	// ajoute une valeur à l'entrée
+	} forEach _foglvl;
+	(_display displayCtrl ODDGUIMissions_Combo_Fog_IDC) lbSetCurSel ((count _foglvl));
 
 	// combo secteur
 	{
