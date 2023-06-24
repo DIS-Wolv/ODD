@@ -20,7 +20,7 @@ private _foglvl = lbValue [ODDGUIMissions_Combo_Fog_IDC, _fogValue] / 10;
 
 if (_weather > 0) then {
 
-[0, (_weather/10)] remoteExec["setOvercast", 0];
+    [0, (_weather/10)] remoteExec["setOvercast", 0];
     [] remoteExec["forceWeatherChange", 0];
 };
 
