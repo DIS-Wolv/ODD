@@ -150,6 +150,14 @@ class ODDGUIMission
 			w = 0.125 * safezoneW;
 			h = 0.025 * safezoneH;
 		};
+		class ODDGUIMissions_Combo_Fog: RscCombo_ODDGUI
+		{
+			idc = 2106;
+			x = 0.65 * safezoneW + safezoneX;
+			y = 0.750 * safezoneH + safezoneY;
+			w = 0.125 * safezoneW;
+			h = 0.025 * safezoneH;
+		};
 		class ODDGUIMissions_Slider_Time: RscSlider_ODDGUI
 		{
 			idc = 1900;
