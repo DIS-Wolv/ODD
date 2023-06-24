@@ -15,11 +15,10 @@ ODDGUIMissions_SText_Recap_IDC = 1101;
 ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 
 private _meteoName = ["Ciel bleu", "Nuageux", "Mauvais temps"];
-
-private _foglvl = [0, 1, 2, 3, 4, 5];
-
-
 private _meteoValue = [2, 5, 8];
+
+private _foglvlName = ["Pas de brouillard", "Brouillard très légers", "Brouillard légers", "Brouillard moyen", "Gros Brouillard", "Purée de poid"];
+private _foglvlValue = [0, 1, 2, 3, 4, 5];
 
 private _Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
 ODDGUIMissions_var_SecteurMarker = ["ODD_MarkerNW", "ODD_MarkerW", "ODD_MarkerSW", "ODD_MarkerN", "ODD_MarkerC", "ODD_MarkerS", "ODD_MarkerNE", "ODD_MarkerE", "ODD_MarkerSE"];
@@ -47,10 +46,10 @@ if (_isCreate) then {
 	lbSetValue[ODDGUIMissions_Combo_Weather_IDC, count _meteoName, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_Weather_IDC) lbSetCurSel ((count _meteoName));
 	{
-		lbAdd [ODDGUIMissions_Combo_Fog_IDC, str(_x)]; 				// ajoute l'entrée
-		lbSetValue [ODDGUIMissions_Combo_Fog_IDC, _forEachIndex, _x]; 	// ajoute une valeur à l'entrée
-	} forEach _foglvl;
-	(_display displayCtrl ODDGUIMissions_Combo_Fog_IDC) lbSetCurSel ((count _foglvl));
+		lbAdd [ODDGUIMissions_Combo_Fog_IDC, _x];				// ajoute l'entrée
+		lbSetValue [ODDGUIMissions_Combo_Fog_IDC, _forEachIndex, (_foglvlValue select _forEachIndex)]; 	// ajoute une valeur à l'entrée
+	} forEach _foglvlName;
+	(_display displayCtrl ODDGUIMissions_Combo_Fog_IDC) lbSetCurSel ((count _foglvlValue));
 
 	// combo secteur
 	{
