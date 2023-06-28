@@ -37,6 +37,8 @@ if (_index != -1) then {
 			_vl addMagazineCargoGlobal ["MRAWS_HE_F", 20];
 			_vl addMagazineCargoGlobal ["rhs_fgm148_magazine_AT", 5];
 			_vl addMagazineCargoGlobal ["rhs_fim92_mag", 5];
+			_vl addItemCargoGlobal ["ACE_elasticBandage", 200];
+			_vl addItemCargoGlobal ["ACE_packingBandage", 200];
 		}
 		else {
 			_vl addMagazineCargoGlobal ["rhs_mag_30Rnd_556x45_M855A1_Stanag", 30];
