@@ -19,10 +19,11 @@ if (isNil "_marker") then {
 	_marker = "DIS_mrk_FOB_0";
 };
 
-_pos = MarkerPos _marker;
-_dir = MarkerDir _marker;
+private _pos = MarkerPos _marker;
+private _dir = MarkerDir _marker;
+private _dh = 0.5;
 
-_man = getPos fob nearEntities ["Man", 100];
+private _man = getPos fob nearEntities ["Man", 100];
 
 fob setPos _pos;
 fob setDir _dir;
@@ -30,16 +31,24 @@ fob setDir _dir;
 usine setPos (_pos getPos [8, (90+_dir)%360]);
 usine setDir _dir;
 
-factory setPos (_pos getPos [15, (90+_dir)%360]);
+private _posFact = _pos getPos [15, (90+_dir)%360];
+_posFact set [2, ((_posFact select 2)+ _dh)];
+factory setPos _posFact;
 factory setDir (_dir + 180);
 
-armesFob setPos (_pos getPos [7, (75+_dir)%360]);
+private _posArme = _pos getPos [7, (75+_dir)%360];
+_posArme set [2, ((_posArme select 2)+ _dh)];
+armesFob setPos _posArme;
 armesFob setDir (_dir + 43);
 
-medicalFob setPos (_pos getPos [5.5, (57+_dir)%360]);
+private _posMed = _pos getPos [5.5, (57+_dir)%360];
+_posMed set [2, ((_posMed select 2)+ _dh)];
+medicalFob setPos _posMed;
 medicalFob setDir (_dir + 180);
 
-lanceursFob setPos (_pos getPos [3, (46+_dir)%360]);
+private _posLanc = _pos getPos [3, (46+_dir)%360];
+_posLanc set [2, ((_posLanc select 2)+ _dh)];
+lanceursFob setPos _posLanc;
 lanceursFob setDir (_dir + 330);
 
 {
