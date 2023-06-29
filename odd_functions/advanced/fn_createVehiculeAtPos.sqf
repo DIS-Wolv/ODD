@@ -10,23 +10,30 @@
 * Nil
 *
 * Exemple :
-* [position player, "rhssaf_army_o_t72s"] call ODDadvanced_fnc_createVehiculeAtPos
+* [position player, "rhssaf_army_o_t72s"] spawn ODDadvanced_fnc_createVehiculeAtPos
 */
 
 // Récupère les arguments
 params ["_pos", "_vl"];
 
-// if (isNil "ODD_VL_LOCK") then { ODD_VL_LOCK = 0; };
-// while {ODD_VL_LOCK != 0} do { sleep 0.1; };
-// ODD_VL_LOCK = 1;
-// publicVariable "ODD_VL_LOCK";
+// Pas ouf mais marche plus ou mois bien
+// lire https://cours.polymtl.ca/inf2610/documentation/notes/chap6.pdf section 6.4.1
 
+// attend le semaphore
+waitUntil {(isObjectHidden ODD_var_vls_lock) == false};
+// prend le semaphore
+ODD_var_vls_lock hideObject true;
 
-private _created = nil;
+private _created = false;
 private _to_gen_pos = _pos findEmptyPosition [1 + (sizeOf _vl), 250, _vl];
 if ((count _to_gen_pos) != 0) then {
 	_created = _vl createVehicle _to_gen_pos;
+	_created allowDamage false;
+	sleep 0.5;
+	_created allowDamage true;
 };
 
-// ODD_VL_LOCK = 0;
+// rend le semaphore
+ODD_var_vls_lock hideObject false;
+
 _created
