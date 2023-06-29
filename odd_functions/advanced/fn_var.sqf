@@ -459,7 +459,3 @@ ODD_var_IntelMarker = [];
 
 // Nom de la faction selectionner
 ODD_var_SelectedFaction = "";
-
-// semaphore pour le spawn de VL
-// cf. fn_createVehiculeAtPos.sqf
-ODD_var_vls_lock =  "Land_HelipadEmpty_F" createVehicle [0,0,0];
