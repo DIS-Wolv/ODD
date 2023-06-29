@@ -90,7 +90,7 @@ if ((typeName _pad) != "SCALAR") then {
 		private _WantState = _pad getVariable ["trig_ODD_var_VlsWantState", _state];
 		_pad setVariable ["trig_ODD_var_VlsControlActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState] spawn ODDcommon_fnc_OutpostControl;
+			[_trigger, _WantState] spawn ODDcommon_fnc_controlVls;
 		}
 	};
 };

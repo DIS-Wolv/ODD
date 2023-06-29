@@ -119,6 +119,7 @@ private _radVl = 2000;
 	];
 	_VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_VlsWantState", False, True];
+	_variablesPad setVariable ["trig_ODD_var_loc", _loc, True];
 	_scriptID = [_VlTrigger] spawn ODDcommon_fnc_initVls;
 	_scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_controlVls;
 
