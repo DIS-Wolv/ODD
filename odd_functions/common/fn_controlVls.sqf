@@ -10,6 +10,8 @@
 params ["_trigger", ["_state", False], ["_radius", 1000]];
 
 private _pad = _trigger getVariable ["trig_ODD_var_Pad", -1];
+private _pos = position _pad;
+private _roads = _pos nearRoads 500;
 
 if ((typeName _pad) != "SCALAR") then {
 	private _textLoc = _pad getVariable ["trig_ODD_var_locName", ""];
@@ -27,13 +29,23 @@ if ((typeName _pad) != "SCALAR") then {
 			// spawn
 			private _new_pool = [];
 			{
-				private _grp = [(position _pad) findEmptyPosition [10, 700], _x] call ODDadvanced_fnc_createVehiculeAtPos;
+				private _grp = [_pos findEmptyPosition [10, 700], _x] call ODDadvanced_fnc_createVehiculeAtPos;
 				if (isNil "_grp") then {
 					// erreur de spawn
 					_new_pool pushBack _x;
 				} else {
 					// spawn reussi
 					_spawned pushBack _grp;
+					_grp setBehaviour "SAFE";
+					for "_i" from 1 to 4 do {
+						private _wai_pos = position selectRandom _roads;
+						_grp addWaypoint [_wai_pos, -1];
+
+						if (_i == 4) then {
+							_grp addWaypoint [_wai_pos, -1];
+							(waypoints _grp) select 5 setWaypointType "CYCLE";
+						};
+					};
 				};
 			} forEach _pool;
 			_pool = _new_pool;
