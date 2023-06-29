@@ -109,17 +109,18 @@ private _radVl = 2000;
 	_scriptID = [_garTrigger, False] spawn ODDcommon_fnc_controlGarisons;
 
 	// crée le trigger pour spawn/déspawn les vls
-	// private _VlTrigger = createTrigger ["EmptyDetector", _pos, True]; 
-	// _triggers pushBack _VlTrigger;
-	// _VlTrigger setTriggerArea [_radVl, _radVl, 0, False, _alt]; 
-	// _VlTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
-	// _VlTrigger setTriggerStatements ["this",
-	// 	Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radVl],
-	// 	Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radVl]
-	// ];
-	// _VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
-	// _variablesPad setVariable ["trig_ODD_var_VlWantState", False, True];
-	// _scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_vlsControl;
+	private _VlTrigger = createTrigger ["EmptyDetector", _pos, True]; 
+	_triggers pushBack _VlTrigger;
+	_VlTrigger setTriggerArea [_radVl, _radVl, 0, False, _alt]; 
+	_VlTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
+	_VlTrigger setTriggerStatements ["this",
+		Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radVl],
+		Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radVl]
+	];
+	_VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
+	_variablesPad setVariable ["trig_ODD_var_VlsWantState", False, True];
+	_scriptID = [_VlTrigger] spawn ODDcommon_fnc_initVls;
+	_scriptID = [_VlTrigger, False] spawn ODDcommon_fnc_controlVls;
 
 
 	// calcule le nombre d'IED sur la zone :
