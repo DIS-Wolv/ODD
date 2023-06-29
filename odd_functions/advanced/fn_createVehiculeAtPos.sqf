@@ -7,7 +7,7 @@
 * 1: ID du véhicule
 *
 * Valeur renvoyée :
-* vehicle si créé, false sinon
+* groupe du vehicle si créé, false sinon
 *
 * Exemple in an unscheduled environment :
 * [position player, "rhssaf_army_o_t72s"] call ODDadvanced_fnc_createVehiculeAtPos
@@ -31,13 +31,14 @@ waitUntil {(isObjectHidden ODD_var_vls_lock) == false};
 // prend le semaphore
 ODD_var_vls_lock hideObject true;
 
-private _created = false;
+private _created = nil;
 private _to_gen_pos = _pos findEmptyPosition [1 + (sizeOf _vl), 250, _vl];
 if ((count _to_gen_pos) != 0) then {
-	_created = _vl createVehicle _to_gen_pos;
-	_created allowDamage false;
+	_created = [_to_gen_pos, EAST, [_vl]] call BIS_fnc_spawnGroup;
+	private _vl = vehicle leader _created;
+	_vl allowDamage false;
 	sleep 0.5;
-	_created allowDamage true;
+	_vl allowDamage true;
 };
 
 // rend le semaphore

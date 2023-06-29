@@ -25,27 +25,52 @@ if ((typeName _pad) != "SCALAR") then {
 		private _spawned = _pad getVariable ["trig_ODD_var_VlsSpawned", []];
 		if (_state) then {
 			// spawn
+			private _new_pool = [];
 			{
-				private _vl = [position _pad, _x] call ODDadvanced_fnc_createVehiculeAtPos;
-				_spawned pushBack _vl;
+				private _grp = [(position _pad) findEmptyPosition [10, 700], _x] call ODDadvanced_fnc_createVehiculeAtPos;
+				if (isNil "_grp") then {
+					// erreur de spawn
+					_new_pool pushBack _x;
+				} else {
+					// spawn reussi
+					_spawned pushBack _grp;
+				};
 			} forEach _pool;
-		}
-		else {
+			_pool = _new_pool;
+		} else {
 			// despawn
 			private _collected = [];
 			{
-				if (alive _x) then {
-					_collected pushBack _x;
-					deleteVehicle _x;
+				private _lead = leader _x;
+				if (isNull _lead) then {
+					// Plus personne dans le groupe
+				} else {
+					private _vl = vehicle _lead;
+					if (isNull _vl) then {
+						// Plus de vehicule
+					} else {
+						if (damage _vl > 0.5) then {
+							// On ne conserve pas le vehicule
+						} else {
+							// On remet le vehicule dans le pool
+							_collected pushBack typeOf _vl;
+						};
+						// On detruit le vehicule
+						deleteVehicle _vl;
+					};
 				};
+
+				// Delete tout les unit du groupe
+				{
+					deleteVehicle _x;
+				} forEach units _x;
 			} forEach _spawned;
+			if (count _collected == 0) then {
+				_pool = [];
+			};
 			_spawned = [];
 			_pool = _pool + _collected;
 		};
-		systemChat "vv";
-		systemChat str _pool;
-		systemChat str _spawned;
-		systemChat "^^";
 		_pad setVariable ["trig_ODD_var_VlsPool", _pool, True];
 		_pad setVariable ["trig_ODD_var_VlsSpawned", _spawned, True];
 		// Fin du spawn
