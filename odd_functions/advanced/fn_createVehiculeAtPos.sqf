@@ -1,6 +1,6 @@
 /*
 * Auteur : QuentinN42
-* Fonction pour créer un véhicules a une position donnée
+* Fonction pour créer un véhicule a une position donnée
 *
 * Arguments :
 * 0: position
