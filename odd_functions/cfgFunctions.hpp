@@ -94,6 +94,7 @@ class ODD_advanced {
 		class civiesCover {};
 		class haltCivilian {};
 		class areaControl {};
+		class createVehiculeAtPos {};
 
 		// outpost
 		class varOutpost {};

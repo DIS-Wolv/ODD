@@ -114,8 +114,8 @@ private _radVl = 2000;
 	_VlTrigger setTriggerArea [_radVl, _radVl, 0, False, _alt]; 
 	_VlTrigger setTriggerActivation ["ANYPLAYER", "PRESENT", True]; 
 	_VlTrigger setTriggerStatements ["this",
-		Format ["[thisTrigger, True] spawn ODDcommon_fnc_vlsControl;", _radVl],
-		Format ["[thisTrigger, False] spawn ODDcommon_fnc_vlsControl;", _radVl]
+		Format ["[thisTrigger, True] spawn ODDcommon_fnc_controlVls;", _radVl],
+		Format ["[thisTrigger, False] spawn ODDcommon_fnc_controlVls;", _radVl]
 	];
 	_VlTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_VlsWantState", False, True];
