@@ -302,7 +302,7 @@ if (ODD_var_FirstDefinition) then {
 
 	// Defini les types de localité que l'on veut
 	ODD_var_LocationType = ['NameCityCapital', 'NameCity', 'NameVillage', 'Name', 'NameLocal', 'Hill'];
-	ODD_var_LocationMilitaryName = ["Military", "military", "airbase", "airfield", "Ghost"];
+	ODD_var_LocationMilitaryName = ["Military", "military", "airbase", "airfield", "Ghost", "Blanches"];
 
 	// Liste des localités en liste noire
 	ODD_var_BlackistedLocation = [
