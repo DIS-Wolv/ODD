@@ -27,7 +27,7 @@ if (isNil "_loc") exitWith {systemChat "Erreur : Pas de location pour le pad";};
 private _SpawnableVehicles = 0;
 private _SpawnableHeavyVehicles = 0;
 
-// peut etre utiliser ODD_var_Support ?
+// Pour 9 joureurs, on genere les vehicules suivant :
 if (type _loc == 'NameCityCapital') then {
 	_SpawnableHeavyVehicles = [1/2] call _r;
 	_SpawnableVehicles = selectRandom [2, 2, 3, 3, 4];
@@ -47,6 +47,14 @@ if (type _loc == 'NameLocal') then {
 if (type _loc == 'Hill') then {
 	_SpawnableVehicles = ([1/4] call _r) + ([1/5] call _r);
 };
+
+// si le nombre de joueurs != 9, on modifie le nombre de vehicules
+private _human_players = count(allPlayers - entities "HeadlessClient_F"); // removing Headless Clients
+// on calcule le ratio de spawn en fonction du nombre de joueurs
+private _scaling_ratio = _human_players / 9;
+// Puis on applique le ratio (pour la partie a virgule, on prend de maniere aleatoire)
+// Example : 6 joueurs et 2 vehicules, 2*6/9 = 1.33, on va donc avoir 1 vehicule [+ 1 avec 33%]
+_SpawnableVehicles = floor(_SpawnableVehicles * _scaling_ratio) + ([_SpawnableVehicles * _scaling_ratio - floor(_SpawnableVehicles * _scaling_ratio)] call _r);
 
 private _to_spawn = [];
 
