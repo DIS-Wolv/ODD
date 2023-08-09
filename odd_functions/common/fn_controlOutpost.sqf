@@ -31,13 +31,13 @@ if ((typeName _pad) != "SCALAR") then {
 		private _spawned = _pad getVariable ["trig_ODD_var_EniSpawned", []];
 		private _posOp = position _pad;
 		if (_state) then {
-			private _min_nb_to_spawn = 2 min _pool;
-			private _max_nb_to_spawn = 5 min _pool;
+			private _min_nb_to_spawn = 3 min _pool;
+			private _max_nb_to_spawn = 7 min _pool;
 			private _nb_to_spawn = floor (_min_nb_to_spawn + random (_max_nb_to_spawn - _min_nb_to_spawn + 1));
 			_pool = _pool - _nb_to_spawn;
 
 			if (_nb_to_spawn > 1) then {
-				private _nb_ai_gar = floor (random [1, _nb_to_spawn/3, _nb_to_spawn]);
+				private _nb_ai_gar = _pool min (selectRandom [1, 2, 2, 3]);
 				private _nb_ai_pat = _nb_to_spawn - _nb_ai_gar;
 
 				// GARNISON
@@ -46,7 +46,7 @@ if ((typeName _pad) != "SCALAR") then {
 					private _to_spawn = selectRandom ODD_var_FireTeam;
 
 					// Crée un groupe
-					private _grp = [_posOp findEmptyPosition [2, 50], EAST, _to_spawn] call BIS_fnc_spawnGroup;
+					private _grp = [_posOp getPos [10, 0], EAST, _to_spawn] call BIS_fnc_spawnGroup;
 					_spawned pushBack _grp;
 
 					// Ajoute les IAs de la garnison à la liste noire des clients Headless
@@ -74,7 +74,7 @@ if ((typeName _pad) != "SCALAR") then {
 					private _to_spawn = selectRandom ODD_var_FireTeam;
 
 					// Crée un groupe
-					private _grp = [(_listPos select 0) findEmptyPosition [2, 50], EAST, _to_spawn] call BIS_fnc_spawnGroup;
+					private _grp = [(_listPos select 0), EAST, _to_spawn] call BIS_fnc_spawnGroup;
 					_spawned pushBack _grp;
 
 					// Assigne des points de passage autour du barrage au groupe
@@ -102,7 +102,7 @@ if ((typeName _pad) != "SCALAR") then {
 						if (alive _x) then {
 							_collected = _collected + 1;
 						};
-						if (lifeState _x != 'INCAPACITATED') then {
+						if (lifeState _x == 'INCAPACITATED') then {
 							// mais on ignore les comas
 							_collected = _collected - 1;
 						};
