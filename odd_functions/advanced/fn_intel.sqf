@@ -42,6 +42,9 @@ private _color = _colorPool select _source;
 private _markerType = "";
 
 
+/******** choix de si on vas donner un intel ou pas ********/
+// si _proba = 0 on donne un intel
+// sinon on donne un message de refus
 private _proba = 1;
 if (_source == 2) then {
 	private _torture = _author getVariable ["ace_medical_medications", []];
@@ -54,12 +57,14 @@ if (_source == 2) then {
 	_proba = round (random 1);
 };
 // _proba = 0;
+
+
+/******** choix ce qu'on donne comme intel ********/
 private _pos = [0,0,0];
 if (_proba == 0) then {
 	_msg = "J'ai des informations.";
 	_intelType = selectRandom ODD_var_IntelType;
 	// _intelType = ODD_var_IntelType select 5; // force le type d'intel
-	ODD_var_IntelType = ODD_var_IntelType + (ODD_var_IntelType - [_intelType]);
 	private _needMarker = True;
 
 	//["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
@@ -128,7 +133,7 @@ if (_proba == 0) then {
 			_markerType = (selectRandom _markerPool)
 		};
 	};
-	if (!isNil _pos) then {
+	if (!isNil "_pos") then {
 		if ((count (_pos)) < 2) then {
 			_needMarker = False;
 			_msgNon = _allmsg select 11;
