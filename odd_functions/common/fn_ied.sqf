@@ -82,12 +82,18 @@ if (_type >= 0) then {
 				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
 				_explo setDamage 1;
 				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				_TgMan enableAI 'PATH';
-				_TgMan setUnitPos 'AUTO';
-				(group _TgMan) addWaypoint [position _explo, 0];
-				deleteVehicle thisTrigger;"
-				,""
+				if (typeName _cover == 'OBJECT') then {
+					_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+					_TgMan enableAI 'PATH';
+					_TgMan setUnitPos 'AUTO';
+					(group _TgMan) addWaypoint [position _explo, 0];
+					deleteVehicle thisTrigger;
+				}
+				else {
+					[['IED-BUG : Cover not a object : %1', typeName _cover]] call ODDcommon_fnc_log;
+				}
+				",
+				""
 			];
 
 			_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
