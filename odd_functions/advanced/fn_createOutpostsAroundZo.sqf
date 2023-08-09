@@ -20,33 +20,13 @@ private _research_proba = 0.05;
 private _medevac_max = 1;
 private _medevac_proba = 0.2;
 
-private _proba_jungle_near_oreokastro = 0.25;
-
-private _base_flavors = [];
-
-// Si en haut a gauche, des camps plus vert
-// Sinon plutot sand
-private _pos_bomos = [2300,22300,0];
-if ((_pos_bomos distance2D _zo) < 10000) then {
-	_base_flavors pushBack (
-		["Jungle", "Green"] selectRandomWeighted [_proba_jungle_near_oreokastro, 1 - _proba_jungle_near_oreokastro]
-	);
-} else {
-	_base_flavors pushBack (
-		["Brown", "Green", "Rusty"] selectRandomWeighted [
-			0.7,
-			0.2,
-			0.1
-		]
-	);
-};
 
 private _offset_angle = random 360;
 private _research_nb = 0;
 private _medevac_nb = 0;
 
 for "_i" from 0 to _outpost_nb - 1 do {
-	private _current_flavors = _base_flavors + []; // Do this to create a copy of the array
+	private _current_flavors = []; // Do this to create a copy of the array
 	if (_research_nb < _research_max) then {
 		if (_research_proba > random 1) then {
 			_research_nb = _research_nb + 1;
@@ -67,10 +47,29 @@ for "_i" from 0 to _outpost_nb - 1 do {
 	// rotation d'un angle et decalage de _distance
 	private _p = _zo getPos [_distance, _angle];
 
-	// marker pour debug
-	_marker = createMarker [(format ["obj P x %1, y %2, z %3", (_p select 0), (_p select 1), (_p select 2)]), _p]; 
-	_marker setMarkerType "hd_dot";
-	_marker setMarkerColor "ColorBlue";
+
+	// On ajoute une couleur en fonction du nombre d'arbres autour
+	private _color = "Brown";
+	private _weight_Brown = 0;
+	private _weight_Green = 0;
+	private _weight_Rusty = 0;
+	private _weight_Jungle = 0;
+	private _nb_trees_around = count nearestTerrainObjects [_p, ["Tree", "small tree"], 150];
+	if (_nb_trees_around < 100) then {
+		// pas d'arbres = sand
+		_weight_Brown = 7;
+		_weight_Green = 1;
+		_weight_Rusty = 2;
+		_weight_Jungle = 0;
+	} else {
+		// arbres = green
+		_weight_Brown = 0;
+		_weight_Green = 7;
+		_weight_Rusty = 2;
+		_weight_Jungle = 1;
+	};
+	_current_flavors pushBack (["Brown","Green","Rusty","Jungle"] selectRandomWeighted [_weight_Brown, _weight_Green, _weight_Rusty, _weight_Jungle]);
+
 
 	private _tries = 0;
 	while {_tries < 5} do {
