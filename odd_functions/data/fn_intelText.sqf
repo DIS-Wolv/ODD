@@ -39,7 +39,7 @@ private _msgNoIed2 = ["Nous n'avons pas posé de pièges.","Les routes ne sont p
 private _msgTransport2 = ["C'est ici que j'ai garé ma voiture.", "J'ai garé ma voiture là-bas", "Prenez la voiture qui traîne, elle n'est pas fermée !", "Il y a un véhicule que personne n'utilise pas loin","Si vous voulez vous casser, prenez ce véhicule et fouttez moi la paix","Si vous allez là-bas, vous pouvez prendre le véhicule de la mairie"];
 private _msgNoTransport2 = ["Je n'ai pas de voiture.","Je ne vais pas vous dire ou j'ai garé la voiture qu'on m'a prêtté","Vous n'allez pas tirer ma caisse nouvelle caisse, je l'ai gagné à la roulette russe contre le maire.","Personne ne circule en voiture ici, on s'en est assuré !","Vous aussi vous volez les voitures aux civils ? Il y en a une pas mal là-bas !"];
 private _msgObj2 = ["Je crois que j'ai vu ce que vous cherchez"];
-private _msgNon2 = ["Je ne dirais rien.", "Je ne veux pas parler.","VIVA LA REVOLUTION !!","Quels manteaux ?","Je ne trahirais pas mes compagnons.","I can't speak french"];
+private _msgNon2 = ["Je ne dirais rien.", "Je ne veux pas parler.","VIVA LA REVOLUTION !!","Quels manteaux ?","Je ne trahirais pas mes compagnons.","I can't speak french", "Jean, au secours !"];
 
 // ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"];
 switch (_missionType) do {
