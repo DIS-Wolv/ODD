@@ -21,6 +21,7 @@ class ODD_Common {
 		class initGarison {};
 		class initIED {};
 		class initOutpost {};
+		class initVls {};
 
 		class controlCiv {};
 		class controlPatrols {};
@@ -28,6 +29,7 @@ class ODD_Common {
 		class controlRoadBlockAo {};
 		class controlIED {};
 		class controlOutpost {};
+		class controlVls {};
 
 		class civPatrol {};
 		class civGarnison {};
@@ -92,6 +94,7 @@ class ODD_advanced {
 		class civiesCover {};
 		class haltCivilian {};
 		class areaControl {};
+		class createVehiculeAtPos {};
 
 		// outpost
 		class varOutpost {};

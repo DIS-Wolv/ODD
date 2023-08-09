@@ -459,5 +459,3 @@ ODD_var_IntelMarker = [];
 
 // Nom de la faction selectionner
 ODD_var_SelectedFaction = "";
-
-
