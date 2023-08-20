@@ -31,14 +31,37 @@ if ((typeName _pad) != "SCALAR") then {
 		private _spawned = _pad getVariable ["trig_ODD_var_EniSpawned", []];
 		private _posOp = position _pad;
 		if (_state) then {
-			private _min_nb_to_spawn = 3 min _pool;
-			private _max_nb_to_spawn = 7 min _pool;
-			private _nb_to_spawn = floor (_min_nb_to_spawn + random (_max_nb_to_spawn - _min_nb_to_spawn + 1));
-			_pool = _pool - _nb_to_spawn;
+			// Si la zone est encore non vide
+			if (_pool > 1) then {
+				// Combien fait on spawn de groupes ?
+				// variable _menace qui represente ~ le nombre de groupes à spawn
+				private _menace = 0;
+				{
+					if (_x == ODD_var_outpost_bat_types get "centre") then {
+						_menace = _menace + 2;
+					} else {
+						if (_x == ODD_var_outpost_bat_types get "cercle") then {
+							_menace = _menace + 1;
+						} else {
+							_menace = _menace + 0.5;
+						};
+					};
+				} forEach (
+					(nearestObjects [player, keys ODD_var_outpost_batiments, 100])
+					apply { typeOf _x }
+					apply { ODD_var_outpost_batiments get _x }
+					apply { _x get "type" }
+				);
+				// On ajoute un petit peu de random +- 10%
+				_menace = _menace + random (_menace * 0.2) - (_menace * 0.1);
+				_menace = 0 max (_menace min _pool);
 
-			if (_nb_to_spawn > 1) then {
-				private _nb_ai_gar = _pool min (selectRandom [1, 2, 2, 3]);
-				private _nb_ai_pat = _nb_to_spawn - _nb_ai_gar;
+				// Ratio patrouille/garnison un peu random
+				private _ratio = selectRandom [1/3, 1/2, 2/3];
+
+				// applique ce ratio
+				private _nb_ai_gar = floor (_menace * _ratio);
+				private _nb_ai_pat = ceil  (_menace * (1 - _ratio));
 
 				// GARNISON
 				for "_i" from 0 to _nb_ai_gar - 1 do {
@@ -56,8 +79,17 @@ if ((typeName _pad) != "SCALAR") then {
 					} forEach (units _grp);
 
 					// Met le groupe en garnison
-					[_posOp, nil, units _grp, 30, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
-					createGuardedPoint [east, _posOp, -1, objNull];
+					// https://github.com/acemod/ACE3/blob/master/addons/ai/functions/fnc_garrison.sqf
+					[
+						_posOp,                                                     // The building(s) nearest this position are used <POSITION>
+						nil,                                                        // Limit the building search to those type of building <ARRAY>
+						units _grp,                                                 // Units that will be garrisoned <ARRAY>
+						_radius_fortification + 5,                                  // Radius to fill building(s) <SCALAR> (default: 50)
+						[0, 1] selectRandomWeighted [6, 4],                         // 0: even filling, 1: building by building (default: 0)
+						[True, False] selectRandomWeighted [8, 2],                  // True to fill building(s) from top to bottom <BOOL> (default: false) (note: only works with filling mode 0 and 1)
+						True                                                        // Teleport units <BOOL> (default: false)
+					] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf"; 
+					uiSleep 0.1;
 				};
 
 				// PATROUILLE
