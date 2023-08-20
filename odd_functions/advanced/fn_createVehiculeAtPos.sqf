@@ -29,9 +29,11 @@ if ((count _to_gen_pos) == 0) exitWith { nil };
 
 private _created = [_to_gen_pos, EAST, [_vl]] call BIS_fnc_spawnGroup;
 private _vl = vehicle leader _created;
-_vl allowDamage false;
-uiSleep 0.5;
-_vl allowDamage true;
+// Si les VLs explosent toujours, décommenter les lignes suivantes
+// Et trouver comment etre sur que le allow damage est bien remis a true 
+// _vl allowDamage false;
+// uiSleep 0.5;
+// _vl allowDamage true;
 _created setSpeedMode "LIMITED";
 
 
