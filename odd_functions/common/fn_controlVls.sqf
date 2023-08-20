@@ -29,7 +29,7 @@ if ((typeName _pad) != "SCALAR") then {
 			// spawn
 			private _new_pool = [];
 			{
-				private _grp = [_pos findEmptyPosition [10, 700], _x] call ODDadvanced_fnc_createVehiculeAtPos;
+				private _grp = [_pos findEmptyPosition [10, 700], _x, east] call ODDadvanced_fnc_createVehiculeAtPos;
 				if (isNil "_grp") then {
 					// erreur de spawn
 					_new_pool pushBack _x;

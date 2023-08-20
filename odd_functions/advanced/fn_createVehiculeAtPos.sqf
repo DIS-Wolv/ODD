@@ -9,25 +9,23 @@
 * Valeur renvoyée :
 * groupe du vehicle si créé, false sinon
 *
-* Exemple in an unscheduled environment :
-* [position player, "rhssaf_army_o_t72s"] call ODDadvanced_fnc_createVehiculeAtPos
-*
 * Exemple in a scheduled environment :
-* [position player, "rhssaf_army_o_t72s"] spawn ODDadvanced_fnc_createVehiculeAtPos
+* [position player, "rhssaf_army_o_t72s", east] spawn ODDadvanced_fnc_createVehiculeAtPos;
+* [position player, "C_Tractor_01_F", civilian] spawn ODDadvanced_fnc_createVehiculeAtPos;
 */
 
 // Récupère les arguments
-params ["_pos", "_vl"];
+params ["_pos", "_vl", "_side"];
 
 // doit etre en unscheduled environment
 // https://community.bistudio.com/wiki/canSuspend
-if (!canSuspend) exitWith {systemChat "ERREUR : doit etre unscheduled" ; nil};
+if (!canSuspend) exitWith {systemChat "ERREUR : doit etre scheduled" ; nil};
 
 private _to_gen_pos = _pos findEmptyPosition [1 + (sizeOf _vl), 250, _vl];
 if ((count _to_gen_pos) == 0) exitWith { nil };
 
 
-private _created = [_to_gen_pos, EAST, [_vl]] call BIS_fnc_spawnGroup;
+private _created = [_to_gen_pos, _side, [_vl]] call BIS_fnc_spawnGroup;
 private _vl = vehicle leader _created;
 // Si les VLs explosent toujours, décommenter les lignes suivantes
 // Et trouver comment etre sur que le allow damage est bien remis a true 

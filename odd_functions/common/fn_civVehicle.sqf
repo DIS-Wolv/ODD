@@ -18,9 +18,8 @@ private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
 
 _road = selectrandom (_pos nearRoads _radius);
-_pos = (position _road) findEmptyposition [2, 100, (_group select 0)];
 // spawn le groupe
-private _g = [_pos, civilian, _group] call BIS_fnc_spawngroup;
+private _g = [_pos, _group select 0, civilian] call ODDadvanced_fnc_createVehiculeAtPos;
 // ODD_var_MissionCivilians pushBack _g;
 
 _connectedRoad = roadsConnectedTo [_road, False];
