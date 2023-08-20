@@ -14,21 +14,31 @@
 */
 params ["_zo", ["_radius", 1000]];
 
-private _pos = position _zo;
-private _Buildings = nearestobjects [position _zo, ODD_var_Houses, size _zo select 0];
-private _GBuild = selectRandom _Buildings;
-
+// choisit un VL
 private _group = selectRandom ODD_var_CivilianVehicles;
+// Trouve une maison a cote de laquelle faire spawn le VL
+private _houses = nearestobjects [
+	position _zo,
+	ODD_var_Houses,
+	_radius
+];
 
-_pos = (position _GBuild) findEmptyPosition [2, 100, (_group select 0)];
-// spawn le groupe
-private _g = (_group select 0) createVehicle _pos;
+// spawn le VL
+private _grp = [position selectRandom _houses, _group select 0, civilian] call ODDadvanced_fnc_createVehiculeAtPos;
 
+if (isNil "_grp") exitWith {};
+_grp setVariable ["trig_ODD_var_Civ", True, True];
 
-_g setdir (((getDir _GBuild)+ (round (random 4)) + 90) % 360);
+// VL
+private _vl = vehicle leader _grp;
+[_vl, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
+_vl setVariable ["trig_ODD_var_Civ", True, True];
+// _vl setdir (((getDir _GBuild)+ (round (random 4)) + 90) % 360);
 
-[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
+// Civils
+{
+	_x setVariable ["trig_ODD_var_Civ", True, True];
+	unassignVehicle _x;  // disambark
+} forEach units _grp;
 
-_g setVariable ["trig_ODD_var_Civ", True, True];
-
-_g;
+_g

@@ -16,32 +16,27 @@ params ["_zo", ["_radius", 1000]];
 
 private _pos = position _zo;
 private _group = selectRandom ODD_var_CivilianVehicles;
+private _roads = _pos nearRoads _radius;
 
-_road = selectrandom (_pos nearRoads _radius);
-// spawn le groupe
-private _g = [_pos, _group select 0, civilian] call ODDadvanced_fnc_createVehiculeAtPos;
-// ODD_var_MissionCivilians pushBack _g;
+private _grp = [position selectRandom _roads, _group select 0, civilian] call ODDadvanced_fnc_createVehiculeAtPos;
 
-_connectedRoad = roadsConnectedTo [_road, False];
-if (count (_connectedRoad) >= 1) then {	// si il y a une route acollé 
-	_roadDir = [_road, (_connectedRoad select 0)] call BIS_fnc_DirTo;	
-	// Récupère la direction de la route
-	
-	_roadDir = (_roadDir + ((round (random 2))* 180)) % 360; 
-	(vehicle (units _g select 0)) setDir _roadDir; 
-	// Oriente le véhicule sur l'axe de route
+if (isNil "_grp") exitWith {};
+
+// Tourne en boucle
+for "_i" from 1 to 4 do {
+	private _wai_pos = position selectRandom _roads;
+	_grp addWaypoint [_wai_pos, -1];
+
+	if (_i == 4) then {
+		_grp addWaypoint [_wai_pos, -1];
+		(waypoints _grp) select 5 setWaypointType "CYCLE";
+	};
 };
 
-[((units _g)select 0)] call ODDcommon_fnc_addIntel;
-
-_g setSpeedMode "LIMITED";
+_grp setSpeedMode "LIMITED";
 {
 	_x setVariable ["ODD_var_ZOM", True, True];
-} forEach (units _g);
-//_g addItemCargoGlobal ["Toolkit", 1]; 
-// [_g] spawn ODDadvanced_fnc_patrolZoM;
-
-{
+	_x call ODDcommon_fnc_addIntel;
 	_x addEventHandler ["FiredNear", {
 		params ["_unit", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
 		[_unit, _distance] spawn ODDadvanced_fnc_civiesCover;
@@ -53,8 +48,10 @@ _g setSpeedMode "LIMITED";
 		};
 	}];
 	_x setVariable ["trig_ODD_var_Civ", True, True];
-} forEach units _g;
+} forEach units _grp;
 
-(vehicle ((units _g) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
-_g setVariable ["trig_ODD_var_Civ", True, True];
-_g;
+(vehicle ((units _grp) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
+_grp setVariable ["trig_ODD_var_Civ", True, True];
+
+
+_grp;
