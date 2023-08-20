@@ -8,7 +8,7 @@
 * Valeur renvoyée :
 *
 * Exemple:
-* [_zo] call ODDcommon_fnc_civPatrol;
+* [_zo] call ODDcommon_fnc_civVehicle;
 *
 * Variable publique :
 */
