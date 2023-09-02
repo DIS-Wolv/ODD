@@ -44,11 +44,11 @@ if ((typeName _pad) != "SCALAR") then {
 			if (_spawnCivil == True) then {
 				for "_i" from 0 to _vlCivil do {
 					private _vl = [_zo, (_radius/2)] call ODDcommon_fnc_civVehicle;
-					_vlGroup pushBack _vl;
+					if (!(isNil "_vl")) then {_vlGroup pushBack _vl;};
 				};
 				for "_i" from 0 to _staticVl do {
 					private _vl = [_zo, (_radius/2)] call ODDcommon_fnc_civVehicleStatic;
-					_vlGroup pushBack _vl;
+					if (!(isNil "_vl")) then {_vlGroup pushBack _vl;};
 				};
 				for "_i" from 0 to _nbCivil do {
 					private _pat = [_zo] call ODDcommon_fnc_civPatrol;
