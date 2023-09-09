@@ -47,7 +47,7 @@ if ((typeName _pad) != "SCALAR") then {
 						};
 					};
 				} forEach (
-					(nearestObjects [player, keys ODD_var_outpost_batiments, 100])
+					(nearestObjects [_posOp, keys ODD_var_outpost_batiments, 100])
 					apply { typeOf _x }
 					apply { ODD_var_outpost_batiments get _x }
 					apply { _x get "type" }
