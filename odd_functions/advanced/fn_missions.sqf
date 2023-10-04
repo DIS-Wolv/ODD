@@ -19,13 +19,13 @@
 */
 params [["_missiontype", -1], ["_forceZO", ""], ["_ZOP", True], ["_FacForce", -1]];
 
-// [] call ODDadvanced_fnc_var;
-[_FacForce, False, True] call ODDadvanced_fnc_varEne;
+// [] call ODDdata_fnc_var;
+[_FacForce, False, True] call ODDdata_fnc_varEne;
 
 // if (isNil "ODD_var_Pair") then {
 // 	ODD_var_SelectedFaction = -1;
-// 	[ODD_var_SelectedFaction, True] call ODDadvanced_fnc_varEne;
-// 	[ODD_var_SelectedFaction, False, True] remoteExec ["ODDadvanced_fnc_varEne", 2];
+// 	[ODD_var_SelectedFaction, True] call ODDdata_fnc_varEne;
+// 	[ODD_var_SelectedFaction, False, True] remoteExec ["ODDdata_fnc_varEne", 2];
 // 	ODD_var_SelectedTarget = ODD_var_MissionType;
 // 	publicVariable "ODD_var_SelectedTarget";
 // 	ODD_var_SelectedSector = [];
