@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [-1, True, False] call ODDadvanced_fnc_varEne
+* [-1, True, False] call ODDdata_fnc_varEne
 *
 * Variable publique :
 */
@@ -29,27 +29,27 @@ if (!_init) then {
 
 	switch (_nFaction) do {
 		case 0: {
-			[] call ODDadvanced_fnc_varEneArd;
+			[] call ODDdata_fnc_varEneArd;
 		};
 		case 1: {
-			// [] call ODDadvanced_fnc_varEneBlp;
-			[] call ODDadvanced_fnc_varEneArd;
+			// [] call ODDdata_fnc_varEneBlp;
+			[] call ODDdata_fnc_varEneArd;
 		};
 		case 2: {
-			[] call ODDadvanced_fnc_varEneChDKZ;
+			[] call ODDdata_fnc_varEneChDKZ;
 		};
 		case 3: {
-			[] call ODDadvanced_fnc_varEneFia;
+			[] call ODDdata_fnc_varEneFia;
 		};
 		case 4: {
-			// [] call ODDadvanced_fnc_varEneSaf;
-			[] call ODDadvanced_fnc_varEneArd;
+			// [] call ODDdata_fnc_varEneSaf;
+			[] call ODDdata_fnc_varEneArd;
 		};
 		case 5: {
-			[] call ODDadvanced_fnc_varEneTla;
+			[] call ODDdata_fnc_varEneTla;
 		};
 		default {
-			[] call ODDadvanced_fnc_varEneArd;
+			[] call ODDdata_fnc_varEneArd;
 		};
 	};
 	ODD_var_SelectedFaction = ODD_var_FactionNames select _nFaction;

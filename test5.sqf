@@ -10,9 +10,9 @@ try {
 } catch { hint str _exception };
 
 // variable globales
-[] call ODDadvanced_fnc_varOutpost;
-[] call ODDadvanced_fnc_var;
-[] call ODDadvanced_fnc_varEneArd;
+[] call ODDdata_fnc_varOutpost;
+[] call ODDdata_fnc_var;
+[] call ODDdata_fnc_varEneArd;
 
 // debut func
 // ### params

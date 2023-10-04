@@ -7,7 +7,7 @@
 sleep 1;
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-call ODDadvanced_fnc_var;
+call ODDdata_fnc_var;
 // call DIScommon_fnc_customLocations;
 oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call OddGuiMissions_fnc_open;},[],1.5,True,True,"","True",5];
 oddCtrl setVariable ["R3F_LOG_disabled", True];

@@ -10,7 +10,7 @@
 * nil
 *
 * Exemple :
-* [] call ODDadvanced_fnc_varOutpost
+* [] call ODDdata_fnc_varOutpost
 *
 * Variable publique :
 */

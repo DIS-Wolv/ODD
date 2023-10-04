@@ -72,7 +72,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, True, False] call ODDadvanced_fnc_varEne;
+			[-1, True, False] call ODDdata_fnc_varEne;
 			// Définition des véhicules
 			sleep 1;
 		};
@@ -316,7 +316,7 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 		sleep 1;
 		if (!isNil "ODD_var_SpawnableVehicles") then {
 			// Si les véhicules ennemis ne sont pas definis
-			[-1, True, False] call ODDadvanced_fnc_varEne;	
+			[-1, True, False] call ODDdata_fnc_varEne;	
 			// Définition des véhicules
 			sleep 1;
 		};

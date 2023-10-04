@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [] call ODDadvanced_fnc_varEne
+* [] call ODDdata_fnc_varEne
 *
 * Variable publique :
 */
