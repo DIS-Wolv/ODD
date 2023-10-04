@@ -50,7 +50,18 @@ class ODD_Data {
 		file = "odd_functions\data";
 
 		class Table {};
-		class intelText {}; // ODDdata_fnc_intelText; 
+		class intelText {}; // ODDdata_fnc_intelText;
+
+		class var {};
+		class varEne {};
+		class varEneArd {};
+		class varEneBlp {};
+		class varEneChDKZ {};
+		class varEneFia {};
+		class varEneSaf{};
+		class varEneTla {};
+		class varRoadBlock {};
+		class varOutpost {};
 	};
 
 };
@@ -81,15 +92,6 @@ class ODD_advanced {
 		class pressureIED {};
 		class patrolZoM {};
 		class surrender {};
-		class var {};
-		class varEne {};
-		class varEneArd {};
-		class varEneBlp {};
-		class varEneChDKZ {};
-		class varEneFia {};
-		class varEneSaf{};
-		class varEneTla {};
-		class varRoadBlock {};
 		class particules {};
 		class civiesCover {};
 		class haltCivilian {};
@@ -97,7 +99,6 @@ class ODD_advanced {
 		class createVehiculeAtPos {};
 
 		// outpost
-		class varOutpost {};
 		class createOutpostAtPos {};
 		class createOutpostsAroundZo {};
 
