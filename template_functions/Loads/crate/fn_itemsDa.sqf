@@ -46,3 +46,7 @@ _crate addItemCargoGlobal ["ACE_Vector", 5];
 _crate addItemCargoGlobal ["tfw_rf3080Item", 2];
 //_crate addBackpackCargoGlobal ["tfw_ilbe_whip_gr", 2];
 _crate addBackpackCargoGlobal ["tfw_ilbe_whip_ocp", 2];
+
+_crate addBackpackCargoGlobal ["B_UAV_01_backpack_F", 2];
+_crate addBackpackCargoGlobal ["B_UAV_06_backpack_F", 2];
+
