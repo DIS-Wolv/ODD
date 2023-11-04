@@ -27,6 +27,8 @@ if (_index != -1) then {
 		};
 	}forEach allMapMarkers;
 
+	_coord2D = _coord2D getPos [((random 20) + 5), random 360];
+
 	private _posHalo = _coord2D vectorAdd _coordZ;
 
 	if (_posHalo isEqualTo [0,0,0]) then {
