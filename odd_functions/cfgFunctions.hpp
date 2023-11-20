@@ -16,6 +16,7 @@ class ODD_Common {
 		class ZoType {};
 		class addIntel {};
 
+		class initCustomBuildings {};
 		class initCivils {};
 		class initPatrol {};
 		class initGarison {};
