@@ -5,18 +5,14 @@
 * Arguments :
 * 0: Zone <Objet>
 * 1: Est-ce la zone principale <BOOL>
-* 2: Activation du débug dans le chat <BOOL>
-*
-* Valeur renvoyée :
-* <ARRAY> [patrolPool, objActive]
 *
 * Exemple:
-* [_zo] call ODDcommon_fnc_initGarison
-* [_zo, True, False] call ODDcommon_fnc_initGarison
+* [_zo, True] call ODDcommon_fnc_initGarison
+* [_zo, False] call ODDcommon_fnc_initGarison
 *
 * Variable publique :
 */
-params ["_zo", ["_obj", False]];
+params ["_zo", ["_est_zo_principale", False]];
 
 private _garisonPool = 4;
 private _typeModifier = 0;
@@ -69,17 +65,9 @@ private _prox = nearestLocations [position _zo, ODD_var_LocationType, 2000];
 
 // Modif avec le nombre de batiments militaires
 
-if (_obj == True) then {
+if (_est_zo_principale == True) then {
 	_objModifier = 3;
 };
 _garisonPool = _garisonPool + _objModifier; 
 _garisonPool = round _garisonPool;
-
-// private _randomizationFloor = 0;
-// private _randomizationCeiling = 0;
-// _randomizationFloor = random [floor (_garisonPool * 0.8),_garisonPool];
-// _randomizationCeiling = random [_garisonPool, _garisonPool * 2];
-// _garisonPool = random [_randomizationFloor,_garisonPool,_randomizationCeiling]; 
-
-//[_typeModifier,_batModifier,(_garisonPool - (_typeModifier + _batModifier + 4)),_garisonPool];
 _garisonPool;

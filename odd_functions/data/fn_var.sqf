@@ -392,6 +392,17 @@ if (ODD_var_FirstDefinition) then {
 	"rhsusf_m1a2sep2wd_usarmy", "rhsusf_mkvsoc", "RHS_MELB_AH6M", "RHS_MELB_MH6M", "RHS_A10", "rhsusf_f22", "RHS_AH1Z", "RHS_UH1Y_FFAR_d", "RHS_UH1Y_d", "rhsusf_m1a1fep_d", "rhsusf_M142_usmc_WD", "RHS_AH1Z_wd",
 	"RHS_UH1Y_FFAR", "RHS_UH1Y", "rhsusf_m1a1fep_wd", "rhsusf_m1a1fep_od", "rhsusf_m1a1hc_wd"];
 
+	ODD_var_Crates = [
+		"ACE_medicalSupplyCrate_advanced",
+		"ACE_medicalSupplyCrate_advanced",
+		"ACE_medicalSupplyCrate_advanced",
+		"ACE_medicalSupplyCrate",
+		"ACE_medicalSupplyCrate",
+		"ACE_medicalSupplyCrate",
+		"Box_NATO_AmmoOrd_F",
+		"Box_NATO_Grenades_F",
+		"Box_NATO_Support_F"];
+
 	// Liste des objets à supprimer à la fin de la mission 
 	ODD_var_DeleteObjects = ["ACE_Track", "ACE_Wheel", "ACE_envelope_big", "GRAD_envelope_giant", "GRAD_envelope_long", "GRAD_envelope_short", "ACE_envelope_small", "GRAD_envelope_vehicle"];
 

@@ -52,11 +52,6 @@ private _radVl = 2000;
 	};
 	_variablesPad setVariable ["trig_ODD_var_zoType", _zoType, True];
 
-
-	// utilise les fonctions pour calculer les reserves de VL
-	// private _VlPool = [_loc,(_loc == _zo)] call ODDcommon_fnc_initGarison;
-	// _variablesPad setVariable ["trig_ODD_var_vl", _VlPool, True];
-
 	// utilise les fonctions pour calculer le nombre et la composition des civils
 	private _civils = [_loc] call ODDcommon_fnc_initCivils;
 	_variablesPad setVariable ["trig_ODD_var_civ",_civils, True];
@@ -90,6 +85,11 @@ private _radVl = 2000;
 	_patTrigger setVariable ["trig_ODD_var_Pad", _variablesPad, True];
 	_variablesPad setVariable ["trig_ODD_var_patWantState", False, True];
 	_scriptID = [_patTrigger, False] spawn ODDcommon_fnc_controlPatrols;
+
+
+	// Customize la location
+	private _specialBuildings = [_loc,(_loc == _zo)] call ODDcommon_fnc_initCustomBuildings;
+	_variablesPad setVariable ["trig_ODD_var_specialBuildings", _specialBuildings, True];
 
 
 	// utilise les fonctions pour calculer les reserves de garnison sur chaque localité	
