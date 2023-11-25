@@ -128,7 +128,7 @@ if (_action) then {
 				_box = "ACE_medicalSupplyCrate_advanced" createvehicle _posBox;
 				// Place une caisse
 
-				ODD_var_MedicalCrates pushBack _box;
+				ODD_var_Crates pushBack _box;
 				ODD_var_MissionProps pushBack _box;
 
 				_Med = False;

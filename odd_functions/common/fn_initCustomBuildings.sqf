@@ -32,9 +32,9 @@ for "_i" from 1 to _nb_crates do {
 	while {_building in _selected_buildings} do {
 		_building = selectRandom _Buildings;
 	};
-	private _crate_type = selectRandom ODD_var_Crates;
+	private _crate_type = selectRandom ODD_var_CratesTypes;
 	while {_crate_type in _selected_crates} do {
-		_crate_type = selectRandom ODD_var_Crates;
+		_crate_type = selectRandom ODD_var_CratesTypes;
 	};
 
 	// Place une caisse
@@ -42,7 +42,7 @@ for "_i" from 1 to _nb_crates do {
 	_posBox set[2, 1];
 	_box = _crate_type createvehicle _posBox;
 
-	ODD_var_MedicalCrates pushBack _box;
+	ODD_var_Crates pushBack _box;
 	ODD_var_MissionProps pushBack _box;
 };
 
