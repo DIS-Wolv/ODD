@@ -38,10 +38,6 @@ if (isNil "ODD_var_PlayerCount") then {
 if (isNil "ODD_var_DEBUG") then {
 	ODD_var_DEBUG = False;
 };
-if (isNil "ODD_var_MissionArea") then {
-	ODD_var_MissionArea = 4000;
-	[["ODD_var_MissionArea Init dans fn_MISSION"]] call ODDcommon_fnc_log;
-};
 
 if (ODD_var_CurrentMission == 0) then {
 	[True, "ODD_task_main", ["Une mission est en cours. Attendez les ordres du chef de groupe.", "Opération Dynamique de la DIS", ""], objNull, "ASSIGNED", -1, True, "use"] call BIS_fnc_taskCreate;
@@ -52,6 +48,12 @@ if (ODD_var_CurrentMission == 0) then {
 	// ["Génération d'une mission"] remoteExec ["systemChat", 0];
 	ODD_var_CurrentMission = 2;
 	publicVariable "ODD_var_CurrentMission";
+	ODD_var_MissionArea = random [
+		ODD_var_MissionAreaAvgSize - ODD_var_MissionAreaVarSize,
+		ODD_var_MissionAreaAvgSize,
+		ODD_var_MissionAreaAvgSize + ODD_var_MissionAreaVarSize
+	];
+	publicVariable "ODD_var_MissionArea";
 
 	private _zo = [_forceZO] call ODDadvanced_fnc_createZO;
 	// Choisi la localité via la fonction ODDadvanced_fnc_createZO

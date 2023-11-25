@@ -142,7 +142,8 @@ if (ODD_var_FirstDefinition) then {
 	];
 
 	// Distance autour de la zone objectif qui est considérée comme zone de mission
-	ODD_var_MissionArea = 4000;
+	ODD_var_MissionAreaAvgSize = 3500;
+	ODD_var_MissionAreaVarSize = 4500;
 
 	// Type de ponts
 	ODD_var_BridgeType = ["Land_Bridge_Concrete_PathLod_F", "Land_Bridge_HighWay_PathLod_F", "Land_Bridge_Asphalt_PathLod_F", "Land_Bridge_01_PathLod_F"];
