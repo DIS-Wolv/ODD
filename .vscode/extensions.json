@@ -7,8 +7,7 @@
         "vlad333000.sqf",
         "blackfisch.sqf-language",
         "eelislynne.sqf-wiki",
-        "skacekachna.sqflint",
-        "sqf-vm.sqf-vm-language-server",
-        "mcright.auto-save"
+        "mcright.auto-save",
+        "ezcoo.sqflint-revisited"
     ]
 }
