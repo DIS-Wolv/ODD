@@ -61,20 +61,22 @@ if (ODD_var_CurrentMission == 0) then {
 	ODD_var_SelectedArea = _zo;
 	publicVariable "ODD_var_SelectedArea";
 
-	if (((position FOB) distance2D (position ODD_var_SelectedArea)) <= 4500) then {
+	private _fob_min_distance = ODD_var_MissionAreaAvgSize + 2 * ODD_var_MissionAreaVarSize;
+	if (((position FOB) distance2D (position ODD_var_SelectedArea)) <= _fob_min_distance) then {
+		// FOB trop proche de la misson
 		_mrkfob = ["DIS_mrk_FOB_0", "DIS_mrk_FOB_1", "DIS_mrk_FOB_2", "DIS_mrk_FOB_3"];
-		_mrkfob = [_mrkfob, [getPos ODD_var_SelectedArea], { _input0 distance2D getMarkerPos(_x) }, "DESCEND"] call BIS_fnc_sortBy;
-		private _i = 0;
-		while {(isNil (_mrkfob select _i)) and !(_i < count _mrkfob)} do {
-			_i = _i + 1;
+		// trie du plus proche au plus loin
+		_mrkfob = [_mrkfob, [], { (position ODD_var_SelectedArea) distance2D getMarkerPos(_x) }] call BIS_fnc_sortBy;
+		// Prend le premier assez loin
+		private _idx = _mrkfob findIf { ((position ODD_var_SelectedArea) distance2D getMarkerPos(_x)) > _fob_min_distance };
+		if (_idx == -1) then {
+			// Aucun marker FOB n'est assez loin on prend le dernier
+			_idx = (count _mrkfob) - 1;
 		};
-		if (!(isNil (_mrkfob select _i))) then {
-			[_mrkfob select _i] call DISCommon_fnc_PosFob;
-		};
-
 		[["Déplacement de la FOB vers le marker %1", _mrkfob select 0]] call ODDcommon_fnc_log;
+		[_mrkfob select _idx] call DISCommon_fnc_PosFob;
 	};
-	
+
 	ODD_var_SelectedMissionType = [ODD_var_SelectedArea, _missiontype] call ODDadvanced_fnc_createTarget;
 	// Choisi le type de mission via la fonction ODDadvanced_fnc_createTarget
 	
