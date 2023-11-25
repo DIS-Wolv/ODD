@@ -30,11 +30,6 @@ if ((typeName _pad) != "SCALAR") then {
 		private _struct = _pad getVariable ["trig_ODD_var_Structure", []];
 
 		if (_state) then {
-			// spawn du road block
-			// _props = [_pos, _dir, _struct] call ODDcommon_fnc_roadBlockAo;
-			_pad setVariable ["trig_ODD_var_Props", (_props select 0), True];
-			_pad setVariable ["trig_ODD_var_HideObject", (_props select 1), True];
-
 			private _pool = _pad getVariable ["trig_ODD_var_EniPool", 0];
 
 			// tirage des groupes
