@@ -87,4 +87,7 @@ switch (ODD_var_CurrentMission) do {
 	default {_MissionsStatus = parseText "<t size='1.5' align='center' valign='middle'><t/>";};
 };
 
-(_display displayCtrl ODDGUIMissions_SText_Recap_IDC) ctrlSetStructuredText _MissionsStatus;
+if (!isNull(findDisplay ODDGUIMissions_IddDisplay)) then {
+    private _display = findDisplay ODDGUIMissions_IddDisplay;
+	(_display displayCtrl ODDGUIMissions_SText_Recap_IDC) ctrlSetStructuredText _MissionsStatus;
+};
