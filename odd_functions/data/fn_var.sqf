@@ -392,7 +392,7 @@ if (ODD_var_FirstDefinition) then {
 	"rhsusf_m1a2sep2wd_usarmy", "rhsusf_mkvsoc", "RHS_MELB_AH6M", "RHS_MELB_MH6M", "RHS_A10", "rhsusf_f22", "RHS_AH1Z", "RHS_UH1Y_FFAR_d", "RHS_UH1Y_d", "rhsusf_m1a1fep_d", "rhsusf_M142_usmc_WD", "RHS_AH1Z_wd",
 	"RHS_UH1Y_FFAR", "RHS_UH1Y", "rhsusf_m1a1fep_wd", "rhsusf_m1a1fep_od", "rhsusf_m1a1hc_wd"];
 
-	ODD_var_Crates = [
+	ODD_var_CratesTypes = [
 		"ACE_medicalSupplyCrate_advanced",
 		"ACE_medicalSupplyCrate_advanced",
 		"ACE_medicalSupplyCrate_advanced",
@@ -442,7 +442,7 @@ ODD_var_GarnisonnedIA = [];
 ODD_var_IAVehicles = [];
 
 // Liste des caisses med de la mission
-ODD_var_MedicalCrates = [];
+ODD_var_Crates = [];
 
 // Liste des civils de la mission
 ODD_var_MissionCivilians = [];

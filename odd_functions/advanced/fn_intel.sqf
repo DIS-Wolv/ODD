@@ -70,7 +70,7 @@ if (_proba == 0) then {
 	//["ObjectifPos", "VLCivilPos", "IEDPos", "CheckpointPos", "VLEnemiePos", "MedicalCratePos"];
 	switch (_intelType) do {
 		case (ODD_var_IntelType select 5): {	// Medical Crate 
-			if (count ODD_var_MedicalCrates <= 0) then {
+			if (count ODD_var_Crates <= 0) then {
 				_msg = selectRandom _msgNoMedical;
 				_needMarker = False;
 			}
@@ -179,7 +179,7 @@ Véhicule civil 231		=> ODD_var_MissionCivilianVehicles
 IED 205					=> ODD_var_MissionIED
 Checkpoint 168 ou 154	=> ODD_var_MissionCheckPoint
 vehicule ennemi 165		=> ODD_var_IAVehicles
-caisse med 172			=> ODD_var_MedicalCrates
+caisse med 172			=> ODD_var_Crates
 maison garnison 218
 tour radio 214
 */

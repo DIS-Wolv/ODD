@@ -23,8 +23,8 @@ private _intelPos = [0,0,0];
 
 switch (_type) do {
 	case (ODD_var_IntelType select 5): {
-		clientOwner publicVariableClient "ODD_var_MedicalCrates";
-		_allIntels = ODD_var_MedicalCrates; 
+		clientOwner publicVariableClient "ODD_var_Crates";
+		_allIntels = ODD_var_Crates; 
 		};
 	case (ODD_var_IntelType select 4): {
 		clientOwner publicVariableClient "ODD_var_IAVehicles";
