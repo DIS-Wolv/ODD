@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "hkonrrydland.a3cfgfunctions",
+        "ms-vscode.cpptools",
+        "mhutchie.git-graph",
+        "armitxes.sqf",
+        "vlad333000.sqf",
+        "blackfisch.sqf-language",
+        "eelislynne.sqf-wiki",
+        "skacekachna.sqflint",
+        "sqf-vm.sqf-vm-language-server",
+        "mcright.auto-save"
+    ]
+}
