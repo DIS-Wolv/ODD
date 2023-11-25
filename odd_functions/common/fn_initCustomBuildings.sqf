@@ -19,22 +19,19 @@ private _nb_crates = floor((count _Buildings)/100);
 if (random 1 < ((count _Buildings)/100 - floor((count _Buildings)/100))) then {
 	_nb_crates = _nb_crates + 1;
 };
-if (_est_zo_principale) then {
-	// Pas de caisse dans la zone principale pour ne pas confondre avec les caisses a detruire
-	_nb_crates = 0;
-};
-
 
 private _selected_buildings = [];
-private _selected_crates = [];
 for "_i" from 1 to _nb_crates do {
 	private _building = selectRandom _Buildings;
 	while {_building in _selected_buildings} do {
 		_building = selectRandom _Buildings;
 	};
 	private _crate_type = selectRandom ODD_var_CratesTypes;
-	while {_crate_type in _selected_crates} do {
-		_crate_type = selectRandom ODD_var_CratesTypes;
+	if (_est_zo_principale) then {
+		// Uniquement medical dans la zone principale pour ne pas confondre avec les caisses a detruire
+		while {!(_crate_type in ["ACE_medicalSupplyCrate_advanced", "ACE_medicalSupplyCrate"])} do {
+			_crate_type = selectRandom ODD_var_CratesTypes;
+		};
 	};
 
 	// Place une caisse
@@ -47,4 +44,3 @@ for "_i" from 1 to _nb_crates do {
 };
 
 _selected_buildings;
- 
