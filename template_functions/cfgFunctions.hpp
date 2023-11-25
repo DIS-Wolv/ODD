@@ -13,6 +13,7 @@ class DIS_Common {
 		class createBoat {};
 		class deleteBoats {};
 		class resetRadio {};
+		class arsenal{};
 	};
 };
 

@@ -42,6 +42,7 @@ pCav setVariable ["R3F_LOG_disabled", True];
 pPil setVariable ["R3F_LOG_disabled", True];
 pPil addAction ["Hélicoptère",{[_this select 1] call DISLoad_fnc_Helo;},[],1.5,True,True,"","",5];
 pPil addAction ["Chasseur",{[_this select 1] call DISLoad_fnc_Pilot;},[],1.5,True,True,"","",5];
+pPil call DISCommon_fnc_arsenal;
 armes addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_armes;},[],1.5,True,True,"","",5];
 armes setVariable ["R3F_LOG_disabled", True];
 medical addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_medical;},[],1.5,True,True,"","",5];
