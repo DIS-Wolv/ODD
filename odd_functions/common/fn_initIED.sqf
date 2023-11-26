@@ -20,7 +20,7 @@ if (_nb > 0) then {
 	_IEDS resize [_nb, []];
 };
 
-private _roads = (getPos _zo) nearRoads (size _loc select 0);
+private _roads = (getPos _zo) nearRoads (size _zo select 0);
 
 {
 	if (count _roads > 0) then {
