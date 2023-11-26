@@ -46,7 +46,7 @@ if (ODD_var_CurrentMission == 1) then {
 		_joueurInZO <= 0
 	};
 
-	[Base, 5, 2, False] spawn DISCommon_fnc_CutBushes;
+	[nil, True] spawn DISCommon_fnc_CutBushes;
 	// Supprime les taches
 	// ["ODD_task_Brief"] call BIS_fnc_deleteTask;
 	// ["ODD_task_mission"] call BIS_fnc_deleteTask;
@@ -114,8 +114,8 @@ if (ODD_var_CurrentMission == 1) then {
 
 	{
 		_x hideObjectGlobal False;		// Affiche l'object
-		ODD_var_HiddenObjects = ODD_var_HiddenObjects - [_x];
-	} forEach ODD_var_HiddenObjects;		// Pour object caché
+	} forEach ODD_var_HiddenObjects;	// Pour object caché
+	ODD_var_HiddenObjects = [];
 
 	{
 		deleteVehicle _x;
