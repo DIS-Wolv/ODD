@@ -202,7 +202,6 @@ Private _bridge = [];
 		_posr = position _road; 		// recup sa position
 
 		private _variablesPad = "Land_HelipadEmpty_F" createVehicle _posr;
-		// ODD_var_MissionCheckPoint pushBack _variablesPad;
 		_variablesPad setVariable ["trig_ODD_var_RoadPos", _posr, True];
 		_variablesPad setVariable ["trig_ODD_var_EniPool", 8, True];
 		_roadBlock set [_forEachIndex, _variablesPad];
@@ -250,6 +249,7 @@ private _outposts = [_zo, _nb_outposts] call ODDcommon_fnc_initOutpost;
 	_flavors = _x select 1;
 	// Cree le pad de controle
 	private _pad = "Land_HelipadEmpty_F" createVehicle _pos;
+	ODD_var_ZonePad pushBack _pad;
 
 	// crée le trigger pour spawn/déspawn
 	private _trigger = createTrigger ["EmptyDetector", _pad, True]; 

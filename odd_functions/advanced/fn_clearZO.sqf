@@ -122,6 +122,11 @@ if (ODD_var_CurrentMission == 1) then {
 	} forEach ODD_var_ZonePad;
 	ODD_var_ZonePad = [];
 
+	{
+		deleteVehicle _x;
+	} forEach ODD_var_MissionCheckPoint;
+	ODD_var_MissionCheckPoint = [];
+
 	ODD_var_MissionSmokePillar = [];
 	publicVariable "ODD_var_MissionSmokePillar";
 	[False] remoteExec ["ODDadvanced_fnc_particules", 0];
