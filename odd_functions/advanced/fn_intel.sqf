@@ -37,31 +37,25 @@ private _msgNoIed = _allmsg select 7;
 private _msgTransport = _allmsg select 8;
 private _msgNoTransport = _allmsg select 9;
 private _msgObj = _allmsg select 10;
+private _msgNon = _allmsg select 11;
 
 private _color = _colorPool select _source;
 private _markerType = "";
 
+// message à afficher (ne dois jamais être vide a la fin de la fonction)
+private _msg = "";
 
 /******** choix de si on vas donner un intel ou pas ********/
-// si _proba = 0 on donne un intel
-// sinon on donne un message de refus
-private _proba = 1;
-if (_source == 2) then {
+private _pourcent_de_chance = 75;
+if (_source == 2) then {  // Torture
 	private _torture = _author getVariable ["ace_medical_medications", []];
-	if (count (_torture) > 0) then {
-		_proba = round (random 0.9); // tweek la valeur
-	} else {
-		_proba = round (random 2);
-	};
-} else {
-	_proba = round (random 1);
+	_pourcent_de_chance = 30 + 10*(count _torture);
 };
-// _proba = 0;
-
+private _donne_intel = (random 100) < _pourcent_de_chance;
 
 /******** choix ce qu'on donne comme intel ********/
-private _pos = [0,0,0];
-if (_proba == 0) then {
+if (_donne_intel) then {
+	private _pos = [0,0,0];
 	_msg = "J'ai des informations.";
 	_intelType = selectRandom ODD_var_IntelType;
 	// _intelType = ODD_var_IntelType select 5; // force le type d'intel
@@ -156,31 +150,8 @@ if (_proba == 0) then {
 	};
 }
 else {
-	_msgNon = _allmsg select 11;
 	_msg = selectRandom _msgNon;
 };
 
 [_msg] remoteExec ["systemChat", 0];
 _msg;
-
-	// private _daytime = daytime;
-	// private _hours = floor _daytime;
-	// private _minutes = floor ((_daytime - _hours) * 60);
-	// private _seconds = floor ((((_daytime - _hours) * 60) - _minutes) * 60);
-	// _marker = createMarker [format["ODDTG %1:%2, %3", _hours, _minutes, _seconds], _pos,1];
-	// _marker setMarkertype (selectRandom _markerPool);
-	// _marker setMarkerColor (selectRandom _colorPool);
-	// _marker setMarkertext format["Objectif à %1:%2", _hours, _minutes];
-	// ["ODD_task_mission", _pos] call BIS_fnc_taskSetDestination;
-
-/*
-Objectif				=> ODD_var_Objective
-Véhicule civil 231		=> ODD_var_MissionCivilianVehicles
-IED 205					=> ODD_var_MissionIED
-Checkpoint 168 ou 154	=> ODD_var_MissionCheckPoint
-vehicule ennemi 165		=> ODD_var_IAVehicles
-caisse med 172			=> ODD_var_Crates
-maison garnison 218
-tour radio 214
-*/
-
