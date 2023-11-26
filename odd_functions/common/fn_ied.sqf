@@ -274,7 +274,7 @@ if (_type >= 0) then {
 			_explo setVariable ["ODD_var_IED_Trigger", _triggerExplo, True];
 		};
 		default {
-			[["ODD_BUG : Action IED non prévue : %1", _action]] call ODDcommon_fnc_log;
+			[["ODD_BUG : Action IED non prévue : %1", _type]] call ODDcommon_fnc_log;
 		};
 	};
 
