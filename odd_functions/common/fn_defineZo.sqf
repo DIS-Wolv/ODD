@@ -21,9 +21,9 @@ params ["_loc", "_mod"];
 private _zoType = 0;
 private _civ = True;
 
-private _loctype = [_zo] call ODDcommon_fnc_ZoType;
+private _loctype = [_loc] call ODDcommon_fnc_ZoType;
 
-if (_zo in ODD_var_LocationMilitaryName) then {
+if (_loc in ODD_var_LocationMilitaryName) then {
 	_locType = 10;
 };
 
