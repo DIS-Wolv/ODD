@@ -9,7 +9,7 @@
 * nil
 *
 * Exemple :
-* [] call ODDadvanced_fnc_intel
+* [1, player] call ODDadvanced_fnc_intel
 *
 * Variable publique :
 */

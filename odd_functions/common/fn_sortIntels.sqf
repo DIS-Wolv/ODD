@@ -11,15 +11,13 @@
 * <ARRAY>
 *
 * Exemple :
+* ["MedicalCratePos", position player, 2000] call ODDcommon_fnc_sortintels;
 *
 * Variable publique :
 */
 params [["_type",0], ["_center",[15000,15000,0]], ["_maxRange",1500]];
 
 private _allIntels = [];
-private _sortedIntels = [];
-private _sortedWeights = [];
-private _intelPos = [0,0,0];
 
 switch (_type) do {
 	case (ODD_var_IntelType select 5): {
@@ -58,23 +56,16 @@ switch (_type) do {
 	default { };
 };
 
-if (count(_allIntels) > 0) then {
-	[_allIntels, [_center, _maxRange], {_input0 distance2D _x}, "ASCEND", {(_input0 distance2D _x) <= _input1}] call BIS_fnc_sortBy;
-	_sortedIntels = _allIntels;
-} else {
-	[["ERROR fn_sortIntel : _allIntels = []"]] call ODDcommon_fnc_log;
-};
+private _only_in_range = _allIntels select {(_center distance2D _x) <= _maxRange};
+private _to_sort = _only_in_range apply {[_center distance2D _x, _x]};
+_to_sort sort true;
+private _sortedIntels = _to_sort apply {_x select 1};
 
-/*Il faut conter les _sortedIntels pour créer une array sortedweights pour pouvoir utiliser BIS_fnc_selectRandomWeighted */
-private _length = count(_sortedIntels);
-if (_length > 0) then {
-	{
-		_sortedWeights set [_forEachIndex, ((_length - _forEachIndex)/ _length)];
-	} forEach _sortedIntels;
-};
+// Poid decroissant avec la distance
+private _sortedWeights = _sortedIntels apply { 1/(_center distance2D _x) };
 
 private _intel = _sortedIntels selectRandomWeighted _sortedWeights;
 
 private _posIntel = position _intel;
 
-_posIntel;
+_posIntel
