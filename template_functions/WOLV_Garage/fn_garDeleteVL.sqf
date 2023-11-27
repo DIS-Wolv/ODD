@@ -25,5 +25,5 @@ if (_index != -1) then {
 };
 sleep 0.5;
 
-call WolvGarage_fnc_garUpdateVlProx;
-// Met à jour l'inventaire 
+[] remoteexec ["WolvGarage_fnc_garUpdateVlProx", -2];
+

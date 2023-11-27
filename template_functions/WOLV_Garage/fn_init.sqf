@@ -1,7 +1,16 @@
+/*
+* Auteur: Wolv
+* Function pour crée un garage
+* 
+* Return Value:
+* nil
+*
+*/
 
 params [["_obj", factory]];
 
 WolvGarage_var_OBJ = _obj;
+WolvGarage_var_Range = 100;
 WolvGarage_var_IddDisplayGarage = 0310221;
 WolvGarage_var_IddDisplayInv = 0310222;
 WolvGarage_var_IddDisplayInvAce = 0310223;
@@ -25,4 +34,13 @@ WolvGarage_var_ListVL = [];
 
 _obj addAction ["<t color='#5c7038'>Garage</t>", {call WolvGarage_fnc_garCreate},[],1.5,True,True,"", "True",5];
 
+private _radGar = WolvGarage_var_Range; // raduis du garrage
 
+private _garTrigger = createTrigger ["EmptyDetector", WolvGarage_var_OBJ];  //crée le trigger
+_garTrigger setTriggerArea [_radGar, _radGar, 0, false];        //definie la taille
+_garTrigger setTriggerActivation ["VEHICLE", "PRESENT", true];  //activation a la présence d'un vl
+_garTrigger setTriggerStatements ["this", 
+    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', -2];",
+    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', -2];"];
+
+WolvGarage_var_OBJ setVariable ["_var_updateTrigger", _garTrigger, True];

@@ -7,6 +7,7 @@
 *
 */
 
+if (!isNull(findDisplay WolvGarage_var_IddDisplayInvAce)) then {
 
 lbClear WolvGarage_var_IdcListInvAce;								// Nettoie la liste inventaire 
 _index = lbCurSel WolvGarage_var_IdcChoixVl;						// Récupère l'index du véhicule
@@ -39,4 +40,4 @@ if ((_index != -1) and (count(WolvGarage_var_ListSpawn) > 0)) then {  	// Si un 
 	((findDisplay WolvGarage_var_IddDisplayInvAce) displayCtrl WolvGarage_var_AceInvSize) ctrlSetStructuredText (parseText format["<t size='2' align='center'>Capacité : %1</t>", _maxLoad]);
 };
 
-
+};
