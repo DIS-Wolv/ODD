@@ -66,32 +66,42 @@ if (_type >= 0) then {
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 			_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 			_triggerExplo setTriggerStatements [
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_pos = position _explo;
-				_brouilleur = nearestObjects [_pos, ['R3F_Brouilleur'], 15];
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				if (typeName _cover == 'OBJECT') then {
-					_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-					this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count _brouilleur == 0);
-				}
-				else {
-					[['IED-BUG : Cover not a object : %1', typeName _cover]] call ODDcommon_fnc_log;
-					this
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count (nearestObjects [position _explo, ['R3F_Brouilleur'], 15]) == 0)
+						} else {
+							deleteVehicle thisTrigger;
+							False
+						}
+					} else {
+						deleteVehicle thisTrigger;
+						False
+					}
+				} else {
+					deleteVehicle thisTrigger;
+					False
 				}
 				",
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_explo setDamage 1;
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				if (typeName _cover == 'OBJECT') then {
-					_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-					_TgMan enableAI 'PATH';
-					_TgMan setUnitPos 'AUTO';
-					(group _TgMan) addWaypoint [position _explo, 0];
-					deleteVehicle thisTrigger;
-				}
-				else {
-					[['IED-BUG : Cover not a object : %1', typeName _cover]] call ODDcommon_fnc_log;
-				}
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_explo setDamage 1;
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							_TgMan enableAI 'PATH';
+							_TgMan setUnitPos 'AUTO';
+							(group _TgMan) addWaypoint [position _explo, 0];
+						};
+					};
+				};
+				deleteVehicle thisTrigger;
 				",
 				""
 			];
@@ -129,20 +139,44 @@ if (_type >= 0) then {
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 			_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 			_triggerExplo setTriggerStatements [
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_pos = position _explo;
-				_brouilleur = nearestObjects [_pos, ['R3F_Brouilleur'], 15];
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count _brouilleur == 0);",
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_explo setDamage 1;
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				_TgMan enableAI 'PATH';
-				_TgMan setUnitPos 'AUTO';
-				deleteVehicle thisTrigger;"
-				,""
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan) and (count (nearestObjects [position _explo, ['R3F_Brouilleur'], 15]) == 0);
+						} else {
+							deleteVehicle thisTrigger;
+							False
+						}
+					} else {
+						deleteVehicle thisTrigger;
+						False
+					}
+				} else {
+					deleteVehicle thisTrigger;
+					False
+				}
+				",
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_explo setDamage 1;
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							_TgMan enableAI 'PATH';
+							_TgMan setUnitPos 'AUTO';
+							(group _TgMan) addWaypoint [position _explo, 0];
+						};
+					};
+				};
+				deleteVehicle thisTrigger;
+				",
+				""
 			];
 
 			_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
@@ -177,23 +211,48 @@ if (_type >= 0) then {
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 			_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 			_triggerExplo setTriggerStatements [
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan);",
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_fnc_boom = {
-					params ['_mine'];
-					sleep (50 + random 40);
-					_mine setDamage 1;
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan);
+						} else {
+							deleteVehicle thisTrigger;
+							False
+						}
+					} else {
+						deleteVehicle thisTrigger;
+						False
+					}
+				} else {
+					deleteVehicle thisTrigger;
+					False
+				}
+				",
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					[_explo] spawn {
+						params ['_mine'];
+						sleep (50 + random 40);
+						_mine setDamage 1;
+					};
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							_TgMan enableAI 'PATH';
+							_TgMan setUnitPos 'AUTO';
+							(group _TgMan) addWaypoint [position _explo, 0];
+						};
+					};
 				};
-				[_explo] spawn _fnc_boom;
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				_TgMan enableAI 'PATH';
-				_TgMan setUnitPos 'AUTO';
-				(group _TgMan) addWaypoint [position _explo, 0];
-				deleteVehicle thisTrigger;",""
+				deleteVehicle thisTrigger;
+				",
+				""
 			];
 
 			_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
@@ -228,23 +287,48 @@ if (_type >= 0) then {
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 			_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 			_triggerExplo setTriggerStatements [
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan);",
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
-				_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
-				_fnc_boom = {
-					params ['_mine'];
-					sleep (50 + random 40);
-					_mine setDamage 1;
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							this and (alive _TgMan) and (lifeState _TgMan != 'INCAPACITATED') and !(captive _TgMan);
+						} else {
+							deleteVehicle thisTrigger;
+							False
+						}
+					} else {
+						deleteVehicle thisTrigger;
+						False
+					}
+				} else {
+					deleteVehicle thisTrigger;
+					False
+				}
+				",
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					[_explo] spawn {
+						params ['_mine'];
+						sleep (50 + random 40);
+						_mine setDamage 1;
+					};
+					_cover = _explo getVariable ['ODD_var_IED_Cover', ''];
+					if (typeName _cover == 'OBJECT') then {
+						_TgMan = _cover getVariable ['ODD_var_IED_TriggerMan', ''];
+						if (typeName _TgMan == 'OBJECT') then {
+							_TgMan enableAI 'PATH';
+							_TgMan setUnitPos 'AUTO';
+							(group _TgMan) addWaypoint [position _explo, 0];
+						};
+					};
 				};
-				[_explo] spawn _fnc_boom;
-				_TgMan enableAI 'PATH';
-				_TgMan setUnitPos 'AUTO';
-				(group _TgMan) addWaypoint [position _explo, 0];
-				deleteVehicle thisTrigger;",""
+				deleteVehicle thisTrigger;
+				",
+				""
 			];
 
 			_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
@@ -262,13 +346,17 @@ if (_type >= 0) then {
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 			_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 			_triggerExplo setTriggerStatements [
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_cnt = { alive _x and side _x == blufor and _explo distance2D _x < 7} count allUnits;
-				this and _cnt >= 2;",
-				"_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
-				_explo setDamage 1;
-				deleteVehicle thisTrigger;"
-				,""
+				"
+				this and (count thisList) >= 2
+				",
+				"
+				_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+				if (typeName _explo == 'OBJECT') then {
+					_explo setDamage 1;
+				};
+				deleteVehicle thisTrigger;
+				",
+				""
 			];
 			_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
 			_explo setVariable ["ODD_var_IED_Trigger", _triggerExplo, True];
