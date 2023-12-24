@@ -1,6 +1,6 @@
 /*
 * Auteur: Wolv
-* Script pour mettre à jour la liste de l'inventaire 
+* Fonction pour ajouter un item à l'inventaire ace
 * 
 * Return Value:
 * nil
@@ -22,4 +22,4 @@ if ((_index != -1) and (count(WolvGarage_var_ListSpawn) > 0)) then {  	// Si un 
 	};
 };
 
-call WolvGarage_fnc_aceInvUpdate;
+[] remoteexec ["WolvGarage_fnc_aceInvUpdate", -2];

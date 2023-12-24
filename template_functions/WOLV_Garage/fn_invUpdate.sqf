@@ -1,12 +1,13 @@
 /*
 * Auteur: Wolv
-* Script pour mettre à jour la liste de l'inventaire 
+* Script pour mettre à jour la liste de l'inventaire Arma
 * 
 * Return Value:
 * nil
 *
 */
 
+if (!isNull(findDisplay WolvGarage_var_IddDisplayInv)) then {
 
 lbClear WolvGarage_var_IdcListInv;								// Nettoie la liste inventaire 
 _index = lbCurSel WolvGarage_var_IdcChoixVl;					// Récupère l'index du véhicule
@@ -46,3 +47,4 @@ if ((_index != -1) and (count(WolvGarage_var_ListSpawn) > 0)) then {  // Si un �
 };
 
 
+};

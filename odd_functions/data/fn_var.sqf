@@ -294,7 +294,7 @@ if (ODD_var_FirstDefinition) then {
 	];	// Liste des HVT securiser
 
 	// Defini les différents objectifs possibles
-	ODD_var_MissionType = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule", "Convoie Humanitaire"];
+	ODD_var_MissionType = ["Caisse", "Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule", "Convoi Humanitaire"];
 		// convoi hummanitaire, bombe, convoi à intercepter
 
 	// Defini les différents objectifs secondaires possibles

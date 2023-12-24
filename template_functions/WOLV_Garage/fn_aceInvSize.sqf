@@ -6,6 +6,10 @@
 * nil
 *
 */
+
+private _maxLoad = -1;
+
+if (!isNull(findDisplay WolvGarage_var_IddDisplayInvAce)) then {
 _index = lbCurSel WolvGarage_var_IdcChoixVl;						// Récupère l'index du véhicule
 
 _maxLoad = -1;
@@ -27,6 +31,7 @@ if ((_index != -1) and (count(WolvGarage_var_ListSpawn) > 0)) then {  	// Si un 
 	_freeSpace = _vl getVariable "ace_cargo_space";
 	_maxLoad = (_weight + _freeSpace);
 
+};
 };
 
 _maxLoad;
