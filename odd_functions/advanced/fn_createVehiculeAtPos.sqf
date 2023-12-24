@@ -15,7 +15,7 @@
 */
 
 // Récupère les arguments
-params ["_pos", "_vl", "_side"];
+params ["_pos", "_vl", "_side", ["_angle", 0], ["_max_range", 250]];
 
 // doit etre en unscheduled environment
 // https://community.bistudio.com/wiki/canSuspend
@@ -25,18 +25,33 @@ if (!canSuspend) exitWith {systemChat "ERREUR : doit etre scheduled" ; nil};
 // lire https://cours.polymtl.ca/inf2610/documentation/notes/chap6.pdf section 6.4.1
 
 // attend le semaphore
-waitUntil {(isObjectHidden ODD_var_vls_lock) == false};
+waitUntil {uiSleep 0.1; (isObjectHidden ODD_var_vls_lock) == false};
 // prend le semaphore
 ODD_var_vls_lock hideObject true;
-uiSleep 0.1;
 
-private _to_gen_pos = _pos findEmptyPosition [1 + (sizeOf _vl), 250, _vl];
-if ((count _to_gen_pos) == 0) exitWith { nil };
+private __v = _vl createVehicle [100, 100, 200];  // pour pouvoir conaitre la taille du vehicule
+private _bbr = boundingBoxReal __v;
+private _size = 2 + selectMax [
+    abs ((_bbr select 0) select 0),
+    abs ((_bbr select 0) select 1),
+    abs ((_bbr select 1) select 0),
+    abs ((_bbr select 1) select 1)
+];
+private _to_gen_pos = [0, 0, 0];
+for "_i" from 1 to 20 do {
+    _tmp = [getPos player, 1, 150, _size, 0, 20, 0] call BIS_fnc_findSafePos;
+    if ((_tmp distance _pos) < (_to_gen_pos distance _pos)) then {
+        _to_gen_pos = _tmp;
+    }
+};
+deleteVehicle __v;
 
-private _created = [_to_gen_pos, _side, [_vl]] call BIS_fnc_spawnGroup;
+private _created = [[100, 200, 100], _side, [_vl]] call BIS_fnc_spawnGroup;
 private _vl = vehicle leader _created;
 _vl allowDamage false;
-uiSleep 0.5;
+_vl setdir _angle;
+_vl setPos (_to_gen_pos getPos [0, 0]);
+uiSleep 1;
 _vl allowDamage true;
 _created setSpeedMode "LIMITED";
 
