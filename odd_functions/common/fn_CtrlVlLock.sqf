@@ -23,7 +23,7 @@ if (_lock) then {
 		[
 			_vl, "<t color='#FF0000'>Déverrouiller le véhicule</t>",
 			"a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa","a3\ui_f\data\igui\cfg\actions\ico_cpt_start_on_ca.paa",
-			format ["_target distance _this < %1", _unlockDistance], "True", {}, {},
+			format ["_target distance _this < %1 and alive _this", _unlockDistance], "True", {}, {},
 			{
 				params ["_target", "_caller", "_actionId", "_arguments"];
 				[_target, 0] remoteExec ["lock", (owner _target)];
