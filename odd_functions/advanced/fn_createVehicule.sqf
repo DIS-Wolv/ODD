@@ -386,3 +386,6 @@ if (ODD_var_CurrentMission == 1 or ODD_var_CurrentMission == 2) then {
 else {
 	[["Missions nettoyer, arret de la fonction de spawn de vl sur %1", text _zo]] call ODDcommon_fnc_log;
 };
+
+publicVariable "ODD_var_IAVehicles";
+publicVariable "ODD_var_SecondaryAreasIA";

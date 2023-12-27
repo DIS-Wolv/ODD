@@ -370,7 +370,11 @@ if (_type >= 0) then {
 	// _marker setMarkerType "hd_dot";
 	// _marker setMarkerColor "colorOPFOR";
 	// _marker setMarkerText format["%1", _type];
+
+	ODD_var_MissionIED pushBack _explo;
 };
+
+publicVariable "ODD_var_MissionIED";
 
 _cover;
 

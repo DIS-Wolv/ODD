@@ -515,3 +515,7 @@ if (count _roads != 0) then {
 else {
 	[["ODD_BUG : Il n'y a pas de routes a moins de %1 m  de %2", text _zo, _dist]] call ODDcommon_fnc_log;
 };
+
+publicVariable "ODD_var_MissionIED";
+publicVariable "ODD_var_MissionIEDTriggerMan";
+publicVariable "ODD_var_MissionIEDTrigger";

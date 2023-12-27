@@ -220,3 +220,4 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 
 publicVariable "ODD_var_MissionCivilians";
 publicVariable "ODD_var_MissionProps";
+publicVariable "ODD_var_MissionCivilianVehicles";

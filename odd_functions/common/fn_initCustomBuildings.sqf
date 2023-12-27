@@ -43,4 +43,7 @@ for "_i" from 1 to _nb_crates do {
 	ODD_var_MissionProps pushBack _box;
 };
 
+publicVariable "ODD_var_Crates";
+publicVariable "ODD_var_MissionProps";
+
 _selected_buildings;

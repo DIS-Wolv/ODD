@@ -150,3 +150,4 @@ publicVariable "ODD_var_SecondaryAreasIA";
 publicVariable "ODD_var_MainAreaIA";
 publicVariable "ODD_var_GarnisonnedIA";
 publicVariable "ODD_var_HiddenObjects";
+publicVariable "ODD_var_MissionCheckPoint";

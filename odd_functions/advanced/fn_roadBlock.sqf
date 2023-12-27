@@ -173,3 +173,6 @@ publicVariable "ODD_var_SecondaryAreasIA";
 publicVariable "ODD_var_MainAreaIA";
 publicVariable "ODD_var_GarnisonnedIA";
 publicVariable "ODD_var_HiddenObjects";
+publicVariable "ODD_var_MissionCheckPoint";
+
+[["Nombre de Checkpoint sur %1 : %2", text _zo, _nb]] call ODDcommon_fnc_log;

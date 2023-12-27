@@ -35,6 +35,9 @@ private _vl = vehicle leader _grp;
 [_vl, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
 _vl setVariable ["trig_ODD_var_Civ", True, True];
 
+ODD_var_MissionCivilianVehicles pushBack _vl;
+publicVariable "ODD_var_MissionCivilianVehicles";
+
 // Civils
 {
 	_x setVariable ["trig_ODD_var_Civ", True, True];
