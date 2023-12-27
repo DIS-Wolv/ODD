@@ -39,7 +39,7 @@ private _size = 2 + selectMax [
 ];
 private _to_gen_pos = [0, 0, 0];
 for "_i" from 1 to 20 do {
-    _tmp = [getPos player, 1, 150, _size, 0, 20, 0] call BIS_fnc_findSafePos;
+    _tmp = [_pos, 1, 150, _size, 0, 20, 0, [], [[0, 0, 0],[0, 0, 0]]] call BIS_fnc_findSafePos;
     if ((_tmp distance _pos) < (_to_gen_pos distance _pos)) then {
         _to_gen_pos = _tmp;
     }
