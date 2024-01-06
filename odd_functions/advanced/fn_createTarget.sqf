@@ -289,7 +289,8 @@ switch (_Mission) do {
 		};
 		
 		_helico = "land_Wreck_Heli_Attack_01_F" createvehicle _pos;
-		ODD_var_MissionSmokePillar pushBack _pos;
+		_posSmoke = [_pos select 0, _pos select 1, (_pos select 2) + 1.5];
+		ODD_var_MissionSmokePillar pushBack _posSmoke;
 		publicVariable "ODD_var_MissionSmokePillar";
 		
 		[True] remoteExec ["ODDadvanced_fnc_particules", 0];
