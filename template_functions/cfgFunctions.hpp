@@ -42,6 +42,7 @@ class DIS_LoadMC {
 		class eod {};
 		class eodLight {};
 		class equipier {};
+		class grenadier {};
 		class gv {};
 		class gvbck {};
 		class medecin {};

@@ -32,7 +32,7 @@ for "_i" from 1 to 20 do {_unit addItemToUniform "ACE_packingBandage";};
 for "_i" from 1 to 12 do {_unit addItemToUniform "ACE_elasticBandage";};
 
 // Veste
-for "_i" from 1 to 8 do {_unit addItemToVest "30Rnd_556x45_Stanag_red";};
+for "_i" from 1 to 10 do {_unit addItemToVest "30Rnd_556x45_Stanag_red";};
 for "_i" from 1 to 10 do {_unit addItemToVest "SmokeShell";};
 for "_i" from 1 to 3 do {_unit addItemToVest "rhs_mag_m67";};
 for "_i" from 1 to 2 do {_unit addItemToVest "rhsusf_mag_17Rnd_9x19_JHP";};

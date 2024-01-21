@@ -9,18 +9,18 @@ removeBackpack _unit;
 removeHeadgear _unit;
 removeGoggles _unit;
 
-_unit addWeapon "rhs_weap_hk416d10";
+_unit addWeapon "rhs_weap_hk416d145_m320";
 [_unit] call DISLoad_fnc_standartScope;
 _unit addPrimaryWeaponItem "30Rnd_556x45_Stanag_red";
-
+_unit addPrimaryWeaponItem "rhs_mag_M433_HEDP";
 _unit addWeapon "rhsusf_weap_glock17g4";
 _unit addHandgunItem "rhsusf_mag_17Rnd_9x19_JHP";
 
-_unit forceAddUniform "U_B_CombatUniform_mcam_tshirt";
-_unit addVest "V_Rangemaster_belt";
-_unit addBackpack "TFAR_rt1523g_green";
+_unit forceAddUniform "rhs_uniform_g3_mc";
+_unit addVest "rhsusf_plateframe_grenadier";
+_unit addBackpack "rhsusf_falconii_mc";
 
-_unit addHeadgear "H_MilCap_mcamo";
+_unit addHeadgear "rhsusf_opscore_mc_cover";
 
 // treillis
 _unit addItemToUniform "ACE_EarPlugs";
@@ -33,8 +33,14 @@ for "_i" from 1 to 20 do {_unit addItemToUniform "ACE_packingBandage";};
 for "_i" from 1 to 12 do {_unit addItemToUniform "ACE_elasticBandage";};
 
 // Veste
-for "_i" from 1 to 5 do {_unit addItemToVest "30Rnd_556x45_Stanag_red";};
+for "_i" from 1 to 10 do {_unit addItemToVest "30Rnd_556x45_Stanag_red";};
+for "_i" from 1 to 10 do {_unit addItemToVest "SmokeShell";};
+for "_i" from 1 to 3 do {_unit addItemToVest "rhs_mag_m67";};
+for "_i" from 1 to 2 do {_unit addItemToVest "rhsusf_mag_17Rnd_9x19_JHP";};
 
+// Sac a dos
+for "_i" from 1 to 4 do {_unit addItemToBackpack "ACE_plasmaIV_500";};
+for "_i" from 1 to 15 do {_unit addItemToBackpack "rhs_mag_M433_HEDP";};
 
 _unit linkItem "ItemMap";
 _unit linkItem "ItemCompass";
@@ -44,6 +50,4 @@ _unit linkItem "TFAR_anprc152";
 _unit setVariable ["ace_hasearplugsin",true];
 
 if(True) exitWith{};
-
-
 
