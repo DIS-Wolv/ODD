@@ -107,7 +107,7 @@ pInf addAction ["EOD",{[_this select 1] call DISLoadMc_fnc_eod;},[],1.5,True,Tru
 pInf addAction ["EOD Light",{[_this select 1] call DISLoadMc_fnc_eodLight;},[],1.5,True,True,"","",5];
 pInf addAction ["TP",{[_this select 1] call DISLoadMc_fnc_tp;},[],1.5,True,True,"","",5];
 
-acces addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_itemsCe},[],1.5,True,True,"","",5];
+acces addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_items},[],1.5,True,True,"","",5];
 
 
 
