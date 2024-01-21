@@ -19,7 +19,7 @@ _unit forceAddUniform "U_B_Wetsuit";
 _unit addVest "V_RebreatherB";
 _unit addBackpack "rhssaf_kitbag_smb";
 
-_unit addHeadgear "Mohawk_Core_MANTA_OD";
+_unit addHeadgear "rhsusf_opscore_paint";
 _unit addGoggles "G_B_Diving";
 
 // treillis
