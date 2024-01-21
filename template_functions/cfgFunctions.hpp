@@ -34,6 +34,8 @@ class DIS_LoadMC {
 	class Initialize {
 		file = "template_functions\loads\mc";
 		
+		class cdb {};
+		class cdbr {};
 		class cde {};
 		class cdg {};
 		class cds {};

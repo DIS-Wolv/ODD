@@ -45,11 +45,11 @@ switch (str(_unit)) do {
 	
 	case "sgCdb";
 	case "trCdb";
-	case "grCdb": {[_unit] call DISLoadCe_fnc_cdbr};
+	case "grCdb": {[_unit] call DISLoadMc_fnc_cdbr};
 
 	case "crCdb";
 	case "trCdb";
-	case "alCdb": {[_unit] call DISLoadCe_fnc_cdb}; //CdB
+	case "alCdb": {[_unit] call DISLoadMc_fnc_cdb}; //CdB
 	
 	case "sgEq";
 	case "grEq";

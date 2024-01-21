@@ -90,8 +90,8 @@ else {
 pCav setVariable ["R3F_LOG_disabled", True];
 pInf setVariable ["R3F_LOG_disabled", True];
 
-pCav addAction ["Chef de Bord (médecin)",{[_this select 1] call DISLoadCe_fnc_cdb;},[],1.5,True,True,"","",5];
-pCav addAction ["Chef de Bord (groupe d'infanterie)",{[_this select 1] call DISLoadCe_fnc_cdbr;},[],1.5,True,True,"","",5];
+pCav addAction ["Chef de Bord (médecin)",{[_this select 1] call DISLoadMc_fnc_cdb;},[],1.5,True,True,"","",5];
+pCav addAction ["Chef de Bord (groupe d'infanterie)",{[_this select 1] call DISLoadMc_fnc_cdbr;},[],1.5,True,True,"","",5];
 pCav addAction ["Equipier",{[_this select 1] call DISLoadMc_fnc_equipier;},[],1.5,True,True,"","",5];
 
 pInf addAction ["Chef de Groupe",{[_this select 1] call DISLoadMc_fnc_cdg;},[],1.5,True,True,"","",5];

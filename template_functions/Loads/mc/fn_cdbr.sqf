@@ -33,13 +33,17 @@ for "_i" from 1 to 12 do {_unit addItemToUniform "ACE_elasticBandage";};
 
 // Veste
 for "_i" from 1 to 5 do {_unit addItemToVest "30Rnd_556x45_Stanag_red";};
-for "_i" from 1 to 6 do {_unit addItemToVest "SmokeShell";};
+for "_i" from 1 to 4 do {_unit addItemToVest "SmokeShell";};
 for "_i" from 1 to 2 do {_unit addItemToVest "rhs_mag_m67";};
 for "_i" from 1 to 2 do {_unit addItemToVest "rhsusf_mag_17Rnd_9x19_JHP";};
+_unit addItemToVest "SmokeShellGreen";
+_unit addItemToVest "SmokeShellBlue";
 
 // Sac a dos
-_unit addItemToBackpack "ToolKit";
 for "_i" from 1 to 4 do {_unit addItemToBackpack "ACE_plasmaIV_500";};
+for "_i" from 1 to 4 do {_unit addItemToBackpack "SmokeShell";};
+for "_i" from 1 to 5 do {_unit addItemToBackpack "30Rnd_556x45_Stanag_red";};
+
 
 _unit linkItem "ItemMap";
 _unit linkItem "ItemCompass";
