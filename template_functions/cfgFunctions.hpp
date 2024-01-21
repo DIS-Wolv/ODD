@@ -29,6 +29,27 @@ class DIS_Load {
 	};
 };
 
+class DIS_LoadMC {
+	tag = "DISLoadMc";
+	class Initialize {
+		file = "template_functions\loads\mc";
+		
+		class cde {};
+		class cdg {};
+		class cds {};
+		class eod {};
+		class eodLight {};
+		class equipier {};
+		class gv {};
+		class gvbck {};
+		class medecin {};
+		class minimi5 {};
+		class minimi7 {};
+		class TP {};
+		class zeus {};
+	};
+};
+
 class DIS_LoadCE {
 	tag = "DISLoadCe";
 	class Initialize {
