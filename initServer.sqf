@@ -39,4 +39,5 @@ pInf setVariable ["R3F_LOG_disabled", True];
 pInf setObjectTextureGlobal [0, "pics\ce.jpg"];
 acces spawn DISLoadCrate_fnc_items;
 
+[] call DISLoad_fnc_varLoads;
 //[] remoteExec ["scripts\rWeather.sqf"];

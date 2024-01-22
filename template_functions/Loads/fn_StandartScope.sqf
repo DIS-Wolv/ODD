@@ -9,20 +9,16 @@ if ((name _unit) in _EXP3_Player) then {
 	_unit addPrimaryWeaponItem "rhsusf_acc_eotech_xps3";
 }
 else {
-	if ((name _unit) in _EXP3_Player) then {
-		_unit addPrimaryWeaponItem "rhsusf_acc_eotech_xps3";
+	if ((name _unit) in _aimpoint_Player) then {
+		_unit addPrimaryWeaponItem "rhsusf_acc_compm4";
 	}
 	else {
-		if ((name _unit) in _aimpoint_Player) then {
-			_unit addPrimaryWeaponItem "rhsusf_acc_compm4";
+		if ((name _unit) in _ACO_Player) then {
+			_unit addPrimaryWeaponItem "optic_ACO_grn";
 		}
 		else {
-			if ((name _unit) in _ACO_Player) then {
-				_unit addPrimaryWeaponItem "optic_ACO_grn";
-			}
-			else {
-				_unit addPrimaryWeaponItem "rhsusf_acc_g33_xps3";
-			};
+			_unit addPrimaryWeaponItem "rhsusf_acc_g33_xps3";
 		};
 	};
 };
+

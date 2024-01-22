@@ -76,12 +76,11 @@ then {
 	usine addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	usine setVariable ["R3F_LOG_disabled", True];
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
-	pDiv setVariable ["R3F_LOG_disabled", True];
-	pDiv addAction ["CdG (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cdg;},[],1.5,True,True,"","",5];
-	pDiv addAction ["CdE (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_cde;},[],1.5,True,True,"","",5];
-	pDiv addAction ["GV (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_gv;},[],1.5,True,True,"","",5];
-	pDiv addAction ["Minimi (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_minimi;},[],1.5,True,True,"","",5];
-	pDiv addAction ["Médecin (Plongeur)",{[_this select 1] call DISLoadDivers_fnc_medecin;},[],1.5,True,True,"","",5];
+	pDiv addAction ["CdG (Plongeur)",{[DISLoadPL_var_CDG, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+	pDiv addAction ["CdE (Plongeur)",{[DISLoadPL_var_CDE, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+	pDiv addAction ["GV (Plongeur)",{[DISLoadPL_var_GV, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+	pDiv addAction ["Minimi (Plongeur)",{[DISLoadPL_var_Minimi5, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+	pDiv addAction ["Médecin (Plongeur)",{[DISLoadPL_var_Medecin, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 }
 else {
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
@@ -90,25 +89,26 @@ else {
 pCav setVariable ["R3F_LOG_disabled", True];
 pInf setVariable ["R3F_LOG_disabled", True];
 
-pCav addAction ["Chef de Bord (médecin)",{[_this select 1] call DISLoadMc_fnc_cdb;},[],1.5,True,True,"","",5];
-pCav addAction ["Chef de Bord (groupe d'infanterie)",{[_this select 1] call DISLoadMc_fnc_cdbr;},[],1.5,True,True,"","",5];
-pCav addAction ["Equipier",{[_this select 1] call DISLoadMc_fnc_equipier;},[],1.5,True,True,"","",5];
+pCav addAction ["Chef de Bord (médecin)",{[DISLoadMc_var_CDB, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pCav addAction ["Chef de Bord (groupe d'infanterie)",{[DISLoadMc_var_CDBR, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pCav addAction ["Equipier",{[DISLoadMc_var_Equipier, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 
-pInf addAction ["GV",{[_this select 1] call DISLoadMc_fnc_gv;},[],1.5,True,True,"","",5];
-pInf addAction ["GV Sac",{[_this select 1] call DISLoadMc_fnc_gvbck;},[],1.5,True,True,"","",5];
-pInf addAction ["Grenadier",{[_this select 1] call DISLoadMc_fnc_grenadier;},[],1.5,True,True,"","",5];
-pInf addAction ["Minimi 5.56",{[_this select 1] call DISLoadMc_fnc_minimi5;},[],1.5,True,True,"","",5];
-pInf addAction ["Minimi 7.62",{[_this select 1] call DISLoadMc_fnc_minimi7;},[],1.5,True,True,"","",5];
-pInf addAction ["Médecin",{[_this select 1] call DISLoadMc_fnc_medecin;},[],1.5,True,True,"","",5];
-pInf addAction ["Chef d'Equipe",{[_this select 1] call DISLoadMc_fnc_cde;},[],1.5,True,True,"","",5];
-pInf addAction ["Chef de Groupe",{[_this select 1] call DISLoadMc_fnc_cdg;},[],1.5,True,True,"","",5];
-pInf addAction ["Chef de Section",{[_this select 1] call DISLoadMc_fnc_cds;},[],1.5,True,True,"","",5];
-pInf addAction ["EOD",{[_this select 1] call DISLoadMc_fnc_eod;},[],1.5,True,True,"","",5];
-pInf addAction ["EOD Light",{[_this select 1] call DISLoadMc_fnc_eodLight;},[],1.5,True,True,"","",5];
-pInf addAction ["TP",{[_this select 1] call DISLoadMc_fnc_tp;},[],1.5,True,True,"","",5];
+pInf addAction ["GV",{[DISLoadMc_var_GV,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Gv Sac",{[DISLoadMc_var_GvBck,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Grenadier",{[DISLoadMc_var_Grenadier,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Minimi 5.56",{[DISLoadMc_var_Minimi5,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Minimi 7.62",{[DISLoadMc_var_Minimi7,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Chef d'Equipe",{[DISLoadMc_var_CdE,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Chef de Groupe",{[DISLoadMc_var_CdG,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Chef de Section",{[DISLoadMc_var_CdS,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["EOD",{[DISLoadMc_var_EOD,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["EOD Light",{[DISLoadMc_var_EOD_Light,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Medecin",{[DISLoadMc_var_Medecin,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["TP",{[DISLoadMc_var_TP,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Zeus",{[DISLoadMc_var_Zeus,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 
 acces addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_items},[],1.5,True,True,"","",5];
 
-
+[] call DISLoad_fnc_varLoads;
 
 sleep 3;

@@ -13,7 +13,7 @@ _crate addItemCargoGlobal ["rhsusf_acc_eotech_xps3", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d145", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d10", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_hk416d145_m320", 5];
-_crate addWeaponCargoGlobal ["rhs_weap_m249_pip_S_para", 5];
+_crate addWeaponCargoGlobal ["rhs_weap_m249_light_S", 5];
 _crate addWeaponCargoGlobal ["rhs_weap_m240B", 5];
 
 _crate addItemCargoGlobal ["rhs_mag_m67", 50];
