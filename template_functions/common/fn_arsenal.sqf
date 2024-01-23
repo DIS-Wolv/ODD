@@ -33,7 +33,7 @@ _ammo_from_crates_weapons = ["rhsusf_acc_eotech_xps3","rhsusf_acc_g33_xps3","rhs
 
 _items_from_item_box = ["rhsusf_acc_nt4_black","rhsusf_acc_omega9k","rhsusf_acc_anpeq15side_bk","rhsusf_acc_wmx_bk","ACE_SpraypaintGreen","acc_flashlight_pistol","ACE_DefusalKit","ACE_M26_Clacker","ACE_Clacker","ACE_VMM3","R3F_ITEM_Brouilleur","DemoCharge_Remote_Mag","ClaymoreDirectionalMine_Remote_Mag","SatchelCharge_Remote_Mag","rhsusf_m112_mag","SmokeShellGreen","B_IR_Grenade","ACE_Chemlight_HiGreen","UGL_FlareCIR_F","ACE_NVG_Wide","ACE_EntrenchingTool","ACE_wirecutter","ACE_CableTie","ACE_MapTools","R3F_ITEM_ODP","B_UavTerminal","ACE_UAVBattery","Laserbatteries","ACE_Kestrel4500","ACE_Tripod","ACE_Vector","tfw_rf3080Item","tfw_ilbe_whip_gr","tfw_ilbe_whip_ocp"];
 
-_paradrop_items = ["ACE Altimeter"];
+_paradrop_items = ["ACE_Altimeter"];
 _paradrop_backpacks = ["B_Parachute"];
 
 [ _obj, _weapons, false, true ] call BIS_fnc_addVirtualWeaponCargo;

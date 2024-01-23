@@ -1,4 +1,4 @@
-private _crate = dump;
+params ["_crate"];
 
 clearMagazineCargoGlobal _crate;
 clearWeaponCargoGlobal _crate;
