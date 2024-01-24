@@ -88,5 +88,5 @@ _items = (_items arrayIntersect _items) select {_x isEqualType "" && {_x != ""}}
 
 // on ajoute les items dans l'arsenal
 [pPil, []] call ace_arsenal_fnc_initBox;
-[pPil, _items] call ace_arsenal_fnc_addVirtualItems;
+[pPil, _items] remoteExec ["ace_arsenal_fnc_addVirtualItems", 0, True] ;
 
