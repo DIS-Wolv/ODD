@@ -25,6 +25,7 @@ class DIS_Load {
 		class Equip {};
 		class VarLoads {};
 		class SetLoad {};
+		class ArsenalAce {};
 	};
 };
 

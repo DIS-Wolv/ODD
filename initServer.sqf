@@ -40,4 +40,5 @@ pInf setObjectTextureGlobal [0, "pics\ce.jpg"];
 acces spawn DISLoadCrate_fnc_items;
 
 [] call DISLoad_fnc_varLoads;
+[] call DISLoad_fnc_ArsenalAce;
 //[] remoteExec ["scripts\rWeather.sqf"];
