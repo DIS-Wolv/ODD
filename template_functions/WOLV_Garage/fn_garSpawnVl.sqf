@@ -88,5 +88,5 @@ if (_index != -1) then {
 	};
 };
 
-[] remoteexec ["WolvGarage_fnc_garUpdateVlProx", -2];
+[] remoteexec ["WolvGarage_fnc_garUpdateVlProx", 0];
 
