@@ -18,6 +18,7 @@ WolvGarage_var_IddDisplayInvAce = 0310223;
 WolvGarage_var_ListArsenalWeap = ["rhs_weap_M136", "rhs_weap_fgm148", "rhs_weap_fim92"];
 WolvGarage_var_ListArsenalMag = ["rhs_mag_30Rnd_556x45_M855A1_Stanag", "rhsusf_200Rnd_556x45_box", "rhsusf_100Rnd_762x51", "rhsusf_mag_17Rnd_9x19_JHP", "rhs_mag_M433_HEDP", "rhs_mag_m67", "SmokeShell", "SmokeShellGreen", "rhs_fgm148_magazine_AT", "rhs_fim92_mag", "DemoCharge_Remote_Mag", "MRAWS_HE_F", "rhs_mag_maaws_HEAT", "rhs_mag_maaws_HE"];
 WolvGarage_var_ListArsenalItem = ["ACE_Clacker", "ACE_elasticBandage", "ACE_packingBandage", "ACE_plasmaIV", "ACE_splint", "ACE_tourniquet", "ACE_CableTie", "Toolkit", "ACE_EntrenchingTool", "ACE_DefusalKit", "ACE_wirecutter", "ACE_EarPlugs", "ACE_UAVBattery"];
+WolvGarage_var_ListArsenal = WolvGarage_var_ListArsenalWeap + WolvGarage_var_ListArsenalMag + WolvGarage_var_ListArsenalItem;
 WolvGarage_var_CratesList = ["B_CargoNet_01_ammo_F"];
 //Liste des élements dans l'arsenal
 
@@ -40,7 +41,7 @@ private _garTrigger = createTrigger ["EmptyDetector", WolvGarage_var_OBJ];  //cr
 _garTrigger setTriggerArea [_radGar, _radGar, 0, false];        //definie la taille
 _garTrigger setTriggerActivation ["VEHICLE", "PRESENT", true];  //activation a la présence d'un vl
 _garTrigger setTriggerStatements ["this", 
-    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', -2];",
-    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', -2];"];
+    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', 0];",
+    "[] remoteexec ['WolvGarage_fnc_garUpdateVlProx', 0];"];
 
 WolvGarage_var_OBJ setVariable ["_var_updateTrigger", _garTrigger, True];

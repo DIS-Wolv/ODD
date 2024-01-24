@@ -19,14 +19,13 @@ if (_isCreate) then {
 	} forEach WolvGarage_var_ListVL;
 
 	{
-		lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
-	} forEach WolvGarage_var_ListArsenalWeap;
-	{
-		lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgMagazines" >> _x >> "displayName")];
-	} forEach WolvGarage_var_ListArsenalMag;
-	{
-		lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
-	} forEach WolvGarage_var_ListArsenalItem;
+		if (getText (configFile >> "CfgWeapons" >> _x >> "displayName") != "") then {
+			lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
+		}
+		else {
+			lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgMagazines" >> _x >> "displayName")];
+		};
+	} forEach WolvGarage_var_ListArsenal;
 };
 
 ((findDisplay WolvGarage_var_IddDisplayInv) displayCtrl WolvGarage_var_IdcChoixVl) ctrlAddEventHandler ["LBSelChanged", "call WolvGarage_fnc_invUpdate"];
