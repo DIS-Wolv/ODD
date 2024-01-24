@@ -101,9 +101,9 @@ pInf addAction ["Minimi 7.62",{[DISLoadMc_var_Minimi7,_this select 1] call DISLo
 pInf addAction ["Chef d'Equipe",{[DISLoadMc_var_CdE,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["Chef de Groupe",{[DISLoadMc_var_CdG,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["Chef de Section",{[DISLoadMc_var_CdS,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Medecin",{[DISLoadMc_var_Medecin,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["EOD",{[DISLoadMc_var_EOD,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["EOD Light",{[DISLoadMc_var_EOD_Light,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
-pInf addAction ["Medecin",{[DISLoadMc_var_Medecin,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["TP",{[DISLoadMc_var_TP,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["Zeus",{[DISLoadMc_var_Zeus,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 
