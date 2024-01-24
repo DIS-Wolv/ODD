@@ -26,7 +26,7 @@ _crate addItemCargoGlobal ["rhs_mag_m714_White", 10];
 
 _crate addMagazineCargoGlobal ["rhsusf_100Rnd_762x51", 50];
 _crate addMagazineCargoGlobal ["rhsusf_200Rnd_556x45_box", 50];
-_crate addMagazineCargoGlobal ["rhs_mag_30Rnd_556x45_M855A1_Stanag", 50];
+_crate addMagazineCargoGlobal ["30Rnd_556x45_Stanag_red", 50];
 _crate addMagazineCargoGlobal ["rhsusf_mag_17Rnd_9x19_JHP", 50];
 
 _crate addItemCargoGlobal ["ACE_EarPlugs", 5];

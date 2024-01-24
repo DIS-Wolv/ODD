@@ -1,3 +1,15 @@
+/*
+* Auteur : Wolv
+* permet de set up l'arsenal Ace
+*
+* Arguments :
+*
+* Exemple:
+* [] call DISLoad_fnc_ArsenalAce;
+*
+* Variable publique :
+*/
+
 
 if (isNil "DISLoad_var_piloteAvions") then {
     [] call DISLoad_fnc_Varload;
