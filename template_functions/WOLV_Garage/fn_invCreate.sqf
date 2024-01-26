@@ -19,7 +19,7 @@ if (_isCreate) then {
 	} forEach WolvGarage_var_ListVL;
 
 	{
-		if (isClass (configFile >> "CfgWeapons" >> _x >> "displayName")) then {
+		if (isClass (configFile >> "CfgWeapons" >> _x)) then {
 			lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
 		}
 		else {

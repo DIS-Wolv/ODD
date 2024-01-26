@@ -24,7 +24,7 @@ if (_indexVL != -1) then {
 
 	if (_indexObj != -1) then {
 		// Si un objet est séléctioné 
-		if (isClass (configFile >> "CfgWeapons" >> WolvGarage_var_ListArsenal select _indexObj >> "displayName")) then {
+		if (isClass (configFile >> "CfgWeapons" >> WolvGarage_var_ListArsenal select _indexObj)) then {
 		// Si c'est une arme
 			if((maxLoad _vl - loadAbs _vl)>= (getNumber (configFile >> "CfgWeapons" >>  WolvGarage_var_ListArsenal select _indexObj >> "WeaponSlotsInfo" >> "mass") * _Nb)) then { 
 			// Vérifie s'il y a la place
