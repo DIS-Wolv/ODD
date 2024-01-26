@@ -44,7 +44,7 @@ switch (str(_unit)) do {
 	case "grBlGv1";
 	case "grBlGv2";
 	case "grGrGv1";
-	case "grGrGv2": {[DISLoadMc_var_GV, _unit] call DISLoad_fnc_SetLoad;}; //Gv
+	case "grGrGv2": {[DISLoadMc_var_GvBck, _unit] call DISLoad_fnc_SetLoad;}; //Gv
 	
 	case "sgCdb";
 	case "trCdb";
