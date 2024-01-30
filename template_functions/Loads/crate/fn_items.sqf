@@ -45,6 +45,7 @@ _crate addItemCargoGlobal ["Laserbatteries", 5];
 _crate addItemCargoGlobal ["ACE_Kestrel4500", 5];
 _crate addItemCargoGlobal ["ACE_Tripod", 5];
 _crate addItemCargoGlobal ["ACE_Vector", 5];
+_crate addItemCargoGlobal ["R3F_BLACKHORNET_BASE", 5];
 
 // Radio
 _crate addItemCargoGlobal ["tfw_rf3080Item", 2];
