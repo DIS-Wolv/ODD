@@ -27,11 +27,11 @@ if (_index != -1) then {
 			}forEach WolvGarage_var_VlLoad;
 
 			_plate = ["DIS-"];
-			_plate pushBack groupid (group player);
-			_plate pushBack "-";
 			for "_i" from 0 to 2 do {
 				_plate pushBack (floor random 10);
 			};
+			_plate pushBack "-";
+			_plate pushBack (toUpper ((((groupid (group player)) splitString "") select [0,3]) joinString ''));
 			_vl setPlateNumber ( _plate joinString "");
 		};
 
