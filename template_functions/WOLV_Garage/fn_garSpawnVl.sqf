@@ -26,9 +26,6 @@ if (_index != -1) then {
 				_vl addItemCargoGlobal [(_x select 0), (_x select 1)];
 			}forEach WolvGarage_var_VlLoad;
 
-			for "_i" from 0 to 10 do {
-				
-			};
 			_plate = ["DIS-"];
 			_plate pushBack groupid (group player);
 			_plate pushBack "-";
