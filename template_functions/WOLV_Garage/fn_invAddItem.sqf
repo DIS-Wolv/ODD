@@ -29,13 +29,13 @@ if (_indexVL != -1) then {
 			if((maxLoad _vl - loadAbs _vl)>= (getNumber (configFile >> "CfgWeapons" >>  WolvGarage_var_ListArsenal select _indexObj >> "WeaponSlotsInfo" >> "mass") * _Nb)) then { 
 			// Vérifie s'il y a la place
 				// Ajoute l'arme au véhicule
-				_vl addWeaponCargoGlobal [ WolvGarage_var_ListArsenal select _indexObj, _nb];	
+				_vl addItemCargoGlobal [ WolvGarage_var_ListArsenal select _indexObj, _nb];	
 			};
 		} else {
 		// Si c'est un chargeur
 			if((maxLoad _vl - loadAbs _vl)>= (getNumber (configFile >> "CfgMagazines" >>  WolvGarage_var_ListArsenal select _indexObj >> "mass") * _Nb)) then { 
 			// Vérifie s'il y a la place
-				_vl addMagazineCargoGlobal [ WolvGarage_var_ListArsenal select _indexObj, _nb]; 
+				_vl addItemCargoGlobal [ WolvGarage_var_ListArsenal select _indexObj, _nb]; 
 				// Ajoute le chargeur au véhicule 
 			};
 		};
