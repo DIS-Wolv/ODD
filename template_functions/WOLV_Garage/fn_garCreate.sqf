@@ -14,7 +14,10 @@ _isCreate = createDialog "GUIgarage_Garage";
 if (_isCreate) then {
 	{
 		lbAdd [WolvGarage_var_IdcListVlUsine, getText (configFile >> "CfgVehicles" >> _x >> "displayName")];
-		lbSetPicture [WolvGarage_var_IdcListVlUsine, _foreachindex, getText (configFile >> "CfgVehicles" >> _x >> "picture")]
+		if (getText (configFile >> "CfgVehicles" >> _x >> "picture") != "pictureThing") then 
+		{
+			lbSetPicture [WolvGarage_var_IdcListVlUsine, _foreachindex, getText (configFile >> "CfgVehicles" >> _x >> "picture")];
+		}
 	} forEach WolvGarage_var_ListUsine;
 
 	call WolvGarage_fnc_garUpdateVlProx;
