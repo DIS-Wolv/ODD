@@ -25,6 +25,17 @@ if (_index != -1) then {
 			{
 				_vl addItemCargoGlobal [(_x select 0), (_x select 1)];
 			}forEach WolvGarage_var_VlLoad;
+
+			for "_i" from 0 to 10 do {
+				
+			};
+			_plate = ["DIS-"];
+			_plate pushBack groupid (group player);
+			_plate pushBack "-";
+			for "_i" from 0 to 2 do {
+				_plate pushBack (floor random 10);
+			};
+			_vl setPlateNumber ( _plate joinString "");
 		};
 
 		[_vl, 30] call ace_cargo_fnc_setSpace; //force la taille du cargo a 30
