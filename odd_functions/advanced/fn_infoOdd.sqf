@@ -13,7 +13,7 @@
 *
 * Variable publique :
 */
-player createDiaryRecord ["Diary", ["Crédits ODD", "Un grand merci à Hhaine et Number42 pour leur aide pour la conception et le developpement de scripts, ainsi qu'à tous les joueurs qui ont eu la patiente de tester et de me faire remonter les bugs. Autre participant au développement des ODDs : Ascestus, Aqualisa, Bernard, Lapiz, Robin, OneShoot, Jimmy"]];
+player createDiaryRecord ["Diary", ["Crédits ODD", "Un grand merci à Hhaine et Number42 pour leur aide pour la conception et le developpement de scripts, ainsi qu'à tous les joueurs qui ont eu la patiente de tester et de me faire remonter les bugs. Autre participant au développement des ODDs : Ascestus, Aqualisa, Bernard, Lapiz, Robin, OneShoot, Jimmy, Kreps"]];
 sleep 3;
 player createDiaryRecord ["Diary", ["Explications ODD", "Pour générer une mission, approchez vous simplement du panneau des ODDs et utilisez l'addAction 'Générer une mission'. Vous pouvez également supprimer une mission qui ne vous convient pas avec l'interaction 'Nettoyer l'opération'."]];
 sleep 3;
