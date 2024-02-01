@@ -25,6 +25,7 @@ if (_indexVL != -1) then {
 		_ListInvWeap = getWeaponCargo _vl;	// Récupère les armes dans le véhicule
 		_ListInvMag = getMagazineCargo _vl;	// Récupère les chargeurs dans le véhicule
 		_ListInvItems = getItemCargo _vl;	// Récupère les items dans le véhicule
+		_ListInvBackpack = getBackpackCargo _vl;	// Récupère les sacs dans le véhicule
 
 		if (_indexObj < (count (_ListInvWeap select 0))) then {	
 			// Si une arme est sélectionée
@@ -54,17 +55,32 @@ if (_indexVL != -1) then {
 				// Si un item est sélectionné
 				_indexObj = _indexObj - (count (_ListInvMag select 0));	// modifie l'index
 
-				clearItemCargoGlobal _vl;		
-				// Enlève tous les items
+				if(_indexObj  < (count (_ListInvItems select 0))) then {
+					// Si un item est sélectionné
+					
+					// Enlève tous les items
+					clearItemCargoGlobal _vl;
 
-				(_ListInvItems select 1) set [_indexObj, (((_ListInvItems select 1) select _indexObj) - _nb max 0)]; 
-				// Modifie la liste des items
-				{
-					_vl addItemCargoGlobal [_x, ((_ListInvItems select 1) select _forEachIndex)]; // Ajoute les items
-				} forEach (_ListInvItems select 0);
+					(_ListInvItems select 1) set [_indexObj, (((_ListInvItems select 1) select _indexObj) - _nb max 0)]; 
+					// Modifie la liste des items
+
+					{
+						_vl addItemCargoGlobal [_x, ((_ListInvItems select 1) select _forEachIndex)]; // Ajoute les items
+					} forEach (_ListInvItems select 0);				
+				} else {
+					_indexObj = _indexObj - (count (_ListInvItems select 0));	// Modifie l'index
+
+					clearBackpackCargoGlobal _vl;	// Enlève tous les sacs
+
+					(_ListInvBackpack select 1) set [_indexObj, (((_ListInvBackpack select 1) select _indexObj) - _nb max 0)];
+					// Modifie la liste des sacs
+
+					{
+						_vl addBackpackCargoGlobal [_x, ((_ListInvBackpack select 1) select _forEachIndex)]; // Ajoute les sacs
+					} forEach (_ListInvBackpack select 0);
+				};
 			};
 		};
-
 	};
 };
 

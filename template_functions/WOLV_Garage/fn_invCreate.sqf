@@ -19,11 +19,16 @@ if (_isCreate) then {
 	} forEach WolvGarage_var_ListVL;
 
 	{
-		if (isClass (configFile >> "CfgWeapons" >> _x)) then {
-			lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
-		}
-		else {
-			lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgMagazines" >> _x >> "displayName")];
+		if (getNumber (configFile >> "CfgVehicles" >> _x >> "isBackpack") > 0) then {
+			_index = lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgVehicles" >> _x >> "displayName")];
+			lbSetData [WolvGarage_var_IdcListAresnal, _index, "backpack"];
+		} else {
+			if (isClass (configFile >> "CfgWeapons" >> _x)) then {
+				lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
+			}
+			else {
+				lbAdd [WolvGarage_var_IdcListAresnal, getText (configFile >> "CfgMagazines" >> _x >> "displayName")];
+			};
 		};
 	} forEach WolvGarage_var_ListArsenal;
 };
