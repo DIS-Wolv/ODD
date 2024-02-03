@@ -63,6 +63,7 @@ sleep 1;
 _caisseItems pushBack ((getItemCargo _caisse) select 0);
 _caisseItems pushBack ((getWeaponCargo _caisse) select 0);
 _caisseItems pushBack ((getMagazineCargo _caisse) select 0);
+_caisseItems pushBack ((getBackPackCargo _caisse) select 0);
 
 // caisse Tube
 [_caisse] call DISLoadCrate_fnc_lanceurs;
@@ -70,6 +71,7 @@ sleep 1;
 _caisseItems pushBack ((getItemCargo _caisse) select 0);
 _caisseItems pushBack ((getWeaponCargo _caisse) select 0);
 _caisseItems pushBack ((getMagazineCargo _caisse) select 0);
+_caisseItems pushBack ((getBackPackCargo _caisse) select 0);
 
 // caisse Medical
 [_caisse] call DISLoadCrate_fnc_medical;
@@ -77,6 +79,7 @@ sleep 1;
 _caisseItems pushBack ((getItemCargo _caisse) select 0);
 _caisseItems pushBack ((getWeaponCargo _caisse) select 0);
 _caisseItems pushBack ((getMagazineCargo _caisse) select 0);
+_caisseItems pushBack ((getBackPackCargo _caisse) select 0);
 
 // caisse Items
 [_caisse] call DISLoadCrate_fnc_items;
@@ -84,6 +87,7 @@ sleep 0.1;
 _caisseItems pushBack ((getItemCargo _caisse) select 0);
 _caisseItems pushBack ((getWeaponCargo _caisse) select 0);
 _caisseItems pushBack ((getMagazineCargo _caisse) select 0);
+_caisseItems pushBack ((getBackPackCargo _caisse) select 0);
 
 // caisse para
 [_caisse] call DISLoadCrate_fnc_para;
@@ -91,6 +95,7 @@ sleep 0.1;
 _caisseItems pushBack ((getItemCargo _caisse) select 0);
 _caisseItems pushBack ((getWeaponCargo _caisse) select 0);
 _caisseItems pushBack ((getMagazineCargo _caisse) select 0);
+_caisseItems pushBack ((getBackPackCargo _caisse) select 0);
 
 deleteVehicle _caisse;
 
