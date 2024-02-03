@@ -81,6 +81,7 @@ then {
 	pDiv addAction ["GV (Plongeur)",{[DISLoadPL_var_GV, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 	pDiv addAction ["Minimi (Plongeur)",{[DISLoadPL_var_Minimi5, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 	pDiv addAction ["Médecin (Plongeur)",{[DISLoadPL_var_Medecin, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+	pDiv setVariable ["R3F_LOG_disabled", True];
 }
 else {
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];

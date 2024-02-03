@@ -33,6 +33,7 @@ dump spawn DISLoadCrate_fnc_dump;
 if(!isNil "pa") 
 then {
 	pDiv setObjectTextureGlobal [0, "pics\divers.jpg"];
+	pDiv setVariable ["R3F_LOG_disabled", True];
 };
 
 pInf setVariable ["R3F_LOG_disabled", True];
