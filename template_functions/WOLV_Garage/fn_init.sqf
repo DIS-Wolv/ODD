@@ -23,10 +23,10 @@ WolvGarage_var_VlLoad = [["rhs_weap_M136", 5],["30Rnd_556x45_Stanag_red", 30],["
 
 if(!isNil "ce") then {
     // VL Camo CE
-	WolvGarage_var_ListUsine = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "R3F_PLFS_A", "rhsusf_m1025_w_m2", "rhsusf_m998_w_2dr_fulltop", "R3F_VBMR_TOP_127", "R3F_VBMR_TOP_127_LOURD", "rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_stryker_m1127_m2_wd", "rhsusf_stryker_m1126_m2_wd", "RHS_M2A3_BUSKIII_wd", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F", "rhsgref_hidf_rhib", "RHS_MELB_MH6M", "RHS_MELB_AH6M", "RHS_UH60M_d", "RHS_UH60M_ESSS_d", "I_G_HMG_02_F", "I_G_HMG_02_high_F", "R3F_MMP_STATIC", "RHS_TOW_TriPod_D", "B_Mortar_01_F", "B_CargoNet_01_ammo_F"];
+	WolvGarage_var_ListUsine = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "R3F_PLFS_A", "rhsusf_m1025_w_m2", "rhsusf_m998_w_2dr_fulltop", "R3F_VBMR_TOP_127", "R3F_VBMR_TOP_127_LOURD", "rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_stryker_m1127_m2_wd", "rhsusf_stryker_m1126_m2_wd", "RHS_M2A3_BUSKIII_wd", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F", "rhsgref_hidf_rhib", "RHS_MELB_MH6M", "RHS_MELB_AH6M", "RHS_UH60M_d", "RHS_UH60M_ESSS_d", "R3F_TIGRE", "I_G_HMG_02_F", "I_G_HMG_02_high_F", "R3F_MMP_STATIC", "RHS_TOW_TriPod_D", "B_Mortar_01_F", "B_CargoNet_01_ammo_F"];
 } else {
     // VL Camo Desert
-	WolvGarage_var_ListUsine = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "R3F_PLFS_A", "rhsusf_m1025_d_m2", "rhsusf_m998_d_2dr_fulltop", "R3F_VBMR_TDF_TOP_127", "R3F_VBMR_TDF_TOP_127_LOURD", "rhsusf_CGRCAT1A2_M2_usmc_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_stryker_m1127_m2_d", "rhsusf_stryker_m1126_m2_d", "RHS_M2A3_BUSKIII", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F", "rhsgref_hidf_rhib", "RHS_MELB_MH6M", "RHS_MELB_AH6M", "RHS_UH60M", "RHS_UH60M_ESSS", "I_G_HMG_02_F", "I_G_HMG_02_high_F", "R3F_MMP_STATIC", "RHS_TOW_TriPod_D", "B_Mortar_01_F", "B_CargoNet_01_ammo_F"];
+	WolvGarage_var_ListUsine = ["rhsusf_m1165a1_gmv_m2_m240_socom_d", "R3F_PLFS_A", "rhsusf_m1025_d_m2", "rhsusf_m998_d_2dr_fulltop", "R3F_VBMR_TDF_TOP_127", "R3F_VBMR_TDF_TOP_127_LOURD", "rhsusf_CGRCAT1A2_M2_usmc_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_stryker_m1127_m2_d", "rhsusf_stryker_m1126_m2_d", "RHS_M2A3_BUSKIII", "rhsusf_mrzr4_d", "B_Boat_Transport_01_F", "rhsgref_hidf_rhib", "RHS_MELB_MH6M", "RHS_MELB_AH6M", "RHS_UH60M", "RHS_UH60M_ESSS", "R3F_TIGRE", "I_G_HMG_02_F", "I_G_HMG_02_high_F", "R3F_MMP_STATIC", "RHS_TOW_TriPod_D", "B_Mortar_01_F", "B_CargoNet_01_ammo_F"];
 };
 WolvGarage_var_CratesList = ["B_CargoNet_01_ammo_F"];
 
