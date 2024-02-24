@@ -71,6 +71,28 @@ if ((typeName _pad) != "SCALAR") then {
 				} forEach (units _gg);
 				[_pos, nil, units _gg, 20, 0, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 				_pad setVariable ["trig_ODD_var_Gar", units _gg, True];
+
+				{
+					private _id = _x addEventHandler["Killed", 
+						{ 
+							params ["_unit", "_killer"]; 
+							[_unit, _killer] call ODDadvanced_fnc_surrender;
+						}
+					];
+					_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+					// EH pour secure Area ?
+
+					_x addEventHandler ["Fired", {
+						params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+						[_unit, _weapon, _projectile] spawn {
+							params ["_unit", "_weapon", "_projectile"];
+							sleep 1;
+							if (_weapon == "Throw" and (_projectile distance _unit) < 5) then {
+								deleteVehicle _projectile;
+							};
+						};
+					}];
+				}forEach units _g;
 			};
 
 			// groupe de patrouille
@@ -88,6 +110,28 @@ if ((typeName _pad) != "SCALAR") then {
 				_gp addWaypoint [(_listPos select 0), 0];
 				(waypoints _gp) select (count (waypoints _gp) -1) setWaypointType "CYCLE";
 				_pad setVariable ["trig_ODD_var_Pat", units _gp, True];
+
+				{
+					private _id = _x addEventHandler["Killed", 
+						{ 
+							params ["_unit", "_killer"]; 
+							[_unit, _killer] call ODDadvanced_fnc_surrender;
+						}
+					];
+					_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+					// EH pour secure Area ?
+
+					_x addEventHandler ["Fired", {
+						params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+						[_unit, _weapon, _projectile] spawn {
+							params ["_unit", "_weapon", "_projectile"];
+							sleep 1;
+							if (_weapon == "Throw" and (_projectile distance _unit) < 5) then {
+								deleteVehicle _projectile;
+							};
+						};
+					}];
+				}forEach units _g;
 			};
 
 			_pool = _pool - ((count _groupGar) + (count _groupPat));

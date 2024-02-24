@@ -76,6 +76,27 @@ if ((typeName _pad) != "SCALAR") then {
 					{
 						_x setVariable ["acex_headless_blacklist", True, True];
 						_x setVariable ["ODD_var_IsInGarnison", True, True];
+
+						private _id = _x addEventHandler["Killed", 
+							{ 
+								params ["_unit", "_killer"]; 
+								[_unit, _killer] call ODDadvanced_fnc_surrender;
+							}
+						];
+						_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+						// EH pour secure Area ?
+
+						_x addEventHandler ["Fired", {
+							params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+							[_unit, _weapon, _projectile] spawn {
+								params ["_unit", "_weapon", "_projectile"];
+								sleep 1;
+								if (_weapon == "Throw" and (_projectile distance _unit) < 5) then {
+									deleteVehicle _projectile;
+								};
+							};
+						}];
+						
 					} forEach (units _grp);
 
 					// Met le groupe en garnison
@@ -115,6 +136,28 @@ if ((typeName _pad) != "SCALAR") then {
 					{
 						_grp addWaypoint [_x, 10];
 					} forEach _listPos;
+
+					{
+						private _id = _x addEventHandler["Killed", 
+							{ 
+								params ["_unit", "_killer"]; 
+								[_unit, _killer] call ODDadvanced_fnc_surrender;
+							}
+						];
+						_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+						// EH pour secure Area ?
+
+						_x addEventHandler ["Fired", {
+							params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+							[_unit, _weapon, _projectile] spawn {
+								params ["_unit", "_weapon", "_projectile"];
+								sleep 1;
+								if (_weapon == "Throw" and (_projectile distance _unit) < 5) then {
+									deleteVehicle _projectile;
+								};
+							};
+						}];
+					}forEach units _g;
 
 					// Defini un "CYCLE" pour continuer indefiniement
 					_grp addWaypoint [_listPos select ((count _listPos) - 1), 0];

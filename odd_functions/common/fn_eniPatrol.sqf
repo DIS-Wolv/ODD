@@ -65,9 +65,8 @@ private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
 		[_unit, _weapon, _projectile] spawn {
 			params ["_unit", "_weapon", "_projectile"];
 			sleep 1;
-			if (_weapon == "Throw" and (_projectile distance _unit) < 2) then {
+			if (_weapon == "Throw" and (_projectile distance _unit) < 5) then {
 				deleteVehicle _projectile;
-				systemChat 'delete';
 			};
 		};
 	}];
