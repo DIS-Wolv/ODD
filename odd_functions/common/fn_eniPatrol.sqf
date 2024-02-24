@@ -59,6 +59,18 @@ private _g = [getPos _GBuild, east, _group] call BIS_fnc_spawngroup;
 	];
 	_x setVariable ["ODD_var_SurrenderHandler", _id, True];
 	// EH pour secure Area ?
+
+	_x addEventHandler ["Fired", {
+		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+		[_unit, _weapon, _projectile] spawn {
+			params ["_unit", "_weapon", "_projectile"];
+			sleep 1;
+			if (_weapon == "Throw" and (_projectile distance _unit) < 2) then {
+				deleteVehicle _projectile;
+				systemChat 'delete';
+			};
+		};
+	}];
 }forEach units _g;
 
 [_g, position _zo, size _zo select 0] call bis_fnc_taskpatrol;
