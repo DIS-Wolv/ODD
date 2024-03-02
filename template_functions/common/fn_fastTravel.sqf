@@ -1,3 +1,19 @@
+/*
+* Auteur : Hhaine
+* Permet de se TP
+*
+* Arguments :
+* 0: ARRAY - position d'arrivée
+* 1: OBJECT - joueur (par défaut : joueur local)
+*
+* Valeur renvoyée :
+* nil
+*
+* Exemple:
+* [player] call DISCommon_fnc_fastTravel;
+*
+*/
+
 params ["_posFT", ["_player", player]];
 
 private _posFT = getPosASL _posFT;

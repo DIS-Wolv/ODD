@@ -1,5 +1,21 @@
-private _pos = getpos BoatSpawn; //A renseigner en fonction de la carte
+/*
+* Auteur : Wolv
+* Permet de créer un bateau sur le marker
+*
+* Arguments :
+* 0 : OBJECT : marker
+* 
+* Valeur renvoyée :
+* vl créé
+*
+* Exemple:
+* ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
+*
+*/
+params [["_pos", getpos BoatSpawn]];
+
 private _nbBoat = count nearestObjects [_pos, ["rhsgref_hidf_rhib"], 25, True];
+private _boat = nil;
 
 if (_nbBoat > 3) 
 then {
@@ -8,5 +24,7 @@ then {
 	hintSilent "";
 }
 else {
-	createVehicle ["rhsgref_hidf_rhib", _pos, [], 5, "CAN_COLLIDE"];
+	_boat = createVehicle ["rhsgref_hidf_rhib", _pos, [], 5, "CAN_COLLIDE"];
 };
+
+_boat;

@@ -1,3 +1,18 @@
+/*
+* Auteur : Hhaine
+* Permet de faire du HALO Jump
+*
+* Arguments :
+* 0: OBJECT - Joueur
+*
+* Valeur renvoyée :
+* nil
+*
+* Exemple:
+* [player] call DISCommon_fnc_haloJump;
+*
+*/
+
 params ["_player"];
 private _coord2D = [0,0,0];
 private _coordZ = [0,0,0];
