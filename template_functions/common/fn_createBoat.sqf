@@ -6,7 +6,7 @@
 * 0 : OBJECT : marker
 * 
 * Valeur renvoyée :
-* vl créé
+* OBJECT : bateau
 *
 * Exemple:
 * ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
