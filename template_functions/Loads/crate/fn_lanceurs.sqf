@@ -26,3 +26,6 @@ _crate addMagazineCargoGlobal ["avm224_M_6Rnd_60mm_HE_csw", 20];
 // MMP
 _crate addBackpackCargoGlobal ["R3F_MMP_STATIC_Bag_support", 2];
 _crate addBackpackCargoGlobal ["R3F_MMP_STATIC_Bag", 2];
+
+// sac
+_crate addBackpackCargoGlobal ["B_Kitbag_mcamo", 2];
