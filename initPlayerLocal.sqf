@@ -2,6 +2,7 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\respawn.sqf";
 [] execVM "scripts\infoHalo.sqf";
+[] spawn DISCommon_fnc_RecoDroneInfo;
 [] spawn WolvLights_fnc_init;
 [] spawn WolvGarage_fnc_init;
 sleep 1;
@@ -27,8 +28,6 @@ _RadioAction = ["Radio","Reset Radio","\z\tfar\addons\core\ui\ACE_Interaction_Ra
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
 base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
-base addAction ["Afficher les générateurs",{[1] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
-base addAction ["Cacher les générateurs",{[0] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
 ob setVariable ["R3F_LOG_disabled", True];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,True,True,"","True",2];
 halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,True,True,"","True",5];
@@ -58,6 +57,11 @@ acces setVariable ["R3F_LOG_disabled", True];
 dump addAction ["Vider la caisse",{[_this select 0] call DISLoadCrate_fnc_dump;},[],1.5,True,True,"","",5];
 dump setVariable ["R3F_LOG_disabled", True];
 //nul = [factory] execVM "R3F_LOG\USER_FUNCT\init_creation_factory.sqf";
+
+pRens setVariable ["R3F_LOG_disabled", True];
+pRens addAction ["Reco Drone",{["B_UAV_02_F", 2000, 2000, (position Base)] call DISCommon_fnc_RecoDrone;},[],1.5,True,True,"","",5];
+pRens addAction ["Afficher les générateurs",{[1] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
+pRens addAction ["Cacher les générateurs",{[0] call WolvLights_fnc_mapgen;},[],1.5,True,True,"","True",5];
 
 if(!isNil "pa") 
 then {

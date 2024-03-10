@@ -14,6 +14,8 @@ class DIS_Common {
 		class deleteBoats {};
 		class resetRadio {};
 		class arsenal{};
+		class recoDrone{};
+		class recoDroneInfo{};
 	};
 };
 

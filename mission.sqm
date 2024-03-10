@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=1537;
+	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=1120;
+		nextID=1122;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=622;
+		nextID=637;
 	};
 	class Camera
 	{
-		pos[]={16547.736,9.2779188,15533.334};
-		dir[]={0.068797208,-0.32258976,0.94403547};
-		up[]={0.023446767,0.94653887,0.32173657};
-		aside[]={0.99735516,-1.8626451e-009,-0.072682917};
+		pos[]={16550.594,16.101795,15531.367};
+		dir[]={0.12522921,-0.49774757,0.85823369};
+		up[]={0.071867824,0.86732197,0.49253196};
+		aside[]={0.9895215,3.7252903e-009,-0.14438608};
 	};
 };
 binarizationWanted=0;
@@ -410,7 +410,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=90;
+		items=91;
 		class Item0
 		{
 			dataType="Object";
@@ -8709,7 +8709,7 @@ class Mission
 			};
 			id=1118;
 			type="R3F_TIGRE";
-			atlOffset=1.9575462;
+			atlOffset=1.95755;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -8736,6 +8736,42 @@ class Mission
 			type="flag_France";
 			id=1119;
 			atlOffset=185.97;
+		};
+		class Item90
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={17281.139,24.617348,514.67291};
+				angles[]={0,4.8445106,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				name="pRens";
+				disableSimulation=1;
+				dynamicSimulation=1;
+			};
+			id=1121;
+			type="SignAd_Sponsor_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 	};
 	class Connections
