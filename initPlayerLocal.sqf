@@ -38,7 +38,7 @@ refuel setVariable ["R3F_LOG_disabled", True];
 rearm setVariable ["R3F_LOG_disabled", True];
 rules setVariable ["R3F_LOG_disabled", True];
 pCav setVariable ["R3F_LOG_disabled", True];
-[pCav] call DISCommon_fnc_arsenal;
+[pPil] call DISCommon_fnc_arsenal;
 pPil setVariable ["R3F_LOG_disabled", True];
 pPil addAction ["Hélicoptère",{[DISLoad_var_piloteHelo, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pPil addAction ["Chasseur",{[DISLoad_var_piloteAvions, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];

@@ -9,7 +9,7 @@
 *
 * Variable publique :
 */
-
+params ["_obj"];
 
 if (isNil "DISLoad_var_piloteAvions") then {
     [] call DISLoad_fnc_Varload;
@@ -104,6 +104,6 @@ private _items = flatten (_allItemArray + _caisseItems);
 _items = (_items arrayIntersect _items) select {_x isEqualType "" && {_x != ""}};
 
 // on ajoute les items dans l'arsenal
-[pPil, []] call ace_arsenal_fnc_initBox;
-[pPil, _items] remoteExec ["ace_arsenal_fnc_addVirtualItems", 0, True] ;
+[_obj, []] call ace_arsenal_fnc_initBox;
+[_obj, _items] remoteExec ["ace_arsenal_fnc_addVirtualItems", 0, True] ;
 
