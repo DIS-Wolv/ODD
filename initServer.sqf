@@ -19,6 +19,7 @@ base setObjectTextureGlobal [0, "pics\disMoto.jpg"];
 rules setObjectTextureGlobal [0, "pics\tip.jpg"];
 pCav setObjectTextureGlobal [0, "pics\cav.jpg"];
 pPil setObjectTextureGlobal [0, "pics\pilot.jpg"];
+// pRens setObjectTextureGlobal [0, "pics\rens.jpg"];
 armes spawn DISLoadCrate_fnc_armes;
 medical spawn DISLoadCrate_fnc_medical;
 lanceurs spawn DISLoadCrate_fnc_lanceurs;
@@ -41,5 +42,5 @@ pInf setObjectTextureGlobal [0, "pics\ce.jpg"];
 acces spawn DISLoadCrate_fnc_items;
 
 [] call DISLoad_fnc_varLoads;
-[] call DISLoad_fnc_ArsenalAce;
+[pCav] call DISLoad_fnc_ArsenalAce;
 //[] remoteExec ["scripts\rWeather.sqf"];
