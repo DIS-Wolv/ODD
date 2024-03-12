@@ -9,7 +9,6 @@
 *
 * Exemple:
 * [random_obj] call DISCommon_fnc_arsenal
-
 */
 
 params ["_obj"];
