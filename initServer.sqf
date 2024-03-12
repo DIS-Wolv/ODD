@@ -6,7 +6,7 @@ enableSaving [False, False];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
-call ODDdata_fnc_var;
+[] call ODDdata_fnc_var;
 remoteExec ["DISCommon_fnc_customLocations", 0, True];
 ODD_var_CurrentMission = 0;
 publicVariable "ODD_var_CurrentMission";
