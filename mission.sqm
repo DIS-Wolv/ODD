@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=637;
+		nextID=643;
 	};
 	class Camera
 	{
@@ -3460,7 +3460,7 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				init="this setObjectTextureGlobal [0, ""ODD_Picts\miel.jpg""];" \n "";
+				init="this setObjectTextureGlobal [0, ""pics\EasterEgg\miel.jpg""];" \n "";
 				name="ODD_EsterEgg_6";
 				disableSimulation=1;
 			};
@@ -3478,7 +3478,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="ODD_Picts\miel.jpg";
+							value="pics\EasterEgg\miel.jpg";
 						};
 					};
 				};
