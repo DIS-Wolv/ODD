@@ -63,6 +63,7 @@ class ODD_Data {
 		class varEneTla {};
 		class varRoadBlock {};
 		class varOutpost {};
+		class varIntel {};
 	};
 
 };
@@ -90,6 +91,7 @@ class ODD_advanced {
 		class roadBlockZO {};
 		class createRenfort {};
 		class intel {};
+		class intel_v2 {};
 		class pressureIED {};
 		class patrolZoM {};
 		class surrender {};

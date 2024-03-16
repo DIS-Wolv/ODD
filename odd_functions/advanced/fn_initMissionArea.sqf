@@ -250,6 +250,7 @@ private _outposts = [_zo, _nb_outposts] call ODDcommon_fnc_initOutpost;
 	// Cree le pad de controle
 	private _pad = "Land_HelipadEmpty_F" createVehicle _pos;
 	ODD_var_ZonePad pushBack _pad;
+	ODD_var_Outposts pushBack _pad;
 
 	// crée le trigger pour spawn/déspawn
 	private _trigger = createTrigger ["EmptyDetector", _pad, True]; 
