@@ -133,6 +133,9 @@ switch (worldName) do {
 
 		private _galatiMilitary = createLocation ["NameLocal", [9857.96,19401.2], 150, 150];
 		_galatiMilitary setText "Galati military";
+
+		private _IAMATIKOU = createLocation ["NameLocal", [22351,18411], 200, 200];
+		_IAMATIKOU setText "Iamatikou";
 	};
 	case "Malden": {
 		private _lavit = createLocation ["NameLocal", [4970.18,10294.8], 50, 50];
@@ -228,12 +231,11 @@ switch (worldName) do {
 	default { };
 };
 
-
-// _loc = _Anemoessa;
+// _loc = _IAMATIKOU;
 // _pos = getPos _loc;
-// _markerG = createMarker [(format ["Gen Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
+// _markerG = createMarker [(format ["Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 // _markerG setMarkerShape "RECTANGLE";
 // _markerG setMarkerSize [(size _loc select 1),(size _loc select 1)];
 // _markerG setMarkerBrush "SolidBorder";
 // _markerG setMarkerAlpha 0.5; 
-// _markerG setMarkerColor "ColorBlue";	// rayon d'action des générateur affiché sur carte
+// _markerG setMarkerColor "ColorBlue";
