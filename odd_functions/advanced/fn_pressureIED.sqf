@@ -172,30 +172,9 @@ if (count _roads != 0) then {
 						
 						sleep 1;
 						private _leader = (units _g) select 0;
-						_leader addItemToVest "ACE_Cellphone";
 						// ajoute le detonateur
-
-						[_leader, 
-							"<t color='#FF0000'>interoger le civil</t>", "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-							"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", "True",
-							{
-								[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-								// (_this select 0) disableAI "PATH"
-							}, 
-							{},
-							{
-								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-								// (_this select 0) enableAI "PATH";
-
-								_msgNon = ["Je ne dirais rien.", "Je ne veux pas vous parler.", "Je ne veux pas vous parler."];
-								_msg = selectRandom _msgNon;
-								[_msg] remoteExec ["systemChat", 0];
-								[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-							}, {
-								// (_this select 0) enableAI "PATH";
-								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-							}, [], (random[2, 10, 15]), nil, True, False
-						] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+						_leader addItemToVest "ACE_Cellphone";
+						[_leader] call ODDintels_fnc_addInteraction;
 
 						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
 						_boom setTriggerArea [5, 5, 0, False, 2];
@@ -367,29 +346,9 @@ if (count _roads != 0) then {
 
 						sleep 1;
 						private _leader = (units _g) select 0;
-						_leader addItemToVest "ACE_Clacker";
 						// ajoute le detonateur
-						[_leader, 
-							"<t color='#FF0000'>interoger le civil</t>", "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-							"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", "True",
-							{
-								[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-								// (_this select 0) disableAI "PATH"
-							}, 
-							{},
-							{
-								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-								// (_this select 0) enableAI "PATH";
-
-								_msgNon = ["Je ne dirais rien.", "Je ne veux pas vous parler.", "Je ne veux pas vous parler."];
-								_msg = selectRandom _msgNon;
-								[_msg] remoteExec ["systemChat", 0];
-								[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-							}, {
-								// (_this select 0) enableAI "PATH";
-								[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-							}, [], (random[2, 10, 15]), nil, True, False
-						] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+						_leader addItemToVest "ACE_Clacker";
+						[_leader] call ODDintels_fnc_addInteraction;
 
 						private _boom = createTrigger ["EmptyDetector", _trapPos, True];
 						_boom setTriggerArea [5, 5, 0, False, 2];

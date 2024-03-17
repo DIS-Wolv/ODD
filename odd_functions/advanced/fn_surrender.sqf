@@ -81,21 +81,7 @@ if (side _killer == WEST) then {
 					_x removeEventHandler ["Killed", _id];					// Pour empêcher que l'éxécution d'un prisonier crée plus de prisoniers
 				};
 				
-				[
-					_x, 
-					"<t color='#FF0000'>Interoger le prisonier</t>", 
-					"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-					"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-					"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", 
-					"True",
-					{},	{},
-					{
-						params ["_target", "_caller", "_actionId", "_arguments"];
-						[2, _target] remoteExec ["ODDadvanced_fnc_intel", 2];
-						[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-					}, {}, [], 
-					(random[2, 10, 15]), nil, True, False
-				] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+				[_x] call ODDintels_fnc_addInteraction;
 
 				// A FAIRE : eventHandler pour baisser la reputation civil lors de l'exécution d'un prisonnier
 
