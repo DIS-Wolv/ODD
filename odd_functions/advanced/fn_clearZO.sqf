@@ -123,6 +123,7 @@ if (ODD_var_CurrentMission == 1) then {
 	ODD_var_ZonePad = [];
 
 	ODD_var_Outposts = [];
+	ODD_var_intel_interogation_data = createHashMap;
 
 	{
 		deleteVehicle _x;
