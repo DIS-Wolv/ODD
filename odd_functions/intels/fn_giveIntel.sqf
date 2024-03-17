@@ -127,7 +127,7 @@ private _intels_funcs_map = createHashMapFromArray [
             if (isNil "_obj") exitWith {[selectRandom (ODD_var_intel_msgs_NO_Crates get "OPFOR"), nil]};
 
             [
-                (selectRandom ODD_var_intel_part_mil_a_vu_caisse)
+                (selectRandom ODD_var_intel_part_mil_a_vu)
                 + " "
                 + ([_obj] call ODDintels_fnc_formatCaisse)
                 + " "
