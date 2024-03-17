@@ -69,34 +69,10 @@ _civil resize (_nbCivil);
 	
 	// spawn le groupe
 	_g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
-	_civil set[_forEachindex, _g];
-	
+	{ [_x] call ODDintels_fnc_addInteraction; } forEach (units _g);
 	ODD_var_MissionCivilians pushBack _g;
-	
-	[
-		((units _g)select 0), 
-		"<t color='#FF0000'>interoger le civil</t>", 
-		"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-		"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-		"(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')", 
-		"True",
-		{
-			[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-			// (_this select 0) disableAI "PATH"
-		}, 
-		{},
-		{
-			params ["_target", "_caller", "_actionId", "_arguments"];
-			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-			// (_this select 0) enableAI "PATH";
 
-			[1, _target] remoteExec ["ODDadvanced_fnc_intel", 2, True];
-			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-		}, {
-			// (_this select 0) enableAI "PATH";
-			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-		}, [], (random[2, 5, 10]), nil, True, False
-	] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
+	_civil set[_forEachindex, _g];
 	
 	// [_g, getPos ((units _g) select 0), (((size _zo) select 0)/4)] call BIS_fnc_taskPatrol;
 }forEach _civil;
@@ -175,37 +151,8 @@ if (random 100 < 50 and (count (position _zo nearRoads 600)) > 0) then {
 	
 	// Crée le groupe et le véhicule
 	_g = [_pos, civilian, [_group]] call BIS_fnc_spawngroup;
-	
-	{
-		// Le résultat est stocké dans la variable _x
-		[
-		_x, 
-		"<t color='#FF0000'>interoger le civil</t>", 
-		"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-		"\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa", 
-		"(alive (_target)) and (_target distance _this < 8) and (lifeState _target != 'INCAPACITATED')", 
-		"True",
-		{
-			[(_this select 0), "PATH"] remoteExec ["disableAI", 2];
-			// (_this select 0) disableAI "PATH"
-		}, 
-		{},
-		{
-			params ["_target", "_caller", "_actionId", "_arguments"];
-			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-			// (_this select 0) enableAI "PATH";
-
-			[1,_target] remoteExec ["ODDadvanced_fnc_intel", 2, True];
-			[(_this select 0)] remoteExec ["removeAllActions", 0, True];
-		}, {
-			// (_this select 0) enableAI "PATH";
-			[(_this select 0), "PATH"] remoteExec ["enableAI", 2];
-		}, [], (random[2, 5, 10]), nil, True, False
-		] remoteExec ["BIS_fnc_holdActionAdd", 0, True];
-
-		ODD_var_MissionCivilians pushBack _x;
-
-	} forEach units _g;
+	{ [_x] call ODDintels_fnc_addInteraction; } forEach (units _g);
+	ODD_var_MissionCivilians pushBack _g;
 
 	_g setSpeedMode "LIMITED";
 

@@ -40,6 +40,7 @@ publicVariable "ODD_var_MissionCivilianVehicles";
 
 // Civils
 {
+	[_x] call ODDintels_fnc_addInteraction;
 	_x setVariable ["trig_ODD_var_Civ", True, True];
 	unassignVehicle _x;  // disambark
 } forEach units _grp;
