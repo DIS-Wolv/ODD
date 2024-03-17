@@ -119,6 +119,8 @@ class ODD_Intels {
 	tag = "ODDintels"
 	class Initialize {
 		file = "odd_functions\intels";
+		class addInteraction {};
+		class addInteractionLocal {};
 		class formatDistAngle {};
 		class formatGrid {};
 		class formatPos {};

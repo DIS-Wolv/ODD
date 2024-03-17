@@ -24,7 +24,7 @@ private _GBuild = selectRandom _Buildings;
 private _g = [getPos _GBuild, civilian, _group] call BIS_fnc_spawngroup;
 // ODD_var_MissionCivilians pushBack _g;
 
-[((units _g)select 0)] call ODDcommon_fnc_addIntel;
+{ [_x] call ODDintels_fnc_addInteraction; } forEach (units _g);
 
 [position ((units _g) select 0), nil, units _g, 100, 1, False, True] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 sleep 1;
