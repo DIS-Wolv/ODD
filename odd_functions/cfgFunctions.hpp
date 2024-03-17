@@ -67,6 +67,7 @@ class ODD_Data {
 	};
 
 };
+
 class ODD_advanced {
 	tag = "ODDadvanced"
 	class Initialize {
@@ -91,7 +92,6 @@ class ODD_advanced {
 		class roadBlockZO {};
 		class createRenfort {};
 		class intel {};
-		class intel_v2 {};
 		class pressureIED {};
 		class patrolZoM {};
 		class surrender {};
@@ -113,4 +113,19 @@ class ODD_advanced {
 		class TrigOkRtb {};
 		class CompleteObj {};
 	}
-}
+};
+
+class ODD_Intels {
+	tag = "ODDintels"
+	class Initialize {
+		file = "odd_functions\intels";
+		class formatDistAngle {};
+		class formatGrid {};
+		class formatPos {};
+		class getClosestOjbInArr {};
+		class giveIntel {};
+		class maybeGiveIntel {};
+		class nameCaisse {};
+		class nameVl {};
+	}
+};
