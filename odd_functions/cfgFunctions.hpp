@@ -10,11 +10,9 @@ class ODD_Common {
 		class PlaceTable {};
 		class CountOnBase {};
 		class SelectZO {};
-		class sortIntels {};
 		class limitPatrols {};
 		class defineZo {};
 		class ZoType {};
-		class addIntel {};
 
 		class initCustomBuildings {};
 		class initCivils {};
@@ -51,7 +49,6 @@ class ODD_Data {
 		file = "odd_functions\data";
 
 		class Table {};
-		class intelText {}; // ODDdata_fnc_intelText;
 
 		class var {};
 		class varEne {};
@@ -91,7 +88,6 @@ class ODD_advanced {
 		class roadBlock {};
 		class roadBlockZO {};
 		class createRenfort {};
-		class intel {};
 		class pressureIED {};
 		class patrolZoM {};
 		class surrender {};
