@@ -419,6 +419,7 @@ if (ODD_var_FirstDefinition) then {
 
 	ODD_var_ZonePad = [];
 	ODD_var_Outposts = [];
+	ODD_var_intel_interogation_data = createHashMap;
 
 	// Liste des triggers
 	ODD_var_Trigger = [];

@@ -30,14 +30,28 @@ ODD_var_Crates = [
 */
 params[["_src", "CIVIL"], ["_target", objNull]];
 
+// On stocke une variable globale a la mission pour reduire 
+// progressivement les chances d'obtenir des intels.
+clientOwner publicVariableClient "ODD_var_intel_interogation_data";
+private _proba_reducer = ODD_var_intel_interogation_data getOrDefault [_src, 100];
 
-private _doit_donner_intel = true;
+private _pourcent_de_chance = 100;
+if (_src == "OPFOR") then {  // Torture
+	private _torture = _target getVariable ["ace_medical_medications", []];
+	_pourcent_de_chance = 30 + 10*(count _torture);
+};
+
+
+// Calcul depuis le % de chances
+private _doit_donner_intel = ((random 100) < _pourcent_de_chance) and ((random 100) <  _proba_reducer);
+
 
 // TODO : probas en fonction de _src et _target
 private _res_txt = nil;
 private _res_pos = nil;
 
 if (_doit_donner_intel) then {
+    ODD_var_intel_interogation_data set [_src, _proba_reducer * 3/4];
     private _res = [_src,_target] call ODDintels_fnc_giveIntel;
     _res_txt = _res select 0;
     _res_pos = _res select 1;
