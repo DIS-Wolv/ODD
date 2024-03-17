@@ -36,7 +36,7 @@ for "_i" from 1 to 4 do {
 _grp setSpeedMode "LIMITED";
 {
 	_x setVariable ["ODD_var_ZOM", True, True];
-	_x call ODDcommon_fnc_addIntel;
+	[_x] call ODDintels_fnc_addInteraction;
 	_x addEventHandler ["FiredNear", {
 		params ["_unit", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
 		[_unit, _distance] spawn ODDadvanced_fnc_civiesCover;
@@ -48,7 +48,7 @@ _grp setSpeedMode "LIMITED";
 		};
 	}];
 	_x setVariable ["trig_ODD_var_Civ", True, True];
-} forEach units _grp;
+} forEach (units _grp);
 
 (vehicle ((units _grp) select 0)) setVariable ["trig_ODD_var_Civ", True, True];
 _grp setVariable ["trig_ODD_var_Civ", True, True];
