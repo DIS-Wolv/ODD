@@ -56,7 +56,7 @@ ODD_var_intel_msgs_NO_Crates = createHashMapFromArray [
 						"par ici",
 						"par là"
 					] apply {
-						_debut + " de " + _caisse + " " + _x
+						_debut + " de " + _caisse + _x
 					}
 				}
 			}
@@ -82,14 +82,14 @@ ODD_var_intel_msgs_NO_Crates = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici",
-						"par là",
+						" ici",
+						" par ici",
+						" par là",
 						", que voullez-vous...",
 						". Vous nous prennez pour des faibles ?",
 						". Vous nous prennez pour qui ?"
 					] apply {
-						_debut + " de " + _caisse + " " + _x
+						_debut + " de " + _caisse + _x
 					}
 				}
 			}
@@ -108,14 +108,14 @@ ODD_var_intel_msgs_NO_Crates = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"en armes",
-						"en equipement",
-						"en munitions",
-						"en matériel",
-						"en medicaments",
-						"en soins"
+						" en armes",
+						" en equipement",
+						" en munitions",
+						" en matériel",
+						" en medicaments",
+						" en soins"
 					] apply {
-						_debut + " de " + _caisse + " " + _x
+						_debut + " de " + _caisse + _x
 					}
 				}
 			}
@@ -130,18 +130,18 @@ ODD_var_intel_msgs_NO_Crates = createHashMapFromArray [
 			] apply {
 				_debut=_x;
 				[
-					"caisse médicale",
-					"caisse d'armes",
-					"caisse de munitions",
-					"caisse de ravitaillement",
-					"ravitaillement"
+					" caisse médicale",
+					" caisse d'armes",
+					" caisse de munitions",
+					" caisse de ravitaillement",
+					" ravitaillement"
 				] apply {
 					_caisse=_x;
 					[
 						"",
 						"dans la zone"
 					] apply {
-						_debut + " de " + _caisse + " " + _x
+						_debut + " de " + _caisse + _x
 					}
 				}
 			}
@@ -170,12 +170,12 @@ ODD_var_intel_msgs_NO_IED = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans le coin",
-						"ici",
-						"par ici",
-						"par là"
+						" dans le coin",
+						" ici",
+						" par ici",
+						" par là"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -197,14 +197,14 @@ ODD_var_intel_msgs_NO_IED = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici",
-						"par là",
+						" ici",
+						" par ici",
+						" par là",
 						", que voullez-vous...",
 						". Vous nous prennez pour des faibles ?",
 						". Vous nous prennez pour qui ?"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -226,9 +226,9 @@ ODD_var_intel_msgs_NO_IED = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans la zone"
+						" dans la zone"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -272,10 +272,11 @@ ODD_var_intel_msgs_NO_IAVehicles = createHashMapFromArray [
 				] apply {
 					_caisse=_x;
 					[
-						"car ils n'en avaient pas",
-						"car ils n'en ont pas"
+						" car ils n'en avaient pas",
+						" car ils n'en ont pas",
+						" car ils n'en ont plus"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -294,10 +295,10 @@ ODD_var_intel_msgs_NO_IAVehicles = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici"
+						" ici",
+						" par ici"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -319,14 +320,14 @@ ODD_var_intel_msgs_NO_IAVehicles = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici",
-						"par là",
+						" ici",
+						" par ici",
+						" par là",
 						", que voullez-vous...",
 						". Vous nous prennez pour des faibles ?",
 						". Vous nous prennez pour qui ?"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -349,9 +350,9 @@ ODD_var_intel_msgs_NO_IAVehicles = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans la zone"
+						" dans la zone"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -379,10 +380,10 @@ ODD_var_intel_msgs_NO_MissionCheckPoint = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici"
+						" ici",
+						" par ici"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -404,14 +405,14 @@ ODD_var_intel_msgs_NO_MissionCheckPoint = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici",
-						"par là",
+						" ici",
+						" par ici",
+						" par là",
 						", que voullez-vous...",
 						". Vous nous prennez pour des faibles ?",
 						". Vous nous prennez pour qui ?"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -434,9 +435,9 @@ ODD_var_intel_msgs_NO_MissionCheckPoint = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans la zone"
+						" dans la zone"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -468,24 +469,31 @@ ODD_var_intel_msgs_NO_MissionCivilianVehicles = createHashMapFromArray [
 	["OPFOR",flatten [
 		[
 			[
-				"Vous croyez qu'ils ont",
-				"Vous vous trompez si vous pensez qu'ils ont"
+				"Vous croyez que",
+				"Vous vous trompez si vous pensez que"
 			] apply {
 				_debut=_x;
 				[
-					"un véhicule",
-					"une voiture",
-					"un 4x4",
-					"un camion"
+					"les civils",
+					"les habitants",
+					"la population locale",
+					"les locaux"
 				] apply {
-					_caisse=_x;
+					_grp=_x;
 					[
-						"",
-						", on a déja tout volé !",
-						". C'est le tier monde ici.",
-						". Ah les pauvres..."
+						"un véhicule",
+						"une voiture",
+						"un 4x4",
+						"un camion"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_caisse=_x;
+						[
+							"",
+							", on a déja tout volé !",
+							". C'est le tier monde ici."
+						] apply {
+							_debut + " "+ _grp +  " ont " + _caisse + _x
+						}
 					}
 				}
 			}
@@ -507,10 +515,10 @@ ODD_var_intel_msgs_NO_MissionCivilianVehicles = createHashMapFromArray [
 				] apply {
 					_caisse=_x;
 					[
-						"civil",
-						"civil dans la zone"
+						" civil", 
+						" civil dans la zone"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -539,12 +547,12 @@ ODD_var_intel_msgs_NO_Outposts = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans le coin",
-						"ici",
-						"par ici",
-						"par là"
+						" dans le coin",
+						" ici",
+						" par ici",
+						" par là"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -567,14 +575,14 @@ ODD_var_intel_msgs_NO_Outposts = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"ici",
-						"par ici",
-						"par là",
+						" ici",
+						" par ici",
+						" par là",
 						", que voullez-vous...",
 						". Vous nous prennez pour des faibles ?",
 						". Vous nous prennez pour qui ?"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
@@ -596,9 +604,9 @@ ODD_var_intel_msgs_NO_Outposts = createHashMapFromArray [
 					_caisse=_x;
 					[
 						"",
-						"dans la zone"
+						" dans la zone"
 					] apply {
-						_debut + " " + _caisse + " " + _x
+						_debut + " " + _caisse + _x
 					}
 				}
 			}
