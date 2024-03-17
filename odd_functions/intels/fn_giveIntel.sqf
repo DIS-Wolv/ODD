@@ -52,7 +52,7 @@ private _intels_funcs_map = createHashMapFromArray [
             [
                 (selectRandom ODD_var_intel_part_civ_a_vu_caisse)
                 + " "
-                + ([_obj] call ODDintels_fnc_formatCaisse)
+                + ([_obj] call ODDintels_fnc_nameCaisse)
                 + " "
                 + ([_loc, position _obj, ODD_var_intel_proba_civ_grid] call ODDintels_fnc_formatPos),
                 nil
@@ -129,7 +129,7 @@ private _intels_funcs_map = createHashMapFromArray [
             [
                 (selectRandom ODD_var_intel_part_mil_a_vu)
                 + " "
-                + ([_obj] call ODDintels_fnc_formatCaisse)
+                + ([_obj] call ODDintels_fnc_nameCaisse)
                 + " "
                 + ([_loc, position _obj, ODD_var_intel_proba_mil_grid] call ODDintels_fnc_formatPos),
                 nil
