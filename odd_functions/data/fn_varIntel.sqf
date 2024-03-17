@@ -605,3 +605,80 @@ ODD_var_intel_msgs_NO_Outposts = createHashMapFromArray [
 		]
 	]]
 ];
+
+
+// le civil est un peu con donc il donne rarrement une grid
+ODD_var_intel_proba_civ_grid = 0.2;
+// le milouf donne plutot une grid
+ODD_var_intel_proba_mil_grid = 0.8;
+
+ODD_var_intel_part_mil_a_vu = [
+	"Nous avons placé",
+	"Hier, nous avons placé",
+	"Ce matin, nous avons placé",
+	"La semaine dernière, nous avons placé",
+	"Il y a une semaine, nous avons placé",
+	"Nous avons installé",
+	"Hier, nous avons installé",
+	"Ce matin, nous avons installé",
+	"La semaine dernière, nous avons installé",
+	"Il y a une semaine, nous avons installé",
+	"Nous avons",
+	"Il y a",
+	"Je crois qu'il y a"
+];
+
+ODD_var_intel_part_civ_a_vu = [
+	"En me balladant, j'ai vu",
+	"En me balladant, je crois avoir vu",
+	"En me promenant, j'ai vu",
+	"En me promenant, je crois avoir vu",
+	"Hier, j'ai vu",
+	"Hier, je crois avoir vu",
+	"Ce matin, j'ai vu",
+	"Ce matin, je crois avoir vu",
+	"J'ai vu",
+	"Je crois avoir vu",
+	"Il y a",
+	"Je crois qu'il y a"
+];
+ODD_var_intel_part_civ_a_vu_caisse = ODD_var_intel_part_civ_a_vu + [
+	"Je les ai vu stocker",
+	"Je les ai vu ranger",
+	"Je les ai vu entreposer",
+	"Je crois que je les ai vu stocker",
+	"Je crois que je les ai vu ranger",
+	"Je crois que je les ai vu entreposer",
+	"Je crois les avoir vu stocker",
+	"Je crois les avoir vu ranger",
+	"Je crois les avoir vu entreposer"
+];
+
+ODD_var_intel_part_mil_name_IED = [
+	"une mine",
+	"un piege",
+	"un explosif",
+	"un engin explosif"
+];
+ODD_var_intel_part_civ_name_IED = ODD_var_intel_part_mil_name_IED + [
+	"un engin de mort"
+];
+
+ODD_var_intel_part_mil_name_checkpoint = [
+	"un checkpoint",
+	"un barrage",
+	"un point de contrôle",
+	"un poste de contrôle"
+];
+ODD_var_intel_part_civ_name_checkpoint = ODD_var_intel_part_mil_name_checkpoint;
+
+ODD_var_intel_part_mil_name_outpost = [
+	"un camp",
+	"une base",
+	"un postes avancé"
+];
+ODD_var_intel_part_civ_name_outpost = ODD_var_intel_part_mil_name_outpost + [
+	"un campement",
+	"des batiments inconnus",
+	"des batiments inhabituels"
+];
