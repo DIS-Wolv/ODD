@@ -102,6 +102,7 @@ if (count _markerDrone == 0) exitWith {systemChat "Aucun marqueur de drone de re
 
 	// on retire l'armement
 	_vh setVehicleAmmo 0;
+	_vh setAmmo ["Laserdesignator_mounted", 1000000];
 
 	_drone pushBack _ThisDrone;
 
