@@ -10,11 +10,9 @@ class ODD_Common {
 		class PlaceTable {};
 		class CountOnBase {};
 		class SelectZO {};
-		class sortIntels {};
 		class limitPatrols {};
 		class defineZo {};
 		class ZoType {};
-		class addIntel {};
 
 		class initCustomBuildings {};
 		class initCivils {};
@@ -51,7 +49,6 @@ class ODD_Data {
 		file = "odd_functions\data";
 
 		class Table {};
-		class intelText {}; // ODDdata_fnc_intelText;
 
 		class var {};
 		class varEne {};
@@ -63,9 +60,11 @@ class ODD_Data {
 		class varEneTla {};
 		class varRoadBlock {};
 		class varOutpost {};
+		class varIntel {};
 	};
 
 };
+
 class ODD_advanced {
 	tag = "ODDadvanced"
 	class Initialize {
@@ -89,7 +88,6 @@ class ODD_advanced {
 		class roadBlock {};
 		class roadBlockZO {};
 		class createRenfort {};
-		class intel {};
 		class pressureIED {};
 		class patrolZoM {};
 		class surrender {};
@@ -111,4 +109,21 @@ class ODD_advanced {
 		class TrigOkRtb {};
 		class CompleteObj {};
 	}
-}
+};
+
+class ODD_Intels {
+	tag = "ODDintels"
+	class Initialize {
+		file = "odd_functions\intels";
+		class addInteraction {};
+		class addInteractionLocal {};
+		class formatDistAngle {};
+		class formatGrid {};
+		class formatPos {};
+		class getClosestOjbInArr {};
+		class giveIntel {};
+		class maybeGiveIntel {};
+		class nameCaisse {};
+		class nameVl {};
+	}
+};

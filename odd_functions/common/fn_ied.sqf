@@ -59,8 +59,8 @@ if (_type >= 0) then {
 			_triggerMan disableAI "PATH";
 
 			// Ajout des interaction d'intérogation
-			[_triggerMan, 2] call ODDcommon_fnc_addIntel;
-			
+			[_triggerMan] call ODDintels_fnc_addInteraction;
+
 			// systemChat str _coverPos;
 			private _triggerExplo = createTrigger ["EmptyDetector", _cover, False];
 			_triggerExplo setTriggerArea [5, 5, 0, False, 5];
@@ -125,7 +125,7 @@ if (_type >= 0) then {
 			_triggerMan addItemToVest "ACE_Cellphone";
 
 			// Ajout des interaction d'intérogation
-			[_triggerMan, 1] call ODDcommon_fnc_addIntel;
+			[_triggerMan] call ODDintels_fnc_addInteraction;
 			
 			// met en place le triggerMan (garnison)
 			_triggerMan setPosATL _triggerManPos;
@@ -197,7 +197,7 @@ if (_type >= 0) then {
 			_triggerMan addItemToVest "ACE_Cellphone";
 
 			// Ajout des interaction d'intérogation
-			[_triggerMan, 2] call ODDcommon_fnc_addIntel;
+			[_triggerMan] call ODDintels_fnc_addInteraction;
 			
 			// met en place le triggerMan (garnison)
 			_triggerMan setPosATL _triggerManPos;
@@ -273,7 +273,7 @@ if (_type >= 0) then {
 			_triggerMan addItemToVest "ACE_Cellphone";
 
 			// Ajout des interaction d'intérogation
-			[_triggerMan, 1] call ODDcommon_fnc_addIntel;
+			[_triggerMan] call ODDintels_fnc_addInteraction;
 			
 			// met en place le triggerMan (garnison)
 			_triggerMan setPosATL _triggerManPos;

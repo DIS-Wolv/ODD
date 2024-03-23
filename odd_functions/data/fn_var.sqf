@@ -411,12 +411,15 @@ if (ODD_var_FirstDefinition) then {
 
 	[] call ODDdata_fnc_varRoadBlock;
 	[] call ODDdata_fnc_varOutpost;
+	[] call ODDdata_fnc_varIntel;
 
 	ODD_var_Debbuger = [];
 
 	ODD_var_FirstDefinition = False;
 
 	ODD_var_ZonePad = [];
+	ODD_var_Outposts = [];
+	ODD_var_intel_interogation_data = createHashMap;
 
 	// Liste des triggers
 	ODD_var_Trigger = [];
