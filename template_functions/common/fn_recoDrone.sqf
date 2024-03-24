@@ -106,6 +106,36 @@ if (count _markerDrone == 0) exitWith {systemChat "Aucun marqueur de drone de re
 
 	_drone pushBack _ThisDrone;
 
+	// Event Handler de destruction
+	_vh setVariable ["DIScommon_var_posBase", _posBase, true];
+	_vh addEventHandler ["Hit", {
+		params ["_unit", "_source", "_damage", "_instigator"];
+
+		// Suppression de l'event handler
+		_unit removeEventHandler [_thisEvent, _thisEventHandler];
+
+		// Message de destruction
+		[_unit, "Drone endomagé, RTB"] remoteExec ["sideChat", 0, false];
+
+		//WP de retour
+		private _posBase = _unit getVariable ["DIScommon_var_posBase", [0,0,0]];
+		private _drone = group _unit;
+
+		//WP de retour
+		private _WPIndex = (currentWaypoint _drone) + 1;
+		_drone addWaypoint [_posBase, _WPIndex];
+		[_drone, _WPIndex] setWaypointType "MOVE";
+		_drone setCurrentWaypoint [_drone, _WPIndex];
+
+		private _fnc_RTB = {
+			params ["_ThisDrone","_posBase"];
+			waitUntil {sleep 1; (_ThisDrone distance2D _posBase) < 100};
+			deleteVehicle _ThisDrone;
+		};
+
+		[_drone, _posBase] spawn _fnc_RTB;
+	}];
+
 	// définition du groupe
 	private _groupName = [] call _fnc_groupName;
 	//systemChat format ["%1", _groupName];
