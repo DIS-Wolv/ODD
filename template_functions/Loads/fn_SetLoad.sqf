@@ -5,7 +5,7 @@
 * Arguments :
 *
 * Exemple:
-* [DISLoadMC_var_CDE, player] call DISLoad_fnc_defaultload;
+* [DISLoadMC_var_CDE, player] call DISLoad_fnc_SetLoad;
 *
 * Variable publique :
 */
