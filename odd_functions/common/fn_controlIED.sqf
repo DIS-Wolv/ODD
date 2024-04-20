@@ -68,7 +68,9 @@ if ((typeName _pad) != "SCALAR") then {
 				private _triggerManType = _cover getVariable ["ODD_var_IED_TriggerManType", ""];
 				private _triggerManPos = _cover getVariable ["ODD_var_IED_TriggerManPos", [0,0,0]];
 
-				deleteVehicle _cover;
+				if ((position _cover) distance2D _coverPos < 20) then {
+					deleteVehicle _cover;
+				};
 				if (!isNull _explo) then {
 					_exploType = _explo getVariable ["ODD_var_IED_ExploType", ""];
 					_exploPos = _explo getVariable ["ODD_var_IED_ExploPos", ""];
