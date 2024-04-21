@@ -33,7 +33,7 @@ if (count _primary > 0) then {
 	_unit addPrimaryWeaponItem (_primary select 4 select 0);
 	_unit addPrimaryWeaponItem (_primary select 5 select 0);
 	_unit addPrimaryWeaponItem (_primary select 6);
-	if (_primary select 3 == 'rhsusf_acc_eotech_xps3') then {
+	if (_primary select 3 == 'rhsusf_acc_g33_xps3') then {
 		[_unit] call DISLoad_fnc_StandartScope;
 	} else {
 		_unit addPrimaryWeaponItem (_primary select 3);
