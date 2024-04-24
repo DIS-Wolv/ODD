@@ -40,6 +40,8 @@ class ODD_Common {
 
 		class roadBlockAo {};
 		class ied {};
+
+		class isMillitary {};
 	};
 };
 
