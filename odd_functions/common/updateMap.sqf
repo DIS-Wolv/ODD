@@ -51,6 +51,15 @@ private _frontLineModifier = 1.3;
 			_renfort = _renfort - 1;
 			_actEni = _actEni - 1;
 			_x setVariable ["ODD_var_actEni", _actEni];
+
+			if (_x getVariable ["ODD_var_isFrontLine", false]) then {
+				private _isFrontLine = false;
+				{
+					if (_x getVariable ["ODD_var_isBlue", false] == false) then {
+						_isFrontLine = true;
+					};
+				}forEach _nearloc;
+			};
 		};
 
 		private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
