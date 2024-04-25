@@ -1,5 +1,7 @@
 
 
+private _frontLineModifier = 1.3;
+
 {
 	private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
 	private _actEni = _x getVariable ["ODD_var_actEni", 0];
@@ -32,7 +34,7 @@
 					private _locEni = _x getVariable ["ODD_var_actEni", 0];
 					private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
 					if (_x getVariable ["ODD_var_isFrontLine", false]) then {
-						_locTgt = _locTgt * 1.3;
+						_locTgt = _locTgt * _frontLineModifier;
 					};
 					private _locPrc = _locEni / _locTgt;
 					if ((_locNeedRenfortPrc > _locPrc)) then {
