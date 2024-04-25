@@ -62,6 +62,34 @@ private _frontLineModifier = 1.3;
 			_actEni = _actEni + round (_actEni * _prcRecrut) + 1;
 			_x setVariable ["ODD_var_actEni", _actEni];
 		};
+	}
+	else {
+		_x setVariable ["ODD_var_isFrontLine", true];
+		{
+			_x setVariable ["ODD_var_isFrontLine", true];
+		}forEach _nearloc;
+
+		private _actEni = _x getVariable ["ODD_var_actEni", 0];
+		
+		while {_actEni > 0} do {
+			private _locNeedRenfort = _nearloc select 0;
+			private _locNeedRenfortPrc = ((_nearloc select 0) getVariable ["ODD_var_actEni", 0]) / ((_nearloc select 0) getVariable ["ODD_var_tgtEni", 2]);
+			{
+				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
+					private _locEni = _x getVariable ["ODD_var_actEni", 0];
+					private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
+
+					private _locPrc = _locEni / _locTgt;
+					if ((_locNeedRenfortPrc > _locPrc)) then {
+						_locNeedRenfort = _x;
+						_locNeedRenfortPrc = _locPrc;
+					};
+				};
+				_locNeedRenfort setVariable ["ODD_var_actEni", (_locNeedRenfort getVariable ["ODD_var_actEni", 0]) + 1];
+			} forEach _nearloc;
+			_actEni = _actEni - 1;
+		};
+		_x setVariable ["ODD_var_actEni", _actEni];
 	};
 
 } forEach ODDvar_mesLocations;
