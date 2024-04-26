@@ -112,6 +112,7 @@ private _map = (findDisplay 12 displayCtrl 51);
 	_maLoc setVariable ["ODD_var_actEni", _actEni];
 	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
 	_maLoc setVariable ["ODD_var_isBlue", false];
+	_maLoc setVariable ["ODD_var_isFrontLine", false];
 
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
 	if (_isMil) then {
