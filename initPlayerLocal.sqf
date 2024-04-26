@@ -110,6 +110,7 @@ pInf addAction ["Medecin",{[DISLoadMc_var_Medecin,_this select 1] call DISLoad_f
 pInf addAction ["EOD",{[DISLoadMc_var_EOD,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["EOD Light",{[DISLoadMc_var_EOD_Light,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["TP",{[DISLoadMc_var_TP,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
+pInf addAction ["Chef de Groupe (med)",{[DISLoadMc_var_CdGM,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 pInf addAction ["Zeus",{[DISLoadMc_var_Zeus,_this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 
 acces addAction ["Recharger la caisse",{[_this select 0] call DISLoadCrate_fnc_items},[],1.5,True,True,"","",5];
