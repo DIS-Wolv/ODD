@@ -55,33 +55,8 @@ DISLoadMc_var_TP = [[["rhs_weap_mk17_LB","","","rhsusf_acc_su230a_c_3d",["rhs_ma
 DISLoadMc_var_Zeus = [[["rhs_weap_hk416d10","","","rhsusf_acc_g33_xps3",["30Rnd_556x45_Stanag_red",30],[],""],[],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_CombatUniform_mcam_tshirt",[["ACE_CableTie",10],["ACE_splint",4],["ACE_tourniquet",4],["ACE_morphine",2],["ACE_epinephrine",2],["ACE_packingBandage",20],["ACE_elasticBandage",15]]],["V_Rangemaster_belt",[["ACE_EarPlugs",1],["30Rnd_556x45_Stanag_red",3,30],["rhsusf_mag_17Rnd_9x19_JHP",1,17]]],["TFAR_rt1523g_rhs",[]],"rhsusf_patrolcap_ocp","",[],["ItemMap","","TFAR_anprc152_26","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
 
 
-DISLoadPL_var_CDG = [
-    [
-        ["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],
-        ["rhs_weap_M136","","","",[],[],""],
-        ["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],
-        ["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_CableTie",4],["ACE_elasticBandage",10],["ACE_morphine",5],["ACE_packingBandage",20],["ACE_epinephrine",5],["ACE_splint",6],["ACE_EarPlugs",1],["R3F_ITEM_ODP",1],["rhsusf_mag_17Rnd_9x19_JHP",2,17]]],
-        ["V_RebreatherB",[]],
-        ["rhssaf_kitbag_smb",[["ACE_plasmaIV_500",4],["SmokeShellGreen",1,1],["30Rnd_556x45_Stanag_red",10,30],["rhs_mag_m67",2,1],["SmokeShell",4,1],["rhsusf_plateframe_light",false]]],
-        "rhsusf_opscore_mc",
-        "G_B_Diving",
-        ["Binocular","","","",[],[],""],
-        ["ItemMap","R3F_ITEM_DAGR","TFAR_anprc152","ItemCompass","ItemWatch",""]
-    ],
-    [["ACE_EarPlugs",true]]
-    ];
-
-DISLoadMc_var_CdG = [
-    [
-        ["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],
-        ["rhs_weap_M136","","","",[],[],""],
-        ["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],
-        ["rhs_uniform_g3_mc",[["ACE_EarPlugs",1],["ACE_CableTie",10],["ACE_splint",4],["ACE_tourniquet",4],["ACE_morphine",2],["ACE_epinephrine",2],["ACE_packingBandage",20],["ACE_elasticBandage",12]]],["rhsusf_plateframe_teamleader",[["ACE_MapTools",1],["SmokeShellGreen",1,1],["acex_intelitems_notepad",1,1],["30Rnd_556x45_Stanag_red",8,30],["SmokeShell",10,1],["rhs_mag_m67",3,1],["rhsusf_mag_17Rnd_9x19_JHP",2,17]]],
-        ["rhsusf_falconii_mc",[["ACE_plasmaIV_500",4],["ACE_EntrenchingTool",1]]],
-        "rhsusf_opscore_mc_cover_pelt",
-        "",
-        ["Laserdesignator","","","",[],[],""],
-        ["ItemMap","R3F_ITEM_DAGR","TFAR_anprc152","ItemCompass","ItemWatch",""]
-    ],
-    [["ACE_EarPlugs",true]]
-];
+DISLoadPL_var_CDG = [[["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],["rhs_weap_M136","","","",[],[],""],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_CableTie",4],["ACE_elasticBandage",10],["ACE_morphine",5],["ACE_epinephrine",5],["ACE_splint",6],["ACE_packingBandage",20],["ACE_EarPlugs",1],["R3F_ITEM_ODP",1],["rhsusf_mag_17Rnd_9x19_JHP",2,17]]],["V_RebreatherB",[]],["rhssaf_kitbag_smb",[["ACE_plasmaIV_500",4],["30Rnd_556x45_Stanag_red",10,30],["rhs_mag_m67",2,1],["SmokeShell",4,1],["SmokeShellGreen",1,1],["rhsusf_plateframe_light",false]]],"rhsusf_opscore_mc","G_B_Diving",["Laserdesignator","","","",["Laserbatteries",1],[],""],["ItemMap","R3F_ITEM_DAGR","TFAR_anprc152","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
+DISLoadPL_var_CDE = [[["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],["rhs_weap_M136","","","",[],[],""],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_CableTie",4],["ACE_elasticBandage",10],["ACE_morphine",5],["ACE_packingBandage",20],["ACE_epinephrine",5],["ACE_splint",6],["ACE_EarPlugs",1],["R3F_ITEM_ODP",1],["rhsusf_mag_17Rnd_9x19_JHP",2,17]]],["V_RebreatherB",[]],["rhssaf_kitbag_smb",[["ACE_plasmaIV_500",4],["SmokeShellGreen",1,1],["30Rnd_556x45_Stanag_red",10,30],["rhs_mag_m67",2,1],["SmokeShell",4,1],["rhsusf_plateframe_light",false]]],"rhsusf_opscore_mc","G_B_Diving",["Binocular","","","",[],[],""],["ItemMap","R3F_ITEM_DAGR","TFAR_anprc152_13","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
+DISLoadPL_var_GV = [[["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],[],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_CableTie",4],["ACE_elasticBandage",10],["ACE_morphine",5],["ACE_packingBandage",20],["ACE_epinephrine",5],["ACE_splint",6],["ACE_EarPlugs",1],["rhsusf_mag_17Rnd_9x19_JHP",3,17]]],["V_RebreatherB",[]],["rhssaf_kitbag_smb",[["ACE_plasmaIV_500",4],["30Rnd_556x45_Stanag_red",10,30],["rhs_mag_m67",2,1],["SmokeShell",4,1],["rhsusf_plateframe_light",false]]],"rhsusf_opscore_mc","G_B_Diving",[],["ItemMap","","TFAR_anprc152","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
+DISLoadPL_var_Medecin = [[["rhs_weap_hk416d145","","","rhsusf_acc_eotech_xps3",["30Rnd_556x45_Stanag_red",30],[],""],[],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_elasticBandage",20],["ACE_morphine",5],["ACE_EarPlugs",1],["ACE_packingBandage",20],["ACE_epinephrine",5],["ACE_splint",6],["rhsusf_mag_17Rnd_9x19_JHP",1,17],["SmokeShell",3,1]]],["V_RebreatherB",[]],["rhssaf_kitbag_smb",[["ACE_bloodIV",10],["ACE_bloodIV_500",5],["ACE_surgicalKit",1],["30Rnd_556x45_Stanag_red",6,30],["rhsusf_plateframe_light",false]]],"rhsusf_opscore_paint","G_B_Diving",[],["ItemMap","","TFAR_anprc152_16","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
+DISLoadPL_var_Minimi5 = [[["rhs_weap_m249_light_S","","","rhsusf_acc_eotech_xps3",["rhsusf_200Rnd_556x45_box",200],[],"rhsusf_acc_saw_bipod"],[],["rhsusf_weap_glock17g4","","","",["rhsusf_mag_17Rnd_9x19_JHP",17],[],""],["U_B_Wetsuit",[["ACE_tourniquet",4],["ACE_CableTie",4],["ACE_elasticBandage",10],["ACE_morphine",5],["ACE_packingBandage",20],["ACE_epinephrine",5],["ACE_splint",6],["ACE_EarPlugs",1],["rhsusf_mag_17Rnd_9x19_JHP",3,17],["SmokeShell",4,1]]],["V_RebreatherB",[]],["rhssaf_kitbag_smb",[["ACE_plasmaIV_500",4],["rhs_mag_m67",2,1],["rhsusf_200Rnd_556x45_box",3,200],["rhsusf_plateframe_light",false]]],"rhsusf_opscore_mc","G_B_Diving",[],["ItemMap","","TFAR_anprc152_17","ItemCompass","ItemWatch",""]],[["ace_earplugs",true]]];
