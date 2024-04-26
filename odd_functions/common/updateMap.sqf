@@ -32,6 +32,7 @@ private _frontLineModifier = 1.3;
 	if ((_x getVariable ["ODD_var_isBlue", false]) == false) then {
 		_nearloc pushBack _x;
 
+		// partie Infantrie
 		private _renfort = floor (_actEni * 0.2);
 		_renfort = _renfort max 0;
 
@@ -84,6 +85,10 @@ private _frontLineModifier = 1.3;
 			_actEni = _actEni + round (_actEni * _prcRecrut) + 1;
 			_x setVariable ["ODD_var_actEni", _actEni];
 		};
+
+		// partie Vehicule
+		private _vehtgt = _x getVariable ["ODD_var_vehtgt", 0];
+		private _vehact = _x getVariable ["ODD_var_vehact", []];
 	}
 	else {
 		_x setVariable ["ODD_var_isFrontLine", true];
