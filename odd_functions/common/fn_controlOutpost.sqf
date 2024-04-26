@@ -157,7 +157,7 @@ if ((typeName _pad) != "SCALAR") then {
 								};
 							};
 						}];
-					}forEach units _g;
+					}forEach units _grp;
 
 					// Defini un "CYCLE" pour continuer indefiniement
 					_grp addWaypoint [_listPos select ((count _listPos) - 1), 0];

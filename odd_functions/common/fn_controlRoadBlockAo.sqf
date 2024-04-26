@@ -92,7 +92,7 @@ if ((typeName _pad) != "SCALAR") then {
 							};
 						};
 					}];
-				}forEach units _g;
+				}forEach units _gg;
 			};
 
 			// groupe de patrouille
@@ -131,7 +131,7 @@ if ((typeName _pad) != "SCALAR") then {
 							};
 						};
 					}];
-				}forEach units _g;
+				}forEach units _gp;
 			};
 
 			_pool = _pool - ((count _groupGar) + (count _groupPat));
