@@ -1,4 +1,19 @@
-
+/*
+* Auteur : Wolv
+* Fonction pour calculer le nombre d'ennemis dans une zone
+*
+* Arguments :
+*	_zo : Zone (object)
+* 
+* Valeur renvoyée :
+*	_enemies : Nombre d'ennemis
+*
+* Exemple :
+*	
+*
+* Variable publique :
+* 
+*/
 
 params ["_zo"];
 private _enemies = 4;

@@ -1,3 +1,19 @@
+/*
+* Auteur : Wolv
+* Fonction pour importé les donnée de la mission
+*
+* Arguments :
+*	0 : Donnée a importé (Array)
+* 
+* Valeur renvoyée :
+*
+* Exemple :
+* 
+*
+* Variable publique :
+* 
+*/
+
 
 params [["_data", createHashMap]];
 _data = createHashMapFromArray _data;

@@ -1,4 +1,18 @@
-
+/*
+* Auteur : Wolv
+* Fonction pour crée les liens entre les localité 
+*
+* Arguments :
+* 
+* Valeur renvoyée :
+*	nil
+*
+* Exemple :
+* 
+*
+* Variable publique :
+* 
+*/
 
 private _fnc_removeBlackListed = {
 	params ["_locations"];

@@ -1,4 +1,17 @@
-
+/*
+* Auteur : Wolv
+* Fonction pour effectué 'un pas' dans la progression de la missions
+*
+* Arguments :
+* 
+* Valeur renvoyée :
+*
+* Exemple :
+* 
+*
+* Variable publique :
+* 
+*/
 
 private _frontLineModifier = 1.3;
 

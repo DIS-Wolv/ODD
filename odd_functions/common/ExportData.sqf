@@ -1,16 +1,17 @@
 /*
 * Auteur : Wolv
-* Fonction pour récupérer les données de la mission
+* Fonction pour exporté les donnée de la mission
 *
 * Arguments :
-*
+* 
 * Valeur renvoyée :
-* 0: booléen (true si c'est une base militaire, false sinon)
+*	0 : Donnée sauvergardé (array)
 *
-* Exemple:
-* [_zo] call ODDcommon_fnc_isMillitary;
+* Exemple :
+* 
 *
 * Variable publique :
+* 
 */
 
 private _data = createHashMap;
