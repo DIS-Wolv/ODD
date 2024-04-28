@@ -40,27 +40,21 @@ private _map = (findDisplay 12 displayCtrl 51);
 	switch (type _x) do {
 		case (ODD_var_LocationType select 0): { // Capital
 			_range = 4500;
-			_color = "ColorRed";
 		};
 		case (ODD_var_LocationType select 1): { // City
 			_range = 3000;
-			_color = "ColorGreen";
 		};
 		case (ODD_var_LocationType select 2): { // Village
 			_range = 2000;
-			_color = "ColorBlufor";
 		};
 		case (ODD_var_LocationType select 3): { // Name
 			_range = 2000;
-			_color = "ColorYellow";
 		};
 		case (ODD_var_LocationType select 4): { // NameLocal
 			_range = 1000;
-			_color = "ColorOrange";
 		};
 		case (ODD_var_LocationType select 5): { // Hill
 			_range = 1000;
-			_color = "ColorBlue";
 		};
 		default {};
 	};
@@ -106,20 +100,30 @@ private _map = (findDisplay 12 displayCtrl 51);
 	private _actEni = 0;		// le nombre de pax actuel sur la loc
 	
 	// remplacer par un super calcul du nombre de pax
-	_tgtEni = [_x] call compile preprocessFile "odd_functions\common\calcEniOnLoc.sqf";
+	_tgtEni = [_x] call compile preprocessFile "odd_functions\CTI\calcEniOnLoc.sqf";
 	_actEni = round (_tgtEni * 0.9);
 
 	_maLoc setVariable ["ODD_var_actEni", _actEni];
 	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
 	_maLoc setVariable ["ODD_var_isBlue", false];
-	_maLoc setVariable ["ODD_var_isFrontLine", false];
+	_maLoc setVariable ["ODD_var_isFrontLine", false]; 
 
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
 	if (_isMil) then {
 		_maLoc setVariable ["ODD_var_prcRecrut", 0.2];
+	}
+	else {
+		_maLoc setVariable ["ODD_var_prcRecrut", 0];
 	};
 
-
+	// crée un marker sur la map
+	private _marker = createMarkerLocal [text _maLoc, (_pos getPos [25, 270])];
+	_marker setMarkerType "mil_dot";
+	_marker setMarkerColor "ColorBlack";
+	_marker setMarkerSize [1, 1];
+	// _marker setMarkerText (text _maLoc);
+	_marker setMarkerAlpha 0.5;
+	_x setVariable ["ODD_var_marker", _marker];
 }forEach _locations;
 
 ODDvar_mesLocations = _locations;
