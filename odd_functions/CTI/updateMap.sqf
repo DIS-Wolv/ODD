@@ -20,6 +20,7 @@ private _markerText = '';
 private _color = "ColorRed";
 private _type = "mil_dot";
 private _alpha = 1;
+private _size = [0.5, 0.5];
 
 switch _info do {
 	case 0: {
@@ -60,7 +61,7 @@ switch _info do {
 			private _marker = _x getVariable ["ODD_var_marker", objNull];
 			_marker setMarkerTypeLocal _type; 
 			_marker setMarkerColorLocal _color; 
-			_marker setMarkerSizeLocal [0.5, 0.5]; 
+			_marker setMarkerSizeLocal _size; 
 			_marker setMarkerTextLocal _markerText; 
 			_marker setMarkerAlpha _alpha;
 		} forEach ODDvar_mesLocations;
@@ -83,7 +84,7 @@ switch _info do {
 			private _marker = _x getVariable ["ODD_var_marker", objNull];
 			_marker setMarkerTypeLocal _type; 
 			_marker setMarkerColorLocal _color; 
-			_marker setMarkerSizeLocal [0.5, 0.5]; 
+			_marker setMarkerSizeLocal _size; 
 			_marker setMarkerTextLocal _markerText; 
 			_marker setMarkerAlpha _alpha;
 		} forEach ODDvar_mesLocations;
@@ -110,8 +111,6 @@ switch _info do {
 	};
 	
 };
-		
-
 
 
 
