@@ -1,8 +1,9 @@
 /*
 * Auteur : Wolv
-* Fonction pour effectué 'un pas' dans la progression de la missions
+* Fonction pour mettre a jours les markers sur la carte
 *
 * Arguments :
+* 0: _info: niveaux de detaille des infos
 * 
 * Valeur renvoyée :
 *
@@ -13,112 +14,104 @@
 * 
 */
 
-private _frontLineModifier = 1.3;
+params [["_info", 0]];
 
-{
-	private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
-	private _actEni = _x getVariable ["ODD_var_actEni", 0];
+private _markerText = '';
+private _color = "ColorRed";
+private _type = "mil_dot";
+private _alpha = 1;
 
-	private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
-
-	if (_actEni/_tgtEni < 0.1) then {
-		_x setVariable ["ODD_var_isBlue", true];
-		_x setVariable ["ODD_var_isFrontLine", true];
+switch _info do {
+	case 0: {
 		{
-			_x setVariable ["ODD_var_isFrontLine", true];
-		}forEach _nearloc;
-	};
+			// update du marker sur la carte
+			private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
+			private _actEni = _x getVariable ["ODD_var_actEni", 0];
+			private _prc = _actEni / _tgtEni * 100;
 
-	if ((_x getVariable ["ODD_var_isBlue", false]) == false) then {
-		_nearloc pushBack _x;
+			_color = "ColorRed"; 
+			if (_prc > 25) then {_color = "ColorYellow"}; 
+			if (_prc > 75) then {_color = "ColorGreen"}; 
+			if (_prc > 90) then {_color = "ColorGUER"}; 
+			if (_prc > 100) then {_color = "colorCivilian"};
 
-		// partie Infantrie
-		private _renfort = floor (_actEni * 0.2);
-		_renfort = _renfort max 0;
-
-		while {_renfort > 0} do {
-			_actEni = _x getVariable ["ODD_var_actEni", 0];
-			private _prc = _actEni / _tgtEni;
-
-			private _locNeedRenfort = _x;
-			private _locNeedRenfortPrc = _prc;
-
-			{
-				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
-					private _locEni = _x getVariable ["ODD_var_actEni", 0];
-					private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
-					if (_x getVariable ["ODD_var_isFrontLine", false]) then {
-						_locTgt = _locTgt * _frontLineModifier;
-					};
-					private _locPrc = _locEni / _locTgt;
-					if ((_locNeedRenfortPrc > _locPrc)) then {
-						_locNeedRenfort = _x;
-						_locNeedRenfortPrc = _locPrc;
-					};
+			_type = "mil_dot";
+			if (_x getVariable ["ODD_var_isBlue", false]) then {
+				_type = "b_unknown";
+				_color = "colorBLUFOR";
+			}
+			else {
+				if (_x getVariable ["ODD_var_isFrontLine", false]) then {
+					_type = "o_inf";
+				} else {
+					_type = "o_unknown";
 				};
-			} forEach _nearloc;
-
-			private _locNeedRenfortEni = _locNeedRenfort getVariable ["ODD_var_actEni", 0];
-			_locNeedRenfort setVariable ["ODD_var_actEni", _locNeedRenfortEni + 1];
-
-			_actEni = _x getVariable ["ODD_var_actEni", 0];
-			_renfort = _renfort - 1;
-			_actEni = _actEni - 1;
-			_x setVariable ["ODD_var_actEni", _actEni];
-
-			if (_x getVariable ["ODD_var_isFrontLine", false]) then {
-				private _isFrontLine = false;
-				{
-					if (_x getVariable ["ODD_var_isBlue", false] == false) then {
-						_isFrontLine = true;
-					};
-				}forEach _nearloc;
 			};
-		};
 
-		private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
-		private _actEni = _x getVariable ["ODD_var_actEni", 0];
-		private _prcRecrut = _x getVariable ["ODD_var_prcRecrut", 0];
+			_markerText = format ["%1/%2", _actEni, _tgtEni];
+			private _prcRecrut = _x getVariable ["ODD_var_prcRecrut", 0];
+			if (_prcRecrut > 0) then {
+				_markerText = format ["%1/%2 + %3", _actEni, _tgtEni, (round (_actEni * _prcRecrut) + 1)];
+			}
+			else {
+				_markerText = format ["%1/%2", _actEni, _tgtEni];
+			};
 
-		if ((_prcRecrut > 0) and (_actEni > 0) and (_actEni < _tgtEni)) then {
-			// systemChat format ["%1 is a military location", text _x];
-			_actEni = _actEni + round (_actEni * _prcRecrut) + 1;
-			_x setVariable ["ODD_var_actEni", _actEni];
-		};
-
-		// partie Vehicule
-		private _vehtgt = _x getVariable ["ODD_var_vehtgt", 0];
-		private _vehact = _x getVariable ["ODD_var_vehact", []];
-	}
-	else {
-		_x setVariable ["ODD_var_isFrontLine", true];
-		{
-			_x setVariable ["ODD_var_isFrontLine", true];
-		}forEach _nearloc;
-
-		private _actEni = _x getVariable ["ODD_var_actEni", 0];
-		
-		while {_actEni > 0} do {
-			private _locNeedRenfort = _nearloc select 0;
-			private _locNeedRenfortPrc = ((_nearloc select 0) getVariable ["ODD_var_actEni", 0]) / ((_nearloc select 0) getVariable ["ODD_var_tgtEni", 2]);
-			{
-				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
-					private _locEni = _x getVariable ["ODD_var_actEni", 0];
-					private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
-
-					private _locPrc = _locEni / _locTgt;
-					if ((_locNeedRenfortPrc > _locPrc)) then {
-						_locNeedRenfort = _x;
-						_locNeedRenfortPrc = _locPrc;
-					};
-				};
-			} forEach _nearloc;
-			_locNeedRenfort setVariable ["ODD_var_actEni", (_locNeedRenfort getVariable ["ODD_var_actEni", 0]) + 1];
-			_actEni = _actEni - 1;
-		};
-		_x setVariable ["ODD_var_actEni", _actEni];
+			private _marker = _x getVariable ["ODD_var_marker", objNull];
+			_marker setMarkerTypeLocal _type; 
+			_marker setMarkerColorLocal _color; 
+			_marker setMarkerSizeLocal [0.5, 0.5]; 
+			_marker setMarkerTextLocal _markerText; 
+			_marker setMarkerAlpha _alpha;
+		} forEach ODDvar_mesLocations;
 	};
+	case 1: {
+		{
+			_color = "ColorOpfor";
+			if (_x getVariable ["ODD_var_isBlue", false]) then {
+				_type = "b_unknown";
+				_color = "colorBLUFOR";
+			}
+			else {
+				if (_x getVariable ["ODD_var_isFrontLine", false]) then {
+					_type = "o_inf";
+				} else {
+					_type = "o_unknown";
+				};
+			};
 
-} forEach ODDvar_mesLocations;
+			private _marker = _x getVariable ["ODD_var_marker", objNull];
+			_marker setMarkerTypeLocal _type; 
+			_marker setMarkerColorLocal _color; 
+			_marker setMarkerSizeLocal [0.5, 0.5]; 
+			_marker setMarkerTextLocal _markerText; 
+			_marker setMarkerAlpha _alpha;
+		} forEach ODDvar_mesLocations;
+	};
+	case 2: {
+		{
+			_color = "ColorOpfor";
+			if (_x getVariable ["ODD_var_isBlue", false]) then {
+				_type = "b_unknown";
+				_color = "colorBLUFOR";
+			}
+			else {
+				_type = "o_unknown";
+				_color = "ColorOpfor";
+			};
+
+			private _marker = _x getVariable ["ODD_var_marker", objNull];
+			_marker setMarkerTypeLocal _type; 
+			_marker setMarkerColorLocal _color; 
+			_marker setMarkerSizeLocal [0.5, 0.5]; 
+			_marker setMarkerTextLocal _markerText; 
+			_marker setMarkerAlpha _alpha;
+		} forEach ODDvar_mesLocations;
+	};
+	
+};
+		
+
+
 
 
