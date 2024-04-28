@@ -22,6 +22,7 @@ private _capturePrc = 0.1;
 
 	private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
 
+	// dans l'idée devrait etre remplacer par un trigger sur la zone
 	if (_actEni/_tgtEni < _capturePrc) then {
 		_x setVariable ["ODD_var_isBlue", true];
 		_x setVariable ["ODD_var_isFrontLine", true];
