@@ -14,7 +14,6 @@
 * 
 */
 
-
 params [["_data", createHashMap]];
 _data = createHashMapFromArray _data;
 
@@ -39,6 +38,24 @@ if (!isNil "_locData") then {
 		};
 
 	} forEach ODDvar_mesLocations;
+};
+
+private _objectData = _data get "ObjectData";
+if (!isNil "_objectData") then {
+	_objectData = createHashMapFromArray _objectData;
+	{
+		if(!isNil _x) then {
+			private _value = createHashMapFromArray ((_objectData get _x));
+			private _MonObj = call compile _x;
+			private _dir = _value get "dir";
+			private _pos = _value get "pos";
+
+			_pos = [(_pos select 0), (_pos select 1), (_pos select 2) + 0.2];
+
+			_MonObj setDir _dir;
+			_MonObj setPosATL _pos;
+		};
+	} forEach (keys _objectData);
 };
 
 _varToSet = ["ODD_var_CivilianReputation"];
