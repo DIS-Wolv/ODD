@@ -14,6 +14,17 @@
 * 
 */
 
+// variable de distance de spawn
+// private _radRoadBlock = 1500;
+// private _radOutpost = 1500;
+// private _radIED = 1400;
+// private _radDisable = 1000;
+// private _radSpawnCivils = 900;
+// private _radVl = 2000;
+private _radSpawnEni = 1000;
+private _alt = 1000;
+
+// fonction pour supprimer les locations blacklistées
 private _fnc_removeBlackListed = {
 	params ["_locations"];
 	{
@@ -30,8 +41,7 @@ private _locations = nearestLocations[[worldSize / 2, worldSize / 2], ODD_var_Lo
 // retire les locations blacklistées
 _locations = [_locations] call _fnc_removeBlackListed;
 
-private _map = (findDisplay 12 displayCtrl 51);
-
+// pour chaque location
 {
 	// récupère la position de la location
 	private _pos = getPos _x;
@@ -80,7 +90,7 @@ private _map = (findDisplay 12 displayCtrl 51);
 		_x setVariable ["ODD_var_nearLocations", _nearLocR];
 	}forEach _nearLoc;
 
-	private _maLoc = createLocation [_x];
+	// private _maLoc = createLocation [_x];
 	private _nearLocO = _maLoc getVariable ["ODD_var_nearLocations", []];
 	{
 		_nearLoc pushBackUnique _x;
@@ -98,16 +108,27 @@ private _map = (findDisplay 12 displayCtrl 51);
 	// attribue les valeurs de pax sur chaque location
 	private _tgtEni = 0;		// le nombre de pax sur la loc doit tendre vers cette valeur
 	private _actEni = 0;		// le nombre de pax actuel sur la loc
+	// valleur de vehicule
+	private _vehtgt = 0;
+	private _vehact = 0;
 	
-	// remplacer par un super calcul du nombre de pax
+	// Set des variable d'enemie
 	_tgtEni = [_x] call compile preprocessFile "odd_functions\CTI\calcEniOnLoc.sqf";
-	_actEni = round (_tgtEni * 0.9);
-
+	_actEni = round (_tgtEni);
 	_maLoc setVariable ["ODD_var_actEni", _actEni];
 	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
+
+	// Set des variable de vehicule
+	_vehtgt = 1; //[_x] call compile preprocessFile "odd_functions\CTI\calcVehOnLoc.sqf";
+	_vehact = [""];
+	_maLoc setVariable ["ODD_var_vehAct", _vehact];
+	_maLoc setVariable ["ODD_var_vehTgt", _vehtgt];
+
+	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
 	_maLoc setVariable ["ODD_var_isFrontLine", false]; 
 
+	// Set des variable de recrutement
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
 	if (_isMil) then {
 		_maLoc setVariable ["ODD_var_prcRecrut", 0.2];
@@ -117,16 +138,45 @@ private _map = (findDisplay 12 displayCtrl 51);
 	};
 
 	// crée un marker sur la map
-	private _marker = createMarkerLocal [text _maLoc, (_pos getPos [25, 270])];
+	private _marker = createMarkerLocal [Format ["ODD_var_LocMarker_%1", _pos], (_pos getPos [50, 270])];
 	_marker setMarkerType "mil_dot";
 	_marker setMarkerColor "ColorBlack";
 	_marker setMarkerSize [1, 1];
 	// _marker setMarkerText (text _maLoc);
 	_marker setMarkerAlpha 0.5;
 	_x setVariable ["ODD_var_marker", _marker];
-}forEach _locations;
+
+	// crée le trigger de spawn de pax
+	private _triggerEni = createTrigger ["EmptyDetector", _pos, true];
+	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
+	_triggerEni setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	_triggerEni setTriggerStatements ["this",
+		// Format ["systemChat 'Eni Spawn';"],
+		// Format ["systemChat 'Eni Despawn';"]
+		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\controlEni.sqf';", _radSpawnEni],
+		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\controlEni.sqf';", _radSpawnEni]
+	];
+	_triggerEni setVariable ["ODD_var_location", _maLoc];
+	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];
+
+
+	// crée le trigger de spawn de civils
+	// private _triggerCiv = createTrigger ["EmptyDetector", _pos], _pos, true];
+	// _triggerCiv setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
+	// _triggerCiv setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	// _triggerCiv setTriggerStatements ["this",
+	// 	Format ["systemChat 'Civ Spawn';"],
+	// 	Format ["systemChat 'Civ Despawn';"]
+	// ];
+	// _triggerCiv setVariable ["ODD_var_location", _maLoc];
+	// _maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
+	
+
+} forEach _locations;
 
 ODDvar_mesLocations = _locations;
+
+["DIS_mrk_FOB_4"] call DISCommon_fnc_PosFob;
 
 systemChat "Map Initialized";
 
