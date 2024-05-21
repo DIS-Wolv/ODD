@@ -25,7 +25,7 @@ private _size = (size _loc) select 0;
 private _pos = getPos _loc;
 
 // calcul des distances min et max
-private _distMin = _size / 4;
+private _distMin = _size / 2;
 private _distMax = _size;
 
 private _deg = 360 / _nb;
