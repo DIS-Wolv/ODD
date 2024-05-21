@@ -26,7 +26,7 @@ private _pos = getPos _loc;
 
 // calcul des distances min et max
 private _distMin = _size / 4;
-private _distMax = _size / 3;
+private _distMax = _size;
 
 private _deg = 360 / _nb;
 
