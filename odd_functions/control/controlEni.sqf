@@ -43,6 +43,13 @@ if ((typeName _loc) != "SCALAR") then {
 				_garnisons = _garnisons - _patrouilles;
 			};
 
+			if (_patrouilles == 0 and _garnisons > 2) then {
+				_patrouilles = 2;
+				_garnisons = _garnisons - _patrouilles;
+			};
+
+			systemChat format ["Loc %3, Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc];
+
 			// spawn des garnisons
 			private _garOut = [];
 			// pour chaque garnison
@@ -54,26 +61,31 @@ if ((typeName _loc) != "SCALAR") then {
 				// spawn de la garnison
 				// systemChat format ["Garnison %1 : %2", _i, _selectedBuilding];
 				private _group = [_loc, _selectedBuilding] call compile preprocessFile "odd_functions\control\spawnGar.sqf";
-				
-				sleep 0.5;
 				// ajoute le groupe à la liste des garnisons
 				_garOut pushBack _group;
+				
+				sleep 0.5;
 			};
+			_loc setVariable ["ODD_var_GarnisonGroup", _garOut];
 
 			// spwan des patrouilles
 			private _patOut = [];
 			// pour chaque patrouille
+			systemChat format ["Patrouille %1", _patrouilles];
 			for "_i" from 1 to _patrouilles do {
-				// _patOut pushBack ([_loc] call compile preprocessFile 'odd_functions\control\spawnPat.sqf');
-				// systemChat "Patrouille non implémentée";
+				// spawn de la patrouille
+				private _group = [_loc] call compile preprocessFile 'odd_functions\control\spawnPat.sqf';
+				// ajoute le groupe à la liste des patrouilles
+				_patOut pushBack _group;
+
+				sleep 0.5;
 			};
+			_loc setVariable ["ODD_var_PatrolGroup", _patOut];
+
 			
 			// mise a jours des variable de la localité
 			_pool = _pool - (count _garOut) - (count _patOut);
 			_loc setVariable ["ODD_var_actEni", _pool];
-
-			_loc setVariable ["ODD_var_GarnisonGroup", _garOut];
-
 		}
 		else {
 			[["Despawned garisons : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
@@ -120,6 +132,7 @@ if ((typeName _loc) != "SCALAR") then {
 			// mise a jours des variable de la localité
 			private _eni = _loc getVariable ["ODD_var_actEni", 0];
 			_loc setVariable ["ODD_var_GarnisonGroup", []];
+			_loc setVariable ["ODD_var_PatrolGroup", []];
 			_loc setVariable ["ODD_var_actEni", (_countPat + _countGar + _eni)];
 			[["Despawned %1 garnisons", _countGar]] call ODDcommon_fnc_log;
 		};
