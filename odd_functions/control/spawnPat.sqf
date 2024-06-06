@@ -16,7 +16,7 @@ params ["_loc",["_pos", [0,0,0]]];
 if (isNil "_loc") exitWith {[["Erreur ODDcontrol_fnc_spawnPat : Aucune localité spécifiée"]] call ODDcommon_fnc_log;};
 
 // choix le group a faire spawn
-private _groupClassName = selectRandom ODD_var_Squad;
+private _groupClassName = selectRandom ODD_var_FireTeam;
 
 if (_pos isEqualto [0,0,0]) then {
 	_pos = getPos _loc;
