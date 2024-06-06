@@ -132,5 +132,5 @@ private _capturePrc = 0.1;
 
 } forEach ODDvar_mesLocations;
 
-[] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
 
