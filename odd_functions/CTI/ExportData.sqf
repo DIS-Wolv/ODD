@@ -35,6 +35,7 @@ private _objectData = createHashMap;
 _data set ["LocData", _LocData];
 
 _data set ["ODD_var_CivilianReputation", ODD_var_CivilianReputation];
+_data set ["ODD_var_CTIMarkerInfo", ODD_var_CTIMarkerInfo];
 
 {
 	private _object = createHashMap;

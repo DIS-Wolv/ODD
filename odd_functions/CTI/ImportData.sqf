@@ -58,7 +58,7 @@ if (!isNil "_objectData") then {
 	} forEach (keys _objectData);
 };
 
-_varToSet = ["ODD_var_CivilianReputation"];
+_varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo"];
 {
 	private _value = _data get _x;
 	if (!isNil "_value") then {
@@ -67,3 +67,4 @@ _varToSet = ["ODD_var_CivilianReputation"];
 
 } forEach _varToSet;
 
+[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
