@@ -24,6 +24,9 @@
 private _radSpawnEni = 1000;
 private _alt = 1000;
 
+[] call ODDdata_fnc_varEneArd;
+ODD_var_CTIMarkerInfo = 2;
+
 // fonction pour supprimer les locations blacklistées
 private _fnc_removeBlackListed = {
 	params ["_locations"];
@@ -177,6 +180,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 ODDvar_mesLocations = _locations;
 
 ["DIS_mrk_FOB_4"] call DISCommon_fnc_PosFob;
+
+[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
 
 systemChat "Map Initialized";
 
