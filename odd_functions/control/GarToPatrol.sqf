@@ -12,7 +12,7 @@
 *
 */
 params ["_group"];
-systemChat "ODDcontrol_fnc_garToPatrol";
+// systemChat "ODDcontrol_fnc_garToPatrol";
 
 private _loc = _group getVariable ["ODD_var_Loc", objNull];
 if (isNull _loc) exitWith {};
@@ -36,6 +36,6 @@ if (isNull _loc) exitWith {};
 [_group, _loc] call ODDcommon_fnc_patrolWaypoint;
 
 // met en patrouille le groupe
-systemChat "+1 groupe en patrouille";
+// systemChat "+1 groupe en patrouille";
 // [units _group, _loc] call ODDcontrol_fnc_patrol;
 
