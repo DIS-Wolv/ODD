@@ -135,6 +135,9 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_PatrolGroup", []];
 			_loc setVariable ["ODD_var_actEni", (_countPat + _countGar + _eni)];
 			[["Despawned %1 garnisons", _countGar]] call ODDcommon_fnc_log;
+
+			// update du marker : 
+			[_loc, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\updateMapLocation.sqf';
 		};
 		
 
