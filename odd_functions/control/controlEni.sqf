@@ -48,7 +48,7 @@ if ((typeName _loc) != "SCALAR") then {
 				_garnisons = _garnisons - _patrouilles;
 			};
 
-			systemChat format ["Loc %3, Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc];
+			// systemChat format ["Loc %3, Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc];
 
 			// spawn des garnisons
 			private _garOut = [];
@@ -71,7 +71,7 @@ if ((typeName _loc) != "SCALAR") then {
 			// spwan des patrouilles
 			private _patOut = [];
 			// pour chaque patrouille
-			systemChat format ["Patrouille %1", _patrouilles];
+			// systemChat format ["Patrouille %1", _patrouilles];
 			for "_i" from 1 to _patrouilles do {
 				// spawn de la patrouille
 				private _group = [_loc] call compile preprocessFile 'odd_functions\control\spawnPat.sqf';
@@ -121,7 +121,7 @@ if ((typeName _loc) != "SCALAR") then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;
-				} forEach _x; 
+				} forEach units _x; 
 
 				// si le groupe est vivant, on incrémente le compteur
 				if (_isAlive) then {
