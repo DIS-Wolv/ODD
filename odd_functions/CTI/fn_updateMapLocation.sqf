@@ -19,7 +19,7 @@ params ["_loc",["_info", 0]];
 private _markerText = '';
 private _color = "ColorRed";
 private _type = "mil_dot";
-private _alpha = 1;
+private _alpha = 0.5;
 private _size = [0.5, 0.5];
 
 switch _info do {

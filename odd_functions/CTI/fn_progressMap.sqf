@@ -14,7 +14,6 @@
 */
 
 private _frontLineModifier = 1.3;
-private _capturePrc = 0.1;
 
 {
 	private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
@@ -23,7 +22,7 @@ private _capturePrc = 0.1;
 	private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
 
 	// dans l'idée devrait etre remplacer par un trigger sur la zone
-	if (_actEni/_tgtEni < _capturePrc) then {
+	if (_actEni/_tgtEni < ODDCTI_var_capturePrc) then {
 		_x setVariable ["ODD_var_isBlue", true];
 		_x setVariable ["ODD_var_isFrontLine", true];
 		{
@@ -132,5 +131,5 @@ private _capturePrc = 0.1;
 
 } forEach ODDvar_mesLocations;
 
-[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\fn_updateMap.sqf";
 

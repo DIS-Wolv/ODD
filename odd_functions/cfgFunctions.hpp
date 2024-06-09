@@ -130,3 +130,31 @@ class ODD_Intels {
 		class nameVl {};
 	}
 };
+
+class ODD_Control {
+	tag = "ODDControl"
+	class Initialize {
+		file = "odd_functions\control";
+		class controlEni {};
+		class GarToPatrol {};
+		class needPatrol {};
+		class spawnGar {};
+		class spawnPat {};
+	}
+};
+
+class ODD_CTI {
+	tag = "ODDCTI"
+	class Initialize {
+		file = "odd_functions\CTI";
+		class calcEniOnLoc {};
+		class ExportData {};
+		class ImportData {};
+		class initMap {};
+		class ProgressMap {};
+		class updateMap {};
+		class updateMapLocation {};
+
+	}
+};
+

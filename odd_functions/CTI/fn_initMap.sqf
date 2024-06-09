@@ -25,7 +25,9 @@ private _radSpawnEni = 1000;
 private _alt = 1000;
 
 [] call ODDdata_fnc_varEneArd;
+
 ODD_var_CTIMarkerInfo = 2;
+ODDCTI_var_capturePrc = 0.2;
 
 // fonction pour supprimer les locations blacklistées
 private _fnc_removeBlackListed = {
@@ -116,7 +118,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	private _vehact = 0;
 	
 	// Set des variable d'enemie
-	_tgtEni = [_x] call compile preprocessFile "odd_functions\CTI\calcEniOnLoc.sqf";
+	_tgtEni = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcEniOnLoc.sqf";
 	_actEni = round (_tgtEni);
 	_maLoc setVariable ["ODD_var_actEni", _actEni];
 	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
@@ -156,8 +158,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerEni setTriggerStatements ["this",
 		// Format ["systemChat 'Eni Spawn';"],
 		// Format ["systemChat 'Eni Despawn';"]
-		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\controlEni.sqf';", _radSpawnEni],
-		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\controlEni.sqf';", _radSpawnEni]
+		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlEni.sqf';", _radSpawnEni],
+		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlEni.sqf';", _radSpawnEni]
 	];
 	_triggerEni setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];
@@ -181,7 +183,7 @@ ODDvar_mesLocations = _locations;
 
 ["DIS_mrk_FOB_4"] call DISCommon_fnc_PosFob;
 
-[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\fn_updateMap.sqf";
 
 systemChat "Map Initialized";
 

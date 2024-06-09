@@ -60,7 +60,7 @@ if ((typeName _loc) != "SCALAR") then {
 
 				// spawn de la garnison
 				// systemChat format ["Garnison %1 : %2", _i, _selectedBuilding];
-				private _group = [_loc, _selectedBuilding] call compile preprocessFile "odd_functions\control\spawnGar.sqf";
+				private _group = [_loc, _selectedBuilding] call compile preprocessFile "odd_functions\control\fn_spawnGar.sqf";
 				// ajoute le groupe à la liste des garnisons
 				_garOut pushBack _group;
 				
@@ -74,7 +74,7 @@ if ((typeName _loc) != "SCALAR") then {
 			// systemChat format ["Patrouille %1", _patrouilles];
 			for "_i" from 1 to _patrouilles do {
 				// spawn de la patrouille
-				private _group = [_loc] call compile preprocessFile 'odd_functions\control\spawnPat.sqf';
+				private _group = [_loc] call compile preprocessFile 'odd_functions\control\fn_spawnPat.sqf';
 				// ajoute le groupe à la liste des patrouilles
 				_patOut pushBack _group;
 
@@ -97,7 +97,7 @@ if ((typeName _loc) != "SCALAR") then {
 				// despawn du groupe
 				private _isAlive = false;
 				{
-					if (alive _x) then {
+					if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;
@@ -117,7 +117,7 @@ if ((typeName _loc) != "SCALAR") then {
 				// despawn du groupe
 				private _isAlive = false;
 				{
-					if (alive _x) then {
+					if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;
@@ -129,6 +129,14 @@ if ((typeName _loc) != "SCALAR") then {
 				};
 			} forEach _patOut;
 
+
+			// suppression des corps
+			private _dead = _loc nearEntities ["Man", 1500];
+			_dead = _dead apply {if (alive _x) then {_x} else {objNull}};
+			{
+				deleteVehicle _x;
+			} forEach _dead;
+
 			// mise a jours des variable de la localité
 			private _eni = _loc getVariable ["ODD_var_actEni", 0];
 			_loc setVariable ["ODD_var_GarnisonGroup", []];
@@ -136,8 +144,22 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_actEni", (_countPat + _countGar + _eni)];
 			[["Despawned %1 garnisons", _countGar]] call ODDcommon_fnc_log;
 
+			private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
+			private _actEni = _x getVariable ["ODD_var_actEni", 0];
+
+			if (_actEni/_tgtEni < ODDCTI_var_capturePrc) then {
+				_x setVariable ["ODD_var_isBlue", true];
+				_x setVariable ["ODD_var_isFrontLine", true];
+				
+				private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
+				{
+					_x setVariable ["ODD_var_isFrontLine", true];
+					[_x, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\fn_updateMapLocation.sqf';
+				}forEach _nearloc;
+			};
+
 			// update du marker : 
-			[_loc, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\updateMapLocation.sqf';
+			[_loc, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\fn_updateMapLocation.sqf';
 		};
 		
 
@@ -145,7 +167,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _WantState = _trigger getVariable ["trig_ODD_var_garWantState", _state];
 		_trigger setVariable ["trig_ODD_var_isActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState, _radius] call compile preprocessFile 'odd_functions\control\controlEni.sqf';
+			[_trigger, _WantState, _radius] call compile preprocessFile 'odd_functions\control\fn_controlEni.sqf';
 		}
 	}
 	// si le trigger est actif
