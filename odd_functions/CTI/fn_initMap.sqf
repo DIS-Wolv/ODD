@@ -26,7 +26,7 @@ private _alt = 1000;
 
 [] call ODDdata_fnc_varEneArd;
 
-ODD_var_CTIMarkerInfo = 2;
+ODD_var_CTIMarkerInfo = 1;
 ODDCTI_var_capturePrc = 0.2;
 
 // fonction pour supprimer les locations blacklistées
