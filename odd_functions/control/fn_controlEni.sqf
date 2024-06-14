@@ -40,7 +40,13 @@ if ((typeName _loc) != "SCALAR") then {
 				_patrouilles = _garnisons - _countGarBuildings;
 			}
 			else {
-				_patrouilles = 2;
+				if (_pool > 2) then {
+					_patrouilles = 2;
+					_garnisons = _garnisons - _patrouilles;
+				}
+				else {
+					_patrouilles = 0;
+				};
 				_garnisons = _garnisons - _patrouilles;
 			};
 
