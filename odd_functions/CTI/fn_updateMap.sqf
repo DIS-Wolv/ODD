@@ -18,6 +18,6 @@ params [["_info", 0]];
 
 // systemChat format ["Mise a jours des markers sur la carte"];
 {
-	[_x, _info] call compile preprocessFile "odd_functions\CTI\fn_updateMapLocation.sqf";
+	[_x, _info] call ODDCTI_fnc_updateMapLocation;
 } forEach ODDvar_mesLocations;
 

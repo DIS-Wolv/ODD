@@ -118,7 +118,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	private _vehact = 0;
 	
 	// Set des variable d'enemie
-	_tgtEni = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcEniOnLoc.sqf";
+	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
 	_actEni = round (_tgtEni);
 	_maLoc setVariable ["ODD_var_actEni", _actEni];
 	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
@@ -183,7 +183,7 @@ ODDvar_mesLocations = _locations;
 
 ["DIS_mrk_FOB_4"] call DISCommon_fnc_PosFob;
 
-[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\fn_updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 
 systemChat "Map Initialized";
 

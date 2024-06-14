@@ -72,7 +72,7 @@ for "_i" from 1 to _countNewPatrol do {
 		};
 
 		// crée un groupe de patrouille
-		private _group = [_loc, _spawnPos] call compile preprocessFile "odd_functions\control\fn_spawnPat.sqf";
+		private _group = [_loc, _spawnPos] call ODDControl_fnc_spawnPat;
 		_loc setVariable ["ODD_var_PatrolGroup", ((_loc getVariable ["ODD_var_PatrolGroup", []]) + [_group])];
 
 		// suprime un groupe du pool
@@ -93,7 +93,7 @@ for "_i" from 1 to _countNewPatrol do {
 		// le passe en patrouille
 
 		// cette ligne marche pas lol
-		[_monGroup] call compile preprocessFile "odd_functions\control\fn_GarToPatrol.sqf";
+		[_monGroup] call ODDControl_fnc_GarToPatrol;
 	};
 };
 

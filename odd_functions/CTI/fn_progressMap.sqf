@@ -47,7 +47,7 @@ private _frontLineModifier = 1.3;
 			{
 				private _locEni = _x getVariable ["ODD_var_actEni", 0];
 				private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
-				if ((_x getVariable ["ODD_var_isBlue", false] == false) and (_locEni/_locTgt > _capturePrc)) then {
+				if ((_x getVariable ["ODD_var_isBlue", false] == false) and (_locEni/_locTgt > ODDCTI_var_capturePrc)) then {
 
 					if (_x getVariable ["ODD_var_isFrontLine", false]) then {
 						_locTgt = _locTgt * _frontLineModifier;
@@ -131,5 +131,5 @@ private _frontLineModifier = 1.3;
 
 } forEach ODDvar_mesLocations;
 
-[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\fn_updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 

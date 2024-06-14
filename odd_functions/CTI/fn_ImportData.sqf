@@ -67,4 +67,4 @@ _varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo"];
 
 } forEach _varToSet;
 
-[ODD_var_CTIMarkerInfo] call compile preprocessFile "odd_functions\CTI\fn_updateMap.sqf";
+[ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;

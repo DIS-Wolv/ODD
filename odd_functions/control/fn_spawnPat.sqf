@@ -56,7 +56,7 @@ _group addEventHandler ["Deleted", {
 
 	// bascule des groupes de garnison en patrouille
 	if ((count _patrolGroup) == 0) then {
-		[_loc] call compile preprocessFile "odd_functions\control\fn_needPatrol.sqf";
+		[_loc] call ODDControl_fnc_needPatrol;
 		
 	 };
 }];

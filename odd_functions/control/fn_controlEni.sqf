@@ -60,7 +60,7 @@ if ((typeName _loc) != "SCALAR") then {
 
 				// spawn de la garnison
 				// systemChat format ["Garnison %1 : %2", _i, _selectedBuilding];
-				private _group = [_loc, _selectedBuilding] call compile preprocessFile "odd_functions\control\fn_spawnGar.sqf";
+				private _group = [_loc, _selectedBuilding] call ODDControl_fnc_spawnGar;
 				// ajoute le groupe à la liste des garnisons
 				_garOut pushBack _group;
 				
@@ -74,7 +74,7 @@ if ((typeName _loc) != "SCALAR") then {
 			// systemChat format ["Patrouille %1", _patrouilles];
 			for "_i" from 1 to _patrouilles do {
 				// spawn de la patrouille
-				private _group = [_loc] call compile preprocessFile 'odd_functions\control\fn_spawnPat.sqf';
+				private _group = [_loc] call ODDControl_fnc_spawnPat;
 				// ajoute le groupe à la liste des patrouilles
 				_patOut pushBack _group;
 
@@ -88,7 +88,7 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_actEni", _pool];
 		}
 		else {
-			[["Despawned garisons : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
+			// systemChat format ["Despawn %1", _textLoc];
 			// despawn des garnisons
 			private _garOut = _loc getVariable ["ODD_var_GarnisonGroup", []];
 			private _countGar = 0;
@@ -154,12 +154,12 @@ if ((typeName _loc) != "SCALAR") then {
 				private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
 				{
 					_x setVariable ["ODD_var_isFrontLine", true];
-					[_x, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\fn_updateMapLocation.sqf';
+					[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
 				}forEach _nearloc;
 			};
 
 			// update du marker : 
-			[_loc, ODD_var_CTIMarkerInfo] call compile preprocessFile 'odd_functions\CTI\fn_updateMapLocation.sqf';
+			[_loc, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
 		};
 		
 
@@ -167,7 +167,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _WantState = _trigger getVariable ["trig_ODD_var_garWantState", _state];
 		_trigger setVariable ["trig_ODD_var_isActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState, _radius] call compile preprocessFile 'odd_functions\control\fn_controlEni.sqf';
+			[_trigger, _WantState, _radius] call ODDControl_fnc_controlEni;
 		}
 	}
 	// si le trigger est actif
