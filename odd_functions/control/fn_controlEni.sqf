@@ -137,11 +137,11 @@ if ((typeName _loc) != "SCALAR") then {
 
 
 			// suppression des corps
-			private _dead = _loc nearEntities ["Man", 1500];
-			_dead = _dead apply {if (alive _x) then {_x} else {objNull}};
-			{
-				deleteVehicle _x;
-			} forEach _dead;
+			// private _dead = _loc nearEntities ["Man", 1500];
+			// _dead = _dead apply {if (alive _x) then {_x} else {objNull}};
+			// {
+			// 	deleteVehicle _x;
+			// } forEach _dead;
 
 			// mise a jours des variable de la localité
 			private _eni = _loc getVariable ["ODD_var_actEni", 0];
@@ -150,14 +150,16 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_actEni", (_countPat + _countGar + _eni)];
 			[["Despawned %1 garnisons", _countGar]] call ODDcommon_fnc_log;
 
-			private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
-			private _actEni = _x getVariable ["ODD_var_actEni", 0];
+
+			private _tgtEni = _loc getVariable ["ODD_var_tgtEni", 2];
+			private _actEni = _loc getVariable ["ODD_var_actEni", 0];
 
 			if (_actEni/_tgtEni < ODDCTI_var_capturePrc) then {
-				_x setVariable ["ODD_var_isBlue", true];
-				_x setVariable ["ODD_var_isFrontLine", true];
+				[["%1 : Zone capturer", _textLoc]] call ODDcommon_fnc_log;
+				_loc setVariable ["ODD_var_isBlue", true];
+				_loc setVariable ["ODD_var_isFrontLine", true];
 				
-				private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
+				private _nearloc = _loc getVariable ["ODD_var_nearLocations", []];
 				{
 					_x setVariable ["ODD_var_isFrontLine", true];
 					[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
