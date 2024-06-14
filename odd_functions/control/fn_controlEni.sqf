@@ -114,6 +114,12 @@ if ((typeName _loc) != "SCALAR") then {
 			private _countPat = 0;
 			// pour chaque patrouilles
 			{
+				// supprime l'Event Handler
+				private _EHID = _x getVariable ["ODD_var_DeleteHandler", -1];
+				if (_EHID != -1) then {
+					_x removeEventHandler ["Deleted", _EHID];
+				};
+
 				// despawn du groupe
 				private _isAlive = false;
 				{

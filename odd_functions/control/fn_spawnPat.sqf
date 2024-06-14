@@ -42,7 +42,7 @@ _group setVariable ["ODD_var_Loc", _loc, True];
 } forEach units _group;
 
 // test pour sortir d'autre groupe de garnison vers patrouilles
-_group addEventHandler ["Deleted", {
+private _id = _group addEventHandler ["Deleted", {
 	params ["_group"];
 	private _loc = _group getVariable ["ODD_var_Loc", objNull];
 
@@ -60,5 +60,7 @@ _group addEventHandler ["Deleted", {
 		
 	 };
 }];
+
+_group setVariable ["ODD_var_DeleteHandler", _id, True];
 
 _group;
