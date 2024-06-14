@@ -9,7 +9,8 @@ _loc = createLocation [_loc];
 if ((typeName _loc) != "SCALAR") then {
 	// ectriture dans les log
 	private _textLoc = text _loc;
-	[["Spawned garisons : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
+	[["Control Eni : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
+	// systemChat format ["Control Eni : Zone %1 : status %2", _textLoc, _state];
 
 	_loc setVariable ["ODD_var_prout", 42];
 
