@@ -52,13 +52,7 @@ _group setVariable ["ODD_var_Loc", _loc, True];
 
 {
 	// ajoute un event handler pour la rédition
-	private _id = _x addEventHandler["Killed", 
-		{ 
-			params ["_unit", "_killer"]; 
-			[_unit, _killer] call ODDadvanced_fnc_surrender;
-		}
-	];
-	_x setVariable ["ODD_var_SurrenderHandler", _id, True];
+	private _id = -1;
 
 	// ajoute un event handler pour la suppression des grenades
 	_id = _x addEventHandler ["Fired", {
@@ -72,6 +66,29 @@ _group setVariable ["ODD_var_Loc", _loc, True];
 		};
 	}];
 	_x setVariable ["ODD_var_GrenadeHandler", _id, True];
+
+	_id = _x addEventHandler ["Killed", {
+		params ["_unit", "_killer", "_instigator", "_useEffects"];
+		[_unit, _killer] call ODDadvanced_fnc_surrender;
+		private _aliveGroup = false;
+		{
+			if ((alive _x) and (lifeState _x != "INCAPACITATED")) then {
+				_aliveGroup = true;
+			};
+		} forEach units group _unit;
+		if (!_aliveGroup) then {
+			{
+				private _id = _x getVariable ["ODD_var_KilledHandler", -1];
+				if (_id != -1) then {
+					_x removeEventHandler ["Killed", _id];
+				};
+				_x setDamage 1;
+				[_x] join grpNull;
+			} forEach units group _unit;
+		};
+	}];
+	_x setVariable ["ODD_var_KilledHandler", _id, True];
+	_x setVariable ["ODD_var_SurrenderHandler", _id, True];
 
 } forEach units _group;
 
