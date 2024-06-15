@@ -115,6 +115,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_countGar = _countGar + 1;
 				};
 			} forEach _garOut;
+			[["%1 : Despawned %2 Garnisons", text _loc, _countGar]] call ODDcommon_fnc_log;
 
 			// despawn des patrouilles
 			private _patOut = _loc getVariable ["ODD_var_PatrolGroup", []];
@@ -141,6 +142,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_countPat = _countPat + 1;
 				};
 			} forEach _patOut;
+			[["%1 : Despawned %2 Patrols", text _loc, _countGar]] call ODDcommon_fnc_log;
 
 
 			// suppression des corps
@@ -154,8 +156,7 @@ if ((typeName _loc) != "SCALAR") then {
 			private _eni = _loc getVariable ["ODD_var_actEni", 0];
 			_loc setVariable ["ODD_var_GarnisonGroup", []];
 			_loc setVariable ["ODD_var_PatrolGroup", []];
-			_loc setVariable ["ODD_var_actEni", (_countPat + _countGar + _eni)];
-			[["Despawned %1 garnisons", _countGar]] call ODDcommon_fnc_log;
+			_loc setVariable ["ODD_var_actEni", ((_countPat + _countGar + _eni) max 0)];
 
 
 			private _tgtEni = _loc getVariable ["ODD_var_tgtEni", 2];
