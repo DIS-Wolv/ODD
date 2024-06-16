@@ -185,6 +185,14 @@ ODDvar_mesLocations = _locations;
 
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 
+// event Handler, quand un mec est attaché il sort de son groupe
+["ace_captiveStatusChanged", {
+	params ["_unit", "_state", "_reason", "_caller"];
+	if (_state == true) then {
+		[_unit] join grpNull;
+	};
+}] call CBA_fnc_addEventHandler;
+
 systemChat "Map Initialized";
 
 
