@@ -32,12 +32,27 @@ private _group = [_pos, east, _groupClassName] call BIS_fnc_spawngroup;
 _group setVariable ["ODD_var_Loc", _loc, True];
 
 {
-	private _id = _x addEventHandler["Killed", 
+	private _id = _x addEventHandler ["Killed", {
+		params ["_unit", "_killer", "_instigator", "_useEffects"];
+		[_unit, _killer] call ODDadvanced_fnc_surrender;
+		private _aliveGroup = false;
 		{
-			params ["_unit", "_killer"];
-			[_unit, _killer] call ODDadvanced_fnc_surrender;
-		}
-	];
+			if ((alive _x) and (lifeState _x != "INCAPACITATED")) then {
+				_aliveGroup = true;
+			};
+		} forEach units group _unit;
+		if (!_aliveGroup) then {
+			{
+				private _id = _x getVariable ["ODD_var_KilledHandler", -1];
+				if (_id != -1) then {
+					_x removeEventHandler ["Killed", _id];
+				};
+				_x setDamage 1;
+				[_x] join grpNull;
+			} forEach units group _unit;
+		};
+	}];
+	_x setVariable ["ODD_var_KilledHandler", _id, True];
 	_x setVariable ["ODD_var_SurrenderHandler", _id, True];
 } forEach units _group;
 
