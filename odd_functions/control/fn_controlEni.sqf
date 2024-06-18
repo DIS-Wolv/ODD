@@ -55,7 +55,7 @@ if ((typeName _loc) != "SCALAR") then {
 				_garnisons = _garnisons - _patrouilles;
 			};
 
-			// systemChat format ["Loc %3, Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc];
+			[["%3 : Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc]] call ODDcommon_fnc_log;
 
 			// spawn des garnisons
 			private _garOut = [];
