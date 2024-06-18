@@ -45,7 +45,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_garnisons = _garnisons - _patrouilles;
 				}
 				else {
-					_patrouilles = 0;
+					_patrouilles = _pool;
 				};
 				_garnisons = _garnisons - _patrouilles;
 			};
