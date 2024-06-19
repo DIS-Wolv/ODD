@@ -24,7 +24,7 @@ if (!isNil "_locData") then {
 		_maLocData = _locData get (text _x);
 		_maLocData = createHashMapFromArray _maLocData;
 
-		private _varToSet = ["odd_var_acteni", "odd_var_tgteni", "ODD_var_prcRecrut", "ODD_var_isBlue", "ODD_var_isFrontLine"];
+		private _varToSet = ["ODD_var_CivActPax", "ODD_var_CivTgtPax", "ODD_var_OccActEni", "ODD_var_OccTgtEni", "ODD_var_OccPrcRecrut", "ODD_var_isBlue", "ODD_var_isFrontLine"];
 		
 		if(!isNil "_maLocData") then {
 			private _maLoc = _x;
@@ -36,7 +36,7 @@ if (!isNil "_locData") then {
 
 			} forEach _varToSet;
 		};
-
+		[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
 	} forEach ODDvar_mesLocations;
 };
 
@@ -67,4 +67,8 @@ _varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo"];
 
 } forEach _varToSet;
 
+
+sleep 1;
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
+
+

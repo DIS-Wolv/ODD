@@ -29,18 +29,18 @@ if ((typeName _loc) != "SCALAR") then {
 	// systemChat format ["Control Eni : Zone %1 : status %2", _textLoc, _state];
 
 	// enregistrement de l'etat voulu
-	_trigger setVariable ["trig_ODD_var_garWantState", _state, True];
+	_trigger setVariable ["trig_ODD_var_eniWantState", _state, True];
 
 	// si le trigeur n'est pas actif
-	_isActive = _trigger getVariable ["trig_ODD_var_isActive", False];
+	_isActive = _trigger getVariable ["trig_ODD_var_eniIsActive", False];
 	if (!_isActive) then {
 		// activation du trigger
-		_trigger setVariable ["trig_ODD_var_isActive", True, True];
+		_trigger setVariable ["trig_ODD_var_eniIsActive", True, True];
 
 		// choix du spawn ou despawn
 		if (_state) then {
 			// récupération des variables
-			private _pool = _loc getVariable ["ODD_var_actEni", 0];
+			private _pool = _loc getVariable ["ODD_var_OccActEni", 0];
 			private _pos = getPos _loc;
 			private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _loc select 0];
 
@@ -87,7 +87,7 @@ if ((typeName _loc) != "SCALAR") then {
 				
 				sleep 0.5;
 			};
-			_loc setVariable ["ODD_var_GarnisonGroup", _garOut];
+			_loc setVariable ["ODD_var_OccGarnisonGroup", _garOut];
 
 			// spwan des patrouilles
 			private _patOut = [];
@@ -101,17 +101,17 @@ if ((typeName _loc) != "SCALAR") then {
 
 				sleep 0.5;
 			};
-			_loc setVariable ["ODD_var_PatrolGroup", _patOut];
+			_loc setVariable ["ODD_var_OccPatrolGroup", _patOut];
 
 			
 			// mise a jours des variable de la localité
 			_pool = _pool - (count _garOut) - (count _patOut);
-			_loc setVariable ["ODD_var_actEni", _pool];
+			_loc setVariable ["ODD_var_OccActEni", _pool];
 		}
 		else {
 			// systemChat format ["Despawn %1", _textLoc];
 			// despawn des garnisons
-			private _garOut = _loc getVariable ["ODD_var_GarnisonGroup", []];
+			private _garOut = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 			private _countGar = 0;
 			// pour chaque garnison
 			{
@@ -132,7 +132,7 @@ if ((typeName _loc) != "SCALAR") then {
 			[["%1 : Despawned %2 Garnisons", text _loc, _countGar]] call ODDcommon_fnc_log;
 
 			// despawn des patrouilles
-			private _patOut = _loc getVariable ["ODD_var_PatrolGroup", []];
+			private _patOut = _loc getVariable ["ODD_var_OccPatrolGroup", []];
 			private _countPat = 0;
 			// pour chaque patrouilles
 			{
@@ -167,14 +167,14 @@ if ((typeName _loc) != "SCALAR") then {
 			// } forEach _dead;
 
 			// mise a jours des variable de la localité
-			private _eni = _loc getVariable ["ODD_var_actEni", 0];
-			_loc setVariable ["ODD_var_GarnisonGroup", []];
-			_loc setVariable ["ODD_var_PatrolGroup", []];
-			_loc setVariable ["ODD_var_actEni", ((_countPat + _countGar + _eni) max 0)];
+			private _eni = _loc getVariable ["ODD_var_OccActEni", 0];
+			_loc setVariable ["ODD_var_OccGarnisonGroup", []];
+			_loc setVariable ["ODD_var_OccPatrolGroup", []];
+			_loc setVariable ["ODD_var_OccActEni", ((_countPat + _countGar + _eni) max 0)];
 
 
-			private _tgtEni = _loc getVariable ["ODD_var_tgtEni", 2];
-			private _actEni = _loc getVariable ["ODD_var_actEni", 0];
+			private _tgtEni = _loc getVariable ["ODD_var_OccTgtEni", 2];
+			private _actEni = _loc getVariable ["ODD_var_OccActEni", 0];
 
 			if (_actEni/_tgtEni < ODDCTI_var_capturePrc) then {
 				[["%1 : Zone capturer", _textLoc]] call ODDcommon_fnc_log;
@@ -194,8 +194,8 @@ if ((typeName _loc) != "SCALAR") then {
 		
 
 		// correction si l'etat est different de l'etat voulue (si le trigger est activé ou désactivé pendant l'execution du script)
-		private _WantState = _trigger getVariable ["trig_ODD_var_garWantState", _state];
-		_trigger setVariable ["trig_ODD_var_isActive", False, True];
+		private _WantState = _trigger getVariable ["trig_ODD_var_eniWantState", _state];
+		_trigger setVariable ["trig_ODD_var_eniIsActive", False, True];
 		if (!(_WantState == _state)) then {
 			[_trigger, _WantState, _radius] call ODDControl_fnc_controlEni;
 		}

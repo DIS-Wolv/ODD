@@ -16,8 +16,8 @@
 private _frontLineModifier = 1.3;
 
 {
-	private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
-	private _actEni = _x getVariable ["ODD_var_actEni", 0];
+	private _tgtEni = _x getVariable ["ODD_var_OccTgtEni", 2];
+	private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 
 	private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
 
@@ -38,15 +38,15 @@ private _frontLineModifier = 1.3;
 		_renfort = _renfort max 0;
 
 		while {_renfort > 0} do {
-			_actEni = _x getVariable ["ODD_var_actEni", 0];
+			_actEni = _x getVariable ["ODD_var_OccActEni", 0];
 			private _prc = _actEni / _tgtEni;
 			private _loc = _x;
 			private _locNeedRenfort = _x;
 			private _locNeedRenfortPrc = _prc;
 
 			{
-				private _locEni = _x getVariable ["ODD_var_actEni", 0];
-				private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
+				private _locEni = _x getVariable ["ODD_var_OccActEni", 0];
+				private _locTgt = _x getVariable ["ODD_var_OccTgtEni", 2];
 				if ((_x getVariable ["ODD_var_isBlue", false] == false) and (_locEni/_locTgt > ODDCTI_var_capturePrc)) then {
 
 					if (_x getVariable ["ODD_var_isFrontLine", false]) then {
@@ -65,13 +65,13 @@ private _frontLineModifier = 1.3;
 				};
 			} forEach _nearloc;
 
-			private _locNeedRenfortEni = _locNeedRenfort getVariable ["ODD_var_actEni", 0];
-			_locNeedRenfort setVariable ["ODD_var_actEni", _locNeedRenfortEni + 1];
+			private _locNeedRenfortEni = _locNeedRenfort getVariable ["ODD_var_OccActEni", 0];
+			_locNeedRenfort setVariable ["ODD_var_OccActEni", _locNeedRenfortEni + 1];
 
-			_actEni = _x getVariable ["ODD_var_actEni", 0];
+			_actEni = _x getVariable ["ODD_var_OccActEni", 0];
 			_renfort = _renfort - 1;
 			_actEni = _actEni - 1;
-			_x setVariable ["ODD_var_actEni", _actEni];
+			_x setVariable ["ODD_var_OccActEni", _actEni];
 
 		};
 
@@ -84,19 +84,19 @@ private _frontLineModifier = 1.3;
 		} forEach _nearloc;
 		_x setVariable ["ODD_var_isFrontLine", _isFrontLine];
 
-		private _tgtEni = _x getVariable ["ODD_var_tgtEni", 2];
-		private _actEni = _x getVariable ["ODD_var_actEni", 0];
-		private _prcRecrut = _x getVariable ["ODD_var_prcRecrut", 0];
+		private _tgtEni = _x getVariable ["ODD_var_OccTgtEni", 2];
+		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
+		private _prcRecrut = _x getVariable ["ODD_var_OccPrcRecrut", 0];
 
 		if ((_prcRecrut > 0) and (_x getVariable ["ODD_var_isBlue", false] == false) and (_actEni < _tgtEni)) then {
 			// systemChat format ["%1 is a military location", text _x];
 			_actEni = _actEni + round (_actEni * _prcRecrut) + 1;
-			_x setVariable ["ODD_var_actEni", _actEni];
+			_x setVariable ["ODD_var_OccActEni", _actEni];
 		};
 
 		// partie Vehicule
-		private _vehtgt = _x getVariable ["ODD_var_vehtgt", 0];
-		private _vehact = _x getVariable ["ODD_var_vehact", []];
+		private _vehtgt = _x getVariable ["ODD_var_OccTgtVeh", 0];
+		private _vehact = _x getVariable ["ODD_var_OccActVeh", []];
 	}
 	else {
 		_x setVariable ["ODD_var_isFrontLine", true];
@@ -104,15 +104,15 @@ private _frontLineModifier = 1.3;
 			_x setVariable ["ODD_var_isFrontLine", true];
 		}forEach _nearloc;
 
-		private _actEni = _x getVariable ["ODD_var_actEni", 0];
+		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 		
 		while {_actEni > 0} do {
 			private _locNeedRenfort = _nearloc select 0;
-			private _locNeedRenfortPrc = ((_nearloc select 0) getVariable ["ODD_var_actEni", 0]) / ((_nearloc select 0) getVariable ["ODD_var_tgtEni", 2]);
+			private _locNeedRenfortPrc = ((_nearloc select 0) getVariable ["ODD_var_OccActEni", 0]) / ((_nearloc select 0) getVariable ["ODD_var_OccTgtEni", 2]);
 			{
 				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
-					private _locEni = _x getVariable ["ODD_var_actEni", 0];
-					private _locTgt = _x getVariable ["ODD_var_tgtEni", 2];
+					private _locEni = _x getVariable ["ODD_var_OccActEni", 0];
+					private _locTgt = _x getVariable ["ODD_var_OccTgtEni", 2];
 
 					private _locPrc = _locEni / _locTgt;
 					if ((_locNeedRenfortPrc > _locPrc)) then {
@@ -121,10 +121,10 @@ private _frontLineModifier = 1.3;
 					};
 				};
 			} forEach _nearloc;
-			_locNeedRenfort setVariable ["ODD_var_actEni", (_locNeedRenfort getVariable ["ODD_var_actEni", 0]) + 1];
+			_locNeedRenfort setVariable ["ODD_var_OccActEni", (_locNeedRenfort getVariable ["ODD_var_OccActEni", 0]) + 1];
 			_actEni = _actEni - 1;
 		};
-		_x setVariable ["ODD_var_actEni", _actEni];
+		_x setVariable ["ODD_var_OccActEni", _actEni];
 	};
 
 	// update du marker sur la carte

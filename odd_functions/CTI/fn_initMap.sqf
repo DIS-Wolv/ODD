@@ -120,8 +120,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// Set des variable d'enemie
 	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
 	_actEni = round (_tgtEni);
-	_maLoc setVariable ["ODD_var_actEni", _actEni];
-	_maLoc setVariable ["ODD_var_tgtEni", _tgtEni];
+	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
+	_maLoc setVariable ["ODD_var_OccTgtEni", _tgtEni];
 
 	// Set des variable de vehicule
 	_vehtgt = 1; //[_x] call compile preprocessFile "odd_functions\CTI\calcVehOnLoc.sqf";
@@ -136,10 +136,10 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// Set des variable de recrutement
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
 	if (_isMil) then {
-		_maLoc setVariable ["ODD_var_prcRecrut", 0.2];
+		_maLoc setVariable ["ODD_var_OccPrcRecrut", 0.2];
 	}
 	else {
-		_maLoc setVariable ["ODD_var_prcRecrut", 0];
+		_maLoc setVariable ["ODD_var_OccPrcRecrut", 0];
 	};
 
 	// crée un marker sur la map

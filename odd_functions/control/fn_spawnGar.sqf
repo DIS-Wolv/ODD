@@ -98,9 +98,9 @@ _group addEventHandler ["Empty", {
 	if (isNull _loc) exitWith {};
 
 	// retire le groupe de la liste des garnisons
-	private _groupList = _loc getVariable ["ODD_var_GarnisonGroup", []];
+	private _groupList = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 	_groupList = _groupList - [_group];
-	_loc setVariable ["ODD_var_GarnisonGroup", _groupList, True];
+	_loc setVariable ["ODD_var_OccGarnisonGroup", _groupList, True];
 }];
 
 _group;

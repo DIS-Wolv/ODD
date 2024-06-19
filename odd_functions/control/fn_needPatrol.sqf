@@ -17,7 +17,7 @@ private _seuil = 500;
 private _posLoc = position _loc;
 
 // détermine le nombre de patrouille a créer
-private _garnison = _loc getVariable ["ODD_var_GarnisonGroup", []];
+private _garnison = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 
 private _countNewPatrol = 2 + round random 2;
 _countNewPatrol = _countNewPatrol min (count _garnison);
@@ -25,7 +25,7 @@ _countNewPatrol = _countNewPatrol min (count _garnison);
 // pour chaque patrouille a créer
 for "_i" from 1 to _countNewPatrol do {
 	// récupère le nombre de groupe qu'il reste a spawn
-	private _PoolGarnison = _loc getVariable ["ODD_var_actEni", 0];
+	private _PoolGarnison = _loc getVariable ["ODD_var_OccActEni", 0];
 	// si il reste des groupes a spawn
 	if (_PoolGarnison > 0) then {
 
@@ -73,23 +73,23 @@ for "_i" from 1 to _countNewPatrol do {
 
 		// crée un groupe de patrouille
 		private _group = [_loc, _spawnPos] call ODDControl_fnc_spawnPat;
-		_loc setVariable ["ODD_var_PatrolGroup", ((_loc getVariable ["ODD_var_PatrolGroup", []]) + [_group])];
+		_loc setVariable ["ODD_var_OccPatrolGroup", ((_loc getVariable ["ODD_var_OccPatrolGroup", []]) + [_group])];
 
 		// suprime un groupe du pool
-		_loc setVariable ["ODD_var_actEni", (((_loc getVariable ["ODD_var_actEni", []]) - 1) max 0)];
+		_loc setVariable ["ODD_var_OccActEni", (((_loc getVariable ["ODD_var_OccActEni", []]) - 1) max 0)];
 	}
 	else {
 		// transforme une garnison en patrouille
-		_garnison = _loc getVariable ["ODD_var_GarnisonGroup", []];
+		_garnison = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 
 		// choisi un groupe de garnison aléatoirement
 		private _monGroup = selectRandom _garnison;
 		_garnison = _garnison - [_monGroup];
 
-		_loc setVariable ["ODD_var_GarnisonGroup", _garnison];
+		_loc setVariable ["ODD_var_OccGarnisonGroup", _garnison];
 
 		// Ajout du groupe a la liste des patrouilles
-		_loc setVariable ["ODD_var_PatrolGroup", ((_loc getVariable ["ODD_var_PatrolGroup", []]) + [_monGroup])];
+		_loc setVariable ["ODD_var_OccPatrolGroup", ((_loc getVariable ["ODD_var_OccPatrolGroup", []]) + [_monGroup])];
 		// le passe en patrouille
 
 		// cette ligne marche pas lol

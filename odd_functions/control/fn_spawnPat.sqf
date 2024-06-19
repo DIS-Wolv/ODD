@@ -61,11 +61,11 @@ private _id = _group addEventHandler ["Deleted", {
 	params ["_group"];
 	private _loc = _group getVariable ["ODD_var_Loc", objNull];
 
-	private _patrolGroup = _loc getVariable ["ODD_var_PatrolGroup", []];
+	private _patrolGroup = _loc getVariable ["ODD_var_OccPatrolGroup", []];
 	// systemChat format ["Groups : %1", _patrolGroup];
 	_patrolGroup = _patrolGroup - [_group] - [grpNull];
 	// systemChat format ["Groups : %1", _patrolGroup];
-	_loc setVariable ["ODD_var_PatrolGroup", _patrolGroup];
+	_loc setVariable ["ODD_var_OccPatrolGroup", _patrolGroup];
 
 	// systemChat format ["Patrol sur %1 : %2 (%3)", text _loc, count _patrolGroup, str _patrolGroup];
 

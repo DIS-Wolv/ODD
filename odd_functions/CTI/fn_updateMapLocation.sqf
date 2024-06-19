@@ -25,8 +25,8 @@ private _size = [0.5, 0.5];
 switch _info do {
 	case 0: {	// marker, couleur, front line, nombre d'ennemi
 		// update du marker sur la carte
-		private _tgtEni = _loc getVariable ["ODD_var_tgtEni", 2];
-		private _actEni = _loc getVariable ["ODD_var_actEni", 0];
+		private _tgtEni = _loc getVariable ["ODD_var_OccTgtEni", 2];
+		private _actEni = _loc getVariable ["ODD_var_OccActEni", 0];
 		private _prc = _actEni / _tgtEni * 100;
 
 		_color = "ColorRed"; 
@@ -49,7 +49,7 @@ switch _info do {
 		};
 
 		_markerText = format ["%1/%2", _actEni, _tgtEni];
-		private _prcRecrut = _loc getVariable ["ODD_var_prcRecrut", 0];
+		private _prcRecrut = _loc getVariable ["ODD_var_OccPrcRecrut", 0];
 		if (_prcRecrut > 0) then {
 			_markerText = format ["%1/%2 + %3", _actEni, _tgtEni, (round (_actEni * _prcRecrut) + 1)];
 		}
