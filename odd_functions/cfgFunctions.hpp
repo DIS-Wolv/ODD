@@ -154,6 +154,7 @@ class ODD_CTI {
 		class ImportData {};
 		class initMap {};
 		class ProgressMap {};
+		class updateCivRep {};
 		class updateMap {};
 		class updateMapLocation {};
 
