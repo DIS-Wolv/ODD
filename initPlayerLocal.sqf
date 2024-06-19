@@ -8,9 +8,10 @@
 sleep 1;
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
-call ODDdata_fnc_var;
+[] call ODDdata_fnc_var;
 // call DIScommon_fnc_customLocations;
-oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call OddGuiMissions_fnc_open;},[],1.5,True,True,"","True",5];
+// oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {call OddGuiMissions_fnc_open;},[],1.5,True,True,"","True",5];
+oddCtrl addAction ["<t color='#1836E9'>ODD</t>", {systemChat "Panneaux Désactivé";},[],1.5,True,True,"","True",5];
 oddCtrl setVariable ["R3F_LOG_disabled", True];
 _haltAction = ["haltCivilian","Halt","\z\ace\addons\captives\ui\Surrender_ca.paa",{[player] call ODDadvanced_fnc_haltCivilian},{True}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions"], _haltAction] call ace_interact_menu_fnc_addActionToObject;

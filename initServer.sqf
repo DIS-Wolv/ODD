@@ -1,16 +1,18 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\rDate.sqf";
 [] spawn DISCommon_fnc_markers;
+[] call DISCommon_fnc_customLocations;
 
 enableSaving [False, False];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
 [] call ODDdata_fnc_var;
-remoteExec ["DISCommon_fnc_customLocations", 0, True];
+remoteExec ["DISCommon_fnc_customLocations", -2, True];
 ODD_var_CurrentMission = 0;
 publicVariable "ODD_var_CurrentMission";
 oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
+[] call oddCTI_fnc_initMap;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 sleep 5;
