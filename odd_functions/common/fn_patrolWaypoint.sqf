@@ -28,6 +28,8 @@ private _pos = getPos _loc;
 private _distMin = _size / 2;
 private _distMax = _size;
 
+private _basDeg = 0;
+_baseDeg = random 360;
 private _deg = 360 / _nb;
 
 private _posList = [];
@@ -35,7 +37,7 @@ private _posList = [];
 // pour chaque point 
 for "_i" from 0 to (_nb - 1) do {
 	// calcul de la position
-	private _maPos = _pos getPos [(_distMin + random(_distMax)), _deg * _i];
+	private _maPos = _pos getPos [(_distMin + random(_distMax)), ((_deg * _i) + _baseDeg)];
 	// ajout à la liste
 	_posList pushBack _maPos;
 };
