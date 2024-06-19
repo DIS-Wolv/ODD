@@ -135,6 +135,7 @@ class ODD_Control {
 	tag = "ODDControl"
 	class Initialize {
 		file = "odd_functions\control";
+		class controlCiv {};
 		class controlEni {};
 		class GarToPatrol {};
 		class needPatrol {};
