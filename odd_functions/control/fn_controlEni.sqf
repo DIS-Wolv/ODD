@@ -1,3 +1,19 @@
+/*
+* Auteur : Wolv
+* Fonction pour controler le spawn et despawn des ennemis
+*
+* Arguments :
+*	_trigger : Objet déclencheur
+*	_state : Etat voulu du trigger
+*	_radius : Rayon de la zone d'action
+* 
+*
+* Exemple :
+*	
+*
+* Variable publique :
+* 
+*/
 
 // paramettre
 params ["_trigger", ["_state", False], ["_radius", 1000]];
