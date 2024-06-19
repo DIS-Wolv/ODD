@@ -28,8 +28,6 @@ if ((typeName _loc) != "SCALAR") then {
 	[["Control Eni : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
 	// systemChat format ["Control Eni : Zone %1 : status %2", _textLoc, _state];
 
-	_loc setVariable ["ODD_var_prout", 42];
-
 	// enregistrement de l'etat voulu
 	_trigger setVariable ["trig_ODD_var_garWantState", _state, True];
 
