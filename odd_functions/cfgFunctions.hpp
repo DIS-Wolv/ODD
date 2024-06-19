@@ -148,6 +148,7 @@ class ODD_CTI {
 	tag = "ODDCTI"
 	class Initialize {
 		file = "odd_functions\CTI";
+		class calcCivOnLoc {};
 		class calcEniOnLoc {};
 		class ExportData {};
 		class ImportData {};
