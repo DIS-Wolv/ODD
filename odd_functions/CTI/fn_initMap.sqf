@@ -19,9 +19,9 @@
 // private _radOutpost = 1500;
 // private _radIED = 1400;
 // private _radDisable = 1000;
-// private _radSpawnCivils = 900;
 // private _radVl = 2000;
 private _radSpawnEni = 1000;
+private _radSpawnCivils = 900;
 private _alt = 1000;
 
 [] call ODDdata_fnc_varEneArd;
@@ -113,9 +113,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// attribue les valeurs de pax sur chaque location
 	private _tgtEni = 0;		// le nombre de pax sur la loc doit tendre vers cette valeur
 	private _actEni = 0;		// le nombre de pax actuel sur la loc
-	// valleur de vehicule
-	private _vehtgt = 0;
-	private _vehact = 0;
+	
 	
 	// Set des variable d'enemie
 	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
@@ -123,11 +121,23 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
 	_maLoc setVariable ["ODD_var_OccTgtEni", _tgtEni];
 
+	// valeur de vehicule
+	private _vehtgt = 0;
+	private _vehact = 0;
 	// Set des variable de vehicule
 	_vehtgt = 1; //[_x] call compile preprocessFile "odd_functions\CTI\calcVehOnLoc.sqf";
 	_vehact = [""];
-	_maLoc setVariable ["ODD_var_vehAct", _vehact];
-	_maLoc setVariable ["ODD_var_vehTgt", _vehtgt];
+	_maLoc setVariable ["ODD_var_OccActVeh", _vehact];
+	_maLoc setVariable ["ODD_var_OccTgtVeh", _vehtgt];
+
+	// valeur de civil
+	private _civtgt = 0;
+	private _civact = 0;
+	// Set des variable de civil
+	_civtgt = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCivOnLoc.sqf";
+	_civact = round (_civtgt);
+	_maLoc setVariable ["ODD_var_CivActPax", _civact];
+	_maLoc setVariable ["ODD_var_CivTgtPax", _civtgt];
 
 	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
@@ -147,8 +157,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_marker setMarkerType "mil_dot";
 	_marker setMarkerColor "ColorBlack";
 	_marker setMarkerSize [1, 1];
-	// _marker setMarkerText (text _maLoc);
-	_marker setMarkerAlpha 0.5;
+	// _marker setMarkerText (str _civtgt);
+	_marker setMarkerAlpha 1;
 	_x setVariable ["ODD_var_marker", _marker];
 
 	// crée le trigger de spawn de pax
@@ -156,25 +166,25 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
 	_triggerEni setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerEni setTriggerStatements ["this",
-		// Format ["systemChat 'Eni Spawn';"],
-		// Format ["systemChat 'Eni Despawn';"]
-		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlEni.sqf';", _radSpawnEni],
-		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlEni.sqf';", _radSpawnEni]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEni;", _radSpawnCivils],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEni;", _radSpawnCivils]
 	];
 	_triggerEni setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];
 
-
-	// crée le trigger de spawn de civils
-	// private _triggerCiv = createTrigger ["EmptyDetector", _pos], _pos, true];
-	// _triggerCiv setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
-	// _triggerCiv setTriggerActivation ["ANYPLAYER", "PRESENT", true];
-	// _triggerCiv setTriggerStatements ["this",
-	// 	Format ["systemChat 'Civ Spawn';"],
-	// 	Format ["systemChat 'Civ Despawn';"]
-	// ];
-	// _triggerCiv setVariable ["ODD_var_location", _maLoc];
-	// _maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
+	// si il peux y avoir des civils
+	if (_civtgt > 0) then {
+		// crée le trigger de spawn de civils
+		private _triggerCiv = createTrigger ["EmptyDetector", _pos, true];
+		_triggerCiv setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, false, _alt];
+		_triggerCiv setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+		_triggerCiv setTriggerStatements ["this",
+			Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlCiv.sqf';", _radSpawnEni],
+			Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlCiv.sqf';", _radSpawnEni]
+		];
+		_triggerCiv setVariable ["ODD_var_location", _maLoc];
+		_maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
+	};
 	
 
 } forEach _locations;
