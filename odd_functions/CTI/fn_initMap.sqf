@@ -166,8 +166,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
 	_triggerEni setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerEni setTriggerStatements ["this",
-		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEni;", _radSpawnCivils],
-		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEni;", _radSpawnCivils]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniPax;", _radSpawnEni],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniPax;", _radSpawnEni]
 	];
 	_triggerEni setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];

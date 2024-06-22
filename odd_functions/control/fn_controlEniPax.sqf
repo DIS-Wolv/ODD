@@ -26,7 +26,7 @@ if ((typeName _loc) != "SCALAR") then {
 	// ectriture dans les log
 	private _textLoc = text _loc;
 	[["Control Eni : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
-	// systemChat format ["Control Eni : Zone %1 : status %2", _textLoc, _state];
+	systemChat format ["Control Eni : Zone %1 : status %2", _textLoc, _state];
 
 	// enregistrement de l'etat voulu
 	_trigger setVariable ["trig_ODD_var_eniWantState", _state, True];
@@ -159,13 +159,6 @@ if ((typeName _loc) != "SCALAR") then {
 			[["%1 : Despawned %2 Patrols", text _loc, _countGar]] call ODDcommon_fnc_log;
 
 
-			// suppression des corps
-			// private _dead = _loc nearEntities ["Man", 1500];
-			// _dead = _dead apply {if (alive _x) then {_x} else {objNull}};
-			// {
-			// 	deleteVehicle _x;
-			// } forEach _dead;
-
 			// mise a jours des variable de la localité
 			private _eni = _loc getVariable ["ODD_var_OccActEni", 0];
 			_loc setVariable ["ODD_var_OccGarnisonGroup", []];
@@ -197,7 +190,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _WantState = _trigger getVariable ["trig_ODD_var_eniWantState", _state];
 		_trigger setVariable ["trig_ODD_var_eniIsActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState, _radius] call ODDControl_fnc_controlEni;
+			[_trigger, _WantState, _radius] call ODDControl_fnc_controlEniPax;
 		}
 	}
 	// si le trigger est actif

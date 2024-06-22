@@ -136,7 +136,8 @@ class ODD_Control {
 	class Initialize {
 		file = "odd_functions\control";
 		class controlCiv {};
-		class controlEni {};
+		class controlEniPax {};
+		class controlEniVeh {};
 		class GarToPatrol {};
 		class needPatrol {};
 		class spawnGar {};
