@@ -21,6 +21,7 @@ private _groupClassName = selectRandom ODD_var_FireTeam;
 if (_pos isEqualto [0,0,0]) then {
 	_pos = getPos _loc;
 };
+_pos = ASLToATL _pos;
 
 // spawn le groupe
 private _group = [_pos, east, _groupClassName] call BIS_fnc_spawngroup;

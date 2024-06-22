@@ -38,7 +38,7 @@ _groupClassName = selectRandom ODD_var_Squad;
 
 // systemchat format ["Groupe: %1", _groupClassName];
 // spawn le group
-private _group = [getPos _bat, east, _groupClassName] call BIS_fnc_spawngroup;
+private _group = [getPosATL _bat, east, _groupClassName] call BIS_fnc_spawngroup;
 
 _group setVariable ["ODD_var_Loc", _loc, True];
 
