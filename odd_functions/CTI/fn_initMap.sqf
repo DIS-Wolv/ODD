@@ -177,8 +177,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerVH setTriggerArea [_radSpawnVl, _radSpawnVl, 0, false, _alt];
 	_triggerVH setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerVH setTriggerStatements ["this",
-		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlEniVeh.sqf';", _radSpawnVl],
-		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlEniVeh.sqf';", _radSpawnVl]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniVeh;", _radSpawnVl],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniVeh;", _radSpawnVl]
 	];
 	_triggerVH setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerOccVehicule", _triggerVH];
