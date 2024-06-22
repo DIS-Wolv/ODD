@@ -151,6 +151,7 @@ class ODD_CTI {
 		file = "odd_functions\CTI";
 		class calcCivOnLoc {};
 		class calcEniOnLoc {};
+		class calcVehOnLoc {};
 		class ExportData {};
 		class ImportData {};
 		class initMap {};
