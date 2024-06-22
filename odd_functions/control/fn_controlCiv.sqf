@@ -131,7 +131,7 @@ if ((typeName _loc) != "SCALAR") then {
 		private _WantState = _trigger getVariable ["trig_ODD_var_civWantState", _state];
 		_trigger setVariable ["trig_ODD_var_civIsActive", False, True];
 		if (!(_WantState == _state)) then {
-			[_trigger, _WantState, _radius] call ODDControl_fnc_controlEni;
+			[_trigger, _WantState, _radius] call ODDControl_fnc_controlCiv;
 		}
 		
 	}
