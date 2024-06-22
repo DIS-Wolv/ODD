@@ -95,8 +95,8 @@ private _frontLineModifier = 1.3;
 		};
 
 		// partie Vehicule
-		private _vehtgt = _x getVariable ["ODD_var_OccTgtVeh", 0];
-		private _vehact = _x getVariable ["ODD_var_OccActVeh", []];
+		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
+		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
 	}
 	else {
 		_x setVariable ["ODD_var_isFrontLine", true];

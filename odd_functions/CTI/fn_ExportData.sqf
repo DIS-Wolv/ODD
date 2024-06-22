@@ -23,7 +23,7 @@ private _objectData = createHashMap;
 {
 	private _MaLoc = createHashMap;
 	private _loc = _x;
-	private _varToGet = [["ODD_var_CivActPax", 0], ["ODD_var_CivTgtPax", 0], ["ODD_var_OccActEni", 0], ["ODD_var_OccTgtEni", 0], ["ODD_var_OccPrcRecrut", 0], ["ODD_var_isBlue", false], ["ODD_var_isFrontLine", false]];
+	private _varToGet = [["ODD_var_OccActEniVeh", []], ["ODD_var_OccTgtEniVeh", 0], ["ODD_var_CivActPax", 0], ["ODD_var_CivTgtPax", 0], ["ODD_var_OccActEni", 0], ["ODD_var_OccTgtEni", 0], ["ODD_var_OccPrcRecrut", 0], ["ODD_var_isBlue", false], ["ODD_var_isFrontLine", false]];
 
 	{
 		_MaLoc set [_x select 0, (_loc getVariable [(_x select 0), (_x select 1)])];

@@ -24,8 +24,7 @@ if (!isNil "_locData") then {
 		_maLocData = _locData get (text _x);
 		_maLocData = createHashMapFromArray _maLocData;
 
-		private _varToSet = ["ODD_var_CivActPax", "ODD_var_CivTgtPax", "ODD_var_OccActEni", "ODD_var_OccTgtEni", "ODD_var_OccPrcRecrut", "ODD_var_isBlue", "ODD_var_isFrontLine"];
-		
+		private _varToSet = ["ODD_var_OccActEniVeh", "ODD_var_OccTgtEniVeh", "ODD_var_CivActPax", "ODD_var_CivTgtPax", "ODD_var_OccActEni", "ODD_var_OccTgtEni", "ODD_var_OccPrcRecrut", "ODD_var_isBlue", "ODD_var_isFrontLine"];
 		if(!isNil "_maLocData") then {
 			private _maLoc = _x;
 			{

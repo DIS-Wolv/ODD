@@ -19,8 +19,8 @@
 // private _radOutpost = 1500;
 // private _radIED = 1400;
 // private _radDisable = 1000;
-// private _radVl = 2000;
 private _radSpawnEni = 1000;
+private _radSpawnVl = 2000;
 private _radSpawnCivils = 900;
 private _alt = 1000;
 
@@ -113,8 +113,6 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// attribue les valeurs de pax sur chaque location
 	private _tgtEni = 0;		// le nombre de pax sur la loc doit tendre vers cette valeur
 	private _actEni = 0;		// le nombre de pax actuel sur la loc
-	
-	
 	// Set des variable d'enemie
 	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
 	_actEni = round (_tgtEni);
@@ -123,12 +121,14 @@ _locations = [_locations] call _fnc_removeBlackListed;
 
 	// valeur de vehicule
 	private _vehtgt = 0;
-	private _vehact = 0;
+	private _vehact = [];
 	// Set des variable de vehicule
-	_vehtgt = 1; //[_x] call compile preprocessFile "odd_functions\CTI\calcVehOnLoc.sqf";
-	_vehact = [""];
-	_maLoc setVariable ["ODD_var_OccActVeh", _vehact];
-	_maLoc setVariable ["ODD_var_OccTgtVeh", _vehtgt];
+	_vehtgt = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcVehOnLoc.sqf";
+	for "_i" from 1 to _vehtgt do {
+		_vehact pushBack (selectRandom ODD_var_Vehicles);
+	};
+	_maLoc setVariable ["ODD_var_OccActEniVeh", _vehact];
+	_maLoc setVariable ["ODD_var_OccTgtEniVeh", _vehtgt];
 
 	// valeur de civil
 	private _civtgt = 0;
@@ -157,7 +157,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_marker setMarkerType "mil_dot";
 	_marker setMarkerColor "ColorBlack";
 	_marker setMarkerSize [1, 1];
-	// _marker setMarkerText (str _civtgt);
+	// _marker setMarkerText (str _vehact);
 	_marker setMarkerAlpha 1;
 	_x setVariable ["ODD_var_marker", _marker];
 
@@ -171,6 +171,17 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	];
 	_triggerEni setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];
+
+	// crée le trigger de spawn de vehicule
+	private _triggerVH = createTrigger ["EmptyDetector", _pos, true];
+	_triggerVH setTriggerArea [_radSpawnVl, _radSpawnVl, 0, false, _alt];
+	_triggerVH setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	_triggerVH setTriggerStatements ["this",
+		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlEniVeh.sqf';", _radSpawnVl],
+		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlEniVeh.sqf';", _radSpawnVl]
+	];
+	_triggerVH setVariable ["ODD_var_location", _maLoc];
+	_maLoc setVariable ["ODD_var_triggerOccVehicule", _triggerVH];
 
 	// si il peux y avoir des civils
 	if (_civtgt > 0) then {
@@ -186,7 +197,6 @@ _locations = [_locations] call _fnc_removeBlackListed;
 		_maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
 	};
 	
-
 } forEach _locations;
 
 ODDvar_mesLocations = _locations;
