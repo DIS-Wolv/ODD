@@ -33,7 +33,7 @@ ob setVariable ["R3F_LOG_disabled", True];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,True,True,"","True",2];
 halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,True,True,"","True",5];
 halo setVariable ["R3F_LOG_disabled", True];
-factory setVariable ["R3F_LOG_disabled", True];
+// factory setVariable ["R3F_LOG_disabled", True];
 repair setVariable ["R3F_LOG_disabled", True];
 refuel setVariable ["R3F_LOG_disabled", True];
 rearm setVariable ["R3F_LOG_disabled", True];
@@ -79,7 +79,7 @@ then {
 	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,True,True,"","True",5];
 	base addAction ["Usine", {[usine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	usine addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
-	usine setVariable ["R3F_LOG_disabled", True];
+	// usine setVariable ["R3F_LOG_disabled", True];
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	pDiv addAction ["CdG (Plongeur)",{[DISLoadPL_var_CDG, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
 	pDiv addAction ["CdE (Plongeur)",{[DISLoadPL_var_CDE, _this select 1] call DISLoad_fnc_SetLoad;},[],1.5,True,True,"","",5];
