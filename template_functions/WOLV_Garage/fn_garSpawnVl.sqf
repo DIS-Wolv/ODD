@@ -9,6 +9,11 @@ if (_index != -1) then {
 		// Crée le véhicule
 		_vl = _vlType createvehicle _pos;
 
+		// Ajoute le véhicule à la liste des véhicules
+		(owner player) publicVariableClient "WolvGarage_var_AllVl";
+		WolvGarage_var_AllVl pushBack _vl;
+		publicVariableServer "WolvGarage_var_AllVl";
+
 		//vide le véhicule
 		clearWeaponCargoGlobal _vl;
 		clearMagazineCargoGlobal _vl;
