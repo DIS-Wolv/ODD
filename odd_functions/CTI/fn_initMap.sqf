@@ -208,8 +208,29 @@ ODDvar_mesLocations = _locations;
 // event Handler, quand un mec est attaché il sort de son groupe
 ["ace_captiveStatusChanged", {
 	params ["_unit", "_state", "_reason", "_caller"];
-	if (_state == true) then {
-		[_unit] join grpNull;
+	if (!isPlayer _unit) then {
+		if (_state == true) then {
+			[_unit] join grpNull;
+			_x addEventHandler ["Hit", {
+				params ["_unit", "_source", "_damage", "_instigator"];
+				if ((side _instigator) == WEST) then {
+					[-0.25] call ODDCTI_fnc_updateCivRep;
+				};
+				if ((side _instigator) == EAST) then {
+					[0.10] call ODDCTI_fnc_updateCivRep;
+				};
+			}];
+			_x addEventHandler ["Killed", {
+				params ["_unit", "_killer", "_instigator"];
+				if ((side _instigator) == WEST) then {
+					[-0.5] call ODDCTI_fnc_updateCivRep;
+				};
+				if ((side _instigator) == EAST) then {
+					[0.25] call ODDCTI_fnc_updateCivRep;
+				};
+			}];
+
+		};
 	};
 }] call CBA_fnc_addEventHandler;
 
