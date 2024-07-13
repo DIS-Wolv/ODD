@@ -129,7 +129,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_loc setVariable ["ODD_var_OccActEni", _loc getVariable ["ODD_var_OccActEni", 0] + 1]; // les passe garnison/patrouille
 				}
 				else {
-					_newpool pushBack _vl;
+					_newpool pushBack (typeOf _vl);
 					deleteVehicle _vl;
 				};
 			} forEach _actVeh;
