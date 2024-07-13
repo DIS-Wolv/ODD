@@ -34,6 +34,11 @@ private _objectData = createHashMap;
 
 _data set ["LocData", _LocData];
 
+// private _varToGet = ["ODD_var_CivilianReputation", "ODD_var_CTIMarkerInfo"];
+// {
+// 	_data set [_x select 0, (_this select 0)]; // la il faut le contenue de la variable (_this select 0) et pas sont nom
+// } forEach _varToGet;
+
 _data set ["ODD_var_CivilianReputation", ODD_var_CivilianReputation];
 _data set ["ODD_var_CTIMarkerInfo", ODD_var_CTIMarkerInfo];
 
