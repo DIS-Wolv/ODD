@@ -203,7 +203,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	
 } forEach _locations;
 
-ODDvar_mesLocations = _locations;
+ODDvar_AllLocations = _locations;
 
 ["DIS_mrk_FOB_4"] call DISCommon_fnc_PosFob;
 

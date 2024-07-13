@@ -30,7 +30,7 @@ private _objectData = createHashMap;
 	} forEach _varToGet;
 
 	_LocData set [(text _x), _MaLoc];
-} forEach ODDvar_mesLocations;
+} forEach ODDvar_AllLocations;
 
 _data set ["LocData", _LocData];
 

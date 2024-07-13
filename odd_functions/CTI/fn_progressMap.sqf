@@ -129,7 +129,7 @@ private _frontLineModifier = 1.3;
 
 	// update du marker sur la carte
 
-} forEach ODDvar_mesLocations;
+} forEach ODDvar_AllLocations;
 
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 

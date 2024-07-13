@@ -19,5 +19,5 @@ params [["_info", 0]];
 // systemChat format ["Mise a jours des markers sur la carte"];
 {
 	[_x, _info] call ODDCTI_fnc_updateMapLocation;
-} forEach ODDvar_mesLocations;
+} forEach ODDvar_AllLocations;
 

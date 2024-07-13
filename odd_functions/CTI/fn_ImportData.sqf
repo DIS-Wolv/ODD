@@ -36,7 +36,7 @@ if (!isNil "_locData") then {
 			} forEach _varToSet;
 		};
 		[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
-	} forEach ODDvar_mesLocations;
+	} forEach ODDvar_AllLocations;
 };
 
 private _objectData = _data get "ObjectData";
