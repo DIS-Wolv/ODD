@@ -14,14 +14,15 @@
 * 
 */
 
+if (!isServer) exitWith {};
+if (!isNil "ODD_var_INITMAP") exitWith {true;};
+ODD_var_INITMAP = true;
+
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
 // private _radOutpost = 1500;
 // private _radIED = 1400;
 // private _radDisable = 1000;
-if (!isNil "ODD_var_INITMAP") exitWith {true;};
-ODD_var_INITMAP = true;
-
 private _radSpawnEni = 1000;
 private _radSpawnVl = 1500;
 private _radSpawnCivils = 900;
