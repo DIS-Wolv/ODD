@@ -14,7 +14,7 @@
 * 
 */
 
-if (!isServer) exitWith {};
+if (!isServer) exitWith {true;};
 if (!isNil "ODD_var_INITMAP") exitWith {true;};
 ODD_var_INITMAP = true;
 
