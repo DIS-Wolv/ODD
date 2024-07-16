@@ -7,7 +7,7 @@
 * Valeur renvoyée :
 *
 * Exemple :
-*	[] call ODDCTI_fnc_profileSave
+*	[] call ODDCTI_fnc_profileImport
 *
 * Variable publique :
 * 

@@ -210,7 +210,7 @@ ODDvar_AllLocations = _locations;
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 
 // import les donnés sauvergardé
-[] call compile preprocessFile "odd_functions\CTI\profileImport.sqf";
+[] call ODDCTI_fnc_profileImport;
 
 // event Handler, quand un mec est attaché il sort de son groupe
 ["ace_captiveStatusChanged", {
