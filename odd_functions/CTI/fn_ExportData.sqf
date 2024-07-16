@@ -8,7 +8,7 @@
 *	0 : Donnée sauvergardé (array)
 *
 * Exemple :
-* 
+* 	[] call ODDCTI_fnc_ExportData
 *
 * Variable publique :
 * 

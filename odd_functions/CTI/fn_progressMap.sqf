@@ -7,7 +7,7 @@
 * Valeur renvoyée :
 *
 * Exemple :
-* 
+* 	[] call ODDCTI_fnc_progressMap
 *
 * Variable publique :
 * 

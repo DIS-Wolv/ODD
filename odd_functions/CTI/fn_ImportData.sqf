@@ -8,7 +8,7 @@
 * Valeur renvoyée :
 *
 * Exemple :
-* 
+* 	[_data] call ODDCTI_fnc_ImportData
 *
 * Variable publique :
 * 

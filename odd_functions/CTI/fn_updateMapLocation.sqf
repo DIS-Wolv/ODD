@@ -3,12 +3,13 @@
 * Fonction pour mettre a jours les markers sur la carte
 *
 * Arguments :
-* 0: _info: niveaux de detaille des infos
+* 0: _loc: location
+* 1: _info: niveaux de detaille des infos
 * 
 * Valeur renvoyée :
 *
 * Exemple :
-* 
+* 	[_loc, 0] call ODDCTI_fnc_updateMapLocation
 *
 * Variable publique :
 * 

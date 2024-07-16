@@ -8,7 +8,7 @@
 *	nil
 *
 * Exemple :
-* 
+* 	[] call ODDCTI_fnc_initMap
 *
 * Variable publique :
 * 

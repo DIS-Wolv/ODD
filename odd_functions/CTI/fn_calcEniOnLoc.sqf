@@ -9,7 +9,7 @@
 *	_enemies : Nombre d'ennemis
 *
 * Exemple :
-*	
+*	[_loc] call ODDCTI_fnc_calcEniOnLoc
 *
 * Variable publique :
 * 

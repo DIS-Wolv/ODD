@@ -8,7 +8,7 @@
 * Valeur renvoyée :
 *
 * Exemple :
-* 
+* 	[0] call ODDCTI_fnc_updateMapLocation
 *
 * Variable publique :
 * 
