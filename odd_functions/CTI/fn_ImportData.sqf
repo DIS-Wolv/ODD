@@ -24,11 +24,16 @@ if (typeName _data != "HASHMAP") then {
 };
 
 private _locData = _data get "LocData";
+
 if (!isNil "_locData") then {
-	_locData = createHashMapFromArray _locData;
+	if (typeName _locData != "HASHMAP") then {
+		_locData = createHashMapFromArray _locData;
+	};
 	{
 		_maLocData = _locData get (text _x);
-		_maLocData = createHashMapFromArray _maLocData;
+		if (typeName _maLocData != "HASHMAP") then {
+			_maLocData = createHashMapFromArray _maLocData;
+		};
 
 		private _varToSet = ["ODD_var_OccActEniVeh", "ODD_var_OccTgtEniVeh", "ODD_var_CivActPax", "ODD_var_CivTgtPax", "ODD_var_OccActEni", "ODD_var_OccTgtEni", "ODD_var_OccPrcRecrut", "ODD_var_isBlue", "ODD_var_isFrontLine"];
 		if(!isNil "_maLocData") then {
@@ -47,10 +52,16 @@ if (!isNil "_locData") then {
 
 private _objectData = _data get "ObjectData";
 if (!isNil "_objectData") then {
-	_objectData = createHashMapFromArray _objectData;
+	if (typeName _objectData != "HASHMAP") then {
+		_objectData = createHashMapFromArray _objectData;
+	};
+		
 	{
 		if(!isNil _x) then {
-			private _value = createHashMapFromArray ((_objectData get _x));
+			private _value = (_objectData get _x);
+			if (typeName _value != "HASHMAP") then {
+				_value = createHashMapFromArray _value;
+			};
 			private _MonObj = call compile _x;
 			private _dir = _value get "dir";
 			private _pos = _value get "pos";
@@ -67,11 +78,12 @@ _varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo"];
 {
 	private _value = _data get _x;
 	if (!isNil "_value") then {
-		_x setVariable [_x, _value];
+		_x = _value;
 	};
-
 } forEach _varToSet;
 
+private _date = _data get "ODD_var_DateTime";
+setDate _date;
 
 sleep 1;
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
