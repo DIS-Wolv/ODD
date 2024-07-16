@@ -15,7 +15,13 @@
 */
 
 params [["_data", createHashMap]];
-_data = createHashMapFromArray _data;
+
+if (!isServer) exitWith {true;};
+if (isNil "ODD_var_INITMAP") exitWith {true;};
+
+if (typeName _data != "HASHMAP") then {
+	_data = createHashMapFromArray _data;
+};
 
 private _locData = _data get "LocData";
 if (!isNil "_locData") then {

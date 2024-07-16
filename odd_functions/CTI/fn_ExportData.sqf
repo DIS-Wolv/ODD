@@ -14,6 +14,9 @@
 * 
 */
 
+if (!isServer) exitWith {true;};
+if (isNil "ODD_var_INITMAP") exitWith {true;};
+
 private _objectToSave = [FOB, armesFob, medicalFob, lanceursFob, factory, usine];
 
 private _data = createHashMap;
