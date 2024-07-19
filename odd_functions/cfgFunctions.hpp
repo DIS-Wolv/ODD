@@ -152,6 +152,7 @@ class ODD_CTI {
 		class calcCivOnLoc {};
 		class calcEniOnLoc {};
 		class calcVehOnLoc {};
+		class callSave {};
 		class ExportData {};
 		class ImportData {};
 		class initMap {};

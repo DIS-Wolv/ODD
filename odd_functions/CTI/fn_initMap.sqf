@@ -21,6 +21,17 @@ if (!isNil "ODD_var_INITMAP") exitWith {true;};
 ODD_var_INITMAP = true;
 [{ODD_var_INITMAP = true;}] remoteExec ["call", 0, true];
 
+// partie de la gestion des sauvegardes
+// au début pas besoin de save
+ODD_var_NeedSave = false;
+
+// crée le trigger de sauvegarde
+private _triggerBase = createTrigger ["EmptyDetector", base, True];
+_triggerBase setTriggerArea [50, 50, 0, False, -1];
+_triggerBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
+_triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "[] spawn ODDCTI_fnc_callSave", ""];
+
+
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
 // private _radOutpost = 1500;
@@ -174,7 +185,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerEni setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerEni setTriggerStatements ["this",
 		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniPax;", _radSpawnEni],
-		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniPax;", _radSpawnEni]
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniPax; ODD_var_NeedSave = true;", _radSpawnEni]
 	];
 	_triggerEni setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerEni", _triggerEni];
@@ -185,7 +196,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_triggerVH setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerVH setTriggerStatements ["this",
 		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniVeh;", _radSpawnVl],
-		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniVeh;", _radSpawnVl]
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniVeh; ODD_var_NeedSave = true;", _radSpawnVl]
 	];
 	_triggerVH setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerOccVehicule", _triggerVH];
@@ -197,8 +208,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 		_triggerCiv setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, false, _alt];
 		_triggerCiv setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 		_triggerCiv setTriggerStatements ["this",
-			Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlCiv.sqf';", _radSpawnEni],
-			Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlCiv.sqf';", _radSpawnEni]
+			Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlCiv;", _radSpawnEni],
+			Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlCiv; ODD_var_NeedSave = true;", _radSpawnEni]
 		];
 		_triggerCiv setVariable ["ODD_var_location", _maLoc];
 		_maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
