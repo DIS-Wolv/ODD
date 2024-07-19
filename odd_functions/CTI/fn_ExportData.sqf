@@ -15,7 +15,6 @@
 */
 
 if (!isServer) exitWith {true;};
-if (isNil "ODD_var_INITMAP") exitWith {true;};
 
 private _objectToSave = [FOB, armesFob, medicalFob, lanceursFob, factory, usine];
 
@@ -75,6 +74,7 @@ _data set ["ODD_var_DateTime", _date];
 _data set ["ObjectData", _objectData];
 
 systemChat "Export des données de la mission";
+
 _data;
 
 
