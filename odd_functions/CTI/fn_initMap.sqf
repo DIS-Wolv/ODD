@@ -14,9 +14,12 @@
 * 
 */
 
+// si on est sur le serv et que la fonction n'a pas été appelé
 if (!isServer) exitWith {true;};
 if (!isNil "ODD_var_INITMAP") exitWith {true;};
+// on execute la fonction et on la marque comme appelé
 ODD_var_INITMAP = true;
+[{ODD_var_INITMAP = true;}] remoteExec ["call", 0, true];
 
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
