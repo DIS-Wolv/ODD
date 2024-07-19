@@ -20,7 +20,7 @@ private _data = [];
 
 _data = profileNamespace getVariable [_varName, []];
 
-if (_data isEqualTo []) exitWith {true;};
+if (_data isEqualTo []) exitWith {["Pas d'import a faire"] remoteExec ["systemChat", 0]; true;};
 
 [_data] call compile preprocessFile "odd_functions\CTI\fn_ImportData.sqf";
 
