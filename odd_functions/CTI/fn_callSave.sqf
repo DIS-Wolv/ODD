@@ -15,6 +15,8 @@
 
 if (ODD_var_NeedSave == false) exitWith {true;};
 
+["En attente du retours base pour save"] remoteExec ["systemChat", 0];
+
 // chaque 5 seconde on regarde si on peux save (donc si les joueurs sont a la base)
 waitUntil {
 	sleep 5;
