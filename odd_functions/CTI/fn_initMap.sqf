@@ -182,7 +182,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// crée le trigger de spawn de pax
 	private _triggerEni = createTrigger ["EmptyDetector", _pos, true];
 	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
-	_triggerEni setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	_triggerEni setTriggerActivation ["WEST", "PRESENT", true];
 	_triggerEni setTriggerStatements ["this",
 		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniPax;", _radSpawnEni],
 		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniPax; ODD_var_NeedSave = true;", _radSpawnEni]
@@ -193,7 +193,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// crée le trigger de spawn de vehicule
 	private _triggerVH = createTrigger ["EmptyDetector", _pos, true];
 	_triggerVH setTriggerArea [_radSpawnVl, _radSpawnVl, 0, false, _alt];
-	_triggerVH setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	_triggerVH setTriggerActivation ["WEST", "PRESENT", true];
 	_triggerVH setTriggerStatements ["this",
 		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlEniVeh;", _radSpawnVl],
 		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlEniVeh; ODD_var_NeedSave = true;", _radSpawnVl]
@@ -206,7 +206,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 		// crée le trigger de spawn de civils
 		private _triggerCiv = createTrigger ["EmptyDetector", _pos, true];
 		_triggerCiv setTriggerArea [_radSpawnCivils, _radSpawnCivils, 0, false, _alt];
-		_triggerCiv setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+		_triggerCiv setTriggerActivation ["WEST", "PRESENT", true];
 		_triggerCiv setTriggerStatements ["this",
 			Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlCiv;", _radSpawnEni],
 			Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlCiv; ODD_var_NeedSave = true;", _radSpawnEni]
