@@ -46,7 +46,7 @@ private _objectData = createHashMap;
 	} forEach _varToGet;
 
 	_LocData set [(text _x), _MaLoc];
-} forEach ODDvar_AllLocations;
+} forEach ODD_var_AllLocations;
 
 _data set ["LocData", _LocData];
 
