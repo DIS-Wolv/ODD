@@ -69,7 +69,7 @@ if (!isNil "_objectData") then {
 			_pos = [(_pos select 0), (_pos select 1), (_pos select 2) + 0.2];
 
 			_MonObj setDir _dir;
-			_MonObj setPosATL _pos;
+			_MonObj setPosASL _pos;
 		};
 	} forEach (keys _objectData);
 };

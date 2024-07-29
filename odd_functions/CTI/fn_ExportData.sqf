@@ -64,7 +64,7 @@ _data set ["ODD_var_DateTime", _date];
 {
 	private _object = createHashMap;
 	if (!isnull _x) then {
-		_object set ["pos", getPosATL _x];
+		_object set ["pos", getPosASL _x];
 		_object set ["dir", getDir _x];
 
 		_objectData set [str _x, _object];
