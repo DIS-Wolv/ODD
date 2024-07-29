@@ -17,3 +17,5 @@ _crate addItemCargoGlobal ["ACE_surgicalKit",2];
 _crate addItemCargoGlobal ["ACE_personalAidKit",2];
 _crate addItemCargoGlobal ["ACE_splint",50];
 _crate addItemCargoGlobal ["ACE_adenosine",30];
+_crate addItemCargoGlobal ["ACE_painkillers",20];
+
