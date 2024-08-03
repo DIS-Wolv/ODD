@@ -129,10 +129,11 @@ private _frontLineModifier = 1.3;
 		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 		// tant qu'il reste des effectifs a envoyer
 		while {_actEni > 0} do {
-			// on détermine la zone a renforcer
-			private _locNeedRenfort = _nearloc select 0;
+			// on détermine la zone a renforcer (par défaut une zone rdm)
+			private _i = floor (random (count _nearloc));
+			private _locNeedRenfort = _nearloc select _i;
 			// on calcule le pourcentage de remplissage de la zone
-			private _locNeedRenfortPrc = ((_nearloc select 0) getVariable ["ODD_var_OccActEni", 0]) / ((_nearloc select 0) getVariable ["ODD_var_OccTgtEni", 2]);
+			private _locNeedRenfortPrc = ((_nearloc select _i) getVariable ["ODD_var_OccActEni", 0]) / ((_nearloc select _i) getVariable ["ODD_var_OccTgtEni", 2]);
 			{
 				// pour chaque zone a proximité
 				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
