@@ -13,6 +13,7 @@
 * Variable publique :
 * 
 */
+params [["_saveDefault", false]];
 
 if (!isServer) exitWith {true;};
 
@@ -40,7 +41,7 @@ private _objectData = createHashMap;
 	{
 		private _getValue = _loc getVariable [(_x select 0), (_x select 1)];
 		private _defValue = (_x select 1);
-		if (!(_getValue isEqualTo _defValue)) then {
+		if ((!(_getValue isEqualTo _defValue)) or _saveDefault) then {
 			_MaLoc set [_x select 0, (_getValue)];
 		};
 	} forEach _varToGet;
