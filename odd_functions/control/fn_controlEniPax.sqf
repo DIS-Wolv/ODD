@@ -166,6 +166,7 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_OccActEni", ((_countPat + _countGar + _eni) max 0)];
 
 
+			// mise a jours de la capture de la zone
 			private _tgtEni = _loc getVariable ["ODD_var_OccTgtEni", 2];
 			private _actEni = _loc getVariable ["ODD_var_OccActEni", 0];
 
@@ -178,7 +179,7 @@ if ((typeName _loc) != "SCALAR") then {
 				{
 					_x setVariable ["ODD_var_isFrontLine", true];
 					[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
-				}forEach _nearloc;
+				} forEach _nearloc;
 			};
 
 			// update du marker : 
