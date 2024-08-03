@@ -34,6 +34,7 @@ private _objectData = createHashMap;
 		["ODD_var_OccActEni", [_x] call ODDCTI_fnc_calcEniOnLoc],
 		["ODD_var_OccTgtEni", [_x] call ODDCTI_fnc_calcEniOnLoc],
 		["ODD_var_OccPrcRecrut", 0],
+		["ODD_var_OccRecrutVeh",0],
 		["ODD_var_isBlue", false],
 		["ODD_var_isFrontLine", false]
 	];
