@@ -21,15 +21,23 @@ private _frontLineModifier = 1.3;
 
 	private _nearloc = _x getVariable ["ODD_var_nearLocations", []];
 
-	// dans l'idée devrait etre remplacer par un trigger sur la zone
+	// si la zone est capturé par les bleus
 	if (_actEni/_tgtEni < ODDCTI_var_capturePrc) then {
 		_x setVariable ["ODD_var_isBlue", true];
 		_x setVariable ["ODD_var_isFrontLine", true];
 		{
 			_x setVariable ["ODD_var_isFrontLine", true];
-		}forEach _nearloc;
+		} forEach _nearloc;
+	}
+	// si la zone est capturé par les rouges
+	else {
+		_x setVariable ["ODD_var_isBlue", false];
+		_x setVariable ["ODD_var_isFrontLine", false];
+		// on devrais recalculer les frontline 
 	};
 
+
+	// partie zone Rouge 
 	if ((_x getVariable ["ODD_var_isBlue", false]) == false) then {
 		_nearloc pushBack _x;
 
@@ -75,15 +83,6 @@ private _frontLineModifier = 1.3;
 
 		};
 
-
-		private _isFrontLine = false;
-		{
-			if (_x getVariable ["ODD_var_isBlue", false]) then {
-				_isFrontLine = true;
-			};
-		} forEach _nearloc;
-		_x setVariable ["ODD_var_isFrontLine", _isFrontLine];
-
 		private _tgtEni = _x getVariable ["ODD_var_OccTgtEni", 2];
 		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 		private _prcRecrut = _x getVariable ["ODD_var_OccPrcRecrut", 0];
@@ -98,6 +97,7 @@ private _frontLineModifier = 1.3;
 		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
 	}
+	// partie zone Bleu
 	else {
 		_x setVariable ["ODD_var_isFrontLine", true];
 		{
