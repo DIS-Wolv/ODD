@@ -168,6 +168,19 @@ private _frontLineModifier = 1.3;
 			_renfort = _renfort - 1;
 		};
 
+		// partie Recrutement vehicule 
+		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
+		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+		private _countvehact = count _vehact;
+		private _prcRecrut = _x getVariable ["ODD_var_OccRecrutVeh", 0];
+
+		if ((_prcRecrut > 0) and (_x getVariable ["ODD_var_isBlue", false] == false) and (_countvehact < _vehtgt)) then {
+			for "_i" from 1 to _prcRecrut do {
+				_vehact pushBack (selectRandom ODD_var_Vehicles);
+			};
+			_x setVariable ["ODD_var_OccActEni", _actEni];
+		};
+
 	}
 	// partie zone Bleu
 	else {
