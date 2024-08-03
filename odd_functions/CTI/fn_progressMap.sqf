@@ -113,6 +113,61 @@ private _frontLineModifier = 1.3;
 		// partie Vehicule
 		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+		private _countvehact = count _vehact;
+
+		private _renfort = floor (_vehtgt * 0.5);
+		_renfort = _renfort max 0;
+
+		// si il y a des effectifs a envoyer
+		while {_renfort > 0} do {
+			// on calcule le prc de remplissage de la zone
+			_vehtgt = _x getVariable ["ODD_var_OccActEniVeh", 0];
+			_countvehact = count _vehact;
+			private _prc = _vehact / _countvehact;
+			// on détermine que par default la zone a renforcer est la zone elle même
+			private _loc = _x;
+			private _locNeedRenfort = _x;
+			private _locNeedRenfortPrc = _prc;
+			{
+				// pour chaque zone a proximité
+				if ((_x getVariable ["ODD_var_isBlue", false] == false)) then {
+				private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
+				private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+				private _countvehact = count _vehact;
+					// si la zone est sous controle ennemi
+					// augmente le nombre de renfort a envoyer si c'est sur la ligne de front
+					if (_x getVariable ["ODD_var_isFrontLine", false]) then {
+						_vehtgt = _vehtgt * _frontLineModifier;
+					};
+
+					// on calcule le prc de remplissage de la zone
+					private _locPrc = _countvehact / _vehtgt;
+
+					// si la zone a plus besoin de renforts que les autres
+					if ((_locNeedRenfortPrc > _locPrc)) then {
+						// la défini comme zone a renforcer
+						_locNeedRenfort = _x;
+						_locNeedRenfortPrc = _locPrc;
+					};
+				};
+			} forEach _nearloc;
+
+			// on choisi un véhicule a envoyer
+			private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+			private _veh = selectRandom _vehact;
+
+			// on supprime le véhicule de la zone d'origine
+			private _index = _vehact find _veh;
+			_vehact deleteAt _index;
+
+			// on ajoute le véhicule a la zone a renforcer
+			private _locNeedRenfortVeh = _locNeedRenfort getVariable ["ODD_var_OccActEniVeh", 0];
+			_locNeedRenfort setVariable ["ODD_var_OccActEni", (_locNeedRenfortVeh pushBack _veh)];
+
+			// on décrémente le nombre de renfort a envoyer
+			_renfort = _renfort - 1;
+		};
+
 	}
 	// partie zone Bleu
 	else {
@@ -159,6 +214,47 @@ private _frontLineModifier = 1.3;
 		_x setVariable ["ODD_var_OccActEni", _actEni];
 
 		// partie Vehicule
+		// on récupère les vehicles de la zone
+		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+		// tant qu'il reste des vehicles a envoyer
+		while {count _vehact} do {
+			private _i = floor (random (count _nearloc));
+			// on détermine la zone a renforcer (par défaut une zone rdm)
+			private _locNeedRenfort = _nearloc select _i;
+			// on calcule le pourcentage de remplissage de la zone
+			private _locNeedRenfortPrc = (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []])) / (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []]));
+			{
+				// pour chaque zone a proximité
+				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
+					// si la zone est sous controle ennemi
+					private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
+					private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+					private _countvehact = count _vehact;
+					// on calcule le pourcentage de remplissage de la zone
+					private _locPrc = _countvehact / _vehtgt;
+					// si la zone a plus besoin de renforts que les autres
+					if ((_locNeedRenfortPrc > _locPrc)) then {
+						// la défini comme zone a renforcer
+						_locNeedRenfort = _x;
+						_locNeedRenfortPrc = _locPrc;
+					};
+				};
+			} forEach _nearloc;
+
+			// on choisi un véhicule a envoyer
+			private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
+			private _veh = selectRandom _vehact;
+
+			// on supprime le véhicule de la zone d'origine
+			private _index = _vehact find _veh;
+			_vehact deleteAt _index;
+
+			// on ajoute le véhicule a la zone a renforcer
+			private _locNeedRenfortVeh = _locNeedRenfort getVariable ["ODD_var_OccActEniVeh", 0];
+			_locNeedRenfort setVariable ["ODD_var_OccActEni", (_locNeedRenfortVeh pushBack _veh)];
+		};
+		// on met a jour les vehicles de la zone
+		_x setVariable ["ODD_var_OccActEniVeh", _vehact];
 	};
 } forEach ODD_var_AllLocations;
 
