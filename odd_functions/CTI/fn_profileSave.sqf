@@ -21,6 +21,6 @@ _data = [] call ODDCTI_fnc_ExportData;
 profileNamespace setVariable ["ODDCTI_var_Proggression", _data];
 saveProfileNamespace;
 
-["Missions Sauvegardé"] remoteExec ["systemChat", 0];
+["Missions Sauvegardée"] remoteExec ["systemChat", 0];
 
 _data;
