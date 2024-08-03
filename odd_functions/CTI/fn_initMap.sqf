@@ -259,6 +259,26 @@ ODD_var_AllLocations = _locations;
 	};
 }] call CBA_fnc_addEventHandler;
 
+["ace_unconscious", {
+	params ["_unit", "_state"];
+	if (!isPlayer _unit) then {
+		if (_state == true) then {
+			private _group = group _unit;
+			private _coma = true;
+			{
+				if (lifeState _x != "INCAPACITATED") then {
+					_coma = false;
+				};
+			} forEach units _group;
+			if (_coma) then {
+				{
+					_x setDamage 1;
+				} forEach units _group;
+			};
+		};
+	};
+}] call CBA_fnc_addEventHandler;
+
 systemChat "Map Initialized";
 
 
