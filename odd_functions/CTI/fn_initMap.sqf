@@ -265,10 +265,14 @@ ODD_var_AllLocations = _locations;
 	params ["_unit", "_state"];
 	if (!isPlayer _unit) then {
 		if (_state == true) then {
+			if (vehicle _unit != _unit) then {
+				moveOut _unit;
+			};
+			sleep 2;
 			private _group = group _unit;
 			private _coma = true;
 			{
-				if (lifeState _x != "INCAPACITATED") then {
+				if (lifeState _x == "HEALTHY") then {
 					_coma = false;
 				};
 			} forEach units _group;
