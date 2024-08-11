@@ -64,6 +64,8 @@ if ((typeName _loc) != "SCALAR") then {
 
 				_vl setDir _dir;
 
+				ODD_var_IAVehicles pushBack _vl;
+
 				_actVeh pushBack _group;
 				_group setVariable ["ODD_var_Loc", _loc, True];
 
@@ -139,6 +141,8 @@ if ((typeName _loc) != "SCALAR") then {
 			_pool = _pool + _newpool;
 			_loc setVariable ["ODD_var_OccActEniVeh", _pool];
 			_loc setVariable ["ODD_var_OccVehGroup", []];
+
+			ODD_var_IAVehicles = ODD_var_IAVehicles - [objNull];
 		};
 		
 
