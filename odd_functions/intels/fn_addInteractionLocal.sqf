@@ -23,7 +23,7 @@ params ["_unit"];
         if ((side (_this select 0)) == blufor) then {_src = "BLUFOR";};
 
         // Other sides from https://community.bistudio.com/wiki/Side
-        if ((side (_this select 0)) == resistance) then {_src = "OPFOR";};
+        if ((side (_this select 0)) == resistance) then {_src = "RESISTANCE";};
         if ((side (_this select 0)) == sideEnemy) then {_src = "OPFOR";};
         if ((side (_this select 0)) == sideFriendly) then {_src = "BLUFOR";};
 
