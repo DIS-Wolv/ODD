@@ -158,6 +158,19 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	_maLoc setVariable ["ODD_var_CivActPax", _civact];
 	_maLoc setVariable ["ODD_var_CivTgtPax", _civtgt];
 
+	// Valeur des caisses
+	// private _crate = 0; // faire spawn en meme temps que les civils / pax enemie 
+	// _crate = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
+	// _maLoc setVariable ["ODD_var_Crate", _crate];
+
+	// Valeurs des IED
+	// private _roads = (position _x) nearRoads (size _x select 0);
+	// private _minIED = round (((count _roads) *  1 / 100)) max 0;
+	// private _maxIED = round ((count _roads) * 4 / 100);
+	// private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
+	// _maLoc setVariable ["ODD_var_IED", _nbIED];
+
+
 	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
 	_maLoc setVariable ["ODD_var_isFrontLine", false]; 
