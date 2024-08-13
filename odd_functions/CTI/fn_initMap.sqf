@@ -142,7 +142,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	private _vehtgt = 0;
 	private _vehact = [];
 	// Set des variable de vehicule
-	_vehtgt = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcVehOnLoc.sqf";
+	_vehtgt = [_x] call ODDCTI_fnc_calcVehOnLoc;
 	for "_i" from 1 to _vehtgt do {
 		_vehact pushBack (selectRandom ODD_var_Vehicles);
 	};
@@ -153,7 +153,7 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	private _civtgt = 0;
 	private _civact = 0;
 	// Set des variable de civil
-	_civtgt = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCivOnLoc.sqf";
+	_civtgt = [_x] call ODDCTI_fnc_calcCivOnLoc;
 	_civact = round (_civtgt);
 	_maLoc setVariable ["ODD_var_CivActPax", _civact];
 	_maLoc setVariable ["ODD_var_CivTgtPax", _civtgt];
