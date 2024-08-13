@@ -17,7 +17,7 @@ if (isNil "DISLoad_var_piloteAvions") then {
 
 private _allLoadName = [
     DISLoad_var_piloteAvions, DISLoad_var_piloteHelo,
-    DISLoadMc_var_CDBR, DISLoadMc_var_CDB, DISLoadMc_var_CdE, DISLoadMc_var_CdG, DISLoadMc_var_CdS, DISLoadMc_var_EOD, DISLoadMc_var_EOD_Light, DISLoadMc_var_Equipier, DISLoadMc_var_Grenadier, DISLoadMc_var_GV, DISLoadMc_var_GvBck, DISLoadMc_var_Medecin, DISLoadMc_var_Minimi5, DISLoadMc_var_Minimi7, DISLoadMc_var_TP, DISLoadMc_var_Zeus,
+    DISLoadMc_var_CDBR, DISLoadMc_var_CDB, DISLoadMc_var_CdE, DISLoadMc_var_CdG, DISLoadMc_var_CdS, DISLoadMc_var_EOD, DISLoadMc_var_EOD_Light, DISLoadMc_var_Equipier, DISLoadMc_var_Grenadier, DISLoadMc_var_GV, DISLoadMc_var_GvBck, DISLoadMc_var_Medecin, DISLoadMc_var_Minimi5, DISLoadMc_var_Minimi7, DISLoadMc_var_TP, DISLoadMC_var_TE, DISLoadMC_var_Spotter, DISLoadMc_var_Zeus,
     DISLoadPL_var_CDE, DISLoadPL_var_CDG, DISLoadPL_var_GV, DISLoadPL_var_Medecin, DISLoadPL_var_Minimi5
 ];
 
@@ -40,6 +40,8 @@ private _allLoadName = [
 ["MC Minimi5", DISLoadMc_var_Minimi5, true] call ace_arsenal_fnc_addDefaultLoadout;
 ["MC Minimi7", DISLoadMc_var_Minimi7, true] call ace_arsenal_fnc_addDefaultLoadout;
 ["MC TP", DISLoadMc_var_TP, true] call ace_arsenal_fnc_addDefaultLoadout;
+["MC TE", DISLoadMC_var_TE, true] call ace_arsenal_fnc_addDefaultLoadout;
+["MC Spotter", DISLoadMC_var_Spotter, true] call ace_arsenal_fnc_addDefaultLoadout;
 ["MC Zeus", DISLoadMc_var_Zeus, true] call ace_arsenal_fnc_addDefaultLoadout;
 
 ["PL CDE", DISLoadPL_var_CDE, true] call ace_arsenal_fnc_addDefaultLoadout;
