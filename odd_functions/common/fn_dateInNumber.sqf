@@ -16,7 +16,7 @@
 params [["_date", nil]];
 
 // si la date est pas défini on la met a la date actuel
-if (_date == nil) then {
+if (isnil _date) then {
     _date = date;
 };
 
