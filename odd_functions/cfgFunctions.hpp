@@ -43,6 +43,8 @@ class ODD_Common {
 
 		class isMillitary {};
 		class patrolWaypoint {};
+
+		class dateInNumber {};
 	};
 };
 
@@ -111,7 +113,6 @@ class ODD_advanced {
 		class TrigOkExtract {};
 		class TrigOkRtb {};
 		class CompleteObj {};
-		class dateInNumber {};
 	}
 };
 
