@@ -36,6 +36,7 @@ private _mapData = _data get _mapName;
 if (_mapData isEqualTo []) exitWith {["Pas d'import a faire"] remoteExec ["systemChat", 0]; true;};
 
 [_mapData] call ODDCTI_fnc_ImportData;
+["marker_1", FOB, False] call DISCommon_fnc_markers;
 
 ["Données importé"] remoteExec ["systemChat", 0];
 [["Données importé"]] call ODDcommon_fnc_log;
