@@ -36,5 +36,5 @@ if (_mapData isEqualTo []) exitWith {["Pas d'import a faire"] remoteExec ["syste
 
 [_mapData] call ODDCTI_fnc_ImportData;
 
-["Import des données de la mission"] remoteExec ["systemChat", 0];
+["Données importé"] remoteExec ["systemChat", 0];
 
