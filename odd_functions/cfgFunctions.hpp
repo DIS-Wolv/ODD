@@ -111,6 +111,7 @@ class ODD_advanced {
 		class TrigOkExtract {};
 		class TrigOkRtb {};
 		class CompleteObj {};
+		class dateInNumber {};
 	}
 };
 
