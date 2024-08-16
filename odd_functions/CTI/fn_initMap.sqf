@@ -251,7 +251,7 @@ ODD_var_AllLocations = _locations;
 	if (!isPlayer _unit) then {
 		if (_state == true) then {
 			[_unit] join grpNull;
-			_x addEventHandler ["Hit", {
+			_unit addEventHandler ["Hit", {
 				params ["_unit", "_source", "_damage", "_instigator"];
 				if ((side _instigator) == WEST) then {
 					[-0.25] call ODDCTI_fnc_updateCivRep;
@@ -260,7 +260,7 @@ ODD_var_AllLocations = _locations;
 					[0.10] call ODDCTI_fnc_updateCivRep;
 				};
 			}];
-			_x addEventHandler ["Killed", {
+			_unit addEventHandler ["Killed", {
 				params ["_unit", "_killer", "_instigator"];
 				if ((side _instigator) == WEST) then {
 					[-0.5] call ODDCTI_fnc_updateCivRep;
