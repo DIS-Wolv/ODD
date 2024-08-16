@@ -17,9 +17,9 @@ if (ODD_var_NeedSave == false) exitWith {true;};
 
 ["En attente du retours base pour save"] remoteExec ["systemChat", 0];
 
-// chaque 5 seconde on regarde si on peux save (donc si les joueurs sont a la base)
+// chaque 20 seconde on regarde si on peux save (donc si les joueurs sont a la base)
 waitUntil {
-	sleep 5;
+	uisleep 20;
 
 	// compte le nombre de joueur Total connecté
 	private _nbPlayer = count ([] call BIS_fnc_listPlayers);
