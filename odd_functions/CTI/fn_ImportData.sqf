@@ -94,7 +94,12 @@ if (!isNil "_objectData") then {
 			private _dir = _value get "dir";
 			private _pos = _value get "pos";
 
-			_pos = [(_pos select 0), (_pos select 1), (_pos select 2) + 0.2];
+			private _offset = 0.2;
+			if (_MonObj isKindOf "static") then {
+				_offset = 0;
+			};
+			_pos = [(_pos select 0), (_pos select 1), (_pos select 2) + _offset];
+
 
 			_MonObj setDir _dir;
 			_MonObj setPosASL _pos;
