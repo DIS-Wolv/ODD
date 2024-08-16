@@ -34,6 +34,8 @@ waitUntil {
 	_nbPlayerOnBase == _nbPlayer;
 };
 
+["Début de la sauvegarde, ne quittez pas !"] remoteExec ["systemChat", 0];
+uisleep 30;
 // ici supr tout les IA bleux qui active des zones / forcé la désactivation des zones
 
 // sauvergarde des données
