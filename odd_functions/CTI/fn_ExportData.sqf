@@ -16,6 +16,9 @@
 params [["_saveDefault", false]];
 
 if (!isServer) exitWith {true;};
+if (isNil "ODD_var_INITMAP") exitWith {[["Export sur mission non init"]] call ODDcommon_fnc_log;};
+
+[["Export Debut"]] call ODDcommon_fnc_log;
 
 private _objectToSave = [FOB, armesFob, medicalFob, lanceursFob, factory, usine];
 
@@ -24,6 +27,7 @@ private _LocData = createHashMap;
 private _objectData = createHashMap;
 
 {
+	[["Export début %1", (text _x)]] call ODDcommon_fnc_log;
 	private _MaLoc = createHashMap;
 	private _loc = _x;
 	private _varToGet = [
@@ -48,6 +52,7 @@ private _objectData = createHashMap;
 	} forEach _varToGet;
 
 	_LocData set [(text _x), _MaLoc];
+	[["Export OK %1", (text _x)]] call ODDcommon_fnc_log;
 } forEach ODD_var_AllLocations;
 
 _data set ["LocData", _LocData];
@@ -77,6 +82,8 @@ _data set ["ODD_var_DateTime", _date];
 _data set ["ObjectData", _objectData];
 
 systemChat "Export des données de la mission";
+
+[["Export OK"]] call ODDcommon_fnc_log;
 
 _data;
 

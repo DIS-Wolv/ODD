@@ -15,6 +15,7 @@
 params [["_varName", "ODDCTI_var_Proggression"]];
 
 ["Début de l'import"] remoteExec ["systemChat", 0];
+[["Début de l'import"]] call ODDcommon_fnc_log;
 
 private _data = [];
 
@@ -37,4 +38,4 @@ if (_mapData isEqualTo []) exitWith {["Pas d'import a faire"] remoteExec ["syste
 [_mapData] call ODDCTI_fnc_ImportData;
 
 ["Données importé"] remoteExec ["systemChat", 0];
-
+[["Données importé"]] call ODDcommon_fnc_log;

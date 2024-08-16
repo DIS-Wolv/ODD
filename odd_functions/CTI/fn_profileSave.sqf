@@ -19,6 +19,7 @@ private _data = [];
 // réupération des données
 _data = [] call ODDCTI_fnc_ExportData;
 
+[["Save Debut"]] call ODDcommon_fnc_log;
 // réucpération des données déjà sauvegardé
 private _savedData = profileNamespace getVariable ["ODDCTI_var_Proggression", []];
 
@@ -38,5 +39,6 @@ profileNamespace setVariable ["ODDCTI_var_Proggression", _savedData];
 saveProfileNamespace;
 
 ["Missions Sauvegardée"] remoteExec ["systemChat", 0];
+[["Save OK"]] call ODDcommon_fnc_log;
 
 _data;

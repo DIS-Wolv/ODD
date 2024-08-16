@@ -24,4 +24,5 @@ ODD_var_CivilianReputation = (
 		) max 0
 	) min 100);
 
+[["Civilan Rept Modification %1 => %2", _value, ODD_var_CivilianReputation]] call ODDcommon_fnc_log;
 

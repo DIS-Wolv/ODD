@@ -19,8 +19,9 @@ params [["_data", createHashMap]];
 // la save ne doit être fait que sur le serveur
 if (!isServer) exitWith {true;};
 // si la variable n'existe pas on a rien a save
-if (isNil "ODD_var_INITMAP") exitWith {true;};
+if (isNil "ODD_var_INITMAP") exitWith {[["Import sur mission non init"]] call ODDcommon_fnc_log;};
 
+[["Set des variables début"]] call ODDcommon_fnc_log;
 // si ce n'est pas un hashmap on le transforme
 if (typeName _data != "HASHMAP") then {
 	_data = createHashMapFromArray _data;
@@ -36,6 +37,7 @@ if (!isNil "_locData") then {
 	};
 	// pour chaque location de la map
 	{
+		[["Set des variables debut %1", (text _x)]] call ODDcommon_fnc_log;
 		// récupération des données dans l'array
 		_maLocData = _locData get (text _x);
 		// si ce n'est pas un hashmap on le transforme
@@ -68,6 +70,7 @@ if (!isNil "_locData") then {
 			} forEach _varToSet;
 		};
 		[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
+		[["Set des variables ok %1", (text _x)]] call ODDcommon_fnc_log;
 	} forEach ODD_var_AllLocations;
 };
 
@@ -121,5 +124,5 @@ setDate _date;
 
 sleep 1;
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
-
+[["Set des variables OK"]] call ODDcommon_fnc_log;
 

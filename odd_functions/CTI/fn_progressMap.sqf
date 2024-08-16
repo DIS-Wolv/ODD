@@ -13,9 +13,11 @@
 * 
 */
 
+[["Progression Enemie Début"]] call ODDcommon_fnc_log;
 private _frontLineModifier = 1.3;
 
 {
+	[["Progression Enemie Début %1", (text _x)]] call ODDcommon_fnc_log;
 	private _tgtEni = _x getVariable ["ODD_var_OccTgtEni", 2];
 	private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 
@@ -28,6 +30,7 @@ private _frontLineModifier = 1.3;
 		{
 			_x setVariable ["ODD_var_isFrontLine", true];
 		} forEach _nearloc;
+		[["Progression Enemie %1 Capturé par Bleue", (text _x)]] call ODDcommon_fnc_log;
 	}
 	// si la zone est capturé par les rouges
 	else {
@@ -39,9 +42,11 @@ private _frontLineModifier = 1.3;
 
 	// partie zone Rouge 
 	if ((_x getVariable ["ODD_var_isBlue", false]) == false) then {
+		[["Progression Enemie Début %1 RED", (text _x)]] call ODDcommon_fnc_log;
 		_nearloc pushBack _x;
 
 		// partie Infantrie
+		[["Progression Enemie Début %1 Inf", (text _x)]] call ODDcommon_fnc_log;
 		// la zone peux recevoir / envoyer max 20% de ses effectifs max
 		private _renfort = floor (_tgtEni * 0.2);
 		_renfort = _renfort max 0;
@@ -99,6 +104,7 @@ private _frontLineModifier = 1.3;
 			_renfort = _renfort - 1;
 		};
 
+		[["Progression Enemie Début %1 Recrutement", (text _x)]] call ODDcommon_fnc_log;
 		// partie Recrutement
 		private _tgtEni = _x getVariable ["ODD_var_OccTgtEni", 2];
 		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
@@ -110,6 +116,7 @@ private _frontLineModifier = 1.3;
 			_x setVariable ["ODD_var_OccActEni", _actEni];
 		};
 
+		[["Progression Enemie Début %1 Veh", (text _x)]] call ODDcommon_fnc_log;
 		// partie Vehicule
 		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
@@ -168,6 +175,8 @@ private _frontLineModifier = 1.3;
 			_renfort = _renfort - 1;
 		};
 
+		[["Progression Enemie Début %1 Recrutement VL", (text _x)]] call ODDcommon_fnc_log;
+
 		// partie Recrutement vehicule 
 		private _vehtgt = _x getVariable ["ODD_var_OccTgtEniVeh", 0];
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
@@ -185,6 +194,7 @@ private _frontLineModifier = 1.3;
 	// partie zone Bleu
 	else {
 		// si la zone est capturé par les bleus	
+		[["Progression Enemie Début %1 BLUE", (text _x)]] call ODDcommon_fnc_log;
 		// la zone est considéré comme ligne de front
 		_x setVariable ["ODD_var_isFrontLine", true];
 		// les zones a proximité sont aussi considéré comme ligne de front
@@ -193,6 +203,7 @@ private _frontLineModifier = 1.3;
 		}forEach _nearloc;
 
 		// partie Infantrie
+		[["Progression Enemie Début %1 Inf", (text _x)]] call ODDcommon_fnc_log;
 		// on récupère les effectifs de la zone
 		private _actEni = _x getVariable ["ODD_var_OccActEni", 0];
 		// tant qu'il reste des effectifs a envoyer
@@ -227,6 +238,7 @@ private _frontLineModifier = 1.3;
 		_x setVariable ["ODD_var_OccActEni", _actEni];
 
 		// partie Vehicule
+		[["Progression Enemie Début %1 Veh", (text _x)]] call ODDcommon_fnc_log;
 		// on récupère les vehicles de la zone
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
 		// tant qu'il reste des vehicles a envoyer
@@ -269,6 +281,7 @@ private _frontLineModifier = 1.3;
 		// on met a jour les vehicles de la zone
 		_x setVariable ["ODD_var_OccActEniVeh", _vehact];
 	};
+	[["Progression Enemie OK %1", (text _x)]] call ODDcommon_fnc_log;
 } forEach ODD_var_AllLocations;
 
 // update des markers sur la carte
@@ -276,4 +289,4 @@ private _frontLineModifier = 1.3;
 
 private _date = date;
 _data set ["ODD_var_ProgressDate", _date];
-
+[["Progression Enemie OK"]] call ODDcommon_fnc_log;
