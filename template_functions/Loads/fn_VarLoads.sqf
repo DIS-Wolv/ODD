@@ -24,6 +24,8 @@
 * - DISLoadMc_var_Medecin
 * - DISLoadMc_var_Minimi5
 * - DISLoadMc_var_Minimi7
+* - DISLoadMc_var_Spotter
+* - DISLoadMc_var_TE
 * - DISLoadMc_var_TP
 * - DISLoadMc_var_Zeus
 * - DISLoadPL_var_CDE
