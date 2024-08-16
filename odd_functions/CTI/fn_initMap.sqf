@@ -276,26 +276,33 @@ ODD_var_AllLocations = _locations;
 
 ["ace_unconscious", {
 	params ["_unit", "_state"];
-	if (!isPlayer _unit) then {
-		if (_state == true) then {
-			if (vehicle _unit != _unit) then {
-				moveOut _unit;
-			};
-			sleep 2;
-			private _group = group _unit;
-			private _coma = true;
-			{
-				if (_x getVariable ["ACE_isUnconscious", true]) then {
-					_coma = false;
+
+	// code a executé en asynchrone
+	private _monCode = {
+		params ["_unit", "_state"];
+		if (!isPlayer _unit) then {
+			if (_state == true) then {
+				if (vehicle _unit != _unit) then {
+					moveOut _unit;
 				};
-			} forEach units _group;
-			if (_coma) then {
+				sleep 2;
+				private _group = group _unit;
+				private _coma = true;
 				{
-					_x setDamage 1;
+					if (_x getVariable ["ACE_isUnconscious", true]) then {
+						_coma = false;
+					};
 				} forEach units _group;
+				if (_coma) then {
+					{
+						_x setDamage 1;
+					} forEach units _group;
+				};
 			};
 		};
 	};
+	// spawn le code pour avoir un contexte scheduler
+	[_unit, _state] spawn _monCode;
 }] call CBA_fnc_addEventHandler;
 
 systemChat "Map Initialized";
