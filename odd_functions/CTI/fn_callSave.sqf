@@ -15,20 +15,21 @@
 
 if (ODD_var_NeedSave == false) exitWith {true;};
 
+[["Save en attente de joueurs"]] call ODDcommon_fnc_log;
 ["En attente du retours base pour save"] remoteExec ["systemChat", 0];
 
-// chaque 20 seconde on regarde si on peux save (donc si les joueurs sont a la base)
+// chaque 5 seconde on regarde si on peux save (donc si les joueurs sont a la base)
 waitUntil {
-	uisleep 20;
+	uisleep 5;
 
 	// compte le nombre de joueur Total connecté
 	private _nbPlayer = count ([] call BIS_fnc_listPlayers);
 
 	// compte le nombre de joueur sur base + FOB + usine
 	private _nbPlayerOnBase = {
-		(_x inArea [position fob, 30, 30, 0, False]) 
-		or (_x inArea [position base, 100, 100, 0, False])
-		or (_x inArea [position usine, 30, 30, 0, False])
+		(_x inArea [position base, 100, 100, 0, False])
+		// or (_x inArea [position fob, 30, 30, 0, False]) 
+		// or (_x inArea [position usine, 30, 30, 0, False])
 	} count ([] call BIS_fnc_listPlayers);
 
 	_nbPlayerOnBase == _nbPlayer;
@@ -46,14 +47,15 @@ if (isnil "_lastProgressDate") then {
 	ODD_var_ProgressDate = _lastProgressDate;
 };
 
+[["Test progression enemie"]] call ODDcommon_fnc_log;
 // on avance les IA toutes les 24h minimum
 if ([date] call ODDCommon_fnc_dateInNumber <= ([_lastProgressDate] call ODDCommon_fnc_dateInNumber + 1)) then {
 	ODD_var_ProgressDate = date;
-	[] call ODDCTI_fnc_ProgressMap;
 	["Progressions des Enemies !"] remoteExec ["systemChat", 0];
+	[] call ODDCTI_fnc_ProgressMap;
 };
 
-
+[["Save joueurs sur base"]] call ODDcommon_fnc_log;
 // sauvergarde des données
 [] remoteExec ["ODDCTI_fnc_profileSave", 2];
 
