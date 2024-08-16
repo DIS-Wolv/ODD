@@ -108,7 +108,7 @@ if (!isNil "_objectData") then {
 };
 
 // on récupère les données des variables globales
-_varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo"];
+_varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo","ODD_var_ProgressDate"];
 {
 	private _value = _data get _x;
 	if (!isNil "_value") then {
