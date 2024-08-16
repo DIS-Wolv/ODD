@@ -35,8 +35,11 @@ waitUntil {
 };
 
 ["Début de la sauvegarde, ne quittez pas !"] remoteExec ["systemChat", 0];
+// sleep pour despawn les IAs
 uisleep 30;
-// ici supr tout les IA bleux qui active des zones / forcé la désactivation des zones
+
+// fait avancé les ia enemies
+[] call ODDCTI_fnc_ProgressMap;
 
 // sauvergarde des données
 [] remoteExec ["ODDCTI_fnc_profileSave", 2];
