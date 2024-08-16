@@ -242,9 +242,6 @@ ODD_var_AllLocations = _locations;
 
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 
-// import les donnés sauvergardé
-[] call ODDCTI_fnc_profileImport;
-
 // event Handler, quand un mec est attaché il sort de son groupe
 ["ace_captiveStatusChanged", {
 	params ["_unit", "_state", "_reason", "_caller"];
@@ -307,6 +304,9 @@ ODD_var_AllLocations = _locations;
 
 systemChat "Map Initialized";
 
+// import les donnés sauvergardé
+uiSleep 30;
+[] call ODDCTI_fnc_profileImport;
 
 // private _map = (findDisplay 12 displayCtrl 51);
 // {
