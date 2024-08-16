@@ -39,7 +39,20 @@ waitUntil {
 uisleep 30;
 
 // fait avancé les ia enemies
-[] call ODDCTI_fnc_ProgressMap;
+private _lastProgressDate = ODD_var_ProgressDate;
+// si la date est pas défini on la met a la date actuel
+if (isnil "_lastProgressDate") then {
+	_lastProgressDate = date;
+	ODD_var_ProgressDate = _lastProgressDate;
+};
+
+// on avance les IA toutes les 24h minimum
+if ([date] call ODDCommon_fnc_dateInNumber <= ([_lastProgressDate] call ODDCommon_fnc_dateInNumber + 1)) then {
+	ODD_var_ProgressDate = date;
+	[] call ODDCTI_fnc_ProgressMap;
+	["Progressions des Enemies !"] remoteExec ["systemChat", 0];
+};
+
 
 // sauvergarde des données
 [] remoteExec ["ODDCTI_fnc_profileSave", 2];

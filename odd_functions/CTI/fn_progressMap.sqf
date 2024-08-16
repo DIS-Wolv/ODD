@@ -274,3 +274,6 @@ private _frontLineModifier = 1.3;
 // update des markers sur la carte
 [ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMap;
 
+private _date = date;
+_data set ["ODD_var_ProgressDate", _date];
+
