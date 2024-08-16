@@ -61,7 +61,7 @@ if ((typeName _loc) != "SCALAR") then {
 				private _groupClassName = selectRandom ODD_var_Civilians;
 				private _monGroup = [_pos, civilian, _groupClassName] call BIS_fnc_spawngroup;
 
-				[_monGroup, _x, 10] call ODDcommon_fnc_patrolWaypoint;
+				[_monGroup, _loc, 10] call ODDcommon_fnc_patrolWaypoint;
 
 				{
 					[_x] call ODDintels_fnc_addInteraction;
