@@ -14,6 +14,13 @@ WolvGarage_var_Range = 100;
 WolvGarage_var_IddDisplayGarage = 0310221;
 WolvGarage_var_IddDisplayInv = 0310222;
 WolvGarage_var_IddDisplayInvAce = 0310223;
+
+// publicVariable pour que le serv les connaisse
+publicVariable "WolvGarage_var_Range";
+publicVariable "WolvGarage_var_IddDisplayGarage";
+publicVariable "WolvGarage_var_IddDisplayInv";
+publicVariable "WolvGarage_var_IddDisplayInvAce";
+
 WolvGarage_var_AllVl = [];
 
 //Liste des élements dans l'arsenal
