@@ -107,6 +107,8 @@ if ((typeName _loc) != "SCALAR") then {
 				} forEach units _group;
 
 			} forEach _pool;
+			
+			_actVeh = _actVeh - [""] - [[""]] - [objNull];
 
 			_loc setVariable ["ODD_var_OccActEniVeh", []];
 			_loc setVariable ["ODD_var_OccVehGroup", _actVeh];
