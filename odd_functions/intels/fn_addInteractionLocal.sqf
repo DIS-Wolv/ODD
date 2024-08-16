@@ -5,7 +5,7 @@ params ["_unit"];
     "<t color='#FF0000'>Interoger " + (name _unit) + "</t>",
     "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
     "\A3\Ui_f\data\IGUI\Cfg\actions\talk_ca.paa",
-    "(alive (_target)) and (_target distance _this < 3) and (lifeState _target != 'INCAPACITATED')",
+    "(alive (_target)) and (_target distance _this < 3) and !(_target getVariable ['ACE_isUnconscious', true])",
     "True",
     {
         (_this select 0) disableAI "PATH";

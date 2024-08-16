@@ -118,7 +118,7 @@ if ((typeName _loc) != "SCALAR") then {
 				// despawn du groupe
 				private _isAlive = false;
 				{
-					if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {
+					if ((alive _x) and !(captive _x) and (!(_x getVariable ["ACE_isUnconscious", false])) and !(_x getVariable ['ace_captives_issurrendering', False])) then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;
@@ -145,7 +145,7 @@ if ((typeName _loc) != "SCALAR") then {
 				// despawn du groupe
 				private _isAlive = false;
 				{
-					if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {
+					if ((alive _x) and !(captive _x) and (!(_x getVariable ["ACE_isUnconscious", false])) and !(_x getVariable ['ace_captives_issurrendering', False])) then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;

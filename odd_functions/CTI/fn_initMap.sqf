@@ -285,7 +285,7 @@ ODD_var_AllLocations = _locations;
 			private _group = group _unit;
 			private _coma = true;
 			{
-				if (lifeState _x == "HEALTHY") then {
+				if (_x getVariable ["ACE_isUnconscious", true]) then {
 					_coma = false;
 				};
 			} forEach units _group;

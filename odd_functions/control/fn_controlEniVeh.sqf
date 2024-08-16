@@ -86,7 +86,7 @@ if ((typeName _loc) != "SCALAR") then {
 						[_unit, _killer] call ODDadvanced_fnc_surrender;
 						private _aliveGroup = false;
 						{
-							if ((alive _x) and (lifeState _x != "INCAPACITATED")) then {
+							if ((alive _x) and (!(_x getVariable ["ACE_isUnconscious", false]))) then {
 								_aliveGroup = true;
 							};
 						} forEach units group _unit;
@@ -122,7 +122,7 @@ if ((typeName _loc) != "SCALAR") then {
 					if (_x != vehicle _x) then {
 						_vl = vehicle _x;
 					};
-					if ((alive _x) and !(captive _x) and (lifeState _x != "INCAPACITATED") and !(_x getVariable ['ace_captives_issurrendering', False])) then {
+					if ((alive _x) and !(captive _x) and (!(_x getVariable ["ACE_isUnconscious", false])) and !(_x getVariable ['ace_captives_issurrendering', False])) then {
 						_isAlive = true;
 					};
 					deleteVehicle _x;
