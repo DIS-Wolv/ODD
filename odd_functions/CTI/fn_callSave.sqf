@@ -27,12 +27,12 @@ waitUntil {
 
 	// compte le nombre de joueur sur base + FOB + usine
 	private _nbPlayerOnBase = {
-		(_x inArea [position base, 100, 100, 0, False])
+		(_x inArea [position base, 500, 500, 0, False])
 		// or (_x inArea [position fob, 30, 30, 0, False]) 
 		// or (_x inArea [position usine, 30, 30, 0, False])
 	} count ([] call BIS_fnc_listPlayers);
 
-	_nbPlayerOnBase == _nbPlayer;
+	_nbPlayerOnBase >= _nbPlayer;
 };
 
 ["Début de la sauvegarde, ne quittez pas !"] remoteExec ["systemChat", 0];
