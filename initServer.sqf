@@ -46,3 +46,5 @@ acces spawn DISLoadCrate_fnc_items;
 [] call DISLoad_fnc_varLoads;
 [pCav] call DISLoad_fnc_ArsenalAce;
 //[] remoteExec ["scripts\rWeather.sqf"];
+
+["marker_1", FOB, True] call DISCommon_fnc_markers;
