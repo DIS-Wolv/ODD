@@ -156,8 +156,10 @@ class ODD_CTI {
 		class calcVehOnLoc {};
 		class callSave {};
 		class ExportData {};
+		class getLocWhere {};
 		class ImportData {};
 		class initMap {};
+		class nameToLoc {};
 		class profileImport {};
 		class profileSave {};
 		class ProgressMap {};
