@@ -180,10 +180,12 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	if (_isMil) then {
 		_maLoc setVariable ["ODD_var_OccPrcRecrut", 0.2];
 		_maLoc setVariable ["ODD_var_OccRecrutVeh", 1];
+		_maLoc setVariable ["ODD_var_IsMil", true];
 	}
 	else {
 		_maLoc setVariable ["ODD_var_OccPrcRecrut", 0];
 		_maLoc setVariable ["ODD_var_OccRecrutVeh", 0];
+		_maLoc setVariable ["ODD_var_IsMil", false];
 	};
 
 	// crée un marker sur la map
