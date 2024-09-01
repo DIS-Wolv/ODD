@@ -173,7 +173,8 @@ _locations = [_locations] call _fnc_removeBlackListed;
 
 	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
-	_maLoc setVariable ["ODD_var_isFrontLine", false]; 
+	_maLoc setVariable ["ODD_var_isFrontLine", false];
+	_maLoc setVariable ["ODD_var_AllLocations_index", _forEachIndex];
 
 	// Set des variable de recrutement
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
@@ -307,7 +308,7 @@ ODD_var_AllLocations = _locations;
 systemChat "Map Initialized";
 
 // import les donnés sauvergardé
-uiSleep 30;
+uiSleep 15;
 [] call ODDCTI_fnc_profileImport;
 
 // private _map = (findDisplay 12 displayCtrl 51);
