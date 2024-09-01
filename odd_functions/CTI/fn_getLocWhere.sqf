@@ -19,7 +19,10 @@
 params ["_var", ["_value", true]];
 
 // need to be executed on the server
-if (!isServer) exitWith {true;};
+// if (!isServer) exitWith {true;};
+if (!isServer) then {
+	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
+};
 
 // récupère la liste des locations
 Private _AllLocToReturn = ODD_var_AllLocations;
