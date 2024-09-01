@@ -66,6 +66,7 @@ class ODD_Data {
 		class varRoadBlock {};
 		class varOutpost {};
 		class varIntel {};
+		class varMissions {};
 	};
 
 };
