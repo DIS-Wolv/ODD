@@ -12,7 +12,7 @@ remoteExec ["DISCommon_fnc_customLocations", -2, True];
 ODD_var_CurrentMission = 0;
 publicVariable "ODD_var_CurrentMission";
 oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
-[] call oddCTI_fnc_initMap;
+[] spawn oddCTI_fnc_initMap;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 sleep 5;
