@@ -13,7 +13,6 @@
 * 
 */
 
-systemChat "udpateMission";
 private _missionType = ODD_var_MissionType;
 
 // Zone de la localité
@@ -22,8 +21,6 @@ private _valZone = -1;
 if (_indexZone >= 0 and _indexZone < count ODDGUIMissions_var_zoneName) then {
 	_valZone = ODDGUIMissions_var_zoneName select _indexZone;
 };
-
-systemChat format ["%1", _valZone];
 
 switch (_valZone) do {
     case "Zone allié": {
@@ -40,7 +37,6 @@ switch (_valZone) do {
     };
 };
 
-systemChat format ["%1", _missionType];
 
 // récupération du display
 private _display = (findDisplay ODDGUIMissions_IddDisplay);
