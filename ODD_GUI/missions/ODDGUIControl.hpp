@@ -168,7 +168,7 @@ class ODDGUI_Control
 			w = 0.125 * safezoneW;
 			h = 0.05 * safezoneH;
 			colorBackground[] = {0.00,1.00,0.00,0.8}; // "Electric green"
-			action = "[] call OddGuiMissions_fnc_createMission; (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
+			action = "[] call OddGuiMissions_fnc_createMission;";// (findDisplay ODDGUIMissions_IddDisplay) closeDisplay 1;";
 		};
 		class ODDGUIMissions_Button_Time: RscButton_ODDGUI
 		{
