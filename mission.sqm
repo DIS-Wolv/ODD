@@ -339,6 +339,7 @@ class ScenarioData
 	overViewPicture="pics\OddAltis.jpg";
 	onLoadMission="LA map d'ArmA III par définition, un classique ! ";
 	loadScreen="pics\OddAltis.jpg";
+	briefing=0;
 	debriefing=0;
 	saving=0;
 	respawnDialog=0;
