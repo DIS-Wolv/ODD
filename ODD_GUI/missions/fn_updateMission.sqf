@@ -69,7 +69,12 @@ lbClear ODDGUIMissions_Combo_Objectif_IDC;
 } forEach _missionType;
 lbAdd [ODDGUIMissions_Combo_Objectif_IDC, "Aléatoire"];
 lbSetValue[ODDGUIMissions_Combo_Objectif_IDC, count _missionType, -1];
-(_display displayCtrl ODDGUIMissions_Combo_Objectif_IDC) lbSetCurSel ((count _missionType));
+
+// update de la position du curseur
+private _index = lbCurSel ODDGUIMissions_Combo_Objectif_IDC;
+if ((_index == -1) or (_index > (count _missionType))) then {
+    (_display displayCtrl ODDGUIMissions_Combo_Objectif_IDC) lbSetCurSel (count _missionType);
+};
 
 // remet l'event Handler sur le combo objectif
 (_display displayCtrl ODDGUIMissions_Combo_Objectif_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;}];

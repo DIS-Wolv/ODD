@@ -119,7 +119,12 @@ lbClear ODDGUIMissions_Combo_Location_IDC;
 } forEach _locDisplay;
 lbAdd [ODDGUIMissions_Combo_Location_IDC, "Aléatoire"];
 lbSetValue[ODDGUIMissions_Combo_Location_IDC, count _locDisplay, -1];
-(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) lbSetCurSel ((count _locDisplay));
+
+// update de la position du curseur
+private _index = lbCurSel ODDGUIMissions_Combo_Location_IDC;
+if ((_index == -1) or (_index > (count _locDisplay))) then {
+	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) lbSetCurSel (count _locDisplay);
+};
 
 // remet l'event handler 
 (_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateMission;}];
