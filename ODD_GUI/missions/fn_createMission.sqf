@@ -29,7 +29,9 @@ if (!isServer) then {
 };
 
 
-private _locID = lbValue [ODDGUIMissions_Combo_Location_IDC, lbCurSel ODDGUIMissions_Combo_Location_IDC];
+// récupération de la localité
+private _locIndex = lbCurSel ODDGUIMissions_Combo_Location_IDC;
+private _locID = lbValue [ODDGUIMissions_Combo_Location_IDC, _locIndex];
 private _missionType = ODD_var_MissionType;
 
 // si pas de localité sélectionné, on prend une localité aléatoire en fonction des paramètres
@@ -49,14 +51,14 @@ private _missionName = "DEFAULT";
 // information de la missions
 private _index = lbCurSel ODDGUIMissions_Combo_Objectif_IDC;
 private _value = lbValue [ODDGUIMissions_Combo_Objectif_IDC, _index];
+
 // si une missions est sélectionné
 if (_value != -1) then {
-
+    // récupération de la mission
 	_missionName = ODD_var_MissionType select _value;
-    
 }
 else {
-    // systemChat format ["| %1 |", _missionName];
+    // sinon choisir une mission aléatoire en fonction de la localité
     _missionName = "RANDOM";
     if ((_selectedLoc getVariable ["ODD_var_isBlue", false]) == true) then {
         _missionName = selectRandom ODD_var_MissionTypeBlue;
@@ -71,19 +73,4 @@ else {
 
 systemChat format ["%1 | %2", text _selectedLoc, _missionName];
 
-//text (ODD_var_AllLocations select _locID)
-
-
-// systemChat format ["%1 | %2 | %3 | %4", _missionType, _valLocationType, _valZone, _locID];
-
-
-
-// private _missionParams = ODDGUIMissions_var_SelectedParams;
-
-// [_missionParams select 0,_missionParams select 1,True,_missionParams select 2] remoteExec ["ODDadvanced_fnc_missions", 2];
-// type de mission, Zone d'opération, ZO+ ou non, faction
-
-/*
-
-
-*/
+// [_selectedLoc, _missionName] call _fnc_createMission;
