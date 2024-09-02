@@ -1,8 +1,8 @@
 params ["_unit"];
 
-private _EXP3_Player = ["Wolv", "Taka", "Slade"];
+private _EXP3_Player = ["Taka", "Slade"];
 private _ACO_Player = [];
-private _aimpoint_Player = [];
+private _aimpoint_Player = ["Wolv"];
 
 
 if ((name _unit) in _EXP3_Player) then {
