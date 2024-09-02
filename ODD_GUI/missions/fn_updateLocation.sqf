@@ -63,10 +63,9 @@ if (typeName _valLocationType == "STRING") then {
 private _locMissions = [];
 
 private _index = lbCurSel ODDGUIMissions_Combo_Objectif_IDC;
+private _value = lbValue [ODDGUIMissions_Combo_Objectif_IDC, _index];
 // si une missions est sélectionné
-if (_index != -1) then {
-	private _value = lbValue [ODDGUIMissions_Combo_Objectif_IDC, _index];
-
+if (_value != -1) then {
 	private _missionName = ODD_var_MissionType select _value;
 
 	// si la missions est de type allié
