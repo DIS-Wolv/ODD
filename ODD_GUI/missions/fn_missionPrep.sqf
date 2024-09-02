@@ -12,7 +12,7 @@ private _indexFaction = lbCurSel ODDGUIMissions_Combo_Faction_IDC;
 private _selectedFaction = "";
 private _indexPlayers = lbCurSel ODDGUIMissions_Combo_Players_IDC;
 
-_listLocations = [] call OddGuiMissions_fnc_udpateLocation;
+_listLocations = [] call OddGuiMissions_fnc_updateLocation;
 
 if (_indexLocation >= 0 and _indexLocation < count (ODDGUIMissions_var_LocationClassName)) then {
 	_valLocationType = ODDGUIMissions_var_LocationClassName select _indexLocation;

@@ -4,12 +4,14 @@ class ODD_Gui {
 		file = "odd_gui\missions";
 
 		class open {};
-		class udpateLocation {};
-		class updateTime {};
 		class setTimeWeather {};
 		class missionPrep {};
 		class createMission {};
 		class missionStatus {};
+
+		class updateLocation {};
+		class updateMission {};
+		class updateTime {};
 	};
 
 };
