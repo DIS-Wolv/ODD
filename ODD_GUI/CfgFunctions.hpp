@@ -5,7 +5,6 @@ class ODD_Gui {
 
 		class open {};
 		class setTimeWeather {};
-		class missionPrep {};
 		class createMission {};
 		class missionStatus {};
 
