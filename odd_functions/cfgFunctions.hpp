@@ -171,3 +171,12 @@ class ODD_CTI {
 	}
 };
 
+class ODD_Missions {
+	tag = "ODDMIS"
+	class Initialize {
+		file = "odd_functions\missions";
+		class createFrontLine {};
+
+	}
+};
+
