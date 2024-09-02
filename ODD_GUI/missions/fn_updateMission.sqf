@@ -23,6 +23,8 @@ if (_indexZone >= 0 and _indexZone < count ODDGUIMissions_var_zoneName) then {
 	_valZone = ODDGUIMissions_var_zoneName select _indexZone;
 };
 
+systemChat format ["%1", _valZone];
+
 switch (_valZone) do {
     case "Zone allié": {
         _missionType = ODD_var_MissionTypeBlue;
@@ -45,8 +47,8 @@ private _display = (findDisplay ODDGUIMissions_IddDisplay);
 
 lbClear ODDGUIMissions_Combo_Objectif_IDC;
 {
-	lbAdd [ODDGUIMissions_Combo_Objectif_IDC, (_x select 0)];
-	lbSetValue[ODDGUIMissions_Combo_Objectif_IDC, _forEachIndex, ((_x select 1) getVariable ["ODD_var_AllLocations_index", -1])];
+	lbAdd [ODDGUIMissions_Combo_Objectif_IDC, _x];
+	lbSetValue[ODDGUIMissions_Combo_Objectif_IDC, _forEachIndex, _x];
 } forEach _missionType;
 lbAdd [ODDGUIMissions_Combo_Objectif_IDC, "Aléatoire"];
 lbSetValue[ODDGUIMissions_Combo_Objectif_IDC, count _missionType, -1];
