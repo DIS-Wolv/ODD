@@ -32,6 +32,10 @@ ODDGUIMissions_SText_Time_IDC = 1102;		// OK
 // Var pour la localité
 ODDGUIMissions_var_zoneName = ["Zone allié", "Ligne de front", "Zone énemie"];
 
+// si on est pas le serv on demande le contenue de ODD_var_AllLocations
+if (!isServer) then {
+	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
+};
 
 private _location = ['Capitale', 'Grande ville', 'Ville', 'Village', 'Lieu-dit', 'Colline'];
 ODDGUIMissions_var_LocationClassName = ODD_var_LocationType;
@@ -68,19 +72,21 @@ if (_isCreate) then {
 	lbAdd [ODDGUIMissions_Combo_TailleZO_IDC, "Aléatoire"];
 	lbSetValue[ODDGUIMissions_Combo_TailleZO_IDC, count _location, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_TailleZO_IDC) lbSetCurSel ((count _location));
-	(_display displayCtrl ODDGUIMissions_Combo_TailleZO_IDC) ctrlAddEventHandler ["LBSelChanged",{[] call OddGuiMissions_fnc_updateLocation;}];
+	(_display displayCtrl ODDGUIMissions_Combo_TailleZO_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;}];
 	
 	// localité
 	[] call OddGuiMissions_fnc_updateLocation;
+	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateMission;}];
 
 	// combo objectif
 	[] call OddGuiMissions_fnc_updateMission;
+	//(_display displayCtrl ODDGUIMissions_Combo_Objectif_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;}];
 
 	// PARTIE Météo
 
 	// slider time
 	sliderSetRange [ODDGUIMissions_Slider_Time_IDC, 0, 1440];
-	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] call OddGuiMissions_fnc_updateTime;}];
+	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] spawn OddGuiMissions_fnc_updateTime;}];
 
 	// combo météo
 	{
