@@ -31,9 +31,7 @@ waitUntil {
 		// or (_x inArea [position fob, 30, 30, 0, False]) 
 		// or (_x inArea [position usine, 30, 30, 0, False])
 	} count (allPlayers - entities "HeadlessClient_F");
-	if (ODD_var_DEBUG) then {
-		systemChat format ["Nombre de joueur sur base : %1/%2", _nbPlayerOnBase, _nbPlayer];
-	};
+	[["Nombre de joueur sur base : %1/%2", _nbPlayerOnBase, _nbPlayer]] call ODDcommon_fnc_log;
 
 	_nbPlayerOnBase >= _nbPlayer;
 };
