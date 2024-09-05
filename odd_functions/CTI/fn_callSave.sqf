@@ -53,6 +53,7 @@ if (isnil "_lastProgressDate") then {
 private _date = date;
 if ([_date] call ODDCommon_fnc_dateInNumber >= (([_lastProgressDate] call ODDCommon_fnc_dateInNumber) + 1)) then {
 	ODD_var_ProgressDate = date;
+	[["Progressions des Enemies !"]] call ODDcommon_fnc_log;
 	["Progressions des Enemies !"] remoteExec ["systemChat", 0];
 	[] call ODDCTI_fnc_ProgressMap;
 };
