@@ -21,6 +21,10 @@ if (!isNil "ODD_var_INITMAP") exitWith {true;};
 ODD_var_INITMAP = true;
 [{ODD_var_INITMAP = true;}] remoteExec ["call", 0, true];
 
+if (isNil "ODD_var_DEBUG") then {
+	ODD_var_DEBUG = False;
+};
+
 // partie de la gestion des sauvegardes
 // au début pas besoin de save
 ODD_var_NeedSave = false;
