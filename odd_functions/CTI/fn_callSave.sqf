@@ -23,14 +23,17 @@ waitUntil {
 	uisleep 5;
 
 	// compte le nombre de joueur Total connecté
-	private _nbPlayer = count ([] call BIS_fnc_listPlayers);
+	private _nbPlayer = count (allPlayers - entities "HeadlessClient_F");
 
 	// compte le nombre de joueur sur base + FOB + usine
 	private _nbPlayerOnBase = {
 		(_x inArea [position base, 500, 500, 0, False])
 		// or (_x inArea [position fob, 30, 30, 0, False]) 
 		// or (_x inArea [position usine, 30, 30, 0, False])
-	} count ([] call BIS_fnc_listPlayers);
+	} count (allPlayers - entities "HeadlessClient_F");
+	if (ODD_var_DEBUG) then {
+		systemChat format ["Nombre de joueur sur base : %1/%2", _nbPlayerOnBase, _nbPlayer];
+	};
 
 	_nbPlayerOnBase >= _nbPlayer;
 };
