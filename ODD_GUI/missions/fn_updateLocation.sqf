@@ -18,6 +18,7 @@
 if (!isServer) then {
 	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
 };
+//problème de localité a résoudre, les clients ne voies pas les localités dans la liste ! les localités sont local a chaque client ? joué avec les index fixe le pb ?
 
 // Zone de la localité
 private _indexZone = lbCurSel ODDGUIMissions_Combo_Area_IDC;
