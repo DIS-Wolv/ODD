@@ -18,8 +18,6 @@
 * 
 */
 
-systemChat "fn_createMission.sqf";
-
 if (!isServer) then {
 	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
 	[clientOwner, "ODD_var_MissionType"] remoteExec ["publicVariableClient", 2];
@@ -72,5 +70,15 @@ else {
 };
 
 systemChat format ["%1 | %2", text _selectedLoc, _missionName];
+
+if ((_selectedLoc getVariable ["ODD_var_isBlue", false]) == true) then {
+    systemChat "_fnc_createMissionBlue";
+} else {
+    if ((_selectedLoc getVariable ["ODD_var_isFrontLine", false]) == true) then {
+        systemChat "_fnc_createMissionFrontLine";
+    } else {
+        systemChat "_fnc_createMissionEnemy";
+    };
+};
 
 // [_selectedLoc, _missionName] call _fnc_createMission;
