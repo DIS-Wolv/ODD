@@ -52,7 +52,8 @@ if (isnil "_lastProgressDate") then {
 
 [["Test progression enemie"]] call ODDcommon_fnc_log;
 // on avance les IA toutes les 24h minimum
-if ([date] call ODDCommon_fnc_dateInNumber <= ([_lastProgressDate] call ODDCommon_fnc_dateInNumber + 1)) then {
+private _date = date;
+if ([_date] call ODDCommon_fnc_dateInNumber >= (([_lastProgressDate] call ODDCommon_fnc_dateInNumber) + 1)) then {
 	ODD_var_ProgressDate = date;
 	["Progressions des Enemies !"] remoteExec ["systemChat", 0];
 	[] call ODDCTI_fnc_ProgressMap;
