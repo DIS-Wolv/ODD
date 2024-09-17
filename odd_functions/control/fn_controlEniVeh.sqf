@@ -48,9 +48,11 @@ if ((typeName _loc) != "SCALAR") then {
 
 			// spawn des véhicules
 			{
+				// choisis une route aléatoire
 				private _road = selectRandom _roads;
 				_roads = _roads - [_road];
 
+				// récupère la direction de la route
 				private _SpawnPos = getPos _road;
 				private _croad = roadsConnectedTo _road;
 				if (count _croad == 0) then {
@@ -58,17 +60,35 @@ if ((typeName _loc) != "SCALAR") then {
 				};
 				private _dir = _road getDir (selectRandom _croad);
 
+				// spawn du groupe
 				private _group = [_SpawnPos, east, _x] call BIS_fnc_spawngroup;
 
+				// récupère le vehicule
 				private _vl = vehicle ((units _group) select 0);
 
+				// aligne le vl sur la route
 				_vl setDir _dir;
 
+				// Event Handler si le vehicule est detruit avec une des charges explosives spécifiées, il explose 100% des cas
+				_vl addEventHandler ["Explosion", {
+					params ["_vehicle", "_damage", "_source"];
+					systemChat format ["Vehicle %1 was destroyed by |%2| with %3 dmg", _vehicle, typeOf _source, _damage];
+					private _exploBoumBoum = ["SatchelCharge_Remote_Ammo", "DemoCharge_Remote_Ammo"];
+
+					if (typeOf _source in _exploBoumBoum) then {
+						_vehicle setDamage 1;
+						_vehicle removeAllEventHandlers "Explosion";
+					};
+				}];
+
+				// ajoute a la liste des vls de la missions 
 				ODD_var_IAVehicles pushBack _vl;
 
+				// ajoute le groupe a la liste des vls sortie
 				_actVeh pushBack _group;
 				_group setVariable ["ODD_var_Loc", _loc, True];
-
+				
+				// Event Handler si le groupe est vide, le retire de la liste des garnisons
 				_group addEventHandler ["Empty", {
 					params ["_group"];
 					private _loc = _group getVariable ["ODD_var_Loc", objNull];
@@ -80,6 +100,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_loc setVariable ["ODD_var_OccVehGroup", _groupList, True];
 				}];
 
+				// Event handler sur les soldat du groupe
 				{
 					private _id = _x addEventHandler ["Killed", {
 						params ["_unit", "_killer", "_instigator", "_useEffects"];
