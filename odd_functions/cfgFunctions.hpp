@@ -167,7 +167,7 @@ class ODD_CTI {
 		class updateCivRep {};
 		class updateMap {};
 		class updateMapLocation {};
-
+		class getAllLocs {};
 	}
 };
 
