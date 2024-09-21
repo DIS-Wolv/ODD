@@ -40,3 +40,4 @@ if (_mapData isEqualTo []) exitWith {["Pas d'import a faire"] remoteExec ["syste
 
 ["Données importé"] remoteExec ["systemChat", 0];
 [["Données importé"]] call ODDcommon_fnc_log;
+ODD_var_DataLoaded = true;

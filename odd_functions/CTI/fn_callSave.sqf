@@ -14,6 +14,7 @@
 */
 
 if (ODD_var_NeedSave == false) exitWith {true;};
+if (ODD_var_DataLoaded == false) exitWith {true};
 
 [["Save en attente de joueurs"]] call ODDcommon_fnc_log;
 ["En attente du retours base pour save"] remoteExec ["systemChat", 0];
