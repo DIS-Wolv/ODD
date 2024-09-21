@@ -18,11 +18,11 @@
 
 params ["_var", ["_value", true]];
 
-// need to be executed on the server
-// if (!isServer) exitWith {true;};
-if (!isServer) then {
-	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
-};
+// need to be executed on the server (the var are only on the server's location)
+if (!isServer) exitWith {true;};
+// if (isNil "ODD_var_AllLocations") then {
+//     [] call ODDCTI_fnc_getAllLocs;
+// };
 
 // récupère la liste des locations
 Private _AllLocToReturn = ODD_var_AllLocations;
