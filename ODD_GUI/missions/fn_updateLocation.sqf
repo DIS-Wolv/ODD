@@ -15,8 +15,8 @@
 
 
 // get ODD_var_AllLocations from Serv
-if (!isServer) then {
-	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
+if (isNil "ODD_var_AllLocations") then {
+    [] call ODDCTI_fnc_getAllLocs;
 };
 //problème de localité a résoudre, les clients ne voies pas les localités dans la liste ! les localités sont local a chaque client ? joué avec les index fixe le pb ?
 

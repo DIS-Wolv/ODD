@@ -19,11 +19,14 @@
 */
 
 if (!isServer) then {
-	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
 	[clientOwner, "ODD_var_MissionType"] remoteExec ["publicVariableClient", 2];
 	[clientOwner, "ODD_var_MissionTypeBlue"] remoteExec ["publicVariableClient", 2];
 	[clientOwner, "ODD_var_MissionTypeFrontLine"] remoteExec ["publicVariableClient", 2];
 	[clientOwner, "ODD_var_MissionTypeEnemy"] remoteExec ["publicVariableClient", 2];
+};
+
+if (isNil "ODD_var_AllLocations") then {
+    [] call ODDCTI_fnc_getAllLocs;
 };
 
 

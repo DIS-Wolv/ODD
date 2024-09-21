@@ -33,8 +33,8 @@ ODDGUIMissions_SText_Time_IDC = 1102;		// OK
 ODDGUIMissions_var_zoneName = ["Zone allié", "Ligne de front", "Zone énemie"];
 
 // si on est pas le serv on demande le contenue de ODD_var_AllLocations
-if (!isServer) then {
-	[clientOwner, "ODD_var_AllLocations"] remoteExec ["publicVariableClient", 2];
+if (isNil "ODD_var_AllLocations") then {
+    [] call ODDCTI_fnc_getAllLocs;
 };
 
 private _location = ['Capitale', 'Grande ville', 'Ville', 'Village', 'Lieu-dit', 'Colline'];
