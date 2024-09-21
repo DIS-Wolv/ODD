@@ -111,13 +111,18 @@ if (!isNil "_objectData") then {
 };
 
 // on récupère les données des variables globales
-_varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo","ODD_var_ProgressDate"];
-{
-	private _value = _data get _x;
-	if (!isNil "_value") then {
-		_x = _value;
-	};
-} forEach _varToSet;
+ODD_var_CivilianReputation = _data get "ODD_var_CivilianReputation";
+ODD_var_CTIMarkerInfo = _data get "ODD_var_CTIMarkerInfo";
+ODD_var_ProgressDate = _data get "ODD_var_ProgressDate";
+// ca marche pas mais pk ?
+// _varToSet = ["ODD_var_CivilianReputation","ODD_var_CTIMarkerInfo","ODD_var_ProgressDate"];
+// {
+// 	private _value = _data get _x;
+// 	if (!isNil "_value") then {
+// 		_x = _value;
+// 	};
+// } forEach _varToSet;
+
 
 private _date = _data get "ODD_var_DateTime";
 setDate _date;
