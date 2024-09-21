@@ -20,7 +20,6 @@ if (!isNil "ODD_var_INITMAP") exitWith {true;};
 // on execute la fonction et on la marque comme appelé
 ODD_var_INITMAP = false;
 ODD_var_DataLoaded = false;
-[{ODD_var_INITMAP = true;}] remoteExec ["call", 0, true];
 
 if (isNil "ODD_var_DEBUG") then {
 	ODD_var_DEBUG = False;
@@ -311,8 +310,9 @@ ODD_var_AllLocations = _locations;
 }] call CBA_fnc_addEventHandler;
 
 ODD_var_INITMAP = true;
+[{ODD_var_INITMAP = false;}] remoteExec ["call", 0, true];
 ["Map Initialized"] remoteExec ["systemChat", 0];
-["Map Initialized"] call ODDcommon_fnc_log;
+[["Map Initialized"]] call ODDcommon_fnc_log;
 
 // import les donnés sauvergardé
 uiSleep 15;
