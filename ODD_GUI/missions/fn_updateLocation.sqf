@@ -55,6 +55,7 @@ switch (_valZone) do {
 };
 _locZone = _locZone apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
 
+
 // Type de Localité
 private _locType = ODD_var_AllLocations;
 
@@ -96,7 +97,7 @@ if (_value != -1) then {
 	};
 	// les locations sont cumulative car une missions peux etre allié et ligne de front
 };
-_locZone = _locZone apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
+_locMissions = _locMissions apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
 
 
 // intersection des listes
@@ -104,6 +105,7 @@ private _loc = _locZone arrayIntersect _locType;
 if (count _locMissions > 0) then {
 	_loc = _loc arrayIntersect _locMissions;
 };
+_loc = _loc apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
 
 // prépare les loc pour l'affichage 
 private _locDisplay = _loc apply {[text _x, _x]};
