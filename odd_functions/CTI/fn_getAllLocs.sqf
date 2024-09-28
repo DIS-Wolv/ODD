@@ -14,7 +14,7 @@
 * 
 */
 
-if (!isNil "DISCommon_var_InitCustomLocations") exitWith {true;};
+if (isNil "DISCommon_var_InitCustomLocations") exitWith {true;};
 
 // fonction pour supprimer les locations blacklistées
 private _fnc_removeBlackListed = {
@@ -38,9 +38,10 @@ if (isServer) then {
 	// serveur, descide de l'index de chaque location
 	{
 		_x setVariable ["ODD_var_AllLocations_index", _forEachIndex];
+		ODD_var_AllLocationsName pushBack (text _x);
 	} forEach _locations;
 	// crée une table de correspondance entre le nom et l'index
-	ODD_var_AllLocationsName = _locations apply {text _x};
+	// ODD_var_AllLocationsName = _locations apply {text _x};
 }
 else {
 	// client, récupère la table de correspondance
@@ -55,6 +56,7 @@ else {
 		else {
 			private _index = _locationName find (text _x);
 			_x setVariable ["ODD_var_AllLocations_index", _index];
+			// réordonne la var
 		};
 	} forEach _locations;
 };
