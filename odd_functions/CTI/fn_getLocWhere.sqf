@@ -16,7 +16,7 @@
 * 
 */
 
-params ["_var", ["_value", true]];
+params ["_var", ["_value", true], ["_ReturnIndex", true]];
 
 // need to be executed on the server (the var are only on the server's location)
 if (!isServer) exitWith {true;};
@@ -34,6 +34,12 @@ _AllLocToReturn = _AllLocToReturn apply {
 
 // retire les objNull (locations sans la variable _var a la bonne valeur)
 _AllLocToReturn = _AllLocToReturn - [objNull];
+
+// si dois renvoier les index
+if (_ReturnIndex) then {
+	// renvoie les index
+	_AllLocToReturn = _AllLocToReturn apply {_x getVariable ["ODD_var_AllLocations_index", -1];};
+};
 
 // renvoie la liste des locations
 _AllLocToReturn;
