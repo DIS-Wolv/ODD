@@ -63,11 +63,8 @@ private _fnc_removeBlackListed = {
 	_locations;
 };
 
-
-private _locations = nearestLocations[[worldSize / 2, worldSize / 2], ODD_var_LocationType, worldSize * 2];
-
-// retire les locations blacklistées
-_locations = [_locations] call _fnc_removeBlackListed;
+// récupère les locations
+private _locations = [] call ODDCTI_fnc_getAllLocs;
 
 // pour chaque location
 {
@@ -178,7 +175,6 @@ _locations = [_locations] call _fnc_removeBlackListed;
 	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
 	_maLoc setVariable ["ODD_var_isFrontLine", false];
-	_maLoc setVariable ["ODD_var_AllLocations_index", _forEachIndex];
 
 	// Set des variable de recrutement
 	private _isMil = [_x] call ODDCommon_fnc_isMillitary;
