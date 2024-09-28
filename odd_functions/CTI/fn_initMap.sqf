@@ -17,6 +17,12 @@
 // si on est sur le serv et que la fonction n'a pas été appelé
 if (!isServer) exitWith {true;};
 if (!isNil "ODD_var_INITMAP") exitWith {true;};
+
+waitUntil {
+	uiSleep 0.1;
+	DISCommon_var_InitCustomLocations
+};
+
 // on execute la fonction et on la marque comme appelé
 ODD_var_INITMAP = false;
 ODD_var_DataLoaded = false;
