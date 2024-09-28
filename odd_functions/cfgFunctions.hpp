@@ -165,6 +165,7 @@ class ODD_CTI {
 		class profileSave {};
 		class ProgressMap {};
 		class updateCivRep {};
+		class updateLocationVar {};
 		class updateMap {};
 		class updateMapLocation {};
 		class getAllLocs {};
