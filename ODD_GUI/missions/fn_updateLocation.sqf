@@ -30,20 +30,30 @@ if (_indexZone >= 0 and _indexZone < count ODDGUIMissions_var_zoneName) then {
 // Trie des locations en fonction de la zone
 private _locZone = ODD_var_AllLocations;
 
+// update des locations depuis le serveur
+[] remoteExec ["ODDCTI_fnc_updateLocationVar", 2];
+
+// wait until the update is done
+waitUntil {
+	uiSleep 0.1;
+	ODD_var_AllLocationsStateUpdate
+};
+
 switch (_valZone) do {
 	case "Zone allié": {
-		_locZone = ["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere;
+		_locZone = ODD_var_AllLocationsBlueIndex;
 	};
 	case "Ligne de front": {
-		_locZone = (["ODD_var_isFrontLine", true] call ODDCTI_fnc_getLocWhere) - (["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere);
+		_locZone = ODD_var_AllLocationsFrontLineIndex;
 	};
 	case "Zone énemie": {
-		_locZone = (["ODD_var_isFrontLine", false] call ODDCTI_fnc_getLocWhere) - (["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere);
+		_locZone = ODD_var_AllLocationsRedIndex;
 	};
 	default {
 		_locZone = ODD_var_AllLocations;
 	};
 };
+_locZone = _locZone apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
 
 // Type de Localité
 private _locType = ODD_var_AllLocations;
@@ -72,20 +82,22 @@ if (_value != -1) then {
 	// si la missions est de type allié
 	if (ODD_var_MissionTypeBlue find _missionName > -1) then {
 		// rajoute les locations allié
-		_locMissions = ["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere;
+		_locMissions = ODD_var_AllLocationsBlueIndex;
 	};
 	// si la missions est de type ligne de front
 	if (ODD_var_MissionTypeFrontLine find _missionName > -1) then {
 		// rajoute les locations de la ligne de front
-		_locMissions = _locMissions + ((["ODD_var_isFrontLine", true] call ODDCTI_fnc_getLocWhere) - (["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere));
+		_locMissions = _locMissions + ODD_var_AllLocationsFrontLineIndex;
 	};
 	// si la missions est de type ennemie
 	if (ODD_var_MissionTypeEnemy find _missionName > -1) then {
 		// rajoute les locations ennemie
-		_locMissions = _locMissions + ((["ODD_var_isFrontLine", false] call ODDCTI_fnc_getLocWhere) - (["ODD_var_isBlue", true] call ODDCTI_fnc_getLocWhere));
+		_locMissions = _locMissions + ODD_var_AllLocationsRedIndex;
 	};
 	// les locations sont cumulative car une missions peux etre allié et ligne de front
 };
+_locZone = _locZone apply {if (typeName _x == "SCALAR") then {ODD_var_AllLocations select _x} else {_x;};};
+
 
 // intersection des listes
 private _loc = _locZone arrayIntersect _locType;
