@@ -24,9 +24,7 @@ if (!isServer) exitWith {true;};
 ODD_var_AllLocationsStateUpdate = False;
 publicVariable "ODD_var_AllLocationsStateUpdate";
 
-if (isNil "ODD_var_AllLocations") then {
-    [] call ODDCTI_fnc_getAllLocs;
-};
+[] call ODDCTI_fnc_getAllLocs;
 
 private _LocBlue = [];
 private _LocRed = [];
