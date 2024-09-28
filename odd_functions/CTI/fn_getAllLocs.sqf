@@ -33,9 +33,31 @@ private _locations = nearestLocations[[worldSize / 2, worldSize / 2], ODD_var_Lo
 // retire les locations blacklistées
 _locations = [_locations] call _fnc_removeBlackListed;
 
-{
-	_x setVariable ["ODD_var_AllLocations_index", _forEachIndex];
-} forEach _locations;
+// en fonction de si on est serveur ou client 
+if (isServer) then {
+	// serveur, descide de l'index de chaque location
+	{
+		_x setVariable ["ODD_var_AllLocations_index", _forEachIndex];
+	} forEach _locations;
+	// crée une table de correspondance entre le nom et l'index
+	ODD_var_AllLocationsName = _locations apply {text _x};
+}
+else {
+	// client, récupère la table de correspondance
+	[clientOwner, "ODD_var_AllLocationsName"] remoteExec ["publicVariableClient", 2];
+	// on se base sur la table de correspondance pour définir l'index de chaque location
+
+	_locationName = _locations apply {text _x};
+	{
+		if (text _x == (ODD_var_AllLocationsName select _forEachIndex)) then {
+			_x setVariable ["ODD_var_AllLocations_index", _forEachIndex];
+		}
+		else {
+			private _index = _locationName find (text _x);
+			_x setVariable ["ODD_var_AllLocations_index", _index];
+		};
+	} forEach _locations;
+};
 
 ODD_var_AllLocations = _locations;
 
