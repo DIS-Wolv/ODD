@@ -21,6 +21,8 @@
 */
 
 if (!isServer) exitWith {true;};
+ODD_var_AllLocationsStateUpdate = False;
+publicVariable "ODD_var_AllLocationsStateUpdate";
 
 if (isNil "ODD_var_AllLocations") then {
     [] call ODDCTI_fnc_getAllLocs;
@@ -61,3 +63,6 @@ ODD_var_AllLocationsRedIndex = _LocRed apply { _x getVariable ["ODD_var_AllLocat
 publicVariable "ODD_var_AllLocationsBlue";
 publicVariable "ODD_var_AllLocationsFrontLine";
 publicVariable "ODD_var_AllLocationsRed";
+
+ODD_var_AllLocationsStateUpdate = True;
+publicVariable "ODD_var_AllLocationsStateUpdate";

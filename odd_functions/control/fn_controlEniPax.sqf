@@ -180,6 +180,9 @@ if ((typeName _loc) != "SCALAR") then {
 					_x setVariable ["ODD_var_isFrontLine", true];
 					[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
 				} forEach _nearloc;
+
+				ODD_var_AllLocationsStateUpdate = False;
+				publicVariable "ODD_var_AllLocationsStateUpdate";
 			};
 
 			// update du marker : 
