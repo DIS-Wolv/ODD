@@ -77,8 +77,6 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// Set des variable d'enemie
 	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
 	_actEni = round (_tgtEni);
-	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
-	_maLoc setVariable ["ODD_var_OccTgtEni", _tgtEni];
 
 	// valeur de vehicule
 	private _vehtgt = 0;
@@ -88,8 +86,6 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	for "_i" from 1 to _vehtgt do {
 		_vehact pushBack (selectRandom ODD_var_Vehicles);
 	};
-	_maLoc setVariable ["ODD_var_OccActEniVeh", _vehact];
-	_maLoc setVariable ["ODD_var_OccTgtEniVeh", _vehtgt];
 
 	// valeur de civil
 	private _civtgt = 0;
@@ -97,21 +93,21 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// Set des variable de civil
 	_civtgt = [_x] call ODDCTI_fnc_calcCivOnLoc;
 	_civact = round (_civtgt);
+
+	// Set des variable de la location
+	_maLoc setVariable ["ODD_var_LocName", text _x];
+	_maLoc setVariable ["ODD_var_LocId", _forEachIndex];
+	// Set des variable de enemie pax
+	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
+	_maLoc setVariable ["ODD_var_OccTgtEni", _tgtEni];
+
+	// Set des variable de vehicule
+	_maLoc setVariable ["ODD_var_OccActEniVeh", _vehact];
+	_maLoc setVariable ["ODD_var_OccTgtEniVeh", _vehtgt];
+
+	// Set des variable de civilian
 	_maLoc setVariable ["ODD_var_CivActPax", _civact];
 	_maLoc setVariable ["ODD_var_CivTgtPax", _civtgt];
-
-	// Valeur des caisses
-	// private _crate = 0; // faire spawn en meme temps que les civils / pax enemie 
-	// _crate = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
-	// _maLoc setVariable ["ODD_var_Crate", _crate];
-
-	// Valeurs des IED
-	// private _roads = (position _x) nearRoads (size _x select 0);
-	// private _minIED = round (((count _roads) *  1 / 100)) max 0;
-	// private _maxIED = round ((count _roads) * 4 / 100);
-	// private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
-	// _maLoc setVariable ["ODD_var_IED", _nbIED];
-
 
 	// Set des variable de capture
 	_maLoc setVariable ["ODD_var_isBlue", false];
@@ -129,6 +125,18 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 		_maLoc setVariable ["ODD_var_OccRecrutVeh", 0];
 		_maLoc setVariable ["ODD_var_IsMil", false];
 	};
+
+	// Valeur des caisses
+	// private _crate = 0; // faire spawn en meme temps que les civils / pax enemie 
+	// _crate = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
+	// _maLoc setVariable ["ODD_var_Crate", _crate];
+
+	// Valeurs des IED
+	// private _roads = (position _x) nearRoads (size _x select 0);
+	// private _minIED = round (((count _roads) *  1 / 100)) max 0;
+	// private _maxIED = round ((count _roads) * 4 / 100);
+	// private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
+	// _maLoc setVariable ["ODD_var_IED", _nbIED];
 
 	// crée un marker sur la map
 	private _marker = createMarkerLocal [Format ["ODD_var_LocMarker_%1", _pos], (_pos getPos [50, 270])];
