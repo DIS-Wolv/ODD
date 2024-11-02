@@ -58,17 +58,6 @@ private _alt = 1000;
 ODD_var_CTIMarkerInfo = 1;
 ODDCTI_var_capturePrc = 0.2;
 
-// fonction pour supprimer les locations blacklistées
-private _fnc_removeBlackListed = {
-	params ["_locations"];
-	{
-		if (text _x in ODD_var_BlackistedLocation) then {
-			_locations = _locations - [_x];
-		};
-	}forEach _locations;
-	_locations;
-};
-
 // récupère les locations
 private _locations = [] call ODDCTI_fnc_getAllLocs;
 
@@ -76,64 +65,10 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 {
 	// récupère la position de la location
 	private _pos = getPos _x;
-	private _range = 1000;
 
-	switch (type _x) do {
-		case (ODD_var_LocationType select 0): { // Capital
-			_range = 4500;
-		};
-		case (ODD_var_LocationType select 1): { // City
-			_range = 3000;
-		};
-		case (ODD_var_LocationType select 2): { // Village
-			_range = 2000;
-		};
-		case (ODD_var_LocationType select 3): { // Name
-			_range = 2000;
-		};
-		case (ODD_var_LocationType select 4): { // NameLocal
-			_range = 1000;
-		};
-		case (ODD_var_LocationType select 5): { // Hill
-			_range = 1000;
-		};
-		default {};
-	};
-	if ([_x] call ODDCommon_fnc_isMillitary) then {
-		_range = _range + 1000;
-	};
-
-	private _nearLoc = nearestLocations[_pos, ODD_var_LocationType, _range];
-	_nearLoc = [_nearLoc] call _fnc_removeBlackListed;
-
-	while {count _nearLoc < 4} do {
-		_range = _range + 100;
-		_nearLoc = nearestLocations[_pos, ODD_var_LocationType, _range];
-		_nearLoc = [_nearLoc] call _fnc_removeBlackListed;
-	};
-
+	// on lie les location a proximité
 	private _maLoc = createLocation [_x];
-	_nearLoc = _nearLoc apply {createLocation [_x]};
-	
-	{
-		private _nearLocR = _x getVariable ["ODD_var_nearLocations", []];
-		_nearLocR pushBackUnique _maLoc;
-		_x setVariable ["ODD_var_nearLocations", _nearLocR];
-	}forEach _nearLoc;
-
-	// private _maLoc = createLocation [_x];
-	private _nearLocO = _maLoc getVariable ["ODD_var_nearLocations", []];
-	{
-		_nearLoc pushBackUnique _x;
-	}forEach _nearLocO;
-
-	{
-		if(text _x == text _maLoc) then {
-			_nearLoc = _nearLoc - [_x];
-		};
-	} forEach _nearLoc;
-
-	_maLoc setVariable ["ODD_var_nearLocations", _nearLoc];
+	[_maLoc] call ODDCTI_fnc_getNearLoc;
 
 
 	// attribue les valeurs de pax sur chaque location
