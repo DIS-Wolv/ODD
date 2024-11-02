@@ -23,6 +23,8 @@ waitUntil {
 	DISCommon_var_InitCustomLocations
 };
 
+[{DISCommon_var_CanTP = False; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
+
 // on execute la fonction et on la marque comme appelé
 ODD_var_INITMAP = false;
 ODD_var_DataLoaded = false;
@@ -262,6 +264,9 @@ ODD_var_INITMAP = true;
 // import les donnés sauvergardé
 uiSleep 15;
 [] call ODDCTI_fnc_profileImport;
+[{DISCommon_var_CanTP = True; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
+["Game Ready !"] remoteExec ["systemChat", 0];
+[["Game Ready !"]] call ODDcommon_fnc_log;
 
 // private _map = (findDisplay 12 displayCtrl 51);
 // {

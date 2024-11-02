@@ -28,10 +28,10 @@ _RadioAction = ["Radio","Reset Radio","\z\tfar\addons\core\ui\ACE_Interaction_Ra
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
 base addAction["<t color='#0D4C00'>Full heal</t>",{[player] call ace_medical_treatment_fnc_fullHealLocal;}];
-base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+base addAction ["FOB", {[fob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","DISCommon_var_CanTP",5];
 ob setVariable ["R3F_LOG_disabled", True];
 rules addAction ["Bug Zeus","scripts\backupZeus.sqf",[],1.5,True,True,"","True",2];
-halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,True,True,"","True",5];
+halo addAction ["Saut",{[player] call DISCommon_fnc_haloJump},[],1.5,True,True,"","DISCommon_var_CanTP",5];
 halo setVariable ["R3F_LOG_disabled", True];
 // factory setVariable ["R3F_LOG_disabled", True];
 repair setVariable ["R3F_LOG_disabled", True];
@@ -77,7 +77,7 @@ then {
 	pierLadder setVariable ["R3F_LOG_disabled", True];
 	boatRack addAction ["Sortir un semi-rigide", {[] call DISCommon_fnc_createBoat},[],1.5,True,True,"","True",5];
 	boatRack addAction ["Récupérer les bateaux", {[] call DISCommon_fnc_deleteBoats},[],1.5,True,True,"","True",5];
-	base addAction ["Usine", {[usine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
+	base addAction ["Usine", {[usine] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","DISCommon_var_CanTP",5];
 	usine addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];
 	// usine setVariable ["R3F_LOG_disabled", True];
 	fob addAction ["Porte-avions", {[ob] call DISCommon_fnc_fastTravel},[],1.5,True,True,"","True",5];

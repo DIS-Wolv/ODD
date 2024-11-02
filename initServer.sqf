@@ -15,6 +15,7 @@ oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
 [] spawn oddCTI_fnc_initMap;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
+[{DISCommon_var_CanTP = True; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
 sleep 5;
 //tawvd_disablenone = True;
 base setObjectTextureGlobal [0, "pics\disMoto.jpg"];

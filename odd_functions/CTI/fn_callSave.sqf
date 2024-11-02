@@ -37,6 +37,8 @@ waitUntil {
 	_nbPlayerOnBase >= _nbPlayer;
 };
 
+[{DISCommon_var_CanTP = False; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
+
 ["Début de la sauvegarde, ne quittez pas !"] remoteExec ["systemChat", 0];
 // sleep pour despawn les IAs
 uisleep 30;
@@ -59,9 +61,11 @@ if ([_date] call ODDCommon_fnc_dateInNumber >= (([_lastProgressDate] call ODDCom
 	[] call ODDCTI_fnc_ProgressMap;
 };
 
-[["Save joueurs sur base"]] call ODDcommon_fnc_log;
+[["Save, joueurs sur base"]] call ODDcommon_fnc_log;
 // sauvergarde des données
 [] remoteExec ["ODDCTI_fnc_profileSave", 2];
+
+[{DISCommon_var_CanTP = True; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
 
 // on a sauvegardé donc on remet la variable a false
 ODD_var_NeedSave = false;
