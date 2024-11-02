@@ -39,7 +39,7 @@ if (!isNil "_locData") then {
 	{
 		[["Set des variables debut %1", (text _x)]] call ODDcommon_fnc_log;
 		// récupération des données dans l'array
-		_maLocData = _locData get (text _x);
+		_maLocData = _locData get _forEachIndex; //(text _x);
 		// si ce n'est pas un hashmap on le transforme
 		if (typeName _maLocData != "HASHMAP") then {
 			_maLocData = createHashMapFromArray _maLocData;
