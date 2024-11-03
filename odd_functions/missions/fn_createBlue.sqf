@@ -1,14 +1,15 @@
 /*
 * Auteur : Wolv
-* Fonction pour créer une missions sur la ligne de front
+* Fonction pour créer une missions dans la zone bleue
 *
 * Arguments :
-* 
+*   _zoneID : ID de la zone
+*   _missionsType : Type de missions
 * 
 * Valeur renvoyée :
 *
 * Exemple :
-* 	[0] call ODDMIS_fnc_createFrontLine;
+* 	[] call ODDMIS_fnc_createBlue;
 *
 * Variable publique :
 * 
@@ -18,4 +19,7 @@ params ["_zoneID","_missionsType"];
 
 // On récupère la zone
 private _zone = ODD_var_AllLocations select _zoneID;
+
+
+
 

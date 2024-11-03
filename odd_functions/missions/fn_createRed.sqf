@@ -1,6 +1,6 @@
 /*
 * Auteur : Wolv
-* Fonction pour créer une missions sur la ligne de front
+* Fonction pour créer une missions sur la zone ennemie
 *
 * Arguments :
 * 
@@ -8,7 +8,7 @@
 * Valeur renvoyée :
 *
 * Exemple :
-* 	[0] call ODDMIS_fnc_createFrontLine;
+* 	[0] call ODDMIS_fnc_createRed;
 *
 * Variable publique :
 * 
