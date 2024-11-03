@@ -99,6 +99,8 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// Set des variable de la location
 	_maLoc setVariable ["ODD_var_LocName", text _maLoc];
 	_maLoc setVariable ["ODD_var_LocId", _forEachIndex];
+	ODD_var_AllLocationsName pushBack (text _x);
+
 	// Set des variable de enemie pax
 	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
 	_maLoc setVariable ["ODD_var_OccTgtEni", _tgtEni];

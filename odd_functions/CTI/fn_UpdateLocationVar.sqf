@@ -32,7 +32,7 @@ private _LocFrontLine = [];
 
 {
     private _loc = _x;
-    private _index = _loc getVariable ["ODD_var_AllLocations_index", -1];
+    private _index = _loc getVariable ["ODD_var_LocId", -1];
     if (_index >= 0) then {
         if (_loc getVariable ["ODD_var_isBlue", true]) then {
             _LocBlue pushBack _loc;
@@ -54,9 +54,9 @@ ODD_var_AllLocationsFrontLine = _LocFrontLine;
 ODD_var_AllLocationsRed = _LocRed;
 
 // pour un usage GLOBAL
-ODD_var_AllLocationsBlueIndex = _LocBlue apply { _x getVariable ["ODD_var_AllLocations_index", -1]; };
-ODD_var_AllLocationsFrontLineIndex = _LocFrontLine apply { _x getVariable ["ODD_var_AllLocations_index", -1]; };
-ODD_var_AllLocationsRedIndex = _LocRed apply { _x getVariable ["ODD_var_AllLocations_index", -1]; };
+ODD_var_AllLocationsBlueIndex = _LocBlue apply { _x getVariable ["ODD_var_LocId", -1]; };
+ODD_var_AllLocationsFrontLineIndex = _LocFrontLine apply { _x getVariable ["ODD_var_LocId", -1]; };
+ODD_var_AllLocationsRedIndex = _LocRed apply { _x getVariable ["ODD_var_LocId", -1]; };
 
 publicVariable "ODD_var_AllLocationsBlue";
 publicVariable "ODD_var_AllLocationsFrontLine";

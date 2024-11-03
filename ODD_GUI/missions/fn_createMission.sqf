@@ -41,7 +41,7 @@ if (_locID == -1) then {
     // récupération des locations compatible avec les choix
     private _loc = [] call OddGuiMissions_fnc_updateLocation;
 
-    _locID = (selectRandom _loc) getVariable ["ODD_var_AllLocations_index", -1];
+    _locID = (selectRandom _loc) getVariable ["ODD_var_LocId", -1];
 };
 
 // récupération de la localité Objectif

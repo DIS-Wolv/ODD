@@ -130,7 +130,7 @@ private _display = (findDisplay ODDGUIMissions_IddDisplay);
 lbClear ODDGUIMissions_Combo_Location_IDC;
 {
 	lbAdd [ODDGUIMissions_Combo_Location_IDC, (_x select 0)];
-	lbSetValue[ODDGUIMissions_Combo_Location_IDC, _forEachIndex, ((_x select 1) getVariable ["ODD_var_AllLocations_index", -1])];
+	lbSetValue[ODDGUIMissions_Combo_Location_IDC, _forEachIndex, ((_x select 1) getVariable ["ODD_var_LocId", -1])];
 } forEach _locDisplay;
 lbAdd [ODDGUIMissions_Combo_Location_IDC, "Aléatoire"];
 lbSetValue[ODDGUIMissions_Combo_Location_IDC, count _locDisplay, -1];
