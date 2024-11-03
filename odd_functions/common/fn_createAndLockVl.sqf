@@ -6,6 +6,7 @@
  * 1: nom du vehicule
  * 2: position du vehicule
  * 3: orientation du vehicule
+ * 4: lock le vehicule
  *
  * Valeur renvoyée :
  * le vehicule ou nil si impossible de le faire spawn
@@ -13,6 +14,7 @@
  * Exemple:
  * ["C_Van_01_box_F", position player] call ODDcommon_fnc_createAndLockVl;
  * ["C_Van_01_box_F", position player, random 360] call ODDcommon_fnc_createAndLockVl;
+ * ["C_Van_01_box_F", position player, random 360, False] call ODDcommon_fnc_createAndLockVl;
 */
 
 // Récupère les arguments
