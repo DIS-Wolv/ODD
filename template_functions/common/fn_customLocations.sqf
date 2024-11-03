@@ -3,6 +3,8 @@
 * Script ajoutant des locations personalisées
 */
 
+DISCommon_var_InitCustomLocations = false;
+
 switch (worldName) do {
 	case "Altis": {
 		private _factory1 = createLocation ["NameLocal", [11473,14246,0], 200, 200];
@@ -231,6 +233,7 @@ switch (worldName) do {
 	default { };
 };
 
+DISCommon_var_InitCustomLocations = true;
 // _loc = _IAMATIKOU;
 // _pos = getPos _loc;
 // _markerG = createMarker [(format ["Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 

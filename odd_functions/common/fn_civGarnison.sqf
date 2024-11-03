@@ -40,7 +40,7 @@ sleep 1;
 	_x addEventHandler ["Hit", {
 		params ["_unit", "_source", "_damage", "_instigator"];
 		if (((side _instigator) == WEST) and ((side _unit) == CIVILIAN)) then {
-			ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
+			[-1] call ODDCTI_fnc_updateCivRep;
 		};
 	}];
 }forEach units _g;

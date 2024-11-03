@@ -1,18 +1,21 @@
 [] execVM "R3F_LOG\init.sqf";
 [] execVM "scripts\rDate.sqf";
 [] spawn DISCommon_fnc_markers;
+[] call DISCommon_fnc_customLocations;
 
 enableSaving [False, False];
 
 // Partie pour les ODD (Opération Dynamique de la DIS)
 ["DIS_mrk_FOB_0"] call DISCommon_fnc_PosFob;
 [] call ODDdata_fnc_var;
-remoteExec ["DISCommon_fnc_customLocations", 0, True];
+remoteExec ["DISCommon_fnc_customLocations", -2, True];
 ODD_var_CurrentMission = 0;
 publicVariable "ODD_var_CurrentMission";
 oddCtrl setObjectTextureGlobal [0, "pics\OddAltis.jpg"];
+[] spawn oddCTI_fnc_initMap;
 
 //NE PAS EDITER AU DESSOUS DE CETTE LIGNE
+[{DISCommon_var_CanTP = True; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
 sleep 5;
 //tawvd_disablenone = True;
 base setObjectTextureGlobal [0, "pics\disMoto.jpg"];
@@ -44,3 +47,5 @@ acces spawn DISLoadCrate_fnc_items;
 [] call DISLoad_fnc_varLoads;
 [pCav] call DISLoad_fnc_ArsenalAce;
 //[] remoteExec ["scripts\rWeather.sqf"];
+
+["marker_1", FOB, True] call DISCommon_fnc_markers;

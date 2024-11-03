@@ -46,7 +46,7 @@ if (side _killer == WEST) then {
 
 	_nearSurrender = [];
 	{
-		if (((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x)) then {
+		if (((_x distance2D _pos) <= _distRed) and !(_x getVariable ["ACE_isUnconscious", true]) and !(captive _x)) then {
 			_nearSurrender pushBack _x;
 		};
 	} forEach (units opfor);
@@ -55,9 +55,9 @@ if (side _killer == WEST) then {
 		private _nbSurrender = 0;
 		// [2] Calcul des nbs de :
 		// BLUFOR
-		_nearBlue = {((_x distance2D _pos) <= _distBlue) and (lifeState _x != 'INCAPACITATED') and !(captive _x)} count (units blufor);
+		_nearBlue = {((_x distance2D _pos) <= _distBlue) and !(_x getVariable ["ACE_isUnconscious", true]) and !(captive _x)} count (units blufor);
 		// OPFOR moins l'AI venant de décéder
-		_nearRed = {((_x distance2D _pos) <= _distRed) and (lifeState _x != 'INCAPACITATED') and !(captive _x) and !(_x getVariable ['ace_captives_issurrendering', False])} count (units opfor);
+		_nearRed = {((_x distance2D _pos) <= _distRed) and !(_x getVariable ["ACE_isUnconscious", true]) and !(captive _x) and !(_x getVariable ['ace_captives_issurrendering', False])} count (units opfor);
 
 		{
 			if (
@@ -88,7 +88,7 @@ if (side _killer == WEST) then {
 				_x addEventHandler ["Hit", {
 					params ["_unit", "_source", "_damage", "_instigator"];
 					if (((side _instigator) == WEST) and ((captive _unit) or (_unit getVariable ['ace_captives_issurrendering', False]))) then { 
-						ODD_var_CivilianReputation = ODD_var_CivilianReputation - 1;
+						[-1] call ODDCTI_fnc_updateCivRep;
 					};
 				}];
 

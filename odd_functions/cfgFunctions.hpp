@@ -42,6 +42,9 @@ class ODD_Common {
 		class ied {};
 
 		class isMillitary {};
+		class patrolWaypoint {};
+
+		class dateInNumber {};
 	};
 };
 
@@ -63,6 +66,7 @@ class ODD_Data {
 		class varRoadBlock {};
 		class varOutpost {};
 		class varIntel {};
+		class varMissions {};
 	};
 
 };
@@ -129,3 +133,57 @@ class ODD_Intels {
 		class nameVl {};
 	}
 };
+
+class ODD_Control {
+	tag = "ODDControl"
+	class Initialize {
+		file = "odd_functions\control";
+		class controlCiv {};
+		class controlEniPax {};
+		class controlEniVeh {};
+		class GarToPatrol {};
+		class needPatrol {};
+		class spawnGar {};
+		class spawnPat {};
+	}
+};
+
+class ODD_CTI {
+	tag = "ODDCTI"
+	class Initialize {
+		file = "odd_functions\CTI";
+		class calcCivOnLoc {};
+		class calcEniOnLoc {};
+		class calcVehOnLoc {};
+
+		class callSave {};
+		class profileSave {};
+		class profileImport {};
+		class ExportData {};
+		class ImportData {};
+		
+		class getLocWhere {};
+		class getNearLoc {};
+		class getAllLocs {};
+		
+		class initMap {};
+		
+		class nameToLoc {};
+		class ProgressMap {};
+		
+		class updateCivRep {};
+		class updateLocationVar {};
+		class updateMap {};
+		class updateMapLocation {};
+	}
+};
+
+class ODD_Missions {
+	tag = "ODDMIS"
+	class Initialize {
+		file = "odd_functions\missions";
+		class createFrontLine {};
+
+	}
+};
+

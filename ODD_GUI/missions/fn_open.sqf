@@ -1,41 +1,92 @@
-ODDGUIMissions_IddDisplay = 090223;
+/*
+* Auteur : Wolv
+* Fonction pour ouvrir le GUI de création de mission
+*
+* Arguments :
+* 
+* Valeur renvoyée :
+*
+* Exemple :
+* 	[] call OddGuiMissions_fnc_open;
+*
+* Variable publique :
+* 
+*/
+
+// si la carte est pas init exit
+if (isNil "ODD_var_INITMAP") exitWith { systemChat "Initialisation pas fini"; true;};
+
+// liste des IDC
+ODDGUIMissions_IddDisplay = 31082024;
 //Liste des IDC (permet de pointer les controlleurs)
 ODDGUIMissions_Combo_Area_IDC = 2100;		// OK
-ODDGUIMissions_Combo_Location_IDC = 2101;	// OK
-ODDGUIMissions_Combo_Mission_IDC = 2102;	// OK
-ODDGUIMissions_Combo_Faction_IDC = 2103;	// OK
-ODDGUIMissions_Combo_Players_IDC = 2104;	// OK
+ODDGUIMissions_Combo_TailleZO_IDC = 2101;	// OK
+ODDGUIMissions_Combo_Location_IDC = 2102;	// OK
+ODDGUIMissions_Combo_Objectif_IDC = 2103;	// OK
 ODDGUIMissions_Combo_Weather_IDC = 2105;	// OK
 ODDGUIMissions_Combo_Fog_IDC = 2106;		// OK
 ODDGUIMissions_Slider_Time_IDC = 1900;		// OK
-ODDGUIMissions_List_Location_IDC = 1500;	// OK
+ODDGUIMissions_SText_Recap_IDC = 1101;		// OK
 ODDGUIMissions_SText_Time_IDC = 1102;		// OK
-ODDGUIMissions_SText_Recap_IDC = 1101;
 
-ODDGUI_var_NbJoueur = [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+// Var pour la localité
+ODDGUIMissions_var_zoneName = ["Zone allié", "Ligne de front", "Zone énemie"];
 
-private _meteoName = ["Ciel bleu", "Nuageux", "Mauvais temps"];
-private _meteoValue = [2, 5, 8];
-
-private _foglvlName = ["Pas de brouillard", "Brouillard très léger", "Brouillard léger", "Brouillard moyen", "Gros Brouillard", "Purée de poid"];
-private _foglvlValue = [0, 1, 2, 3, 4, 5];
-
-private _Secteur = ["Nord-Ouest", "Ouest", "Sud-Ouest", "Nord", "Centre", "Sud", "Nord-Est", "Est", "Sud-Est"];
-ODDGUIMissions_var_SecteurMarker = ["ODD_MarkerNW", "ODD_MarkerW", "ODD_MarkerSW", "ODD_MarkerN", "ODD_MarkerC", "ODD_MarkerS", "ODD_MarkerNE", "ODD_MarkerE", "ODD_MarkerSE"];
+// si on est pas le serv on demande le contenue de ODD_var_AllLocations
+if (isNil "ODD_var_AllLocations") then {
+    [] call ODDCTI_fnc_getAllLocs;
+};
 
 private _location = ['Capitale', 'Grande ville', 'Ville', 'Village', 'Lieu-dit', 'Colline'];
 ODDGUIMissions_var_LocationClassName = ODD_var_LocationType;
 
-private _isCreate = createDialog "ODDGUIMission";
+// Var pour la Météo
+private _meteoName = ["Ciel bleu", "Nuageux", "Mauvais temps"];
+private _meteoValue = [2, 5, 8];
+private _foglvlName = ["Pas de brouillard", "Brouillard très léger", "Brouillard léger", "Brouillard moyen", "Gros Brouillard", "Purée de poid"];
+private _foglvlValue = [0, 1, 2, 3, 4, 5];
+
+// Création du GUI
+private _isCreate = createDialog "ODDGUI_Control";
+// si le GUI est créé
 if (_isCreate) then {
+	// récupération du display
 	private _display = (findDisplay ODDGUIMissions_IddDisplay);
 
-	// combo joueurs
+	// combo zone
 	{
-		lbAdd [ODDGUIMissions_Combo_Players_IDC, str(_x)]; 				// ajoute l'entrée
-		lbSetValue [ODDGUIMissions_Combo_Players_IDC, _forEachIndex, _x]; 	// ajoute une valeur à l'entrée
-	} forEach ODDGUI_var_NbJoueur;
-	(_display displayCtrl ODDGUIMissions_Combo_Players_IDC) lbSetCurSel ((playersNumber west)-1);
+		lbAdd [ODDGUIMissions_Combo_Area_IDC, _x];
+		lbSetValue[ODDGUIMissions_Combo_Area_IDC, _forEachIndex, _forEachIndex];
+	} forEach ODDGUIMissions_var_zoneName;
+	lbAdd [ODDGUIMissions_Combo_Area_IDC, "Aléatoire"];
+	lbSetValue[ODDGUIMissions_Combo_Area_IDC, count ODDGUIMissions_var_zoneName, -1];
+	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) lbSetCurSel ((count _location));
+	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;[] spawn OddGuiMissions_fnc_updateMission;}];
+
+
+	// combo localité type
+	{
+		lbAdd [ODDGUIMissions_Combo_TailleZO_IDC, _x];
+		lbSetValue[ODDGUIMissions_Combo_TailleZO_IDC, _forEachIndex, _forEachIndex];
+	} forEach _location;
+	lbAdd [ODDGUIMissions_Combo_TailleZO_IDC, "Aléatoire"];
+	lbSetValue[ODDGUIMissions_Combo_TailleZO_IDC, count _location, -1];
+	(_display displayCtrl ODDGUIMissions_Combo_TailleZO_IDC) lbSetCurSel ((count _location));
+	(_display displayCtrl ODDGUIMissions_Combo_TailleZO_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;}];
+	
+	// localité
+	[] call OddGuiMissions_fnc_updateLocation;
+	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateMission;}];
+
+	// combo objectif
+	[] call OddGuiMissions_fnc_updateMission;
+	//(_display displayCtrl ODDGUIMissions_Combo_Objectif_IDC) ctrlAddEventHandler ["LBSelChanged",{[] spawn OddGuiMissions_fnc_updateLocation;}];
+
+	// PARTIE Météo
+
+	// slider time
+	sliderSetRange [ODDGUIMissions_Slider_Time_IDC, 0, 1440];
+	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] spawn OddGuiMissions_fnc_updateTime;}];
 
 	// combo météo
 	{
@@ -53,53 +104,9 @@ if (_isCreate) then {
 	lbSetValue[ODDGUIMissions_Combo_Fog_IDC, count _meteoName, -1];
 	(_display displayCtrl ODDGUIMissions_Combo_Fog_IDC) lbSetCurSel ((count _foglvlValue));
 
-	// combo secteur
-	{
-		lbAdd [ODDGUIMissions_Combo_Area_IDC, _x];
-		lbSetValue[ODDGUIMissions_Combo_Area_IDC, _forEachIndex, _forEachIndex];
-	} forEach _Secteur;
-	lbAdd [ODDGUIMissions_Combo_Area_IDC, "Aléatoire"];
-	lbSetValue[ODDGUIMissions_Combo_Area_IDC, count _Secteur, -1];
-	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) lbSetCurSel ((count _Secteur));
-	(_display displayCtrl ODDGUIMissions_Combo_Area_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] call OddGuiMissions_fnc_udpateLocation;}];
-	
-	// combo localité type
-	{
-		lbAdd [ODDGUIMissions_Combo_Location_IDC, _x];
-		lbSetValue[ODDGUIMissions_Combo_Location_IDC, _forEachIndex, _forEachIndex];
-	} forEach _location;
-	lbAdd [ODDGUIMissions_Combo_Location_IDC, "Aléatoire"];
-	lbSetValue[ODDGUIMissions_Combo_Location_IDC, count _location, -1];
-	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) lbSetCurSel ((count _location));
-	(_display displayCtrl ODDGUIMissions_Combo_Location_IDC) ctrlAddEventHandler ["LBSelChanged",{params ["_control", "_lbCurSel", "_lbSelection"];[_lbCurSel] call OddGuiMissions_fnc_udpateLocation;}];
-	
-
-	// combo factions
-	{
-		lbAdd [ODDGUIMissions_Combo_Faction_IDC, _x];
-		lbSetValue[ODDGUIMissions_Combo_Faction_IDC, _forEachIndex, (_forEachIndex + 1)];
-	} forEach ODD_var_FactionNames;
-	lbAdd [ODDGUIMissions_Combo_Faction_IDC, "Aléatoire"];
-	(_display displayCtrl ODDGUIMissions_Combo_Faction_IDC) lbSetCurSel (count ODD_var_FactionNames);
-
-	// combo missions
-	{
-		lbAdd [ODDGUIMissions_Combo_Mission_IDC, _x];
-		lbSetValue[ODDGUIMissions_Combo_Mission_IDC, _forEachIndex, _forEachIndex];
-	} forEach ODD_var_MissionType;
-	lbAdd [ODDGUIMissions_Combo_Mission_IDC, "Aléatoire"];
-	lbSetValue[ODDGUIMissions_Combo_Mission_IDC, (count ODD_var_MissionType), -1];
-	(_display displayCtrl ODDGUIMissions_Combo_Mission_IDC) lbSetCurSel (count ODD_var_MissionType);
-
-	// slider time
-	sliderSetRange [ODDGUIMissions_Slider_Time_IDC, 0, 1440];
-	(_display displayCtrl ODDGUIMissions_Slider_Time_IDC) ctrlAddEventHandler ["SliderPosChanged",{params ["_control", "_newValue"];[_newValue] call OddGuiMissions_fnc_updateTime;}];
-
 	// sText time
 	[0] call OddGuiMissions_fnc_updateTime;
 
-	// list Location
-	[] call OddGuiMissions_fnc_udpateLocation;
 
 	ODDGUIMissions_var_SelectedParams = [-1,"",-1,"Aléatoire","Aléatoire"];
 	[] call OddGuiMissions_fnc_missionStatus;

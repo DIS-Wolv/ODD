@@ -14,8 +14,13 @@ if (_index != -1) then {
 	// Si un véhicule est selectioné
 	_vl = WolvGarage_var_ListVL select _index;	 
 	// Récupère le véhicule sélectioné
-	deleteVehicle _vl;		
 	// Supprime le véhicule
+	deleteVehicle _vl;
+
+	// Supprime le véhicule de la liste
+	(owner player) publicVariableClient "WolvGarage_var_AllVl";
+	WolvGarage_var_AllVl = WolvGarage_var_AllVl - [_vl];
+	publicVariableServer "WolvGarage_var_AllVl";
 
 	lbDelete [WolvGarage_var_IdcListVlProx, _index];	
 	// Supprime le véhicule de la liste
