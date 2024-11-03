@@ -16,7 +16,7 @@
 */
 
 // Récupère les arguments
-params ["_vl", "_pos", ["_dir", 0]];
+params ["_vl", "_pos", ["_dir", 0], ["_lock", True]];
 
 // Crée le véhicule
 _g = _vl createvehicle _pos;
@@ -28,7 +28,9 @@ _g setFuel 1;
 _g setDamage 0;
 
 // Le lock
-[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
+if (_lock) then {
+	[_g, True, True, (random[2, 10, 15])] call ODDcommon_fnc_CtrlVlLock;
+};
 
 ODD_var_MissionProps pushBack _g;
 
