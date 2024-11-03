@@ -1,3 +1,4 @@
 {
-    "sqf.enableACE3": true
+    "sqf.enableACE3": true,
+	"editor.insertSpaces": false
 }
