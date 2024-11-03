@@ -97,7 +97,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	_civact = round (_civtgt);
 
 	// Set des variable de la location
-	_maLoc setVariable ["ODD_var_LocName", text _x];
+	_maLoc setVariable ["ODD_var_LocName", text _maLoc];
 	_maLoc setVariable ["ODD_var_LocId", _forEachIndex];
 	// Set des variable de enemie pax
 	_maLoc setVariable ["ODD_var_OccActEni", _actEni];
@@ -262,7 +262,7 @@ ODD_var_INITMAP = true;
 [["Map Initialized"]] call ODDcommon_fnc_log;
 
 // import les donnés sauvergardé
-uiSleep 15;
+uiSleep 10;
 [] call ODDCTI_fnc_profileImport;
 [{DISCommon_var_CanTP = True; publicVariable "DISCommon_var_CanTP";}] remoteExec ["call",0,True];
 ["Game Ready !"] remoteExec ["systemChat", 0];
