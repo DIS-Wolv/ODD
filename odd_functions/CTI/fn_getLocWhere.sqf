@@ -38,7 +38,7 @@ _AllLocToReturn = _AllLocToReturn - [objNull];
 // si dois renvoier les index
 if (_ReturnIndex) then {
 	// renvoie les index
-	_AllLocToReturn = _AllLocToReturn apply {_x getVariable ["ODD_var_AllLocations_index", -1];};
+	_AllLocToReturn = _AllLocToReturn apply {_x getVariable ["ODD_var_LocId", -1];};
 };
 
 // renvoie la liste des locations
