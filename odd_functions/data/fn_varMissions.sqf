@@ -66,7 +66,7 @@ ODD_var_MissionBriefConvHuma = [
 
 // Defini les différents objectifs possibles
 // missions dans le térritoire allié
-ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire"]; // ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan) a réparé ?
+ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire"]; // patrouille enemie a tué, ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan) a réparé ?
 // missions dans la ligne de front
 ODD_var_MissionTypeFrontLine = ["Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"]; // avions écrasé, IED a déminer, convoi à intercepter, bombe, bureau de recrutement à détruire ? 
 // missions dans le térritoire ennemi
@@ -90,7 +90,7 @@ ODD_var_SercureVehicles = ["O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "O_Truck
 // liste des vehicules objectif à détruire
 ODD_var_DestroyVehicles = ["rhsgref_ins_zsu234", "rhsgref_ins_BM21", "O_SAM_System_04_F", "RHS_BM21_MSV_01", "rhs_prp3_msv", "rhs_9k79", "rhs_D30_vdv", "I_Truck_02_MRL_F", "rhs_gaz66_r142_msv", "O_APC_Wheeled_02_rcws_v2_F", "O_MRAP_02_F", "I_MRAP_03_F", "rhs_bmp3mera_msv", "rhs_btr80_msv"];
 
-ODD_var_HumaVehicles = [ "C_IDAP_Truck_02_water_F", "B_Truck_01_box_F", "C_Truck_02_box_F"];
+ODD_var_HumaVehicles = [ "C_IDAP_Truck_02_water_F", "B_Truck_01_box_F", "C_Truck_02_box_F", "C_IDAP_Pickup_water_rf", "C_IDAP_Van_02_medevac_F", "C_Van_01_box_F", "C_Truck_03_water_rf"];
 
 ODD_var_HVTKill = [
     ["brf_o_afm_commander"],
