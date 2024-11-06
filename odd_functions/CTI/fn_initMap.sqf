@@ -258,10 +258,15 @@ ODD_var_AllLocations = _locations;
 	[_unit, _state] spawn _monCode;
 }] call CBA_fnc_addEventHandler;
 
+// on marque la map comme initialisé
 ODD_var_INITMAP = true;
-[{ODD_var_INITMAP = false;}] remoteExec ["call", 0, true];
+[{ODD_var_INITMAP = true;}] remoteExec ["call", 0, true];
 ["Map Initialized"] remoteExec ["systemChat", 0];
 [["Map Initialized"]] call ODDcommon_fnc_log;
+
+// crée l'array des missions
+ODD_var_ActiveMissions = createHashMap;
+ODD_var_MissionID = 0;
 
 // import les donnés sauvergardé
 uiSleep 10;
