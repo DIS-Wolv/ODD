@@ -24,6 +24,14 @@ if (isNil "_group") exitWith {};
 private _size = (size _loc) select 0;
 private _pos = getPos _loc;
 
+// si il y a moins de 3 groupes sur la localité on réduit la zone de patrouille
+private _GroupOnLoc = _loc getVariable ["ODD_var_OccActEni", 0];
+_GroupOnLoc = _GroupOnLoc - [objNull] - [grpNull];
+
+if(count (_GroupOnLoc) <= 4) then {
+	_size = 250;
+};
+
 // calcul des distances min et max
 private _distMin = _size / 2;
 private _distMax = _size;
