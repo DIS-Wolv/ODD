@@ -74,6 +74,17 @@ if (!isNil "_locData") then {
 	} forEach ODD_var_AllLocations;
 };
 
+// on récupère les données des missions
+private _id = _data get "ODD_var_MissionID";
+if (!isNil "_id") then {
+	ODD_var_MissionID = _id;
+};
+private _missionsData = _data get "ODD_var_ActiveMissions";
+{
+	//TODO
+} forEach _missionsData;
+
+
 // on récupère les données des object
 private _objectData = _data get "ObjectData";
 if (!isNil "_objectData") then {

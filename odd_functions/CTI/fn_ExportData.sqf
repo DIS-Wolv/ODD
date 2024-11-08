@@ -27,6 +27,7 @@ private _objectToSave = [FOB, armesFob, medicalFob, lanceursFob, factory, usine]
 private _data = createHashMap;
 private _LocData = createHashMap;
 private _objectData = createHashMap;
+private _missionsData = createHashMap;
 
 // pour chaque location 
 {
@@ -83,6 +84,12 @@ _data set ["ODD_var_ProgressDate", ODD_var_ProgressDate];				// date de progress
 
 private _date = date;
 _data set ["ODD_var_DateTime", _date];									// date actuelle
+
+// Partie missions 
+_data set ["ODD_var_MissionID", ODD_var_MissionID];						// ID de la mission
+{
+	//TODO
+}forEach ODD_var_ActiveMissions;										// liste des missions actives
 
 // pour chaque object a save
 {
