@@ -79,10 +79,27 @@ private _id = _data get "ODD_var_MissionID";
 if (!isNil "_id") then {
 	ODD_var_MissionID = _id;
 };
-private _missionsData = _data get "ODD_var_ActiveMissions";
-{
-	//TODO
-} forEach _missionsData;
+private _missionsData = _data get "ODD_var_MissionsData";
+if (!isNil "_missionsData") then{
+	{
+		private _mission = _missionsData get _x;
+		private _type = _mission get "Type";
+		switch _type do {
+			case "convoi Humanitaire" : {
+				// récupération des données dans l'array
+				private _missionID = _mission get "id";
+				private _zoneID = _mission get "zone";
+				private _vehiculeType = _mission get "VlType";
+				private _vehiculePos = _mission get "VlPos";
+				private _vehiculeDir = _mission get "VlDir";
+				// on crée la mission
+				[_missionID, _zoneID, _vehiculeType, _vehiculePos, _vehiculeDir, False] spawn ODDMIS_fnc_buildHumanitaire;
+			};
+		};
+		
+	} forEach _missionsData;
+};
+
 
 
 // on récupère les données des object

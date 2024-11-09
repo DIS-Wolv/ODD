@@ -88,8 +88,47 @@ _data set ["ODD_var_DateTime", _date];									// date actuelle
 // Partie missions 
 _data set ["ODD_var_MissionID", ODD_var_MissionID];						// ID de la mission
 {
-	//TODO
-}forEach ODD_var_ActiveMissions;										// liste des missions actives
+	// crée une hashmap
+	private _dataMis = createHashMap;
+	private _id = -1;
+	// récupère les données de la mission
+	private _mission = ODD_var_ActiveMissions get _x;
+
+	// pour chaque variable de la mission
+	{
+		// suivant la variable
+		switch _x do {
+			case "vehicule": {
+				// on récupère les valeurs véhicules
+				private _vls = _mission get _x;
+				// on crée une liste de véhicule
+				private _ListType = [];
+				private _ListPos = [];
+				private _ListDir = [];
+				{
+					_ListType pushBack (TypeOf _x);
+					_ListPos pushBack (getpos _x);
+					_ListDir pushBack (getdir _x);
+				} forEach _vls;
+				_dataMis set ["VlType", _ListType];
+				_dataMis set ["VlPos", _ListPos];
+				_dataMis set ["VlDir", _ListDir];
+			};
+			case "id": {
+				// si c'est l'id de la mission on le récupère
+				_id = _mission get _x;
+				_dataMis set [_x, _id];
+			};
+			default {
+				// sinon on save la variable
+				_dataMis set [_x, _mission get _x];
+			};
+		};
+	} forEach _mission;
+	// on set la mission dans l'array de sauvegarde
+	_missionsData set [_id, _dataMis];
+} forEach ODD_var_ActiveMissions;										// liste des missions actives
+_data set ["ODD_var_MissionsData", _missionsData];						// liste des missions
 
 // pour chaque object a save
 {
