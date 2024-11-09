@@ -25,8 +25,9 @@ private _size = (size _loc) select 0;
 private _pos = getPos _loc;
 
 // si il y a moins de 3 groupes sur la localité on réduit la zone de patrouille
-private _GroupOnLoc = _loc getVariable ["ODD_var_OccActEni", 0];
-_GroupOnLoc = _GroupOnLoc - [objNull] - [grpNull];
+private _GroupOnLoc = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
+_GroupOnLoc = _GroupOnLoc + (_loc getVariable ["ODD_var_OccPatrolGroup", []]);
+_GroupOnLoc = _GroupOnLoc - [grpNull];
 
 if(count (_GroupOnLoc) <= 4) then {
 	_size = 250;
