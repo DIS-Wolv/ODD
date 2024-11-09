@@ -265,6 +265,7 @@ ODD_var_INITMAP = true;
 [["Map Initialized"]] call ODDcommon_fnc_log;
 
 // crée l'array des missions
+[True, "ODD_task_CTI", [Format["Nettoyer %1 de la présence enemie.", worldName], Format["Nettoyer %1", worldName], ""], objNull, "ASSIGNED", -1, False, "map"] call BIS_fnc_taskCreate;
 ODD_var_ActiveMissions = createHashMap;
 ODD_var_MissionID = 0;
 
