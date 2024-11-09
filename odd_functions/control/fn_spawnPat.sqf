@@ -27,7 +27,7 @@ _pos = ASLToATL _pos;
 private _group = [_pos, east, _groupClassName] call BIS_fnc_spawngroup;
 
 // donne les WP au groupe
-[_group, _loc] call ODDcommon_fnc_patrolWaypoint;
+[_group, _loc] spawn ODDcommon_fnc_patrolWaypoint;
 
 // ajoute le groupe a la liste des patrouilles
 _group setVariable ["ODD_var_Loc", _loc, True];
