@@ -235,10 +235,11 @@ ODD_var_AllLocations = _locations;
 		params ["_unit", "_state"];
 		if (!isPlayer _unit) then {
 			if (_state == true) then {
+				// si l'unité est dans un véhicule, on le sort
 				if (vehicle _unit != _unit) then {
 					moveOut _unit;
 				};
-				sleep 2;
+				// on regarde si tout le groupe est en coma
 				private _group = group _unit;
 				private _coma = true;
 				{
@@ -246,11 +247,20 @@ ODD_var_AllLocations = _locations;
 						_coma = false;
 					};
 				} forEach units _group;
+				// si tout le groupe est en coma
 				if (_coma) then {
-					{
+					{	// on tue tout le groupe
 						_x setDamage 1;
 					} forEach units _group;
 				};
+
+				// on ajoute un event handler pour tuer l'unité si elle est en coma et se prend des damages
+				_unit addEventHandler ["Hit", { 
+					params ["_unit", "_source", "_damage", "_instigator"]; 
+					if (_unit getVariable ["ACE_isconvoinscious", true] and (!isPlayer _unit)) then {
+						_unit setDamage 1;		
+					};
+				}];
 			};
 		};
 	};
