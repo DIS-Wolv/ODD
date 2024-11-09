@@ -101,7 +101,7 @@ Private _vehiculeObj = [];
 				// si toutes les subtask sont fini
 				if (_AllSubTask) then {
 					// on valide la tache principale
-					[_MissionsID, true] spawn compile preprocessFile 'odd_functions\missions\fn_EndMission.sqf';
+					[_MissionsID, true] spawn ODDMIS_fnc_EndMission;
 				};
 			};
 		};
@@ -149,7 +149,7 @@ Private _vehiculeObj = [];
 				[_MainTaskName, "FAILED"] call BIS_fnc_taskSetState;
 			};
 
-			[_MissionsID, false] spawn compile preprocessFile 'odd_functions\missions\fn_EndMission.sqf';
+			[_MissionsID, false] spawn ODDMIS_fnc_EndMission;
 		};
 	}];
 
@@ -158,11 +158,6 @@ Private _vehiculeObj = [];
 	_MonVL setVariable ["ODDMIS_var_idKilled", _idKilled];
 
 } forEach _vehiculeType;
-
-
-// _trigger setVariable ["ODD_var_MissionID", _missionID];
-
-
 
 // on Crée l'array des donnée de la mission
 private _MissionsData = createHashMap;
@@ -176,4 +171,4 @@ _MissionsData set ["subTask", _subTaskList];
 // On ajoute la mission à la liste
 ODD_var_ActiveMissions set [_missionID, _MissionsData];
 
-systemChat format ["%1 (%2) : %3", _missionID, _zoneID, "convoi Humanitaire"];
+// systemChat format ["%1 (%2) : %3", _missionID, _zoneID, "convoi Humanitaire"];
