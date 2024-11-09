@@ -182,12 +182,15 @@ class ODD_Missions {
 	tag = "ODDMIS"
 	class Initialize {
 		file = "odd_functions\missions";
+		class buildHumanitaire {};
+
 		class callCreate {};
 
 		class createBlue {};
 		class createFrontLine {};
 		class createRed {};
 
+		class EndMission {};
 	}
 };
 
