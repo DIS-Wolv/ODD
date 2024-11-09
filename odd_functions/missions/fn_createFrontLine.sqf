@@ -14,7 +14,7 @@
 * 
 */
 
-params ["_zoneID","_missionsType"];
+params ["_zoneID","_missionType","_missionID"];
 
 // On récupère la zone
 private _zone = ODD_var_AllLocations select _zoneID;
