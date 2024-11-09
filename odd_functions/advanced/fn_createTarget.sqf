@@ -519,7 +519,7 @@ switch (_Mission) do {
 		[_pos, nil, units _g, 5, 1, False, False] execVM "\z\ace\addons\ai\functions\fnc_garrison.sqf";
 		// Place le groupe en garnison
 	};
-	case (ODD_var_MissionType select 9): {		// Mission de convoie d'un véhicule amie
+	case (ODD_var_MissionType select 9): {		// Mission de convoi d'un véhicule amie
 		_task = [True, ["ODD_task_mission", "ODD_task_main"], [format[selectRandom ODD_var_MissionBriefConvHuma, text _zo], "Véhicule humanitaire", "ODdoBJ"], objNull, "CREATED", 2, True, "car"] call BIS_fnc_taskCreate;
 		// Crée la tâche
 		
