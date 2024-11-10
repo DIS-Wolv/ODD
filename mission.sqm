@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=661;
+		nextID=664;
 	};
 	class Camera
 	{
 		pos[]={12169.07,18.72641,22939.484};
-		dir[]={0.15265135,-0.52813786,-0.83532554};
-		up[]={0.094942071,0.84915882,-0.51953375};
-		aside[]={-0.98370916,6.3620973e-008,-0.1797674};
+		dir[]={0.15265127,-0.52813762,-0.83532524};
+		up[]={0.094942048,0.84915876,-0.51953381};
+		aside[]={-0.9837091,-7.4505806e-09,-0.17976762};
 	};
 };
 binarizationWanted=0;
@@ -9216,14 +9216,14 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={20873.531,11.639184,19234.645};
-				angles[]={0.0013372133,0.46788788,0.0013372133};
+				position[]={20873.531,11.639186,19234.645};
+				angles[]={0.0013439035,0.46788788,0.0013439035};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="[ " \n "    this,  " \n "    ""Interact"",  " \n "    ""a3\ui_f\data\igui\cfg\holdactions\holdaction_hack_ca.paa"",  " \n "    ""a3\ui_f\data\igui\cfg\holdactions\holdaction_hack_ca.paa"",  " \n "    {!(_target getVariable [""DISCommon_var_EE_Working"",False])}, {true},  " \n "    {}, {}, { " \n "        _target setVariable [""DISCommon_var_EE_Working"", True, True]; " \n "        private _value = [1,2,3,4]; " \n "        systemChat ""Earthquake has been triggered!""; " \n "        sleep ((random 10) + 5); " \n "        systemChat ""Earthquake is starting!""; " \n "        [(selectRandom _value)] spawn BIS_fnc_earthquake; " \n "        sleep ((random 30) + 30); " \n "        systemChat ""Earthquake has ended!""; " \n "        _target setVariable [""DISCommon_var_EE_Working"", False, True]; " \n "    }, {},  " \n "    [], 5, 0, false, false, false] call BIS_fnc_holdActionAdd;";
+				init="[ " \n "    this,  " \n "    ""Interact"",  " \n "    ""a3\ui_f\data\igui\cfg\holdactions\holdaction_hack_ca.paa"",  " \n "    ""a3\ui_f\data\igui\cfg\holdactions\holdaction_hack_ca.paa"",  " \n "    {!(_target getVariable [""DISCommon_var_EE_Working"",False])}, {true},  " \n "    {}, {}, { " \n "        _target setVariable [""DISCommon_var_EE_Working"", True, True]; " \n "        private _value = [1,2,3,4]; " \n "        sleep ((random 10) + 5);  " \n "        [(selectRandom _value)] remoteExec [""BIS_fnc_earthquake"",2,False]; " \n "        sleep ((random 30) + 30);  " \n "        _target setVariable [""DISCommon_var_EE_Working"", False, True]; " \n "    }, {},  " \n "    [], 5, 0, false, false, false] call BIS_fnc_holdActionAdd;";
 				name="ODD_EsterEgg_8";
 			};
 			id=1124;
