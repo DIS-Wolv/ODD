@@ -29,10 +29,13 @@ waitUntil {
 ODD_var_INITMAP = false;
 ODD_var_DataLoaded = false;
 
+// si les variable existe pas on les definie
 if (isNil "ODD_var_DEBUG") then {
 	ODD_var_DEBUG = False;
 };
-
+if (isNil "ODD_var_AllLocations") then {
+	ODD_var_AllLocations = [];
+};
 // partie de la gestion des sauvegardes
 // au début pas besoin de save
 ODD_var_NeedSave = false;
