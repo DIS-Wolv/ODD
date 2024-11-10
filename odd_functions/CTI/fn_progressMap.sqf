@@ -130,7 +130,7 @@ private _frontLineModifier = 1.3;
 			// on calcule le prc de remplissage de la zone
 			_vehtgt = _x getVariable ["ODD_var_OccActEniVeh", 0];
 			_countvehact = count _vehact;
-			private _prc = _vehact / _countvehact;
+			private _prc = _countvehact / _vehtgt;
 			// on détermine que par default la zone a renforcer est la zone elle même
 			private _loc = _x;
 			private _locNeedRenfort = _x;
