@@ -36,6 +36,10 @@ if (isNil "ODD_var_DEBUG") then {
 if (isNil "ODD_var_AllLocations") then {
 	ODD_var_AllLocations = [];
 };
+if (isNil "ODD_var_AllLocationsName") then {
+	ODD_var_AllLocationsName = [];
+};
+
 // partie de la gestion des sauvegardes
 // au début pas besoin de save
 ODD_var_NeedSave = false;
