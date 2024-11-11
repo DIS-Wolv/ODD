@@ -75,6 +75,14 @@ Private _vehiculeObj = [];
 
 				private _MissionsID = _vehicle getVariable ["ODDMIS_var_MissionID", -1];
 
+				// on enlève le véhicule de la liste des véhicules à arrivé
+				private _missionData = ODD_var_ActiveMissions get [_MissionsID, []];
+				private _ObjVehicule = _missionData getVariable ["vehicule", -1];
+				_ObjVehicule = _ObjVehicule - [_vehicle];
+				_missionData setVariable ["vehicule", _ObjVehicule];
+				ODD_var_ActiveMissions set [_MissionsID, _missionData];
+
+
 				// remove les event handler de destruction du véhicule, ...
 				private _idEngine = _vehicle getVariable ["ODDMIS_var_idEngine", -1];
 				private _idKilled = _vehicle getVariable ["ODDMIS_var_idKilled", -1];
@@ -115,6 +123,13 @@ Private _vehiculeObj = [];
 		[_SubTaskName, "FAILED"] call BIS_fnc_taskSetState;
 
 		private _MissionsID = _vehicle getVariable ["ODDMIS_var_MissionID", -1];
+		
+		// on enlève le véhicule de la liste des véhicules à arrivé
+		private _missionData = ODD_var_ActiveMissions get [_MissionsID, []];
+		private _ObjVehicule = _missionData getVariable ["vehicule", -1];
+		_ObjVehicule = _ObjVehicule - [_vehicle];
+		_missionData setVariable ["vehicule", _ObjVehicule];
+		ODD_var_ActiveMissions set [_MissionsID, _missionData];
 
 		// remove les event handler de destruction du véhicule, ...
 		private _idEngine = _vehicle getVariable ["ODDMIS_var_idEngine", -1];
