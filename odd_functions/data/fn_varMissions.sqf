@@ -66,11 +66,11 @@ ODD_var_MissionBriefConvHuma = [
 
 // Defini les différents objectifs possibles
 // missions dans le térritoire allié
-ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire"]; // patrouille enemie a tué, ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan) a réparé ?
+ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire"]; // patrouille enemie a tué, ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan), zone a protégé a réparé ?
 // missions dans la ligne de front
-ODD_var_MissionTypeFrontLine = ["Tuer un HVT", "Capturer un HVT", "Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"]; // avions écrasé, IED a déminer, convoi à intercepter, bombe, bureau de recrutement à détruire ? 
+ODD_var_MissionTypeFrontLine = ["Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"]; // avions écrasé, IED a déminer, convoi à intercepter(prisoner, ravitaillement),, bombe, bureau de recrutement à détruire ? 
 // missions dans le térritoire ennemi
-ODD_var_MissionTypeEnemy = ["Tuer un HVT", "Capturer un HVT", "intel", "Helico", "Prisonniers", "Destruction de véhicule"]; // avions écrasé, convoi à intercepter, bombe a posé, bureau de recrutement à détruire ?
+ODD_var_MissionTypeEnemy = ["Tuer un HVT", "Capturer un HVT", "intel", "Helico", "Prisonniers", "Destruction de véhicule"]; // avions écrasé, convoi à intercepter (prisoner, ravitaillement), bombe a posé, bureau de recrutement à détruire ?
 
 private _allMission = ODD_var_MissionTypeBlue + ODD_var_MissionTypeFrontLine + ODD_var_MissionTypeEnemy;
 ODD_var_MissionType = [];
