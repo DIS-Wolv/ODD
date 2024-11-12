@@ -38,7 +38,7 @@ private _SubTasks = _taskName call BIS_fnc_taskChildren;
     [_x, true, true] call BIS_fnc_deleteTask;
 } forEach _SubTasks;
 [_taskName, true, true] call BIS_fnc_deleteTask;
-systemChat "test2";
+// systemChat "test2";
 
 
 // on supprime les données de la mission
