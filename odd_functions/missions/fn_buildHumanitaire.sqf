@@ -76,11 +76,11 @@ Private _vehiculeObj = [];
 				private _MissionsID = _vehicle getVariable ["ODDMIS_var_MissionID", -1];
 
 				// on enlève le véhicule de la liste des véhicules à arrivé
-				private _missionData = ODD_var_ActiveMissions get [_MissionsID, []];
+				private _missionData = ODDMIS_var_ActiveMissions get [_MissionsID, []];
 				private _ObjVehicule = _missionData getVariable ["vehicule", -1];
 				_ObjVehicule = _ObjVehicule - [_vehicle];
 				_missionData setVariable ["vehicule", _ObjVehicule];
-				ODD_var_ActiveMissions set [_MissionsID, _missionData];
+				ODDMIS_var_ActiveMissions set [_MissionsID, _missionData];
 
 
 				// remove les event handler de destruction du véhicule, ...
@@ -125,11 +125,11 @@ Private _vehiculeObj = [];
 		private _MissionsID = _vehicle getVariable ["ODDMIS_var_MissionID", -1];
 		
 		// on enlève le véhicule de la liste des véhicules à arrivé
-		private _missionData = ODD_var_ActiveMissions get [_MissionsID, []];
+		private _missionData = ODDMIS_var_ActiveMissions get [_MissionsID, []];
 		private _ObjVehicule = _missionData getVariable ["vehicule", -1];
 		_ObjVehicule = _ObjVehicule - [_vehicle];
 		_missionData setVariable ["vehicule", _ObjVehicule];
-		ODD_var_ActiveMissions set [_MissionsID, _missionData];
+		ODDMIS_var_ActiveMissions set [_MissionsID, _missionData];
 
 		// remove les event handler de destruction du véhicule, ...
 		private _idEngine = _vehicle getVariable ["ODDMIS_var_idEngine", -1];
@@ -184,5 +184,5 @@ _MissionsData set ["task", _MainTaskName];
 _MissionsData set ["subTask", _subTaskList];
 
 // On ajoute la mission à la liste
-ODD_var_ActiveMissions set [_missionID, _MissionsData];
+ODDMIS_var_ActiveMissions set [_missionID, _MissionsData];
 

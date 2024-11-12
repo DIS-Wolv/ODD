@@ -86,13 +86,14 @@ private _date = date;
 _data set ["ODD_var_DateTime", _date];									// date actuelle
 
 // Partie missions 
-_data set ["ODD_var_MissionID", ODD_var_MissionID];						// ID de la mission
+_data set ["ODDMIS_var_MissionID", ODDMIS_var_MissionID];						// ID de la mission
+_data set ["ODDMIS_var_CompletedMissions", ODDMIS_var_CompletedMissions];	// nombre de mission terminé
 {
 	// crée une hashmap
 	private _dataMis = createHashMap;
 	private _id = -1;
 	// récupère les données de la mission
-	private _mission = ODD_var_ActiveMissions get _x;
+	private _mission = ODDMIS_var_ActiveMissions get _x;
 
 	// pour chaque variable de la mission
 	{
@@ -127,8 +128,8 @@ _data set ["ODD_var_MissionID", ODD_var_MissionID];						// ID de la mission
 	} forEach _mission;
 	// on set la mission dans l'array de sauvegarde
 	_missionsData set [_id, _dataMis];
-} forEach ODD_var_ActiveMissions;										// liste des missions actives
-_data set ["ODD_var_MissionsData", _missionsData];						// liste des missions
+} forEach ODDMIS_var_ActiveMissions;										// liste des missions actives
+_data set ["ODDMIS_var_ActiveMissions", _missionsData];						// liste des missions
 
 // pour chaque object a save
 {

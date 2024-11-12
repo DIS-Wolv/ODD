@@ -75,11 +75,15 @@ if (!isNil "_locData") then {
 };
 
 // on récupère les données des missions
-private _id = _data get "ODD_var_MissionID";
+private _id = _data get "ODDMIS_var_MissionID";
 if (!isNil "_id") then {
-	ODD_var_MissionID = _id;
+	ODDMIS_var_MissionID = _id;
 };
-private _missionsData = _data get "ODD_var_MissionsData";
+private _completedMissions = _data get "ODDMIS_var_CompletedMissions";
+if (!isNil "_completedMissions") then {
+	ODDMIS_var_CompletedMissions = _completedMissions;
+};
+private _missionsData = _data get "ODDMIS_var_ActiveMissions";
 if (!isNil "_missionsData") then{
 	{
 		private _mission = _missionsData get _x;

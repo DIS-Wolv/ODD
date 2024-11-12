@@ -44,16 +44,16 @@ if (!_isBlue) then {
 };
 
 // On récupère l'ID de la mission
-private _id = ODD_var_MissionID;
+private _id = ODDMIS_var_MissionID;
 _id = _id + 1;
 // On vérifie que l'ID n'est pas déjà utilisé
-while {_id in ODD_var_ActiveMissions} do {
+while {_id in ODDMIS_var_ActiveMissions} do {
 	// Log
 	[["ODD_CallCreate : Mission %1 déjà active", _id]] call ODD_fnc_log;
 	_id = _id + 1;
 };
 // On met à jour l'ID
-ODD_var_MissionID = _id;
+ODDMIS_var_MissionID = _id;
 
 // On crée la mission en fonction de la zone
 if ((_missionsType in ODD_var_MissionTypeFrontLine) and (_zoneCamp == "frontline")) then {

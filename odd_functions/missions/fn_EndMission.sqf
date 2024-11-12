@@ -27,7 +27,7 @@ if (_succes) then {
 
 
 // on récupère les données de la mission
-private _missionData = ODD_var_ActiveMissions get _missionID;
+private _missionData = ODDMIS_var_ActiveMissions get _missionID;
 
 // on attend un peu
 uisleep 10;
@@ -40,7 +40,8 @@ private _SubTasks = _taskName call BIS_fnc_taskChildren;
 [_taskName, true, true] call BIS_fnc_deleteTask;
 // systemChat "test2";
 
+ODDMIS_var_CompletedMissions = ODDMIS_var_CompletedMissions + 1;
 
 // on supprime les données de la mission
-ODD_var_ActiveMissions deleteAt _missionID;
+ODDMIS_var_ActiveMissions deleteAt _missionID;
 

@@ -39,6 +39,9 @@ if (isNil "ODD_var_AllLocations") then {
 if (isNil "ODD_var_AllLocationsName") then {
 	ODD_var_AllLocationsName = [];
 };
+if (isNil "ODDMIS_var_CompletedMissions") then {
+	ODDMIS_var_CompletedMissions = 0;
+};
 
 // partie de la gestion des sauvegardes
 // au début pas besoin de save
@@ -283,8 +286,8 @@ ODD_var_INITMAP = true;
 
 // crée l'array des missions
 [True, "ODD_task_CTI", [Format["Nettoyer %1 de la présence enemie.", worldName], Format["Nettoyer %1", worldName], ""], objNull, "ASSIGNED", -1, False, "map"] call BIS_fnc_taskCreate;
-ODD_var_ActiveMissions = createHashMap;
-ODD_var_MissionID = 0;
+ODDMIS_var_ActiveMissions = createHashMap;
+ODDMIS_var_MissionID = 0;
 
 // import les donnés sauvergardé
 uiSleep 10;
