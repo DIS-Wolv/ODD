@@ -20,6 +20,12 @@ params ["_unit"];
         private _src = nil;
         if ((side (_this select 0)) == opfor) then {_src = "OPFOR";};
         if ((side (_this select 0)) == civilian) then {_src = "CIVIL";};
+        if ((side (_this select 0)) == blufor) then {_src = "BLUFOR";};
+
+        // Other sides from https://community.bistudio.com/wiki/Side
+        if ((side (_this select 0)) == resistance) then {_src = "RESISTANCE";};
+        if ((side (_this select 0)) == sideEnemy) then {_src = "OPFOR";};
+        if ((side (_this select 0)) == sideFriendly) then {_src = "BLUFOR";};
 
         if (isNil "_src") then {
             [format ["ODDBUG : Unit %1 is not OPFOR or CIVIL", (name (_this select 0))]] remoteExec ["systemChat", 0];
