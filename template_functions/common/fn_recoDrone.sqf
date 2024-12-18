@@ -16,13 +16,13 @@
 *
 */
 
-params [["_droneType", "B_UAV_02_F"], ["_range", 2000], ["_altitude", 2000], ["_posBase", [0,0,2000]]];
+params [["_droneType", "B_UAV_02_F"], ["_range", 2000], ["_altitude", 2000], ["_posBase", [0,0,2000]], ["_redeploy", -1]];
 
 private _markerDrone = [];
 private _drone = [];
 
 private _fnc_RTB = {
-	params ["_ThisDrone","_posBase"];
+	params ["_ThisDrone","_posBase", "_params"];
 
 	private _vh = vehicle ((units _ThisDrone) select 0);
 	//Attente du niveau de carburant
@@ -39,6 +39,25 @@ private _fnc_RTB = {
 
 	waitUntil {sleep 1; (_vh distance2D _posBase) < 100};
 	deleteVehicle _vh;
+
+
+	// redéploiement
+	private _redeploy = _params select 4;
+	if (_redeploy > 0) then {
+		// recuperation des params
+		private _droneType = _params select 0;
+		private _range = _params select 1;
+		private _altitude = _params select 2;
+		private _posBase = _params select 3;
+
+		// décrémentation du nombre de redéploiement
+		// systemChat format ["A %1", _redeploy];
+		_redeploy = _redeploy - 1;
+		// systemChat format ["B %1", _redeploy];
+		// call du redéploiement
+		systemChat format ["Redéploiement du drone, reste %1", _redeploy];
+		[_droneType, _range, _altitude, _posBase, _redeploy] call DISCommon_fnc_recoDrone;
+	};
 };
 
 private _fnc_OnSite = {
@@ -83,14 +102,21 @@ if (count _markerDrone == 0) exitWith {systemChat "Aucun marqueur de drone de re
 	_pos = getMarkerPos _x;
 	_pos = [_pos select 0, _pos select 1, _altitude];
 	
-	private _markerText = (markerText _x splitString " ");
-	if (count _markerText > 1) then {
-		_range = parseNumber (_markerText select 1);
-		if (count _markerText > 2) then {
-			_altitude = parseNumber (_markerText select 2);
+	if (_redeploy == -1) then {
+		// systemChat "read Marker";
+		_redeploy = 0;
+		private _markerText = (markerText _x splitString " ");
+		if (count _markerText > 1) then {
+			_range = parseNumber (_markerText select 1);
+			if (count _markerText > 2) then {
+				_altitude = parseNumber (_markerText select 2);
+			};
+			if ((count _markerText > 3)) then {
+				_redeploy = parseNumber (_markerText select 3);
+			};
 		};
 	};
-	
+
 	// position de spawn
 	private _spawnPos = _posBase getPos [50, ((360/count _markerDrone) * _forEachIndex)];
 	private _spawnPos = [_posBase select 0, _posBase select 1, (_altitude + (10 * _forEachIndex))];
@@ -159,7 +185,7 @@ if (count _markerDrone == 0) exitWith {systemChat "Aucun marqueur de drone de re
 	[_ThisDrone, _pos, _range] spawn _fnc_OnSite;
 
 	//WP de retour
-	[_ThisDrone, _spawnPos] spawn _fnc_RTB;
+	[_ThisDrone, _spawnPos, [_droneType, _range, _altitude, _posBase, _redeploy]] spawn _fnc_RTB;
 
 } forEach _markerDrone;
 
