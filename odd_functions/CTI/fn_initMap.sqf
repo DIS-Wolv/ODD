@@ -52,8 +52,9 @@ private _triggerBase = createTrigger ["EmptyDetector", base, True];
 _triggerBase setTriggerArea [50, 50, 0, False, -1];
 _triggerBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 _triggerBase setTriggerInterval 5;
-_triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "[] spawn ODDCTI_fnc_callSave", ""];
+_triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "systemChat 'Penser a sauvegardé avant de quitté'", ""];
 
+oddCtrl addAction ["Save Game", {[] spawn ODDCTI_fnc_callSave;},[],1.5,True,True,"","True",5];
 
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
