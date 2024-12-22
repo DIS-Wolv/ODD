@@ -152,7 +152,7 @@ if ((typeName _loc) != "SCALAR") then {
 				} forEach units _x;
 
 				if (isNull _vl and _isAlive == True) then { // si les soldats sont sortis du véhicule mais en vie 
-					_loc setVariable ["ODD_var_OccActEni", (_loc getVariable ["ODD_var_OccActEni", 0] + 1)]; // les passe garnison/patrouille
+					_loc setVariable ["ODD_var_OccActEni", ((_loc getVariable ["ODD_var_OccActEni", 0]) + 1)]; // les passe garnison/patrouille
 				}
 				else {
 					_newpool pushBack [(typeOf _vl)];
