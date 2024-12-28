@@ -7,6 +7,7 @@
 * 
 * Valeur renvoyée :
 *	_vl : Nombre d'ennemis
+*	_vlType : Type des Vls
 *
 * Exemple :
 *	[_loc] call ODDCalc_fnc_calcVehOnLoc
@@ -75,5 +76,12 @@ _vl = _vl + _proxModifier;
 // _marker setMarkerText (str _vl);
 
 _vl = round _vl;
-_vl;
+
+// génération des types de véhicules
+private _vlType = [];
+for "_i" from 1 to _vl do {
+	_vlType pushBack (selectRandom ODD_var_Vehicles);
+};
+
+[_vl, _vlType];
 

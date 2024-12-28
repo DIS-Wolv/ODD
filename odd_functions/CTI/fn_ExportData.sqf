@@ -40,7 +40,7 @@ private _missionsData = createHashMap;
 	private _varToGet = [
 		["ODD_var_LocName",""],
 		["ODD_var_OccActEniVeh", []],
-		["ODD_var_OccTgtEniVeh", [_x] call ODDCalc_fnc_calcVehOnLoc],
+		["ODD_var_OccTgtEniVeh", ([_x] call ODDCalc_fnc_calcVehOnLoc) select 0],
 		["ODD_var_CivActPax", [_x] call ODDCalc_fnc_calcCivOnLoc],
 		["ODD_var_CivTgtPax", [_x] call ODDCalc_fnc_calcCivOnLoc],
 		["ODD_var_OccActEni", [_x] call ODDCalc_fnc_calcEniOnLoc],

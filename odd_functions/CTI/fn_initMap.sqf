@@ -95,10 +95,10 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	private _vehtgt = 0;
 	private _vehact = [];
 	// Set des variable de vehicule
-	_vehtgt = [_x] call ODDCalc_fnc_calcVehOnLoc;
-	for "_i" from 1 to _vehtgt do {
-		_vehact pushBack (selectRandom ODD_var_Vehicles);
-	};
+	_veh = [_x] call ODDCalc_fnc_calcVehOnLoc;
+	_vehtgt = (_veh select 0);
+	_vehact = (_veh select 1);
+	
 
 	// valeur de civil
 	private _civtgt = 0;
@@ -143,7 +143,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 
 	// Valeur des caisses
 	// private _crate = 0; // faire spawn en meme temps que les civils / pax enemie 
-	// _crate = [_x] call compile preprocessFile "odd_functions\CTI\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
+	// _crate = [_x] call compile preprocessFile "odd_functions\Calc\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
 	// _maLoc setVariable ["ODD_var_Crate", _crate];
 
 	// Valeurs des IED
