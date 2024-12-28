@@ -1,6 +1,6 @@
 /*
 * Auteur : Wolv
-* Fonction pour controler le spawn et despawn des ennemis
+* Fonction pour controler le spawn et despawn des civils
 *
 * Arguments :
 *	_trigger : Objet déclencheur
