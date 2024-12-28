@@ -152,10 +152,6 @@ class ODD_CTI {
 	tag = "ODDCTI"
 	class Initialize {
 		file = "odd_functions\CTI";
-		class calcCivOnLoc {};
-		class calcEniOnLoc {};
-		class calcVehOnLoc {};
-
 		class callSave {};
 		class profileSave {};
 		class profileImport {};
@@ -175,6 +171,16 @@ class ODD_CTI {
 		class updateLocationVar {};
 		class updateMap {};
 		class updateMapLocation {};
+	}
+};
+
+class ODD_CALC {
+	tag = "ODDCalc"
+	class Initialize {
+		file = "odd_functions\calc";
+		class calcCivOnLoc {};
+		class calcEniOnLoc {};
+		class calcVehOnLoc {};
 	}
 };
 

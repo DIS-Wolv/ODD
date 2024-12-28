@@ -88,14 +88,14 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	private _tgtEni = 0;		// le nombre de pax sur la loc doit tendre vers cette valeur
 	private _actEni = 0;		// le nombre de pax actuel sur la loc
 	// Set des variable d'enemie
-	_tgtEni = [_x] call ODDCTI_fnc_calcEniOnLoc;
+	_tgtEni = [_x] call ODDCalc_fnc_calcEniOnLoc;
 	_actEni = round (_tgtEni);
 
 	// valeur de vehicule
 	private _vehtgt = 0;
 	private _vehact = [];
 	// Set des variable de vehicule
-	_vehtgt = [_x] call ODDCTI_fnc_calcVehOnLoc;
+	_vehtgt = [_x] call ODDCalc_fnc_calcVehOnLoc;
 	for "_i" from 1 to _vehtgt do {
 		_vehact pushBack (selectRandom ODD_var_Vehicles);
 	};
@@ -104,7 +104,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	private _civtgt = 0;
 	private _civact = 0;
 	// Set des variable de civil
-	_civtgt = [_x] call ODDCTI_fnc_calcCivOnLoc;
+	_civtgt = [_x] call ODDCalc_fnc_calcCivOnLoc;
 	_civact = round (_civtgt);
 
 	// Set des variable de la location
