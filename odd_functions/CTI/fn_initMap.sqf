@@ -59,12 +59,12 @@ oddCtrl addAction ["Save Game", {[] spawn ODDCTI_fnc_callSave;},[],1.5,True,True
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
 // private _radOutpost = 1500;
-// private _radIED = 1400;
 // private _radDisable = 1000;
 private _radSpawnEni = 1000;
 private _radSpawnVl = 1500;
 private _radSpawnCivils = 900;
 private _alt = 1000;
+private _radIED = 1000;
 
 [] call ODDdata_fnc_varEneArd;
 
@@ -99,7 +99,6 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	_vehtgt = (_veh select 0);
 	_vehact = (_veh select 1);
 	
-
 	// valeur de civil
 	private _civtgt = 0;
 	private _civact = 0;
@@ -147,11 +146,9 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// _maLoc setVariable ["ODD_var_Crate", _crate];
 
 	// Valeurs des IED
-	// private _roads = (position _x) nearRoads (size _x select 0);
-	// private _minIED = round (((count _roads) *  1 / 100)) max 0;
-	// private _maxIED = round ((count _roads) * 4 / 100);
-	// private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
-	// _maLoc setVariable ["ODD_var_IED", _nbIED];
+	private _IEDs = [_x] call compile preprocessFile "odd_functions\calc\fn_calcIedOnLoc.sqf";// call ODDCalc_fnc_calcIedOnLoc;
+	_maLoc setVariable ["ODD_var_tgtIED", _IEDs select 0];
+	_maLoc setVariable ["ODD_var_actIED", _IEDs select 1];
 
 	// crée un marker sur la map
 	private _marker = createMarkerLocal [Format ["ODD_var_LocMarker_%1", _pos], (_pos getPos [50, 270])];
@@ -200,7 +197,20 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 		_triggerCiv setVariable ["ODD_var_location", _maLoc];
 		_maLoc setVariable ["ODD_var_triggerCiv", _triggerCiv];
 	};
+	//*/
 	
+	// crée le trigger de spawn d'ied
+	private _triggerIED = createTrigger ["EmptyDetector", _pos, true];
+	_triggerIED setTriggerArea [_radIED, _radIED, 0, false, _alt];
+	_triggerIED setTriggerActivation ["ANYPLAYER", "PRESENT", true];
+	_triggerIED setTriggerInterval 5;
+	_triggerIED setTriggerStatements ["this",
+		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlIED.sqf';", _radIED],	//spawn ODDControl_fnc_controlIED
+		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlIED.sqf'; ODD_var_NeedSave = true;", _radIED]
+	];
+	_triggerIED setVariable ["ODD_var_location", _maLoc];
+	_maLoc setVariable ["ODD_var_triggerIEDs", _triggerIED];
+
 } forEach _locations;
 
 ODD_var_AllLocations = _locations;
