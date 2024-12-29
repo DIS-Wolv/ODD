@@ -32,8 +32,6 @@ private _nbIED = round (random (_maxIED - _minIED)) + _minIED;
 
 if (count _roads == 0) then {
 	_nbIED = 0;
-// debug
-}else{ _nbIED = 5;
 };
 
 // crée les variables pour les IEDs
