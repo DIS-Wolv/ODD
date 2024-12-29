@@ -103,15 +103,20 @@ if ((typeName _loc) != "SCALAR") then {
 			_loc setVariable ["ODD_var_spawnedIEDs", _spawnedIEDs];
 		}
 		else {
+			// récupération des IEDs spawnés
 			_spawnedIEDs = _loc getVariable ["ODD_var_spawnedIEDs", []];
 
+			// tant qu'il y a des IEDs à despawn
 			private _IEDs = [];
 			while {count _spawnedIEDs > 0} do {
+				// récupération des objets
 				private _cover = _spawnedIEDs select 0;
 
+				// si il a pas explosé ou si c'est pas un leurre
 				private _explo = _cover getVariable ["ODD_var_IED_Explo", objNull];
 				private _isDecoy = _cover getVariable ["ODD_var_IED_IsDecoy", False];
 				if (!_isDecoy) then {
+					// suppression du trigger
 					private _trigger = _cover getVariable ["ODD_var_IED_Trigger", objNull];
 					deleteVehicle _trigger;
 				};
@@ -121,11 +126,9 @@ if ((typeName _loc) != "SCALAR") then {
 				private _coverDir = getDir _cover;
 				private _coverClass = typeOf _cover;
 				private _exploPos = getPos _explo;
-				private _exploClass = typeOf _explo;
-				//_cover setVariable ["ODD_var_IED_ExploClass", _exploClass, True];
+				// vue que c'est une mine je peux pas récupérer le type de mine
+				// private _exploClass = typeOf _explo;
 				private _exploClass = _cover getVariable ["ODD_var_IED_ExploClass", ""];
-
-				systemChat format ["%1 | %2 | %3", _coverClass, _exploClass];
 
 				// save des variables
 				_thisIED = [_coverPos, _coverDir, _coverClass, _exploPos, _exploClass, _isDecoy];
