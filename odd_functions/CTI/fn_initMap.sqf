@@ -141,9 +141,9 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	};
 
 	// Valeur des caisses
-	// private _crate = 0; // faire spawn en meme temps que les civils / pax enemie 
-	// _crate = [_x] call compile preprocessFile "odd_functions\Calc\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
-	// _maLoc setVariable ["ODD_var_Crate", _crate];
+	_crate = [_x] call compile preprocessFile "odd_functions\calc\fn_calcCrateOnLoc.sqf"; // ou es le calcule des caisse actuel ?
+	_maLoc setVariable ["ODD_var_TgtCrate", _crate select 0];
+	_maLoc setVariable ["ODD_var_actCrate", _crate select 1];
 
 	// Valeurs des IED
 	private _IEDs = [_x] call ODDCalc_fnc_calcIedOnLoc;
@@ -158,7 +158,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// _marker setMarkerText (str _vehact);
 	_marker setMarkerAlpha 1;
 	_x setVariable ["ODD_var_marker", _marker];
-
+	/*
 	// crée le trigger de spawn de pax
 	private _triggerEni = createTrigger ["EmptyDetector", _pos, true];
 	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
@@ -199,14 +199,14 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	};
 	//*/
 	
-	// crée le trigger de spawn d'ied
+	// crée le trigger de spawn d'ieds & Caisses
 	private _triggerIED = createTrigger ["EmptyDetector", _pos, true];
 	_triggerIED setTriggerArea [_radIED, _radIED, 0, false, _alt];
 	_triggerIED setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerIED setTriggerInterval 5;
 	_triggerIED setTriggerStatements ["this",
-		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlIED;", _radIED],
-		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlIED; ODD_var_NeedSave = true;", _radIED]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlCrates.sqf';", _radIED],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlCrates.sqf'; ODD_var_NeedSave = true;", _radIED]
 	];
 	_triggerIED setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerIEDs", _triggerIED];
