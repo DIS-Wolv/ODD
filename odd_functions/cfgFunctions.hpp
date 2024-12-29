@@ -139,6 +139,7 @@ class ODD_Control {
 	class Initialize {
 		file = "odd_functions\control";
 		class controlCiv {};
+		class controlCrates {};
 		class controlEniPax {};
 		class controlEniVeh {};
 		class controlIED {};
@@ -181,6 +182,7 @@ class ODD_CALC {
 	class Initialize {
 		file = "odd_functions\calc";
 		class calcCivOnLoc {};
+		class calcCrateOnLoc {};
 		class calcEniOnLoc {};
 		class calcVehOnLoc {};
 		class calcIedOnLoc {};

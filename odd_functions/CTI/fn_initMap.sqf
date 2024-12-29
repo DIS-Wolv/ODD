@@ -158,7 +158,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// _marker setMarkerText (str _vehact);
 	_marker setMarkerAlpha 1;
 	_x setVariable ["ODD_var_marker", _marker];
-	/*
+	
 	// crée le trigger de spawn de pax
 	private _triggerEni = createTrigger ["EmptyDetector", _pos, true];
 	_triggerEni setTriggerArea [_radSpawnEni, _radSpawnEni, 0, false, _alt];
@@ -205,8 +205,8 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	_triggerIED setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerIED setTriggerInterval 5;
 	_triggerIED setTriggerStatements ["this",
-		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlCrates.sqf';", _radIED],
-		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlCrates.sqf'; ODD_var_NeedSave = true;", _radIED]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, true, %1] spawn ODDControl_fnc_controlCrate;", _radIED],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlIED; [thisTrigger, false, %1] spawn ODDControl_fnc_controlCrate; ODD_var_NeedSave = true;", _radIED]
 	];
 	_triggerIED setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerIEDs", _triggerIED];
