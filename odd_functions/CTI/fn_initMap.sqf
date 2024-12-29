@@ -146,7 +146,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	// _maLoc setVariable ["ODD_var_Crate", _crate];
 
 	// Valeurs des IED
-	private _IEDs = [_x] call compile preprocessFile "odd_functions\calc\fn_calcIedOnLoc.sqf";// call ODDCalc_fnc_calcIedOnLoc;
+	private _IEDs = [_x] call ODDCalc_fnc_calcIedOnLoc;
 	_maLoc setVariable ["ODD_var_tgtIED", _IEDs select 0];
 	_maLoc setVariable ["ODD_var_actIED", _IEDs select 1];
 
@@ -205,8 +205,8 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 	_triggerIED setTriggerActivation ["ANYPLAYER", "PRESENT", true];
 	_triggerIED setTriggerInterval 5;
 	_triggerIED setTriggerStatements ["this",
-		Format ["[thisTrigger, true, %1] execVM 'odd_functions\control\fn_controlIED.sqf';", _radIED],	//spawn ODDControl_fnc_controlIED
-		Format ["[thisTrigger, false, %1] execVM 'odd_functions\control\fn_controlIED.sqf'; ODD_var_NeedSave = true;", _radIED]
+		Format ["[thisTrigger, true, %1] spawn ODDControl_fnc_controlIED;", _radIED],
+		Format ["[thisTrigger, false, %1] spawn ODDControl_fnc_controlIED; ODD_var_NeedSave = true;", _radIED]
 	];
 	_triggerIED setVariable ["ODD_var_location", _maLoc];
 	_maLoc setVariable ["ODD_var_triggerIEDs", _triggerIED];

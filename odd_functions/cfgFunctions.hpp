@@ -141,6 +141,8 @@ class ODD_Control {
 		class controlCiv {};
 		class controlEniPax {};
 		class controlEniVeh {};
+		class controlIED {};
+
 		class GarToPatrol {};
 		class needPatrol {};
 		class spawnGar {};
@@ -181,6 +183,7 @@ class ODD_CALC {
 		class calcCivOnLoc {};
 		class calcEniOnLoc {};
 		class calcVehOnLoc {};
+		class calcIedOnLoc {};
 	}
 };
 
