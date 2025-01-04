@@ -142,7 +142,7 @@ private _locations = [] call ODDCTI_fnc_getAllLocs;
 
 	// Valeur des caisses
 	_crate = [_x] call ODDCalc_fnc_calcCrateOnLoc;
-	_maLoc setVariable ["ODD_var_TgtCrate", _crate select 0];
+	_maLoc setVariable ["ODD_var_tgtCrate", _crate select 0];
 	_maLoc setVariable ["ODD_var_actCrate", _crate select 1];
 
 	// Valeurs des IED
