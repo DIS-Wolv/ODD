@@ -54,7 +54,9 @@ _triggerBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 _triggerBase setTriggerInterval 5;
 _triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "systemChat 'Penser a sauvegardé avant de quitté'", ""];
 
-oddCtrl addAction ["Save Game", {[] spawn ODDCTI_fnc_callSave;},[],1.5,True,True,"","True",5];
+// remoteExec
+[{oddCtrl addAction ["Save Game", {[ODDCTI_fnc_callSave] remoteExec["spawn", 2];},[],1.5,True,True,"","True",5];}] remoteExec ["call", 0, True];
+
 
 // variable de distance de spawn
 // private _radRoadBlock = 1500;
