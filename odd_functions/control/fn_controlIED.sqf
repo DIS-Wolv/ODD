@@ -71,11 +71,15 @@ if ((typeName _loc) != "SCALAR") then {
 					_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 					_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 					_triggerExplo setTriggerStatements [
-						"this and (count thisList) >= 2",
+						format["this and (count thisList) >= %1", round((random 2) + 1)],
 						"
 						_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
 						if (typeName _explo == 'OBJECT') then {
-							_explo setDamage 1;
+							[_explo] spawn {
+								_thisExplo = _this select 0;
+								sleep ((random 20) + 35);
+								_thisExplo setDamage 1;
+							};
 						};
 
 						_cover = thisTrigger getVariable ['ODD_var_IED_Cover', ''];
