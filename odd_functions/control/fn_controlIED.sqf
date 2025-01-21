@@ -67,17 +67,28 @@ if ((typeName _loc) != "SCALAR") then {
 					private _explo = createMine  [_exploClass, _exploPos, [], 0]; //, "CAN_COLLIDE"
 					_explo setDir _coverDir;
 
+					// création des variables
+					_nbBlue = round((random 2) + 1);
+					_timer = 0;
+					if (_nbBlue == 1) then {
+						_timer = round((random 30) + 35);
+					}
+					else {
+						_timer = round((random 30));
+					};
+
+					// création du trigger
 					private _triggerExplo = createTrigger ["EmptyDetector", _cover, False];
 					_triggerExplo setTriggerArea [5, 5, 0, False, 5];
 					_triggerExplo setTriggerActivation ["WEST", "PRESENT", False];
 					_triggerExplo setTriggerStatements [
-						format["this and (count thisList) >= %1", round((random 2) + 1)],
-						"
-						_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
+						format["this and (count thisList) >= %1", _nbBlue],
+						Format["_explo = thisTrigger getVariable ['ODD_var_IED_Explo', ''];
 						if (typeName _explo == 'OBJECT') then {
-							[_explo] spawn {
+							[_explo, %1] spawn {
 								_thisExplo = _this select 0;
-								sleep ((random 20) + 35);
+								_thisTimer = _this select 1;
+								sleep _thisTimer;
 								_thisExplo setDamage 1;
 							};
 						};
@@ -85,7 +96,7 @@ if ((typeName _loc) != "SCALAR") then {
 						_cover = thisTrigger getVariable ['ODD_var_IED_Cover', ''];
 						_cover setVariable ['ODD_var_IED_IsDecoy', True, True];
 						deleteVehicle thisTrigger;
-						",""
+						",_timer],""
 					];
 
 					_triggerExplo setVariable ["ODD_var_IED_Explo", _explo, True];			// attache l'explosif au trigger
