@@ -71,7 +71,7 @@ if ((typeName _loc) != "SCALAR") then {
 					_nbBlue = round((random 2) + 1);
 					_timer = 0;
 					if (_nbBlue == 1) then {
-						_timer = round((random 30) + 35);
+						_timer = round((random 30) + 45);
 					}
 					else {
 						_timer = round((random 30));
@@ -92,7 +92,6 @@ if ((typeName _loc) != "SCALAR") then {
 								_thisExplo setDamage 1;
 							};
 						};
-
 						_cover = thisTrigger getVariable ['ODD_var_IED_Cover', ''];
 						_cover setVariable ['ODD_var_IED_IsDecoy', True, True];
 						deleteVehicle thisTrigger;
