@@ -11,9 +11,6 @@
 		- _state			:	état voulue (0 = eteint, 1 = allumé, 3 = affiché sur carte)
 		- _speedL			:	delay entre l'extinction (m/s) des lamps
 		- _speedP 			:	delay entre l'extinction (m/s) des poteaux
- 
- *	Appellé par : scripts\lights\generators.sqf, scripts\lights\moyenPoteaux.sqf
- *	Apelle : scripts\lights\moyenPoteaux.sqf, scripts\lights\lamps.sqf
  */
 //récupération des parametre 
 params ["_posPoteau", "_moyenPoteauPool", "_i", "_rMoyenL", "_rMoyenP", "_rGenP", "_state", "_speedL", "_speedP"];

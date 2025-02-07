@@ -3,8 +3,6 @@
  *	Auteur : Wolv (discord : Wolv#2393)
  *	Appellé : "[] spawn WolvLights_fnc_init;"
  *	Argument : 0/
- *	Appellé par : initPlayerLocal.sqf
- *	Apelle : WolvLights_fnc_generators
  */
 
 WolvLights_var_genType = [
@@ -104,7 +102,9 @@ WolvLights_var_lampsType = [
 		"Land_Lamp_Street1_EP1",
 		"Land_Lamp_Street2_EP1",
 		"Land_Lampa_Ind_EP1",
-		"Land_Lamp_Small_EP1"
+		"Land_Lamp_Small_EP1",
+		"Land_House_C_1_EP1",
+		"Land_House_C_1_v2_EP1"
 ]; //liste des lamps
 
 WolvLights_var_lightHouseType = ["Land_LightHouse_F"];
@@ -115,7 +115,9 @@ private _posMarkerG = 0;
 private  _rGenP = 800; 	//raduis de désactivation des poteaux
 private _rGenL = 500;	//raduis de désactivation des lamps
 
-private _gen = nearestObjects [[15000, 15000, 0], WolvLights_var_genType, 30000]; //recupère les générateur de la carte dans un rayon de 15 km autour du centre de la carte
+private _center = [worldSize/2, worldSize/2, 0]; //centre de la carte
+
+private _gen = nearestObjects [_center, WolvLights_var_genType, worldSize]; //recupère les générateur de la carte dans un rayon de 15 km autour du centre de la carte
 {
 	_posMarkerG = (position _x);	//recupère la position
 	
@@ -130,7 +132,7 @@ private _gen = nearestObjects [[15000, 15000, 0], WolvLights_var_genType, 30000]
 	
 }forEach _gen; //pour chaque générateur
 
-private _LightHouse = nearestObjects [[15000, 15000, 0], WolvLights_var_lightHouseType, 30000]; //recupère les générateur de la carte dans un rayon de 15 km autour du centre de la carte
+private _LightHouse = nearestObjects [_center, WolvLights_var_lightHouseType, worldSize]; //recupère les générateur de la carte dans un rayon de 15 km autour du centre de la carte
 
 {
 

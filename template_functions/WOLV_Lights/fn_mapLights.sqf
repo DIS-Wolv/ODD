@@ -3,14 +3,12 @@
  *	Auteur : Wolv (discord : Wolv#2393)
  *	Argument : 
 		- _power		:	état souhaité 
- *	Appellé par : addAction
- *		- this addAction ["Cacher les lights",{[] spawn "scripts\lights\lightsMap.sqf";},[],1.5,True,True,"","True",5];
- *	Apelle : 0/
  */
  
 params ["_power"];
 
-private _lamps = nearestObjects [[15000, 15000, 0], WolvLights_var_lampsType, 30000]; //recupère les générateur de la carte
+private _center = [worldSize/2, worldSize/2, 0]; //centre de la carte
+private _lamps = nearestObjects [_center, WolvLights_var_lampsType, worldSize]; //recupère les générateur de la carte
 private _markerGP = [];
 
 {

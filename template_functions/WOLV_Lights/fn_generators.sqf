@@ -2,14 +2,11 @@
  *	Fonction : execute les action sur les générateur
  *	Auteur : Wolv (discord : Wolv#2393)
  *	Argument : 
-		- "_target"		:	Ou est le Addaction (le générateur ciblé) (parrametre de base du addaction)
-		- "_caller"		:	Qui effectue l'action (le player) (parrametre de base du addaction)
-		- "_actionId"	:	L'id de l'action (int) (parrametre de base du addaction)
+		- "_target"		:	Ou est le Addaction (le générateur ciblé)
+		- "_caller"		:	Qui effectue l'action (le player)
+		- "_actionId"	:	L'id de l'action (int)
 		- "_posPoteauG"	:	Position du générateur
 		- "_state"		:	état souhaité 
- 
- *	Appellé par : scripts\lights\init.sqf
- *	Apelle : scripts\lights\lamps.sqf, scripts\lights\petitPoteaux.sqf, scripts\lights\moyenPoteaux.sqf, scripts\lights\grandPoteaux.sqf
  */
 
 params ["_target","_caller","_actionId","_posPoteauG","_state"]; 	//définition des parrametre
@@ -45,7 +42,7 @@ private _grandPoteauPool = [];	//grand
 private _poteau =  nearestObjects [_posPoteauG, [], _rGenP, True]; // recupère tout les obj
 private _gen = nearestObjects [_posPoteauG, WolvLights_var_genType, _rGenP, True]; // les grand poteaux
 
-playSound3D [getMissionPath "template_functions\WOLV_Lights\Toggle.wav", _posPoteauG , False, _posPoteauG, 2];
+playSound3D [getMissionPath "WOLV_Lights\Toggle.wav", _posPoteauG , False, _posPoteauG, 2];
 
 
 {		//pour chaque petit poteau

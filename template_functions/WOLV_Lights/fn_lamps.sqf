@@ -6,9 +6,6 @@
 		- _state		:	état souhaité 
 		- _max_range	:	porté du poteaux/générateur
 		- _speed		:	vitesse 
- 
- *	Appellé par : scripts\lights\generators.sqf, scripts\lights\grandPoteaux.sqf, scripts\lights\moyenPoteaux.sqf, scripts\lights\petitPoteaux.sqf
- *	Apelle : 0/
  */
 params["_center", "_state", "_max_range", "_speed"];
 
@@ -35,7 +32,7 @@ if (_state <= 1) then {
 		if ((count _lamps) != 0) then 
 		{
 			{
-				[_x, _switch] remoteExecCall["BIS_fnc_switchLamp"];
+				[_x, _switch] remoteExecCall["BIS_fnc_switchLamp", 0, True];
 			} forEach _lamps; 
 		}
 	};
