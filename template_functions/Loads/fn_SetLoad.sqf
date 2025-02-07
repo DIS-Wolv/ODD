@@ -12,6 +12,8 @@
 
 params ["_Preset", "_unit"];
 
+[] call compile preprocessFile "Loads\fn_VarLoads.sqf";
+
 removeAllWeapons _unit;
 removeAllItems _unit;
 removeAllAssignedItems _unit;
@@ -34,7 +36,7 @@ if (count _primary > 0) then {
 	_unit addPrimaryWeaponItem (_primary select 5 select 0);
 	_unit addPrimaryWeaponItem (_primary select 6);
 	if (_primary select 3 == 'rhsusf_acc_g33_xps3') then {
-		[_unit] call DISLoad_fnc_StandartScope;
+		[_unit] call compile preprocessFile "Loads\fn_StandartScope.sqf";
 	} else {
 		_unit addPrimaryWeaponItem (_primary select 3);
 	};
@@ -124,12 +126,12 @@ _unit addGoggles _goggles;
 private _binocular = _load select 8;
 if (count _binocular > 0) then {
 	_unit addWeapon (_binocular select 0);
-	_unit addBinocularItem (_secondary select 1);
-	_unit addBinocularItem (_secondary select 2);
-	_unit addBinocularItem (_secondary select 3);
-	_unit addBinocularItem (_secondary select 4 select 0);
-	_unit addBinocularItem (_secondary select 5 select 0);
-	_unit addBinocularItem (_secondary select 6);
+	_unit addBinocularItem (_binocular select 1);
+	_unit addBinocularItem (_binocular select 2);
+	_unit addBinocularItem (_binocular select 3);
+	_unit addBinocularItem (_binocular select 4 select 0);
+	_unit addBinocularItem (_binocular select 5 select 0);
+	_unit addBinocularItem (_binocular select 6);
 };
 // Items
 private _items = _load select 9;
