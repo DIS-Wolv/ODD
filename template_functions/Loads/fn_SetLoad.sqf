@@ -12,8 +12,6 @@
 
 params ["_Preset", "_unit"];
 
-[] call compile preprocessFile "Loads\fn_VarLoads.sqf";
-
 removeAllWeapons _unit;
 removeAllItems _unit;
 removeAllAssignedItems _unit;
@@ -36,7 +34,7 @@ if (count _primary > 0) then {
 	_unit addPrimaryWeaponItem (_primary select 5 select 0);
 	_unit addPrimaryWeaponItem (_primary select 6);
 	if (_primary select 3 == 'rhsusf_acc_g33_xps3') then {
-		[_unit] call compile preprocessFile "Loads\fn_StandartScope.sqf";
+		[_unit] call DISLoad_fnc_StandartScope;
 	} else {
 		_unit addPrimaryWeaponItem (_primary select 3);
 	};
