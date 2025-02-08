@@ -46,15 +46,16 @@ ODD_var_Squad = [
 
 ODD_var_Vehicles = [
 	["brf_o_ard_btr70"],["brf_o_ard_btr70"],["brf_o_ard_brdm2_hq"],["brf_o_ard_brdm2_hq"],["brf_o_ard_brdm2_hq"],
-	["brf_o_ard_uaz_dshkm"],["brf_o_ard_brdm2"],["brf_o_ard_brdm2_um"],["brf_o_ard_ural"]
+	["brf_o_ard_uaz_dshkm"],["brf_o_ard_brdm2"],["brf_o_ard_brdm2_um"]//,["brf_o_ard_ural"]
 ];
 ODD_var_HeavyVehicles = [
 	["brf_o_ard_bmp1"],["brf_o_ard_zsu234"],["brf_o_ard_su25"],["brf_o_ard_t72ba"],
 	["brf_o_ard_mi24v"],["brf_o_ard_mi8mt"],["brf_o_ard_bmp1d"],["brf_o_ard_bmp2d"],["brf_o_ard_bmp1d"]
 ];
 ODD_var_TransportVehicles = [
-	["brf_o_ard_bmp1"],["brf_o_ard_bmp1d"],["brf_o_ard_bmp2"],["brf_o_ard_bmp2d"],["brf_o_ard_brdm2"],["brf_o_ard_brdm2_atgm"],["brf_o_ard_brdm2_um"],["brf_o_ard_brdm2_hq"],["brf_o_ard_btr70"],["brf_o_ard_btr80"],
-	["brf_o_ard_uaz"],["brf_o_ard_uaz_open"],["brf_o_ard_ural"],["brf_o_ard_zil131"],["brf_o_ard_zil131_open"]
+	//["brf_o_ard_bmp1"],["brf_o_ard_bmp1d"],["brf_o_ard_bmp2"],["brf_o_ard_bmp2d"],["brf_o_ard_brdm2"],["brf_o_ard_brdm2_atgm"],["brf_o_ard_brdm2_um"],["brf_o_ard_brdm2_hq"],["brf_o_ard_btr70"],["brf_o_ard_btr80"],
+	//["brf_o_ard_uaz"],["brf_o_ard_uaz_open"],
+	["brf_o_ard_ural"],["brf_o_ard_zil131"],["brf_o_ard_zil131_open"]
 ];
 // Liste des véhicules
 
