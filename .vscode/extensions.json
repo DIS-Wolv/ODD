@@ -8,6 +8,7 @@
         "blackfisch.sqf-language",
         "eelislynne.sqf-wiki",
         "mcright.auto-save",
-        "brettmayson.hemtt"
+        "brettmayson.hemtt",
+		"ole1986.arma-dev"
     ]
 }
