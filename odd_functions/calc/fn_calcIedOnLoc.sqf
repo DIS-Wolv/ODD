@@ -24,7 +24,7 @@ private _pos = getPos _zo;
 private _roads = _pos nearRoads (size _zo select 0);
 
 
-// calcul du nombre d'IEDs
+// calcul du nombre d'IEDs  // a réduire
 private _minIED = round ((count _roads) *  1 / 100) max 0;
 private _maxIED = round ((count _roads) * 4 / 100);
 
@@ -47,7 +47,7 @@ for "_i" from 1 to _nbIED do {
 	_coverClass = selectRandom ODD_var_IEDCover;
 	private _exploClass = "";
 	if (_isDecoy) then {
-		_exploClass = "Land_JumpTarget_F"; //"Land_HelipadEmpty_F"
+		_exploClass = "Land_HelipadEmpty_F"; //"Land_HelipadEmpty_F" - "Land_JumpTarget_F"
 	} else {
 		_exploClass = selectRandom ODD_var_IEDExplosive;
 	};
