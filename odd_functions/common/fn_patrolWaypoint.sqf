@@ -21,7 +21,7 @@ if (isNil "_loc") exitWith {};
 if (isNil "_group") exitWith {};
 
 // récupération des infos de la localité
-private _size = (size _loc) select 0;
+private _sizeMax = (size _loc) select 0;
 private _pos = getPos _loc;
 
 // si il y a moins de 3 groupes sur la localité on réduit la zone de patrouille
@@ -29,9 +29,10 @@ private _GroupOnLoc = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 _GroupOnLoc = _GroupOnLoc + (_loc getVariable ["ODD_var_OccPatrolGroup", []]);
 _GroupOnLoc = _GroupOnLoc - [grpNull];
 
-if(count (_GroupOnLoc) <= 4) then {
-	_size = 250;
-};
+// if(count (_GroupOnLoc) <= 4) then {
+// 	_size = 150;
+// };
+private _size = (count (_GroupOnLoc) * 50) min _sizeMax;
 
 // calcul des distances min et max
 private _distMin = _size / 2;
