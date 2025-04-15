@@ -293,7 +293,8 @@ if (ODD_var_FirstDefinition) then {
 	[] call ODDdata_fnc_varOutpost;
 	[] call ODDdata_fnc_varIntel;
 
-	ODD_var_Debbuger = [];
+	// server is debuger by default
+	ODD_var_Debbuger = [2];
 
 	ODD_var_FirstDefinition = False;
 
