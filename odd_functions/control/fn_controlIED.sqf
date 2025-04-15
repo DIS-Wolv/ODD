@@ -27,7 +27,7 @@ if ((typeName _loc) != "SCALAR") then {
 	// ecriture dans les logs
 	private _textLoc = text _loc;
 	[["Control IEDs : Zone %1 : status %2", _textLoc, _state]] call ODDcommon_fnc_log;
-	systemChat format ["Control IEDs : Zone %1 : status %2", _textLoc, _state];
+	// systemChat format ["Control IEDs : Zone %1 : status %2", _textLoc, _state];
 
 	// enregistrement de l'etat voulu
 	_trigger setVariable ["trig_ODD_var_iedWantState", _state, True];
