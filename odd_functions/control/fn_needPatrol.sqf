@@ -85,10 +85,43 @@ for "_i" from 1 to _countNewPatrol do {
 		// transforme une garnison en patrouille
 		_garnison = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 
-		// choisi un groupe de garnison aléatoirement
-		private _monGroup = selectRandom _garnison;
+		private _posLocASL = _posLoc;
+		_posLocASL deleteAt [2];
+		_posLocASL = _posLocASL getPos [0,0];
+		_posLocASL = ASLToAGL _posLocASL;
+		_posLocASL set [2, -(_posLocASL select 2)];
 		
+		private _maxValue = (size _loc select 0) * 2;
+
+		// choisi un groupe de garnison aléatoirement
+
 		// choix plus judicieux a faire
+		private _garnisonWeigthed = _garnison apply {
+
+			// récupère la position de la maison
+			private _pos = getPosASL leader _x;
+	
+			// calcul des variables
+			// distance de la maison à la loc
+			private _dist = (_pos distance2D _posLocASL);
+			// differnce de hauteur de la maison à la loc
+			private _deltaA = ((_pos  select 2) - (_posLocASL select 2)) * 2;
+			// nombre de maisons à proximité
+			private _nearBuild = (count (nearestObjects [_pos, ODD_var_Houses, 50])) * 14;
+			// nombre de rouge a proximité
+			private _nearRed = ({(side _x) == east} count (_pos nearEntities ["man", 50])) * 5 - 20;
+			
+			// calcul de la probabilité
+			private _proba = (_dist - _deltaA - _nearBuild - _nearRed) / _maxValue;
+			_proba = _proba max 0.005;
+
+			[_x, _proba]
+		};
+
+		_garnisonWeigthed = flatten _garnisonWeigthed;
+
+		// private _monGroup = selectRandom _garnison;
+		private _monGroup = selectRandomWeighted _garnisonWeigthed;
 
 		_garnison = _garnison - [_monGroup];
 
