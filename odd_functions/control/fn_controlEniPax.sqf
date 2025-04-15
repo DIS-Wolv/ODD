@@ -48,28 +48,30 @@ if ((typeName _loc) != "SCALAR") then {
 			private _countGarBuildings = count _Buildings;
 			private _garnisons = _pool;
 			private _patrouilles = 0;
-			// calcule du nombre de garnisons et de patrouilles
-			if ((_countGarBuildings - 1) < _garnisons) then {
-				_garnisons = _countGarBuildings;
-				_patrouilles = _garnisons - _countGarBuildings;
+
+			// new calc
+
+			// si peux de garnisons tout le monde en patrouille
+			if (_garnisons <= 2) then {
+				_patrouilles = _garnisons;
+				_garnisons = 0;
 			}
 			else {
-				if (_pool > 2) then {
+				// si le nombre de garnisons est supérieur au nombre de batiment
+				if (_garnisons > _countGarBuildings) then {
+					// le nombre de garnisons est égal au nombre de batiment
+					// et le nombre de patrouilles est égal au nombre de garnisons - le nombre de batiment
 					_patrouilles = 2;
-					_garnisons = _garnisons - _patrouilles;
+					_garnisons = _countGarBuildings;
 				}
 				else {
-					_patrouilles = _pool;
+					// si on peux mettre tout le monde en garnions on garde 2 patrouille
+					_patrouilles = 2;
+					_garnisons = _garnisons - _patrouilles;
 				};
-				_garnisons = _garnisons - _patrouilles;
 			};
 
-			if (_patrouilles == 0 and _garnisons > 2) then {
-				_patrouilles = 2;
-				_garnisons = _garnisons - _patrouilles;
-			};
-
-			[["%3 : Garnison %1, Patrouille %2", _garnisons, _patrouilles, text _loc]] call ODDcommon_fnc_log;
+			[["%3 : Garnison %1, Patrouille %2, Pool %4", _garnisons, _patrouilles, text _loc, _pool]] call ODDcommon_fnc_log;
 
 			// spawn des garnisons
 			private _garOut = [];
