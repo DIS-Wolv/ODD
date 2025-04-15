@@ -100,7 +100,7 @@ if ((typeName _loc) != "SCALAR") then {
 				private _selectedBuilding = selectRandom _AllBuildings;
 
 				// spawn de la patrouille
-				private _group = [_loc, (getPos _selectedBuilding`)] call ODDControl_fnc_spawnPat;
+				private _group = [_loc, (getPos _selectedBuilding)] call ODDControl_fnc_spawnPat;
 				// ajoute le groupe à la liste des patrouilles
 				_patOut pushBack _group;
 
