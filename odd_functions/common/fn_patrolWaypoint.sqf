@@ -30,9 +30,11 @@ _GroupOnLoc = _GroupOnLoc + (_loc getVariable ["ODD_var_OccPatrolGroup", []]);
 _GroupOnLoc = _GroupOnLoc - [grpNull];
 
 // if(count (_GroupOnLoc) <= 4) then {
-// 	_size = 150;
+private _size = 150;
 // };
-private _size = (count (_GroupOnLoc) * 50) min _sizeMax;
+if (side _group == east) then {
+	_size = ((count (_GroupOnLoc) * 25) + 75) min _sizeMax;
+};
 
 // calcul des distances min et max
 private _distMin = _size / 2;
@@ -63,8 +65,15 @@ _group setBehaviour "SAFE";
 	};
 } forEach _posList;
 
-// ajout du waypoint pour boucler
+// ajout du waypoint pour recacluler les wp
 private _last = _group addWaypoint [(_posList select 0), 0];
-_last setWaypointType "CYCLE";
+// _last setWaypointType "CYCLE";
+
+_last setWaypointStatements ["true",Format["
+	private _group = group this;
+	private _loc = _group getVariable 'ODD_var_Loc';
+
+	[_group, _loc] call ODDcommon_fnc_patrolWaypoint;
+"]];
 
 _group;
