@@ -71,6 +71,9 @@ for "_i" from 1 to _countNewPatrol do {
 
 		};
 
+		// ecrit dans les logs
+		[["NeedPatrol : Spawn group for %1", _loc getVariable["ODD_var_LocName", text _loc]]] call ODDcommon_fnc_log;
+		
 		// crée un groupe de patrouille
 		private _group = [_loc, _spawnPos] call ODDControl_fnc_spawnPat;
 		_loc setVariable ["ODD_var_OccPatrolGroup", ((_loc getVariable ["ODD_var_OccPatrolGroup", []]) + [_group])];
@@ -84,6 +87,9 @@ for "_i" from 1 to _countNewPatrol do {
 
 		// choisi un groupe de garnison aléatoirement
 		private _monGroup = selectRandom _garnison;
+		
+		// choix plus judicieux a faire
+
 		_garnison = _garnison - [_monGroup];
 
 		_loc setVariable ["ODD_var_OccGarnisonGroup", _garnison];
@@ -92,8 +98,30 @@ for "_i" from 1 to _countNewPatrol do {
 		_loc setVariable ["ODD_var_OccPatrolGroup", ((_loc getVariable ["ODD_var_OccPatrolGroup", []]) + [_monGroup])];
 		// le passe en patrouille
 
-		// cette ligne marche pas lol
+		[["NeedPatrol : Garnison out group for %1", _loc getVariable["ODD_var_LocName", text _loc]]] call ODDcommon_fnc_log;
 		[_monGroup] call ODDControl_fnc_GarToPatrol;
+
+		// test pour sortir d'autre groupe de garnison vers patrouilles
+		private _id = _monGroup addEventHandler ["Deleted", {
+			params ["_group"];
+			private _loc = _group getVariable ["ODD_var_Loc", objNull];
+
+			private _patrolGroup = _loc getVariable ["ODD_var_OccPatrolGroup", []];
+			// systemChat format ["Groups : %1", _patrolGroup];
+			_patrolGroup = _patrolGroup - [_group] - [grpNull];
+			// systemChat format ["Groups : %1", _patrolGroup];
+			_loc setVariable ["ODD_var_OccPatrolGroup", _patrolGroup];
+
+			// systemChat format ["Patrol sur %1 : %2 (%3)", text _loc, count _patrolGroup, str _patrolGroup];
+
+			// bascule des groupes de garnison en patrouille
+			if ((count _patrolGroup) == 0) then {
+				[_loc] call ODDControl_fnc_needPatrol;
+				
+			};
+		}];
+
+		_group setVariable ["ODD_var_DeleteHandler", _id, True];
 	};
 };
 
