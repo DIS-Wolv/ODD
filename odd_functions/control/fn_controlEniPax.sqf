@@ -42,7 +42,8 @@ if ((typeName _loc) != "SCALAR") then {
 			// récupération des variables
 			private _pool = _loc getVariable ["ODD_var_OccActEni", 0];
 			private _pos = getPos _loc;
-			private _Buildings = nearestobjects [_pos, ODD_var_Houses, size _loc select 0];
+			private _AllBuildings = nearestobjects [_pos, ODD_var_Houses, size _loc select 0];
+			private _Buildings = _AllBuildings;
 
 			// calcul des variables
 			private _countGarBuildings = count _Buildings;
@@ -96,8 +97,10 @@ if ((typeName _loc) != "SCALAR") then {
 			// pour chaque patrouille
 			// systemChat format ["Patrouille %1", _patrouilles];
 			for "_i" from 1 to _patrouilles do {
+				private _selectedBuilding = selectRandom _AllBuildings;
+
 				// spawn de la patrouille
-				private _group = [_loc] call ODDControl_fnc_spawnPat;
+				private _group = [_loc, (getPos _selectedBuilding`)] call ODDControl_fnc_spawnPat;
 				// ajoute le groupe à la liste des patrouilles
 				_patOut pushBack _group;
 
