@@ -128,7 +128,7 @@ private _frontLineModifier = 1.3;
 		// si il y a des effectifs a envoyer
 		while {_renfort > 0} do {
 			// on calcule le prc de remplissage de la zone
-			_vehtgt = _x getVariable ["ODD_var_OccActEniVeh", 0];
+			_vehact = _x getVariable ["ODD_var_OccActEniVeh", 0];
 			_countvehact = count _vehact;
 			private _prc = _countvehact / _vehtgt;
 			// on détermine que par default la zone a renforcer est la zone elle même
