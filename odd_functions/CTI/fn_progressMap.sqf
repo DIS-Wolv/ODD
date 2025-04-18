@@ -148,7 +148,7 @@ private _frontLineModifier = 1.3;
 					};
 
 					// on calcule le prc de remplissage de la zone
-					private _locPrc = _countvehact / _vehtgt;
+					private _locPrc = _countvehact / (_vehtgt max 0.1);
 
 					// si la zone a plus besoin de renforts que les autres
 					if ((_locNeedRenfortPrc > _locPrc)) then {
@@ -242,12 +242,12 @@ private _frontLineModifier = 1.3;
 		// on récupère les vehicles de la zone
 		private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
 		// tant qu'il reste des vehicles a envoyer
-		while {count _vehact} do {
+		while {count _vehact > 0} do {
 			private _i = floor (random (count _nearloc));
 			// on détermine la zone a renforcer (par défaut une zone rdm)
 			private _locNeedRenfort = _nearloc select _i;
 			// on calcule le pourcentage de remplissage de la zone
-			private _locNeedRenfortPrc = (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []])) / (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []]));
+			private _locNeedRenfortPrc = (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []])) / (1 max (count ((_nearloc select _i) getVariable ["ODD_var_OccActEniVeh", []])));
 			{
 				// pour chaque zone a proximité
 				if (_x getVariable ["ODD_var_isBlue", false] == false) then {
@@ -256,7 +256,7 @@ private _frontLineModifier = 1.3;
 					private _vehact = _x getVariable ["ODD_var_OccActEniVeh", []];
 					private _countvehact = count _vehact;
 					// on calcule le pourcentage de remplissage de la zone
-					private _locPrc = _countvehact / _vehtgt;
+					private _locPrc = _countvehact / (_vehtgt max 0.1);
 					// si la zone a plus besoin de renforts que les autres
 					if ((_locNeedRenfortPrc > _locPrc)) then {
 						// la défini comme zone a renforcer
