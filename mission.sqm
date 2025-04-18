@@ -405,7 +405,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="ODD - Altis V0.59";
+		briefingName="ODD - Altis V0.60";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
