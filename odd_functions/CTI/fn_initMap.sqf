@@ -52,7 +52,7 @@ private _triggerBase = createTrigger ["EmptyDetector", base, True];
 _triggerBase setTriggerArea [50, 50, 0, False, -1];
 _triggerBase setTriggerActivation ["ANYPLAYER", "PRESENT", True];
 _triggerBase setTriggerInterval 5;
-_triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "systemChat 'Penser a sauvegardé avant de quitté'", ""];
+_triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "['Penser a sauvegardé avant de quitté'] remoteExec ['systemChat', 2];", ""];
 
 // remoteExec
 [{oddCtrl addAction ["Save Game", {[ODDCTI_fnc_callSave] remoteExec ["call", 2];},[],1.5,True,True,"","True",5];}] remoteExec ["call", 0, True];
