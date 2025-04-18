@@ -55,7 +55,7 @@ _triggerBase setTriggerInterval 5;
 _triggerBase setTriggerStatements ["this and ODD_var_NeedSave", "systemChat 'Penser a sauvegardé avant de quitté'", ""];
 
 // remoteExec
-[{oddCtrl addAction ["Save Game", {[ODDCTI_fnc_callSave] remoteExec ["spawn", 2];},[],1.5,True,True,"","True",5];}] remoteExec ["call", 0, True];
+[{oddCtrl addAction ["Save Game", {[ODDCTI_fnc_callSave] remoteExec ["call", 2];},[],1.5,True,True,"","True",5];}] remoteExec ["call", 0, True];
 
 
 // variable de distance de spawn
