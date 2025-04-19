@@ -46,6 +46,8 @@ if ((typeName _loc) != "SCALAR") then {
 			private _roads = _pos nearRoads 1000;
 			private _actVeh = [];
 
+			_pool = _pool - [[""]]; // suprime les vehicules vides
+			
 			// spawn des véhicules
 			{
 				// choisis une route aléatoire
