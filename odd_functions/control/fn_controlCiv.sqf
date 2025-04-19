@@ -56,12 +56,17 @@ if ((typeName _loc) != "SCALAR") then {
 			for "_i" from 1 to _nbcivil do {
 				// choix du batiment
 				private _selectB = selectrandom _Buildings;
-				private _pos = selectRandom ([_selectB] call BIS_fnc_buildingPositions);
+				private _pos = [];
+				_pos = selectRandom ([_selectB] call BIS_fnc_buildingPositions);
+
+				if (isNil '_pos') then {
+					_pos = getPosASL _selectB;
+				};
 
 				private _groupClassName = selectRandom ODD_var_Civilians;
 				private _monGroup = [_pos, civilian, _groupClassName] call BIS_fnc_spawngroup;
 
-				[_monGroup, _loc, 10] call ODDcommon_fnc_patrolWaypoint;
+				[_monGroup, _loc, 4] call ODDcommon_fnc_patrolWaypoint;
 
 				{
 					[_x] call ODDintels_fnc_addInteraction;
