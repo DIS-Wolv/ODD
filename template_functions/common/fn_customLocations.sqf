@@ -138,6 +138,10 @@ switch (worldName) do {
 
 		private _IAMATIKOU = createLocation ["NameLocal", [22351,18411], 200, 200];
 		_IAMATIKOU setText "Iamatikou";
+
+		private _vikosMilitary = createLocation ["NameLocal", [12287,8888], 200, 200];
+		_vikosMilitary setText "Vikos military";
+
 	};
 	case "Malden": {
 		private _lavit = createLocation ["NameLocal", [4970.18,10294.8], 50, 50];
@@ -234,7 +238,7 @@ switch (worldName) do {
 };
 
 DISCommon_var_InitCustomLocations = true;
-// _loc = _IAMATIKOU;
+// _loc = _vikosMilitary;
 // _pos = getPos _loc;
 // _markerG = createMarker [(format ["Z x %1, y %2, z %3", (_pos select 0), (_pos select 1), (_pos select 2)]), _pos]; 
 // _markerG setMarkerShape "RECTANGLE";
