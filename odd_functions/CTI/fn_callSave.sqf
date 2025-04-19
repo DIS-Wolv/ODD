@@ -13,7 +13,6 @@
 * 
 */
 
-systemChat "callSave";
 
 // if (ODD_var_NeedSave == false) exitWith {true;};
 if (ODD_var_DataLoaded == false) exitWith {true};
