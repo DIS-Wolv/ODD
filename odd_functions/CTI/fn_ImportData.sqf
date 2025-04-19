@@ -39,42 +39,49 @@ if (!isNil "_locData") then {
 	{
 		[["Set des variables debut %1", (text _x)]] call ODDcommon_fnc_log;
 		// récupération des données dans l'array
-		_maLocData = _locData get _forEachIndex; //(text _x);
-		// si ce n'est pas un hashmap on le transforme
-		if (typeName _maLocData != "HASHMAP") then {
-			_maLocData = createHashMapFromArray _maLocData;
-		};
+		private _maLocData = _locData get _forEachIndex; //(text _x);
 
-		// liste des variable a set
-		private _varToSet = [
-			"ODD_var_OccActEniVeh",
-			"ODD_var_OccTgtEniVeh",
-			"ODD_var_CivActPax",
-			"ODD_var_CivTgtPax",
-			"ODD_var_OccActEni",
-			"ODD_var_OccTgtEni",
-			"ODD_var_tgtCrate",
-			"ODD_var_actCrate",
-			"ODD_var_tgtIED",
-			"ODD_var_actIED",
-			"ODD_var_OccPrcRecrut",
-			"ODD_var_OccRecrutVeh",
-			"ODD_var_isBlue",
-			"ODD_var_isFrontLine"
-		];
-		// si la si la variable existe on la set
-		if(!isNil "_maLocData") then {
-			private _maLoc = _x;
-			{
-				private _value = _maLocData get _x;
-				if (!isNil "_value") then {
-					_maLoc setVariable [_x, _value];
-				};
+		// si l'object existe pas on le skip
+		if (isNil "_maLocData") then {
+			[["Pas de données pour %1", (text _x)]] call ODDcommon_fnc_log;
+		} 
+		else {
+			// si ce n'est pas un hashmap on le transforme
+			if (typeName _maLocData != "HASHMAP") then {
+				_maLocData = createHashMapFromArray _maLocData;
+			};
 
-			} forEach _varToSet;
+			// liste des variable a set
+			private _varToSet = [
+				"ODD_var_OccActEniVeh",
+				"ODD_var_OccTgtEniVeh",
+				"ODD_var_CivActPax",
+				"ODD_var_CivTgtPax",
+				"ODD_var_OccActEni",
+				"ODD_var_OccTgtEni",
+				"ODD_var_tgtCrate",
+				"ODD_var_actCrate",
+				"ODD_var_tgtIED",
+				"ODD_var_actIED",
+				"ODD_var_OccPrcRecrut",
+				"ODD_var_OccRecrutVeh",
+				"ODD_var_isBlue",
+				"ODD_var_isFrontLine"
+			];
+			// si la si la variable existe on la set
+			if(!isNil "_maLocData") then {
+				private _maLoc = _x;
+				{
+					private _value = _maLocData get _x;
+					if (!isNil "_value") then {
+						_maLoc setVariable [_x, _value];
+					};
+
+				} forEach _varToSet;
+			};
+			[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
+			[["Set des variables ok %1", (text _x)]] call ODDcommon_fnc_log;
 		};
-		[_x, ODD_var_CTIMarkerInfo] call ODDCTI_fnc_updateMapLocation;
-		[["Set des variables ok %1", (text _x)]] call ODDcommon_fnc_log;
 	} forEach ODD_var_AllLocations;
 };
 
