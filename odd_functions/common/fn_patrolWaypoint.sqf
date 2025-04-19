@@ -14,7 +14,7 @@
 * [_group, _loc] call ODDcommon_fnc_patrolWaypoint;
 *
 */
-params ["_group", "_loc", ["_nb", 20]];
+params ["_group", "_loc", ["_nb", 10]];
 
 // si il manque des arguments
 if (isNil "_loc") exitWith {};
