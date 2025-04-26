@@ -14,7 +14,7 @@
 */
 
 
-// if (ODD_var_NeedSave == false) exitWith {true;};
+if (ODD_var_NeedSave == false) exitWith {[["Pas de save en attente"]] call ODDcommon_fnc_log;true;};
 if (ODD_var_DataLoaded == false) exitWith {true};
 
 private _function = {
