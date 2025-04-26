@@ -35,21 +35,25 @@ if (!isNil "_locData") then {
 	if (typeName _locData != "HASHMAP") then {
 		_locData = createHashMapFromArray _locData;
 	};
-	// pour chaque location de la map
+	private _locOffset = 0;
+
+	// on applique les données a chaque location de la map
 	{
 		[["Set des variables debut %1", (text _x)]] call ODDcommon_fnc_log;
 		// récupération des données dans l'array
-		private _maLocData = _locData get _forEachIndex; //(text _x);
-
+		private _maLocData = _locData get (_forEachIndex - _locOffset);
+		// si ce n'est pas un hashmap on le transforme
+		if (typeName _maLocData != "HASHMAP") then {
+			_maLocData = createHashMapFromArray _maLocData;
+		};
+		
 		// si l'object existe pas on le skip
-		if (isNil "_maLocData") then {
+		if (_maLocData get "ODD_var_LocName" != text _x) then {
 			[["Pas de données pour %1", (text _x)]] call ODDcommon_fnc_log;
+			_locOffset = _locOffset + 1;
 		} 
 		else {
-			// si ce n'est pas un hashmap on le transforme
-			if (typeName _maLocData != "HASHMAP") then {
-				_maLocData = createHashMapFromArray _maLocData;
-			};
+			
 
 			// liste des variable a set
 			private _varToSet = [
