@@ -42,6 +42,7 @@ class ODD_Common {
 		class ied {};
 
 		class isMillitary {};
+		class isTagged {};
 		class patrolWaypoint {};
 
 		class dateInNumber {};
