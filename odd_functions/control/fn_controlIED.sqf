@@ -126,6 +126,7 @@ if ((typeName _loc) != "SCALAR") then {
 				// récupération des objets
 				private _cover = _spawnedIEDs select 0;
 
+
 				// si il a pas explosé ou si c'est pas un leurre
 				private _explo = _cover getVariable ["ODD_var_IED_Explo", objNull];
 				private _isDecoy = _cover getVariable ["ODD_var_IED_IsDecoy", False];
@@ -146,7 +147,14 @@ if ((typeName _loc) != "SCALAR") then {
 
 				// save des variables
 				_thisIED = [_coverPos, _coverDir, _coverClass, _exploPos, _exploClass, _isDecoy];
-				_IEDs pushBack _thisIED;
+				if ([_coverPos] call ODDcommon_fnc_isTagged) then {
+					// si l'objet est tagué
+					[["Control IEDs : Zone %1 : IED tagué, supprimé", _textLoc]] call ODDcommon_fnc_log;
+				}
+				else {
+					// si l'objet n'est pas tagué
+					_IEDs pushBack _thisIED;
+				};
 				
 				// suppression des objets
 				deleteVehicle _cover;
