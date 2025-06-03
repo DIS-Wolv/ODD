@@ -1,0 +1,14 @@
+name			= "ODD-DIS";				// Name of your mod
+author			= "Wolv";					// Affects Arma 3 Launcher, when the mod are loaded as local
+logo			= "DIS.paa";			// Logo displayed in the main menu
+logoOver		= "DIS.paa";	// When the mouse is over, in the main menu
+tooltip			= "Mods pour les ODD";				
+tooltipOwned	= "DIS-ODD";				// Tool tip displayed when the mouse is left over, in the main menu
+picture			= "disMoto.jpg";		// Picture displayed from the expansions menu. Optimal size is 2048x1024
+actionName		= "GitHub";
+action			= "https://github.com/DIS-Wolv/ODD";			// Website URL, that can be accessed from the expansions menu
+overview		= "Mod des ODD";	// Supports structured text
+hideName		= 0;						// Hide the extension name
+hidePicture		= 0;						// Hide the extension menu
+dlcColor[]		= { 0.23, 0.39, 0.30, 1 };	// Color used for DLC stripes and backgrounds (RGBA)
+logoSmall		= "DIS.paa";		// Display in creative lists, next to the entities added by the mod
