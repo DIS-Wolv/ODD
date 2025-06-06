@@ -9,8 +9,8 @@ $fileToAdd = @(
 )
 
 # Define paths for the mod and tools
-$KeyFolder = "C:\Users\thoma\Documents\Jeux\KeyModsArma" # "C:\Users\SteamCMD\Documents\Arma3Keys"
-$A3ToolsPath = "H:\SteamLibrary\steamapps\common\Arma 3 Tools" # "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"
+$KeyFolder = "C:\Users\SteamCMD\Documents\Arma3Keys" # "C:\Users\thoma\Documents\Jeux\KeyModsArma" "C:\Users\SteamCMD\Documents\Arma3Keys" 
+$A3ToolsPath = "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools" # "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools" "H:\SteamLibrary\steamapps\common\Arma 3 Tools"
 $AddonBuilderPath = "$A3ToolsPath\AddonBuilder\AddonBuilder.exe"
 $PBOManagerPath = "C:\Program Files\PBO Manager v.1.4 beta\PBOConsole.exe"
 
