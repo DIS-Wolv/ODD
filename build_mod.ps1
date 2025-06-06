@@ -42,6 +42,7 @@ ForEach ($dir in (Get-ChildItem -Path ".\DIS-ODD\addons" -Directory)) {
 	
 	if (Test-Path -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$')) {
 		$prefix = Get-Content -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$') -First 1
+		write-Output "Using prefix: $prefix"
 		& $AddonBuilderPath $sourcePath $destinationDir -packonly -sign="$KeyFolder\dis.biprivatekey" -toolsDirectory="$A3ToolsPath" -prefix=$prefix
 	}
 	else {
