@@ -50,7 +50,7 @@ ForEach ($dir in (Get-ChildItem -Path ".\DIS-ODD\addons" -Directory)) {
 	if (Test-Path -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$')) {
 		$prefix = Get-Content -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$') -First 1
 		write-Output "Using prefix: $prefix"
-		& $AddonBuilderPath $sourcePath $destinationDir -packonly -sign="$KeyFolder\dis.biprivatekey" -toolsDirectory="$A3ToolsPath" -prefix=$prefix
+		& $AddonBuilderPath $sourcePath $destinationDir -packonly -sign="$KeyFolder\dis.biprivatekey" -toolsDirectory="$A3ToolsPath" -prefix="$prefix"
 	}
 	else {
 		write-Output "No prefix file found in $($dir.name), using default settings."
@@ -63,7 +63,7 @@ $pubKeyFilePath = "$KeyFolder\dis.bikey"
 Copy-Item -Path $pubKeyFilePath -Destination "$ModName\keys\dis.bikey" -Force
 
 # create the missions PBO file
-$missionSourcePath = "$(Get-Location)\ODD.Altis"
-Write-Output "Packing mission from: $missionSourcePath"
-$missionDestinationPath = "$(Get-Location)\ODD.Altis.pbo"
-& $PBOManagerPath -pack $missionSourcePath $missionDestinationPath
+# $missionSourcePath = "$(Get-Location)\ODD.Altis"
+# Write-Output "Packing mission from: $missionSourcePath"
+# $missionDestinationPath = "$(Get-Location)\ODD.Altis.pbo"
+# & $PBOManagerPath -pack $missionSourcePath $missionDestinationPath
