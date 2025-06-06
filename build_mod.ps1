@@ -38,9 +38,9 @@ ForEach ($file in $fileToAdd) {
 $destinationDir = "$(Get-Location)\$ModName\addons\"
 ForEach ($dir in (Get-ChildItem -Path ".\DIS-ODD\addons" -Directory)) {
 	$sourcePath = "$(Get-Location)\DIS-ODD\addons\$($dir.name)"
-	write-Output "Processing directory: $sourcePath)"
+	write-Output "Processing directory: $sourcePath"
 	
-	if (Test-Path -Path (".\addons\$($dir.name)\"+'$PREFIX$')) {
+	if (Test-Path -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$')) {
 		$prefix = Get-Content -Path (".\DIS-ODD\addons\$($dir.name)\"+'$PREFIX$') -First 1
 		& $AddonBuilderPath $sourcePath $destinationDir -packonly -sign="$KeyFolder\dis.biprivatekey" -toolsDirectory="$A3ToolsPath" -prefix=$prefix
 	}
