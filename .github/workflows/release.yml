@@ -1,0 +1,27 @@
+---
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  Build-Release:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the mod folder
+        run: ./build_mod.ps1
+
+      - name: Debug
+        run: |
+          dir @DIS-ODD
+          echo $pwd
+          whoami
+      
+      - name: Mark to Upload
+        env:
+          WORKSHOP_ID: ${{ secrets.WORKSHOP_ID }}
+        run: |
+          echo "$pwd\@DIS-ODD|${{ secrets.WORKSHOP_ID }}" >> 'C:\Users\SteamCMD\Desktop\AutoUpdate\update.txt'
+
