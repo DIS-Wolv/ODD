@@ -1,8 +1,8 @@
 class ODD_Common {
-	tag = "ODDcommon";
+	tag = "ODDCommon";
 
 	class Initialize {
-		file = "z\ODD\addons\ODD_common\fonctions";
+		file = "z\ODD\addons\Common\fonctions";
 		
 		class isTagged {};
 	};
