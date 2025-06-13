@@ -63,7 +63,7 @@ $pubKeyFilePath = "$KeyFolder\dis.bikey"
 Copy-Item -Path $pubKeyFilePath -Destination "$ModName\keys\dis.bikey" -Force
 
 # create the missions PBO file
-# $missionSourcePath = "$(Get-Location)\ODD.Altis"
-# Write-Output "Packing mission from: $missionSourcePath"
-# $missionDestinationPath = "$(Get-Location)\ODD.Altis.pbo"
-# & $PBOManagerPath -pack $missionSourcePath $missionDestinationPath
+$missionSourcePath = "$(Get-Location)\ODD.Altis"
+Write-Output "Packing mission from: $missionSourcePath"
+$missionDestinationPath = "$(Get-Location)\ODD.Altis.pbo"
+& $PBOManagerPath -pack $missionSourcePath $missionDestinationPath
