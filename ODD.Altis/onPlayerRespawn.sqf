@@ -1,13 +1,1 @@
-DISLoad_var_IsZeus = ["god","god1"];
-DISLoad_var_IsCdS = ["coyCds"];
-DISLoad_var_IsCdG = ["grCdg","trCdg","sgCdg"];
-DISLoad_var_IsMedic = ["coyMed","grMed","trMed","sgMed"];
-DISLoad_var_IsCdE = ["coyCde","sgBlCde","sgGrCde","trBlCde","trGrCde","grBlCde","grGrCde"];
-DISLoad_var_IsGv = ["coyGvIng","sgGvIng","sgBlGv1","sgBlGv2","sgGrGv1","sgGrGv2","trGvIng","trBlGv1","trBlGv2","trGrGv1","trGrGv2","grGvIng","grBlGv1","grBlGv2","grGrGv1","grGrGv2"];
-DISLoad_var_IsCdBr = ["sgCdb","trCdb","grCdb"];
-DISLoad_var_IsCdB = ["crCdb","trCdb","alCdb"];
-DISLoad_var_IsEquipier = ["sgEq","grEq","trEq","crEq1","crEq2","alEq1","alEq2"];
-DISLoad_var_IsPiloteHelo = ["haP1","haP2","haP3","haP4"];
-DISLoad_var_IsPiloteAvion = ["albP1","albP2"];
-DISLoad_var_EquipDefaultGV = True;
 [player] call DISLoad_fnc_Equip;

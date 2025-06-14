@@ -17,9 +17,9 @@ sleep 10;
 1 =
 [
 	[
-		["Merci aux donateurs","align = 'center' size = '2' font='PuristaBold'","#417630"],
+		["Merci aux donateurs et admins","align = 'center' size = '2' font='PuristaBold'","#417630"],
 		["","<br/>"],
-		["Alftand, Cotorep, Wolv","align = 'center' size = '1.5' font='PuristaBold'","#417630"]//,
+		["Hhaine, Ascestus, Wolv","align = 'center' size = '1.5' font='PuristaBold'","#417630"]//,
 		//["","<br/>"],
 		//["Muscovitch, Bruno","align = 'center' size = '1.5' font='PuristaBold'","#417630"]
 	]
@@ -28,5 +28,5 @@ spawn BIS_fnc_typeText2;
 sleep 10;
 
 2 = 
-["QG de la D. I. S.", "Base Opérationnelle Navale", str(_cdate select 2) + "/" + str(_cdate select 1) + " " + _time + ", heure locale", "Sud-Est, Au large d'Altis"]
+["QG de la D. I. S.", "Base Opérationnelle Navale", str(_cdate select 2) + "/" + str(_cdate select 1) + " " + _time + ", heure locale", "Sud-West, Au large d'Altis"]
 spawn BIS_fnc_infoText;
