@@ -20,13 +20,17 @@ private _ObjNear = nearestObjects [_object, [], _distance];
 
 private _isTagged = False;
 
-{
+if (_object getVariable ["ace_tagging_hasTag", false]) then {
+	_isTagged = True;
+} else {
+	{
 
-	if (((getObjectTextures _x) select 0 find "z\ace\addons\tagging\ui\tags") == 0) then {
-		_isTagged = True;
-	
-	};
+		if (((getObjectTextures _x) select 0 find "z\ace\addons\tagging\ui\tags") == 0) then {
+			_isTagged = True;
+		
+		};
 
-} forEach _ObjNear;
+	} forEach _ObjNear;
+};
 
 _isTagged;
