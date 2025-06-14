@@ -4,7 +4,6 @@ class ODD_Common {
 	class Initialize {
 		file = "odd_functions\common";
 
-		class log {};
 		class CtrlVlLock {};
 		class createAndLockVl {};
 		class PlaceTable {};
@@ -41,10 +40,8 @@ class ODD_Common {
 		class roadBlockAo {};
 		class ied {};
 
-		class isMillitary {};
 		class patrolWaypoint {};
 
-		class dateInNumber {};
 	};
 };
 
