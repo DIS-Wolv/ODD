@@ -141,19 +141,19 @@ if ((typeName _loc) != "SCALAR") then {
 			private _actVeh = _loc getVariable ["ODD_var_OccVehGroup", []];
 			private _newpool = [];
 			{
-				private _isAlive = false;
+				private _isPaxAlive = false;
 				private _vl = objNull;
 				{
-					if (_x != vehicle _x) then {
+					if ((_x != vehicle _x) and !([vehicle _x] call ODDcommon_fnc_isTagged)) then {
 						_vl = vehicle _x;
 					};
 					if ((alive _x) and !(captive _x) and (!(_x getVariable ["ACE_isUnconscious", false])) and !(_x getVariable ['ace_captives_issurrendering', False])) then {
-						_isAlive = true;
+						_isPaxAlive = true;
 					};
 					deleteVehicle _x;
 				} forEach units _x;
 
-				if (isNull _vl and _isAlive == True) then { // si les soldats sont sortis du véhicule mais en vie 
+				if (isNull _vl and _isPaxAlive == True) then { // si les soldats sont sortis du véhicule mais en vie 
 					_loc setVariable ["ODD_var_OccActEni", ((_loc getVariable ["ODD_var_OccActEni", 0]) + 1)]; // les passe garnison/patrouille
 				}
 				else {
