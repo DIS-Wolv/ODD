@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=29;
+		nextID=36;
 	};
 	class Camera
 	{
@@ -1258,15 +1258,15 @@ class Mission
 									dataType="Object";
 									class PositionInfo
 									{
-										position[]={5634.646,1.726588,1361.9199};
-										angles[]={0,0.64368403,0};
+										position[]={5634.646,1.726445,1361.92};
+										angles[]={0,0.64367741,0};
 									};
 									side="West";
 									flags=5;
 									class Attributes
 									{
 										name="sgBlGv2";
-										description="@Sanglier";
+										description="GV@Sanglier";
 										isPlayable=1;
 										class Inventory
 										{
@@ -1291,7 +1291,7 @@ class Mission
 									};
 									id=160;
 									type="B_Soldier_F";
-									atlOffset=0.2083168;
+									atlOffset=0.20817375;
 									class CustomAttributes
 									{
 										class Attribute0
