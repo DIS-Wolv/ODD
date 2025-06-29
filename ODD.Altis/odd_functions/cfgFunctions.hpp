@@ -111,7 +111,7 @@ class ODD_advanced {
 		class TrigOkExtract {};
 		class TrigOkRtb {};
 		class CompleteObj {};
-	}
+	};
 };
 
 class ODD_Intels {
@@ -128,7 +128,7 @@ class ODD_Intels {
 		class maybeGiveIntel {};
 		class nameCaisse {};
 		class nameVl {};
-	}
+	};
 };
 
 class ODD_Control {
@@ -145,7 +145,7 @@ class ODD_Control {
 		class needPatrol {};
 		class spawnGar {};
 		class spawnPat {};
-	}
+	};
 };
 
 class ODD_CTI {
@@ -171,7 +171,7 @@ class ODD_CTI {
 		class updateLocationVar {};
 		class updateMap {};
 		class updateMapLocation {};
-	}
+	};
 };
 
 class ODD_CALC {
@@ -183,7 +183,7 @@ class ODD_CALC {
 		class calcEniOnLoc {};
 		class calcVehOnLoc {};
 		class calcIedOnLoc {};
-	}
+	};
 };
 
 class ODD_Missions {
@@ -199,6 +199,6 @@ class ODD_Missions {
 		class createRed {};
 
 		class EndMission {};
-	}
+	};
 };
 
