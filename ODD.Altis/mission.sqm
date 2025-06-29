@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=36;
+		nextID=50;
 	};
 	class Camera
 	{
-		pos[]={5649.7681,7.0310926,1365.3081};
-		dir[]={-0.66869444,-0.46293843,0.58183837};
-		up[]={-0.34924152,0.88639045,0.30387887};
-		aside[]={0.6564132,0,0.75440168};
+		pos[]={5822.2412,59.163944,1294.8381};
+		dir[]={-0.83427584,-0.51146829,0.20594174};
+		up[]={-0.49656862,0.85929543,0.12257861};
+		aside[]={0.23966189,2.4909423e-07,0.97087085};
 	};
 };
 binarizationWanted=0;
@@ -279,7 +279,7 @@ dlcs[]=
 randomSeed=13459365;
 class ScenarioData
 {
-	author="Ascestus";
+	author="Wolv & Ascestus";
 	overViewPicture="z\DISUtils\addons\Assets\data\disMoto.jpg";
 	onLoadMission="Une phrase inspirante";
 	loadScreen="z\DISUtils\addons\Assets\data\disMoto.jpg";
@@ -336,7 +336,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="DIS Base";
+		briefingName="ODD";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
@@ -359,7 +359,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=3;
+		items=2;
 		class Item0
 		{
 			dataType="Layer";
@@ -711,7 +711,7 @@ class Mission
 					name="Player";
 					class Entities
 					{
-						items=8;
+						items=9;
 						class Item0
 						{
 							dataType="Group";
@@ -6192,9 +6192,287 @@ class Mission
 								nAttributes=1;
 							};
 						};
+						class Item8
+						{
+							dataType="Group";
+							side="West";
+							class Entities
+							{
+								items=2;
+								class Item0
+								{
+									dataType="Object";
+									class PositionInfo
+									{
+										position[]={5641.3071,1.8059225,1372.1191};
+										angles[]={0,0.64367741,0};
+									};
+									side="West";
+									flags=3;
+									class Attributes
+									{
+										rank="COLONEL";
+										name="god";
+										description="Zeus@Zeus";
+										isPlayer=1;
+										isPlayable=1;
+										class Inventory
+										{
+											class uniform
+											{
+												typeName="U_B_CombatUniform_mcam";
+												isBackpack=0;
+												class ItemCargo
+												{
+													items=1;
+													class Item0
+													{
+														name="FirstAidKit";
+														count=1;
+													};
+												};
+											};
+											map="ItemMap";
+											compass="ItemCompass";
+											watch="ItemWatch";
+										};
+									};
+									id=212;
+									type="B_Soldier_F";
+									atlOffset=0.2876513;
+									class CustomAttributes
+									{
+										class Attribute0
+										{
+											property="ace_isMedic";
+											expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=2;
+												};
+											};
+										};
+										class Attribute1
+										{
+											property="ace_isEngineer";
+											expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=2;
+												};
+											};
+										};
+										class Attribute2
+										{
+											property="speaker";
+											expression="_this setspeaker _value;";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="Male11ENG";
+												};
+											};
+										};
+										class Attribute3
+										{
+											property="pitch";
+											expression="_this setpitch _value;";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=1.04;
+												};
+											};
+										};
+										class Attribute4
+										{
+											property="TFAR_freq_sr";
+											expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; } else { _value = [str _value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; }";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="35";
+												};
+											};
+										};
+										class Attribute5
+										{
+											property="TFAR_freq_lr";
+											expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; } else { _value = [str _value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; }";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="60";
+												};
+											};
+										};
+										nAttributes=6;
+									};
+								};
+								class Item1
+								{
+									dataType="Object";
+									class PositionInfo
+									{
+										position[]={5642.8647,1.8059225,1370.998};
+										angles[]={0,0.64367741,0};
+									};
+									side="West";
+									flags=1;
+									class Attributes
+									{
+										rank="COLONEL";
+										name="god1";
+										description="Zeus@Zeus";
+										isPlayable=1;
+										class Inventory
+										{
+											class uniform
+											{
+												typeName="U_B_CombatUniform_mcam";
+												isBackpack=0;
+												class ItemCargo
+												{
+													items=1;
+													class Item0
+													{
+														name="FirstAidKit";
+														count=1;
+													};
+												};
+											};
+											map="ItemMap";
+											compass="ItemCompass";
+											watch="ItemWatch";
+										};
+									};
+									id=217;
+									type="B_Soldier_F";
+									atlOffset=0.28765225;
+									class CustomAttributes
+									{
+										class Attribute0
+										{
+											property="ace_isMedic";
+											expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=2;
+												};
+											};
+										};
+										class Attribute1
+										{
+											property="ace_isEngineer";
+											expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=2;
+												};
+											};
+										};
+										class Attribute2
+										{
+											property="speaker";
+											expression="_this setspeaker _value;";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="Male02ENG";
+												};
+											};
+										};
+										class Attribute3
+										{
+											property="pitch";
+											expression="_this setpitch _value;";
+											class Value
+											{
+												class data
+												{
+													singleType="SCALAR";
+													value=0.97000003;
+												};
+											};
+										};
+										class Attribute4
+										{
+											property="TFAR_freq_sr";
+											expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; } else { _value = [str _value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; }";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="35";
+												};
+											};
+										};
+										class Attribute5
+										{
+											property="TFAR_freq_lr";
+											expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; } else { _value = [str _value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; }";
+											class Value
+											{
+												class data
+												{
+													singleType="STRING";
+													value="60";
+												};
+											};
+										};
+										nAttributes=6;
+									};
+								};
+							};
+							class Attributes
+							{
+							};
+							id=214;
+							atlOffset=0.2876513;
+							class CustomAttributes
+							{
+								class Attribute0
+								{
+									property="groupID";
+									expression="                            if (isNil 'CBA_fnc_setCallsign') then {                                _this setGroupID [_value];                            } else {                                [_this, _value] call CBA_fnc_setCallsign;                            };";
+									class Value
+									{
+										class data
+										{
+											singleType="STRING";
+											value="Zeus";
+										};
+									};
+								};
+								nAttributes=1;
+							};
+						};
 					};
 					id=146;
-					atlOffset=0.17489338;
+					atlOffset=0.23127282;
 				};
 				class Item1
 				{
@@ -6887,62 +7165,6 @@ class Mission
 							dataType="Logic";
 							class PositionInfo
 							{
-								position[]={5298.186,0.01399231,501.62799};
-							};
-							name="HC1";
-							isPlayable=1;
-							description="HC2";
-							id=108;
-							type="HeadlessClient_F";
-							atlOffset=185.98399;
-						};
-						class Item13
-						{
-							dataType="Logic";
-							class PositionInfo
-							{
-								position[]={5396.8838,0.070999146,499.746};
-							};
-							name="HC2";
-							isPlayable=1;
-							description="HC2";
-							id=109;
-							type="HeadlessClient_F";
-							atlOffset=186.041;
-						};
-						class Item14
-						{
-							dataType="Logic";
-							class PositionInfo
-							{
-								position[]={5498.4028,0.031997681,499.746};
-							};
-							name="HC3";
-							isPlayable=1;
-							description="HC3";
-							id=110;
-							type="HeadlessClient_F";
-							atlOffset=186.002;
-						};
-						class Item15
-						{
-							dataType="Logic";
-							class PositionInfo
-							{
-								position[]={5602.7412,-0.011001587,500.689};
-							};
-							name="HC4";
-							isPlayable=1;
-							description="HC4";
-							id=111;
-							type="HeadlessClient_F";
-							atlOffset=185.959;
-						};
-						class Item16
-						{
-							dataType="Logic";
-							class PositionInfo
-							{
 								position[]={16492.354,2.487381,15586.021};
 							};
 							areaSize[]={5,-1,5};
@@ -6981,7 +7203,7 @@ class Mission
 								nAttributes=2;
 							};
 						};
-						class Item17
+						class Item13
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7074,7 +7296,7 @@ class Mission
 								nAttributes=6;
 							};
 						};
-						class Item18
+						class Item14
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7085,7 +7307,7 @@ class Mission
 							type="DISCommon_InitHalo";
 							atlOffset=185.96071;
 						};
-						class Item19
+						class Item15
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7126,7 +7348,7 @@ class Mission
 								nAttributes=2;
 							};
 						};
-						class Item20
+						class Item16
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7193,7 +7415,7 @@ class Mission
 								nAttributes=4;
 							};
 						};
-						class Item21
+						class Item17
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7204,7 +7426,7 @@ class Mission
 							type="DISCommon_CustomDISLocation";
 							atlOffset=186.01982;
 						};
-						class Item22
+						class Item18
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7245,7 +7467,7 @@ class Mission
 								nAttributes=2;
 							};
 						};
-						class Item23
+						class Item19
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7273,7 +7495,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item24
+						class Item20
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7301,7 +7523,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item25
+						class Item21
 						{
 							dataType="Logic";
 							class PositionInfo
@@ -7446,9 +7668,65 @@ class Mission
 								nAttributes=10;
 							};
 						};
+						class Item22
+						{
+							dataType="Logic";
+							class PositionInfo
+							{
+								position[]={5298.186,0.01399231,501.62799};
+							};
+							name="HC1";
+							isPlayable=1;
+							description="HC2";
+							id=108;
+							type="HeadlessClient_F";
+							atlOffset=185.98399;
+						};
+						class Item23
+						{
+							dataType="Logic";
+							class PositionInfo
+							{
+								position[]={5396.8838,0.070999146,499.746};
+							};
+							name="HC2";
+							isPlayable=1;
+							description="HC2";
+							id=109;
+							type="HeadlessClient_F";
+							atlOffset=186.041;
+						};
+						class Item24
+						{
+							dataType="Logic";
+							class PositionInfo
+							{
+								position[]={5498.4028,0.031997681,499.746};
+							};
+							name="HC3";
+							isPlayable=1;
+							description="HC3";
+							id=110;
+							type="HeadlessClient_F";
+							atlOffset=186.002;
+						};
+						class Item25
+						{
+							dataType="Logic";
+							class PositionInfo
+							{
+								position[]={5602.7412,-0.011001587,500.689};
+							};
+							name="HC4";
+							isPlayable=1;
+							description="HC4";
+							id=111;
+							type="HeadlessClient_F";
+							atlOffset=185.959;
+						};
 					};
 					id=151;
-					atlOffset=189.68613;
+					atlOffset=186.21451;
 				};
 				class Item3
 				{
@@ -9113,285 +9391,7 @@ class Mission
 				};
 			};
 			id=144;
-			atlOffset=-113.95757;
-		};
-		class Item2
-		{
-			dataType="Group";
-			side="West";
-			class Entities
-			{
-				items=2;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={5641.3071,1.8059225,1372.1191};
-						angles[]={0,0.64367741,0};
-					};
-					side="West";
-					flags=3;
-					class Attributes
-					{
-						rank="COLONEL";
-						name="god";
-						description="Zeus@Zeus";
-						isPlayer=1;
-						isPlayable=1;
-						class Inventory
-						{
-							class uniform
-							{
-								typeName="U_B_CombatUniform_mcam";
-								isBackpack=0;
-								class ItemCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="FirstAidKit";
-										count=1;
-									};
-								};
-							};
-							map="ItemMap";
-							compass="ItemCompass";
-							watch="ItemWatch";
-						};
-					};
-					id=212;
-					type="B_Soldier_F";
-					atlOffset=0.2876513;
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedic";
-							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=2;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=2;
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="speaker";
-							expression="_this setspeaker _value;";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="Male11ENG";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=1.04;
-								};
-							};
-						};
-						class Attribute4
-						{
-							property="TFAR_freq_sr";
-							expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; } else { _value = [str _value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; }";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="35";
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TFAR_freq_lr";
-							expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; } else { _value = [str _value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; }";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="60";
-								};
-							};
-						};
-						nAttributes=6;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={5642.8647,1.8059225,1370.998};
-						angles[]={0,0.64367741,0};
-					};
-					side="West";
-					flags=1;
-					class Attributes
-					{
-						rank="COLONEL";
-						name="god1";
-						description="Zeus@Zeus";
-						isPlayable=1;
-						class Inventory
-						{
-							class uniform
-							{
-								typeName="U_B_CombatUniform_mcam";
-								isBackpack=0;
-								class ItemCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="FirstAidKit";
-										count=1;
-									};
-								};
-							};
-							map="ItemMap";
-							compass="ItemCompass";
-							watch="ItemWatch";
-						};
-					};
-					id=217;
-					type="B_Soldier_F";
-					atlOffset=0.28765225;
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isMedic";
-							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=2;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isEngineer";
-							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=2;
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="speaker";
-							expression="_this setspeaker _value;";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="Male02ENG";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									singleType="SCALAR";
-									value=0.97000003;
-								};
-							};
-						};
-						class Attribute4
-						{
-							property="TFAR_freq_sr";
-							expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; } else { _value = [str _value,8,512,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_sr',_value,true]; }";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="35";
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TFAR_freq_lr";
-							expression="if (_value isEqualTo '' || _value isEqualTo []) exitWith {}; if (_value isEqualType '') then { _value = [_value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; } else { _value = [str _value,9,87,30,10] call tfar_fnc_parseFrequenciesInput; _this setVariable ['TFAR_freq_lr',_value,true]; }";
-							class Value
-							{
-								class data
-								{
-									singleType="STRING";
-									value="60";
-								};
-							};
-						};
-						nAttributes=6;
-					};
-				};
-			};
-			class Attributes
-			{
-			};
-			id=214;
-			atlOffset=0.2876513;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="groupID";
-					expression="                            if (isNil 'CBA_fnc_setCallsign') then {                                _this setGroupID [_value];                            } else {                                [_this, _value] call CBA_fnc_setCallsign;                            };";
-					class Value
-					{
-						class data
-						{
-							singleType="STRING";
-							value="Zeus";
-						};
-					};
-				};
-				nAttributes=1;
-			};
+			atlOffset=-122.28851;
 		};
 	};
 	class Connections
