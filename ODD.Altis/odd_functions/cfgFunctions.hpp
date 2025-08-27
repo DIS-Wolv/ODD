@@ -41,6 +41,7 @@ class ODD_Common {
 		class ied {};
 
 		class patrolWaypoint {};
+		class selectBuildingInList {};
 
 	};
 };

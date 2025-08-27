@@ -79,7 +79,7 @@ if ((typeName _loc) != "SCALAR") then {
 			// pour chaque garnison
 			for "_i" from 1 to _garnisons do {
 				// choisit un batiment
-				private _selectedBuilding = selectRandom _Buildings;
+				private _selectedBuilding = [_Buildings] call ODDcommon_fnc_SelectBuildingInList;
 				_Buildings = _Buildings - [_selectedBuilding];
 
 				// spawn de la garnison
