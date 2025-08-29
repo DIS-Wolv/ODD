@@ -49,6 +49,10 @@ private _frontLineModifier = 1.3;
 		[["Progression Enemie Début %1 Inf", (text _x)]] call ODDcommon_fnc_log;
 		// la zone peux recevoir / envoyer max 20% de ses effectifs max
 		private _renfort = floor (_tgtEni * 0.2);
+
+		while {(((_actEni - _renfort)/_tgtEni) < ODDCTI_var_capturePrc)} do {
+			_renfort = _renfort - 1;
+		};
 		_renfort = _renfort max 0;
 		
 		// si il y a des effectifs a envoyer
