@@ -101,6 +101,16 @@ _group addEventHandler ["Empty", {
 	private _groupList = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 	_groupList = _groupList - [_group];
 	_loc setVariable ["ODD_var_OccGarnisonGroup", _groupList];
+
+	// si il y a plus de patrouille, en recrée.
+	private _patrolGroup = _loc getVariable ["ODD_var_OccPatrolGroup", []];
+	_patrolGroup = _patrolGroup - [_group] - [grpNull];
+	_loc setVariable ["ODD_var_OccPatrolGroup", _patrolGroup];
+
+	if ((count _patrolGroup) == 0) then {
+		[_loc] spawn ODDControl_fnc_needPatrol;
+		
+	};
 }];
 
 _group;
