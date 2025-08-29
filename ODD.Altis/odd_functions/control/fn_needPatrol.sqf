@@ -22,6 +22,36 @@ private _garnison = _loc getVariable ["ODD_var_OccGarnisonGroup", []];
 private _countNewPatrol = 2 + round random 2;
 _countNewPatrol = _countNewPatrol min (count _garnison);
 
+// calcule la distance moyenne des locs a proximité
+private _nearloc = _loc getVariable ["ODD_var_nearLocations", []];
+private _distanceEnable = 0;
+{
+	_distanceEnable = _distanceEnable + ((_posLoc distance2d (position _x)) / 4);
+	//_dist append [((_thisloc distance2d _x) / 2)];
+} forEach _nearloc;
+_distanceEnable = _distanceEnable / count _nearloc;
+
+// calcule la distance du joueurs le plus proche
+private _playerDist = worldSize;
+{
+	private _dist = (_posLoc distance2D (getPos _x));
+	if (_dist < _playerDist) then {
+		_playerDist = _dist;
+	};
+} forEach allPlayers;
+
+// si les joueurs sont trop loin on ne crée pas de patrouille
+if (_playerDist > _distanceEnable) exitWith {-1};
+
+// attend un peux
+uiSleep (30 + (random 120));
+
+// si le trigger est désactivé on annule
+private _trigger = _loc getVariable ["ODD_var_triggerEni", objNull];
+private _stillActive = _trigger getVariable ["trig_ODD_var_eniWantState", False];
+if (!_stillActive) exitWith {systemChat "Trigger no longer active"; -1};
+//sinon on continue
+
 // pour chaque patrouille a créer
 for "_i" from 1 to _countNewPatrol do {
 	// récupère le nombre de groupe qu'il reste a spawn
@@ -149,12 +179,12 @@ for "_i" from 1 to _countNewPatrol do {
 
 			// bascule des groupes de garnison en patrouille
 			if ((count _patrolGroup) == 0) then {
-				[_loc] call ODDControl_fnc_needPatrol;
+				[_loc] spawn ODDControl_fnc_needPatrol;
 				
 			};
 		}];
 
-		_group setVariable ["ODD_var_DeleteHandler", _id, True];
+		_monGroup setVariable ["ODD_var_DeleteHandler", _id, True];
 	};
 };
 
