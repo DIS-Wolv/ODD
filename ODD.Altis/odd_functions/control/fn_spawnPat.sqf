@@ -62,15 +62,12 @@ private _id = _group addEventHandler ["Deleted", {
 	params ["_group"];
 	private _loc = _group getVariable ["ODD_var_Loc", objNull];
 
+	// si plus de patrouille, en recrée.
 	private _patrolGroup = _loc getVariable ["ODD_var_OccPatrolGroup", []];
-	// systemChat format ["Groups : %1", _patrolGroup];
 	_patrolGroup = _patrolGroup - [_group] - [grpNull];
-	// systemChat format ["Groups : %1", _patrolGroup];
 	_loc setVariable ["ODD_var_OccPatrolGroup", _patrolGroup];
 
-	// systemChat format ["Patrol sur %1 : %2 (%3)", text _loc, count _patrolGroup, str _patrolGroup];
-
-	// bascule des groupes de garnison en patrouille
+	// bascule des groupes de garnison en patrouille ou crée une nouvelle patrouille
 	if ((count _patrolGroup) == 0) then {
 		[_loc] call ODDControl_fnc_needPatrol;
 		
