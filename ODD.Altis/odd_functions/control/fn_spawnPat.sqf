@@ -69,9 +69,9 @@ private _id = _group addEventHandler ["Deleted", {
 
 	// bascule des groupes de garnison en patrouille ou crée une nouvelle patrouille
 	if ((count _patrolGroup) == 0) then {
-		[_loc] call ODDControl_fnc_needPatrol;
+		[_loc] spawn ODDControl_fnc_needPatrol;
 		
-	 };
+	};
 }];
 
 _group setVariable ["ODD_var_DeleteHandler", _id, True];
