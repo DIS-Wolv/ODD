@@ -29,7 +29,12 @@ Private _AllLocToReturn = ODD_var_AllLocations;
 
 // trie les locations pour ne garder que celles qui ont la variable _var avec la valeur _value
 _AllLocToReturn = _AllLocToReturn apply {
-	if (_x getVariable [_var, false] == _value) then {_x} else {objNull};
+	if (typeName (_x getVariable [_var, false]) != "ARRAY") then {
+		if (_x getVariable [_var, false] == _value) then {_x} else {objNull};
+	}
+	else {
+		if (count (_x getVariable [_var, []]) == _value) then {_x} else {objNull};
+	};
 };
 
 // retire les objNull (locations sans la variable _var a la bonne valeur)
