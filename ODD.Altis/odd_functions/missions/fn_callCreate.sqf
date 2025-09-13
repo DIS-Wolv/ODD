@@ -41,6 +41,9 @@ if (!_isBlue) then {
 	else{
 		_zoneCamp = "enemy";
 	};
+}
+else {
+	_zoneCamp = "blue";
 };
 
 // On récupère l'ID de la mission
