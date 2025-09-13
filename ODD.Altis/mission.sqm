@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=1.5707964;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=522;
+	toggles=514;
 	class ItemIDProvider
 	{
-		nextID=229;
+		nextID=234;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=78;
+		nextID=99;
 	};
 	class Camera
 	{
-		pos[]={5795.5312,59.236374,1330.9689};
-		dir[]={-0.88650489,-0.44491279,0.12712874};
-		up[]={-0.4404074,0.89557391,0.063156374};
-		aside[]={0.14195226,0,0.98987353};
+		pos[]={5815.8286,46.357616,1286.2517};
+		dir[]={-0.83161646,-0.51412898,0.21002166};
+		up[]={-0.49848649,0.85771102,0.12589093};
+		aside[]={0.24486294,-2.0183506e-07,0.9695729};
 	};
 };
 binarizationWanted=0;
@@ -64,13 +64,14 @@ addons[]=
 	"A3_Signs_F_Signs_Ad",
 	"RHS_US_A2_AirImport",
 	"ace_respawn",
-	"A3_Structures_F_Tank_Military_RepairDepot"
+	"A3_Structures_F_Tank_Military_RepairDepot",
+	"A3_Props_F_Enoch_Military_Camps"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=29;
+		items=30;
 		class Item0
 		{
 			className="A3_Props_F_Exp";
@@ -261,6 +262,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item29
+		{
+			className="A3_Props_F_Enoch";
+			name="Arma 3 Contact Platform - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 class DynamicSimulation
@@ -282,7 +290,8 @@ dlcs[]=
 	"RHS_USAF",
 	"ORANGE",
 	"R3F_VEHICULES",
-	"Tank"
+	"Tank",
+	"Enoch"
 };
 randomSeed=13459365;
 class ScenarioData
@@ -367,7 +376,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=9;
 		class Item0
 		{
 			dataType="Layer";
@@ -9385,6 +9394,501 @@ class Mission
 			id=227;
 			type="DISAsset_Box_Wpn";
 			atlOffset=-0.025392294;
+		};
+		class Item4
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5683.1831,10.625811,1323.866};
+				angles[]={0,4.5837054,-0};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=229;
+			type="Land_PortableLight_02_quad_black_F";
+			atlOffset=8.1711044;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="Light_3_yaw";
+					expression="_this animateSource ['Light_3_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=20;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="Light_2_yaw";
+					expression="_this animateSource ['Light_2_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-40;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="Light_1_off";
+					expression="_this setHitpointDamage ['Hit_Light_1',_value];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="Light_1_yaw";
+					expression="_this animateSource ['Light_1_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=40;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="Light_4_yaw";
+					expression="_this animateSource ['Light_4_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-20;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item5
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5627.5098,2.4546385,1361.5181};
+				angles[]={0,4.7762165,-0};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=230;
+			type="Land_PortableLight_02_quad_black_F";
+			atlOffset=187.48683;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="Light_3_yaw";
+					expression="_this animateSource ['Light_3_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=20;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="Light_2_yaw";
+					expression="_this animateSource ['Light_2_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-40;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="Light_1_off";
+					expression="_this setHitpointDamage ['Hit_Light_1',_value];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="Light_1_yaw";
+					expression="_this animateSource ['Light_1_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=40;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="Light_4_yaw";
+					expression="_this animateSource ['Light_4_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-20;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item6
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5639.8213,2.454639,1377.4572};
+				angles[]={0,6.091238,-0};
+			};
+			side="Empty";
+			flags=1;
+			class Attributes
+			{
+			};
+			id=231;
+			type="Land_PortableLight_02_quad_black_F";
+			atlOffset=187.48683;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="Light_3_yaw";
+					expression="_this animateSource ['Light_3_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=20;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="Light_2_yaw";
+					expression="_this animateSource ['Light_2_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-40;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="Light_1_off";
+					expression="_this setHitpointDamage ['Hit_Light_1',_value];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="Light_1_yaw";
+					expression="_this animateSource ['Light_1_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=40;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="Light_4_yaw";
+					expression="_this animateSource ['Light_4_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-20;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item7
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5698.7339,2.4548049,1323.172};
+				angles[]={0,2.2376866,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=232;
+			type="Land_PortableLight_02_quad_black_F";
+			atlOffset=0.00017821789;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="Light_3_yaw";
+					expression="_this animateSource ['Light_3_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=20;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="Light_2_yaw";
+					expression="_this animateSource ['Light_2_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-170;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="Light_1_off";
+					expression="_this setHitpointDamage ['Hit_Light_1',_value];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="Light_1_yaw";
+					expression="_this animateSource ['Light_1_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=40;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="Light_4_yaw";
+					expression="_this animateSource ['Light_4_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-20;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item8
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5694.269,2.4548049,1317.507};
+				angles[]={0,2.2376866,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=233;
+			type="Land_PortableLight_02_quad_black_F";
+			atlOffset=0.00017726421;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							singleType="BOOL";
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="Light_3_yaw";
+					expression="_this animateSource ['Light_3_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=20;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="Light_2_yaw";
+					expression="_this animateSource ['Light_2_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-40;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="Light_1_off";
+					expression="_this setHitpointDamage ['Hit_Light_1',_value];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="Light_1_yaw";
+					expression="_this animateSource ['Light_1_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=170;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="Light_4_yaw";
+					expression="_this animateSource ['Light_4_yaw_source',_value,true]";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=-20;
+						};
+					};
+				};
+				nAttributes=6;
+			};
 		};
 	};
 	class Connections
