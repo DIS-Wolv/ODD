@@ -36,7 +36,6 @@ switch (_missionType) do {
 		// code
 	};
 	case (ODD_var_MissionTypeBlue select 1): { // convoi Humanitaire Blue
-
 		// On récupère la position de l'objectif
 		private _objectifPosition = position _zone;
 
@@ -60,6 +59,10 @@ switch (_missionType) do {
 		
 		private _monArray = [_missionID, _zoneID, _objectifPosition, _vehiculeType, _vehiculePos, _vehiculeDir];
 
+
+	};
+	case (ODD_var_MissionTypeBlue select 2): { // Destruction VL en Zone Blue
+		
 
 	};
 };
