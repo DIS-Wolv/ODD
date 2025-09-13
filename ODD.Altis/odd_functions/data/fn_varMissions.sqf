@@ -66,7 +66,7 @@ ODD_var_MissionBriefConvHuma = [
 
 // Defini les différents objectifs possibles
 // missions dans le térritoire allié
-ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire"]; // patrouille enemie a tué, ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan), zone a protégé a réparé ?
+ODD_var_MissionTypeBlue = ["Helico", "Convoi Humanitaire", "Destruction VL"]; // patrouille enemie a tué, ravitallement de base, déploiment d'allié, récupération de matériel, IED a déminer, Vehicule(civil ou Otan), zone a protégé a réparé ?
 // missions dans la ligne de front
 ODD_var_MissionTypeFrontLine = ["Sécurisation de zone", "intel", "Helico", "Prisonniers", "Sécurisation de véhicule", "Destruction de véhicule"]; // avions écrasé, IED a déminer, convoi à intercepter(prisoner, ravitaillement),, bombe, bureau de recrutement à détruire ? 
 // missions dans le térritoire ennemi
